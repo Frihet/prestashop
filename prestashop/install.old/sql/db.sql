@@ -901,6 +901,7 @@ CREATE TABLE `PREFIX_page_viewed` (
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8;
 
 CREATE TABLE `PREFIX_product` (
+  `type` varchar(32) default NULL,
   `id_product` int(10) unsigned NOT NULL auto_increment,
   `id_supplier` int(10) unsigned default NULL,
   `id_manufacturer` int(10) unsigned default NULL,

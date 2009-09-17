@@ -998,8 +998,8 @@ class AdminProducts extends AdminTab
 			<div class="tab-page" id="step3"><h4 class="tab">3. '.$this->l('Combinations').'</h4></div>
 			<div class="tab-page" id="step4"><h4 class="tab">4. '.$this->l('Features').'</h4></div>
 			<div class="tab-page" id="step5"><h4 class="tab">5. '.$this->l('Customization').'</h4></div>
-			<div class="tab-page" id="step6""><h4 class="tab">6. '.$this->l('Discounts').'</h4></div>
-			<div class="tab-page" id="step7""><h4 class="tab">7. '.$this->l('Attachments').'</h4></div>';
+			<div class="tab-page" id="step6"><h4 class="tab">6. '.$this->l('Discounts').'</h4></div>
+			<div class="tab-page" id="step7"><h4 class="tab">7. '.$this->l('Attachments').'</h4></div>';
 		echo '	<script type="text/javascript">
 					var toload = new Array();
 					toload[3] = true;
@@ -1322,6 +1322,16 @@ class AdminProducts extends AdminTab
 			<br />
 				<table cellpadding="5" style="width:100%">
 					<tr>
+						<td style="vertical-align:top">'.$this->l('Type:').'</td>
+						<td style="padding-bottom:5px;">
+							<input style="float:left;" type="radio" name="type" id="type_product" value="product" '.($this->getFieldValue($obj, 'type') == 'product' ? 'checked="checked" ' : '').' onchange="toggleProductType(this)"/>
+							<label for="type_product" class="t">'.$this->l('Product').'</label>
+							<br style="clear:both;" />
+							<input style="float:left;" type="radio" name="type" id="type_article" value="article" '.($this->getFieldValue($obj, 'type') == 'article' ? 'checked="checked" ' : '').' onchange="toggleProductType(this)"/>
+							<label for="type_article" class="t">'.$this->l('Article').'</label>
+						</td>
+					</tr>
+					<tr>
 						<td class="col-left">'.$this->l('Name:').'</td>
 						<td style="padding-bottom:5px;">';
 		foreach ($languages as $language)
@@ -1344,7 +1354,7 @@ class AdminProducts extends AdminTab
 							<label for="active_off" class="t"><img src="../img/admin/disabled.gif" alt="'.$this->l('Disabled').'" title="'.$this->l('Disabled').'" style="float:left; padding:0px 5px 0px 5px" />'.$this->l('Disabled').'</label>
 						</td>
 					</tr>
-					<tr>
+					<tr class="field-for-product-type-product">
 						<td>'.$this->l('Manufacturer:').'</td>
 						<td style="padding-bottom:5px;">
 							<select name="id_manufacturer" id="id_manufacturer">
@@ -1379,7 +1389,7 @@ class AdminProducts extends AdminTab
 							</script>
 						</td>
 					</tr>
-					<tr>
+					<tr class="field-for-product-type-product">
 						<td>'.$this->l('Supplier:').'</td>
 						<td style="padding-bottom:5px;">
 							<select name="id_supplier" id="id_supplier">
@@ -1414,7 +1424,7 @@ class AdminProducts extends AdminTab
 							</script>
 						</td>
 					</tr>
-					<tr>
+					<tr class="field-for-product-type-product">
 						<td class="col-left">'.$this->l('Reference:').'</td>
 						<td style="padding-bottom:5px;">
 							<input size="55" type="text" name="reference" value="'.htmlentities($this->getFieldValue($obj, 'reference'), ENT_COMPAT, 'UTF-8').'" style="width: 130px; margin-right: 44px;" />
@@ -1422,7 +1432,7 @@ class AdminProducts extends AdminTab
 							<span class="hint" name="help_box">'.$this->l('Special characters allowed:').' .-_#\<span class="hint-pointer">&nbsp;</span></span>
 						</td>
 					</tr>
-                	<tr>
+                	                <tr class="field-for-product-type-product">
 						<td class="col-left">'.$this->l('Supplier Reference:').'</td>
 						<td style="padding-bottom:5px;">
 							<input size="55" type="text" name="supplier_reference" value="'.htmlentities($this->getFieldValue($obj, 'supplier_reference'), ENT_COMPAT, 'UTF-8').'" style="width: 130px; margin-right: 44px;" />
@@ -1430,15 +1440,15 @@ class AdminProducts extends AdminTab
 							<span class="hint" name="help_box">'.$this->l('Special characters allowed:').' .-_#\<span class="hint-pointer">&nbsp;</span></span>
 						</td>
 					</tr>					
-					<tr>
+					<tr class="field-for-product-type-product">
 						<td class="col-left">'.$this->l('Weight:').'</td>
 						<td style="padding-bottom:5px;">
 							<input size="6" maxlength="6" name="weight" type="text" value="'.htmlentities($this->getFieldValue($obj, 'weight'), ENT_COMPAT, 'UTF-8').'" onKeyUp="javascript:this.value = this.value.replace(/,/g, \'.\');" /> '.Configuration::get('PS_WEIGHT_UNIT').'
 						</td>
 					</tr>
-					<tr><td colspan="2"><hr style="width:730px;"></td></tr>';
+					<tr class="field-for-product-type-product"><td colspan="2"><hr style="width:730px;"></td></tr>';
 					$this->displayPack($obj);
-		echo '		<tr><td colspan="2"><hr style="width:730px;"></td></tr>';
+		echo '		        <tr class="field-for-product-type-product"><td colspan="2"><hr style="width:730px;"></td></tr>';
 
 /*
  * Form for add a virtual product like software, mp3, etc...
@@ -1465,10 +1475,34 @@ class AdminProducts extends AdminTab
 	<style type="text/css">
 		<!--
 		@import url(<?php echo _PS_CSS_DIR_?>thickbox.css);
+                .field-for-product-type--unselected {
+                 display: none;
+                }
 		-->
 	</style>
 	<script type="text/javascript">
-	<!--	
+	<!--
+	function toggleProductType(elt)
+	{
+                var types = ['product', 'article'];
+                $.each(types, function () {
+                 if (this == elt.value)
+                  $('.field-for-product-type-' + this
+                   ).removeClass(
+                    'field-for-product-type--unselected');
+                 else
+                  $('.field-for-product-type-' + this
+                   ).addClass(
+                    'field-for-product-type--unselected');
+                });
+	}
+
+        $(document).ready(function () {
+         $.each(['product', 'article'], function () {
+          if ($('#type_' + this)[0].checked)
+           toggleProductType($('#type_' + this)[0]);
+         });
+        });
 	function toggleVirtualProduct(elt)
 	{
 		if (elt.checked)
@@ -1543,7 +1577,7 @@ class AdminProducts extends AdminTab
 		echo '
 		</script>';
 	?>
-	<tr>
+	<tr class="field-for-product-type-product">
 		<td colspan="2">
 			<input type="checkbox" id="is_virtual_good" name="is_virtual_good" value="true" onchange="toggleVirtualProduct(this)" onclick="toggleVirtualProduct(this);" <?php if(($productDownload->id OR Tools::getValue('is_virtual_good')=='true') AND $productDownload->active) echo 'checked="checked"' ?> />
 			<label for="is_virtual_good" class="t bold"><?php echo $this->l('Is this a downloadable product?') ?></label>
@@ -1604,7 +1638,7 @@ class AdminProducts extends AdminTab
 			</div>
 		</td>
 	</tr>
-	<tr><td colspan="2" style="padding-bottom:5px;"><hr style="width:730px;"></td></tr>
+	<tr class="field-for-product-type-product"><td colspan="2" style="padding-bottom:5px;"><hr style="width:730px;"></td></tr>
 	<script type="text/javascript">
 		if ($('#is_virtual_good').attr('checked'))
 			$('#virtual_good').show('slow');
@@ -1612,7 +1646,7 @@ class AdminProducts extends AdminTab
 
 <?php
 					echo '
-					<tr>
+					<tr class="field-for-product-type-product">
 						<td class="col-left">'.$this->l('Pre-tax wholesale price:').'</td>
 						<td style="padding-bottom:5px;">
 							'.($currency->format == 1 ? $currency->sign.' ' : '').'<input size="11" maxlength="14" name="wholesale_price" type="text" value="'.htmlentities($this->getFieldValue($obj, 'wholesale_price'), ENT_COMPAT, 'UTF-8').'" onKeyUp="javascript:this.value = this.value.replace(/,/g, \'.\');" />'.($currency->format == 2 ? ' '.$currency->sign : '').'
@@ -1620,7 +1654,7 @@ class AdminProducts extends AdminTab
 						</td>
 					</tr>';
 					echo '
-					<tr>
+					<tr class="field-for-product-type-product">
 						<td class="col-left">'.$this->l('Pre-tax retail price:').'</td>
 						<td style="padding-bottom:5px;">
 							'.($currency->format == 1 ? $currency->sign.' ' : '').'<input size="11" maxlength="14" id="priceTE" name="price" type="text" value="'.$this->getFieldValue($obj, 'price').'" onKeyUp="javascript:this.value = this.value.replace(/,/g, \'.\'); calcPriceTI();" />'.($currency->format == 2 ? ' '.$currency->sign : '').'<sup> *</sup>
@@ -1637,7 +1671,7 @@ class AdminProducts extends AdminTab
 					echo '
 					</script>';
 					echo '
-					<tr>
+					<tr class="field-for-product-type-product">
 						<td class="col-left">'.$this->l('Tax:').'</td>
 						<td style="padding-bottom:5px;">
 							<select onChange="javascript:calcPriceTI();" name="id_tax" id="id_tax" '.(Tax::excludeTaxeOption() ? 'disabled="disabled"' : '' ).'>
@@ -1654,21 +1688,21 @@ class AdminProducts extends AdminTab
 							}
 				echo '</td>
 					</tr>
-					<tr>
+					<tr class="field-for-product-type-product">
 						<td class="col-left">'.$this->l('Retail price with tax:').'</td>
 						<td style="padding-bottom:5px;">
 							'.($currency->format == 1 ? ' '.$currency->sign : '').' <input size="11" maxlength="14" id="priceTI" type="text" value="" onKeyUp="noComma(\'priceTI\'); calcPriceTE();" />'.($currency->format == 2 ? ' '.$currency->sign : '').'
 							<span style="margin-left:10px">
 						</td>
 					</tr>
-					<tr>
+					<tr class="field-for-product-type-product">
 						<td class="col-left">'.$this->l('Eco-tax:').'</td>
 						<td style="padding-bottom:5px;">
 							'.($currency->format == 1 ? $currency->sign.' ' : '').'<input size="11" maxlength="14" id="ecotax" name="ecotax" type="text" value="'.$this->getFieldValue($obj, 'ecotax').'" onKeyUp="javascript:this.value = this.value.replace(/,/g, \'.\'); if (parseInt(this.value) > getE(\'priceTE\').value) this.value = getE(\'priceTE\').value; if (isNaN(this.value)) this.value = 0;" />'.($currency->format == 2 ? ' '.$currency->sign : '').'
 							<span style="margin-left:10px">('.$this->l('already included in price').')</span>
 						</td>
 					</tr>
-					<tr>
+					<tr class="field-for-product-type-product">
 						<td class="col-left">'.$this->l('Reduction amount:').'</td>
 						<td style="padding-bottom:5px;">
 							'.($currency->format == 1 ? ' '.$currency->sign.' ' : '').'<input size="11" maxlength="14" type="text" name="reduction_price" id="reduction_price" value="'.$this->getFieldValue($obj, 'reduction_price').'" onkeyup="javascript:this.value = this.value.replace(/,/g, \'.\'); var key = window.event ? window.event.keyCode : event.which; if (key != 9) reductionPrice();" /> '.($currency->format == 2 ? ' '.$currency->sign : '').'
@@ -1676,32 +1710,32 @@ class AdminProducts extends AdminTab
 							<input size="10" maxlength="14" type="text" name="reduction_percent" id="reduction_percent" value="'.$this->getFieldValue($obj, 'reduction_percent').'" onkeyup="javascript:this.value = this.value.replace(/,/g, \'.\'); var key = window.event ? window.event.keyCode : event.which; if (key != 9) reductionPercent();" /> %
 						</td>
 					</tr>
-					<tr>
+					<tr class="field-for-product-type-product">
 						<td class="col-left">&nbsp;</td>
 						<td>'.$this->l('available from').' <input type="text" id="reduction_from" name="reduction_from" value="'.(($from = $this->getFieldValue($obj, 'reduction_from') AND $from != '0000-00-00' AND $from != '1942-01-01') ? $from : date('Y-m-d')).'" />
 							'.$this->l('to').' <input type="text" id="reduction_to" name="reduction_to" value="'.(($to = $this->getFieldValue($obj, 'reduction_to') AND $to != '0000-00-00' AND $to != '1942-01-01') ? $to : date('Y-m-d')).'" />
 							<p>'.$this->l('Leave same dates for undefined duration').'</p>
 						</td>
 					</tr>
-					<tr>
+					<tr class="field-for-product-type-product">
 						<td class="col-left">&nbsp;</td>
 						<td style="padding-bottom:5px;">
 							<input type="checkbox" name="on_sale" id="on_sale" style="padding-top: 5px;" '.($this->getFieldValue($obj, 'on_sale') ? 'checked="checked"' : '').'value="1" />&nbsp;<label for="on_sale" class="t">'.$this->l('Display "on sale" icon on product page and text on product listing').'</label>
 						</td>
 					</tr>
-					<tr>
+					<tr class="field-for-product-type-product">
 						<td class="col-left"><b>'.$this->l('Final retail price:').'</b></td>
 						<td style="padding-bottom:5px;">
 							'.($currency->format == 1 ? $currency->sign.' ' : '').'<span id="finalPrice" style="font-weight: bold;"></span>'.($currency->format == 2 ? ' '.$currency->sign : '').'
 						</td>
 					</tr>
-					<tr><td colspan="2" style="padding-bottom:5px;"><hr style="width:730px;"></td></tr>
-					<tr>
+					<tr class="field-for-product-type-product"><td colspan="2" style="padding-bottom:5px;"><hr style="width:730px;"></td></tr>
+					<tr class="field-for-product-type-product">
 						<td class="col-left">'.$this->l('Quantity:').'</td>
 						<td style="padding-bottom:5px;"><input size="3" maxlength="6" '.$qty_state.' name="quantity" type="text" value="'.$qty.'" '.
 						((isset($_POST['attQty']) AND $_POST['attQty']) ? 'onclick="alert(\''.$this->l('Quantity is already defined by Attributes').'.<br />'.$this->l('Delete attributes first').'.\');" readonly="readonly" ' : '').'/><sup> *</sup>
 					</tr>
-					<tr>
+					<tr class="field-for-product-type-product">
 						<td class="col-left">'.$this->l('Displayed text when in-stock:').'</td>
 						<td style="padding-bottom:5px;">';
 		foreach ($languages as $language)
@@ -1714,7 +1748,7 @@ class AdminProducts extends AdminTab
 		$this->displayFlags($languages, $defaultLanguage, $divLangName, 'cavailable_now');
 		echo '			</td>
 					</tr>
-					<tr>
+					<tr class="field-for-product-type-product">
 						<td class="col-left">'.$this->l('Displayed text when allowed to be back-ordered:').'</td>
 						<td style="padding-bottom:5px;">';
 		foreach ($languages as $language)
@@ -1733,7 +1767,7 @@ class AdminProducts extends AdminTab
 						calcPriceTI();
 					</script>
 
-					<tr>
+					<tr class="field-for-product-type-product">
 						<td class="col-left">'.$this->l('When out of stock:').'</td>
 						<td style="padding-bottom:5px;">
 							<input type="radio" name="out_of_stock" id="out_of_stock_1" value="0" '.(intval($this->getFieldValue($obj, 'out_of_stock')) == 0 ? 'checked="checked"' : '').'/> <label for="out_of_stock_1" class="t" id="label_out_of_stock_1">'.$this->l('Deny orders').'</label>
@@ -2553,7 +2587,7 @@ class AdminProducts extends AdminTab
 		$packItems = $boolPack ? Pack::getItems($obj->id, $cookie->id_lang) : array();
 
 		echo '
-		<tr>
+		<tr class="field-for-product-type-product">
 			<td>
 				<input type="checkbox" name="ppack" id="ppack" value="1"'.($boolPack ? ' checked="checked"' : '').' onchange="openCloseLayer(\'ppackdiv\');" />
 				<label class="t" for="ppack">'.$this->l('Pack').'</label>

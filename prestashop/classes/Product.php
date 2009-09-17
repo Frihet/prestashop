@@ -17,6 +17,9 @@ define('_CUSTOMIZE_TEXTFIELD_', 1);
 
 class		Product extends ObjectModel
 {
+	/** @var string type */
+	public		$type = 'product';
+
 	/** @var integer Tax id */
 	public		$id_tax;
 
@@ -214,6 +217,7 @@ class		Product extends ObjectModel
 		parent::validateFields();
 		if (isset($this->id))
 			$fields['id_product'] = intval($this->id);
+		$fields['type'] = pSQL($this->type);
 		$fields['id_tax'] = intval($this->id_tax);
 		$fields['id_manufacturer'] = intval($this->id_manufacturer);
 		$fields['id_supplier'] = intval($this->id_supplier);
