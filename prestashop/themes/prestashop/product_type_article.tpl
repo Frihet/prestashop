@@ -83,6 +83,7 @@ var fieldRequired = '{l s='Please fill all required fields' js=1}';
 		</div>
 		{/if}
 		{if count($images) > 1}<p class="align_center clear"><a id="resetImages" href="{$link->getProductLink($product)}" onclick="return (false);">{l s='Display all pictures'}</a></p>{/if}
+
 		<!-- usefull links-->
 		<ul id="usefull_link_block">
 			{if $HOOK_EXTRA_LEFT}{$HOOK_EXTRA_LEFT}{/if}
@@ -91,57 +92,79 @@ var fieldRequired = '{l s='Please fill all required fields' js=1}';
 			<li><span id="view_full_size" class="span_link">{l s='View full size'}</span></li>
 			{/if}
 		</ul>
+
 	</div>
 
 	<!-- left infos-->
 	<div id="pb-left-column">
-		{if $product->description_short OR $packItems|@count > 0}
-		<div id="short_description_block">
-			{if $product->description_short}
-				<div id="short_description_content" class="rte align_justify">{$product->description_short}</div>
-			{/if}
-		</div>
-		{/if}
 		{if isset($accessories) AND $accessories}
 			<!-- accessories -->
-			<div class="block products_block accessories_block">
+			<div class="block">
+                                <h4>Products used</h4>
 				<div class="block_content">
-					<ul>
+					<table>
 					{foreach from=$accessories item=accessory name=accessories_list}
 						{assign var='accessoryLink' value=$link->getProductLink($accessory.id_product, $accessory.link_rewrite, $accessory.category)}
-						<li class="ajax_block_product {if $smarty.foreach.accessories_list.first}first_item{elseif $smarty.foreach.accessories_list.last}last_item{else}item{/if} product_accessories_description">
-							<h5 class="align_center"><a href="{$accessoryLink|escape:'htmlall':'UTF-8'}">{$accessory.name|truncate:22:'...'|escape:'htmlall':'UTF-8'}</a></h5>
-							<p class="product_desc">
-								<a href="{$accessoryLink|escape:'htmlall':'UTF-8'}" title="{$accessory.legend|escape:'htmlall':'UTF-8'}" class="product_image"><img src="{$link->getImageLink($accessory.link_rewrite, $accessory.id_image, 'medium')}" alt="{$accessory.legend|escape:'htmlall':'UTF-8'}" /></a>
-								<a href="{$accessoryLink|escape:'htmlall':'UTF-8'}" title="{l s='More'}" class="product_description">{$accessory.description_short|strip_tags|truncate:100:'...'}</a>
-							</p>
-							<p class="product_accessories_price">
-								<span class="price">{displayWtPrice p=$accessory.price}</span>
-								<a class="button" href="{$accessoryLink|escape:'htmlall':'UTF-8'}" title="{l s='View'}">{l s='View'}</a>
-								<a class="button ajax_add_to_cart_button" href="{$base_dir}cart.php?qty=1&amp;id_product={$accessory.id_product|intval}&amp;token={$static_token}&amp;add" rel="ajax_id_product_{$accessory.id_product|intval}" title="{l s='Add to cart'}">{l s='Add to cart'}</a>
-							</p>
-						</li>
+						<tr>
+							<td>
+                                                         <a
+                                                          href="{$accessoryLink|escape:'htmlall':'UTF-8'}"
+                                                          title="{$accessory.name|escape:'htmlall':'UTF-8'}: {$accessory.description_short|strip_tags|truncate:100:'...'}"
+                                                         >
+                                                          {$accessory.name|truncate:15:'..'|escape:'htmlall':'UTF-8'}
+
+                                                         </a>
+                                                        </td>
+							<td>{displayWtPrice p=$accessory.price}</td>
+							<td><a class="button_mini ajax_add_to_cart_button" href="{$base_dir}cart.php?qty=1&amp;id_product={$accessory.id_product|intval}&amp;token={$static_token}&amp;add" rel="ajax_id_product_{$accessory.id_product|intval}" title="{l s='Add to cart'}">{l s='Buy'}</a></td>
+
+                                                        <!--
+							        <td><a href="{$accessoryLink|escape:'htmlall':'UTF-8'}" title="{$accessory.legend|escape:'htmlall':'UTF-8'}"><img src="{$link->getImageLink($accessory.link_rewrite, $accessory.id_image, 'medium')}" alt="{$accessory.legend|escape:'htmlall':'UTF-8'}" /></a></td>
+							        <td><a href="{$accessoryLink|escape:'htmlall':'UTF-8'}" title="{l s='More'}">{$accessory.description_short|strip_tags|truncate:100:'...'}</a></td>
+                                                        -->
+                                                </tr>
+                                                <tr>
+
+						</tr
 					{/foreach}
-					</ul>
+					</table>
 				</div>
 			</div>
 		{/if}
-
 
 		{if $HOOK_EXTRA_RIGHT}{$HOOK_EXTRA_RIGHT}{/if}
 	</div>
 </div>
 
-{$HOOK_PRODUCT_FOOTER}
+<div class="clear">
+
+{if $product->description_short}
+	<div id="short_description_content" class="rte align_justify">{$product->description_short}</div>
+{/if}
 
 <!-- description and features -->
-{if $product->description || $features || $accessories || $HOOK_PRODUCT_TAB || $attachments}
+{if $product->description || $HOOK_PRODUCT_TAB || $attachments}
         {$product->description}
 
-	{foreach from=$attachments item=attachment}
-	        <li><a href="{$base_dir}attachment.php?id_attachment={$attachment.id_attachment}">{$attachment.name|escape:'htmlall':'UTF-8'}</a><br />{$attachment.description|escape:'htmlall':'UTF-8'}</li>
-	{/foreach}
-	{$HOOK_PRODUCT_TAB_CONTENT}
+        {if $attachments}
+                <hr />
+		{foreach from=$attachments item=attachment}
+			<li><a href="{$base_dir}attachment.php?id_attachment={$attachment.id_attachment}">{$attachment.name|escape:'htmlall':'UTF-8'}</a><br />{$attachment.description|escape:'htmlall':'UTF-8'}</li>
+		{/foreach}
+        {/if}
+
+        {if $HOOK_PRODUCT_TAB_CONTENT}
+                <hr />
+  	        {$HOOK_PRODUCT_TAB_CONTENT}
+        {/if}
 {/if}
 
+{if $HOOK_PRODUCT_FOOTER}
+        <hr />
+        {$HOOK_PRODUCT_FOOTER}
 {/if}
+
+</div>
+
+{/if}
+

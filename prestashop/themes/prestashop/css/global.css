@@ -986,6 +986,18 @@ div.myaccount .block_content {
 	color: white;
 }
 
+#center_column #pb-right-column div.block,
+#center_column #pb-left-column div.block {
+ width: 191px;
+}
+#center_column #pb-right-column div.block h4,
+#center_column #pb-left-column div.block h4 {
+	background: transparent url('../img/block_header.gif') no-repeat top left;
+	height: 17px;
+	color: white;
+}
+
+
 /* Styles for products blocks */
 /* block products (new, features, viewed, etc...) on left and right column */
 .products_block li {
