@@ -42,9 +42,6 @@ $currentDir = dirname(__FILE__);
 
 /* Base and themes */
 define('_THEMES_DIR_',     __PS_BASE_URI__.'themes/');
-define('_THEME_IMG_DIR_',  _THEMES_DIR_._THEME_NAME_.'/img/');
-define('_THEME_CSS_DIR_',  _THEMES_DIR_._THEME_NAME_.'/css/');
-define('_THEME_JS_DIR_',   _THEMES_DIR_._THEME_NAME_.'/js/');
 define('_THEME_CAT_DIR_',  __PS_BASE_URI__.'img/c/');
 define('_THEME_PROD_DIR_', __PS_BASE_URI__.'img/p/');
 define('_THEME_PROD_PIC_DIR_', __PS_BASE_URI__.'upload/');
@@ -56,7 +53,6 @@ define('_THEME_SHIP_DIR_', __PS_BASE_URI__.'img/s/');
 define('_THEME_LANG_DIR_', __PS_BASE_URI__.'img/l/');
 define('_THEME_COL_DIR_',  __PS_BASE_URI__.'img/co/');
 define('_SUPP_DIR_',       __PS_BASE_URI__.'img/su/');
-define('_THEME_DIR_',      _THEMES_DIR_._THEME_NAME_.'/');
 define('_MAIL_DIR_',        __PS_BASE_URI__.'mails/');
 define('_MODULE_DIR_',        __PS_BASE_URI__.'modules/');
 define('_PS_IMG_',         __PS_BASE_URI__.'img/');
@@ -70,7 +66,6 @@ define('_PS_DOWNLOAD_DIR_',         _PS_ROOT_DIR_.'/download/');
 define('_PS_MAIL_DIR_',             _PS_ROOT_DIR_.'/mails/');
 define('_PS_MODULE_DIR_',           _PS_ROOT_DIR_.'/modules/');
 define('_PS_ALL_THEMES_DIR_',       _PS_ROOT_DIR_.'/themes/');
-define('_PS_THEME_DIR_',            _PS_ROOT_DIR_.'/themes/'._THEME_NAME_.'/');
 define('_PS_IMG_DIR_',              _PS_ROOT_DIR_.'/img/');
 define('_PS_CAT_IMG_DIR_',          _PS_IMG_DIR_.'c/');
 define('_PS_PROD_IMG_DIR_',         _PS_IMG_DIR_.'p/');

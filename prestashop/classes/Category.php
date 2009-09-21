@@ -46,6 +46,9 @@ class		Category extends ObjectModel
 	/** @var string Meta description */
 	public 		$meta_description;
 
+	/** @var string Theme */
+	public 		$theme;
+
 	/** @var string Object creation date */
 	public 		$date_add;
 

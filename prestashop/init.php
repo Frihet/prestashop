@@ -1,5 +1,53 @@
 <?php
 
+
+/* Category */
+$category = false;
+
+if (preg_match('!^(.*)\/([0-9]+)\-(.*[^\.])|(.*)id_category=([0-9]+)(.*)$!', $_SERVER['REQUEST_URI'], $regs) AND !strstr($_SERVER['REQUEST_URI'], '.html'))
+{
+	if (isset($regs[2]) AND is_numeric($regs[2]))
+	{
+		$category = new Category(intval($regs[2]), intval($cookie->id_lang));
+	}
+	elseif (isset($regs[5]) AND is_numeric($regs[5]))
+	{
+		$category = new Category(intval($regs[5]), intval($cookie->id_lang));
+	}
+}
+
+if (!$category AND isset($_SERVER['HTTP_REFERER']) AND preg_match('!^(.*)\/([0-9]+)\-(.*[^\.])|(.*)id_category=([0-9]+)(.*)$!', $_SERVER['HTTP_REFERER'], $regs) AND !strstr($_SERVER['HTTP_REFERER'], '.html'))
+{
+	if (isset($regs[2]) AND is_numeric($regs[2]))
+	{
+		$category = new Category(intval($regs[2]), intval($cookie->id_lang));
+	}
+	elseif (isset($regs[5]) AND is_numeric($regs[5]))
+	{
+		$category = new Category(intval($regs[5]), intval($cookie->id_lang));
+	}
+}
+if (!$category)
+	$category = new Category($product->id_category_default, intval($cookie->id_lang));
+
+
+$category_path = $category->getParentsCategories(intval($cookie->id_lang));
+
+$theme = _THEME_NAME_;
+foreach($category_path as $cat)
+        if ($cat['theme'])
+        {
+                $theme = $cat['theme'];
+		break;
+        }
+
+define('_THEME_IMG_DIR_',  _THEMES_DIR_.$theme.'/img/');
+define('_THEME_CSS_DIR_',  _THEMES_DIR_.$theme.'/css/');
+define('_THEME_JS_DIR_',   _THEMES_DIR_.$theme.'/js/');
+define('_THEME_DIR_',      _THEMES_DIR_.$theme.'/');
+define('_PS_THEME_DIR_',   _PS_ROOT_DIR_.'/themes/'.$theme.'/');
+
+
 if (!isset($smarty))
 	exit;
 
