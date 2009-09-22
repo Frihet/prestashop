@@ -44,7 +44,6 @@ class AdminCategories extends AdminTab
 		$this->_category = AdminCatalog::getCurrentCategory();
 		$this->_filter = 'AND `id_parent` = '.intval($this->_category->id);
 		
-		
 		$children = Category::getChildren($this->_category->id, $cookie->id_lang);
 		foreach ($children as &$child)
 		{
@@ -127,6 +126,22 @@ class AdminCategories extends AdminTab
 				imageResize(_PS_CAT_IMG_DIR_.$id_category.'.jpg', _PS_CAT_IMG_DIR_.$id_category.'-'.stripslashes($imageType['name']).'.jpg', intval($imageType['width']), intval($imageType['height']));
 		}
 		return $ret;
+	}
+
+	/**
+	  * Return an array with themes and thumbnails
+	  *
+	  * @return array
+	  */
+	private function _getThemesList()
+	{
+                $themes = array('Inherit from parent category' => '');
+		$dir = opendir(_PS_ALL_THEMES_DIR_);
+		while ($folder = readdir($dir))
+			if ($folder != '.' AND $folder != '..' AND file_exists(_PS_ALL_THEMES_DIR_.'/'.$folder.'/preview.jpg'))
+				$themes[$folder] = $folder;
+		closedir($dir);	
+		return $themes;
 	}
 
 	public function displayForm($token=NULL)
@@ -220,8 +235,20 @@ class AdminCategories extends AdminTab
 					</div>';
 		$this->displayFlags($languages, $defaultLanguage, $langtags, 'cmeta_keywords');
 		echo '		<div class="clear"></div>
-				</div>
-				<label>'.$this->l('Friendly URL:').' </label>
+				</div>';
+		echo '		<label>'.$this->l('Theme:').' </label>
+				<div class="margin-form">
+					<select name="theme">';
+
+                $theme = $this->getFieldValue($obj, 'theme');
+		foreach ($this->_getThemesList() as $name => $value) {
+                        $selected = ($value == $theme) ? 'selected="selected"' : '';
+                        echo "<option value='$value' $selected>$name</option>";
+		}
+
+		echo '			</select>
+				</div>';
+		echo '  	<label>'.$this->l('Friendly URL:').' </label>
 				<div class="margin-form">';
 		foreach ($languages as $language)
 			echo '<div id="clink_rewrite_'.$language['id_lang'].'" style="display: '.($language['id_lang'] == $defaultLanguage ? 'block' : 'none').'; float: left;">

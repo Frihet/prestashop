@@ -90,6 +90,7 @@ class		Category extends ObjectModel
 		$fields['level_depth'] = intval($this->level_depth);
 		$fields['date_add'] = pSQL($this->date_add);
 		$fields['date_upd'] = pSQL($this->date_upd);
+		$fields['theme'] = pSQL($this->theme);
 		return $fields;
 	}
 
