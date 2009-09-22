@@ -105,7 +105,7 @@ var fieldRequired = '{l s='Please fill all required fields' js=1}';
 					<table>
 					{foreach from=$accessories item=accessory name=accessories_list}
 						{assign var='accessoryLink' value=$link->getProductLink($accessory.id_product, $accessory.link_rewrite, $accessory.category)}
-						<tr>
+						<tr class="ajax_block_product">
 							<td>
                                                          <a
                                                           href="{$accessoryLink|escape:'htmlall':'UTF-8'}"
