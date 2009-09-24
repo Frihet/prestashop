@@ -27,8 +27,10 @@ class BlockWishList extends Module
 			return (false);
 		$sql = str_replace('PREFIX_', _DB_PREFIX_, $sql);
 		$sql = preg_split("/;\s*[\r\n]+/", $sql);
-		foreach ($sql AS $k=>$query)
-			Db::getInstance()->Execute(trim($query));
+		/* Bugfix according to http://www.prestashop.com/forums/viewthread/25362/#119358 */
+		foreach ($sql AS $k=>$query){             
+			    if(!empty($query)) Db::getInstance()->Execute(trim($query));
+			}
 		if (!parent::install() OR
 						!$this->registerHook('rightColumn') OR
 						!$this->registerHook('productActions') OR
