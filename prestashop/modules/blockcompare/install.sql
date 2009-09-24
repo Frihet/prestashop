@@ -15,3 +15,7 @@ CREATE TABLE IF NOT EXISTS `PREFIX_compare_cart_product` (
   `date_upd` datetime NOT NULL,
   PRIMARY KEY (`id_compare_cart`, `id_product`)
 ) ENGINE=MyISAM  DEFAULT CHARSET=utf8;
+
+delete from hook where name = 'productListActions';
+insert into hook (name, title, description) values (
+ 'productListActions', 'Product actions (list mode)', 'Put new action buttons in product listings'); 

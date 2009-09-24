@@ -35,6 +35,7 @@ class BlockCompare extends Module
 				parent::install() == false
 				OR $this->registerHook('top') == false
 				OR $this->registerHook('productActions') == false
+				OR $this->registerHook('productListActions') == false
 				OR $this->registerHook('rightColumn') == false
 				OR Configuration::updateValue('PS_BLOCK_CART_AJAX', 1) == false
 			)
@@ -50,6 +51,13 @@ class BlockCompare extends Module
  		$this->smartyAssigns($smarty, $params);
 
 		return $this->display(__FILE__, 'productactions.tpl');
+        }
+
+	public function hookProductListActions($params)
+        {
+                global $smarty, $compare_cart, $cookie;
+
+		return $this->display(__FILE__, 'productlistactions.tpl');
         }
 
 	function hookTop($params)
