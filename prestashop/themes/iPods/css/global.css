@@ -2532,3 +2532,13 @@ div.star a:hover{
 #page .rte {
 	background:transparent none repeat scroll 0 0;
 }
+
+.comparecart {
+	border-collapse: collapse;
+}
+.comparecart th,
+.comparecart td {
+	vertical-align: top;
+	border-bottom: 1px dotted #5D717E;
+	padding: 1pt;
+}

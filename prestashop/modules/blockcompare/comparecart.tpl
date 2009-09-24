@@ -7,7 +7,7 @@
 
 {assign var='id_lang' value=$cookie->id_lang|intval}
 
-<table>
+<table class="comparecart">
  <tr>
   <th></th>
   {foreach from=$products item='product' name='products'}
@@ -20,7 +20,7 @@
 
  {foreach from=$features key=feature_name item=feature}
   <tr>
-   <td>{$feature_name|escape:'htmlall':'UTF-8'}</td>
+   <th>{$feature_name|escape:'htmlall':'UTF-8'}</th>
    {foreach from=$products item='product' name='products'}
     <td>{$feature[$product.id]|escape:'htmlall':'UTF-8'}</td>
    {/foreach}
