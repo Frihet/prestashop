@@ -1,0 +1,119 @@
+
+#center_column .also_block { border: none; }
+#center_column .also_block  {  }
+#center_column .also_block h4 {  line-height: 1.3em; }
+#center_column .also_block .block_content {
+	background: #FFFFFF none;
+	padding: 0pt;
+  border-bottom: 1px solid #682D92;
+	height: 235px;
+}
+#center_column .also_block img {
+margin: 10px 0 0 20px;
+
+}
+#center_column .also_block {
+border:medium none;
+}
+#center_column .also_block {
+color:#595A5E;
+}
+#center_column .also_block h4 {
+line-height:1.3em;
+}
+#center_column .also_block .block_content {
+background:#FFFFFF none repeat scroll 0 0;
+border:1px none #DDDDDD;
+padding:0;
+}
+#center_column .also_block ul li:hover {
+background-color:#FFFFFF;
+}
+#center_column .also_block ul li {
+background-color:#FFFFFF;
+border: 1px solid #000;
+clear:none;
+float:left;
+display: inline;
+margin-bottom: 5px;
+margin-left:3px;
+margin-top:5px;
+width:170px;
+height:260px;
+}
+#center_column .also_block li.last_item_of_line {
+margin-right:0;
+}
+#center_column .also_block li.first_item_of_line {
+clear:both;
+
+}
+#center_column .also_block li.last_line {
+
+}
+#center_column .also_block p, #center_column .also_block h5 {
+margin:0.5em 0.1em;
+}
+#center_column div.also_block h5 {
+display:block;
+height:2.5em;
+}
+#center_column div.also_block h5 a {
+color:#682D92;
+font-size:11px;
+}
+#center_column div.also_block ul li p {
+background:#F1F0FF none repeat scroll 0 0;
+border:1px hidden #682D92;
+margin-top:15px;
+padding:0;
+}
+#center_column div.also_block p.product_desc {
+color:#595A5E;
+display:none;
+}
+#center_column div.also_block a.product_image {
+background-color:transparent;
+display:block;
+height:129px;
+float:none;
+/*margin-bottom:22%;*/
+margin-left:15%;
+/*margin-right:22%;*/
+width:129px;
+}
+#center_column div.also_block a.product_image img {
+border: 1px solid lightgray;;
+/*float:none;
+margin-bottom:22%;
+margin-right:22%;*/
+margin-left:-10px;
+margin-top: -2px;
+}
+#center_column div.also_block p.product_desc, #center_column div.also_block h5 {
+text-align:center;
+}
+#center_column div.also_block ul li p.product_desc a {
+font-weight:normal;
+}
+#center_column .also_block span.price {
+color:#FF0000;
+display:block;
+font-size:15px;
+height:17px;
+margin-bottom:0;
+margin-top:2px;
+text-align:center;
+}
+#center_column .also_block span.old_price {
+color:#000000;
+display:block;
+font-size:12px;
+font-weight:bold;
+text-align:center;
+text-decoration:line-through;
+}
+#center_column .also_block a.button, #center_column .also_block a.exclusive, #center_column .also_block span.exclusive {
+color:#FFFFFF !important;
+margin:0.5em auto;
+}
