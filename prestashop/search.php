@@ -1,6 +1,8 @@
 <?php
 
+include(dirname(__FILE__).'/debug.php');
 include(dirname(__FILE__).'/config/config.inc.php');
+include(dirname(__FILE__).'/init.php');
 
 if (Tools::getValue('ajaxSearch') AND $query = urldecode(Tools::getValue('q')) AND !is_array($query))
 {
@@ -31,6 +33,19 @@ else
 	'pages_nb' => 1,
 	'nbProducts' => 0));
 }
+
+function HOOK_PRODUCT_LIST_ACTIONS($params) {
+ global $product;
+
+ $product = $params['product'];
+ return Module::hookExec('productListActions');
+}
+
+if (!isset($_GET['id_category'])) $_GET['id_category'] = 0;
+if (!isset($_GET['id_manufacturer'])) $_GET['id_manufacturer'] = 0;
+if (!isset($_GET['id_supplier'])) $_GET['id_supplier'] = 0;
+
+$smarty->register_function("HOOK_PRODUCT_LIST_ACTIONS", "HOOK_PRODUCT_LIST_ACTIONS");
 
 $smarty->display(_PS_THEME_DIR_.'search.tpl');
 

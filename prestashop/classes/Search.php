@@ -190,8 +190,9 @@ class Search
 			return Db::getInstance()->ExecuteS($queryResults);
 		}
 		
+		// FIXME: Handle new products properly (see classes/Product.php:isNew() for corect join clause)
 		$queryResults = '
-		SELECT SQL_CALC_FOUND_ROWS p.*, pl.`description_short`, pl.`available_now`, pl.`available_later`, pl.`link_rewrite`, pl.`name`,
+		SELECT SQL_CALC_FOUND_ROWS p.*, 0 as `new`, pl.`description_short`, pl.`available_now`, pl.`available_later`, pl.`link_rewrite`, pl.`name`,
 		t.`rate`, i.`id_image`, il.`legend`, m.`name` AS manufacturer_name '.($cookie->id_customer ? ', cg.`id_group`' : '').'
 		'.$score.'
 		FROM '._DB_PREFIX_.'product p
