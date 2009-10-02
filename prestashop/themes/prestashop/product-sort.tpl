@@ -1,13 +1,13 @@
 {if isset($orderby) AND isset($orderway)}
 <!-- Sort products -->
 {if $smarty.get.id_category|intval}
-	{assign var='request' value=$link->getPaginationLink('category', $category, false, true)}
+	{assign var='request' value=$link->getPaginationLink('category', $category, 0, true)}
 {elseif $smarty.get.id_manufacturer|intval}
-	{assign var='request' value=$link->getPaginationLink('manufacturer', $manufacturer, false, true)}
+	{assign var='request' value=$link->getPaginationLink('manufacturer', $manufacturer, 0, true)}
 {elseif $smarty.get.id_supplier|intval}
-	{assign var='request' value=$link->getPaginationLink('supplier', $supplier, false, true)}
+	{assign var='request' value=$link->getPaginationLink('supplier', $supplier, 0, true)}
 {else}
-	{assign var='request' value=$link->getPaginationLink(false, false, false, true)}
+	{assign var='request' value=$link->getPaginationLink(false, false, 0, true)}
 {/if}
 <form id="productsSortForm" action="{$request}">
 	<p class="select">
