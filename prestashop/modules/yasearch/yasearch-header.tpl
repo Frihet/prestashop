@@ -110,22 +110,15 @@ $('#parent_'+parent).toggle("slow");
 	
 	</script>
 	{/literal}
-<div id="search_block_top">
-	<form method="get" action="{$base_dir}search.php" id="searchbox">
-	<p>
-		<label for="search_query"><!-- image on background --></label>
-		<input type="text" id="search_query" name="search_query" value="{if isset($smarty.get.search_query)}{$smarty.get.search_query|htmlentities:$ENT_QUOTES:'utf-8'}{/if}" />
-		<input type="submit" name="submit_search" value="{l s='Search' mod='yasearch'}" class="button" />
-		</p>
-	
-	</form><br>
+<div id="adv_search_block_top">
+
 	<div class="advcontainer" id="open_dialog" onclick="openDialog();" >{l s='Advanced search' mod='yasearch'}</div>
 	
 	<div class="dialog" id="dialog">
 		<div class="dialogcontent">	
 			<div class="dialogform" id="dialogform">
 			<span>{l s='Advanced search' mod='yasearch'}</span>
-				<form method="get" action="search.php">
+				<form method="get" action="{$base_url}/modules/yasearch/results.php">
 				<input type="hidden" name="advSearch" value="1">
 				<div class="adsearchOpcje">
 				<h2>{l s='KEY WORD' mod='yasearch'}</h2>

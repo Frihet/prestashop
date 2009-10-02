@@ -236,7 +236,7 @@ class Yasearch extends Module
 			}
 			$tagi='<h2>'.$this->l('TAGS').'</h2><div class="dialogOpcjeTitle">';
 			for($i=0;$i<(sizeof($tag_sel));$i++){
-				$tagi.= '<p id="advSearchTags" onclick="parent.location.href=\'search.php?tag='.urlencode($tag_sel[$i]['name']).'\'">&nbsp;&nbsp;'.ucfirst($tag_sel[$i]['name']).'</p>';			
+				$tagi.= '<p id="advSearchTags" onclick="parent.location.href=\'modules/yasearch/results.php?tag='.urlencode($tag_sel[$i]['name']).'\'">&nbsp;&nbsp;'.ucfirst($tag_sel[$i]['name']).'</p>';			
 			}
 			$tagi.='</div>';
 		}else{
@@ -249,6 +249,7 @@ class Yasearch extends Module
 				$smarty->assign('sup_sel', $supl_display);
 				$smarty->assign('man_sel', $man_display);
 				$smarty->assign('ENT_QUOTES', ENT_QUOTES);
+                                $smarty->assign('base_url', _PS_BASE_URL_.__PS_BASE_URI__);
 				return $this->display(__FILE__, 'yasearch-header.tpl');
 				
 	}
@@ -267,7 +268,7 @@ class Yasearch extends Module
 	}
 	
 	function showCats($blockCategTree,$i){
-		$zmienna.=($i==0)?'<h2>'.$this->l('CATEGORIES').'</h2>':'';
+		$zmienna=($i==0)?'<h2>'.$this->l('CATEGORIES').'</h2>':'';
 		$disp=($i==0)?'block':'none';
 		foreach($blockCategTree as $catsy){
 			$zmienna.='<div id="parent_'.$catsy['parent'].'"  style="display:'.$disp.';" class="dialogOpcjeTitle">';

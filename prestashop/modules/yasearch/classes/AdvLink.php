@@ -12,7 +12,7 @@
   *
   */
 
-class Link
+class AdvLink
 {
 	/** @var boolean Rewriting activation */
 	private $allow;

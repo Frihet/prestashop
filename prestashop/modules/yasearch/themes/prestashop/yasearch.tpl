@@ -1,11 +1,7 @@
 {capture name=path}{l s='Search'}{/capture}
 {include file=$tpl_dir./breadcrumb.tpl}
 
-{if $advSearch}
-	<h2>{l s='Advanced search'}</h2>
-{else}
-	<h2>{l s='Search'}&nbsp;{if $nbProducts > 0}"{if $query}{$query|escape:'htmlall':'UTF-8'}{elseif $tag}{$tag|escape:'htmlall':'UTF-8'}{elseif $ref}{$ref|escape:'htmlall':'UTF-8'}{/if}"{/if}</h2>
-{/if}
+<h2>{l s='Advanced search'}</h2>
 
 {include file=$tpl_dir./errors.tpl}
 
