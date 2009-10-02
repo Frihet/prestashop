@@ -3,18 +3,18 @@
 include(dirname(__FILE__).'/../../debug.php');
 include(dirname(__FILE__).'/../../config/config.inc.php');
 
+include_once(dirname(__FILE__).'/classes/AdvLink.php');
+include_once(dirname(__FILE__).'/classes/AdvSearch.php');
+
 if (Tools::getValue('ajaxSearch') AND $query = urldecode(Tools::getValue('q')) AND !is_array($query))
 {
 	include(dirname(__FILE__).'/../../init.php');
-	$link = new Link();
+	$link = new AdvLink();
 	$search = AdvSearch::find(intval(Tools::getValue('id_lang')), $query, 1, 10, 'position', 'desc', true);
 	foreach ($search as $product)
 		echo $product['id_product'].'|'.$product['pname'].'|'.$product['cname'].'|'.$link->getProductLink($product['id_product'], $product['prewrite'], $product['crewrite'])."\n";
 	die;
 }
-
-include_once(dirname(__FILE__).'/classes/AdvLink.php');
-include_once(dirname(__FILE__).'/classes/AdvSearch.php');
 
 include(dirname(__FILE__).'/../../header.php');
 include(dirname(__FILE__).'/../../product-sort.php');
