@@ -39,7 +39,7 @@ class blockrss2 extends Module
 	*/
 	function hookRightColumn($params)
 	{
-		global $smarty;
+		global $smarty, $cookie;
 		
 		if (!isset($_GET['id_category']) OR !Validate::isUnsignedId($_GET['id_category']))
 			$id_category = 0;
