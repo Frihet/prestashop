@@ -1,6 +1,6 @@
 <?php
 
-/* include(dirname(__FILE__).'/debug.php'); */
+include(dirname(__FILE__).'/debug.php');
 include(dirname(__FILE__).'/config/config.inc.php');
 
 if(intval(Configuration::get('PS_REWRITING_SETTINGS')) === 1)
