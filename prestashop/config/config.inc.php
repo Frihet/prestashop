@@ -150,11 +150,8 @@ $theme = _THEME_NAME_;
 $category = false;
 $cookie = new Cookie('ps');
 
-if (preg_match('!^(.*)\/([0-9]+)\-(.*[^\.])|(.*)id_category=([0-9]+)(.*)$!', $_SERVER['REQUEST_URI'], $regs) AND !strstr($_SERVER['REQUEST_URI'], '.html')) {
-	if (isset($regs[2]) AND is_numeric($regs[2]))
-		$category = new Category(intval($regs[2]), intval($cookie->id_lang));
-	elseif (isset($regs[5]) AND is_numeric($regs[5]))
-		$category = new Category(intval($regs[5]), intval($cookie->id_lang));
+if (isset($_GET['id_category']) AND Validate::isUnsignedId($_GET['id_category'])) {
+	$category = new Category(intval($_GET['id_category']), intval($cookie->id_lang));
 }
 
 if (    !$category
