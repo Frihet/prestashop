@@ -190,7 +190,7 @@ class		Product extends ObjectModel
 		'meta_title' => 128, 'link_rewrite' => 128, 'name' => 128, 'available_now' => 255, 'available_later' => 255);
 	protected $fieldsValidateLang = array(
 		'meta_description' => 'isGenericName', 'meta_keywords' => 'isGenericName',
-		'meta_title' => 'isGenericName', 'link_rewrite' => 'isLinkRewrite', 'name' => 'isCatalogName',
+		'meta_title' => 'isGenericName', 'link_rewrite' => 'isUrl', 'name' => 'isCatalogName',
 		'description' => 'isCleanHtml', 'description_short' => 'isCleanHtml', 'available_now' => 'isGenericName', 'available_later' => 'IsGenericName');
 
 	protected 	$table = 'product';

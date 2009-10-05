@@ -65,7 +65,7 @@ class		Category extends ObjectModel
  	protected 	$fieldsValidate = array('active' => 'isBool');
 	protected 	$fieldsRequiredLang = array('name', 'link_rewrite');
  	protected 	$fieldsSizeLang = array('name' => 64, 'link_rewrite' => 64, 'meta_title' => 128, 'meta_description' => 128, 'meta_description' => 128);
- 	protected 	$fieldsValidateLang = array('name' => 'isCatalogName', 'link_rewrite' => 'isLinkRewrite', 'description' => 'isCleanHtml',
+ 	protected 	$fieldsValidateLang = array('name' => 'isCatalogName', 'link_rewrite' => 'isUrl', 'description' => 'isCleanHtml',
 											'meta_title' => 'isGenericName', 'meta_description' => 'isGenericName', 'meta_keywords' => 'isGenericName');
 
 	protected 	$table = 'category';
