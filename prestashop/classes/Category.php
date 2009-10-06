@@ -649,27 +649,32 @@ class		Category extends ObjectModel
 	  * @param integer $id_lang Language ID
 	  * @return array Corresponding categories
 	  */
-	public function getParentsCategories($idLang = null)
+	public function getParentsCategories($idLang = null, $includeRoot = false)
 	{
 		//get idLang
 		$idLang = is_null($idLang) ? _USER_ID_LANG_ : intval($idLang);
 		
-		$categories = null;
+		$categories = array();
 		$idCurrent = intval($this->id);
+		$idRoot = $includeRoot ? 0 : 1;
 		while (true)
 		{
 			$query = '
 				SELECT c.*, cl.*
 				FROM `'._DB_PREFIX_.'category` c
 				LEFT JOIN `'._DB_PREFIX_.'category_lang` cl ON (c.`id_category` = cl.`id_category` AND `id_lang` = '.intval($idLang).')
-				WHERE c.`id_category` = '.$idCurrent.' AND c.`id_parent` != 0
+				WHERE c.`id_category` = '.$idCurrent.'
 			';
 			$result = Db::s($query);
-		
-			$categories[] = $result[0];
-			if(!$result OR $result[0]['id_parent'] == 1)
+
+			if(!$result OR $result[0]['id_parent'] == $idRoot)
 				return $categories;
+
+			// Workaround for when the left join returns NULL
+			$result[0]['id_category'] = $idCurrent;
 			$idCurrent = $result[0]['id_parent'];
+
+			$categories[] = $result[0];			
 		}
 	}
 	/**

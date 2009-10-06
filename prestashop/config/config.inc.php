@@ -170,18 +170,12 @@ if (!$category AND isset($_GET['id_product']) AND Validate::isUnsignedId($_GET['
 }
 
 if ($category) {
-        // Bug workaround in getParentsCategories
-        if (intval($category->id_parent) == 0) {
-  	        if ($category->theme)
-                        $theme = $category->theme;
-        } else {
-		$category_path = $category->getParentsCategories(intval($cookie->id_lang));
-		foreach($category_path as $cat)
-			if ($cat['theme']) {
-				$theme = $cat['theme'];
-				break;
-			}
-        }
+	$category_path = $category->getParentsCategories(intval($cookie->id_lang), true);
+	foreach($category_path as $cat)
+		if ($cat['theme']) {
+			$theme = $cat['theme'];
+			break;
+		}
 }
 
 define('_THEME_IMG_DIR_',  _THEMES_DIR_.$theme.'/img/');
