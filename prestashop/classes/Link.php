@@ -53,6 +53,8 @@ class Link
 
 	public function getCategoryBaseLocation($id_category)
         {
+		global $cookie;
+
 		$category = new Category($id_category);
 	
 		$category_path = $category->getParentsCategories(intval($cookie->id_lang), true);
