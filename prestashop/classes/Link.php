@@ -51,18 +51,6 @@ class Link
 		return _PS_BASE_URL_.__PS_BASE_URI__.'product.php?id_product='.intval($id_product);
 	}
 
-	public function getCategoryBaseLocation($id_category)
-        {
-		$category = new Category($id_category);
-	
-		$category_path = $category->getParentsCategories(intval($cookie->id_lang), true);
-		foreach($category_path as $cat)
-			if ($cat['base_url']) {
-				return $cat['base_url'];
-			}
-		return _PS_BASE_URL_.__PS_BASE_URI__;
-        }
-
 	public function getCategoryLink($id_category, $alias = NULL)
 	{
 	 	if (!isset($this->allow)) $this->allow = 0;
@@ -74,8 +62,8 @@ class Link
 			if (strpos($alias, '://'))
 				return $alias;
 			else
-				return Link::getCategoryBaseLocation($id_category).intval($id_category).'-'.$alias;
-		return Link::getCategoryBaseLocation($id_category).'category.php?id_category='.intval($id_category);
+				return _PS_BASE_URL_.__PS_BASE_URI__.intval($id_category).'-'.$alias;
+		return _PS_BASE_URL_.__PS_BASE_URI__.'category.php?id_category='.intval($id_category);
 	}
 
 	public function getCMSLink($cms, $alias = null)

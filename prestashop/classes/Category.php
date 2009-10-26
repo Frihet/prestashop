@@ -34,11 +34,8 @@ class		Category extends ObjectModel
 	/** @var integer Parents number */
 	public 		$level_depth;
 
-	/** @var string String used in rewrited URL */
+	/** @var string string used in rewrited URL */
 	public 		$link_rewrite;
-
-	/** @var string Base URL used in rewrited URL */
-	public 		$base_url;
 
 	/** @var string Meta title */
 	public 		$meta_title;

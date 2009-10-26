@@ -184,8 +184,6 @@ CREATE TABLE `PREFIX_category` (
   `id_parent` int(10) unsigned NOT NULL,
   `level_depth` tinyint(3) unsigned NOT NULL default '0',
   `active` tinyint(1) unsigned NOT NULL default '0',
-  `base_url` varchar(256) default NULL,
-  `theme` varchar(32) default NULL,
   `date_add` datetime NOT NULL,
   `date_upd` datetime NOT NULL,
   PRIMARY KEY  (`id_category`),
