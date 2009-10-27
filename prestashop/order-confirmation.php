@@ -22,6 +22,17 @@ $smarty->assign(array(
 	'HOOK_ORDER_CONFIRMATION' => Hook::orderConfirmation(intval($id_order)),
 	'HOOK_PAYMENT_RETURN' => Hook::paymentReturn(intval($id_order), intval($id_module))));
 
-$smarty->display(_PS_THEME_DIR_.'order-confirmation.tpl');
+
+global $order_pages_hook_titles, $order_pages_hook_names;
+$order_pages_hook_titles = array();
+$order_pages_hook_names = array();
+Module::hookExec('orderPages', array('part' => 'title'));
+Module::hookExec('orderPages', array('part' => 'name'));
+
+$smarty->assign('order_steps', $order_pages_hook_titles);
+$smarty->assign('order_step', count($order_pages_hook_names)-1);
+
+
+$smarty->display(_PS_THEME_DIR_.'module-order-confirmation.tpl');
 
 include(dirname(__FILE__).'/footer.php');

@@ -208,6 +208,18 @@ include(dirname(__FILE__).'/header.php');
 
 $smarty->assign('errors', $errors);
 Tools::safePostVars();
+
+global $order_pages_hook_titles, $order_pages_hook_names;
+$order_pages_hook_titles = array();
+$order_pages_hook_names = array();
+Module::hookExec('orderPages', array('part' => 'title'));
+Module::hookExec('orderPages', array('part' => 'name'));
+
+if (in_array('orderlogin', $order_pages_hook_names)) {
+	$smarty->assign('order_steps', $order_pages_hook_titles);
+	$smarty->assign('order_step', array_search('orderlogin', $order_pages_hook_names));
+}
+
 $smarty->display(_PS_THEME_DIR_.'authentication.tpl');
 
 include(dirname(__FILE__).'/footer.php');
