@@ -40,13 +40,18 @@ class OrderSummary extends OrderPage
 					$cart->addDiscount(intval($discount->id));
 				}
 			}
-			$order_pages_hook_stay = true;
+
+			// Why do we need a redirect here? Copied from
+                        // original order.php source. Seems like
+                        // otherwize the cart display doesn't get
+                        // updated properly
+			Tools::redirect('order.php?step=' . $params['step']);
 		}
 		elseif (intval(Tools::getValue('deleteDiscount')) == 1)
 		{
 			if (Validate::isUnsignedId($_GET['deleteDiscount']))
 				$cart->deleteDiscount(intval($_GET['deleteDiscount']));
-			$order_pages_hook_stay = true;
+			Tools::redirect('order.php?step=' . $params['step']);
 		}
         }
 
