@@ -1,0 +1,2 @@
+Country		License		Source
+NO		CC-BY 3.0	http://www.erikbolstad.no/postnummer/postnummer.php
