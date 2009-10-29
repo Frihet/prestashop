@@ -19,13 +19,13 @@ class MySQL extends Db
 		if ($this->_link = @mysql_connect($this->_server, $this->_user, $this->_password))
 		{
 			if(!$this->set_db($this->_database))
-				die(Tools::displayError('The database selection cannot be made.'));
+				throw new Exception(Tools::displayError('The database selection cannot be made.'));
 		}
 		else
-			die(Tools::displayError('Link to database cannot be established.'));
+			throw new Exception(Tools::displayError('Link to database cannot be established.'));
 		/* UTF-8 support */
 		if (!mysql_query('SET NAMES \'utf8\'', $this->_link))
-			die(Tools::displayError('PrestaShop Fatal error: no utf-8 support. Please check your server configuration.'));
+			throw new Exception(Tools::displayError('PrestaShop Fatal error: no utf-8 support. Please check your server configuration.'));
 		/* Disable some MySQL limitations */
 		mysql_query('SET GLOBAL SQL_MODE=\'\'', $this->_link);
 		return $this->_link;
@@ -50,11 +50,11 @@ class MySQL extends Db
 			if ($this->_result = mysql_query($query.' LIMIT 1', $this->_link))
 			{
 				if (mysql_errno())
-					die(Tools::displayError($this->getMsgError($query)));
+					throw new Exception(Tools::displayError($this->getMsgError($query)));
 				return mysql_fetch_assoc($this->_result);
 			}
 		if (mysql_errno())
-			die(Tools::displayError($this->getMsgError($query)));
+			throw new Exception(Tools::displayError($this->getMsgError($query)));
 		return false;
 	}
 
@@ -73,11 +73,11 @@ class MySQL extends Db
 		{
 			$this->_result = mysql_query($query, $this->_link);
 			if (mysql_errno())
-				die(Tools::displayError($this->getMsgError($query)));
+				throw new Exception(Tools::displayError($this->getMsgError($query)));
 			return $this->_result;
 		}
 		if (mysql_errno())
-			die(Tools::displayError($this->getMsgError($query)));
+			throw new Exception(Tools::displayError($this->getMsgError($query)));
 		return false;
 	}
 	
@@ -87,7 +87,7 @@ class MySQL extends Db
 		if ($this->_link && $this->_result = mysql_query($query, $this->_link))
 		{
 			if (mysql_errno())
-				die(Tools::displayError($this->getMsgError($query)));
+				throw new Exception(Tools::displayError($this->getMsgError($query)));
 			if (!$array)
 				return $this->_result;
 			$resultArray = array();
@@ -96,7 +96,7 @@ class MySQL extends Db
 			return $resultArray;
 		}
 		if (mysql_errno())
-			die(Tools::displayError($this->getMsgError($query)));
+			throw new Exception(Tools::displayError($this->getMsgError($query)));
 		return false;
 	}
 
