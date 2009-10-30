@@ -194,28 +194,28 @@ var fieldRequired = '{l s='Please fill all required fields' js=1}';
 				<br />
 				<span class="our_price_display">
 				{if !$priceDisplay || $priceDisplay == 2}
-					<span id="our_price_display">{$product->getPrice(true, $smarty.const.NULL, 2)}</span>
+					<span id="our_price_display">{convertPrice price=$product->getPrice(true, $smarty.const.NULL, 2)}</span>
 						{l s='tax incl.'}
 				{/if}
 				{if $priceDisplay == 1}
-					<span id="our_price_display">{$product->getPrice(false, $smarty.const.NULL, 2)}</span>
+					<span id="our_price_display">{convertPrice price=$product->getPrice(false, $smarty.const.NULL, 2)}</span>
 						{l s='tax excl.'}
 				{/if}
 				</span>
 				{if $priceDisplay == 2}
 					<br />
-					<span id="pretaxe_price"><span id="pretaxe_price_display">{$product->getPrice(false, $smarty.const.NULL, 2)}</span>&nbsp;{l s='tax excl.'}</span>
+					<span id="pretaxe_price"><span id="pretaxe_price_display">{convertPrice price=$product->getPrice(false, $smarty.const.NULL, 2)}</span>&nbsp;{l s='tax excl.'}</span>
 				{/if}
 				<br />
 			</p>
 			{if ($product->reduction_price != 0 || $product->reduction_percent != 0) && ($product->reduction_from == $product->reduction_to OR ($smarty.now|date_format:'%Y-%m-%d' <= $product->reduction_to && $smarty.now|date_format:'%Y-%m-%d' >= $product->reduction_from))}
 				<p id="old_price"><span class="bold">
 				{if !$priceDisplay || $priceDisplay == 2}
-					<span id="old_price_display">{$product->getPriceWithoutReduct()}</span>
+					<span id="old_price_display">{convertPrice price=$product->getPriceWithoutReduct()}</span>
 						{l s='tax incl.'}
 				{/if}
 				{if $priceDisplay == 1}
-					<span id="old_price_display">{$product->getPriceWithoutReduct(true)}</span>
+					<span id="old_price_display">{convertPrice price=$product->getPriceWithoutReduct(true)}</span>
 						{l s='tax excl.'}
 				{/if}
 				</span>

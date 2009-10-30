@@ -1341,11 +1341,12 @@ class		Product extends ObjectModel
 	*/
 	static function convertPrice($params, &$smarty)
 	{
-		return Tools::displayPrice($params['price'], $smarty->ps_currency);
+		return Tools::displayPrice($params['price'], $smarty->ps_currency, false, false);
 	}
 
 	static function convertPriceWithCurrency($params, &$smarty)
 	{
+die("XYZZY DON*T USE");
 		if (!isset($params['convert']))
 			$params['convert'] = true;
 		return Tools::displayPrice($params['price'], $params['currency'], false, $params['convert']);
