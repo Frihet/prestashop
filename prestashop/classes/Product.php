@@ -1220,7 +1220,7 @@ class		Product extends ObjectModel
 	*/
 	public static function getPriceStatic($id_product, $usetax = true, $id_product_attribute = NULL, $decimals = 6, $divisor = NULL, $only_reduc = false, $usereduc = true, $quantity = 1, $forceAssociatedTax = false)
 	{
-		global $cookie;
+		global $cookie, $currency;
 
 		// Get id_customer if exists
 		$id_customer = ((isset($cookie) AND get_class($cookie) == 'Cookie' AND isset($cookie->id_customer) AND $cookie->id_customer)
@@ -1230,7 +1230,7 @@ class		Product extends ObjectModel
 			die(Tools::displayError());
 
 		// Caching system
-		$cacheId = $id_product.'-'.($usetax?'1':'0').'-'.$id_product_attribute.'-'.$decimals.'-'.$divisor.'-'.($only_reduc?'1':'0').'-'.($usereduc?'1':'0').'-'.$quantity;
+		$cacheId = $currency->id_currency.'-'.$id_product.'-'.($usetax?'1':'0').'-'.$id_product_attribute.'-'.$decimals.'-'.$divisor.'-'.($only_reduc?'1':'0').'-'.($usereduc?'1':'0').'-'.$quantity;
 		if (isset(self::$_prices[$cacheId]))
 			return self::$_prices[$cacheId];
 
@@ -1275,8 +1275,7 @@ class		Product extends ObjectModel
 		// Group reduction
 		if ($id_customer)
 			$price *= ((100 - Group::getReduction($id_customer))/100);
-
-		self::$_prices[$cacheId] = ($divisor AND $divisor != 'NULL') ? number_format($price/$divisor, $decimals, '.', '') : number_format($price, $decimals, '.', '');
+		self::$_prices[$cacheId] = $currency->conversion_rate * (($divisor AND $divisor != 'NULL') ? number_format($price/$divisor, $decimals, '.', '') : number_format($price, $decimals, '.', ''));
 		return self::$_prices[$cacheId];
 	}
 
@@ -1297,6 +1296,7 @@ class		Product extends ObjectModel
 
 	public function getPriceWithoutReduct($notax = false)
 	{
+		global $currency;
 		$res = Db::getInstance()->getRow('
 			SELECT p.`price`, t.`rate`, t.`id_tax`
 			FROM `'._DB_PREFIX_.$this->table.'` p
@@ -1306,8 +1306,8 @@ class		Product extends ObjectModel
 			return false;
 		$tax = floatval(Tax::getApplicableTax(intval($res['id_tax']), floatval($res['rate'])));
 		if (!Tax::excludeTaxeOption() || $notax)
-			return ($res['price'] * (1 + $tax / 100));
-		return ($res['price']);
+			return $currency->conversion_rate * ($res['price'] * (1 + $tax / 100));
+		return ($currency->conversion_rate * $res['price']);
 	}
 
 	/**

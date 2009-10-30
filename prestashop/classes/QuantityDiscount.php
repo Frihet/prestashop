@@ -49,13 +49,15 @@ class QuantityDiscount extends ObjectModel
 
     public static function getValue($product_price, $id_discount_type, $value)
     {
+		global $currency;
+
 		if ($id_discount_type == 1)
 		{
 			$percentage = $value / 100;
 			return $percentage * floatval($product_price);
 		}
 		elseif ($id_discount_type == 2)
-			return $value;
+			return $value * $currency->conversion_rate;
 		return 0;
     }
 

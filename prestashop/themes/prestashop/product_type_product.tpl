@@ -194,28 +194,28 @@ var fieldRequired = '{l s='Please fill all required fields' js=1}';
 				<br />
 				<span class="our_price_display">
 				{if !$priceDisplay || $priceDisplay == 2}
-					<span id="our_price_display">{convertPrice price=$product->getPrice(true, $smarty.const.NULL, 2)}</span>
+					<span id="our_price_display">{$product->getPrice(true, $smarty.const.NULL, 2)}</span>
 						{l s='tax incl.'}
 				{/if}
 				{if $priceDisplay == 1}
-					<span id="our_price_display">{convertPrice price=$product->getPrice(false, $smarty.const.NULL, 2)}</span>
+					<span id="our_price_display">{$product->getPrice(false, $smarty.const.NULL, 2)}</span>
 						{l s='tax excl.'}
 				{/if}
 				</span>
 				{if $priceDisplay == 2}
 					<br />
-					<span id="pretaxe_price"><span id="pretaxe_price_display">{convertPrice price=$product->getPrice(false, $smarty.const.NULL, 2)}</span>&nbsp;{l s='tax excl.'}</span>
+					<span id="pretaxe_price"><span id="pretaxe_price_display">{$product->getPrice(false, $smarty.const.NULL, 2)}</span>&nbsp;{l s='tax excl.'}</span>
 				{/if}
 				<br />
 			</p>
 			{if ($product->reduction_price != 0 || $product->reduction_percent != 0) && ($product->reduction_from == $product->reduction_to OR ($smarty.now|date_format:'%Y-%m-%d' <= $product->reduction_to && $smarty.now|date_format:'%Y-%m-%d' >= $product->reduction_from))}
 				<p id="old_price"><span class="bold">
 				{if !$priceDisplay || $priceDisplay == 2}
-					<span id="old_price_display">{convertPrice price=$product->getPriceWithoutReduct()}</span>
+					<span id="old_price_display">{$product->getPriceWithoutReduct()}</span>
 						{l s='tax incl.'}
 				{/if}
 				{if $priceDisplay == 1}
-					<span id="old_price_display">{convertPrice price=$product->getPriceWithoutReduct(true)}</span>
+					<span id="old_price_display">{$product->getPriceWithoutReduct(true)}</span>
 						{l s='tax excl.'}
 				{/if}
 				</span>
@@ -225,11 +225,11 @@ var fieldRequired = '{l s='Please fill all required fields' js=1}';
 				<p id="reduction_percent">{l s='(price reduced by'} <span id="reduction_percent_display">{$product->reduction_percent|floatval}</span> %{l s=')'}</p>
 			{/if}
 			{if $packItems|@count}
-				<p class="pack_price">{l s='instead of'} <span style="text-decoration: line-through;">{convertPrice price=$product->getNoPackPrice()}</span></p>
+				<p class="pack_price">{l s='instead of'} <span style="text-decoration: line-through;">{$product->getNoPackPrice()}</span></p>
 				<br class="clear" />
 			{/if}
 			{if $product->ecotax != 0}
-				<p class="price-ecotax">{l s='include'} <span id="ecotax_price_display">{convertPrice price=$product->ecotax}</span> {l s='for green tax'}</p>
+				<p class="price-ecotax">{l s='include'} <span id="ecotax_price_display">{$product->ecotax}</span> {l s='for green tax'}</p>
 			{/if}
 
 			{if isset($groups)}
@@ -314,7 +314,7 @@ var fieldRequired = '{l s='Please fill all required fields' js=1}';
 				{if $quantity_discount.id_discount_type|intval == 1}
 					-{$quantity_discount.value|floatval}%
 				{else}
-					-{convertPrice price=$quantity_discount.value|floatval}
+					-{$quantity_discount.value|floatval}
 				{/if}
 				</td>
 				{/foreach}

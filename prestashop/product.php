@@ -138,7 +138,7 @@ else
 			'textFields' => $textFields));
 
 		$productPriceWithTax = floatval($product->getPrice(true, NULL, 2));
-		$productPriceWithoutEcoTax = floatval($productPriceWithTax - $product->ecotax);
+		$productPriceWithoutEcoTax = floatval($productPriceWithTax - $product->ecotax * $currency->conversion_rate);
 		$configs = Configuration::getMultiple(array('PS_ORDER_OUT_OF_STOCK', 'PS_LAST_QTIES'));
 
 		/* Features / Values */
@@ -257,8 +257,8 @@ else
 
 				$combinations[$row['id_product_attribute']]['attributes_values'][$row['id_attribute_group']] = $row['attribute_name'];
 				$combinations[$row['id_product_attribute']]['attributes'][] = intval($row['id_attribute']);
-				$combinations[$row['id_product_attribute']]['price'] = floatval($row['price']);
-				$combinations[$row['id_product_attribute']]['ecotax'] = floatval($row['ecotax']);
+				$combinations[$row['id_product_attribute']]['price'] = floatval($currency->conversion_rate * $row['price']);
+				$combinations[$row['id_product_attribute']]['ecotax'] = floatval($currency->conversion_rate * $row['ecotax']);
 				$combinations[$row['id_product_attribute']]['weight'] = floatval($row['weight']);
 				$combinations[$row['id_product_attribute']]['quantity'] = intval($row['quantity']);
 				$combinations[$row['id_product_attribute']]['reference'] = $row['reference'];
@@ -310,7 +310,7 @@ if (file_exists(_PS_THEME_DIR_.'thickbox.tpl'))
 	$smarty->display(_PS_THEME_DIR_.'thickbox.tpl');
 $smarty->assign(array(
 	'currencySign' => $currency->sign,
-	'currencyRate' => $currency->conversion_rate,
+	'currencyRate' => 1.0,
 	'currencyFormat' => $currency->format,
 	'currencyBlank' => $currency->blank)
 	);
