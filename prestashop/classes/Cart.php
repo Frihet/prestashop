@@ -644,7 +644,7 @@ class		Cart extends ObjectModel
 	*/
     function getOrderShippingCost($id_carrier = NULL, $useTax = true)
     {
-		global $defaultCountry;
+		global $defaultCountry, $currency;
 
 		if ($this->isVirtualCart())
 			return 0;
@@ -681,7 +681,7 @@ class		Cart extends ObjectModel
 		
 		// If no product added, return 0
 		if ($orderTotal <= 0 AND !intval(self::getNbProducts($this->id)))
-			return $shipping_cost;
+			return $shipping_cost * $currency->conversion_rate;
 
 		// If no carrier, select default one
 		if (!$id_carrier)
@@ -694,7 +694,7 @@ class		Cart extends ObjectModel
 		if (!Validate::isLoadedObject($carrier))
 			die(Tools::displayError('Hack attempt: "no default carrier"'));
         if (!$carrier->active)
-			return $shipping_cost;
+			return $shipping_cost * $currency->conversion_rate;
 		// Get id zone
         if (isset($this->id_address_delivery) AND $this->id_address_delivery)
 			$id_zone = Address::getZoneById(intval($this->id_address_delivery));
@@ -713,9 +713,9 @@ class		Cart extends ObjectModel
 		$configuration = Configuration::getMultiple(array('PS_SHIPPING_FREE_PRICE', 'PS_SHIPPING_HANDLING', 'PS_SHIPPING_METHOD', 'PS_SHIPPING_FREE_WEIGHT'));
 		// Free fees
 		if (isset($configuration['PS_SHIPPING_FREE_PRICE']) AND $orderTotal >= floatval($configuration['PS_SHIPPING_FREE_PRICE']) AND floatval($configuration['PS_SHIPPING_FREE_PRICE']) > 0)
-			return $shipping_cost;
+			return $shipping_cost * $currency->conversion_rate;
 		if (isset($configuration['PS_SHIPPING_FREE_WEIGHT']) AND $this->getTotalWeight() >= floatval($configuration['PS_SHIPPING_FREE_WEIGHT']) AND floatval($configuration['PS_SHIPPING_FREE_WEIGHT']) > 0)
-			return $shipping_cost;
+			return $shipping_cost * $currency->conversion_rate;
 
 		// Get shipping cost using correct method
 		if ($carrier->range_behavior)
@@ -750,7 +750,7 @@ class		Cart extends ObjectModel
 		// Adding handling charges
 		if (isset($configuration['PS_SHIPPING_HANDLING']) AND $carrier->shipping_handling)
             $shipping_cost += floatval($configuration['PS_SHIPPING_HANDLING']);
-		return floatval($shipping_cost);
+		return floatval($shipping_cost * $currency->conversion_rate);
     }
 
 	/**
