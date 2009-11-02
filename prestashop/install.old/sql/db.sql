@@ -936,6 +936,16 @@ CREATE TABLE `PREFIX_product` (
   KEY `product_manufacturer` (`id_manufacturer`)
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8;
 
+CREATE TABLE `PREFIX_product_price` (
+  `id_product` int(10) unsigned NOT NULL,
+  `id_currency` int(10) unsigned NOT NULL,
+  `id_group` int(10) unsigned DEFAULT NULL,
+  `price` decimal(13,6) NOT NULL default '0.000000',
+  FOREIGN KEY (`id_product`) REFERENCES `PREFIX_product` (`id_product`),
+  FOREIGN KEY (`id_currency`) REFERENCES `PREFIX_currency` (`id_currency`),
+  FOREIGN KEY (`id_group`) REFERENCES `PREFIX_group` (`id_group`)
+) ENGINE=MyISAM DEFAULT CHARSET=utf8;
+
 CREATE TABLE `PREFIX_product_attribute` (
   `id_product_attribute` int(10) unsigned NOT NULL auto_increment,
   `id_product` int(10) unsigned NOT NULL,
