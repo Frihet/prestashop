@@ -72,7 +72,7 @@ Release Notes for PrestaShop 1.2
 	[-] BO : fixed display bug in AdminManufacturers
 	[-] BO : fixed several bugs using $currentIndex (#2545)
 	[-] Installer : fixed bad update content (#2518)
-	[-] Classes :fixed bad count in getPriceLCsDrop (#2541)
+	[-] Classes :fixed bad count in getPricesDropLC (#2541)
 	[-] BO : fixed a bug while updating image in AdminProducts (#2514)
 	[-] BO : indexation for products without anything to index fixed
 	[-] MO : fixed bad URL for image insert in blockadvertising (#2509)

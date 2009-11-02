@@ -180,7 +180,7 @@ else
 
 		/* /Quantity discount management */
 		$smarty->assign(array(
-			'quantity_discounts' => QuantityDiscount::getQuantityDiscounts(intval($product->id), $product->getPriceLCWithoutReduct()),
+			'quantity_discounts' => QuantityDiscount::getQuantityDiscounts(intval($product->id), $product->getPriceWithoutReductLC()),
 			'product' => $product,
 			'jqZoomEnabled' => $jqZoomEnabled,
 			'product_manufacturer' => new Manufacturer(intval($product->id_manufacturer)),

@@ -22,7 +22,7 @@ var quantityAvailable = {if $display_qties == 1 && $product->quantity}{$product-
 var allowBuyWhenOutOfStock = {if $allow_oosp == 1}true{else}false{/if};
 var availableNowValue = '{$product->available_now|escape:'quotes':'UTF-8'}';
 var availableLaterValue = '{$product->available_later|escape:'quotes':'UTF-8'}';
-var productPriceWithoutReduction = {$product->getPriceLCWithoutReduct()|default:'null'};
+var productPriceWithoutReduction = {$product->getPriceWithoutReductLC()|default:'null'};
 var reduction_percent = {if $product->reduction_percent}{$product->reduction_percent}{else}0{/if};
 var reduction_price = {if $product->reduction_percent}0{else}{$product->getPriceLC(true, $smarty.const.NULL, 2, $smarty.const.NULL, true)}{/if};
 var reduction_from = '{$product->reduction_from}';
@@ -211,11 +211,11 @@ var fieldRequired = '{l s='Please fill all required fields' js=1}';
 			{if ($product->reduction_price != 0 || $product->reduction_percent != 0) && ($product->reduction_from == $product->reduction_to OR ($smarty.now|date_format:'%Y-%m-%d' <= $product->reduction_to && $smarty.now|date_format:'%Y-%m-%d' >= $product->reduction_from))}
 				<p id="old_price"><span class="bold">
 				{if !$priceDisplay || $priceDisplay == 2}
-					<span id="old_price_display">{convertPrice price=$product->getPriceLCWithoutReduct()}</span>
+					<span id="old_price_display">{convertPrice price=$product->getPriceWithoutReductLC()}</span>
 						{l s='tax incl.'}
 				{/if}
 				{if $priceDisplay == 1}
-					<span id="old_price_display">{convertPrice price=$product->getPriceLCWithoutReduct(true)}</span>
+					<span id="old_price_display">{convertPrice price=$product->getPriceWithoutReductLC(true)}</span>
 						{l s='tax excl.'}
 				{/if}
 				</span>

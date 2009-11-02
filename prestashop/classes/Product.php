@@ -1063,7 +1063,7 @@ class		Product extends ObjectModel
 	* @param boolean $count Only in order to get total number (optional)
 	* @return array Prices drop
 	*/
-	static public function getPriceLCsDrop($id_lang, $pageNumber = 0, $nbProducts = 10, $count = false, $orderBy = NULL, $orderWay = NULL, $beginning = false, $ending = false)
+	static public function getPricesDropLC($id_lang, $pageNumber = 0, $nbProducts = 10, $count = false, $orderBy = NULL, $orderWay = NULL, $beginning = false, $ending = false)
 	{
 		global $link, $cookie;
 		if (!Validate::isBool($count))
@@ -1294,7 +1294,7 @@ class		Product extends ObjectModel
 			return self::getPriceStaticLC(intval($this->id), $tax, $id_product_attribute, $decimals, $divisor, $only_reduc, $usereduc, $quantity);
 	}
 
-	public function getPriceLCWithoutReduct($notax = false)
+	public function getPriceWithoutReductLC($notax = false)
 	{
 		global $currency;
 		$res = Db::getInstance()->getRow('
