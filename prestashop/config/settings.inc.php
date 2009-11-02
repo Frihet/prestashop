@@ -5,7 +5,7 @@ define('_DB_NAME_', 'prestashop');
 define('_DB_USER_', 'prestashop');
 define('_DB_PASSWD_', 'saltgurka');
 define('_DB_PREFIX_', '');
-define('__PS_BASE_URI__', '/prestashop/');
+define('__PS_BASE_URI__', '/freecode/prestashop/');
 define('_THEME_NAME_', 'prestashop');
 define('_COOKIE_KEY_', 'VHOvs8WOxs2UsJC3k69ifooPS0mtD0udM9zv8TfKXH8gzSLI3OUNIays');
 define('_COOKIE_IV_', 'xtc16z3Y');
