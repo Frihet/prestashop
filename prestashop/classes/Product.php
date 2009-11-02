@@ -1211,6 +1211,8 @@ class		Product extends ObjectModel
 
 	public static function getBasePriceStaticLC($id_product, $id_product_attribute = NULL)
 	{
+		global $currency;
+
 		$result = Db::getInstance()->getRow('
 		SELECT
 		 p.`price`,
@@ -1237,6 +1239,13 @@ class		Product extends ObjectModel
                  t.`id_tax` = p.`id_tax`
 		WHERE
                  p.`id_product` = '.intval($id_product));
+
+		$result['price'] = $result['price'] * $currency->conversion_rate;
+		$result['reduction_price'] = $result['reduction_price'] * $currency->conversion_rate;
+		$result['reduction_from'] = $result['reduction_from'] * $currency->conversion_rate;
+		$result['reduction_to'] = $result['reduction_to'] * $currency->conversion_rate;
+		$result['attribute_price'] = $result['attribute_price'] * $currency->conversion_rate;
+
 		return $result;
 	}
 
@@ -1296,12 +1305,12 @@ class		Product extends ObjectModel
 
 		// Quantity discount
 		if ($quantity > 1 AND ($qtyD = QuantityDiscount::getDiscountFromQuantity($id_product, $quantity)))
-			$price -= QuantityDiscount::getValue($price, $qtyD->id_discount_type, $qtyD->value);
+			$price -= QuantityDiscount::getValue($price, $qtyD->id_discount_type, $qtyD->value) * $currency->conversion_rate;
 
 		// Group reduction
 		if ($id_customer)
 			$price *= ((100 - Group::getReduction($id_customer))/100);
-		self::$_prices[$cacheId] = $currency->conversion_rate * (($divisor AND $divisor != 'NULL') ? number_format($price/$divisor, $decimals, '.', '') : number_format($price, $decimals, '.', ''));
+		self::$_prices[$cacheId] = ($divisor AND $divisor != 'NULL') ? number_format($price/$divisor, $decimals, '.', '') : number_format($price, $decimals, '.', '');
 		return self::$_prices[$cacheId];
 	}
 
