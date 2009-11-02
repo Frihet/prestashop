@@ -1230,7 +1230,7 @@ class		Product extends ObjectModel
 			die(Tools::displayError());
 
 		// Caching system
-		$cacheId = $currency->id_currency.'-'.$id_product.'-'.($usetax?'1':'0').'-'.$id_product_attribute.'-'.$decimals.'-'.$divisor.'-'.($only_reduc?'1':'0').'-'.($usereduc?'1':'0').'-'.$quantity;
+		$cacheId = $currency->id.'-'.$id_product.'-'.($usetax?'1':'0').'-'.$id_product_attribute.'-'.$decimals.'-'.$divisor.'-'.($only_reduc?'1':'0').'-'.($usereduc?'1':'0').'-'.$quantity;
 		if (isset(self::$_prices[$cacheId]))
 			return self::$_prices[$cacheId];
 
