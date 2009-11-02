@@ -103,13 +103,18 @@ abstract class PaymentModule extends Module
 			$order->gift = intval($cart->gift);
 			$order->gift_message = $cart->gift_message;
 			$currency = new Currency($order->id_currency);
-			$amountPaid = !$dont_touch_amount ? floatval(Tools::convertPrice(floatval(number_format($amountPaid, 2, '.', '')), $currency)) : $amountPaid;
+
+			// Hm, if !dont_touch_amount, maybe we should
+                        // do something here, just can't see what? The
+                        // old code converted currency and chopped
+                        // decimals...
+			$amountPaid = $amountPaid;
 			$order->total_paid_real = $amountPaid;
-			$order->total_products = floatval(Tools::convertPrice(floatval(number_format($cart->getOrderTotalLC(false, 1), 2, '.', '')), $currency));
-			$order->total_discounts = floatval(Tools::convertPrice(floatval(number_format(abs($cart->getOrderTotalLC(true, 2)), 2, '.', '')), $currency));
-			$order->total_shipping = floatval(Tools::convertPrice(floatval(number_format($cart->getOrderShippingCostLC(), 2, '.', '')), $currency));
-			$order->total_wrapping = floatval(Tools::convertPrice(floatval(number_format(abs($cart->getOrderTotalLC(true, 6)), 2, '.', '')), $currency));
-			$order->total_paid = floatval(Tools::convertPrice(floatval(number_format($cart->getOrderTotalLC(true, 3), 2, '.', '')), $currency));
+			$order->total_products = $cart->getOrderTotalLC(false, 1);
+			$order->total_discounts = abs($cart->getOrderTotalLC(true, 2));
+			$order->total_shipping = $cart->getOrderShippingCostLC();
+			$order->total_wrapping = abs($cart->getOrderTotalLC(true, 6));
+			$order->total_paid = $cart->getOrderTotalLC(true, 3);
 			// Amount paid by customer is not the right one -> Status = payment error
 			if ($order->total_paid != $order->total_paid_real)
 				$id_order_state = _PS_OS_ERROR_;
@@ -162,8 +167,8 @@ abstract class PaymentModule extends Module
 							}
 						Hook::updateQuantity($product, $order);
 					}
-					$price = Tools::convertPrice(Product::getPriceStaticLC(intval($product['id_product']), false, ($product['id_product_attribute'] ? intval($product['id_product_attribute']) : NULL), 6, NULL, false, true, $product['quantity']), $currency);
-					$price_wt = Tools::convertPrice(Product::getPriceStaticLC(intval($product['id_product']), true, ($product['id_product_attribute'] ? intval($product['id_product_attribute']) : NULL), 6, NULL, false, true, $product['quantity']), $currency);
+					$price = Product::getPriceStaticLC(intval($product['id_product']), false, ($product['id_product_attribute'] ? intval($product['id_product_attribute']) : NULL), 6, NULL, false, true, $product['quantity']);
+					$price_wt = Product::getPriceStaticLC(intval($product['id_product']), true, ($product['id_product_attribute'] ? intval($product['id_product_attribute']) : NULL), 6, NULL, false, true, $product['quantity']);
 
 					// Add some informations for virtual products
 					$deadline = '0000-00-00 00:00:00';
