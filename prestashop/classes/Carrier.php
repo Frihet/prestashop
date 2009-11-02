@@ -447,7 +447,7 @@ class		Carrier extends ObjectModel
 	/**
 	* Get the price without taxes defined in carrier
 	**/
-	public function getPriceWithoutTaxes($productPrice)
+	public function getPriceLCWithoutTaxes($productPrice)
 	{
 		$tax = new Tax($this->id_tax);
 		return round($productPrice - ($productPrice * $tax->rate / 100), 2);

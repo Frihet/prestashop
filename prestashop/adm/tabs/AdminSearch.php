@@ -256,11 +256,11 @@ class AdminSearch extends AdminTab
 			$cart = $this->_list['cart'];
 			$products = $cart->getProducts();
 			$discounts = $cart->getDiscounts();
-			$total_discounts = $cart->getOrderTotal(false, 2);
-			$total_shipping = $cart->getOrderShippingCost($cart->id_carrier);
-			$total_wrapping = $cart->getOrderTotal(true, 6);
-			$total_products = $cart->getOrderTotal(true, 1);
-			$total_price = $cart->getOrderTotal();
+			$total_discounts = $cart->getOrderTotalLC(false, 2);
+			$total_shipping = $cart->getOrderShippingCostLC($cart->id_carrier);
+			$total_wrapping = $cart->getOrderTotalLC(true, 6);
+			$total_products = $cart->getOrderTotalLC(true, 1);
+			$total_price = $cart->getOrderTotalLC();
 
 			echo '<h2>'.$this->l('Cart found:').' (#'.sprintf('%08d', $cart->id).')</h2>
 			<table cellspacing="0" cellpadding="0" class="table">

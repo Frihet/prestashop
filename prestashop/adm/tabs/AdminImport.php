@@ -37,13 +37,13 @@ class AdminImport extends AdminTab
 			
 	public static $validators = array(
 		'active' => array('AdminImport', 'getBoolean'),
-		'tax_rate' => array('AdminImport', 'getPrice'),
-		'price_tex' => array('AdminImport', 'getPrice'), // Tax excluded
-		'price_tin' => array('AdminImport', 'getPrice'), // Tax included
-		'reduction_price' => array('AdminImport', 'getPrice'),
-		'reduction_percent' => array('AdminImport', 'getPrice'),
-		'wholesale_price' => array('AdminImport', 'getPrice'),
-		'ecotax' => array('AdminImport', 'getPrice'),
+		'tax_rate' => array('AdminImport', 'getPriceLC'),
+		'price_tex' => array('AdminImport', 'getPriceLC'), // Tax excluded
+		'price_tin' => array('AdminImport', 'getPriceLC'), // Tax included
+		'reduction_price' => array('AdminImport', 'getPriceLC'),
+		'reduction_percent' => array('AdminImport', 'getPriceLC'),
+		'wholesale_price' => array('AdminImport', 'getPriceLC'),
+		'ecotax' => array('AdminImport', 'getPriceLC'),
 		'name' => array('AdminImport', 'createMultiLangField'),
 		'description' => array('AdminImport', 'createMultiLangField'),
 		'description_short' => array('AdminImport', 'createMultiLangField'),
@@ -248,7 +248,7 @@ class AdminImport extends AdminTab
 		return (boolean)$field;
 	}
 
-	private static function getPrice($field)
+	private static function getPriceLC($field)
 	{
 		$field = (floatval(str_replace(',', '.', $field)));
 		$field = (floatval(str_replace('%', '', $field)));

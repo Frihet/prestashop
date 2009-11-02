@@ -1063,7 +1063,7 @@ class		Product extends ObjectModel
 	* @param boolean $count Only in order to get total number (optional)
 	* @return array Prices drop
 	*/
-	static public function getPricesDrop($id_lang, $pageNumber = 0, $nbProducts = 10, $count = false, $orderBy = NULL, $orderWay = NULL, $beginning = false, $ending = false)
+	static public function getPriceLCsDrop($id_lang, $pageNumber = 0, $nbProducts = 10, $count = false, $orderBy = NULL, $orderWay = NULL, $beginning = false, $ending = false)
 	{
 		global $link, $cookie;
 		if (!Validate::isBool($count))
@@ -1218,7 +1218,7 @@ class		Product extends ObjectModel
 	* @param integer $divisor Util when paying many time without fees (optional)
 	* @return float Product price
 	*/
-	public static function getPriceStatic($id_product, $usetax = true, $id_product_attribute = NULL, $decimals = 6, $divisor = NULL, $only_reduc = false, $usereduc = true, $quantity = 1, $forceAssociatedTax = false)
+	public static function getPriceStaticLC($id_product, $usetax = true, $id_product_attribute = NULL, $decimals = 6, $divisor = NULL, $only_reduc = false, $usereduc = true, $quantity = 1, $forceAssociatedTax = false)
 	{
 		global $cookie, $currency;
 
@@ -1281,7 +1281,7 @@ class		Product extends ObjectModel
 
 	/**
 	* Get product price
-	* Same as static function getPriceStatic, no need to specify product id
+	* Same as static function getPriceStaticLC, no need to specify product id
 	*
 	* @param boolean $tax With taxes or not (optional)
 	* @param integer $id_product_attribute Product attribute id (optional)
@@ -1289,12 +1289,12 @@ class		Product extends ObjectModel
 	* @param integer $divisor Util when paying many time without frais (optional)
 	* @return float Product price in euros
 	*/
-	public function getPrice($tax = true, $id_product_attribute = NULL, $decimals = 6, $divisor = NULL, $only_reduc = false, $usereduc = true, $quantity = 1)
+	public function getPriceLC($tax = true, $id_product_attribute = NULL, $decimals = 6, $divisor = NULL, $only_reduc = false, $usereduc = true, $quantity = 1)
 	{
-			return self::getPriceStatic(intval($this->id), $tax, $id_product_attribute, $decimals, $divisor, $only_reduc, $usereduc, $quantity);
+			return self::getPriceStaticLC(intval($this->id), $tax, $id_product_attribute, $decimals, $divisor, $only_reduc, $usereduc, $quantity);
 	}
 
-	public function getPriceWithoutReduct($notax = false)
+	public function getPriceLCWithoutReduct($notax = false)
 	{
 		global $currency;
 		$res = Db::getInstance()->getRow('
@@ -1672,7 +1672,7 @@ die("XYZZY DON*T USE2");
 		$resultsArray = array();
 		foreach ($result AS $k => $row)
 		{
-			$row['price'] = Product::getPriceStatic($row['id_product'], true, NULL, 2);
+			$row['price'] = Product::getPriceStaticLC($row['id_product'], true, NULL, 2);
 			$row['quantity'] = Product::getQuantity($row['id_product']);
 			$resultsArray[] = $row;
 		}
@@ -1934,10 +1934,10 @@ die("XYZZY DON*T USE2");
 		$row['category'] = Category::getLinkRewrite($row['id_category_default'], intval($id_lang));
 		$row['link'] = $link->getProductLink($row['id_product'], $row['link_rewrite'], $row['category'], $row['ean13']);
 		$row['attribute_price'] = isset($row['id_product_attribute']) AND $row['id_product_attribute'] ? floatval(Product::getProductAttributePrice($row['id_product_attribute'])) : 0;
-		$row['price_tax_exc'] = Product::getPriceStatic($row['id_product'], false, ((isset($row['id_product_attribute']) AND !empty($row['id_product_attribute'])) ? intval($row['id_product_attribute']) : NULL), 2);
-		$row['price'] = Product::getPriceStatic($row['id_product'], true, ((isset($row['id_product_attribute']) AND !empty($row['id_product_attribute'])) ? intval($row['id_product_attribute']) : NULL), 2);
+		$row['price_tax_exc'] = Product::getPriceStaticLC($row['id_product'], false, ((isset($row['id_product_attribute']) AND !empty($row['id_product_attribute'])) ? intval($row['id_product_attribute']) : NULL), 2);
+		$row['price'] = Product::getPriceStaticLC($row['id_product'], true, ((isset($row['id_product_attribute']) AND !empty($row['id_product_attribute'])) ? intval($row['id_product_attribute']) : NULL), 2);
 		$row['reduction'] = self::getReductionValue($row['reduction_price'], $row['reduction_percent'], $row['reduction_from'], $row['reduction_to'], $row['price'], $usetax, floatval($row['rate']));
-		$row['price_without_reduction'] = Product::getPriceStatic($row['id_product'], true, ((isset($row['id_product_attribute']) AND !empty($row['id_product_attribute'])) ? intval($row['id_product_attribute']) : NULL), 2, NULL, false, false);
+		$row['price_without_reduction'] = Product::getPriceStaticLC($row['id_product'], true, ((isset($row['id_product_attribute']) AND !empty($row['id_product_attribute'])) ? intval($row['id_product_attribute']) : NULL), 2, NULL, false, false);
 		$row['quantity'] = Product::getQuantity($row['id_product']);
 		$row['id_image'] = Product::defineProductImage($row);
 		$row['features'] = Product::getFrontFeaturesStatic(intval($id_lang), $row['id_product']);

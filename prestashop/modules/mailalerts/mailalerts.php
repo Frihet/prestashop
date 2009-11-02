@@ -101,8 +101,8 @@ class MailAlerts extends Module
 		$itemsTable = '';
 		foreach ($params['cart']->getProducts() AS $key => $product)
 		{
-			$unit_price = Product::getPriceStatic($product['id_product'], true, $product['id_product_attribute']);
-			$price = Product::getPriceStatic($product['id_product'], true, $product['id_product_attribute'], 6, NULL, false, true, $product['quantity']);
+			$unit_price = Product::getPriceStaticLC($product['id_product'], true, $product['id_product_attribute']);
+			$price = Product::getPriceStaticLC($product['id_product'], true, $product['id_product_attribute'], 6, NULL, false, true, $product['quantity']);
 			$itemsTable .=
 				'<tr style="background-color:'.($key % 2 ? '#DDE2E6' : '#EBECEE').';">
 					<td style="padding:0.6em 0.4em;">'.$product['reference'].'</td>

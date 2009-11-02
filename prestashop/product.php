@@ -137,7 +137,7 @@ else
 			'pictures' => $files,
 			'textFields' => $textFields));
 
-		$productPriceWithTax = floatval($product->getPrice(true, NULL, 2));
+		$productPriceWithTax = floatval($product->getPriceLC(true, NULL, 2));
 		$productPriceWithoutEcoTax = floatval($productPriceWithTax - $product->ecotax * $currency->conversion_rate);
 		$configs = Configuration::getMultiple(array('PS_ORDER_OUT_OF_STOCK', 'PS_LAST_QTIES'));
 
@@ -180,7 +180,7 @@ else
 
 		/* /Quantity discount management */
 		$smarty->assign(array(
-			'quantity_discounts' => QuantityDiscount::getQuantityDiscounts(intval($product->id), $product->getPriceWithoutReduct()),
+			'quantity_discounts' => QuantityDiscount::getQuantityDiscounts(intval($product->id), $product->getPriceLCWithoutReduct()),
 			'product' => $product,
 			'jqZoomEnabled' => $jqZoomEnabled,
 			'product_manufacturer' => new Manufacturer(intval($product->id_manufacturer)),

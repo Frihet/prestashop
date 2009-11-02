@@ -105,11 +105,11 @@ abstract class PaymentModule extends Module
 			$currency = new Currency($order->id_currency);
 			$amountPaid = !$dont_touch_amount ? floatval(Tools::convertPrice(floatval(number_format($amountPaid, 2, '.', '')), $currency)) : $amountPaid;
 			$order->total_paid_real = $amountPaid;
-			$order->total_products = floatval(Tools::convertPrice(floatval(number_format($cart->getOrderTotal(false, 1), 2, '.', '')), $currency));
-			$order->total_discounts = floatval(Tools::convertPrice(floatval(number_format(abs($cart->getOrderTotal(true, 2)), 2, '.', '')), $currency));
-			$order->total_shipping = floatval(Tools::convertPrice(floatval(number_format($cart->getOrderShippingCost(), 2, '.', '')), $currency));
-			$order->total_wrapping = floatval(Tools::convertPrice(floatval(number_format(abs($cart->getOrderTotal(true, 6)), 2, '.', '')), $currency));
-			$order->total_paid = floatval(Tools::convertPrice(floatval(number_format($cart->getOrderTotal(true, 3), 2, '.', '')), $currency));
+			$order->total_products = floatval(Tools::convertPrice(floatval(number_format($cart->getOrderTotalLC(false, 1), 2, '.', '')), $currency));
+			$order->total_discounts = floatval(Tools::convertPrice(floatval(number_format(abs($cart->getOrderTotalLC(true, 2)), 2, '.', '')), $currency));
+			$order->total_shipping = floatval(Tools::convertPrice(floatval(number_format($cart->getOrderShippingCostLC(), 2, '.', '')), $currency));
+			$order->total_wrapping = floatval(Tools::convertPrice(floatval(number_format(abs($cart->getOrderTotalLC(true, 6)), 2, '.', '')), $currency));
+			$order->total_paid = floatval(Tools::convertPrice(floatval(number_format($cart->getOrderTotalLC(true, 3), 2, '.', '')), $currency));
 			// Amount paid by customer is not the right one -> Status = payment error
 			if ($order->total_paid != $order->total_paid_real)
 				$id_order_state = _PS_OS_ERROR_;
@@ -162,8 +162,8 @@ abstract class PaymentModule extends Module
 							}
 						Hook::updateQuantity($product, $order);
 					}
-					$price = Tools::convertPrice(Product::getPriceStatic(intval($product['id_product']), false, ($product['id_product_attribute'] ? intval($product['id_product_attribute']) : NULL), 6, NULL, false, true, $product['quantity']), $currency);
-					$price_wt = Tools::convertPrice(Product::getPriceStatic(intval($product['id_product']), true, ($product['id_product_attribute'] ? intval($product['id_product_attribute']) : NULL), 6, NULL, false, true, $product['quantity']), $currency);
+					$price = Tools::convertPrice(Product::getPriceStaticLC(intval($product['id_product']), false, ($product['id_product_attribute'] ? intval($product['id_product_attribute']) : NULL), 6, NULL, false, true, $product['quantity']), $currency);
+					$price_wt = Tools::convertPrice(Product::getPriceStaticLC(intval($product['id_product']), true, ($product['id_product_attribute'] ? intval($product['id_product_attribute']) : NULL), 6, NULL, false, true, $product['quantity']), $currency);
 
 					// Add some informations for virtual products
 					$deadline = '0000-00-00 00:00:00';
@@ -243,7 +243,7 @@ abstract class PaymentModule extends Module
 				foreach ($discounts AS $discount)
 				{
 					$objDiscount = new Discount(intval($discount['id_discount']));
-					$value = $objDiscount->getValue(sizeof($discounts), $cart->getOrderTotal(true, 1), $order->total_shipping, $cart->id);
+					$value = $objDiscount->getValue(sizeof($discounts), $cart->getOrderTotalLC(true, 1), $order->total_shipping, $cart->id);
 					$order->addDiscount($objDiscount->id, $objDiscount->name, $value);
 					if ($id_order_state != _PS_OS_ERROR_ AND $id_order_state != _PS_OS_CANCELED_)
 						$objDiscount->quantity = $objDiscount->quantity - 1;

@@ -30,7 +30,7 @@ class OrderSummary extends OrderPage
 				$discount = new Discount(intval(Discount::getIdByName($discountName)));
 				if (is_object($discount) AND $discount->id)
 				{
-					if ($tmpError = $cart->checkDiscountValidity($discount, $cart->getDiscounts(), $cart->getOrderTotal(), $cart->getProducts(), true))
+					if ($tmpError = $cart->checkDiscountValidity($discount, $cart->getDiscounts(), $cart->getOrderTotalLC(), $cart->getProducts(), true))
 						$errors[] = $tmpError;
 				}
 				else
@@ -87,8 +87,8 @@ class OrderSummary extends OrderPage
 			'voucherAllowed' => Configuration::get('PS_VOUCHERS'),
 			'HOOK_SHOPPING_CART' => Module::hookExec('shoppingCart', $summary),
 			'HOOK_SHOPPING_CART_EXTRA' => Module::hookExec('shoppingCartExtra', $summary),
-			'shippingCost' => $cart->getOrderTotal(true, 5),
-			'shippingCostTaxExc' => $cart->getOrderTotal(false, 5),
+			'shippingCost' => $cart->getOrderTotalLC(true, 5),
+			'shippingCostTaxExc' => $cart->getOrderTotalLC(false, 5),
 			'customizedDatas' => $customizedDatas,
 			'CUSTOMIZE_FILE' => _CUSTOMIZE_FILE_,
 			'CUSTOMIZE_TEXTFIELD' => _CUSTOMIZE_TEXTFIELD_,

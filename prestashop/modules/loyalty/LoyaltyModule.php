@@ -100,17 +100,17 @@ class LoyaltyModule extends ObjectModel
 		{
 			if (!intval(Configuration::get('PS_LOYALTY_NONE_AWARD')) AND ($product->reduction_price > 0 OR $product->reduction_percent > 0 OR $product->on_sale))
 				return $points;
-			$price = $product->getPrice();
+			$price = $product->getPriceLC();
 			if (intval($id_product_attribute) AND $id_product_attribute!==false)
 			{
-				$price = $product->getPrice(true, intval($id_product_attribute));
+				$price = $product->getPriceLC(true, intval($id_product_attribute));
 			}
 			else
 			{
 				$attributesGroups = $product->getAttributesGroups(intval($cookie->id_lang));
 				foreach ($attributesGroups AS $attributesGroup)
 				{
-					$productPrice = $product->getPrice(true, intval($attributesGroup['id_product_attribute']));
+					$productPrice = $product->getPriceLC(true, intval($attributesGroup['id_product_attribute']));
 					if ($productPrice > $price)
 						$price = $productPrice;
 				}

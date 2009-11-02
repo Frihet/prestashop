@@ -34,7 +34,7 @@ class AdminCarts extends AdminTab
  		$this->fieldsDisplay = array(
 		'id_cart' => array('title' => $this->l('ID'), 'align' => 'center', 'width' => 25),
 		'customer' => array('title' => $this->l('Customer'), 'width' => 80, 'filter_key' => 'c!lastname'),
-		'total' => array('title' => $this->l('Total'), 'callback' => 'getTotalCart', 'orderby' => false, 'search' => false, 'width' => 50, 'align' => 'right', 'prefix' => '<b>', 'suffix' => '</b>', 'currency' => true),
+		'total' => array('title' => $this->l('Total'), 'callback' => 'getTotalCartLC', 'orderby' => false, 'search' => false, 'width' => 50, 'align' => 'right', 'prefix' => '<b>', 'suffix' => '</b>', 'currency' => true),
 		'carrier' => array('title' => $this->l('Carrier'), 'width' => 25, 'align' => 'center', 'callback' => 'replaceZeroByShopName'),
 		'date_add' => array('title' => $this->l('Date'), 'width' => 90, 'align' => 'right', 'type' => 'datetime', 'filter_key' => 'a!date_add'));
 		parent::__construct();
@@ -174,11 +174,11 @@ class AdminCarts extends AdminTab
 				<td colspan="5">'.$this->l('Total gift-wrapping:').'</td>
 				<td class="price-discount bold right">'.Tools::displayPrice($summary['total_wrapping'], $currency, false).'</td>
 			</tr>';
-			if ($cart->getOrderTotal(true, 5) > 0)
+			if ($cart->getOrderTotalLC(true, 5) > 0)
 			echo '
 			<tr class="cart_total_delivery">
 				<td colspan="5">'.$this->l('Total shipping:').'</td>
-				<td class="price bold right">'.Tools::displayPrice($cart->getOrderTotal(true, 5), $currency, false).'</td>
+				<td class="price bold right">'.Tools::displayPrice($cart->getOrderTotalLC(true, 5), $currency, false).'</td>
 			</tr>';
 			echo '
 			<tr class="cart_total_price">

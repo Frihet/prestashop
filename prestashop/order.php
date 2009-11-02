@@ -25,9 +25,9 @@ if (!$cart->checkQuantities())
 }
 
 /* Check minimal account */
-$orderTotal = $cart->getOrderTotal();
+$orderTotal = $cart->getOrderTotalLC();
 
-$orderTotalDefaultCurrency = Tools::convertPrice($cart->getOrderTotal(true, 1), Currency::getCurrency(intval(Configuration::get('PS_CURRENCY_DEFAULT'))));
+$orderTotalDefaultCurrency = Tools::convertPrice($cart->getOrderTotalLC(true, 1), Currency::getCurrency(intval(Configuration::get('PS_CURRENCY_DEFAULT'))));
 $minimalPurchase = floatval(Configuration::get('PS_PURCHASE_MINIMUM'));
 if ($orderTotalDefaultCurrency < $minimalPurchase)
 {

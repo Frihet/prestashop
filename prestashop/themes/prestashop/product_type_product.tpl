@@ -22,9 +22,9 @@ var quantityAvailable = {if $display_qties == 1 && $product->quantity}{$product-
 var allowBuyWhenOutOfStock = {if $allow_oosp == 1}true{else}false{/if};
 var availableNowValue = '{$product->available_now|escape:'quotes':'UTF-8'}';
 var availableLaterValue = '{$product->available_later|escape:'quotes':'UTF-8'}';
-var productPriceWithoutReduction = {$product->getPriceWithoutReduct()|default:'null'};
+var productPriceWithoutReduction = {$product->getPriceLCWithoutReduct()|default:'null'};
 var reduction_percent = {if $product->reduction_percent}{$product->reduction_percent}{else}0{/if};
-var reduction_price = {if $product->reduction_percent}0{else}{$product->getPrice(true, $smarty.const.NULL, 2, $smarty.const.NULL, true)}{/if};
+var reduction_price = {if $product->reduction_percent}0{else}{$product->getPriceLC(true, $smarty.const.NULL, 2, $smarty.const.NULL, true)}{/if};
 var reduction_from = '{$product->reduction_from}';
 var reduction_to = '{$product->reduction_to}';
 var group_reduction = '{$group_reduction}';
@@ -194,28 +194,28 @@ var fieldRequired = '{l s='Please fill all required fields' js=1}';
 				<br />
 				<span class="our_price_display">
 				{if !$priceDisplay || $priceDisplay == 2}
-					<span id="our_price_display">{convertPrice price=$product->getPrice(true, $smarty.const.NULL, 2)}</span>
+					<span id="our_price_display">{convertPrice price=$product->getPriceLC(true, $smarty.const.NULL, 2)}</span>
 						{l s='tax incl.'}
 				{/if}
 				{if $priceDisplay == 1}
-					<span id="our_price_display">{convertPrice price=$product->getPrice(false, $smarty.const.NULL, 2)}</span>
+					<span id="our_price_display">{convertPrice price=$product->getPriceLC(false, $smarty.const.NULL, 2)}</span>
 						{l s='tax excl.'}
 				{/if}
 				</span>
 				{if $priceDisplay == 2}
 					<br />
-					<span id="pretaxe_price"><span id="pretaxe_price_display">{convertPrice price=$product->getPrice(false, $smarty.const.NULL, 2)}</span>&nbsp;{l s='tax excl.'}</span>
+					<span id="pretaxe_price"><span id="pretaxe_price_display">{convertPrice price=$product->getPriceLC(false, $smarty.const.NULL, 2)}</span>&nbsp;{l s='tax excl.'}</span>
 				{/if}
 				<br />
 			</p>
 			{if ($product->reduction_price != 0 || $product->reduction_percent != 0) && ($product->reduction_from == $product->reduction_to OR ($smarty.now|date_format:'%Y-%m-%d' <= $product->reduction_to && $smarty.now|date_format:'%Y-%m-%d' >= $product->reduction_from))}
 				<p id="old_price"><span class="bold">
 				{if !$priceDisplay || $priceDisplay == 2}
-					<span id="old_price_display">{convertPrice price=$product->getPriceWithoutReduct()}</span>
+					<span id="old_price_display">{convertPrice price=$product->getPriceLCWithoutReduct()}</span>
 						{l s='tax incl.'}
 				{/if}
 				{if $priceDisplay == 1}
-					<span id="old_price_display">{convertPrice price=$product->getPriceWithoutReduct(true)}</span>
+					<span id="old_price_display">{convertPrice price=$product->getPriceLCWithoutReduct(true)}</span>
 						{l s='tax excl.'}
 				{/if}
 				</span>

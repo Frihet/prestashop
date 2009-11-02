@@ -189,13 +189,13 @@ class Paypal extends PaymentModule
 			'currency' => $currency,
 			'paypalUrl' => $this->getPaypalUrl(),
 			// products + discounts - shipping cost
-			'amount' => number_format(Tools::convertPrice($params['cart']->getOrderTotal(true, 4), $currency), 2, '.', ''),
+			'amount' => number_format(Tools::convertPrice($params['cart']->getOrderTotalLC(true, 4), $currency), 2, '.', ''),
 			// shipping cost + wrapping
-			'shipping' =>  number_format(Tools::convertPrice(($params['cart']->getOrderShippingCost() + $params['cart']->getOrderTotal(true, 6)), $currency), 2, '.', ''),
+			'shipping' =>  number_format(Tools::convertPrice(($params['cart']->getOrderShippingCostLC() + $params['cart']->getOrderTotalLC(true, 6)), $currency), 2, '.', ''),
 			'discounts' => $params['cart']->getDiscounts(),
 			'products' => $products,
 			// products + discounts + shipping cost
-			'total' => number_format(Tools::convertPrice($params['cart']->getOrderTotal(true, 3), $currency), 2, '.', ''),
+			'total' => number_format(Tools::convertPrice($params['cart']->getOrderTotalLC(true, 3), $currency), 2, '.', ''),
 			'id_cart' => intval($params['cart']->id),
 			'goBackUrl' => 'http://'.htmlspecialchars($_SERVER['HTTP_HOST'], ENT_COMPAT, 'UTF-8').__PS_BASE_URI__.'order-confirmation.php?key='.$customer->secure_key.'&id_cart='.intval($params['cart']->id).'&id_module='.intval($this->id),
 			'notify' => 'http://'.htmlspecialchars($_SERVER['HTTP_HOST'], ENT_COMPAT, 'UTF-8').__PS_BASE_URI__.'modules/paypal/validation.php',

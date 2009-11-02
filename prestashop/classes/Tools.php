@@ -791,7 +791,7 @@ class Tools
 	static public function orderbyPrice(&$array, $orderWay)
 	{
 		foreach($array as &$row)
-			$row['price_tmp'] =  Product::getPriceStatic($row['id_product'], true, ((isset($row['id_product_attribute']) AND !empty($row['id_product_attribute'])) ? intval($row['id_product_attribute']) : NULL), 2);
+			$row['price_tmp'] =  Product::getPriceStaticLC($row['id_product'], true, ((isset($row['id_product_attribute']) AND !empty($row['id_product_attribute'])) ? intval($row['id_product_attribute']) : NULL), 2);
 		if(strtolower($orderWay) == 'desc')
 			uasort($array, 'cmpPriceDesc');
 		else

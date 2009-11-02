@@ -52,7 +52,7 @@ function displayConfirm()
 	$smarty->assign(array(
 		'cust_currency' => $cookie->id_currency,
 		'currency' => $ppPayment->getCurrency(),
-		'total' => number_format($cart->getOrderTotal(true, 3), 2, '.', ''),
+		'total' => number_format($cart->getOrderTotalLC(true, 3), 2, '.', ''),
 		'this_path_ssl' => (Configuration::get('PS_SSL_ENABLED') ? 'https://' : 'http://').htmlspecialchars($_SERVER['HTTP_HOST'], ENT_COMPAT, 'UTF-8').__PS_BASE_URI__.'modules/'. $ppPayment->name.'/',
 		'mode' => 'payment/'
 	));
@@ -70,7 +70,7 @@ function submitConfirm()
 		die('Not logged');
 	elseif (!$id_currency = intval(Tools::getValue('currency_payement')))
 		die('No currency');
-	elseif (!$cart->getOrderTotal(true, 3))
+	elseif (!$cart->getOrderTotalLC(true, 3))
 		die('Empty cart');
 	$currency = new Currency(intval($id_currency));
 	if (!Validate::isLoadedObject($currency))
@@ -85,7 +85,7 @@ function validOrder()
 
 	if (!$cookie->isLogged())
 		die('Not logged');
-	elseif (!$cart->getOrderTotal(true, 3))
+	elseif (!$cart->getOrderTotalLC(true, 3))
 		die('Empty cart');
 	if (!$token = Tools::htmlentitiesUTF8(strval(Tools::getValue('token'))))
 		die('Invalid token');

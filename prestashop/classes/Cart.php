@@ -152,10 +152,10 @@ class		Cart extends ObjectModel
 			return $result;
 		}
 
-		$total_products_wt = $this->getOrderTotal(true, 1);
-		$total_products = $this->getOrderTotal(false, 1);
-		$shipping_wt = $this->getOrderShippingCost();
-		$shipping = $this->getOrderShippingCost(NULL, false);
+		$total_products_wt = $this->getOrderTotalLC(true, 1);
+		$total_products = $this->getOrderTotalLC(false, 1);
+		$shipping_wt = $this->getOrderShippingCostLC();
+		$shipping = $this->getOrderShippingCostLC(NULL, false);
 		self::$_discounts[$this->id] = array();
 		foreach ($result as $row)
 		{
@@ -242,8 +242,8 @@ class		Cart extends ObjectModel
 			$row['stock_quantity'] = intval($row['quantity']);
 			$row['weight'] = $row['weight_attribute'];
 			$row['quantity'] = intval($row['cart_quantity']);
-			$row['price'] = Product::getPriceStatic(intval($row['id_product']), false, isset($row['id_product_attribute']) ? intval($row['id_product_attribute']) : NULL, 6, NULL, false, true, intval($row['quantity']));
-			$row['price_wt'] = Product::getPriceStatic(intval($row['id_product']), true, isset($row['id_product_attribute']) ? intval($row['id_product_attribute']) : NULL, 6, NULL, false, true, intval($row['quantity']));
+			$row['price'] = Product::getPriceStaticLC(intval($row['id_product']), false, isset($row['id_product_attribute']) ? intval($row['id_product_attribute']) : NULL, 6, NULL, false, true, intval($row['quantity']));
+			$row['price_wt'] = Product::getPriceStaticLC(intval($row['id_product']), true, isset($row['id_product_attribute']) ? intval($row['id_product_attribute']) : NULL, 6, NULL, false, true, intval($row['quantity']));
 			$row['total'] = $row['price'] * intval($row['quantity']);
 			$row['total_wt'] = $row['price_wt'] * intval($row['quantity']);
 			$row['id_image'] = Product::defineProductImage($row);
@@ -547,15 +547,15 @@ class		Cart extends ObjectModel
 	* @param integer $type Total type
 	* @return float Order total
 	*/
-	static public function getTotalCart($id_cart)
+	static public function getTotalCartLC($id_cart)
 	{
 		$cart = new Cart(intval($id_cart));
 		if (!Validate::isLoadedObject($cart))
 			die(Tools::displayError());
-		return Tools::displayPrice($cart->getOrderTotal(), new Currency(intval($cart->id_currency)), false, false);
+		return Tools::displayPrice($cart->getOrderTotalLC(), new Currency(intval($cart->id_currency)), false, false);
 	}
 	
-	function getOrderTotal($withTaxes = true, $type = 3)
+	function getOrderTotalLC($withTaxes = true, $type = 3)
 	{
 		if (!$this->id)
 			return 0;
@@ -569,7 +569,7 @@ class		Cart extends ObjectModel
 			return 0;
 		if ($virtual AND $type == 3)
 			$type = 4;
-		$shipping_fees = ($type != 4 AND $type != 7) ? $this->getOrderShippingCost(NULL, intval($withTaxes)) : 0;
+		$shipping_fees = ($type != 4 AND $type != 7) ? $this->getOrderShippingCostLC(NULL, intval($withTaxes)) : 0;
 		if ($type == 7)
 			$type = 1;
 			
@@ -577,7 +577,7 @@ class		Cart extends ObjectModel
 		$order_total = 0;
 		foreach ($products AS $product)
 		{
-			$price = floatval(Product::getPriceStatic(intval($product['id_product']), $withTaxes, intval($product['id_product_attribute']), 6, NULL, false, true, $product['quantity']));
+			$price = floatval(Product::getPriceStaticLC(intval($product['id_product']), $withTaxes, intval($product['id_product_attribute']), 6, NULL, false, true, $product['quantity']));
 			$total_price = $price * intval($product['quantity']);
 			$order_total += $total_price;
 		}
@@ -642,7 +642,7 @@ class		Cart extends ObjectModel
 	* @param integer $id_carrier Carrier ID (default : current carrier)
 	* @return float Shipping total
 	*/
-    function getOrderShippingCost($id_carrier = NULL, $useTax = true)
+    function getOrderShippingCostLC($id_carrier = NULL, $useTax = true)
     {
 		global $defaultCountry, $currency;
 
@@ -674,7 +674,7 @@ class		Cart extends ObjectModel
 			}
 
 		// Order total without fees
-		$orderTotal = $this->getOrderTotal(true, 7);
+		$orderTotal = $this->getOrderTotalLC(true, 7);
 		
 		// Start with shipping cost at 0
         $shipping_cost = 0;
@@ -726,7 +726,7 @@ class		Cart extends ObjectModel
 			else
 				$id_zone = intval($defaultCountry->id_zone);
 			if ((Configuration::get('PS_SHIPPING_METHOD') AND (!Carrier::checkDeliveryPriceByWeight($carrier->id, $this->getTotalWeight(), $id_zone)))
-				OR (!Configuration::get('PS_SHIPPING_METHOD') AND (!Carrier::checkDeliveryPriceByPrice($carrier->id, $this->getOrderTotal(true, 4), $id_zone))))
+				OR (!Configuration::get('PS_SHIPPING_METHOD') AND (!Carrier::checkDeliveryPriceByPrice($carrier->id, $this->getOrderTotalLC(true, 4), $id_zone))))
 				$shipping_cost += 0;
 			else {
 		        if (intval($configuration['PS_SHIPPING_METHOD']))
@@ -874,17 +874,17 @@ class		Cart extends ObjectModel
 			'carrier' => new Carrier(intval($this->id_carrier), $cookie->id_lang),
 			'products' => $this->getProducts(false),
 			'discounts' => $this->getDiscounts(),
-			'total_discounts' => number_format($this->getOrderTotal(true, 2), 2, '.', ''),
-			'total_discounts_tax_exc' => number_format($this->getOrderTotal(false, 2), 2, '.', ''),
-			'total_wrapping' => number_format($this->getOrderTotal(true, 6), 2, '.', ''),
-			'total_wrapping_tax_exc' => number_format($this->getOrderTotal(false, 6), 2, '.', ''),
-			'total_shipping' => number_format($this->getOrderShippingCost(), 2, '.', ''),
-			'total_shipping_tax_exc' => number_format($this->getOrderShippingCost(NULL, false), 2, '.', ''),
-			'total_products_wt' => number_format($this->getOrderTotal(true, 1), 2, '.', ''),
-			'total_products' => number_format($this->getOrderTotal(false, 1), 2, '.', ''),
-			'total_price' => number_format($this->getOrderTotal(), 2, '.', ''),
-			'total_tax' => number_format($this->getOrderTotal() - $this->getOrderTotal(false), 2, '.', ''),
-			'total_price_without_tax' => number_format($this->getOrderTotal(false), 2, '.', ''));
+			'total_discounts' => number_format($this->getOrderTotalLC(true, 2), 2, '.', ''),
+			'total_discounts_tax_exc' => number_format($this->getOrderTotalLC(false, 2), 2, '.', ''),
+			'total_wrapping' => number_format($this->getOrderTotalLC(true, 6), 2, '.', ''),
+			'total_wrapping_tax_exc' => number_format($this->getOrderTotalLC(false, 6), 2, '.', ''),
+			'total_shipping' => number_format($this->getOrderShippingCostLC(), 2, '.', ''),
+			'total_shipping_tax_exc' => number_format($this->getOrderShippingCostLC(NULL, false), 2, '.', ''),
+			'total_products_wt' => number_format($this->getOrderTotalLC(true, 1), 2, '.', ''),
+			'total_products' => number_format($this->getOrderTotalLC(false, 1), 2, '.', ''),
+			'total_price' => number_format($this->getOrderTotalLC(), 2, '.', ''),
+			'total_tax' => number_format($this->getOrderTotalLC() - $this->getOrderTotalLC(false), 2, '.', ''),
+			'total_price_without_tax' => number_format($this->getOrderTotalLC(false), 2, '.', ''));
 	}
 
 	/**

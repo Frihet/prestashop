@@ -4,7 +4,7 @@ require_once(dirname(__FILE__).'/config/config.inc.php');
 require_once(dirname(__FILE__).'/init.php');
 $errors = array();
 
-$orderTotal = $cart->getOrderTotal(true, 1);
+$orderTotal = $cart->getOrderTotalLC(true, 1);
 
 $cartDiscounts = $cart->getDiscounts();
 foreach ($cartDiscounts AS $k => $cartDiscount)
@@ -92,7 +92,7 @@ if ($add OR Tools::getIsset('update') OR $delete)
 						foreach($discounts AS $discount)
 						{
 							$discountObj = new Discount(intval($discount['id_discount']), intval($cookie->id_lang));
-							if ($tmpError = $cart->checkDiscountValidity($discountObj, $discounts, $cart->getOrderTotal(true, 1), $cart->getProducts()))
+							if ($tmpError = $cart->checkDiscountValidity($discountObj, $discounts, $cart->getOrderTotalLC(true, 1), $cart->getProducts()))
 								$errors[] = $tmpError;
 							else
 								$cart->deleteDiscount(intval($discount['id_discount']));

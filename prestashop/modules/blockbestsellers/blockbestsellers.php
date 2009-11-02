@@ -37,7 +37,7 @@ class BlockBestSellers extends Module
 		$best_sellers = array();
 		foreach ($bestsellers AS $bestseller)
 		{
-			$bestseller['price'] = Tools::displayPrice(Product::getPriceStatic(intval($bestseller['id_product'])), $currency);
+			$bestseller['price'] = Tools::displayPrice(Product::getPriceStaticLC(intval($bestseller['id_product'])), $currency);
 			$best_sellers[] = $bestseller;
 		}
 		$smarty->assign(array(

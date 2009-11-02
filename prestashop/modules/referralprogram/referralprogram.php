@@ -344,7 +344,7 @@ class ReferralProgram extends Module
 		$discount = new Discount($referralprogram->id_discount);
 		if (!Validate::isLoadedObject($discount))
 			return false;
-		if ($cart->checkDiscountValidity($discount, $cart->getDiscounts(), $cart->getOrderTotal(true, 1), $cart->getProducts())===false)
+		if ($cart->checkDiscountValidity($discount, $cart->getDiscounts(), $cart->getOrderTotalLC(true, 1), $cart->getProducts())===false)
 		{
 			global $smarty;
 			$smarty->assign(array(

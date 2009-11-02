@@ -87,15 +87,15 @@ class OrderCarrier extends OrderPage
 				else
 					$id_zone = intval($defaultCountry->id_zone);
 				if ((Configuration::get('PS_SHIPPING_METHOD') AND (!Carrier::checkDeliveryPriceByWeight($row['id_carrier'], $cart->getTotalWeight(), $id_zone)))
-				OR (!Configuration::get('PS_SHIPPING_METHOD') AND (!Carrier::checkDeliveryPriceByPrice($row['id_carrier'], $cart->getOrderTotal(true, 4), $id_zone))))
+				OR (!Configuration::get('PS_SHIPPING_METHOD') AND (!Carrier::checkDeliveryPriceByPrice($row['id_carrier'], $cart->getOrderTotalLC(true, 4), $id_zone))))
 					{
 						unset($result[$k]);
 						continue ;
 					}
 			}
 			$row['name'] = (strval($row['name']) != '0' ? $row['name'] : Configuration::get('PS_SHOP_NAME'));
-			$row['price'] = $cart->getOrderShippingCost(intval($row['id_carrier']));
-			$row['price_tax_exc'] = $cart->getOrderShippingCost(intval($row['id_carrier']), false);
+			$row['price'] = $cart->getOrderShippingCostLC(intval($row['id_carrier']));
+			$row['price_tax_exc'] = $cart->getOrderShippingCostLC(intval($row['id_carrier']), false);
 			$row['img'] = file_exists(_PS_SHIP_IMG_DIR_.intval($row['id_carrier']).'.jpg') ? _THEME_SHIP_DIR_.intval($row['id_carrier']).'.jpg' : '';
 			$resultsArray[] = $row;
 		}

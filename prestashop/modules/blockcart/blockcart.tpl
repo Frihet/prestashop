@@ -29,7 +29,7 @@ var removingLinkText = '{l s='remove this product from my cart' mod='blockcart' 
 		<span class="ajax_cart_quantity">{if $cart_qties > 0}{$cart_qties}{/if}</span>
 		<span class="ajax_cart_product_txt_s{if $cart_qties < 2} hidden{/if}">{l s='products' mod='blockcart'}</span>
 		<span class="ajax_cart_product_txt{if $cart_qties != 1} hidden{/if}">{l s='product' mod='blockcart'}</span>
-		<span class="ajax_cart_total">{if $cart_qties > 0}{if $priceDisplay == 1}{convertPrice price=$cart->getOrderTotal(false)}{else}{convertPrice price=$cart->getOrderTotal(true)}{/if}{/if}</span>
+		<span class="ajax_cart_total">{if $cart_qties > 0}{if $priceDisplay == 1}{convertPrice price=$cart->getOrderTotalLC(false)}{else}{convertPrice price=$cart->getOrderTotalLC(true)}{/if}{/if}</span>
 		<span class="ajax_cart_no_product">{if $cart_qties == 0}{l s='(empty)' mod='blockcart'}{/if}</span>
 	</div>
 	<!-- block list of products -->
@@ -93,7 +93,7 @@ var removingLinkText = '{l s='remove this product from my cart' mod='blockcart' 
 			<br/>
 			{if $show_wrapping}
 				<span>{l s='Wrapping' mod='blockcart'}</span>
-				<span id="cart_block_wrapping_cost" class="price cart_block_wrapping_cost">{if $priceDisplay == 1}{convertPrice price=$cart->getOrderTotal(false, 6)}{else}{convertPrice price=$cart->getOrderTotal(true, 6)}{/if}</span>
+				<span id="cart_block_wrapping_cost" class="price cart_block_wrapping_cost">{if $priceDisplay == 1}{convertPrice price=$cart->getOrderTotalLC(false, 6)}{else}{convertPrice price=$cart->getOrderTotalLC(true, 6)}{/if}</span>
 				<br/>
 			{/if}
 			<span>{l s='Total' mod='blockcart'}</span>

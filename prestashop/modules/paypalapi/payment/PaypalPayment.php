@@ -19,7 +19,7 @@ class PaypalPayment extends PaypalAPI
 		$vars = '?fromPayPal=1';
 		$returnURL = (Configuration::get('PS_SSL_ENABLED') ? 'https://' : 'http://').htmlspecialchars($_SERVER['HTTP_HOST'], ENT_COMPAT, 'UTF-8').__PS_BASE_URI__.'modules/paypalapi/payment/submit.php'.$vars;
 		$cancelURL = (Configuration::get('PS_SSL_ENABLED') ? 'https://' : 'http://').htmlspecialchars($_SERVER['HTTP_HOST'], ENT_COMPAT, 'UTF-8').__PS_BASE_URI__.'order.php';
-		$paymentAmount = number_format(floatval($cart->getOrderTotal()), 2, '.', '');
+		$paymentAmount = number_format(floatval($cart->getOrderTotalLC()), 2, '.', '');
 		$currencyCodeType = strval($currency->iso_code);
 		$paymentType = 'Sale';
 		$request = '&Amt='.urlencode($paymentAmount).'&PAYMENTACTION='.urlencode($paymentType).'&ReturnUrl='.urlencode($returnURL).'&CANCELURL='.urlencode($cancelURL).'&CURRENCYCODE='.urlencode($currencyCodeType).'&NOSHIPPING=1';

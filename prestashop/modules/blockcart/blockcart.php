@@ -31,7 +31,7 @@ class BlockCart extends Module
 
 		$products = $params['cart']->getProducts(true);
 		foreach ($products as $k => $product)
-			$products[$k]['real_price'] = Product::getPriceStatic($product['id_product'], intval(Configuration::get('PS_PRICE_DISPLAY')) == 1 ? false : true, $product['id_product_attribute'], 6, NULL, false, true, $product['cart_quantity']) * $product['cart_quantity'];
+			$products[$k]['real_price'] = Product::getPriceStaticLC($product['id_product'], intval(Configuration::get('PS_PRICE_DISPLAY')) == 1 ? false : true, $product['id_product_attribute'], 6, NULL, false, true, $product['cart_quantity']) * $product['cart_quantity'];
 
 		$smarty->assign(array(
 			'products'=> $products,
@@ -40,11 +40,11 @@ class BlockCart extends Module
 			'CUSTOMIZE_TEXTFIELD' => _CUSTOMIZE_TEXTFIELD_,
 			'discounts' => $params['cart']->getDiscounts(false, true),
 			'nb_total_products' =>$params['cart']->nbProducts(),
-			'shipping_cost' => Tools::displayPrice($params['cart']->getOrderTotal(intval(Configuration::get('PS_PRICE_DISPLAY')) == 1 ? false : true, 5), $currency, false, false),
-			'show_wrapping' => floatval($params['cart']->getOrderTotal(true, 6)) > 0 ? true : false,
-			'wrapping_cost' => Tools::displayPrice($params['cart']->getOrderTotal(intval(Configuration::get('PS_PRICE_DISPLAY')) == 1 ? false : true, 6), $currency, false, false),
-			'product_total' => Tools::displayPrice($params['cart']->getOrderTotal(intval(Configuration::get('PS_PRICE_DISPLAY')) == 1 ? false : true, 4), $currency, false, false),
-			'total' => Tools::displayPrice($params['cart']->getOrderTotal(intval(Configuration::get('PS_PRICE_DISPLAY')) == 1 ? false : true), $currency, false, false),
+			'shipping_cost' => Tools::displayPrice($params['cart']->getOrderTotalLC(intval(Configuration::get('PS_PRICE_DISPLAY')) == 1 ? false : true, 5), $currency, false, false),
+			'show_wrapping' => floatval($params['cart']->getOrderTotalLC(true, 6)) > 0 ? true : false,
+			'wrapping_cost' => Tools::displayPrice($params['cart']->getOrderTotalLC(intval(Configuration::get('PS_PRICE_DISPLAY')) == 1 ? false : true, 6), $currency, false, false),
+			'product_total' => Tools::displayPrice($params['cart']->getOrderTotalLC(intval(Configuration::get('PS_PRICE_DISPLAY')) == 1 ? false : true, 4), $currency, false, false),
+			'total' => Tools::displayPrice($params['cart']->getOrderTotalLC(intval(Configuration::get('PS_PRICE_DISPLAY')) == 1 ? false : true), $currency, false, false),
 			'id_carrier' => $params['cart']->id_carrier,
 			'ajax_allowed' => intval(Configuration::get('PS_BLOCK_CART_AJAX')) == 1 ? true : false
 		));

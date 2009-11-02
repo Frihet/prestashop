@@ -22,7 +22,7 @@ class Pack extends Product
 		$sum = 0;
 		$items = self::getItems($id_product, Configuration::get('PS_LANG_DEFAULT'));
 		foreach ($items as $item)
-			$sum += $item->getPrice() * $item->pack_quantity;
+			$sum += $item->getPriceLC() * $item->pack_quantity;
 		return $sum;		
 	}
 	

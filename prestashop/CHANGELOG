@@ -72,7 +72,7 @@ Release Notes for PrestaShop 1.2
 	[-] BO : fixed display bug in AdminManufacturers
 	[-] BO : fixed several bugs using $currentIndex (#2545)
 	[-] Installer : fixed bad update content (#2518)
-	[-] Classes :fixed bad count in getPricesDrop (#2541)
+	[-] Classes :fixed bad count in getPriceLCsDrop (#2541)
 	[-] BO : fixed a bug while updating image in AdminProducts (#2514)
 	[-] BO : indexation for products without anything to index fixed
 	[-] MO : fixed bad URL for image insert in blockadvertising (#2509)
@@ -514,7 +514,7 @@ Release Notes for PrestaShop 1.2
 	[-] FO : fix address bug (fixed #1093)
 	[-] MO : fixed bug price in MailAlerts
 	[-] BO : category position is not indexed anymore in the search
-	[-] BO : fixed getPrice bug in AdminTracking
+	[-] BO : fixed getPriceLC bug in AdminTracking
 	[-] BO : fixed bug in AdminOrders #1752
 	[-] BO : Manufacturer description, supplier description and CMS content maximum sizes fixed
 	[-] FO : fixed transparency background on image
@@ -737,7 +737,7 @@ Release Notes for PrestaShop 1.2
 	[-] BO : fixed some bugs while editing customers
 	[-] BO : lang was not the right one for some stats module graphs
 	[-] Classes : fixed bug in PaymentModule
-	[-] FO : Product::getPriceStatic automatically get default attribute when called if not specified
+	[-] FO : Product::getPriceStaticLC automatically get default attribute when called if not specified
 	[-] BO : AdminBackup dispay fixed
 	[-] MO : blockcurrencies display fixed (when a currency did not have any sign but characters)
 	[-] Class : supplierExists() SQL query fixed

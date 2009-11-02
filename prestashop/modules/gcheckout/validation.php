@@ -67,7 +67,7 @@ if(!$status)
 		$id_cart = intval($data[$root]['shopping-cart']['merchant-private-data']['VALUE']);
 		$cart = new Cart($id_cart);
 		$orderTotal = floatval($data[$root]['order-total']['VALUE']);
-		$gcheckout->validateOrder($id_cart, _PS_OS_PAYMENT_, $cart->getOrderTotal(), $gcheckout->displayName);
+		$gcheckout->validateOrder($id_cart, _PS_OS_PAYMENT_, $cart->getOrderTotalLC(), $gcheckout->displayName);
 		
 		$Gresponse->SendAck();
 		break;

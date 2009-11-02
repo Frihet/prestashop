@@ -20,7 +20,7 @@ class OrderPayment extends OrderPage
 	{
 		global $smarty, $cart, $currency, $cookie, $orderTotal;
 
-		if ($cart->getOrderTotal() <= 0)
+		if ($cart->getOrderTotalLC() <= 0)
 		{
 			$order = new FreeOrder();
 			$order->validateOrder(intval($cart->id), _PS_OS_PAYMENT_, 0, Tools::displayError('Free order', false));

@@ -80,7 +80,7 @@ function displayConfirm()
 		'ppToken' => strval($cookie->paypal_token),
 		'cust_currency' => $cookie->id_currency,
 		'currencies' => $ppExpress->getCurrency(),
-		'total' => number_format($cart->getOrderTotal(true, 3), 2, '.', ''),
+		'total' => number_format($cart->getOrderTotalLC(true, 3), 2, '.', ''),
 		'this_path_ssl' => (Configuration::get('PS_SSL_ENABLED') ? 'https://' : 'http://').htmlspecialchars($_SERVER['HTTP_HOST'], ENT_COMPAT, 'UTF-8').__PS_BASE_URI__.'modules/'. $ppExpress->name.'/',
 		'payerID' => $payerID,
 		'mode' => 'express/'
@@ -101,7 +101,7 @@ function submitConfirm()
 		die('No currency');
 	elseif (!$payerID = Tools::htmlentitiesUTF8(strval(Tools::getValue('payerID'))))
 		die('No payer ID');
-	elseif (!$cart->getOrderTotal(true, 3))
+	elseif (!$cart->getOrderTotalLC(true, 3))
 		die('Empty cart');
 
 	$ppExpress->validOrder($cookie, $cart, $currency, $payerID, 'express');
