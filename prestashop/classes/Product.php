@@ -1208,43 +1208,79 @@ class		Product extends ObjectModel
 		return isset($ret) ? $ret : 0;
 	}
 
-
 	public static function getBasePriceStaticLC($id_product, $id_product_attribute = NULL)
 	{
-		global $currency;
+		global $currency, $cart;
 
-		$result = Db::getInstance()->getRow('
-		SELECT
-		 p.`price`,
-		 p.`reduction_price`,
-		 p.`reduction_percent`,
-		 p.`reduction_from`,
-		 p.`reduction_to`,
-		 p.`id_tax`,
-		 t.`rate`, 
-		 '.($id_product_attribute
-                    ? 'pa.`price`'
-                    : 'IFNULL((SELECT pa.price
-			       FROM `'._DB_PREFIX_.'product_attribute` pa
-			       WHERE id_product = '.intval($id_product).' AND default_on = 1), 0)'
-                   ).' AS attribute_price
-		FROM
-                 `'._DB_PREFIX_.'product` p
-		 '.($id_product_attribute
-                    ? 'LEFT JOIN `'._DB_PREFIX_.'product_attribute` pa ON
-                        pa.`id_product_attribute` = '.intval($id_product_attribute)
-                    : ''
-                   ).'
-		LEFT JOIN `'._DB_PREFIX_.'tax` AS t ON
-                 t.`id_tax` = p.`id_tax`
-		WHERE
-                 p.`id_product` = '.intval($id_product));
+		$guest = new Guest($cart->id_guest);
 
-		$result['price'] = $result['price'] * $currency->conversion_rate;
-		$result['reduction_price'] = $result['reduction_price'] * $currency->conversion_rate;
-		$result['reduction_from'] = $result['reduction_from'] * $currency->conversion_rate;
-		$result['reduction_to'] = $result['reduction_to'] * $currency->conversion_rate;
-		$result['attribute_price'] = $result['attribute_price'] * $currency->conversion_rate;
+		$groups = array();
+		if ($guest->id_customer)
+			foreach (Group::getGroupsForCustomer(intval($guest->id_customer), intval(Configuration::get('PS_LANG_DEFAULT'))) as $group)
+				$groups[] = $group['id_group'];
+		if (count($groups) == 0) {
+			$product_groups_where = '';
+			$product_attribute_groups_where = '';
+		} else if (count($groups) == 1) {
+			$product_groups_where = "OR pp.id_group = " . $groups[0];
+			$product_attribute_groups_where = "OR pap.id_group = " . $groups[0];
+               	} else {
+			$product_groups_where = "OR pp.id_group IN (" . implode(', ', $groups) . ")";
+			$product_attribute_groups_where = "OR pap.id_group IN (" . implode(', ', $groups) . ")";
+		}
+
+		if ($id_product_attribute)
+			$product_attribute_where = 'pa.`id_product_attribute` = '.intval($id_product_attribute);
+		else
+			$product_attribute_where = 'default_on = 1';
+
+		$default_currency = Configuration::get('PS_CURRENCY_DEFAULT');
+
+		$sql = "
+		 SELECT
+		  pp.`id_currency`,
+		  pp.`price`,
+		  pp.`reduction_price`,
+		  pp.`reduction_percent`,
+		  pp.`reduction_from`,
+		  pp.`reduction_to`,
+		  pp.`id_tax`,
+		  t.`rate`, 
+		  pap.`id_currency` AS id_attribute_currency,
+		  IFNULL(pap.`price`, 0) AS attribute_price
+		 FROM
+		  `PREFIX_product_price` pp
+		  LEFT OUTER JOIN `PREFIX_product_attribute` pa ON
+		   pa.id_product = pp.id_product
+		   AND {$product_attribute_where}
+		  LEFT OUTER JOIN `PREFIX_product_attribute_price` pap ON
+		   pap.id_product_attribute = pa.id_product_attribute
+                   AND pap.id_currency in ({$currency->id}, {$default_currency})
+		   AND (   pap.id_group IS NULL
+		        {$product_attribute_groups_where})
+		  LEFT JOIN `PREFIX_tax` AS t ON
+		   t.`id_tax` = pp.`id_tax`
+		 WHERE
+		  pp.`id_product` = {$id_product}
+		  AND pp.id_currency in ({$currency->id}, {$default_currency})
+		  AND (   pp.id_group IS NULL
+		       {$product_groups_where})
+		 ORDER BY
+                  abs(pp.id_currency - {$currency->id}),
+                  abs(pap.id_currency - {$currency->id}),
+		  pp.price ASC,
+		  pap.price ASC";
+
+		$sql = str_replace('PREFIX_', _DB_PREFIX_, $sql);
+		$result = Db::getInstance()->getRow($sql);
+
+		if ($result['id_currency'] == Configuration::get('PS_CURRENCY_DEFAULT')) {
+		 	$result['price'] = $result['price'] * $currency->conversion_rate;
+		 	$result['reduction_price'] = $result['reduction_price'] * $currency->conversion_rate;
+		}
+		if ($result['id_attribute_currency'] == Configuration::get('PS_CURRENCY_DEFAULT')) {
+                 	$result['attribute_price'] = $result['attribute_price'] * $currency->conversion_rate;
+		}
 
 		return $result;
 	}

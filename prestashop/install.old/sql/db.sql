@@ -910,14 +910,14 @@ CREATE TABLE `PREFIX_product` (
   `id_color_default` int(10) unsigned default NULL,
   `on_sale` tinyint(1) unsigned NOT NULL default '0',
   `ean13` varchar(13) default NULL,
-  `ecotax` decimal(10,2) NOT NULL default '0.00',
+-- `ecotax` decimal(10,2) NOT NULL default '0.00',
   `quantity` int(10) unsigned NOT NULL default '0',
-  `price` decimal(13,6) NOT NULL default '0.000000',
-  `wholesale_price` decimal(13,6) NOT NULL default '0.000000',
-  `reduction_price` decimal(10,2) default NULL,
-  `reduction_percent` float default NULL,
-  `reduction_from` date default NULL,
-  `reduction_to` date default NULL,
+-- `price` decimal(13,6) NOT NULL default '0.000000',
+-- `wholesale_price` decimal(13,6) NOT NULL default '0.000000',
+-- `reduction_price` decimal(10,2) default NULL,
+-- `reduction_percent` float default NULL,
+-- `reduction_from` date default NULL,
+-- `reduction_to` date default NULL,
   `reference` varchar(32) default NULL,
   `supplier_reference` varchar(32) default NULL,
   `location` varchar(64) default NULL,
@@ -940,10 +940,19 @@ CREATE TABLE `PREFIX_product_price` (
   `id_product` int(10) unsigned NOT NULL,
   `id_currency` int(10) unsigned NOT NULL,
   `id_group` int(10) unsigned DEFAULT NULL,
+  `id_tax` int(10) unsigned NOT NULL,
+  `on_sale` tinyint(1) unsigned NOT NULL default '0',
+  `ecotax` decimal(10,2) NOT NULL default '0.00',
   `price` decimal(13,6) NOT NULL default '0.000000',
+  `wholesale_price` decimal(13,6) NOT NULL default '0.000000',
+  `reduction_price` decimal(10,2) default NULL,
+  `reduction_percent` float default NULL,
+  `reduction_from` date default NULL,
+  `reduction_to` date default NULL,
   FOREIGN KEY (`id_product`) REFERENCES `PREFIX_product` (`id_product`),
   FOREIGN KEY (`id_currency`) REFERENCES `PREFIX_currency` (`id_currency`),
-  FOREIGN KEY (`id_group`) REFERENCES `PREFIX_group` (`id_group`)
+  FOREIGN KEY (`id_group`) REFERENCES `PREFIX_group` (`id_group`),
+  FOREIGN KEY (`id_tax`) REFERENCES `PREFIX_tax` (`id_tax`)
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8;
 
 CREATE TABLE `PREFIX_product_attribute` (
@@ -953,9 +962,9 @@ CREATE TABLE `PREFIX_product_attribute` (
   `supplier_reference` varchar(32) default NULL,
   `location` varchar(64) default NULL,
   `ean13` varchar(13) default NULL,
-  `wholesale_price` decimal(13,6) NOT NULL default '0.000000',
-  `price` decimal(10,2) NOT NULL default '0.00',
-  `ecotax` decimal(10,2) NOT NULL default '0.00',
+--  `wholesale_price` decimal(13,6) NOT NULL default '0.000000',
+--  `price` decimal(10,2) NOT NULL default '0.00',
+--  `ecotax` decimal(10,2) NOT NULL default '0.00',
   `quantity` int(10) unsigned NOT NULL default '0',
   `weight` float NOT NULL default '0',
   `default_on` tinyint(1) unsigned NOT NULL default '0',
@@ -963,6 +972,18 @@ CREATE TABLE `PREFIX_product_attribute` (
   KEY `product_attribute_product` (`id_product`),
   KEY `reference` (`reference`),
   KEY `supplier_reference` (`supplier_reference`)
+) ENGINE=MyISAM DEFAULT CHARSET=utf8;
+
+CREATE TABLE `PREFIX_product_attribute_price` (
+  `id_product_attribute` int(10) unsigned NOT NULL,
+  `id_currency` int(10) unsigned NOT NULL,
+  `id_group` int(10) unsigned DEFAULT NULL,
+  `ecotax` decimal(10,2) NOT NULL default '0.00',
+  `price` decimal(13,6) NOT NULL default '0.000000',
+  `wholesale_price` decimal(13,6) NOT NULL default '0.000000',
+  FOREIGN KEY (`id_product_attribute`) REFERENCES `PREFIX_product_attribute` (`id_product_attribute`),
+  FOREIGN KEY (`id_currency`) REFERENCES `PREFIX_currency` (`id_currency`),
+  FOREIGN KEY (`id_group`) REFERENCES `PREFIX_group` (`id_group`)
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8;
 
 CREATE TABLE `PREFIX_product_attribute_combination` (

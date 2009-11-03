@@ -68,6 +68,27 @@ class		Group extends ObjectModel
 		LEFT JOIN `'._DB_PREFIX_.'group_lang` AS gl ON (g.`id_group` = gl.`id_group` AND gl.`id_lang` = '.intval($id_lang).')
 		ORDER BY g.`id_group` ASC');
 	}
+
+	static public function getGroupsForCustomer($id_customer, $id_lang)
+	{
+		$sql = "
+		 SELECT
+		  g.`id_group`,
+                  g.`reduction`,
+                  gl.`name`
+		 FROM
+		  `PREFIX_customer_group` cg
+		  JOIN `PREFIX_group` g ON
+		   cg.`id_customer` = {$id_customer}
+		   AND cg.`id_group` = g.`id_group`
+		  LEFT JOIN `PREFIX_group_lang` AS gl ON
+		   g.`id_group` = gl.`id_group`
+		   AND gl.`id_lang` = {$id_lang}
+		 ORDER BY
+		  g.`id_group` ASC";
+		$sql = str_replace('PREFIX_', _DB_PREFIX_, $sql);
+		return Db::getInstance()->ExecuteS($sql);
+	}
 	
 	public function getCustomers()
 	{
