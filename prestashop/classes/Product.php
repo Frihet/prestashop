@@ -527,7 +527,7 @@ class		Product extends ObjectModel
 	{
 		global $currency;
 
-		$product_groups_where = 'OR ' . Tools::slqIn("id_group", Tools::colArray(Group::getGroupsForCustomer(), 'id_group'));
+		$product_attribute_groups_where = 'OR ' . Tools::slqIn("id_group", Tools::colArray(Group::getGroupsForCustomer(), 'id_group'));
 		$default_currency = Configuration::get('PS_CURRENCY_DEFAULT');
 
 		$sql = "
@@ -1306,7 +1306,7 @@ class		Product extends ObjectModel
 
 		$groups = Tools::colArray(Group::getGroupsForCustomer(), 'id_group');
 		$product_groups_where = 'OR ' . Tools::slqIn("pp.id_group", $groups);
-		$product_groups_where = 'OR ' . Tools::slqIn("pap.id_group", $groups);
+		$product_attribute_groups_where = 'OR ' . Tools::slqIn("pap.id_group", $groups);
 		$default_currency = Configuration::get('PS_CURRENCY_DEFAULT');
 
 		if ($id_product_attribute)

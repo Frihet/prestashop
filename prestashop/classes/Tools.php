@@ -862,7 +862,7 @@ class Tools
 	{
 		$res = array();
 		foreach ($rowArray as $row)
-			$res[] = $$row[$col];
+			$res[] = $row[$col];
 	}
 
 }
