@@ -439,22 +439,90 @@ class		Category extends ObjectModel
 			return isset($result) ? $result['total'] : 0;
 		}
 
-		$sql = '
-		SELECT p.*, pa.`id_product_attribute`, pl.`description`, pl.`description_short`, pl.`available_now`, pl.`available_later`, pl.`link_rewrite`, pl.`meta_description`, pl.`meta_keywords`, pl.`meta_title`, pl.`name`, i.`id_image`, il.`legend`, m.`name` AS manufacturer_name, tl.`name` AS tax_name, t.`rate`, cl.`name` AS category_default, DATEDIFF(p.`date_add`, DATE_SUB(NOW(), INTERVAL '.(Validate::isUnsignedInt(Configuration::get('PS_NB_DAYS_NEW_PRODUCT')) ? Configuration::get('PS_NB_DAYS_NEW_PRODUCT') : 20).' DAY)) > 0 AS new,
-					(p.price - IF((DATEDIFF(reduction_from, CURDATE()) <= 0 AND DATEDIFF(reduction_to, CURDATE()) >=0) OR reduction_from = reduction_to, IFNULL(reduction_price, (p.price * reduction_percent / 100)),0)) AS orderprice 
-		FROM `'._DB_PREFIX_.'category_product` cp
-		LEFT JOIN `'._DB_PREFIX_.'product` p ON p.`id_product` = cp.`id_product`
-		LEFT JOIN `'._DB_PREFIX_.'product_attribute` pa ON (p.`id_product` = pa.`id_product` AND default_on = 1)
-		LEFT JOIN `'._DB_PREFIX_.'category_lang` cl ON (p.`id_category_default` = cl.`id_category` AND cl.`id_lang` = '.intval($id_lang).')
-		LEFT JOIN `'._DB_PREFIX_.'product_lang` pl ON (p.`id_product` = pl.`id_product` AND pl.`id_lang` = '.intval($id_lang).')
-		LEFT JOIN `'._DB_PREFIX_.'image` i ON (i.`id_product` = p.`id_product` AND i.`cover` = 1)
-		LEFT JOIN `'._DB_PREFIX_.'image_lang` il ON (i.`id_image` = il.`id_image` AND il.`id_lang` = '.intval($id_lang).')
-		LEFT JOIN `'._DB_PREFIX_.'tax` t ON t.`id_tax` = p.`id_tax`
-		LEFT JOIN `'._DB_PREFIX_.'tax_lang` tl ON (t.`id_tax` = tl.`id_tax` AND tl.`id_lang` = '.intval($id_lang).')
-		LEFT JOIN `'._DB_PREFIX_.'manufacturer` m ON m.`id_manufacturer` = p.`id_manufacturer`
-		WHERE cp.`id_category` = '.intval($this->id).($active ? ' AND p.`active` = 1' : '').'
-		'.($id_supplier ? 'AND p.id_supplier = '.$id_supplier : '');
-		
+		if (Validate::isUnsignedInt(Configuration::get('PS_NB_DAYS_NEW_PRODUCT')))
+			$days_new_product = Configuration::get('PS_NB_DAYS_NEW_PRODUCT');
+		else
+			$days_new_product = 20;
+
+		$active_clause = $active ? ' AND p.`active` = 1' : '';
+		$supplier_clause = $id_supplier ? 'AND p.id_supplier = '.$id_supplier : '';
+
+
+		global $currency;
+
+		$product_groups_where = 'OR ' . Tools::slqIn("pp.id_group", Tools::colArray(Group::getGroupsForCustomer(), 'id_group'));
+
+		$default_currency = Configuration::get('PS_CURRENCY_DEFAULT');
+
+		$sql = "
+                 SELECT
+		  p.*,
+		  pa.`id_product_attribute`,
+		  pl.`description`,
+		  pl.`description_short`,
+		  pl.`available_now`,
+		  pl.`available_later`,
+		  pl.`link_rewrite`,
+		  pl.`meta_description`,
+		  pl.`meta_keywords`,
+		  pl.`meta_title`,
+		  pl.`name`,
+		  i.`id_image`,
+		  il.`legend`,
+		  m.`name` AS manufacturer_name,
+		  tl.`name` AS tax_name,
+		  t.`rate`,
+		  cl.`name` AS category_default,
+		  DATEDIFF(
+                   p.`date_add`,
+                   DATE_SUB(NOW(), INTERVAL {$days_new_product} DAY)
+                  ) > 0 AS new,
+                  pp3.*,
+                  (pp3.price
+		   -
+		    IF
+		     (   (    DATEDIFF(pp3.reduction_from, CURDATE()) <= 0
+			  AND DATEDIFF(pp3.reduction_to, CURDATE()) >=0)
+		      OR pp3.reduction_from = pp3.reduction_to,
+		      IFNULL(
+		       pp3.reduction_price,
+		       (pp3.price * pp3.reduction_percent / 100)),
+		      0)
+		  ) AS orderprice
+		 FROM
+		  `PREFIX_category_product` cp
+		  LEFT JOIN `PREFIX_product` p ON p.`id_product` = cp.`id_product`
+		  LEFT JOIN `PREFIX_product_attribute` pa ON (p.`id_product` = pa.`id_product` AND default_on = 1)
+		  LEFT JOIN `PREFIX_category_lang` cl ON (p.`id_category_default` = cl.`id_category` AND cl.`id_lang` = {$id_lang})
+		  LEFT JOIN `PREFIX_product_lang` pl ON (p.`id_product` = pl.`id_product` AND pl.`id_lang` = {$id_lang})
+		  LEFT JOIN `PREFIX_image` i ON (i.`id_product` = p.`id_product` AND i.`cover` = 1)
+		  LEFT JOIN `PREFIX_image_lang` il ON (i.`id_image` = il.`id_image` AND il.`id_lang` = {$id_lang})
+		  LEFT JOIN
+		   (SELECT pp.id_product, min(abs(pp.id_currency - {$currency->id})) as currency_diff
+		    FROM PREFIX_product_price pp
+		    WHERE (pp.id_currency in ({$currency->id}, {$default_currency}) AND pp.id_group IS NULL {$product_groups_where})
+                    GROUP BY pp.id_product) AS pp1 ON
+                   pp1.id_product = p.id_product
+		  LEFT JOIN
+		   (SELECT pp.id_product, pp.id_currency, min(pp.price) as min_price
+		    FROM PREFIX_product_price pp
+		    WHERE (pp.id_group IS NULL {$product_groups_where})
+                    GROUP BY pp.id_product, pp.id_currency) AS pp2 ON
+                   pp2.id_product = p.id_product
+                   AND abs(pp2.id_currency - {$currency->id}) = pp1.currency_diff
+                  LEFT JOIN `PREFIX_product_price` pp3 ON
+                   pp3.id_product = p.id_product
+                   AND abs(pp3.id_currency - {$currency->id}) = pp1.currency_diff
+                   AND pp3.price = pp2.min_price
+		  LEFT JOIN `PREFIX_tax` t ON t.`id_tax` = pp3.`id_tax`
+		  LEFT JOIN `PREFIX_tax_lang` tl ON (t.`id_tax` = tl.`id_tax` AND tl.`id_lang` = {$id_lang})
+		  LEFT JOIN `PREFIX_manufacturer` m ON m.`id_manufacturer` = p.`id_manufacturer`
+		 WHERE
+		  cp.`id_category` = {$this->id}
+		  {$active_clause}
+		  {$supplier_clause}";
+		$sql = str_replace('PREFIX_', _DB_PREFIX_, $sql);
+
 		if ($random === true)
 		{
 			$sql .= 'ORDER BY RAND()';

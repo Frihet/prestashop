@@ -525,10 +525,27 @@ class		Product extends ObjectModel
 
 	static public function getProductAttributePrice($id_product_attribute)
 	{
-		$rq = Db::getInstance()->getRow('
-		SELECT `price`
-		FROM `'._DB_PREFIX_.'product_attribute`
-		WHERE `id_product_attribute` = '.intval($id_product_attribute));
+		global $currency;
+
+		$product_groups_where = 'OR ' . Tools::slqIn("id_group", Tools::colArray(Group::getGroupsForCustomer(), 'id_group'));
+		$default_currency = Configuration::get('PS_CURRENCY_DEFAULT');
+
+		$sql = "
+		 SELECT
+                  price
+		 FROM
+		  PREFIX_product_attribute_price
+                 WHERE
+		  id_product_attribute = {$id_product_attribute}
+                  AND id_currency in ({$currency->id}, {$default_currency})
+                  AND (   id_group IS NULL
+		       {$product_attribute_groups_where})
+		 ORDER BY
+		  abs(id_currency - {$currency->id}) ASC,
+		  price ASC";
+
+		$sql = str_replace('PREFIX_', _DB_PREFIX_, $sql);
+		$rq = Db::getInstance()->getRow($sql);
 		return $rq['price'];
 	}
 
@@ -992,24 +1009,79 @@ class		Product extends ObjectModel
 			return intval($result['nb']);
 		}
 
-		$result = Db::getInstance()->ExecuteS('
-			SELECT p.*, pl.`description`, pl.`description_short`, pl.`link_rewrite`, pl.`meta_description`, pl.`meta_keywords`, pl.`meta_title`, pl.`name`, p.`ean13`,
-				i.`id_image`, il.`legend`, t.`rate`, m.`name` AS manufacturer_name
-			FROM `'._DB_PREFIX_.'product` p
-			LEFT JOIN `'._DB_PREFIX_.'product_lang` pl ON (p.`id_product` = pl.`id_product` AND pl.`id_lang` = '.intval($id_lang).')
-			LEFT JOIN `'._DB_PREFIX_.'image` i ON (i.`id_product` = p.`id_product` AND i.`cover` = 1)
-			LEFT JOIN `'._DB_PREFIX_.'image_lang` il ON (i.`id_image` = il.`id_image` AND il.`id_lang` = '.intval($id_lang).')
-			LEFT JOIN `'._DB_PREFIX_.'tax` t ON (t.`id_tax` = p.`id_tax`)
-			LEFT JOIN `'._DB_PREFIX_.'manufacturer` m ON (m.`id_manufacturer` = p.`id_manufacturer`)
-			LEFT JOIN `'._DB_PREFIX_.'category_product` cp ON (cp.`id_product` = p.`id_product`)
-			INNER JOIN `'._DB_PREFIX_.'category_group` ctg ON (ctg.`id_category` = cp.`id_category`)
-			'.($cookie->id_customer ? 'INNER JOIN `'._DB_PREFIX_.'customer_group` cg ON (cg.`id_group` = ctg.`id_group`)' : '').'
-			WHERE p.`active` = 1
-			AND DATEDIFF(p.`date_add`, DATE_SUB(NOW(), INTERVAL '.(Validate::isUnsignedInt(Configuration::get('PS_NB_DAYS_NEW_PRODUCT')) ? Configuration::get('PS_NB_DAYS_NEW_PRODUCT') : 20).' DAY)) > 0
-			AND ('.($cookie->id_customer ? 'cg.`id_customer` = '.intval($cookie->id_customer).' OR' : '').' ctg.`id_group` = 1)
-			GROUP BY p.`id_product`
-			ORDER BY '.(isset($orderByPrefix) ? pSQL($orderByPrefix).'.' : '').'`'.pSQL($orderBy).'` '.pSQL($orderWay).'
-			LIMIT '.intval($pageNumber * $nbProducts).', '.intval($nbProducts));
+		$new_product_days = Validate::isUnsignedInt(Configuration::get('PS_NB_DAYS_NEW_PRODUCT')) ? Configuration::get('PS_NB_DAYS_NEW_PRODUCT') : 20;
+
+		$customer_join = ($cookie->id_customer ? 'INNER JOIN `'._DB_PREFIX_.'customer_group` cg ON
+ (cg.`id_group` = ctg.`id_group`)' : '');
+		$customer_where = $cookie->id_customer ? 'cg.`id_customer` = '.intval($cookie->id_customer).' OR' : '';
+
+		$order_by = (isset($orderByPrefix) ? pSQL($orderByPrefix).'.' : '').'`'.pSQL($orderBy).'` '.pSQL($orderWay);
+
+		$limit_start = $pageNumber * $nbProducts;
+		$limit_length = $nbProducts;
+
+		global $currency;
+
+		$product_groups_where = 'OR ' . Tools::slqIn("id_group", Tools::colArray(Group::getGroupsForCustomer(), 'id_group'));
+		$default_currency = Configuration::get('PS_CURRENCY_DEFAULT');
+
+		$sql = "
+		 SELECT p.*,
+		  pl.`description`,
+		  pl.`description_short`,
+		  pl.`link_rewrite`,
+		  pl.`meta_description`,
+		  pl.`meta_keywords`,
+		  pl.`meta_title`,
+		  pl.`name`,
+		  p.`ean13`,
+		  i.`id_image`,
+		  il.`legend`,
+		  t.`rate`,
+		  m.`name` AS manufacturer_name
+		 FROM
+		  `PREFIX_product` p
+		  LEFT JOIN `PREFIX_product_lang` pl ON
+                   p.`id_product` = pl.`id_product` AND pl.`id_lang` = {$id_lang}
+		  LEFT JOIN `PREFIX_image` i ON
+                   i.`id_product` = p.`id_product` AND i.`cover` = 1
+		  LEFT JOIN `PREFIX_image_lang` il ON
+                   i.`id_image` = il.`id_image` AND il.`id_lang` = {$id_lang}
+		  LEFT JOIN
+		   (SELECT pp.id_product, min(abs(pp.id_currency - {$currency->id})) as currency_diff
+		    FROM PREFIX_product_price pp
+		    WHERE (pp.id_currency in ({$currency->id}, {$default_currency}) AND pp.id_group IS NULL {$product_groups_where})
+                    GROUP BY pp.id_product) AS pp1 ON
+                   pp1.id_product = p.id_product
+		  LEFT JOIN
+		   (SELECT pp.id_product, pp.id_currency, min(pp.price) as min_price
+		    FROM PREFIX_product_price pp
+		    WHERE (pp.id_group IS NULL {$product_groups_where})
+                    GROUP BY pp.id_product, pp.id_currency) AS pp2 ON
+                   pp2.id_product = p.id_product
+                   AND abs(pp2.id_currency - {$currency->id}) = pp1.currency_diff
+                  LEFT JOIN `PREFIX_product_price` pp3 ON
+                   pp3.id_product = p.id_product
+                   AND abs(pp3.id_currency - {$currency->id}) = pp1.currency_diff
+                   AND pp3.price = pp2.min_price
+		  LEFT JOIN `PREFIX_tax` t ON
+                   t.`id_tax` = pp3.`id_tax`
+		  LEFT JOIN `PREFIX_manufacturer` m ON
+                   m.`id_manufacturer` = p.`id_manufacturer`
+		  LEFT JOIN `PREFIX_category_product` cp ON
+                   cp.`id_product` = p.`id_product`
+		  INNER JOIN `PREFIX_category_group` ctg ON
+                   ctg.`id_category` = cp.`id_category`
+		  {$customer_join}
+		 WHERE
+                  p.`active` = 1
+		  AND DATEDIFF(p.`date_add`, DATE_SUB(NOW(), INTERVAL {$new_product_days} DAY)) > 0
+		  AND ({$customer_where} ctg.`id_group` = 1)
+		 GROUP BY p.`id_product`
+		 ORDER BY {$order_by}
+		 LIMIT {$limit_start}, {$limit_length}";
+                $sql = str_replace('PREFIX_', _DB_PREFIX_, $sql);
+		$result = Db::getInstance()->ExecuteS($sql);
 		if ($orderBy == 'price')
 			Tools::orderbyPrice($result, $orderWay);
 		if (!$result)
@@ -1025,28 +1097,85 @@ class		Product extends ObjectModel
 	*/
 	static public function getRandomSpecial($id_lang, $beginning = false, $ending = false)
 	{
-		global	$link, $cookie;
+		global	$link, $cookie, $currency;
 
 		$currentDate = date('Y-m-d');
-		$row = Db::getInstance()->getRow('
-		SELECT p.*, pl.`description`, pl.`description_short`, pl.`link_rewrite`, pl.`meta_description`, pl.`meta_keywords`, pl.`meta_title`, pl.`name`, p.`ean13`,
-			i.`id_image`, il.`legend`, t.`rate`
-		FROM `'._DB_PREFIX_.'product` p
-		LEFT JOIN `'._DB_PREFIX_.'product_lang` pl ON (p.`id_product` = pl.`id_product` AND pl.`id_lang` = '.intval($id_lang).')
-		LEFT JOIN `'._DB_PREFIX_.'image` i ON (i.`id_product` = p.`id_product` AND i.`cover` = 1)
-		LEFT JOIN `'._DB_PREFIX_.'image_lang` il ON (i.`id_image` = il.`id_image` AND il.`id_lang` = '.intval($id_lang).')
-		LEFT JOIN `'._DB_PREFIX_.'tax` t ON t.`id_tax` = p.`id_tax`
-		LEFT JOIN `'._DB_PREFIX_.'category_product` cp ON (cp.`id_product` = p.`id_product`)
-		INNER JOIN `'._DB_PREFIX_.'category_group` ctg ON (ctg.`id_category` = cp.`id_category`)
-		'.($cookie->id_customer ? 'INNER JOIN `'._DB_PREFIX_.'customer_group` cg ON (cg.`id_group` = ctg.`id_group`)' : '').'
-		WHERE (`reduction_price` > 0 OR `reduction_percent` > 0)
-		'.((!$beginning AND !$ending) ?
-			'AND (`reduction_from` = `reduction_to` OR (`reduction_from` <= \''.pSQL($currentDate).'\' AND `reduction_to` >= \''.pSQL($currentDate).'\'))'
-		:
-			($beginning ? 'AND `reduction_from` <= \''.pSQL($beginning).'\'' : '').($ending ? 'AND `reduction_to` >= \''.pSQL($ending).'\'' : '')).'
-		AND p.`active` = 1
-		AND ('.($cookie->id_customer ? 'cg.`id_customer` = '.intval($cookie->id_customer).' OR' : '').' ctg.`id_group` = 1)
-		ORDER BY RAND()');
+
+		$customer_join = '';
+		$customer_where = '';
+		if ($cookie->id_customer) {
+			$customer_join = "INNER JOIN `PREFIX_customer_group` cg ON cg.`id_group` = ctg.`id_group`";
+			$customer_where = "cg.`id_customer` = {$cookie->id_customer} OR";
+		}
+
+		$date_where = '';
+		if (!$beginning AND !$ending) {
+			 $date_where = 'AND (`reduction_from` = `reduction_to` OR (`reduction_from` <= \''.pSQL($currentDate).'\' AND `reduction_to` >= \''.pSQL($currentDate).'\'))';
+		} else {
+			if ($beginning)
+				$date_where = 'AND `reduction_from` <= \''.pSQL($beginning).'\'';
+			if ($ending)
+				$date_where .= 'AND `reduction_to` >= \''.pSQL($ending).'\'';
+		}
+
+		$product_groups_where = 'OR ' . Tools::slqIn("pp.id_group", Tools::colArray(Group::getGroupsForCustomer(), 'id_group'));
+		$default_currency = Configuration::get('PS_CURRENCY_DEFAULT');
+
+		$sql = "
+		 SELECT
+	          p.*,
+		  pl.`description`,
+		  pl.`description_short`,
+		  pl.`link_rewrite`,
+		  pl.`meta_description`,
+		  pl.`meta_keywords`,
+		  pl.`meta_title`,
+		  pl.`name`,
+		  p.`ean13`,
+		  i.`id_image`,
+		  il.`legend`,
+		  t.`rate`
+		 FROM
+                  `PREFIX_product` p
+		  LEFT JOIN `PREFIX_product_lang` pl ON
+                   p.`id_product` = pl.`id_product` AND pl.`id_lang` = {$id_lang}
+		  LEFT JOIN `PREFIX_image` i ON
+                   i.`id_product` = p.`id_product` AND i.`cover` = 1
+		  LEFT JOIN `PREFIX_image_lang` il ON
+                   i.`id_image` = il.`id_image` AND il.`id_lang` = {$id_lang}
+		  LEFT JOIN
+		   (SELECT pp.id_product, min(abs(pp.id_currency - {$currency->id})) as currency_diff
+		    FROM PREFIX_product_price pp
+		    WHERE (pp.id_currency in ({$currency->id}, {$default_currency}) AND pp.id_group IS NULL {$product_groups_where})
+                    GROUP BY pp.id_product) AS pp1 ON
+                   pp1.id_product = p.id_product
+		  LEFT JOIN
+		   (SELECT pp.id_product, pp.id_currency, min(pp.price) as min_price
+		    FROM PREFIX_product_price pp
+		    WHERE (pp.id_group IS NULL {$product_groups_where})
+                    GROUP BY pp.id_product, pp.id_currency) AS pp2 ON
+                   pp2.id_product = p.id_product
+                   AND abs(pp2.id_currency - {$currency->id}) = pp1.currency_diff
+                  LEFT JOIN `PREFIX_product_price` pp3 ON
+                   pp3.id_product = p.id_product
+                   AND abs(pp3.id_currency - {$currency->id}) = pp1.currency_diff
+                   AND pp3.price = pp2.min_price
+		  LEFT JOIN `PREFIX_tax` t ON
+                   t.`id_tax` = pp3.`id_tax`
+		  LEFT JOIN `PREFIX_category_product` cp ON
+                   cp.`id_product` = p.`id_product`
+		  INNER JOIN `PREFIX_category_group` ctg ON
+                   ctg.`id_category` = cp.`id_category`
+		  {$customer_join}
+		 WHERE
+                  (`reduction_price` > 0 OR `reduction_percent` > 0)
+		  {$date_where}
+		  AND p.`active` = 1
+		  AND ({$customer_where} ctg.`id_group` = 1)
+		  ORDER BY RAND()";
+
+		$sql = str_replace('PREFIX_', _DB_PREFIX_, $sql);
+		$row = Db::getInstance()->getRow($sql);
 
 		if ($row)
 			return Product::getProductProperties($id_lang, $row);
@@ -1210,44 +1339,37 @@ class		Product extends ObjectModel
 
 	public static function getBasePriceStaticLC($id_product, $id_product_attribute = NULL)
 	{
-		global $currency, $cart;
+		global $currency;
 
-		$guest = new Guest($cart->id_guest);
-
-		$groups = array();
-		if ($guest->id_customer)
-			foreach (Group::getGroupsForCustomer(intval($guest->id_customer), intval(Configuration::get('PS_LANG_DEFAULT'))) as $group)
-				$groups[] = $group['id_group'];
-		if (count($groups) == 0) {
-			$product_groups_where = '';
-			$product_attribute_groups_where = '';
-		} else if (count($groups) == 1) {
-			$product_groups_where = "OR pp.id_group = " . $groups[0];
-			$product_attribute_groups_where = "OR pap.id_group = " . $groups[0];
-               	} else {
-			$product_groups_where = "OR pp.id_group IN (" . implode(', ', $groups) . ")";
-			$product_attribute_groups_where = "OR pap.id_group IN (" . implode(', ', $groups) . ")";
-		}
+		$groups = Tools::colArray(Group::getGroupsForCustomer(), 'id_group');
+		$product_groups_where = 'OR ' . Tools::slqIn("pp.id_group", $groups);
+		$product_groups_where = 'OR ' . Tools::slqIn("pap.id_group", $groups);
+		$default_currency = Configuration::get('PS_CURRENCY_DEFAULT');
 
 		if ($id_product_attribute)
 			$product_attribute_where = 'pa.`id_product_attribute` = '.intval($id_product_attribute);
 		else
 			$product_attribute_where = 'default_on = 1';
 
-		$default_currency = Configuration::get('PS_CURRENCY_DEFAULT');
-
 		$sql = "
 		 SELECT
+		  pp.`id_product`,
 		  pp.`id_currency`,
+		  pp.`id_group`,
+		  pp.`id_tax`,
+		  pp.`on_sale`,
+		  pp.`ecotax`,
 		  pp.`price`,
+		  pp.`wholesale_price`,
 		  pp.`reduction_price`,
 		  pp.`reduction_percent`,
 		  pp.`reduction_from`,
 		  pp.`reduction_to`,
-		  pp.`id_tax`,
 		  t.`rate`, 
-		  pap.`id_currency` AS id_attribute_currency,
-		  IFNULL(pap.`price`, 0) AS attribute_price
+		  pap.`id_currency` AS attribute_id_currency,
+		  IFNULL(pap.`ecotax`, 0) AS attribute_ecotax,
+		  IFNULL(pap.`price`, 0) AS attribute_price,
+		  IFNULL(pap.`wholesale_price`, 0) AS attribute_wholesale_price
 		 FROM
 		  `PREFIX_product_price` pp
 		  LEFT OUTER JOIN `PREFIX_product_attribute` pa ON
@@ -1266,8 +1388,8 @@ class		Product extends ObjectModel
 		  AND (   pp.id_group IS NULL
 		       {$product_groups_where})
 		 ORDER BY
-                  abs(pp.id_currency - {$currency->id}),
-                  abs(pap.id_currency - {$currency->id}),
+                  abs(pp.id_currency - {$currency->id}) ASC,
+                  abs(pap.id_currency - {$currency->id}) ASC,
 		  pp.price ASC,
 		  pap.price ASC";
 
@@ -1278,7 +1400,7 @@ class		Product extends ObjectModel
 		 	$result['price'] = $result['price'] * $currency->conversion_rate;
 		 	$result['reduction_price'] = $result['reduction_price'] * $currency->conversion_rate;
 		}
-		if ($result['id_attribute_currency'] == Configuration::get('PS_CURRENCY_DEFAULT')) {
+		if ($result['attribute_id_currency'] == Configuration::get('PS_CURRENCY_DEFAULT')) {
                  	$result['attribute_price'] = $result['attribute_price'] * $currency->conversion_rate;
 		}
 
@@ -1368,11 +1490,7 @@ class		Product extends ObjectModel
 	public function getPriceWithoutReductLC($notax = false)
 	{
 		global $currency;
-		$res = Db::getInstance()->getRow('
-			SELECT p.`price`, t.`rate`, t.`id_tax`
-			FROM `'._DB_PREFIX_.$this->table.'` p
-			LEFT JOIN `'._DB_PREFIX_.'tax`t ON (p.`id_tax` = t.`id_tax`)
-			WHERE p.`id_product` = '.intval($this->id));
+		$res = self::getBasePriceStaticLC($this->id);
 		if (!$res)
 			return false;
 		$tax = floatval(Tax::getApplicableTax(intval($res['id_tax']), floatval($res['rate'])));
@@ -1567,19 +1685,63 @@ class		Product extends ObjectModel
 	*/
 	public function getAttributesGroups($id_lang)
 	{
-		return Db::getInstance()->ExecuteS('
-		SELECT ag.`id_attribute_group`, agl.`name` AS group_name, agl.`public_name` AS public_group_name, a.`id_attribute`, al.`name` AS attribute_name,
-		a.`color` AS attribute_color, pa.`id_product_attribute`, pa.`quantity`, pa.`price`, pa.`ecotax`, pa.`weight`, pa.`default_on`, pa.`reference`
-		FROM `'._DB_PREFIX_.'product_attribute` pa
-		LEFT JOIN `'._DB_PREFIX_.'product_attribute_combination` pac ON pac.`id_product_attribute` = pa.`id_product_attribute`
-		LEFT JOIN `'._DB_PREFIX_.'attribute` a ON a.`id_attribute` = pac.`id_attribute`
-		LEFT JOIN `'._DB_PREFIX_.'attribute_group` ag ON ag.`id_attribute_group` = a.`id_attribute_group`
-		LEFT JOIN `'._DB_PREFIX_.'attribute_lang` al ON a.`id_attribute` = al.`id_attribute`
-		LEFT JOIN `'._DB_PREFIX_.'attribute_group_lang` agl ON ag.`id_attribute_group` = agl.`id_attribute_group`
-		WHERE pa.`id_product` = '.intval($this->id).'
-		AND al.`id_lang` = '.intval($id_lang).'
-		AND agl.`id_lang` = '.intval($id_lang).'
-		ORDER BY pa.`id_product_attribute`');
+		global $currency;
+
+		$product_groups_where = 'OR ' . Tools::slqIn("pap.id_group", Tools::colArray(Group::getGroupsForCustomer(), 'id_group'));
+		$default_currency = Configuration::get('PS_CURRENCY_DEFAULT');
+
+		$sql = "
+		 SELECT
+		  ag.`id_attribute_group`,
+		  agl.`name` AS group_name,
+		  agl.`public_name` AS public_group_name,
+		  a.`id_attribute`,
+		  al.`name` AS attribute_name,
+		  a.`color` AS attribute_color,
+		  pa.`id_product_attribute`,
+		  pa.`quantity`,
+		  pap3.`price`,
+		  pap3.`ecotax`,
+		  pa.`weight`,
+		  pa.`default_on`,
+		  pa.`reference`
+		 FROM
+		  `PREFIX_product_attribute` pa
+		  LEFT JOIN `PREFIX_product_attribute_combination` pac ON
+                   pac.`id_product_attribute` = pa.`id_product_attribute`
+		  LEFT JOIN `PREFIX_attribute` a ON
+                   a.`id_attribute` = pac.`id_attribute`
+		  LEFT JOIN `PREFIX_attribute_group` ag ON
+                   ag.`id_attribute_group` = a.`id_attribute_group`
+		  LEFT JOIN `PREFIX_attribute_lang` al ON
+                   a.`id_attribute` = al.`id_attribute`
+		  LEFT JOIN `PREFIX_attribute_group_lang` agl ON
+                   ag.`id_attribute_group` = agl.`id_attribute_group`
+		  LEFT JOIN
+		   (SELECT pap.id_product_attribute, min(abs(pap.id_currency - {$currency->id})) as currency_diff
+		    FROM PREFIX_product_attribute_price pap
+		    WHERE (pap.id_currency in ({$currency->id}, {$default_currency}) AND pap.id_group IS NULL {$product_groups_where})
+                    GROUP BY pap.id_product_attribute) AS pap1 ON
+                   pap1.id_product_attribute = pa.id_product_attribute
+		  LEFT JOIN
+		   (SELECT pap.id_product_attribute, pap.id_currency, min(pap.price) as min_price
+		    FROM PREFIX_product_attribute_price pap
+		    WHERE (pap.id_group IS NULL {$product_groups_where})
+                    GROUP BY pap.id_product_attribute, pap.id_currency) AS pap2 ON
+                   pap2.id_product_attribute = pa.id_product_attribute
+                   AND abs(pap2.id_currency - {$currency->id}) = pap1.currency_diff
+                  LEFT JOIN `PREFIX_product_attribute_price` pap3 ON
+                   pap3.id_product_attribute = pa.id_product_attribute
+                   AND abs(pap3.id_currency - {$currency->id}) = pap1.currency_diff
+                   AND pap3.price = pap2.min_price
+		 WHERE
+                  pa.`id_product` = {$this->id}
+		  AND al.`id_lang` = {$id_lang}
+		  AND agl.`id_lang` = {$id_lang}
+		 ORDER BY
+                  pa.`id_product_attribute`";
+		$sql = str_replace('PREFIX_', _DB_PREFIX_, $sql);
+		return Db::getInstance()->ExecuteS($sql);
 	}
 
 	/**
@@ -1617,21 +1779,78 @@ class		Product extends ObjectModel
 	*/
 	public function getAccessories($id_lang, $active = true)
 	{
-		global	$link, $cookie;
+		global	$currency, $link, $cookie;
 
-		$result = Db::getInstance()->ExecuteS('
-		SELECT p.*, pl.`description`, pl.`description_short`, pl.`link_rewrite`, pl.`meta_description`, pl.`meta_keywords`, pl.`meta_title`, pl.`name`, p.`ean13`,
-		i.`id_image`, il.`legend`, t.`rate`, m.`name` as manufacturer_name, cl.`name` AS category_default, DATEDIFF(p.`date_add`, DATE_SUB(NOW(), INTERVAL '.(Validate::isUnsignedInt(Configuration::get('PS_NB_DAYS_NEW_PRODUCT')) ? Configuration::get('PS_NB_DAYS_NEW_PRODUCT') : 20).' DAY)) > 0 AS new
-		FROM `'._DB_PREFIX_.'accessory`
-		LEFT JOIN `'._DB_PREFIX_.'product` p ON p.`id_product` = `id_product_2`
-		LEFT JOIN `'._DB_PREFIX_.'product_lang` pl ON (p.`id_product` = pl.`id_product` AND pl.`id_lang` = '.intval($id_lang).')
-		LEFT JOIN `'._DB_PREFIX_.'category_lang` cl ON (p.`id_category_default` = cl.`id_category` AND cl.`id_lang` = '.intval($id_lang).')		
-		LEFT JOIN `'._DB_PREFIX_.'image` i ON (i.`id_product` = p.`id_product` AND i.`cover` = 1)
-		LEFT JOIN `'._DB_PREFIX_.'image_lang` il ON (i.`id_image` = il.`id_image` AND il.`id_lang` = '.intval($id_lang).')
-		LEFT JOIN `'._DB_PREFIX_.'manufacturer` m ON (p.`id_manufacturer`= m.`id_manufacturer`)
-		LEFT JOIN `'._DB_PREFIX_.'tax` t ON t.`id_tax` = p.`id_tax`
-		WHERE `id_product_1` = '.intval($this->id).'
-		'.($active ? 'AND p.`active` = 1' : ''));
+		if (Validate::isUnsignedInt(Configuration::get('PS_NB_DAYS_NEW_PRODUCT')))
+			$days_new_product = Configuration::get('PS_NB_DAYS_NEW_PRODUCT');
+		else
+			$days_new_product = 20;
+
+		$active_sql = $active ? 'AND p.`active` = 1' : '';
+
+		$product_groups_where = 'OR ' . Tools::slqIn("pp.id_group", Tools::colArray(Group::getGroupsForCustomer(), 'id_group'));
+		$default_currency = Configuration::get('PS_CURRENCY_DEFAULT');
+
+		$sql = "
+		 SELECT
+		  p.*,
+		  pl.`description`,
+		  pl.`description_short`,
+		  pl.`link_rewrite`,
+		  pl.`meta_description`,
+		  pl.`meta_keywords`,
+		  pl.`meta_title`,
+		  pl.`name`,
+		  p.`ean13`,
+		  i.`id_image`,
+		  il.`legend`,
+		  t.`rate`,
+		  m.`name` as manufacturer_name,
+		  cl.`name` AS category_default,
+		  DATEDIFF(
+                   p.`date_add`,
+		   DATE_SUB(
+                    NOW(),
+		    INTERVAL {$days_new_product} DAY)) > 0 AS new
+		 FROM
+		  `PREFIX_accessory`
+		  LEFT JOIN `PREFIX_product` p ON
+                   p.`id_product` = `id_product_2`
+		  LEFT JOIN `PREFIX_product_lang` pl ON
+                   p.`id_product` = pl.`id_product` AND pl.`id_lang` = {$id_lang}
+		  LEFT JOIN `PREFIX_category_lang` cl ON
+                   p.`id_category_default` = cl.`id_category` AND cl.`id_lang` = {$id_lang}
+		  LEFT JOIN `PREFIX_image` i ON
+                   i.`id_product` = p.`id_product` AND i.`cover` = 1
+		  LEFT JOIN `PREFIX_image_lang` il ON
+                   i.`id_image` = il.`id_image` AND il.`id_lang` = {$id_lang}
+		  LEFT JOIN `PREFIX_manufacturer` m ON
+                   p.`id_manufacturer`= m.`id_manufacturer`
+		  LEFT JOIN
+		   (SELECT pp.id_product, min(abs(pp.id_currency - {$currency->id})) as currency_diff
+		    FROM PREFIX_product_price pp
+		    WHERE (pp.id_currency in ({$currency->id}, {$default_currency}) AND pp.id_group IS NULL {$product_groups_where})
+                    GROUP BY pp.id_product) AS pp1 ON
+                   pp1.id_product = p.id_product
+		  LEFT JOIN
+		   (SELECT pp.id_product, pp.id_currency, min(pp.price) as min_price
+		    FROM PREFIX_product_price pp
+		    WHERE (pp.id_group IS NULL {$product_groups_where})
+                    GROUP BY pp.id_product, pp.id_currency) AS pp2 ON
+                   pp2.id_product = p.id_product
+                   AND abs(pp2.id_currency - {$currency->id}) = pp1.currency_diff
+                  LEFT JOIN `PREFIX_product_price` pp3 ON
+                   pp3.id_product = p.id_product
+                   AND abs(pp3.id_currency - {$currency->id}) = pp1.currency_diff
+                   AND pp3.price = pp2.min_price
+		  LEFT JOIN `PREFIX_tax` t ON
+                   t.`id_tax` = pp3.`id_tax`
+		  WHERE
+                   `id_product_1` = {$this->id}
+		   {$active_sql}";
+
+		$sql = str_replace('PREFIX_', _DB_PREFIX_, $sql);
+		$result = Db::getInstance()->ExecuteS($sql);
 
 		if (!$result)
 			return false;

@@ -1,7 +1,5 @@
 <?php
 
-require_once("OrderProductVendor.php");
-
 class OrderVendor extends OrderPage
 {
 	function __construct()
@@ -74,6 +72,8 @@ class OrderVendor extends OrderPage
 	function processOrderStep($params)
        	{
 		global $cart, $errors;
+
+		require_once(dirname(__FILE__)."/OrderProductVendor.php");
 
 		foreach ($cart->getProducts() as $product_line) {
 	 		OrderProductVendor::setVendor($cart, $product_line['id_product'], intval(Tools::getValue('vendor' . $product_line['id_product'])));

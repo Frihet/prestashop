@@ -205,10 +205,10 @@ class		Cart extends ObjectModel
 			return $this->_products;
 		$sql = '
 		SELECT cp.`id_product_attribute`, cp.`id_product`, cp.`quantity` AS cart_quantity, pl.`name`,
-		pl.`description_short`, pl.`available_now`, pl.`available_later`, p.`id_product`, p.`id_category_default`, p.`id_supplier`, p.`id_manufacturer`, p.`id_tax`, p.`on_sale`, p.`ecotax`,
-		p.`quantity`, p.`price`, p.`reduction_price`, p.`reduction_percent`, p.`reduction_from`, p.`reduction_to`, p.`weight`, p.`out_of_stock`, p.`active`, p.`date_add`, p.`date_upd`,
-		t.`id_tax`, tl.`name` AS tax, t.`rate`, pa.`price` AS price_attribute, pa.`quantity` AS quantity_attribute, 
-        pa.`ecotax` AS ecotax_attr, i.`id_image`, il.`legend`, pl.`link_rewrite`, cl.`link_rewrite` AS category, CONCAT(cp.`id_product`, cp.`id_product_attribute`) AS unique_id,
+		pl.`description_short`, pl.`available_now`, pl.`available_later`, p.`id_product`, p.`id_category_default`, p.`id_supplier`, p.`id_manufacturer`,
+		p.`quantity`, p.`weight`, p.`out_of_stock`, p.`active`, p.`date_add`, p.`date_upd`,
+		pa.`quantity` AS quantity_attribute, 
+        i.`id_image`, il.`legend`, pl.`link_rewrite`, cl.`link_rewrite` AS category, CONCAT(cp.`id_product`, cp.`id_product_attribute`) AS unique_id,
         IF (IFNULL(pa.`reference`, \'\') = \'\', p.`reference`, pa.`reference`) AS reference, 
         IF (IFNULL(pa.`supplier_reference`, \'\') = \'\', p.`supplier_reference`, pa.`supplier_reference`) AS supplier_reference, 
         IF (IFNULL(pa.`weight`, 0) = \'\', p.`weight`, pa.`weight`) AS weight_attribute,
@@ -217,8 +217,6 @@ class		Cart extends ObjectModel
 		LEFT JOIN `'._DB_PREFIX_.'product` p ON p.`id_product` = cp.`id_product`
 		LEFT JOIN `'._DB_PREFIX_.'product_lang` pl ON (p.`id_product` = pl.`id_product` AND pl.`id_lang` = '.intval($this->id_lang).')
 		LEFT JOIN `'._DB_PREFIX_.'product_attribute` pa ON (pa.`id_product_attribute` = cp.`id_product_attribute`)
-		LEFT JOIN `'._DB_PREFIX_.'tax` t ON (t.`id_tax` = p.`id_tax`)
-		LEFT JOIN `'._DB_PREFIX_.'tax_lang` tl ON (t.`id_tax` = tl.`id_tax` AND tl.`id_lang` = '.intval($this->id_lang).')
 		LEFT JOIN `'._DB_PREFIX_.'product_attribute_image` pai ON (pai.`id_product_attribute` = cp.`id_product_attribute`)
 		LEFT JOIN `'._DB_PREFIX_.'image` i ON (i.`id_product` = cp.`id_product` AND (IF(pai.`id_image`, pai.`id_image` = i.`id_image`, i.`cover` = 1)))
 		LEFT JOIN `'._DB_PREFIX_.'image_lang` il ON (i.`id_image` = il.`id_image` AND il.`id_lang` = '.intval($this->id_lang).')
@@ -237,6 +235,23 @@ class		Cart extends ObjectModel
 			return array();
 		foreach ($result AS $k => $row)
 		{
+			$row = array_merge($row, Product::getBasePriceStaticLC($row['id_product'], $row['id_product_attribute']));
+			$row['price_attribute'] = $row['attribute_price']; // Backward compatibility
+			$row['ecotax_attr'] = $row['attribute_ecotax']; // Backward compatibility
+
+			$sql = "
+                         SELECT
+                          tl.`name` AS tax, t.`rate`
+                         FROM
+                          PREFIX_tax t
+                          LEFT JOIN PREFIX_tax_lang tl ON
+                           t.`id_tax` = {$row['id_tax']}
+			   AND t.`id_tax` = tl.`id_tax`
+			   AND tl.`id_lang` = {$this->id_lang}
+			";
+			$sql = str_replace('PREFIX_', _DB_PREFIX_, $sql);
+			$row = array_merge($row, Db::getInstance()->getRow($sql));
+
 			if (isset($row['ecotax_attr']) AND $row['ecotax_attr'] > 0)
 				$row['ecotax'] = floatval($row['ecotax_attr']);
 			$row['stock_quantity'] = intval($row['quantity']);

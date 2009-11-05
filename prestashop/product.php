@@ -1,4 +1,7 @@
 <?php
+
+try {
+
 include(dirname(__FILE__).'/config/config.inc.php');
 
 include_once(dirname(__FILE__).'/init.php');
@@ -225,11 +228,8 @@ else
 			$smarty->assign('images', $productImages);
 
 		// Tax
-		$tax_datas = Db::getInstance()->getRow('
-		SELECT p.`id_tax`, t.`rate`
-		FROM `'._DB_PREFIX_.'product` p
-		LEFT JOIN `'._DB_PREFIX_.'tax` AS t ON t.`id_tax` = p.`id_tax`
-		WHERE p.`id_product` = '.intval($product->id));
+		$tax_datas = Product::getBasePriceStaticLC($product->id);
+
 		$tax = floatval(Tax::getApplicableTax(intval($tax_datas['id_tax']), floatval($tax_datas['rate'])));
 		/* Attributes / Groups & colors */
 		$colors = array();
@@ -317,5 +317,13 @@ $smarty->assign(array(
 $smarty->display(_PS_THEME_DIR_.'product.tpl');
 
 include(dirname(__FILE__).'/footer.php');
+
+} catch (Exception $e) {
+ echo $e->getMessage();
+ echo "<br><bR>";
+ foreach ($e->getTrace() as $line) {
+  echo "{$line['class']}.{$line['function']} @ {$line['file']}:{$line['line']}<br>";
+ }
+}
 
 ?>

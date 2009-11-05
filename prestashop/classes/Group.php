@@ -69,8 +69,20 @@ class		Group extends ObjectModel
 		ORDER BY g.`id_group` ASC');
 	}
 
-	static public function getGroupsForCustomer($id_customer, $id_lang)
+	static public function getGroupsForCustomer($id_customer = null, $id_lang = null)
 	{
+		global $cart;
+
+		if ($id_lang == null)
+			$id_lang = intval(Configuration::get('PS_LANG_DEFAULT'));
+
+		if ($id_customer == null) {
+			$guest = new Guest($cart->id_guest);
+			if (!$guest->id_customer)
+				return array();
+			$id_customer = intval($guest->id_customer);
+		}
+
 		$sql = "
 		 SELECT
 		  g.`id_group`,

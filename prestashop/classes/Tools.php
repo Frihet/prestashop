@@ -845,6 +845,26 @@ class Tools
 		if (function_exists('set_magic_quotes_runtime'))
 			@set_magic_quotes_runtime($var);
 	}
+
+	static public function slqIn($col, $arr)
+	{
+		if (count($arr) == 0) {
+			return 'true';
+		} else if (count($arr) == 1) {
+			return "({$col} = {$arr[0]})";
+               	} else {
+			$arr = implode(', ', $arr);
+			return "({$col} IN ({$arr}))";
+		}
+	}
+
+	static public function colArray($rowArray, $col)
+	{
+		$res = array();
+		foreach ($rowArray as $row)
+			$res[] = $$row[$col];
+	}
+
 }
 
 /**

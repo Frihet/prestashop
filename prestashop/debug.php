@@ -86,7 +86,7 @@ function FCToolkitErrorHandler ($errno, $errstr, $errfile, $errline)
 {
     global $ignore_errno;
     
-    if(in_array($errno, $ignore_errno) && !DEBUG ) {
+    if(is_array($ignore_errno) && in_array($errno, $ignore_errno) && !DEBUG ) {
         return true;
         }
 /*
