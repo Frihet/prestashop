@@ -76,6 +76,8 @@ class		Group extends ObjectModel
 		if ($id_lang == null)
 			$id_lang = intval(Configuration::get('PS_LANG_DEFAULT'));
 
+		if (!$cart OR !$cart->id_guest)
+			return array();
 		if ($id_customer == null) {
 			$guest = new Guest($cart->id_guest);
 			if (!$guest->id_customer)

@@ -1304,6 +1304,9 @@ class		Product extends ObjectModel
 	{
 		global $currency;
 
+		if (!$currency)
+		   $currency = new Currency(Configuration::get('PS_CURRENCY_DEFAULT'));
+
 		$groups = Tools::colArray(Group::getGroupsForCustomer(), 'id_group');
 		$product_groups_where = 'OR ' . Tools::slqIn("pp.id_group", $groups);
 		$product_attribute_groups_where = 'OR ' . Tools::slqIn("pap.id_group", $groups);
@@ -1392,7 +1395,9 @@ class		Product extends ObjectModel
 			die(Tools::displayError());
 
 		// Caching system
-		$cacheId = $currency->id.'-'.$id_product.'-'.($usetax?'1':'0').'-'.$id_product_attribute.'-'.$decimals.'-'.$divisor.'-'.($only_reduc?'1':'0').'-'.($usereduc?'1':'0').'-'.$quantity;
+		$currency_id='';
+		if ($currency) $currency_id = $currency->id;
+		$cacheId = $currency_id.'-'.$id_product.'-'.($usetax?'1':'0').'-'.$id_product_attribute.'-'.$decimals.'-'.$divisor.'-'.($only_reduc?'1':'0').'-'.($usereduc?'1':'0').'-'.$quantity;
 		if (isset(self::$_prices[$cacheId]))
 			return self::$_prices[$cacheId];
 
