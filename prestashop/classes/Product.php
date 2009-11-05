@@ -1020,10 +1020,7 @@ class		Product extends ObjectModel
 		$limit_start = $pageNumber * $nbProducts;
 		$limit_length = $nbProducts;
 
-		global $currency;
-
-		$product_groups_where = 'OR ' . Tools::slqIn("id_group", Tools::colArray(Group::getGroupsForCustomer(), 'id_group'));
-		$default_currency = Configuration::get('PS_CURRENCY_DEFAULT');
+		$price_sql = self::getProductPriceSql('p.id_product', 'pp');
 
 		$sql = "
 		 SELECT p.*,
@@ -1047,25 +1044,9 @@ class		Product extends ObjectModel
                    i.`id_product` = p.`id_product` AND i.`cover` = 1
 		  LEFT JOIN `PREFIX_image_lang` il ON
                    i.`id_image` = il.`id_image` AND il.`id_lang` = {$id_lang}
-		  LEFT JOIN
-		   (SELECT pp.id_product, min(abs(pp.id_currency - {$currency->id})) as currency_diff
-		    FROM PREFIX_product_price pp
-		    WHERE (pp.id_currency in ({$currency->id}, {$default_currency}) AND pp.id_group IS NULL {$product_groups_where})
-                    GROUP BY pp.id_product) AS pp1 ON
-                   pp1.id_product = p.id_product
-		  LEFT JOIN
-		   (SELECT pp.id_product, pp.id_currency, min(pp.price) as min_price
-		    FROM PREFIX_product_price pp
-		    WHERE (pp.id_group IS NULL {$product_groups_where})
-                    GROUP BY pp.id_product, pp.id_currency) AS pp2 ON
-                   pp2.id_product = p.id_product
-                   AND abs(pp2.id_currency - {$currency->id}) = pp1.currency_diff
-                  LEFT JOIN `PREFIX_product_price` pp3 ON
-                   pp3.id_product = p.id_product
-                   AND abs(pp3.id_currency - {$currency->id}) = pp1.currency_diff
-                   AND pp3.price = pp2.min_price
+		  {$price_sql}
 		  LEFT JOIN `PREFIX_tax` t ON
-                   t.`id_tax` = pp3.`id_tax`
+                   t.`id_tax` = pp.`id_tax`
 		  LEFT JOIN `PREFIX_manufacturer` m ON
                    m.`id_manufacturer` = p.`id_manufacturer`
 		  LEFT JOIN `PREFIX_category_product` cp ON
@@ -1097,7 +1078,7 @@ class		Product extends ObjectModel
 	*/
 	static public function getRandomSpecial($id_lang, $beginning = false, $ending = false)
 	{
-		global	$link, $cookie, $currency;
+		global	$link, $cookie;
 
 		$currentDate = date('Y-m-d');
 
@@ -1118,9 +1099,7 @@ class		Product extends ObjectModel
 				$date_where .= 'AND `reduction_to` >= \''.pSQL($ending).'\'';
 		}
 
-		$product_groups_where = 'OR ' . Tools::slqIn("pp.id_group", Tools::colArray(Group::getGroupsForCustomer(), 'id_group'));
-		$default_currency = Configuration::get('PS_CURRENCY_DEFAULT');
-
+		$price_sql = self::getProductPriceSql('p.id_product', 'pp');
 		$sql = "
 		 SELECT
 	          p.*,
@@ -1143,25 +1122,9 @@ class		Product extends ObjectModel
                    i.`id_product` = p.`id_product` AND i.`cover` = 1
 		  LEFT JOIN `PREFIX_image_lang` il ON
                    i.`id_image` = il.`id_image` AND il.`id_lang` = {$id_lang}
-		  LEFT JOIN
-		   (SELECT pp.id_product, min(abs(pp.id_currency - {$currency->id})) as currency_diff
-		    FROM PREFIX_product_price pp
-		    WHERE (pp.id_currency in ({$currency->id}, {$default_currency}) AND pp.id_group IS NULL {$product_groups_where})
-                    GROUP BY pp.id_product) AS pp1 ON
-                   pp1.id_product = p.id_product
-		  LEFT JOIN
-		   (SELECT pp.id_product, pp.id_currency, min(pp.price) as min_price
-		    FROM PREFIX_product_price pp
-		    WHERE (pp.id_group IS NULL {$product_groups_where})
-                    GROUP BY pp.id_product, pp.id_currency) AS pp2 ON
-                   pp2.id_product = p.id_product
-                   AND abs(pp2.id_currency - {$currency->id}) = pp1.currency_diff
-                  LEFT JOIN `PREFIX_product_price` pp3 ON
-                   pp3.id_product = p.id_product
-                   AND abs(pp3.id_currency - {$currency->id}) = pp1.currency_diff
-                   AND pp3.price = pp2.min_price
+                  {$price_sql}
 		  LEFT JOIN `PREFIX_tax` t ON
-                   t.`id_tax` = pp3.`id_tax`
+                   t.`id_tax` = pp.`id_tax`
 		  LEFT JOIN `PREFIX_category_product` cp ON
                    cp.`id_product` = p.`id_product`
 		  INNER JOIN `PREFIX_category_group` ctg ON
@@ -1685,11 +1648,7 @@ class		Product extends ObjectModel
 	*/
 	public function getAttributesGroups($id_lang)
 	{
-		global $currency;
-
-		$product_groups_where = 'OR ' . Tools::slqIn("pap.id_group", Tools::colArray(Group::getGroupsForCustomer(), 'id_group'));
-		$default_currency = Configuration::get('PS_CURRENCY_DEFAULT');
-
+		$price_sql = self::getProductAttributePriceSql('pa.id_product_attribute', 'pap');
 		$sql = "
 		 SELECT
 		  ag.`id_attribute_group`,
@@ -1700,8 +1659,8 @@ class		Product extends ObjectModel
 		  a.`color` AS attribute_color,
 		  pa.`id_product_attribute`,
 		  pa.`quantity`,
-		  pap3.`price`,
-		  pap3.`ecotax`,
+		  pap.`price`,
+		  pap.`ecotax`,
 		  pa.`weight`,
 		  pa.`default_on`,
 		  pa.`reference`
@@ -1717,23 +1676,7 @@ class		Product extends ObjectModel
                    a.`id_attribute` = al.`id_attribute`
 		  LEFT JOIN `PREFIX_attribute_group_lang` agl ON
                    ag.`id_attribute_group` = agl.`id_attribute_group`
-		  LEFT JOIN
-		   (SELECT pap.id_product_attribute, min(abs(pap.id_currency - {$currency->id})) as currency_diff
-		    FROM PREFIX_product_attribute_price pap
-		    WHERE (pap.id_currency in ({$currency->id}, {$default_currency}) AND pap.id_group IS NULL {$product_groups_where})
-                    GROUP BY pap.id_product_attribute) AS pap1 ON
-                   pap1.id_product_attribute = pa.id_product_attribute
-		  LEFT JOIN
-		   (SELECT pap.id_product_attribute, pap.id_currency, min(pap.price) as min_price
-		    FROM PREFIX_product_attribute_price pap
-		    WHERE (pap.id_group IS NULL {$product_groups_where})
-                    GROUP BY pap.id_product_attribute, pap.id_currency) AS pap2 ON
-                   pap2.id_product_attribute = pa.id_product_attribute
-                   AND abs(pap2.id_currency - {$currency->id}) = pap1.currency_diff
-                  LEFT JOIN `PREFIX_product_attribute_price` pap3 ON
-                   pap3.id_product_attribute = pa.id_product_attribute
-                   AND abs(pap3.id_currency - {$currency->id}) = pap1.currency_diff
-                   AND pap3.price = pap2.min_price
+                  {$price_sql}
 		 WHERE
                   pa.`id_product` = {$this->id}
 		  AND al.`id_lang` = {$id_lang}
@@ -1779,7 +1722,7 @@ class		Product extends ObjectModel
 	*/
 	public function getAccessories($id_lang, $active = true)
 	{
-		global	$currency, $link, $cookie;
+		global $link, $cookie;
 
 		if (Validate::isUnsignedInt(Configuration::get('PS_NB_DAYS_NEW_PRODUCT')))
 			$days_new_product = Configuration::get('PS_NB_DAYS_NEW_PRODUCT');
@@ -1788,9 +1731,7 @@ class		Product extends ObjectModel
 
 		$active_sql = $active ? 'AND p.`active` = 1' : '';
 
-		$product_groups_where = 'OR ' . Tools::slqIn("pp.id_group", Tools::colArray(Group::getGroupsForCustomer(), 'id_group'));
-		$default_currency = Configuration::get('PS_CURRENCY_DEFAULT');
-
+                $price_sql = self::getProductPriceSql('p.id_product', 'pp');
 		$sql = "
 		 SELECT
 		  p.*,
@@ -1826,25 +1767,9 @@ class		Product extends ObjectModel
                    i.`id_image` = il.`id_image` AND il.`id_lang` = {$id_lang}
 		  LEFT JOIN `PREFIX_manufacturer` m ON
                    p.`id_manufacturer`= m.`id_manufacturer`
-		  LEFT JOIN
-		   (SELECT pp.id_product, min(abs(pp.id_currency - {$currency->id})) as currency_diff
-		    FROM PREFIX_product_price pp
-		    WHERE (pp.id_currency in ({$currency->id}, {$default_currency}) AND pp.id_group IS NULL {$product_groups_where})
-                    GROUP BY pp.id_product) AS pp1 ON
-                   pp1.id_product = p.id_product
-		  LEFT JOIN
-		   (SELECT pp.id_product, pp.id_currency, min(pp.price) as min_price
-		    FROM PREFIX_product_price pp
-		    WHERE (pp.id_group IS NULL {$product_groups_where})
-                    GROUP BY pp.id_product, pp.id_currency) AS pp2 ON
-                   pp2.id_product = p.id_product
-                   AND abs(pp2.id_currency - {$currency->id}) = pp1.currency_diff
-                  LEFT JOIN `PREFIX_product_price` pp3 ON
-                   pp3.id_product = p.id_product
-                   AND abs(pp3.id_currency - {$currency->id}) = pp1.currency_diff
-                   AND pp3.price = pp2.min_price
+                  {$price_sql}
 		  LEFT JOIN `PREFIX_tax` t ON
-                   t.`id_tax` = pp3.`id_tax`
+                   t.`id_tax` = pp.`id_tax`
 		  WHERE
                    `id_product_1` = {$this->id}
 		   {$active_sql}";
@@ -2549,6 +2474,62 @@ class		Product extends ObjectModel
 			return true;
 		return false;
 	}
+
+	public static function getProductPriceSql($id_product, $alias = 'pp')
+	{
+		global $currency;
+
+		$product_groups_where = 'OR ' . Tools::slqIn("pp.id_group", Tools::colArray(Group::getGroupsForCustomer(), 'id_group'));
+		$default_currency = Configuration::get('PS_CURRENCY_DEFAULT');
+
+		return "
+		 LEFT JOIN
+		  (SELECT pp.id_product, min(abs(pp.id_currency - {$currency->id})) as currency_diff
+		   FROM PREFIX_product_price pp
+		   WHERE (pp.id_currency in ({$currency->id}, {$default_currency}) AND pp.id_group IS NULL {$product_groups_where})
+		   GROUP BY pp.id_product) AS {$alias}_2 ON
+		  {$alias}_2.id_product = {$id_product}
+		 LEFT JOIN
+		  (SELECT pp.id_product, pp.id_currency, min(pp.price) as min_price
+		   FROM PREFIX_product_price pp
+		   WHERE (pp.id_group IS NULL {$product_groups_where})
+		   GROUP BY pp.id_product, pp.id_currency) AS {$alias}_1 ON
+		  {$alias}_1.id_product = p.id_product
+		  AND abs({$alias}_1.id_currency - {$currency->id}) = {$alias}_2.currency_diff
+		 LEFT JOIN `PREFIX_product_price` {$alias} ON
+		  {$alias}.id_product = p.id_product
+		  AND abs({$alias}.id_currency - {$currency->id}) = {$alias}_2.currency_diff
+		  AND {$alias}.price = {$alias}_1.min_price";
+
+	}
+
+	public static function getProductAttributePriceSql($id_product_attribute, $alias = 'pp')
+	{
+		global $currency;
+
+		$product_groups_where = 'OR ' . Tools::slqIn("pap.id_group", Tools::colArray(Group::getGroupsForCustomer(), 'id_group'));
+		$default_currency = Configuration::get('PS_CURRENCY_DEFAULT');
+
+		return "
+		 LEFT JOIN
+		  (SELECT pap.id_product_attribute, min(abs(pap.id_currency - {$currency->id})) as currency_diff
+		   FROM PREFIX_product_attribute_price pap
+		   WHERE (pap.id_currency in ({$currency->id}, {$default_currency}) AND pap.id_group IS NULL {$product_groups_where})
+		   GROUP BY pap.id_product_attribute) AS {$alias}_2 ON
+		  {$alias}_2.id_product_attribute = {$id_product_attribute}
+		 LEFT JOIN
+		  (SELECT pap.id_product_attribute, pap.id_currency, min(pap.price) as min_price
+		   FROM PREFIX_product_attribute_price pap
+		   WHERE (pap.id_group IS NULL {$product_groups_where})
+		   GROUP BY pap.id_product_attribute, pap.id_currency) AS {$alias}_1 ON
+		  {$alias}_1.id_product_attribute = {$id_product_attribute}
+		  AND abs({$alias}_1.id_currency - {$currency->id}) = {$alias}_2.currency_diff
+		 LEFT JOIN `PREFIX_product_attribute_price` {$alias} ON
+		  {$alias}.id_product_attribute = {$id_product_attribute}
+		  AND abs({$alias}.id_currency - {$currency->id}) = {$alias}_2.currency_diff
+		  AND {$alias}.price = {$alias}_1.min_price";
+
+	} 
 }
 
 ?>
