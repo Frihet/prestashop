@@ -2499,10 +2499,10 @@ class		Product extends ObjectModel
 		   FROM PREFIX_product_price pp
 		   WHERE (pp.id_group IS NULL {$product_groups_where})
 		   GROUP BY pp.id_product, pp.id_currency) AS {$alias}_1 ON
-		  {$alias}_1.id_product = p.id_product
+		  {$alias}_1.id_product = {$id_product}
 		  AND abs({$alias}_1.id_currency - {$currency->id}) = {$alias}_2.currency_diff
 		 LEFT JOIN `PREFIX_product_price` {$alias} ON
-		  {$alias}.id_product = p.id_product
+		  {$alias}.id_product = {$id_product}
 		  AND abs({$alias}.id_currency - {$currency->id}) = {$alias}_2.currency_diff
 		  AND {$alias}.price = {$alias}_1.min_price";
 
