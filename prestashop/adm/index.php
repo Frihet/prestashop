@@ -11,6 +11,8 @@
   *
   */
 
+try {
+
 //ob_start();
 
 define('PS_ADMIN_DIR', getcwd());
@@ -97,5 +99,14 @@ else /* Else display homepage */
 }
 
 include(PS_ADMIN_DIR.'/footer.inc.php');
+
+
+} catch (Exception $e) {
+ echo $e->getMessage();
+ echo "<br><bR>";
+ foreach ($e->getTrace() as $line) {
+  echo "{$line['class']}.{$line['function']} @ {$line['file']}:{$line['line']}<br>";
+ }
+}
 
 ?>
