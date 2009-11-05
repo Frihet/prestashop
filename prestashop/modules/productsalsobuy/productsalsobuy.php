@@ -90,42 +90,74 @@ class productsAlsobuy extends Module
     private function getRelatedProducts($id_lang, $idProduct)
 	{
 		global $link, $cookie;
+
+		$pab_pic_quant = Configuration::get('PAB_PIC_QUANT');
+
 		if (Configuration::get('PAB_MODE') == 1)
 		{
-		$result = Db::getInstance()->ExecuteS('
-		SELECT DISTINCT '._DB_PREFIX_.'order_detail.product_id AS OID, '._DB_PREFIX_.'order_detail.product_name, '._DB_PREFIX_.'product.reference,
-		'._DB_PREFIX_.'product_lang.link_rewrite, '._DB_PREFIX_.'image.id_image, '._DB_PREFIX_.'product.id_product,'._DB_PREFIX_.'product_lang.name, '._DB_PREFIX_.'product.price
-		FROM '._DB_PREFIX_.'order_detail
-		LEFT JOIN '._DB_PREFIX_.'product ON ('._DB_PREFIX_.'product.id_product = '._DB_PREFIX_.'order_detail.product_id)
-		LEFT JOIN '._DB_PREFIX_.'product_lang  ON ('._DB_PREFIX_.'product.id_product = '._DB_PREFIX_.'product_lang.id_product AND '._DB_PREFIX_.'product_lang.id_lang = '.$id_lang.')
-		LEFT JOIN '._DB_PREFIX_.'image ON ('._DB_PREFIX_.'product.id_product = '._DB_PREFIX_.'image.id_product AND '._DB_PREFIX_.'image.cover = 1)
-		WHERE '._DB_PREFIX_.'order_detail.id_order 
-		IN(SELECT '._DB_PREFIX_.'order_detail.id_order AS TAB1 FROM '._DB_PREFIX_.'order_detail
-		WHERE '._DB_PREFIX_.'order_detail.product_id = '.$idProduct.' )
-		AND '._DB_PREFIX_.'product.active = 1
-		AND '._DB_PREFIX_.'product.id_product != '.$idProduct.'
-		GROUP BY '._DB_PREFIX_.'product.id_product
-		ORDER BY RAND() LIMIT '.Configuration::get('PAB_PIC_QUANT').'
-		');
+		$price_sql = Product::getProductPriceSql('PREFIX_product.id_product', 'pp');
+		$sql = "
+		 SELECT DISTINCT
+		  PREFIX_order_detail.product_id AS OID,
+		  PREFIX_order_detail.product_name,
+		  PREFIX_product.reference,
+		  PREFIX_product_lang.link_rewrite,
+		  PREFIX_image.id_image,
+		  PREFIX_product.id_product,
+		  PREFIX_product_lang.name,
+		  pp.price
+		 FROM
+		  PREFIX_order_detail
+		  LEFT JOIN PREFIX_product ON
+		   PREFIX_product.id_product = PREFIX_order_detail.product_id
+		  LEFT JOIN PREFIX_product_lang  ON
+		   PREFIX_product.id_product = PREFIX_product_lang.id_product AND PREFIX_product_lang.id_lang = {$id_lang}
+		  LEFT JOIN PREFIX_image ON
+		   PREFIX_product.id_product = PREFIX_image.id_product AND PREFIX_image.cover = 1
+                  {$price_sql}
+		 WHERE
+		  PREFIX_order_detail.id_order IN (SELECT PREFIX_order_detail.id_order AS TAB1 FROM PREFIX_order_detail WHERE PREFIX_order_detail.product_id = {$idProduct} )
+		  AND PREFIX_product.active = 1
+		  AND PREFIX_product.id_product != {$idProduct}
+		 GROUP BY PREFIX_product.id_product
+		 ORDER BY RAND() LIMIT {$pab_pic_quant}
+		";
+                $sql = str_replace('PREFIX_', _DB_PREFIX_, $sql);
+		$result = Db::getInstance()->ExecuteS($sql);
 		}
 		
 		if (Configuration::get('PAB_MODE') == 0)
 		{
-		$result = Db::getInstance()->ExecuteS('
-		SELECT DISTINCT '._DB_PREFIX_.'order_detail.product_id AS OID, '._DB_PREFIX_.'order_detail.product_name, '._DB_PREFIX_.'product.reference,
-		'._DB_PREFIX_.'product_lang.link_rewrite, '._DB_PREFIX_.'image.id_image, '._DB_PREFIX_.'product.id_product,'._DB_PREFIX_.'product_lang.name, '._DB_PREFIX_.'product.price, COUNT(*) AS quantity
-		FROM '._DB_PREFIX_.'order_detail
-		LEFT JOIN '._DB_PREFIX_.'product ON ('._DB_PREFIX_.'product.id_product = '._DB_PREFIX_.'order_detail.product_id)
-		LEFT JOIN '._DB_PREFIX_.'product_lang ON ('._DB_PREFIX_.'product.id_product = '._DB_PREFIX_.'product_lang.id_product AND '._DB_PREFIX_.'product_lang.id_lang = '.$id_lang.')
-		LEFT JOIN '._DB_PREFIX_.'image ON ('._DB_PREFIX_.'product.id_product = '._DB_PREFIX_.'image.id_product AND '._DB_PREFIX_.'image.cover = 1)
-		WHERE '._DB_PREFIX_.'order_detail.id_order 
-		IN(SELECT '._DB_PREFIX_.'order_detail.id_order AS TAB1 FROM '._DB_PREFIX_.'order_detail
-		WHERE '._DB_PREFIX_.'order_detail.product_id = '.$idProduct.' )
-		AND '._DB_PREFIX_.'product.active = 1
-		AND '._DB_PREFIX_.'product.id_product != '.$idProduct.'
-		GROUP BY '._DB_PREFIX_.'product.id_product
-		ORDER BY quantity DESC LIMIT '.Configuration::get('PAB_PIC_QUANT').'
-		');
+		$price_sql = Product::getProductPriceSql('PREFIX_product.id_product', 'pp');
+		$sql = "
+		SELECT DISTINCT
+                 PREFIX_order_detail.product_id AS OID,
+		 PREFIX_order_detail.product_name,
+		 PREFIX_product.reference,
+		 PREFIX_product_lang.link_rewrite,
+		 PREFIX_image.id_image,
+		 PREFIX_product.id_product,
+		 PREFIX_product_lang.name,
+		 pp.price,
+		 COUNT(*) AS quantity
+		FROM
+                 PREFIX_order_detail
+		 LEFT JOIN PREFIX_product ON
+		  PREFIX_product.id_product = PREFIX_order_detail.product_id
+		 LEFT JOIN PREFIX_product_lang ON
+		  PREFIX_product.id_product = PREFIX_product_lang.id_product AND PREFIX_product_lang.id_lang = {$id_lang}
+		 LEFT JOIN PREFIX_image ON
+		  PREFIX_product.id_product = PREFIX_image.id_product AND PREFIX_image.cover = 1
+                  {$price_sql}
+		WHERE
+                 PREFIX_order_detail.id_order IN (SELECT PREFIX_order_detail.id_order AS TAB1 FROM PREFIX_order_detail WHERE PREFIX_order_detail.product_id = {$idProduct} )
+		 AND PREFIX_product.active = 1
+		 AND PREFIX_product.id_product != {$idProduct}
+		GROUP BY PREFIX_product.id_product
+		ORDER BY quantity DESC LIMIT {$pab_pic_quant}
+		";
+                $sql = str_replace('PREFIX_', _DB_PREFIX_, $sql);
+		$result = Db::getInstance()->ExecuteS($sql);
 		}
 		
 		
