@@ -1034,6 +1034,7 @@ class		Product extends ObjectModel
 		  p.`ean13`,
 		  i.`id_image`,
 		  il.`legend`,
+		  pp.*,
 		  t.`rate`,
 		  m.`name` AS manufacturer_name
 		 FROM
@@ -1113,6 +1114,7 @@ class		Product extends ObjectModel
 		  p.`ean13`,
 		  i.`id_image`,
 		  il.`legend`,
+		  pp.*,
 		  t.`rate`
 		 FROM
                   `PREFIX_product` p
