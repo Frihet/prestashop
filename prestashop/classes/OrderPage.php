@@ -9,6 +9,7 @@ class OrderPage extends Module
 				$hook->name = 'orderPages';
 				$hook->title = 'Order process pages';
 				$hook->description = 'Adds new pages in the order process';
+				$hook->add();
 			}
 		if
 			(

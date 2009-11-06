@@ -17,6 +17,13 @@ class OrderPriceAdjustment extends OrderPage
 
 	function install()
 	{
+			if (Hook::get('orderPriceAdjustment') == false) {
+				$hook = new Hook();
+				$hook->name = 'orderPriceAdjustment';
+				$hook->title = 'Order price adjustment';
+				$hook->description = 'Allows modules to adjust prices in an order after the user has logged in and registered an address, e.g. allows prices based on group memberships and the like.';
+				$hook->add();
+			}
 			if
 			(
 				parent::install() == false
@@ -34,6 +41,8 @@ class OrderPriceAdjustment extends OrderPage
 	function displayOrderStep($params)
 	{
 		global $smarty, $cart, $errors, $currency;
+
+		Module::hookExec('orderPriceAdjustment', array());
 
 		$smarty->assign("currency_iso_code", $currency->iso_code);
 		$smarty->assign("currency_name", $currency->name);
