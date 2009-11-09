@@ -37,37 +37,15 @@ class SerialNrManager extends Module
 
 	public function hookMyAccountBlock($params)
         {
-		global $smarty, $cart;
-
-		if (!$cart OR !$cart->id_guest)
-			return;
-
-		$guest = new Guest($cart->id_guest);
-		if (!$guest->id_customer)
-			return;
-		$id_customer = intval($guest->id_customer);
-
-		$sql = "select id_vendor from PREFIX_vendor where id_customer = {$id_customer}";
-		$sql = str_replace('PREFIX_', _DB_PREFIX_, $sql);
-		if (Db::getInstance()->getRow($sql) != null)
+		require_once(dirname(__FILE__)."/../ordervendor/Vendor.php");
+		if (Vendor::currentVendor() != null)
 			return $this->display(__FILE__, 'menuitems.tpl');
         }
 
 	public function hookCustomerAccount($params)
         {
-		global $smarty, $cart;
-
-		if (!$cart OR !$cart->id_guest)
-			return;
-
-		$guest = new Guest($cart->id_guest);
-		if (!$guest->id_customer)
-			return;
-		$id_customer = intval($guest->id_customer);
-
-		$sql = "select id_vendor from PREFIX_vendor where id_customer = {$id_customer}";
-		$sql = str_replace('PREFIX_', _DB_PREFIX_, $sql);
-		if (Db::getInstance()->getRow($sql) != null)
+		require_once(dirname(__FILE__)."/../ordervendor/Vendor.php");
+		if (Vendor::currentVendor() != null)
 			return $this->display(__FILE__, 'menuitems.tpl');
         }
 }
