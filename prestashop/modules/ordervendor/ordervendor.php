@@ -84,6 +84,8 @@ class OrderVendor extends OrderPage
 	{
 		global $smarty, $cart, $errors;
 
+		require_once(dirname(__FILE__)."/OrderProductVendor.php");
+
 		$smarty->assign("product_lines", OrderProductVendor::getProductsWithVendors($cart));
 
 		if ($oldMessage = Message::getMessageByCartId(intval($cart->id)))
