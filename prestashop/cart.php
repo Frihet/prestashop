@@ -1,5 +1,6 @@
 <?php
 
+try {
 require_once(dirname(__FILE__).'/config/config.inc.php');
 require_once(dirname(__FILE__).'/init.php');
 $errors = array();
@@ -140,4 +141,12 @@ else
 	else
 		Tools::redirect('order.php?'.(isset($idProduct) ? 'ipa='.intval($idProduct) : ''));
 }
+} catch (Exception $e) {
+ echo $e->getMessage();
+ echo "<br><bR>";
+ foreach ($e->getTrace() as $line) {
+  echo "{$line['class']}.{$line['function']} @ {$line['file']}:{$line['line']}<br>";
+ }
+}
+
 ?>

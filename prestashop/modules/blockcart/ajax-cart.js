@@ -186,7 +186,7 @@ var ajaxCart = {
 				});
 			},
 			error: function(XMLHttpRequest, textStatus, errorThrown) {
-				alert("TECHNICAL ERROR: unable to add the product.\n\nDetails:\nError thrown: " + XMLHttpRequest + "\n" + 'Text status: ' + textStatus);
+				alert("TECHNICAL ERROR: unable to add the product.\n\nDetails:\nText status: " + textStatus + "\nMessage from server: " + XMLHttpRequest.responseText);
 				//reactive the button when adding has finished
 				if (addedFromProductPage)
 					$('body#product p#add_to_cart input').removeAttr('disabled').addClass('exclusive').removeClass('exclusive_disabled');
