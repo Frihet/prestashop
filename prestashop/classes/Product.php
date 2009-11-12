@@ -2393,6 +2393,7 @@ class		Product extends ObjectModel
 			ORDER BY cf.`id_customization_field`'))
 			return false;
 		$result = array();
+
 		foreach ($rows AS $row) {
 			if (intval($row['type']) == 2) {
                                 $lang_sql = '';
@@ -2406,7 +2407,7 @@ class		Product extends ObjectModel
 				  unix_timestamp(s.start_time) as start_time_value,
 				  unix_timestamp(s.end_time) as end_time_value,
 				  s.venue,
-				  s.seats,
+				  s.seats - sum(coalesce(c.quantity, 0)) as seats,
 				  s.teacher,
 				  sl.id_lang,
 				  sl.name,
@@ -2416,8 +2417,25 @@ class		Product extends ObjectModel
                                   join PREFIX_customization_field_schedule_lang as sl on
                                    s.id_customization_field_schedule = sl.id_customization_field_schedule 
                                    {$lang_sql}
+				  left outer join PREFIX_customized_data_schedule_booking as b on
+				   b.id_customization_field_schedule = s.id_customization_field_schedule
+				  left outer join PREFIX_customization as c on
+				   b.id_customization = c.id_customization
+			          left outer join PREFIX_orders as o on
+                                   c.id_cart = o.id_cart
                                  where
                                   s.id_customization_field = {$row['id_customization_field']}
+				 group by
+				  s.id_customization_field_schedule,
+				  s.id_customization_field,
+				  s.start_time,
+				  s.end_time,
+				  s.venue,
+				  s.seats,
+				  s.teacher,
+				  sl.id_lang,
+				  sl.name,
+				  sl.description
                                  order by s.venue, s.start_time
                                 ";
                                 $sql = str_replace('PREFIX_', _DB_PREFIX_, $sql);
