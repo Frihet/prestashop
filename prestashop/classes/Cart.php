@@ -432,8 +432,9 @@ class		Cart extends ObjectModel
 		$files = $cookie->getFamily('pictures_'.intval($id_product).'_');
 		$textFields = $cookie->getFamily('textFields_'.intval($id_product).'_');
 		$scheduleFields = $cookie->getFamily('scheduleFields_'.intval($id_product).'_');
+
 		/* Customization addition */
-		if (count($files) > 0 OR count($textFields) > 0)
+		if (count($files) > 0 OR count($textFields) > 0 OR count($scheduleFields) > 0)
 			return $this->_addCustomization(intval($id_product), intval($id_product_attribute), $files, $textFields, $scheduleFields, intval($quantity));
 		/* Deletion */
 		if (intval($id_customization) AND intval($quantity) < 1)
@@ -459,28 +460,30 @@ class		Cart extends ObjectModel
 			return false;
 		if (!$id_customization = Db::getInstance()->Insert_ID())
 			return false;
-		$query = 'INSERT INTO `'._DB_PREFIX_.'customized_data` (`id_customization`, `type`, `index`, `value`) VALUES ';
-		if (count($files))
-			foreach ($files AS $key => $filename)
-			{
-				$tmp = explode('_', $key);
-				$query .= '('.intval($id_customization).', '._CUSTOMIZE_FILE_.', '.$tmp[2].', \''.$filename.'\'), ';
-			}
-		if (count($textFields))
-			foreach ($textFields AS $key => $textFieldValue)
-			{
-				$tmp = explode('_', $key);
-				$query .= '('.intval($id_customization).', '._CUSTOMIZE_TEXTFIELD_.', '.$tmp[2].', \''.$textFieldValue.'\'), ';
-			}
-		$query = rtrim($query, ', ');
-		if (!$result = Db::getInstance()->Execute($query))
-			return false;
+		if (count($files) OR count($textFields)) {
+			$query = 'INSERT INTO `'._DB_PREFIX_.'customized_data` (`id_customization`, `type`, `index`, `value`) VALUES ';
+			if (count($files))
+				foreach ($files AS $key => $filename)
+				{
+					$tmp = explode('_', $key);
+					$query .= '('.intval($id_customization).', '._CUSTOMIZE_FILE_.', '.$tmp[2].', \''.$filename.'\'), ';
+				}
+			if (count($textFields))
+				foreach ($textFields AS $key => $textFieldValue)
+				{
+					$tmp = explode('_', $key);
+					$query .= '('.intval($id_customization).', '._CUSTOMIZE_TEXTFIELD_.', '.$tmp[2].', \''.$textFieldValue.'\'), ';
+				}
+			$query = rtrim($query, ', ');
+			if (!$result = Db::getInstance()->Execute($query))
+				return false;
+		}
 		if (count($scheduleFields)) {
 			$query = 'INSERT INTO `'._DB_PREFIX_.'customized_data_schedule_booking` (`id_customization`, `id_customization_field`, `id_customization_field_schedule`) VALUES ';
 			foreach ($scheduleFields AS $key => $scheduletFieldValue)
 			{
 				$tmp = explode('_', $key);
-				$query .= "({$id_customization}, "._CUSTOMIZE_TEXTFIELD_.", {$tmp[2]}, {$tmp[3]}), ";
+				$query .= "({$id_customization}, {$tmp[2]}, {$tmp[3]}), ";
 			}
 			$query = rtrim($query, ', ');
 			if (!$result = Db::getInstance()->Execute($query))
