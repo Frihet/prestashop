@@ -431,9 +431,10 @@ class		Cart extends ObjectModel
 		/* Getting datas */
 		$files = $cookie->getFamily('pictures_'.intval($id_product).'_');
 		$textFields = $cookie->getFamily('textFields_'.intval($id_product).'_');
+		$scheduleFields = $cookie->getFamily('scheduleFields_'.intval($id_product).'_');
 		/* Customization addition */
 		if (count($files) > 0 OR count($textFields) > 0)
-			return $this->_addCustomization(intval($id_product), intval($id_product_attribute), $files, $textFields, intval($quantity));
+			return $this->_addCustomization(intval($id_product), intval($id_product_attribute), $files, $textFields, $scheduleFields, intval($quantity));
 		/* Deletion */
 		if (intval($id_customization) AND intval($quantity) < 1)
 			return $this->_deleteCustomization(intval($id_customization), intval($id_product), intval($id_product_attribute));
@@ -449,7 +450,7 @@ class		Cart extends ObjectModel
 		return true;
 	}
 
-	public function _addCustomization($id_product, $id_product_attribute, $files, $textFields, $quantity)
+	public function _addCustomization($id_product, $id_product_attribute, $files, $textFields, $scheduleFields, $quantity)
 	{
 		if (!is_array($files) OR !is_array($textFields))
 			die(Tools::displayError());
@@ -474,6 +475,17 @@ class		Cart extends ObjectModel
 		$query = rtrim($query, ', ');
 		if (!$result = Db::getInstance()->Execute($query))
 			return false;
+		if (count($scheduleFields)) {
+			$query = 'INSERT INTO `'._DB_PREFIX_.'customized_data_schedule_booking` (`id_customization`, `id_customization_field`, `id_customization_field_schedule`) VALUES ';
+			foreach ($scheduleFields AS $key => $scheduletFieldValue)
+			{
+				$tmp = explode('_', $key);
+				$query .= "({$id_customization}, "._CUSTOMIZE_TEXTFIELD_.", {$tmp[2]}, {$tmp[3]}), ";
+			}
+			$query = rtrim($query, ', ');
+			if (!$result = Db::getInstance()->Execute($query))
+				return false;
+		}
 		/* Deleting customized informations from the cart (we just copied them inside the db) */
 		return Cart::deleteCustomizationInformations(intval($id_product));
 	}

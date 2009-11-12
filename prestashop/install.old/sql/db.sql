@@ -415,6 +415,16 @@ CREATE TABLE `PREFIX_customized_data` (
   PRIMARY KEY  (`id_customization`,`type`,`index`)
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8;
 
+CREATE TABLE `PREFIX_customized_data_schedule_booking` (
+  `id_customization` int(10) NOT NULL,
+  `id_customization_field` int(10) NOT NULL,
+  `id_customization_field_schedule` int(10) NOT NULL,
+  FOREIGN KEY (`id_customization`) REFERENCES `PREFIX_customization` (`id_customization`),
+  FOREIGN KEY (`id_customization_field`) REFERENCES `PREFIX_customization_field` (`id_customization_field`),
+  FOREIGN KEY (`id_customization_field_schedule`) REFERENCES `PREFIX_customization_field_schedule` (`id_customization_field_schedule`),
+  PRIMARY KEY (`id_customization`,`id_customization_field`,`id_customization_field_schedule`)
+) ENGINE=MyISAM DEFAULT CHARSET=utf8;
+
 CREATE TABLE `PREFIX_date_range` (
   `id_date_range` int(10) unsigned NOT NULL auto_increment,
   `time_start` datetime NOT NULL,
