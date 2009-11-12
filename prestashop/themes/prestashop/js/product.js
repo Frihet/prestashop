@@ -387,3 +387,30 @@ function saveCustomization()
 	});
 	$('#customizationForm').submit();
 }
+
+function scheduleSelect(event)
+{
+        if ($(event.currentTarget).hasClass("full"))
+                return;
+        if ($("input", event.currentTarget)[0].value != '1') {
+		start_time = parseInt($(".start_time_value", event.currentTarget).html());
+		end_time = parseInt($(".end_time_value", event.currentTarget).html());
+
+		$.each($(".schedule .entry.selected"), function () {
+			entry_start_time = parseInt($(".start_time_value", this).html());
+			entry_end_time = parseInt($(".end_time_value", this).html());
+
+			if (!(entry_end_time <= start_time || entry_start_time >= end_time)) {
+				$("input", this)[0].value = '';
+				$(this).removeClass("selected");
+			}
+		});
+
+	        $("input", event.currentTarget)[0].value = '1';
+                $(event.currentTarget).addClass("selected");
+	} else {
+                $("input", event.currentTarget)[0].value = '';
+                $(event.currentTarget).removeClass("selected");
+        }
+}
+

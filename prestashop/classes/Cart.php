@@ -1038,12 +1038,29 @@ class		Cart extends ObjectModel
 		return false;
 	}
 
+	public function setScheduleFieldToProduct($id_product, $id_customization_field, $id_customization_field_schedule)
+	{
+		global $cookie;
+
+		$cookie->{"scheduleFields_{$id_product}_{$id_customization_field}_{$id_customization_field_schedule}"} = "1";
+		return true;
+	}
+
+	public function clearScheduleFieldToProduct($id_product, $id_customization_field)
+	{
+		global $cookie;
+
+		$cookie->unsetFamily("scheduleFields_{$id_product}_{$id_customization_field}_");
+		return true;
+	}
+
 	static public function deleteCustomizationInformations($id_product)
 	{
 		global $cookie;
 
 		$cookie->unsetFamily('pictures_'.intval($id_product).'_');
 		$cookie->unsetFamily('textFields_'.intval($id_product).'_');
+		$cookie->unsetFamily('scheduleFields_'.intval($id_product).'_');
 		return true;
 	}
 	

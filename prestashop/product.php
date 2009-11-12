@@ -67,6 +67,27 @@ function textRecord(Product $product, Cart $cart)
 			$cart->deleteTextFieldFromProduct(intval($product->id), $indexes[$fieldName]);
 }
 
+function saveSchedule(Product $product, Cart $cart)
+{
+	global $errors;
+	if (!$fields = $product->getCustomizationFields(intval(Configuration::get(PS_LANG_DEFAULT))))
+		return false;
+	$authorizedScheduleFields = array();
+	foreach ($fields AS $field) {
+		if (intval($field['type']) == _CUSTOMIZE_SCHEDULE_) {
+			$cart->clearScheduleFieldToProduct($product->id, $field['id_customization_field']);
+			foreach ($field['schedule'] as $venue) {
+  			        foreach ($venue as $schedule) {
+					$fieldName = "scheduleFields_{$product->id}_{$field['id_customization_field']}_{$schedule['id_customization_field_schedule']}";
+					if (array_key_exists($fieldName, $_POST) && !empty($_POST[$fieldName])) {
+						$cart->setScheduleFieldToProduct($product->id, $field['id_customization_field'], $schedule['id_customization_field_schedule']);
+					}
+				}
+			}
+                }
+	}
+}
+
 function formTargetFormat()
 {
 	global $smarty;
@@ -129,6 +150,7 @@ else
 		{
 			pictureUpload($product, $cart);
 			textRecord($product, $cart);
+			saveSchedule($product, $cart);
 			formTargetFormat();
 		}
 		elseif (isset($_GET['deletePicture']) AND !$cart->deletePictureToProduct(intval($product->id), intval(Tools::getValue('deletePicture'))))
@@ -136,9 +158,11 @@ else
 
 		$files = $cookie->getFamily('pictures_'.intval($product->id));
 		$textFields = $cookie->getFamily('textFields_'.intval($product->id));
+		$scheduleFields = $cookie->getFamily('scheduleFields_'.intval($product->id));
 		$smarty->assign(array(
 			'pictures' => $files,
-			'textFields' => $textFields));
+			'textFields' => $textFields,
+			'scheduleFields' => $scheduleFields));
 
 		$productPriceWithTax = floatval($product->getPriceLC(true, NULL, 2));
 		$productPriceWithoutEcoTax = floatval($productPriceWithTax - $product->ecotax * $currency->conversion_rate);

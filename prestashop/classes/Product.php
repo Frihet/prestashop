@@ -14,6 +14,7 @@
 
 define('_CUSTOMIZE_FILE_', 0);
 define('_CUSTOMIZE_TEXTFIELD_', 1);
+define('_CUSTOMIZE_SCHEDULE_', 2);
 
 class		Product extends ObjectModel
 {
@@ -2384,18 +2385,71 @@ class		Product extends ObjectModel
 
 	public function getCustomizationFields($id_lang = false)
 	{
-		if (!$result = Db::getInstance()->ExecuteS('
+		if (!$rows = Db::getInstance()->ExecuteS('
 			SELECT cf.`id_customization_field`, cf.`type`, cf.`required`, cfl.`name`, cfl.`id_lang`
 			FROM `'._DB_PREFIX_.'customization_field` cf
 			NATURAL JOIN `'._DB_PREFIX_.'customization_field_lang` cfl
 			WHERE cf.`id_product` = '.intval($this->id).($id_lang ? ' AND cfl.`id_lang` = '.intval($id_lang) : '').'
 			ORDER BY cf.`id_customization_field`'))
 			return false;
+		$result = array();
+		foreach ($rows AS $row) {
+			if (intval($row['type']) == 2) {
+                                $lang_sql = '';
+                                if ($id_lang) $lang_sql = 'and sl.`id_lang` = '.intval($id_lang);
+			   	$sql = "
+                                 select
+				  s.id_customization_field_schedule,
+				  s.id_customization_field,
+				  s.start_time,
+				  s.end_time,
+				  unix_timestamp(s.start_time) as start_time_value,
+				  unix_timestamp(s.end_time) as end_time_value,
+				  s.venue,
+				  s.seats,
+				  s.teacher,
+				  sl.id_lang,
+				  sl.name,
+				  sl.description
+                                 from
+                                  PREFIX_customization_field_schedule as s
+                                  join PREFIX_customization_field_schedule_lang as sl on
+                                   s.id_customization_field_schedule = sl.id_customization_field_schedule 
+                                   {$lang_sql}
+                                 where
+                                  s.id_customization_field = {$row['id_customization_field']}
+                                 order by s.venue, s.start_time
+                                ";
+                                $sql = str_replace('PREFIX_', _DB_PREFIX_, $sql);
+				$min_row = Db::getInstance()->getRow(
+                                 "select
+                                   str_to_date(date_format(min(start_time), '%Y-%m-%d %H'),'%Y-%m-%d %H') as start_time,
+                                   unix_timestamp(str_to_date(date_format(min(start_time), '%Y-%m-%d %H'),'%Y-%m-%d %H')) as start_time_value,
+				   -- FIXME: Adds an extra hour if max(end_time) is exactly a whole hour
+                                   addtime(str_to_date(date_format(max(end_time), '%Y-%m-%d %H'),'%Y-%m-%d %H'), '1:00:00') as end_time,
+                                   unix_timestamp(addtime(str_to_date(date_format(max(end_time), '%Y-%m-%d %H'),'%Y-%m-%d %H'), '1:00:00')) as end_time_value
+                                  from ({$sql}) as s");
+				$row['schedule_start_time'] = $min_row['start_time'];
+				$row['schedule_start_time_value'] = $min_row['start_time_value'];
+				$row['schedule_end_time'] = $min_row['end_time'];
+				$row['schedule_end_time_value'] = $min_row['end_time_value'];
+
+                 		$schedule_result = Db::getInstance()->ExecuteS($sql);
+				$row['schedule'] = array();
+                                foreach ($schedule_result AS $schedule_row) {
+					if (!isset($row['schedule'][$schedule_row['venue']]))
+						$row['schedule'][$schedule_row['venue']] = array();
+                                	$row['schedule'][$schedule_row['venue']][] = $schedule_row;
+                                }
+                        }
+			$result[] = $row;
+		}
 		if ($id_lang)
 			return $result;
 		$customizationFields = array();
-		foreach ($result AS $row)
+		foreach ($result AS $row) {
 			$customizationFields[intval($row['type'])][intval($row['id_customization_field'])][intval($row['id_lang'])] = $row;
+                }
 		return $customizationFields;
 	}
 
