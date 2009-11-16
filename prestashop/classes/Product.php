@@ -576,20 +576,59 @@ class		Product extends ObjectModel
 		elseif ($orderBy == 'position')
 			$orderByPrefix = 'c';
 
-		$rq = Db::getInstance()->ExecuteS('
-		SELECT p.*, pl.* , t.`rate` AS tax_rate, m.`name` AS manufacturer_name, s.`name` AS supplier_name
-		FROM `'._DB_PREFIX_.'product` p
-		LEFT JOIN `'._DB_PREFIX_.'product_lang` pl ON (p.`id_product` = pl.`id_product`)
-		LEFT JOIN `'._DB_PREFIX_.'tax` t ON (t.`id_tax` = p.`id_tax`)
-		LEFT JOIN `'._DB_PREFIX_.'manufacturer` m ON (m.`id_manufacturer` = p.`id_manufacturer`)
-		LEFT JOIN `'._DB_PREFIX_.'supplier` s ON (s.`id_supplier` = p.`id_supplier`)'.
-		($id_category ? 'LEFT JOIN `'._DB_PREFIX_.'category_product` c ON (c.`id_product` = p.`id_product`)' : '').'
-		WHERE pl.`id_lang` = '.intval($id_lang).
-		($id_category ? ' AND c.`id_category` = '.intval($id_category) : '').
-		($only_active ? ' AND p.`active` = 1' : '').'
-		ORDER BY '.(isset($orderByPrefix) ? pSQL($orderByPrefix).'.' : '').'`'.pSQL($orderBy).'` '.pSQL($orderWay).
-		($limit > 0 ? ' LIMIT '.intval($start).','.intval($limit) : '')
-		);
+		$price_sql = self::getProductPriceSql('p.id_product', 'pp');
+		$category_join = '';
+		$category_where = '';
+		if ($id_category) {
+			$category_join = "
+			 LEFT JOIN `PREFIX_category_product` c ON
+                          c.`id_product` = p.`id_product`
+                        ";
+			$category_where = " AND c.`id_category` = {$id_category}";
+		}
+		$active_where = '';
+		if ($only_active)
+			$active_where = ' AND p.`active` = 1';
+		if (isset($orderByPrefix))
+			$orderByPrefix = pSQL($orderByPrefix).'.';
+		else
+			$orderByPrefix = '';
+		$orderBy = pSQL($orderBy);
+		$orderWay = pSQL($orderWay);
+		
+		$limitsql = '';
+		if ($limit > 0)
+		   	$limitsql = "LIMIT {$start},{$limit}";
+		$sql = "
+		 SELECT
+		  p.*,
+		  pl.*,
+		  t.`rate` AS tax_rate,
+		  m.`name` AS manufacturer_name,
+		  s.`name` AS supplier_name
+		 FROM
+		  `PREFIX_product` p
+		  LEFT JOIN `PREFIX_product_lang` pl ON
+		   p.`id_product` = pl.`id_product`
+		  {$price_sql}
+		  LEFT JOIN `PREFIX_tax` t ON
+		   t.`id_tax` = pp.`id_tax`
+		  LEFT JOIN `PREFIX_manufacturer` m ON
+		   m.`id_manufacturer` = p.`id_manufacturer`
+		  LEFT JOIN `PREFIX_supplier` s ON
+		   s.`id_supplier` = p.`id_supplier`
+		  {$category_join}
+		 WHERE
+		  pl.`id_lang` = {$id_lang}
+		  {$category_where}
+		  {$active_where}
+		 ORDER BY
+		  {$orderByPrefix}`{$orderBy}` {$orderWay}
+		  {$limitsql}
+                ";
+		$sql = str_replace('PREFIX_', _DB_PREFIX_, $sql);
+
+		$rq = Db::getInstance()->ExecuteS($sql);
 		if($orderBy == 'price')
 			Tools::orderbyPrice($rq,$orderWay);
 
@@ -1195,27 +1234,77 @@ class		Product extends ObjectModel
 			return intval($result['nb']);
 		}
 		$currentDate = date('Y-m-d');
-		$sql = '
-		SELECT p.*, pl.`description`, pl.`description_short`, pl.`link_rewrite`, pl.`meta_description`, pl.`meta_keywords`, pl.`meta_title`, pl.`name`, p.`ean13`, i.`id_image`, il.`legend`, t.`rate`, (p.`reduction_price` + (p.`reduction_percent` * p.`price`)) AS myprice, m.`name` AS manufacturer_name
-		FROM `'._DB_PREFIX_.'product` p
-		LEFT JOIN `'._DB_PREFIX_.'product_lang` pl ON (p.`id_product` = pl.`id_product` AND pl.`id_lang` = '.intval($id_lang).')
-		LEFT JOIN `'._DB_PREFIX_.'image` i ON (i.`id_product` = p.`id_product` AND i.`cover` = 1)
-		LEFT JOIN `'._DB_PREFIX_.'image_lang` il ON (i.`id_image` = il.`id_image` AND il.`id_lang` = '.intval($id_lang).')
-		LEFT JOIN `'._DB_PREFIX_.'tax` t ON (t.`id_tax` = p.`id_tax`)
-		LEFT JOIN `'._DB_PREFIX_.'manufacturer` m ON (m.`id_manufacturer` = p.`id_manufacturer`)
-		LEFT JOIN `'._DB_PREFIX_.'category_product` cp ON (cp.`id_product` = p.`id_product`)
-		INNER JOIN `'._DB_PREFIX_.'category_group` ctg ON (ctg.`id_category` = cp.`id_category`)
-		'.($cookie->id_customer ? 'INNER JOIN `'._DB_PREFIX_.'customer_group` cg ON (cg.`id_group` = ctg.`id_group`)' : '').'
-		WHERE (`reduction_price` > 0 OR `reduction_percent` > 0)
-		'.((!$beginning AND !$ending) ?
-			'AND (`reduction_from` = `reduction_to` OR (`reduction_from` <= \''.pSQL($currentDate).'\' AND `reduction_to` >= \''.pSQL($currentDate).'\'))'
-		:
-			($beginning ? 'AND `reduction_from` <= \''.pSQL($beginning).'\'' : '').($ending ? 'AND `reduction_to` >= \''.pSQL($ending).'\'' : '')).'
-		AND p.`active` = 1
-		AND ('.($cookie->id_customer ? 'cg.`id_customer` = '.intval($cookie->id_customer).' OR' : '').' ctg.`id_group` = 1)
-		GROUP BY p.`id_product`
-		ORDER BY '.(isset($orderByPrefix) ? pSQL($orderByPrefix).'.' : '').'`'.pSQL($orderBy).'`'.' '.pSQL($orderWay).'
-		LIMIT '.intval($pageNumber * $nbProducts).', '.intval($nbProducts);
+		$price_sql = self::getProductPriceSql('p.id_product', 'pp');
+		$customer_join = "";
+		if ($cookie->id_customer)
+			$customer_join = "
+                         INNER JOIN `PREFIX_customer_group` cg ON
+                          cg.`id_group` = ctg.`id_group`";
+
+		$date_where = '';
+		if (!$beginning AND !$ending) {
+			 $date_where = 'AND (`reduction_from` = `reduction_to` OR (`reduction_from` <= \''.pSQL($currentDate).'\' AND `reduction_to` >= \''.pSQL($currentDate).'\'))';
+		} else {
+			if ($beginning)
+				$date_where = 'AND `reduction_from` <= \''.pSQL($beginning).'\'';
+			if ($ending)
+				$date_where .= 'AND `reduction_to` >= \''.pSQL($ending).'\'';
+		}
+
+		$customer_where = '';
+		if ($cookie->id_customer)
+			$customer_where = "cg.`id_customer` = {$cookie->id_customer} OR";
+		if (isset($orderByPrefix))
+			$orderByPrefix = pSQL($orderByPrefix).'.';
+		else
+			$orderByPrefix = '';
+		$orderBy = pSQL($orderBy);
+		$orderWay = pSQL($orderWay);
+
+		$sql = "
+		 SELECT
+		  p.*,
+		  pl.`description`,
+		  pl.`description_short`,
+		  pl.`link_rewrite`,
+		  pl.`meta_description`,
+		  pl.`meta_keywords`,
+		  pl.`meta_title`,
+		  pl.`name`,
+		  p.`ean13`,
+		  i.`id_image`,
+		  il.`legend`,
+		  t.`rate`,
+		  (pp.`reduction_price` + (pp.`reduction_percent` * pp.`price`)) AS myprice,
+		  m.`name` AS manufacturer_name
+		 FROM
+		  `PREFIX_product` p
+		  LEFT JOIN `PREFIX_product_lang` pl ON
+		   p.`id_product` = pl.`id_product` AND pl.`id_lang` = {$id_lang}
+		  LEFT JOIN `PREFIX_image` i ON
+		   i.`id_product` = p.`id_product` AND i.`cover` = 1
+		  LEFT JOIN `PREFIX_image_lang` il ON
+		   i.`id_image` = il.`id_image` AND il.`id_lang` = {$id_lang}
+		  {$price_sql}
+		  LEFT JOIN `PREFIX_tax` t ON
+		   t.`id_tax` = p.`id_tax`
+		  LEFT JOIN `PREFIX_manufacturer` m ON
+		   m.`id_manufacturer` = p.`id_manufacturer`
+		  LEFT JOIN `PREFIX_category_product` cp ON
+		   cp.`id_product` = p.`id_product`
+		  INNER JOIN `PREFIX_category_group` ctg ON
+		   ctg.`id_category` = cp.`id_category`
+                  {$customer_join}
+		 WHERE
+                  (`reduction_price` > 0 OR `reduction_percent` > 0)
+ 		  {$date_where}
+ 		  AND p.`active` = 1
+		  AND ({$customer_where} ctg.`id_group` = 1)
+		 GROUP BY p.`id_product`
+		 ORDER BY {$orderByPrefix}`{$orderBy}` {$orderWay}
+		 LIMIT ".intval($pageNumber * $nbProducts).", {$nbProducts}
+                ";
+
 		$result = Db::getInstance()->ExecuteS($sql);
 		if($orderBy == 'price')
 		{
