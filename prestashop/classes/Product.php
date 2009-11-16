@@ -21,15 +21,6 @@ class		Product extends ObjectModel
 	/** @var string type */
 	public		$type = 'product';
 
-	/** @var integer Tax id */
-	public		$id_tax;
-
-	/** @var string Tax name */
-	public		$tax_name;
-
-	/** @var string Tax rate */
-	public		$tax_rate;
-
 	/** @var integer Manufacturer id */
 	public		$id_manufacturer;
 
@@ -159,10 +150,9 @@ class		Product extends ObjectModel
 	/** @var array tables */
 	protected $tables = array ('product', 'product_lang');
 
-	protected $fieldsRequired = array('id_tax', 'quantity', 'price');
+	protected $fieldsRequired = array('quantity');
 	protected $fieldsSize = array('reference' => 32, 'supplier_reference' => 32, 'location' => 64, 'ean13' => 13);
 	protected $fieldsValidate = array(
-		'id_tax' => 'isUnsignedId',
 		'id_manufacturer' => 'isUnsignedId',
 		'id_supplier' => 'isUnsignedId',
 		'id_category_default' => 'isUnsignedId',
@@ -208,10 +198,12 @@ class		Product extends ObjectModel
 		{
 			$this->manufacturer_name = Manufacturer::getNameById(intval($this->id_manufacturer));
 			$this->supplier_name = Supplier::getNameById(intval($this->id_supplier));
+/*
 			$tax = new Tax(intval($this->id_tax), intval($id_lang));
 			$this->tax_name = $tax->name;
 			$this->tax_rate = floatval($tax->rate);
 			$this->new = $this->isNew();
+*/
 		}
 		$this->category = Category::getLinkRewrite(intval($this->id_category_default), intval($id_lang));
 		$this->tags = Tag::getProductTags($this->id);
@@ -223,12 +215,13 @@ class		Product extends ObjectModel
 		if (isset($this->id))
 			$fields['id_product'] = intval($this->id);
 		$fields['type'] = pSQL($this->type);
-		$fields['id_tax'] = intval($this->id_tax);
+//		$fields['id_tax'] = intval($this->id_tax);
 		$fields['id_manufacturer'] = intval($this->id_manufacturer);
 		$fields['id_supplier'] = intval($this->id_supplier);
 		$fields['id_category_default'] = intval($this->id_category_default);
 		$fields['id_color_default'] = intval($this->id_color_default);
 		$fields['quantity'] = intval($this->quantity);
+/*
 		$fields['price'] = floatval($this->price);
 		$fields['wholesale_price'] = floatval($this->wholesale_price);
 		$fields['reduction_price'] = floatval($this->reduction_price);
@@ -237,6 +230,7 @@ class		Product extends ObjectModel
 		$fields['reduction_to'] = pSQL($this->reduction_to);
 		$fields['on_sale'] = intval($this->on_sale);
 		$fields['ecotax'] = floatval($this->ecotax);
+*/
 		$fields['reference'] = pSQL($this->reference);
 		$fields['supplier_reference'] = pSQL($this->supplier_reference);
 		$fields['location'] = pSQL($this->location);
