@@ -38,8 +38,12 @@ class AdminProducts extends AdminTab
 			'image' => array('title' => $this->l('Photo'), 'align' => 'center', 'image' => 'p', 'width' => 45, 'orderby' => false, 'filter' => false, 'search' => false),
 			'name' => array('title' => $this->l('Name'), 'width' => 277, 'filter_key' => 'b!name'),
 			'reference' => array('title' => $this->l('Reference'), 'align' => 'center', 'width' => 20), 
+
+/* FIXME: Update code to handle multiple currencies
 			'price' => array('title' => $this->l('Base price'), 'width' => 70, 'price' => true, 'align' => 'right', 'filter_key' => 'a!price'),
 			'price_final' => array('title' => $this->l('Final price'), 'width' => 70, 'price' => true, 'align' => 'right'),
+*/
+
 			'quantity' => array('title' => $this->l('Quantity'), 'width' => 30, 'align' => 'right', 'filter_key' => 'a!quantity', 'type' => 'decimal'),
 			'position' => array('title' => $this->l('Position'), 'width' => 40, 'align' => 'center', 'position' => 'position'),
 			'active' => array('title' => $this->l('Displayed'), 'active' => 'status', 'align' => 'center', 'type' => 'bool', 'orderby' => false));
@@ -68,9 +72,13 @@ class AdminProducts extends AdminTab
 			if (isset($_POST['meta_keywords_'.$language['id_lang']]))
 				$_POST['meta_keywords_'.$language['id_lang']] = preg_replace('/ *,? +,*/', ',', strtolower($_POST['meta_keywords_'.$language['id_lang']]));
 		$_POST['weight'] = empty($_POST['weight']) ? '0' : str_replace(',', '.', $_POST['weight']);
+
+/* FIXME: Update code to handle multiple currencies
 		if ($_POST['reduction_price'] != NULL) $object->reduction_price = str_replace(',', '.', $_POST['reduction_price']);
 		if ($_POST['reduction_percent'] != NULL) $object->reduction_percent = str_replace(',', '.', $_POST['reduction_percent']);
 		if ($_POST['ecotax'] != NULL) $object->ecotax = str_replace(',', '.', $_POST['ecotax']);
+*/
+
 		$object->active = (!isset($_POST['active']) OR $_POST['active']) ? true : false;
 		$object->on_sale = (!isset($_POST['on_sale']) ? false : true);
 	}
