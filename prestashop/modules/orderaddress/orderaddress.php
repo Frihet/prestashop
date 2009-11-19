@@ -16,7 +16,7 @@ class OrderAddress extends OrderPage
 	}
 
 
-        function validateOrderStep () {	
+        function validateOrderStep ($params) {	
 		global $cart;
 
 		if (!$cart->id_address_delivery OR !$cart->id_address_invoice)
