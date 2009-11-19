@@ -439,73 +439,16 @@ var fieldRequired = '{l s='Please fill all required fields' js=1}';
 				{/foreach}
 			</ul>
 			{/if}
-
-
-
 			{if $product->schedules|intval}
-				{counter start=0 assign='customizationField'}
-				{foreach from=$customizationFields item='field' name='customizationFields'}
-					{if $field.type == 2}
-			                        {if !empty($field.name)}<h2>{$field.name}</h2>{/if}
-
-                                                <table class="schedule">
-                                                 <tr>
-						  <th></th>
-						  {foreach from=$field.schedule key="venue" item="xyzzy"}
-						   <th>
-						    {$venue}
-						   </th>
-						  {/foreach}
-                                                 </tr>
-
-                                                 <tr>
-                                                  <td>
-                                                   {section name=timestep start=$field.schedule_start_time_value loop=$field.schedule_end_time_value step=3600}
-                                                    {if $smarty.section.timestep.index == $field.schedule_start_time_value}
- 						     <div style="height: {math equation="pph-eh" pph=$schedule_pixels_per_hour eh=$schedule_timestep_extra_h}px; width: {math equation="vw-ew" vw=$schedule_venue_width ew=$schedule_timestep_extra_w}px;" class="timestep first_timestep">{$smarty.section.timestep.index|date_format:"%Y-%m-%d %H:%M"}</div>
-                                                    {else}
- 						     <div style="height: {math equation="pph-eh" pph=$schedule_pixels_per_hour eh=$schedule_timestep_extra_h}px; width: {math equation="vw-ew" vw=$schedule_venue_width ew=$schedule_timestep_extra_w}px;" class="timestep">{$smarty.section.timestep.index|date_format:"%H:%M"}</div>
-                                                    {/if}
- 						   {/section}
-                                                  </td>
-						  {foreach from=$field.schedule key="venue" item="schedule"}
-						   <td class="venue_col">
-                                                    {assign var=last_start_time value=$field.schedule_start_time_value|intval}
-						    {foreach from=$schedule item="item"}
-                                                     {assign var=item_start value=$item.start_time_value|intval}
-
-                                                     {if $item_start > $last_start_time}
-                                                      {math assign=duration equation="(start-last)/60/60*pph" start=$item_start last=$last_start_time pph=$schedule_pixels_per_hour}
-                                                      <div style="height: {math equation="d-eh" d=$duration eh=$schedule_entry_empty_extra_h}px; width: {math equation="vw-ew" vw=$schedule_venue_width ew=$schedule_entry_empty_extra_w}px;" class="empty entry"></div>
-                                                     {/if}
-
-					             {assign var=scheduleName value="scheduleFields_`$product->id`_`$field.id_customization_field`_`$item.id_customization_field_schedule`"}
-                                                     {math assign=duration equation="(end-start)/60/60*pph" end=$item.end_time_value|intval start=$item_start last=$last_start_time pph=$schedule_pixels_per_hour}
-                                                     <div style="height: {math equation="d-eh" d=$duration eh=$schedule_entry_extra_h}px; width: {math equation="vw-ew" vw=$schedule_venue_width ew=$schedule_entry_extra_w}px;" class="entry {if isset($scheduleFields[$scheduleName])}selected{/if} {if $item.seats|intval > 0}available{else}full{/if}" onclick="scheduleSelect(event)">
-						      <div class="duration">{$item.start_time_value|date_format:"%H:%M"}-{$item.end_time_value|date_format:"%H:%M"}</div>
-						      <div class="name">{$item.name}</div>
-						      <div class="description">{$item.description}</div>
-						      <div class="teacher">Teacher: {$item.teacher}</div>
-						      <div class="searts">Seats left: {$item.seats}</div>
-                                                      <input type="hidden" name="{$scheduleName}" value="{$scheduleFields[$scheduleName]}">
-                                                      <span style="display:none" class="start_time_value">{$item.start_time_value}</span>
-                                                      <span style="display:none" class="end_time_value">{$item.end_time_value}</span>
-						     </div>
-                                                     {assign var=last_start_time value=$item.end_time_value|intval}
-
-                                                    {/foreach}
-                                                   </td>
-                                                  {/foreach}
-                                                 </tr>
-
-                                                </table>
-					{/if}
-				{/foreach}
+			 {assign var=schedule_entry_template value="$tpl_dir./customization_schedule_entry_frontend.tpl"}
+			 {counter start=0 assign='customizationField'}
+			 {foreach from=$customizationFields item='schedule' name='customizationFields'}
+			  {if $schedule.type == 2}
+			   {if !empty($schedule.name)}<h2>{$schedule.name}</h2>{/if}
+			   {include file=$tpl_dir./customization_schedule.tpl'}
+                          {/if}
+                         {/foreach}
 			{/if}
-
-
-
-
 			<p style="clear: left;" id="customizedDatas">
 				<input type="hidden" name="quantityBackup" id="quantityBackup" value="" />
 				<input type="hidden" name="submitCustomizedDatas" value="1" />

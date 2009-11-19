@@ -8,6 +8,8 @@
 	1 red: #da0f00
 */
 
+@import url("schedule.css");
+
 * {
 	padding:0;
 	margin:0;
@@ -2543,30 +2545,3 @@ div.star a:hover{
 	padding: 1pt;
 }
 
-.schedule {
- border-spacing: 0px;
-}
-.schedule .timestep {
-  border-bottom: 1px solid #dddddd;
-}
-.schedule .venue_col {
- vertical-align: top;
-}
-.schedule .entry.empty {
- background: #eeeeee;
-}
-.schedule .entry.available {
- background: #dddddd;
- border: 2px solid #aaaaaa;
- padding: 5px;
-}
-.schedule .entry.selected {
- background: #ddffdd;
- border: 2px solid #00dd00;
- padding: 5px;
-}
-.schedule .entry.full {
- background: #ffdddd;
- border: 2px solid #dd0000;
- padding: 5px;
-}

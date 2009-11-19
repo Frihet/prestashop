@@ -454,13 +454,14 @@ class AdminProducts extends AdminTab
 			{
 				if (Validate::isLoadedObject($product = new Product(intval(Tools::getValue('id_product')))))
 				{
-					if (!$product->createLabels(intval($_POST['uploadable_files']) - intval($product->uploadable_files), intval($_POST['text_fields']) - intval($product->text_fields)))
+					if (!$product->createLabels(intval($_POST['uploadable_files']) - intval($product->uploadable_files), intval($_POST['text_fields']) - intval($product->text_fields), intval($_POST['schedules']) - intval($product->schedules)))
 						$this->_errors[] = Tools::displayError('an error occured while creating customization fields');
 					if (!sizeof($this->_errors) AND !$product->updateLabels())
 						$this->_errors[] = Tools::displayError('an error occured while updating customization');
 					$product->uploadable_files = intval($_POST['uploadable_files']);
 					$product->text_fields = intval($_POST['text_fields']);
-					$product->customizable = (intval($_POST['uploadable_files']) > 0 OR intval($_POST['text_fields']) > 0) ? 1 : 0;
+					$product->schedules = intval($_POST['schedules']);
+					$product->customizable = (intval($_POST['uploadable_files']) > 0 OR intval($_POST['text_fields']) > 0 OR intval($_POST['schedules']) > 0) ? 1 : 0;
 					if (!sizeof($this->_errors) AND !$product->update())
 						$this->_errors[] = Tools::displayError('an error occured while updating customization configuration');
 					if (!sizeof($this->_errors))
@@ -510,6 +511,62 @@ class AdminProducts extends AdminTab
 			else
 				$this->_errors[] = Tools::displayError('You do not have permission to delete here.');
 		}
+
+		elseif (isset($_GET['schedule_editor_select']))
+		{
+			global $cookie;
+			$cookie->id_customization_field_schedule = $_GET['schedule_editor_select'];
+		}
+
+		elseif (Tools::isSubmit('submitScheduleEditorCancel'))
+		{
+			global $cookie;
+			unset($cookie->id_customization_field_schedule);
+		}
+
+		elseif (Tools::isSubmit('submitScheduleEditorAddEntry'))
+		{
+			if ($this->tabAccess['edit'] === '1')
+			{
+				if (Validate::isLoadedObject($product = new Product(intval(Tools::getValue('id_product')))))
+				{
+					global $cookie;
+
+					$product->addScheduleEntry(
+						array("id_customization_field" => $_POST["schedule_entry_editor_id_customization_field"],
+						      "id_customization_field_schedule" => $_POST["schedule_entry_editor_id_customization_field_schedule"],
+						      "start_time" => $_POST["schedule_entry_editor_start_time"],
+						      "end_time" => $_POST["schedule_entry_editor_end_time"],
+						      "venue" => $_POST["schedule_entry_editor_venue"],
+						      "seats" => $_POST["schedule_entry_editor_seats"],
+						      "teacher" => $_POST["schedule_entry_editor_teacher"]),
+						array(array("id_lang" => $cookie->id_lang,
+						            "name" =>$_POST["schedule_entry_editor_name"],
+						            "description" =>$_POST["schedule_entry_editor_description"]))
+					);
+				}
+				else
+					$this->_errors[] = Tools::displayError('product must be created before adding customization possibilities');
+			}
+			else
+				$this->_errors[] = Tools::displayError('You do not have permission to edit anything here.');
+		}
+
+		elseif (Tools::isSubmit('submitScheduleEditorDeleteEntry'))
+		{
+			if ($this->tabAccess['edit'] === '1')
+			{
+				if (Validate::isLoadedObject($product = new Product(intval(Tools::getValue('id_product')))))
+				{
+					$product->removeScheduleEntry($_POST['schedule_entry_editor_id_customization_field_schedule']);
+				}
+				else
+					$this->_errors[] = Tools::displayError('product must be created before adding customization possibilities');
+			}
+			else
+				$this->_errors[] = Tools::displayError('You do not have permission to edit anything here.');
+		}
+
 		else
 			parent::postProcess(true);
 	}
@@ -1152,6 +1209,9 @@ class AdminProducts extends AdminTab
 		$j = 0;
 		for ($i = $alreadyGenerated[_CUSTOMIZE_TEXTFIELD_]; $i < intval($this->getFieldValue($obj, 'text_fields')); $i++)
 			$customizableFieldIds[] = 'newLabel_'._CUSTOMIZE_TEXTFIELD_.'_'.$j++;
+		$j = 0;
+		for ($i = $alreadyGenerated[_CUSTOMIZE_SCHEDULE_]; $i < intval($this->getFieldValue($obj, 'schedules')); $i++)
+			$customizableFieldIds[] = 'newLabel_'._CUSTOMIZE_SCHEDULE_.'_'.$j++;
 		return implode('¤', $customizableFieldIds);
 	}
 
@@ -1176,7 +1236,9 @@ class AdminProducts extends AdminTab
 	private function _displayLabelFields(&$obj, &$labels, $languages, $defaultLanguage, $type)
 	{
 		$type = intval($type);
-		$labelGenerated = array(_CUSTOMIZE_FILE_ => (isset($labels[_CUSTOMIZE_FILE_]) ? count($labels[_CUSTOMIZE_FILE_]) : 0), _CUSTOMIZE_TEXTFIELD_ => (isset($labels[_CUSTOMIZE_TEXTFIELD_]) ? count($labels[_CUSTOMIZE_TEXTFIELD_]) : 0));
+		$labelGenerated = array(_CUSTOMIZE_FILE_ => (isset($labels[_CUSTOMIZE_FILE_]) ? count($labels[_CUSTOMIZE_FILE_]) : 0),
+				         _CUSTOMIZE_TEXTFIELD_ => (isset($labels[_CUSTOMIZE_TEXTFIELD_]) ? count($labels[_CUSTOMIZE_TEXTFIELD_]) : 0),
+				         _CUSTOMIZE_SCHEDULE_ => (isset($labels[_CUSTOMIZE_SCHEDULE_]) ? count($labels[_CUSTOMIZE_SCHEDULE_]) : 0));
 
 		$fieldIds = $this->_getCustomizationFieldIds($labels, $labelGenerated, $obj);
 		if (isset($labels[$type]))
@@ -1191,6 +1253,7 @@ class AdminProducts extends AdminTab
 		
 		$hasFileLabels = intval($this->getFieldValue($obj, 'uploadable_files'));
 		$hasTextLabels = intval($this->getFieldValue($obj, 'text_fields'));
+		$hasScheduleLabels = intval($this->getFieldValue($obj, 'schedules'));
 
 		echo '
 			<table cellpadding="5">
@@ -1212,6 +1275,13 @@ class AdminProducts extends AdminTab
 					<td style="padding-bottom:5px;">
 						<input type="text" name="text_fields" id="text_fields" size="4" value="'.(intval($this->getFieldValue($obj, 'text_fields')) ? intval($this->getFieldValue($obj, 'text_fields')) : '0').'" />
 						<p>'.$this->l('Number of text fields displayed').'</p>
+					</td>
+				</tr>
+				<tr>
+					<td style="width:150px" valign="top">'.$this->l('Schedules:').'</td>
+					<td style="padding-bottom:5px;">
+						<input type="text" name="schedules" id="schedules" size="4" value="'.(intval($this->getFieldValue($obj, 'schedules')) ? intval($this->getFieldValue($obj, 'schedules')) : '0').'" />
+						<p>'.$this->l('Number of schedules displayed').'</p>
 					</td>
 				</tr>
 				<tr>
@@ -1245,7 +1315,20 @@ class AdminProducts extends AdminTab
 					</td>
 				</tr>';
 				}
-				
+
+				if ($hasScheduleLabels)
+				{
+					echo '
+				<tr><td colspan="2"><hr style="width:730px;"></td></tr>
+				<tr>
+					<td style="width:150px" valign="top">'.$this->l('Schedule labels:').'</td>
+					<td style="padding-bottom:5px;">';
+					$this->_displayLabelFields($obj, $labels, $languages, $defaultLanguage, _CUSTOMIZE_SCHEDULE_);
+					echo '
+					</td>
+				</tr>';
+				}
+
 				echo '
 				<tr>
 					<td colspan="2" style="text-align:center;">';
@@ -1256,8 +1339,27 @@ class AdminProducts extends AdminTab
 					</td>
 				</tr>
 			</table>';
+		$this->displayFormSchedules($obj, $languages, $defaultLanguage, $labels);
 	}
-	
+
+	function displayFormSchedules($obj, $languages, $defaultLanguage, $labels)
+	{
+		global $cookie, $smarty, $currentIndex;
+
+		$css_dir = _THEME_CSS_DIR_;
+		echo "<link href='{$css_dir}schedule.css' rel='stylesheet' type='text/css' />";
+
+		if (isset($cookie->id_customization_field_schedule))
+			$smarty->assign('id_customization_field_schedule', $cookie->id_customization_field_schedule);
+		
+		$token = Tools::getAdminToken('AdminCatalog'.intval(Tab::getIdFromClassName('AdminCatalog')).intval($cookie->id_employee));
+		$id_category = intval(Tools::getValue('id_category'));
+		$smarty->assign('base_url', "{$currentIndex}&id_product={$obj->id}&id_category={$id_category}&add{$this->table}&tabs=4&token={$token}");
+		$smarty->assign('customizationFields', $obj->getCustomizationFields(intval($cookie->id_lang)));
+		$smarty->assign('tpl_dir', _PS_THEME_DIR_);
+		$smarty->display(_PS_THEME_DIR_.'admin_products_schedules.tpl');
+	}
+
 	function displayFormAttachments($obj, $languages, $defaultLanguage)
 	{
 		global $currentIndex, $cookie;
@@ -1577,8 +1679,10 @@ class AdminProducts extends AdminTab
 			var required = \''.$this->l('required').'\';
 			var customizationUploadableFileNumber = '.intval($this->getFieldValue($obj, 'uploadable_files')).';
 			var customizationTextFieldNumber = '.intval($this->getFieldValue($obj, 'text_fields')).';
+			var customizationScheduleNumber = '.intval($this->getFieldValue($obj, 'schedules')).';
 			var uploadableFileLabel = 0;
 			var textFieldLabel = 0;
+			var scheduleLabel = 0;
 			var defaultLanguage = '.intval($defaultLanguage).';
 			var languages = new Array();';
 		$i = 0;

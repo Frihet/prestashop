@@ -2429,7 +2429,7 @@ class		Product extends ObjectModel
 		return true;
 	}
 
-	public function createLabels($uploadableFiles, $textFields)
+	public function createLabels($uploadableFiles, $textFields, $schedules)
 	{
 		$languages = Language::getLanguages();
 		if (intval($uploadableFiles) > 0)
@@ -2439,6 +2439,10 @@ class		Product extends ObjectModel
 		if (intval($textFields) > 0)
 			for ($i = 0; $i < intval($textFields); $i++)
 				if (!$this->_createLabel($languages, _CUSTOMIZE_TEXTFIELD_))
+					return false;
+		if (intval($schedules) > 0)
+			for ($i = 0; $i < intval($schedules); $i++)
+				if (!$this->_createLabel($languages, _CUSTOMIZE_SCHEDULE_))
 					return false;
 		return true;
 	}
@@ -2470,6 +2474,72 @@ class		Product extends ObjectModel
 			return false;
 		return true;
 	}
+
+	public function translateScheduleEntry($id_customization_field_schedule, $translation) {
+	       $id_customization_field_schedule = pSQL($id_customization_field_schedule);
+	       $id_lang = pSQL($translation['id_lang']);
+
+	       $translation['id_customization_field_schedule'] = $id_customization_field_schedule;
+
+	       $sql = "delete from PREFIX_customization_field_schedule_lang where id_customization_field_schedule = '{$id_customization_field_schedule}' and id_lang = {$id_lang}";
+	       $sql = str_replace('PREFIX_', _DB_PREFIX_, $sql);
+	       Db::getInstance()->Execute($sql);
+
+	       $cols = array();
+	       $values = array();
+	       foreach ($translation as $key => $value) {
+		       $cols[] = $key; 
+		       $values[] = "'" . pSQL($value) . "'";
+	       }
+	       $cols = implode(", ", $cols);
+	       $values = implode(", ", $values);
+
+	       $sql = "insert into PREFIX_customization_field_schedule_lang ({$cols}) values ({$values})";
+	       $sql = str_replace('PREFIX_', _DB_PREFIX_, $sql);
+	       Db::getInstance()->Execute($sql);
+	}
+
+	public function addScheduleEntry($schedule_entry, $translations = array()) {
+	       if (isset($schedule_entry['id_customization_field_schedule'])) {
+	                $params = array();
+	       		foreach ($schedule_entry as $key => $value)
+	       	       		$params[] = "{$key} = '" . pSQL($value) . "'";
+			$params = implode(", ", $params);
+			$id_customization_field_schedule = pSQL($schedule_entry['id_customization_field_schedule']);
+			$sql = "update PREFIX_customization_field_schedule set {$params} where id_customization_field_schedule = '{$id_customization_field_schedule}'";
+		} else {
+		  	$cols = array();
+		  	$values = array();
+	       		foreach ($schedule_entry as $key => $value) {
+	       	       		$cols[] = $key; 
+				$values[] = "'" . pSQL($value) . "'";
+			}
+			$cols = implode(", ", $cols);
+			$values = implode(", ", $values);
+			$sql = "insert into PREFIX_customization_field_schedule ({$cols}) values ({$values})";
+		}
+		$sql = str_replace('PREFIX_', _DB_PREFIX_, $sql);
+		Db::getInstance()->Execute($sql);
+		
+		if (!isset($schedule_entry['id_customization_field_schedule'])) {
+		   	$sql = "select LAST_INSERT_ID() as last_id";
+			$row = Db::getInstance()->getRow($sql);
+			$schedule_entry['id_customization_field_schedule'] = $row['last_id'];
+			$id_customization_field_schedule = pSQL($schedule_entry['id_customization_field_schedule']);
+		}
+
+		foreach($translations as $translation)
+			$this->translateScheduleEntry($id_customization_field_schedule, $translation);
+        }
+
+	public function removeScheduleEntry($id_customization_field_schedule) {
+	        $sql = "delete from PREFIX_customization_field_schedule where id_customization_field_schedule = '" . pSQL($id_customization_field_schedule) . "'";
+		$sql = str_replace('PREFIX_', _DB_PREFIX_, $sql);
+		Db::getInstance()->Execute($sql);
+	        $sql = "delete from PREFIX_customization_field_schedule_lang where id_customization_field_schedule = '" . pSQL($id_customization_field_schedule) . "'";
+		$sql = str_replace('PREFIX_', _DB_PREFIX_, $sql);
+		Db::getInstance()->Execute($sql);
+        }
 
 	public function getCustomizationFields($id_lang = false)
 	{
