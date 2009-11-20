@@ -1,4 +1,4 @@
-{if scenes}
+{if $scenes}
 <script type="text/javascript" src="{$content_dir}js/jquery/jquery.cluetip.js"></script>
 <script type="text/javascript" src="{$content_dir}js/jquery/jquery.scrollto.js"></script>
 <script type="text/javascript" src="{$content_dir}js/jquery/jquery.serialScroll.js"></script>
