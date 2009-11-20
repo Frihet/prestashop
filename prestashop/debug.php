@@ -85,10 +85,12 @@ function GetStackTrace ($slice = 0)
 function FCToolkitErrorHandler ($errno, $errstr, $errfile, $errline)
 {
     global $ignore_errno;
-    
+
+/*    
     if(is_array($ignore_errno) && in_array($errno, $ignore_errno) && !DEBUG ) {
         return true;
         }
+*/
 /*
     if ($errno != E_USER_ERROR && $errno != E_USER_WARNING && $errno != E_USER_NOTICE)
         return  false;

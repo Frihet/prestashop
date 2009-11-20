@@ -1,0 +1,4 @@
+http://www.eyecon.ro/datepicker/
+
+
+License: Dual licensed under the MIT and GPL licenses.
