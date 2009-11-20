@@ -156,15 +156,17 @@ ELSE
 	END 
 
 END  ";
+		$price_sql = str_replace('PREFIX_', _DB_PREFIX_, Product::getProductPriceSql('p.id_product', 'pp'));
 	
-		$sql='SELECT DISTINCT p.id_product,0 as `new`, '.(((Tools::getValue('price_from')>0)||(Tools::getValue('price_to')>0))? $price_brutto.' as price_brutto,':'').' p.*, pl.`description_short`, pl.`available_now`, pl.`available_later`, pl.`link_rewrite`, pl.`name`, t.`rate`, i.`id_image`, il.`legend` 
+		$sql='SELECT DISTINCT p.id_product,0 as `new`, '.(((Tools::getValue('price_from')>0)||(Tools::getValue('price_to')>0))? $price_brutto.' as price_brutto,':'').' p.*, pl.`description_short`, pl.`available_now`, pl.`available_later`, pl.`link_rewrite`, pl.`name`, t.`rate`, i.`id_image`, il.`legend`, pp.*
 		FROM `'._DB_PREFIX_.'product` p
 		'.$attributes.$displaycategories.'
 		'.(((Tools::getValue('price_from')>0)||(Tools::getValue('price_to')>0))? 'JOIN `'._DB_PREFIX_.'currency` cu ':'').'
 		LEFT JOIN `'._DB_PREFIX_.'product_lang` pl ON (p.`id_product` = pl.`id_product` AND pl.`id_lang` = '.intval($id_lang).')
 		LEFT OUTER JOIN `'._DB_PREFIX_.'image` i ON (i.`id_product` = p.`id_product` AND i.`cover` = 1)
 		LEFT JOIN `'._DB_PREFIX_.'image_lang` il ON (i.`id_image` = il.`id_image` AND il.`id_lang` = '.intval($id_lang).')
-		LEFT JOIN `'._DB_PREFIX_.'tax` t ON p.`id_tax` = t.`id_tax` 		 
+		'.$price_sql.'
+		LEFT JOIN `'._DB_PREFIX_.'tax` t ON pp.`id_tax` = t.`id_tax` 		 
 		WHERE p.`active` = 1 '.$searchbywords.' 
 		'.(((Tools::getValue('price_from')>0)||(Tools::getValue('price_to')>0))? 'AND cu.id_currency='.intval($cookie->id_currency):'').' 
 		'.((Tools::getValue('price_from')>0) ? 'AND '.$price_brutto.' >= '.intval((Tools::getValue('price_from'))) : '').'
@@ -173,14 +175,15 @@ END  ";
 		'.($orderBy ? ' ORDER BY '.$orderBy : '').($orderWay ? ' '.$orderWay : '').'
 		LIMIT '.intval(($pageNumber - 1) * $pageSize).','.intval($pageSize);
 		
-		$sql_count='SELECT DISTINCT p.id_product,'.(((Tools::getValue('price_from')>0)||(Tools::getValue('price_to')>0))? $price_brutto.' as price_brutto,':'').' p.*, pl.`description_short`, pl.`available_now`, pl.`available_later`, pl.`link_rewrite`, pl.`name`, t.`rate`, i.`id_image`, il.`legend` 
+		$sql_count='SELECT DISTINCT p.id_product,'.(((Tools::getValue('price_from')>0)||(Tools::getValue('price_to')>0))? $price_brutto.' as price_brutto,':'').' p.*, pl.`description_short`, pl.`available_now`, pl.`available_later`, pl.`link_rewrite`, pl.`name`, t.`rate`, i.`id_image`, il.`legend`, pp.* 
 		FROM `'._DB_PREFIX_.'product` p
 		'.$attributes.$displaycategories.'
 		'.(((Tools::getValue('price_from')>0)||(Tools::getValue('price_to')>0))? 'JOIN `'._DB_PREFIX_.'currency` cu ':'').'
 		LEFT JOIN `'._DB_PREFIX_.'product_lang` pl ON (p.`id_product` = pl.`id_product` AND pl.`id_lang` = '.intval($id_lang).')
 		LEFT OUTER JOIN `'._DB_PREFIX_.'image` i ON (i.`id_product` = p.`id_product` AND i.`cover` = 1)
 		LEFT JOIN `'._DB_PREFIX_.'image_lang` il ON (i.`id_image` = il.`id_image` AND il.`id_lang` = '.intval($id_lang).')
-		LEFT JOIN `'._DB_PREFIX_.'tax` t ON p.`id_tax` = t.`id_tax` 		 
+		'.$price_sql.'
+		LEFT JOIN `'._DB_PREFIX_.'tax` t ON pp.`id_tax` = t.`id_tax` 		 
 		WHERE p.`active` = 1 '.$searchbywords.' 
 		'.(((Tools::getValue('price_from')>0)||(Tools::getValue('price_to')>0))? 'AND cu.id_currency='.intval($cookie->id_currency):'').' 
 		'.((Tools::getValue('price_from')>0) ? 'AND '.$price_brutto.' >= '.intval((Tools::getValue('price_from'))) : '').'
