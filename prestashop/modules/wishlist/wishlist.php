@@ -19,22 +19,15 @@ class WishList extends Module
 			if
 			(
 				parent::install() == false
-				//OR $this->registerHook('top') == false
+				OR $this->registerHook('shoppingCartExtra') == false
 			)
 			return false;
 		return true;
 	}
-/*
-	public function hookProductActions($params)
+	public function hookShoppingCartExtra($params)
         {
-                global $smarty, $compare_cart, $cookie;
-
-                $smarty->assign('id_product', intval(Tools::getValue('id_product')));
- 		$this->smartyAssigns($smarty, $params);
-
-		return $this->display(__FILE__, 'productactions.tpl');
+		return $this->display(__FILE__, 'cartlink.tpl');
         }
-*/
 }
 
 ?>

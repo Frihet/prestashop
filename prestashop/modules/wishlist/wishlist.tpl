@@ -7,6 +7,8 @@
 {capture name=path}{l s='Wishlist'}{/capture}
 {include file=$tpl_dir./breadcrumb.tpl}
 
+<div class="success">{l s="You can bookmark this page, or send the link to this page to friends."}</div>
+
 <h2>{l s='Wishlist'}</h2>
 
 {include file=$tpl_dir./errors.tpl}
