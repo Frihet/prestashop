@@ -3,6 +3,8 @@
 include_once(dirname(__FILE__).'/../../config/config.inc.php');
 include_once(dirname(__FILE__).'/../../init.php');
 
+require_once(dirname(__FILE__).'/../../classes/Product.php');
+
 
 function getHashFromCart($cart)
 {
@@ -28,6 +30,8 @@ $wishlist_cart = getCartFromHash($_GET['id']);
 
 
 function ensureCart() {
+        global $cart, $cookie;
+
 	/* Product addition to the cart */
 	if (!isset($cart->id) OR !$cart->id)
 	{
@@ -39,111 +43,101 @@ function ensureCart() {
 	}
 }
 
-function copyCartProduct($dst_cart_id, $where = 'true', $join = '') {
+function copyQty($src_cart, $dst_cart, $id_product = false, $id_customization = false) {
+	if ($id_product == false) {
+	        if ($id_customization == false) {
+			$sql = "
+			  select id_cart, id_product, id_product_attribute, quantity, id_vendor
+			  from PREFIX_cart_product
+			  where id_cart = '{$src_cart->id}'
+			 ";
+			 $sql = str_replace('PREFIX_', _DB_PREFIX_, $sql);
+			 $result = Db::getInstance()->ExecuteS($sql);
+			 foreach ($result as $row) {
+				 copyQty($src_cart, $dst_cart, $row['id_product'], false);
+			 }
+			 return ;
+		} else {
+		        $sql = "
+			 select id_customization, id_product_attribute, id_cart, id_product, quantity, quantity_refunded, quantity_returned
+			 from PREFIX_customization
+			 where id_customization = '{$id_customization}'
+			";
+			$sql = str_replace('PREFIX_', _DB_PREFIX_, $sql);
+			$row = Db::getInstance()->getRow($sql);   
+			$id_product = $row['id_product'];
+		}
+	}
+
 	$sql = "
-	 insert into
-          PREFIX_cart_product (id_cart, id_product, id_product_attribute, quantity, id_vendor)
-         select
-	  {$dst_cart_id},
-	  PREFIX_cart_product.id_product,
-	  PREFIX_cart_product.id_product_attribute,
-	  PREFIX_cart_product.quantity,
-	  PREFIX_cart_product.id_vendor
-	 from 
-	  PREFIX_cart_product
-	  {$join}
-	 where
-	  {$where}
+         select id_cart, id_product, id_product_attribute, quantity, id_vendor
+         from PREFIX_cart_product
+	 where id_cart = {$src_cart->id} and id_product = {$id_product}
         ";
 	$sql = str_replace('PREFIX_', _DB_PREFIX_, $sql);
-	Db::getInstance()->Execute($sql);
+	$row = Db::getInstance()->getRow($sql);
+
+	$id_product_attribute = $row['id_product_attribute'];
+	$quantity = $row['quantity'];
+
+	if ($id_customization == false) {
+	        $sql = "
+		 select id_customization, id_product_attribute, id_cart, id_product, quantity, quantity_refunded, quantity_returned
+		 from PREFIX_customization
+                 where id_product = '{$id_product}' and id_cart = '{$src_cart->id}' and id_product_attribute = '{$id_product_attribute}'
+		";
+		$sql = str_replace('PREFIX_', _DB_PREFIX_, $sql);
+		$result = Db::getInstance()->ExecuteS($sql);	        
+		if (count($result) > 0) {
+			foreach ($result as $row) {
+				copyQty($src_cart, $dst_cart, $id_product, $row['id_customization']);
+			}
+			return ;
+		}
+	}
+
+	$dst_cart->deleteCustomizationInformations($id_product);
+	if ($id_customization != false) {
+		$sql = "
+		 select id_customization, id_product_attribute, id_cart, id_product, quantity, quantity_refunded, quantity_returned
+		 from PREFIX_customization
+                 where id_customization = '{$id_customization}'
+		";
+		$sql = str_replace('PREFIX_', _DB_PREFIX_, $sql);
+		$row = Db::getInstance()->getRow($sql);
+		$quantity = $row['quantity'];
+
+		$sql = "
+		 select id_customization, type, `index`, value
+		 from PREFIX_customized_data
+                 where id_customization = '{$id_customization}'
+		";
+		$sql = str_replace('PREFIX_', _DB_PREFIX_, $sql);
+		$result = Db::getInstance()->ExecuteS($sql);	        
+		foreach ($result as $row) {
+			if ($row['type'] == _CUSTOMIZE_FILE_) {
+			 	$dst_cart->addPictureToProduct($id_product, $row['index'], $row['value']);
+			} else if ($row['type'] == _CUSTOMIZE_TEXTFIELD_) {
+			        $dst_cart->addTextFieldToProduct($id_product, $row['index'], $row['value']);
+			} else if ($row['type'] == _CUSTOMIZE_SCHEDULE_) {
+			        $dst_cart->setScheduleFieldToProduct($id_product, $row['index'], $row['value']);
+			} else { die("INTERNAL ERROR ARGH ARGH: Unknown customization type:" .$row['type'] ); }
+		}
+        }
+ 	$dst_cart->updateQty($quantity, $id_product, $id_product_attribute);
 }
 
-function copyCustomization($dst_cart_id, $where = 'true', $join = '') {
-	copyCartProduct($dst_cart_id,
-         $where,
-         "left outer join PREFIX_customization on
-           PREFIX_cart_product.id_cart = PREFIX_customization.id_cart
-           and PREFIX_cart_product.id_product = PREFIX_customization.id_product
-         ");
 
-	$sql = "
-	 insert into
-          PREFIX_customization (id_product_attribute, id_cart, id_product, quantity, quantity_refunded, quantity_returned)
-         select
-	  PREFIX_customization.id_product_attribute,
-	  {$dst_cart_id},
-	  PREFIX_customization.id_product,
-	  PREFIX_customization.quantity,
-	  PREFIX_customization.quantity_refunded,
-	  PREFIX_customization.quantity_returned
-	 from 
-          PREFIX_cart_product
-	  join PREFIX_customization on
-           PREFIX_cart_product.id_cart = PREFIX_customization.id_cart
-           and PREFIX_cart_product.id_product = PREFIX_customization.id_product
-	 where
-	  {$where}
-        ";
-	$sql = str_replace('PREFIX_', _DB_PREFIX_, $sql);
-	Db::getInstance()->Execute($sql);
-
-	$row = Db::getInstance()->getRow("select last_insert_id() as id");
-	$id_customization = $row['id'];
-
-	$sql = "
-	 insert into
-          PREFIX_customized_data (id_customization, `type`, `index`, value)
-         select
-	  {$id_customization},
-	  PREFIX_customized_data.type,
-	  PREFIX_customized_data.index,
-	  PREFIX_customized_data.value
-	 from 
-          PREFIX_cart_product
-	  join PREFIX_customization on
-           PREFIX_cart_product.id_cart = PREFIX_customization.id_cart
-           and PREFIX_cart_product.id_product = PREFIX_customization.id_product
-	  join PREFIX_customized_data on
-	   PREFIX_customization.id_customization = PREFIX_customized_data.id_customization
-	 where
-	  {$where}
-        ";
-	$sql = str_replace('PREFIX_', _DB_PREFIX_, $sql);
-	Db::getInstance()->Execute($sql);
-
-	$sql = "
-	 insert into
-          PREFIX_customized_data_schedule_booking (id_customization, id_customization_field, id_customization_field_schedule)
-         select
-	  {$id_customization},
-	  PREFIX_customized_data_schedule_booking.id_customization_field,
-	  PREFIX_customized_data_schedule_booking.id_customization_field_schedule
-	 from 
-          PREFIX_cart_product
-	  join PREFIX_customization on
-           PREFIX_cart_product.id_cart = PREFIX_customization.id_cart
-           and PREFIX_cart_product.id_product = PREFIX_customization.id_product
-	  join PREFIX_customized_data_schedule_booking on
-	   PREFIX_customization.id_customization = PREFIX_customized_data_schedule_booking.id_customization
-	 where
-	  {$where}
-        ";
-	$sql = str_replace('PREFIX_', _DB_PREFIX_, $sql);
-	Db::getInstance()->Execute($sql);
-}
-
+ensureCart();
 if (Tools::isSubmit("addCustomizationToCart")) {
-        copyCustomization($cart->id, "PREFIX_cart_product.id_cart = {$wishlist_cart->id} and PREFIX_customization.id_customization = {$_POST['addCustomizationToCart']}");
+        copyQty($wishlist_cart, $cart, false, $_POST['addCustomizationToCart']);
         Tools::redirect('modules/wishlist/display.php?id=' . getHashFromCart($wishlist_cart));
 } else if (Tools::isSubmit("addProductToCart")) {
-        copyCustomization($cart->id, "PREFIX_cart_product.id_cart = {$wishlist_cart->id} and PREFIX_cart_product.id_product = {$_POST['addProductToCart']}");
+        copyQty($wishlist_cart, $cart, $_POST['addProductToCart']);
         Tools::redirect('modules/wishlist/display.php?id=' . getHashFromCart($wishlist_cart));
 } else if (Tools::isSubmit("addAllToCart")) {
-        copyCustomization($cart->id, "PREFIX_cart_product.id_cart = {$wishlist_cart->id}");
-        Tools::edirect('modules/wishlist/display.php?id=' . getHashFromCart($wishlist_cart));
-} else if (0) {
-        ensureCart();
+        copyQty($wishlist_cart, $cart);
+        Tools::redirect('modules/wishlist/display.php?id=' . getHashFromCart($wishlist_cart));
 }
 
 
