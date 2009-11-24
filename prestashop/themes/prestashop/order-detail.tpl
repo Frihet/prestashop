@@ -217,6 +217,7 @@
 <br />
 {/if}
 </form>
+{$HOOK_ORDER_DETAIL}
 {if count($messages)}
 <p class="bold">{l s='Messages'}</p>
 <div class="table_block">
