@@ -198,12 +198,7 @@ class		Product extends ObjectModel
 		{
 			$this->manufacturer_name = Manufacturer::getNameById(intval($this->id_manufacturer));
 			$this->supplier_name = Supplier::getNameById(intval($this->id_supplier));
-/*
-			$tax = new Tax(intval($this->id_tax), intval($id_lang));
-			$this->tax_name = $tax->name;
-			$this->tax_rate = floatval($tax->rate);
-			$this->new = $this->isNew();
-*/
+
 		}
 		$this->category = Category::getLinkRewrite(intval($this->id_category_default), intval($id_lang));
 		$this->tags = Tag::getProductTags($this->id);
@@ -215,22 +210,11 @@ class		Product extends ObjectModel
 		if (isset($this->id))
 			$fields['id_product'] = intval($this->id);
 		$fields['type'] = pSQL($this->type);
-//		$fields['id_tax'] = intval($this->id_tax);
 		$fields['id_manufacturer'] = intval($this->id_manufacturer);
 		$fields['id_supplier'] = intval($this->id_supplier);
 		$fields['id_category_default'] = intval($this->id_category_default);
 		$fields['id_color_default'] = intval($this->id_color_default);
 		$fields['quantity'] = intval($this->quantity);
-/*
-		$fields['price'] = floatval($this->price);
-		$fields['wholesale_price'] = floatval($this->wholesale_price);
-		$fields['reduction_price'] = floatval($this->reduction_price);
-		$fields['reduction_percent'] = floatval($this->reduction_percent);
-		$fields['reduction_from'] = pSQL($this->reduction_from);
-		$fields['reduction_to'] = pSQL($this->reduction_to);
-		$fields['on_sale'] = intval($this->on_sale);
-		$fields['ecotax'] = floatval($this->ecotax);
-*/
 		$fields['reference'] = pSQL($this->reference);
 		$fields['supplier_reference'] = pSQL($this->supplier_reference);
 		$fields['location'] = pSQL($this->location);
@@ -1831,6 +1815,7 @@ class		Product extends ObjectModel
 		$sql = "
 		 SELECT
 		  p.*,
+		  pp.*,
 		  pl.`description`,
 		  pl.`description_short`,
 		  pl.`link_rewrite`,

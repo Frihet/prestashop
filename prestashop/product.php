@@ -311,7 +311,7 @@ else
 				'combinationImages' => $combinationImages));
 		}
 		$smarty->assign(array(
-			'no_tax' => Tax::excludeTaxeOption() OR !Tax::getApplicableTax(intval($product->id_tax), 1),
+			'no_tax' => Tax::excludeTaxeOption() OR !Tax::getApplicableTax($tax_datas['id_tax'], 1),
 			'customizationFields' => $product->getCustomizationFields(intval($cookie->id_lang))
 		));
 		
