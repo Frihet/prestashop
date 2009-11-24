@@ -258,6 +258,10 @@
 
                 break;
 
+		case "POSTEN.NO": // Posten Norge AS
+		     $link="<a href='http://sporing.posten.no/sporing.html?q={$this->TRACKING_NUMBER}'{$this->OPENWINDOW}{$this->EXTRACODE}>{$this->LINKTEXT}</a>";
+		break;
+
                 default:
                     echo "Carrier Code <b>".$this->CARRIER."</B> Not Found";
             }
