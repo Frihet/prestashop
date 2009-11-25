@@ -332,8 +332,6 @@ var fieldRequired = '{l s='Please fill all required fields' js=1}';
 </div>
 {/if}
 
-{$HOOK_PRODUCT_FOOTER}
-
 <!-- description and features -->
 {if $product->description || $features || $accessories || $HOOK_PRODUCT_TAB || $attachments}
 <div id="more_info_block" class="clear">
@@ -351,14 +349,43 @@ var fieldRequired = '{l s='Please fill all required fields' js=1}';
 	{/if}
 	{if $features}
 		<!-- product's features -->
-		<ul id="idTab2" class="bullet">
-		{foreach from=$features item=feature}
-			<li><span>{$feature.name|escape:'htmlall':'UTF-8'}</span> {$feature.value|escape:'htmlall':'UTF-8'}</li>
-		{/foreach}
-		</ul>
+		<div id="idTab2" class="bullet">
+
+		     	{set var=$feature_categories value=array()}
+			{foreach from=$features item=feature}
+				{set var=$feature_category value=$feature.name|regex_replace:"+[^/]*$+":""|regex_replace:"+/$+":""}
+				{if $feature_category != ''}
+				    {set var=$feature_categories.$feature_category value=true}
+				{/if}
+			{/foreach}
+
+			<ul id="features_info_tabs" class="idTabs idTabsShort">
+			        <li><a id="features_tab_general" href="#features_general">{l s='General information'}</a></li>
+				{foreach from=$feature_categories key=feature_category item=blah}
+			                <li><a id="features_tab_{$feature_category|escape:urlpathinfo}" href="#features_{$feature_category|escape:urlpathinfo}">{$feature_category}</a></li>
+				{/foreach}
+			</ul>
+			<div id="features_info_sheets" class="sheets align_justify">
+				<div id="features_general">
+					{foreach from=$features item=feature}
+						{if $feature.name|regex_replace:"+^[^/]*$+":"" == ""}
+						        <li><span>{$feature.name|escape:'htmlall':'UTF-8'}</span> {$feature.value|escape:'htmlall':'UTF-8'}</li>
+						{/if}
+					{/foreach}
+				</div>
+				{foreach from=$feature_categories key=feature_category item=blah}
+			                <div id="features_{$feature_category|escape:urlpathinfo}">
+						{foreach from=$features item=feature}
+							{if $feature.name|regex_replace:"+/[^/]*$+":"" == $feature_category}
+								<li><span>{$feature.name|regex_replace:"+^[^/]*/+":""|escape:'htmlall':'UTF-8'}</span> {$feature.value|escape:'htmlall':'UTF-8'}</li>
+							{/if}
+						{/foreach}
+					</div>
+				{/foreach}
+			</div>
+		</div>
 	{/if}
 	{if $attachments}
-		<ul id="idTab9" class="bullet">
 		{foreach from=$attachments item=attachment}
 			<li><a href="{$base_dir}attachment.php?id_attachment={$attachment.id_attachment}">{$attachment.name|escape:'htmlall':'UTF-8'}</a><br />{$attachment.description|escape:'htmlall':'UTF-8'}</li>
 		{/foreach}
@@ -458,6 +485,8 @@ var fieldRequired = '{l s='Please fill all required fields' js=1}';
 		<p class="clear required"><sup>*</sup> {l s='required fields'}</p>
 	</div>
 {/if}
+
+{$HOOK_PRODUCT_FOOTER}
 
 {if $packItems|@count > 0}
 	<div>
