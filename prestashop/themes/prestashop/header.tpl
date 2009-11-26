@@ -42,17 +42,16 @@
 		<div id="page">
 
 			<!-- Header -->
-			<div>
 				<div id="header">
 					{$HOOK_TOP}
 				</div>
-			</div>
 
-			<!-- Left -->
-			<div id="left_column" class="column">
-				{$HOOK_LEFT_COLUMN}
-			</div>
+			<div class="page_columns">
+				<!-- Left -->
+				<div id="left_column" class="column">
+					{$HOOK_LEFT_COLUMN}
+				</div>
 
-			<!-- Center -->
-			<div id="center_column">
+				<!-- Center -->
+				<div id="center_column">
 	{/if}

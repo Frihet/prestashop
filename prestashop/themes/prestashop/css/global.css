@@ -922,7 +922,7 @@ ul#header_links {
 /* Default block style */
 div.block {
 	margin-bottom: 1em;
-	width: 191px;
+	width: 192px;
 	border: 1pt dashed #999999; 
 }
 #left_column div.block, #right_column div.block {
@@ -985,13 +985,55 @@ div.exclusive .block_content {
 
 /* block myaccount */
 /*
-#cart_block
-#compare_block
+
 */
-#left_column div.myaccount, #right_column div.myaccount { background: #f6dce8 url('../img/block_footer_myaccount.jpg') no-repeat bottom left; }
-div.myaccount h4 { background: #971d58 url('../img/block_header_myaccount.jpg') no-repeat top left; }
-div.myaccount h4 a, div.myaccount h4 { color: white; }
-div.myaccount, div.myaccount a { color: #5d0630; }
+
+div.myaccount,
+#cart_block,
+#compare_block {
+        background: #f6dce8 url('../img/universal/cart/box_bottom.jpg') no-repeat bottom left;
+	border: none;
+}
+div.myaccount h4,
+#cart_block h4,
+#compare_block h4 {
+        background: #ff0000 url('../img/universal/cart/box_top.jpg') no-repeat top left;
+	padding: 0;
+	margin: 0;
+	line-height: 19px;
+}
+div.myaccount h4 a,
+div.myaccount h4 *,
+#cart_block h4 a,
+#cart_block h4 *,
+#compare_block h4 a,
+#compare_block h4 * {
+        padding-left: 5px;
+        background: transparent;
+}
+ 
+div.myaccount,
+div.myaccount a,
+div.myaccount h4 a,
+div.myaccount h4,
+#cart_block,
+#cart_block a,
+#cart_block h4 a,
+#cart_block h4,
+#compare_block,
+#compare_block a,
+#compare_block h4 a,
+#compare_block h4 {
+       color: #000000;
+}
+div.myaccount .block_content,
+#cart_block .block_content,
+#compare_block .block_content {
+	background: #ff0000 url('../img/universal/cart/box_y_repeat.jpg') repeat-y top left;
+	border: none;
+}
+
+
 div.myaccount ul.bullet { margin-top: 0.6em; }
 div.myaccount ul.bullet li { background-image: url('../img/bullet_myaccount.gif'); }
 div.myaccount ul.bullet .icon { display: none; }
@@ -999,11 +1041,6 @@ div.myaccount p.logout { padding: 0.3em 0 0.3em 2em; }
 div.myaccount p.logout, div.myaccount p.logout a { color: #dd2a81; }
 div.myaccount p.logout a { text-decoration: underline; }
 div.myaccount p.logout a:hover { text-decoration: none; }
-div.myaccount .block_content {
-	background: #f6dce8 url('../img/block_bg_myaccount.jpg') repeat-x bottom left;
-	border-left: 1px solid #f6dce8;
-	border-right: 1px solid #f6dce8;
-}
 .account_input {
 	margin-left: 0px;
 	width:15em;
@@ -1550,12 +1587,10 @@ body#category  div#subcategories ul.inline_list  li a img {
 /* product-list.tpl */
 ul#product_list{ margin-top:2em; list-style-type:none; }
 ul#product_list li {
-	background: #d0d3d8 url('../img/block_category_item_bg.jpg') repeat-x;
-	border: solid 1px #d0d3d8;
+	border-top: 1pt dashed #999999;
 	padding: 6px;
 	height:130px;
 	clear:both;
-	margin-bottom:0.3em;
 }
 ul#product_list li a {
 	text-decoration:none;

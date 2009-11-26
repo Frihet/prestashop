@@ -1,4 +1,4 @@
-<div id="compare_block" class="block">
+<div id="event_calendar_block" class="block">
  <h4>{l s='Upcoming events' mod='blockeventcalendar'}</h4>
  <div class="block_content">
   <div id="eventcalendar"></div>
