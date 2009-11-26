@@ -2,10 +2,12 @@
 {include file=$tpl_dir./errors.tpl}
 
 {if $category->id AND $category->active}
-	<h2 class="category_title">
-		{$category->name|escape:'htmlall':'UTF-8'}
-		<span>{$nb_products|intval}&nbsp;{if $nb_products>1}{l s='products'}{else}{l s='product'}{/if}</span>
-	</h2>
+        {if $path|regex_replace:"/.*a href.*/":"" == ""}
+		<h2 class="category_title">
+			{$category->name|escape:'htmlall':'UTF-8'}
+			<span>{$nb_products|intval}&nbsp;{if $nb_products>1}{l s='products'}{else}{l s='product'}{/if}</span>
+		</h2>
+	{/if}
 
 	{if $scenes}
 		<!-- Scenes -->

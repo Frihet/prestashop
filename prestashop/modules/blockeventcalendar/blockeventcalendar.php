@@ -46,6 +46,12 @@ class BlockEventCalendar extends Module
 		return $this->display(__FILE__, 'blockeventcalendar.tpl');
 	}
 
+
+	public function hookLeftColumn($params)
+	{
+		return $this->hookRightColumn($params);
+	}
+
 	function getEventDates()
 	{
 		require_once(dirname(__file__)."/functions.php");
