@@ -60,6 +60,7 @@
 			{assign var='nbLines' value=$nbLi/$nbItemsPerLine|ceil}
 			{assign var='ulHeight' value=$nbLines*$liHeight}
 			<div class="block">
+				<h4>{l s="Current products"}</h4>
 				<div class="products_block">
 					<ul style="height:{$ulHeight}px;">
 						{foreach from=$products item=product name=homeFeaturedProducts}

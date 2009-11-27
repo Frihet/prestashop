@@ -46,12 +46,13 @@
 					{$HOOK_TOP}
 				</div>
 
-			<div class="page_columns">
+			<table id="page_columns">
+			    <tr>
 				<!-- Left -->
-				<div id="left_column" class="column">
+				<td id="left_column" class="column">
 					{$HOOK_LEFT_COLUMN}
-				</div>
+				</td>
 
 				<!-- Center -->
-				<div id="center_column">
+				<td id="center_column">
 	{/if}

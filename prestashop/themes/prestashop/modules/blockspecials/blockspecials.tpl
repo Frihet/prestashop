@@ -20,10 +20,10 @@
 		<p>{l s='No specials at this time' mod='blockspecials'}</p>
 {/if}
 	</div>
-{if $special}
 	<div class="block_buttons">
+{if $special}
 		<a href="{$base_dir}prices-drop.php" title="{l s='All specials' mod='blockspecials'}" class="button_small">{l s='More...' mod='blockspecials'}</a>
-	</div>
 {/if}
+	</div>
 </div>
 <!-- /MODULE Block specials -->

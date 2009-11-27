@@ -1,11 +1,12 @@
 	{if !$content_only}
-			</div>
+			</td>
 
 <!-- Right -->
-				<div id="right_column" class="column">
+				<td id="right_column" class="column">
 					{$HOOK_RIGHT_COLUMN}
-				</div>
-			</div>
+				</td>
+			    </tr>
+			</table>
 
 <!-- Footer -->
 			<div id="footer">{$HOOK_FOOTER}</div>

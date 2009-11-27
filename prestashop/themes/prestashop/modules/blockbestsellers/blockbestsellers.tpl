@@ -17,10 +17,10 @@
 		<p>{l s='No best sellers at this time' mod='blockbestsellers'}</p>
 	{/if}
 	</div>
-	{if $best_sellers|@count > 0}
-		<div class="block_buttons">
+	<div class="block_buttons">
+		{if $best_sellers|@count > 0}
 		         <a href="{$base_dir}best-sales.php" title="{l s='All best sellers' mod='blockbestsellers'}" class="button_small">{l s='More...' mod='blockbestsellers'}</a>
-                </div>
-	{/if}
+		{/if}
+        </div>
 </div>
 <!-- /MODULE Block best sellers -->
