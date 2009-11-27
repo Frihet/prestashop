@@ -457,22 +457,69 @@ form.std p.submit {
 
 /* START OF BUTTONS SECTION
  *  -tags : input, a, span
- *  -sizes : mini, small, normal, large
+ *  -sizes : mini, small, normal, large, left, right, login
  *  -types : button, exlusive
  *  -status : normal, hover, disabled
  *  -rule : the span.button is a a.button disabled
 */
 
 /* global button */
+input.button_mini,
+input.button_small,
+input.button,
+input.button_large,
+input.button_left,
+input.button_right,
+input.button_login,
+input.button_mini_disabled,
+input.button_small_disabled,
+input.button_disabled,
+input.button_large_disabled,
+input.button_left_disabled,
+input.button_right_disabled,
+input.button_login_disabled,
+input.exclusive_mini,
+input.exclusive_small,
+input.exclusive,
+input.exclusive_large,
+input.exclusive_left,
+input.exclusive_right,
+input.exclusive_login,
+input.exclusive_mini_disabled,
+input.exclusive_small_disabled,
+input.exclusive_disabled,
+input.exclusive_large_disabled,
+input.exclusive_left_disabled,
+input.exclusive_right_disabled,
+input.exclusive_login_disabled,
+a.button_mini,
+a.button_small,
+a.button,
+a.button_large,
+a.button_left,
+a.button_right,
 a.button_login,
-input.button_mini, input.button_small, input.button, input.button_large,
-input.button_mini_disabled, input.button_small_disabled, input.button_disabled, input.button_large_disabled,
-input.exclusive_mini, input.exclusive_small, input.exclusive, input.exclusive_large,
-input.exclusive_mini_disabled, input.exclusive_small_disabled, input.exclusive_disabled, input.exclusive_large_disabled,
-a.button_mini, a.button_small, a.button, a.button_large,
-a.exclusive_mini, a.exclusive_small, a.exclusive, a.exclusive_large,
-span.button_mini, span.button_small, span.button, span.button_large,
-span.exclusive_mini, span.exclusive_small, span.exclusive, span.exclusive_large {
+a.exclusive_mini,
+a.exclusive_small,
+a.exclusive,
+a.exclusive_large,
+a.exclusive_left,
+a.exclusive_right,
+a.exclusive_login,
+span.button_mini,
+span.button_small,
+span.button,
+span.button_large,
+span.button_left,
+span.button_right,
+span.button_login,
+span.exclusive_mini,
+span.exclusive_small,
+span.exclusive,
+span.exclusive_large,
+span.exclusive_left,
+span.exclusive_right,
+span.exclusive_login {
 	background-repeat: no-repeat;
 	background-position: top left;
 	border: none;
@@ -488,47 +535,192 @@ span.exclusive_mini, span.exclusive_small, span.exclusive, span.exclusive_large 
 }
 
 /* input button */
-a.button_login,
-input.button_mini, input.button_small, input.button, input.button_large,
-input.button_mini_disabled, input.button_small_disabled, input.button_disabled, input.button_large_disabled,
-input.exclusive_mini, input.exclusive_small, input.exclusive, input.exclusive_large,
-input.exclusive_mini_disabled, input.exclusive_small_disabled, input.exclusive_disabled, input.exclusive_large_disabled {
+input.button_mini,
+input.button_small,
+input.button,
+input.button_large,
+input.button_left,
+input.button_right,
+input.button_login,
+input.button_mini_disabled,
+input.button_small_disabled,
+input.button_disabled,
+input.button_large_disabled,
+input.button_left_disabled,
+input.button_right_disabled,
+input.button_login_disabled,
+input.exclusive_mini,
+input.exclusive_small,
+input.exclusive,
+input.exclusive_large,
+input.exclusive_left,
+input.exclusive_right,
+input.exclusive_login,
+input.exclusive_mini_disabled,
+input.exclusive_small_disabled,
+input.exclusive_disabled,
+input.exclusive_large_disabled,
+input.exclusive_left_disabled,
+input.exclusive_right_disabled,
+input.exclusive_login_disabled {
 	padding-bottom:2px;
 }
 
 /* disabled button */
-input.button_mini_disabled, input.button_small_disabled, input.button_disabled, input.button_large_disabled,
-input.exclusive_mini_disabled, input.exclusive_small_disabled, input.exclusive_disabled, input.exclusive_large_disabled,
-span.button_mini, span.button_small, span.button, span.button_large,
-span.exclusive_mini, span.exclusive_small, span.exclusive, span.exclusive_large {
+input.button_mini_disabled,
+input.button_small_disabled,
+input.button_disabled,
+input.button_large_disabled,
+input.button_left_disabled,
+input.button_right_disabled,
+input.button_login_disabled,
+input.exclusive_mini_disabled,
+input.exclusive_small_disabled,
+input.exclusive_disabled,
+input.exclusive_large_disabled,
+input.exclusive_left_disabled,
+input.exclusive_right_disabled,
+input.exclusive_login_disabled,
+span.button_mini,
+span.button_small,
+span.button,
+span.button_large,
+span.button_left,
+span.button_right,
+span.button_login,
+span.exclusive_mini,
+span.exclusive_small,
+span.exclusive,
+span.exclusive_large,
+span.exclusive_left,
+span.exclusive_right,
+span.exclusive_login {
 	background-position: left -34px;
 	cursor:default;
 	color:#888!important;
 }
 
+input.button_left_disabled,
+input.button_right_disabled,
+input.exclusive_left_disabled,
+input.exclusive_right_disabled,
+span.button_left,
+span.button_right,
+span.exclusive_left,
+span.exclusive_right {
+	background-position: left -38px;
+}
+
+input.button_login_disabled,
+input.exclusive_login_disabled,
+span.button_login,
+span.exclusive_login {
+	background-position: left -22px;
+}
+
+
 /* exclusive button */
-input.exclusive_mini, input.exclusive_small, input.exclusive, input.exclusive_large,
-input.exclusive_mini_disabled, input.exclusive_small_disabled, input.exclusive_disabled, input.exclusive_large_disabled,
-a.exclusive_mini, a.exclusive_small, a.exclusive, a.exclusive_large,
-span.exclusive_mini, span.exclusive_small, span.exclusive, span.exclusive_large {
+input.exclusive_mini,
+input.exclusive_small,
+input.exclusive,
+input.exclusive_large,
+input.exclusive_left,
+input.exclusive_right,
+input.exclusive_login,
+input.exclusive_mini_disabled,
+input.exclusive_small_disabled,
+input.exclusive_disabled,
+input.exclusive_large_disabled,
+input.exclusive_left_disabled,
+input.exclusive_right_disabled,
+input.exclusive_login_disabled,
+a.exclusive_mini,
+a.exclusive_small,
+a.exclusive,
+a.exclusive_large,
+a.exclusive_left,
+a.exclusive_right,
+a.exclusive_login,
+span.exclusive_mini,
+span.exclusive_small,
+span.exclusive,
+span.exclusive_large,
+span.exclusive_left,
+span.exclusive_right,
+span.exclusive_login {
 	color:white!important;
 }
 
 /* exclusive disabled button */
-input.exclusive_mini_disabled, input.exclusive_small_disabled, input.exclusive_disabled, input.exclusive_large_disabled, span.exclusive_mini, span.exclusive_small, span.exclusive, span.exclusive_large {
+input.exclusive_mini_disabled,
+input.exclusive_small_disabled,
+input.exclusive_disabled,
+input.exclusive_large_disabled,
+input.exclusive_left_disabled,
+input.exclusive_right_disabled,
+input.exclusive_login_disabled,
+span.exclusive_mini,
+span.exclusive_small,
+span.exclusive,
+span.exclusive_large,
+span.exclusive_left,
+span.exclusive_right,
+span.exclusive_login {
 	color:#488c40!important;
 }
 
 /* hover button */
-input.button_mini:hover, input.button_small:hover, input.button:hover, input.button_large:hover,
-input.exclusive_mini:hover, input.exclusive_small:hover, input.exclusive:hover, input.exclusive_large:hover,
-a.button_mini:hover, a.button_small:hover, a.button:hover, a.button_large:hover,
-a.exclusive_mini:hover, a.exclusive_small:hover, a.exclusive:hover, a.exclusive_large:hover {
+input.button_mini:hover,
+input.button_small:hover,
+input.button:hover,
+input.button_large:hover,
+input.exclusive_mini:hover,
+input.exclusive_small:hover,
+input.exclusive:hover,
+input.exclusive_large:hover,
+a.button_mini:hover,
+a.button_small:hover,
+a.button:hover,
+a.button_large:hover,
+a.exclusive_mini:hover,
+a.exclusive_small:hover,
+a.exclusive:hover,
+a.exclusive_large:hover {
 	background-position: left -17px;
 }
 
+input.button_left:hover,
+input.button_right:hover,
+input.exclusive_left:hover,
+input.exclusive_right:hover,
+a.button_left:hover,
+a.button_right:hover,
+a.exclusive_left:hover,
+a.exclusive_right:hover {
+	background-position: left -19px;
+}
+
+input.button_login:hover,
+input.exclusive_login:hover,
+a.button_login:hover,
+a.exclusive_login:hover {
+	background-position: left -11px;
+}
+
 /* exclusive hover button */
-input.exclusive_mini:hover, input.exclusive_small:hover, input.exclusive:hover, input.exclusive_large:hover, a.exclusive_mini:hover, a.exclusive_small:hover, a.exclusive:hover, a.exclusive_large:hover {
+input.exclusive_mini:hover,
+input.exclusive_small:hover,
+input.exclusive:hover,
+input.exclusive_large:hover,
+input.exclusive_left:hover,
+input.exclusive_right:hover,
+input.exclusive_login:hover,
+a.exclusive_mini:hover,
+a.exclusive_small:hover,
+a.exclusive:hover,
+a.exclusive_large:hover,
+a.exclusive_left:hover,
+a.exclusive_right:hover {
 	color:white!important;
 }
 
@@ -549,15 +741,36 @@ input.button_large, input.button_large_disabled, input.exclusive_large, input.ex
 	width: 180px;
 	background-image: url('../img/button-large.jpg');
 }
+input.button_left, input.button_left_disabled, input.exclusive_left, input.exclusive_left_disabled, a.button_left, a.exclusive_left, span.button_left, span.exclusive_left {
+	width: 95px;
+	height: 19px;
+	line-height: 19px;
+	background-image: url('../img/universal/button-left.jpg');
+}
+input.button_right, input.button_right_disabled, input.exclusive_right, input.exclusive_right_disabled, a.button_right, a.exclusive_right, span.button_right, span.exclusive_right {
+	width: 95px;
+	height: 19px;
+	line-height: 19px;
+	background-image: url('../img/universal/button-right.jpg');
+}
+input.button_login, input.button_login_disabled, input.exclusive_login, input.exclusive_login_disabled, a.button_login, a.exclusive_login, span.button_login, span.exclusive_login {
+	width: 60px;
+	height: 11px;
+	line-height: 11px;
+	font-size: 8px !important;
+	background-image: url('../img/universal/button-login.jpg');
+}
 
 /* exclusive button */
 input.exclusive, input.exclusive_disabled, a.exclusive, span.exclusive { background-image: url('../img/button-medium_exclusive.gif'); }
 input.exclusive_mini, input.exclusive_mini_disabled, a.exclusive_mini, span.exclusive_mini { background-image: url('../img/button-mini_exclusive.gif'); }
 input.exclusive_small, input.exclusive_small_disabled, a.exclusive_small, span.exclusive_small { background-image: url('../img/button-small_exclusive.gif'); }
 input.exclusive_large, input.exclusive_large_disabled, a.exclusive_large, span.exclusive_large { background-image: url('../img/button-large_exclusive.gif'); }
+input.exclusive_left, input.exclusive_left_disabled, a.exclusive_left, span.exclusive_left { background-image: url('../img/universal/button-left_exclusive.jpg'); }
+input.exclusive_right, input.exclusive_right_disabled, a.exclusive_right, span.exclusive_right { background-image: url('../img/universal/button-right_exclusive.jpg'); }
+input.exclusive_login, input.exclusive_login_disabled, a.exclusive_login, span.exclusive_login { background-image: url('../img/universal/button-login_exclusive.jpg'); }
 
 a.button_login {
-	font-size: 8px !important;
 	line-height: 11px;
         width: 60px;
 	height: 11px;
@@ -995,9 +1208,6 @@ div.myaccount,
 	border: none;
 	padding-bottom: 0px !important;
 }
-div.myaccount {
-	padding-bottom: 18px !important;
-}
 div.myaccount h4,
 #cart_block h4,
 #compare_block h4 {
@@ -1039,10 +1249,9 @@ div.myaccount .block_content,
 
 
 div.myaccount ul.bullet { margin-top: 0.6em; }
-div.myaccount ul.bullet li { background-image: url('../img/bullet_myaccount.gif'); }
 div.myaccount ul.bullet .icon { display: none; }
 div.myaccount p.logout { padding: 0.3em 0 0.3em 2em; }
-div.myaccount p.logout, div.myaccount p.logout a { color: #dd2a81; }
+div.myaccount p.logout, div.myaccount p.logout a { color: #5A0C0C; }
 div.myaccount p.logout a { text-decoration: underline; }
 div.myaccount p.logout a:hover { text-decoration: none; }
 .account_input {
@@ -1447,12 +1656,12 @@ width: 155px;
 }
 #cart_block li { clear: both; }
 #cart_block span.price {
-	color: white;
+	color: #000000;
 	float: right;
 }
 #cart_block dl span.price {
 	font-weight: normal;
-	color: white;
+	color: #000000;
 	float: right;
 }
 #cart_block_wrapping_cost, #cart_block_shipping_cost , #cart_block_total{ padding-right:1.3em; }
@@ -1495,11 +1704,13 @@ width: 155px;
 	margin:0;
 }
 
-#cart_block p#cart-buttons {
-	height: 18px;
+.block_buttons {
+	height: 19px;
 }
-#cart_block p#cart-buttons a { float: left; }
-#cart_block p#cart-buttons a#button_order_cart { float: right; }
+
+.block_buttons a { float: left; }
+.block_buttons a.button_right,
+.block_buttons a.exclusive_right { float: right; }
 
 #cart_block .cart_block_customizations {
 	margin-left: 6px;

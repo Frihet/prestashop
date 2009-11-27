@@ -111,9 +111,9 @@ var removingLinkText = '{l s='remove this product from my cart' mod='blockcart' 
 		{/if}
 	</div>
 	</div>
-	<p id="cart-buttons">
-		<a href="{$base_dir_ssl}order.php" class="button_small" title="{l s='Cart' mod='blockcart'}">{l s='Cart' mod='blockcart'}</a>
-		<a href="{$base_dir_ssl}order.php?step=1" id="button_order_cart" class="exclusive" title="{l s='Check out' mod='blockcart'}">{l s='Check out' mod='blockcart'}</a>
-	</p>
+	<div class="block_buttons">
+		<a href="{$base_dir_ssl}order.php" class="button_left" title="{l s='Cart' mod='blockcart'}">{l s='Cart' mod='blockcart'}</a>
+		<a href="{$base_dir_ssl}order.php?step=1" id="button_order_cart" class="exclusive_right" title="{l s='Check out' mod='blockcart'}">{l s='Check out' mod='blockcart'}</a>
+	</div>
 </div>
 <!-- /MODULE Block cart -->
