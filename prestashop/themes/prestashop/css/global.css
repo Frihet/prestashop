@@ -1193,24 +1193,60 @@ div.exclusive .block_content {
 }
 */
 
-
-/* universal block */
-
-div.universal {
-        background: #ff0000 url('../img/universal/cart/box_bottom.jpg') no-repeat bottom left;
+/* sideblocks */
+#left_column div.block,
+#right_column div.block {
+        background: #ff0000 url('../img/box_bottom.jpg') no-repeat bottom left;
 	border: none;
-	padding-bottom: 0px !important;
+	padding: 0px 0px 4px !important;
+	width: 196px;
 }
-div.universal h4 {
-        background: #ff0000 url('../img/universal/cart/box_top.jpg') no-repeat top left;
-	padding: 0;
+#left_column div.block h4,
+#right_column div.block h4 {
+        background: #ff0000 url('../img/box_top.jpg') no-repeat top left;
+	padding-left: 10px;
+	padding-right: 0;
+	padding-top: 0;
+	padding-bottom: 0;
 	margin: 0;
-	line-height: 19px;
+	height: 25px;
+	line-height: 25px;
 }
-div.universal h4 a,
-div.universal h4 * {
+#left_column div.block h4 a,
+#right_column div.block h4 a,
+#left_column div.block h4 *,
+#right_column div.block h4 * {
         padding-left: 5px;
         background: transparent;
+}
+
+#left_column div.block .block_content,
+#right_column div.block .block_content {
+	background: #ff0000 url('../img/box_y_repeat.jpg') repeat-y top left;
+	border: none;
+	margin: 0;
+}
+#left_column div.block .block_buttons,
+#right_column div.block .block_buttons {
+	padding-left: 4px;
+	padding-right: 4px;
+	margin: 0;
+}
+
+
+/* universal blocks */
+#left_column div.block.universal,
+#right_column div.block.universal {
+        background: #ff0000 url('../img/universal/cart/box_bottom.jpg') no-repeat bottom left;
+	width: 192px;
+	margin-left: 2px;
+	padding: 0px !important;
+}
+#left_column div.block.universal h4,
+#right_column div.block.universal h4 {
+        background: #ff0000 url('../img/universal/cart/box_top.jpg') no-repeat top left;
+	height: 19px;
+	line-height: 19px;
 }
 div.universal,
 div.universal a,
@@ -1218,14 +1254,15 @@ div.universal h4 a,
 div.universal h4 {
        color: #000000;
 }
-div.universal .block_content {
+#left_column div.block.universal .block_content,
+#right_column div.block.universal .block_content {
 	background: #ff0000 url('../img/universal/cart/box_y_repeat.jpg') repeat-y top left;
-	border: none;
-	margin: 0;
 }
-div.universal .block_buttons {
+#left_column div.block.universal .block_buttons,
+#right_column div.block.universal .block_buttons {
 	height: 19px;
-	margin: 0;
+	padding-left: 0;
+	padding-right: 0;
 }
 .account_input {
 	margin-left: 0px;
