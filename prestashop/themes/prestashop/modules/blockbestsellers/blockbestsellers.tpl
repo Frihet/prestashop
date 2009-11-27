@@ -19,7 +19,7 @@
 	</div>
 	{if $best_sellers|@count > 0}
 		<div class="block_buttons">
-		         <a href="{$base_dir}best-sales.php" title="{l s='All best sellers' mod='blockbestsellers'}" class="button">{l s='All best sellers' mod='blockbestsellers'}</a>
+		         <a href="{$base_dir}best-sales.php" title="{l s='All best sellers' mod='blockbestsellers'}" class="button_small">{l s='More...' mod='blockbestsellers'}</a>
                 </div>
 	{/if}
 </div>

@@ -770,16 +770,6 @@ input.exclusive_left, input.exclusive_left_disabled, a.exclusive_left, span.excl
 input.exclusive_right, input.exclusive_right_disabled, a.exclusive_right, span.exclusive_right { background-image: url('../img/universal/button-right_exclusive.jpg'); }
 input.exclusive_login, input.exclusive_login_disabled, a.exclusive_login, span.exclusive_login { background-image: url('../img/universal/button-login_exclusive.jpg'); }
 
-a.button_login {
-	line-height: 11px;
-        width: 60px;
-	height: 11px;
-	background-image: url('../img/universal/button_login.jpg');
-}
-a.button_login:hover {
-	background-image: url('../img/universal/button_login_click.jpg');
-}
-
 
 /* id_state field in managed via JS and is firstly hidden */
 form p.id_state { display:none; }
@@ -1138,15 +1128,20 @@ div.block {
 	width: 192px;
 	border: 1pt dashed #999999; 
 }
-#left_column div.block, #right_column div.block {
+div.block h4,
+div.block .block_content,
+div.block .block_buttons {
+        margin: 2px;
+}
+
+div.block .block_content {
 	padding-bottom: 6px;
 }
+
 div.block h4 {
-        margin: 1px;
-	padding-left:0.5em;
-	padding-top:2px;
-	height: 19px;
-	line-height:1.3em;
+        padding: 2px;
+	height: 1.3em;
+	line-height: 1.3em;
 	font-size: 1.2em;
 }
 div.block h4,
@@ -1196,64 +1191,40 @@ div.exclusive .block_content {
 }
 */
 
-/* block myaccount */
-/*
 
-*/
+/* universal block */
 
-div.myaccount,
-#cart_block,
-#compare_block {
+div.universal {
         background: #ff0000 url('../img/universal/cart/box_bottom.jpg') no-repeat bottom left;
 	border: none;
 	padding-bottom: 0px !important;
 }
-div.myaccount h4,
-#cart_block h4,
-#compare_block h4 {
+div.universal h4 {
         background: #ff0000 url('../img/universal/cart/box_top.jpg') no-repeat top left;
 	padding: 0;
 	margin: 0;
 	line-height: 19px;
 }
-div.myaccount h4 a,
-div.myaccount h4 *,
-#cart_block h4 a,
-#cart_block h4 *,
-#compare_block h4 a,
-#compare_block h4 * {
+div.universal h4 a,
+div.universal h4 * {
         padding-left: 5px;
         background: transparent;
 }
- 
-div.myaccount,
-div.myaccount a,
-div.myaccount h4 a,
-div.myaccount h4,
-#cart_block,
-#cart_block a,
-#cart_block h4 a,
-#cart_block h4,
-#compare_block,
-#compare_block a,
-#compare_block h4 a,
-#compare_block h4 {
+div.universal,
+div.universal a,
+div.universal h4 a,
+div.universal h4 {
        color: #000000;
 }
-div.myaccount .block_content,
-#cart_block .block_content,
-#compare_block .block_content {
+div.universal .block_content {
 	background: #ff0000 url('../img/universal/cart/box_y_repeat.jpg') repeat-y top left;
 	border: none;
+	margin: 0;
 }
-
-
-div.myaccount ul.bullet { margin-top: 0.6em; }
-div.myaccount ul.bullet .icon { display: none; }
-div.myaccount p.logout { padding: 0.3em 0 0.3em 2em; }
-div.myaccount p.logout, div.myaccount p.logout a { color: #5A0C0C; }
-div.myaccount p.logout a { text-decoration: underline; }
-div.myaccount p.logout a:hover { text-decoration: none; }
+div.universal .block_buttons {
+	height: 19px;
+	margin: 0;
+}
 .account_input {
 	margin-left: 0px;
 	width:15em;
@@ -1705,12 +1676,12 @@ width: 155px;
 }
 
 .block_buttons {
-	height: 19px;
+	height: 17px;
 }
 
-.block_buttons a { float: left; }
-.block_buttons a.button_right,
-.block_buttons a.exclusive_right { float: right; }
+.block_buttons a { float: right; }
+.block_buttons a.button_left,
+.block_buttons a.exclusive_left { float: left; }
 
 #cart_block .cart_block_customizations {
 	margin-left: 6px;
