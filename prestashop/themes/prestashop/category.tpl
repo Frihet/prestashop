@@ -1,7 +1,7 @@
 {include file=$tpl_dir./breadcrumb.tpl} 
 {include file=$tpl_dir./errors.tpl}
 
-<div class="centre_column_content">
+<table class="centre_column_content variablebox"><tr><td class="variablebox_top_left"></td><td class="variablebox_top_center"></td><td class="variablebox_top_right"></td></tr><tr><td class="variablebox_center_left"></td><td class="variablebox_center_center">
 	{if $category->id AND $category->active}
 		{if $path|regex_replace:"/.*a href.*/":"" == ""}
 			<h2 class="category_title">
@@ -91,4 +91,5 @@
 	{elseif $category->id}
 		<p class="warning">{l s='This category is currently unavailable.'}</p>
 	{/if}
-</div>
+</td><td class="variablebox_center_right"></td></tr><tr><td class="variablebox_bottom_left"></td><td class="variablebox_bottom_center"></td><td class="variablebox_bottom_right"></td></tr></table>
+

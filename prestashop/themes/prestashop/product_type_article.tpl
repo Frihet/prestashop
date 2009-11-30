@@ -43,7 +43,7 @@ var fieldRequired = '{l s='Please fill all required fields' js=1}';
 //]]>
 </script>
 
-<div class="product_type_article centre_column_content">
+<table class="product_type_article centre_column_content centre_column_content variablebox"><tr><td class="variablebox_top_left"></td><td class="variablebox_top_center"></td><td class="variablebox_top_right"></td></tr><tr><td class="variablebox_center_left"></td><td class="variablebox_center_center">
 	<div id="primary_block">
 
 		<h2>{$product->name|escape:'htmlall':'UTF-8'}</h2>
@@ -168,4 +168,4 @@ var fieldRequired = '{l s='Please fill all required fields' js=1}';
 	</div>
 
 	{/if}
-</div>
+</td><td class="variablebox_center_right"></td></tr><tr><td class="variablebox_bottom_left"></td><td class="variablebox_bottom_center"></td><td class="variablebox_bottom_right"></td></tr></table>
