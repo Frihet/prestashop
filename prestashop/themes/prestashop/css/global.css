@@ -213,11 +213,21 @@ h1#logo a {
 #center_column {
         width: 100%;
 	margin: 0 0 30px 0;
+}
+.centre_column_content {
 	border: 1pt dashed #999999; 
 }
 #right_column {
 	padding-left: 15px;
 	padding-right: 30px;
+}
+
+.centre_column_content {
+        padding: 1pt;
+}
+
+.centre_column_content h2 {
+        margin-top: 0;
 }
 
 /* global RTE fields */
@@ -845,6 +855,7 @@ img.icon { margin-right: 0.5em; vertical-align: middle; }
 .breadcrumb {
 	font-size: 1em;
 	color:#888;
+	margin-bottom: 2pt;
 }
 .breadcrumb .navigation-pipe {
 	padding: 0 0.6em;
@@ -1131,13 +1142,16 @@ ul#header_links {
 /* Default block style */
 div.block {
 	margin-bottom: 1em;
-	width: 192px;
 	border: 1pt dashed #999999; 
 }
 div.block h4,
 div.block .block_content,
 div.block .block_buttons {
         margin: 2px;
+}
+
+div.block .block_content table {
+        width: 100%;
 }
 
 div.block h4 {
@@ -1193,7 +1207,10 @@ div.exclusive .block_content {
 }
 */
 
-/* sideblocks */
+/* blocks */
+
+#center_column #pb-right-column div.block,
+#center_column #pb-left-column div.block,
 #left_column div.block,
 #right_column div.block {
         background: #ff0000 url('../img/box_bottom.jpg') no-repeat bottom left;
@@ -1201,6 +1218,8 @@ div.exclusive .block_content {
 	padding: 0px 0px 4px !important;
 	width: 196px;
 }
+#center_column #pb-right-column div.block h4,
+#center_column #pb-left-column div.block h4,
 #left_column div.block h4,
 #right_column div.block h4 {
         background: #ff0000 url('../img/box_top.jpg') no-repeat top left;
@@ -1212,20 +1231,28 @@ div.exclusive .block_content {
 	height: 25px;
 	line-height: 25px;
 }
+#center_column #pb-right-column div.block h4 a,
+#center_column #pb-left-column div.block h4 a,
 #left_column div.block h4 a,
 #right_column div.block h4 a,
+#center_column #pb-right-column div.block h4 *,
+#center_column #pb-left-column div.block h4 *,
 #left_column div.block h4 *,
 #right_column div.block h4 * {
         padding-left: 5px;
         background: transparent;
 }
 
+#center_column #pb-right-column div.block .block_content,
+#center_column #pb-left-column div.block .block_content,
 #left_column div.block .block_content,
 #right_column div.block .block_content {
 	background: #ff0000 url('../img/box_y_repeat.jpg') repeat-y top left;
 	border: none;
 	margin: 0;
 }
+#center_column #pb-right-column div.block .block_buttons,
+#center_column #pb-left-column div.block .block_buttons,
 #left_column div.block .block_buttons,
 #right_column div.block .block_buttons {
 	padding-left: 4px;
@@ -1271,32 +1298,6 @@ div.universal h4 {
 
 /* block in the center column */
 #center_column p { margin: 0.5em 0; padding-left:0.7em;}
-#center_column div.block {
-        width: 100%;
-	margin-left: 0;
-	margin-right: 0;
-        margin-top: 10pt;
-	margin-bottom: 0;
- 	border: none;
-}
-#center_column div.block h4 {
-	background: transparent;
-	height: 17px;
-	text-transform: none;
-	color: #5a0c0c;
-}
-
-#center_column #pb-right-column div.block,
-#center_column #pb-left-column div.block {
- width: 191px;
-}
-#center_column #pb-right-column div.block h4,
-#center_column #pb-left-column div.block h4 {
-	background: transparent url('../img/block_header.gif') no-repeat top left;
-	height: 17px;
-	color: white;
-}
-
 
 /* Styles for products blocks */
 /* block products (new, features, viewed, etc...) on left and right column */
@@ -2145,13 +2146,12 @@ div.categTree {
 	height:15px;
 }
 #primary_block #pb-left-column{
-	float:left;
-	margin-left:1.1em;
-	width:233px;
+	float:right;
+	margin-right: 0.5em;
 }
 #primary_block #short_description_block{
-	background: #e5e6e7 url('../img/product-short-desc-bg.gif') repeat-x top left;
-	border: 1px #d0d3d8 solid;
+	width: 300pt;
+	border: 1px dashed #999999;
 	padding:0.7em;
 	margin-bottom:1.5em;
 }
@@ -2195,11 +2195,11 @@ position:relative;
 	margin-bottom:0.5em;
 }
 #primary_block form#buy_block{
-	background: #f1f2f4 url('../img/product-buy-bg.gif') repeat-x top left;
-	font-size:1.1em;
+	width: 300pt;
+	border: 1px dashed #999999;
 	padding:0.7em;
-	color:#374853;
-	border: 1px #d0d3d8 solid;
+	margin-bottom:1.5em;
+	font-size:1.1em;
 }
 #primary_block form#buy_block p{
 	padding:0;
