@@ -34,6 +34,7 @@ $(function () {ldelim}
 						</a>
 						<p class="description">{$product.details->description_short|strip_tags|truncate:170:'...'}</p>
 					</div>
+					<div class="clear"></div>
 				</div>
 			{/foreach}
 		</div>
