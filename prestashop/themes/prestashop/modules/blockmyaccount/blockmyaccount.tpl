@@ -17,7 +17,7 @@
 		</ul>
 	</div>
 	<div class="block_buttons">
-		 <a href="{$base_dir}index.php?mylogout" title="{l s='log out' mod='blockmyaccount'}" class="exclusive_right">{l s='Sign out' mod='blockmyaccount'}</a>
+		 <a href="{$base_dir}index.php?mylogout" title="{l s='log out' mod='blockmyaccount'}" class="button_right">{l s='Sign out' mod='blockmyaccount'}</a>
 	</div>
 </div>
 <!-- /Block myaccount module -->

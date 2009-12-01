@@ -1,0 +1,405 @@
+body {
+    background-color: #ffffff;
+    color: #000000;
+}
+noscript ul {
+    background: #000000;
+    color: #ffffff;
+}
+ul.footer_links li a: hover {
+    color: #000000;
+}
+ul.idTabs {
+    border-bottom: solid 1px #5a0c0c;
+}
+ul.idTabsShort li a, ul.idTabs li a {
+    background: #999999;
+    color: #ffffff;
+}
+ul.idTabsShort li a.selected, ul.idTabs li a.selected {
+    background: #5a0c0c;
+    color: #ffffff;
+}
+a {
+    color: #5d717e;
+}
+h2 {
+    color: #ffffff;
+    background: #5a0c0c;
+}
+h2 span {
+    color: #374853;
+}
+div.rte, .mceContentBody {
+    background: #ffffff;
+    color: #000000;
+}
+div.rte h1, div.rte h2, div.rte h3, div.rte h4, div.rte h5, div.rte h6, .mceContentBody h1, .mceContentBody h2, .mceContentBody h3, .mceContentBody h4, .mceContentBody h5, .mceContentBody h6 {
+    color: #5a0c0c;
+}
+div.rte caption, div.rte th, div.rte td, div.rte table, .mceContentBody caption, .mceContentBody th, .mceContentBody td, .mceContentBody table {
+    border: 1px #e5e6e7 solid;
+}
+div.rte th, .mceContentBody th {
+    background: #e5e6e7;
+}
+table.std tr.item td, table.std tr.item th {
+    background-color: #ffffff;
+}
+table.std tr.alternate_item td, table.std tr.alternate_item th {
+    background-color: #f1f2f4;
+}
+table.std tbody tr td, table.std tfoot tr td {
+    border-top-color: #bdc2c9;
+}
+table.std thead th {
+    color: #374853;
+}
+table.std tfoot td {
+    color: #374853;
+}
+form.std h3 {
+    border-bottom-color: #d0d1d5;
+}
+form.std fieldset {
+    border-color: #d0d3d8;
+    background-color: #D0D1D5;
+}
+form.std fieldset legend {
+    border-color: #d0d1d5;
+}
+input, textarea, select {
+    border-color: #bdc2c9;
+}
+.required sup {
+    color: #da0f00;
+}
+input.button_mini, input.button_small, input.button, input.button_large, input.button_left, input.button_right, input.button_login, input.button_mini_disabled, input.button_small_disabled, input.button_disabled, input.button_large_disabled, input.button_left_disabled, input.button_right_disabled, input.button_login_disabled, input.exclusive_mini, input.exclusive_small, input.exclusive, input.exclusive_large, input.exclusive_left, input.exclusive_right, input.exclusive_login, input.exclusive_mini_disabled, input.exclusive_small_disabled, input.exclusive_disabled, input.exclusive_large_disabled, input.exclusive_left_disabled, input.exclusive_right_disabled, input.exclusive_login_disabled, a.button_mini, a.button_small, a.button, a.button_large, a.button_left, a.button_right, a.button_login, a.exclusive_mini, a.exclusive_small, a.exclusive, a.exclusive_large, a.exclusive_left, a.exclusive_right, a.exclusive_login, span.button_mini, span.button_small, span.button, span.button_large, span.button_left, span.button_right, span.button_login, span.exclusive_mini, span.exclusive_small, span.exclusive, span.exclusive_large, span.exclusive_left, span.exclusive_right, span.exclusive_login {
+    color: #ffffff !important;
+}
+input.exclusive_mini, input.exclusive_small, input.exclusive, input.exclusive_large, input.exclusive_left, input.exclusive_right, input.exclusive_login, input.exclusive_mini_disabled, input.exclusive_small_disabled, input.exclusive_disabled, input.exclusive_large_disabled, input.exclusive_left_disabled, input.exclusive_right_disabled, input.exclusive_login_disabled, a.exclusive_mini, a.exclusive_small, a.exclusive, a.exclusive_large, a.exclusive_left, a.exclusive_right, a.exclusive_login, span.exclusive_mini, span.exclusive_small, span.exclusive, span.exclusive_large, span.exclusive_left, span.exclusive_right, span.exclusive_login {
+    color: #ffffff!important;
+}
+input.exclusive_mini_disabled, input.exclusive_small_disabled, input.exclusive_disabled, input.exclusive_large_disabled, input.exclusive_left_disabled, input.exclusive_right_disabled, input.exclusive_login_disabled, span.exclusive_mini, span.exclusive_small, span.exclusive, span.exclusive_large, span.exclusive_left, span.exclusive_right, span.exclusive_login {
+    color: #488c40!important;
+}
+input.exclusive_mini: hover, input.exclusive_small: hover, input.exclusive: hover, input.exclusive_large: hover, input.exclusive_left: hover, input.exclusive_right: hover, input.exclusive_login: hover, a.exclusive_mini: hover, a.exclusive_small: hover, a.exclusive: hover, a.exclusive_large: hover, a.exclusive_left: hover, a.exclusive_right: hover {
+    color: #ffffff!important;
+}
+.price-ecotax {
+    color: #488c40;
+}
+.price, .price-shipping, .price-wrapping {
+    color: #da0f00;
+}
+.error {
+    border-color: #da0f00;
+    background-color: #f1f2f4;
+    color: #da0f00;
+}
+.warning {
+    color: #000000;
+    background-color: #F8E1A0;
+    border-color: #F9E400;
+}
+.warning_inline {
+    color: #da0f00;
+}
+.success {
+    background-color: #d0d3d8;
+}
+.breadcrumb a {
+    color: #5d717e;
+}
+ul.pagination li, ul.pagination a, ul.pagination span {
+    color: #374853;
+}
+ul.pagination a, ul.pagination span {
+    background-color: #bdc2c9;
+}
+ul.pagination li.current span {
+    background-color: #595a5e;
+    color: #ffffff;
+    border-color: #595a5e;
+}
+#pagination_previous a, #pagination_previous span, #pagination_next a, #pagination_next span {
+    border-color: #d0d1d5;
+}
+li.disabled span {
+    background-color: #f1f2f4;
+}
+#header #currencies_block_top ul li a {
+    color: #ffffff;
+}
+#header_links a {
+    color: #595a5e;
+}
+#header #search_block_top input.button: hover {
+    background-color: #e5e6e7;
+}
+#header_user p {
+    color: #595a5e;
+}
+#footer {
+    border-top-color: #d0d3d8;
+}
+div.block h4, div.block h4 *, div.block h4 a {
+    background: #5a0c0c;
+    color: #ffffff;
+}
+div.block .block_content {
+    border-top-color: #999999;
+}
+div.block a {
+    color: #595a5e;
+}
+div.exclusive h4 {
+    color: #ffffff;
+}
+div.exclusive h4 a {
+    color: #ffffff;
+}
+div.exclusive, div.exclusive a {
+    color: #ffffff;
+}
+div.exclusive .block_content {
+    background-color: #bdc2c9;
+    border-left-color: #595a5e;
+    border-right-color: #595a5e;
+}
+#center_column #pb-right-column div.block, #center_column #pb-left-column div.block, #left_column div.block, #right_column div.block {
+    background-color: #ff0000;
+}
+#center_column #pb-right-column div.block h4, #center_column #pb-left-column div.block h4, #left_column div.block h4, #right_column div.block h4 {
+    background-color: #ff0000;
+}
+#center_column #pb-right-column div.block .block_content, #center_column #pb-left-column div.block .block_content, #left_column div.block .block_content, #right_column div.block .block_content {
+    background-color: #ff0000;
+}
+#left_column div.block.universal, #right_column div.block.universal {
+    background-color: #ff0000;
+}
+#left_column div.block.universal h4, #right_column div.block.universal h4 {
+    background-color: #ff0000;
+}
+div.universal, div.universal a, div.universal h4 a, div.universal h4 {
+    color: #000000;
+}
+#left_column div.block.universal .block_content, #right_column div.block.universal .block_content {
+    background-color: #ff0000;
+}
+.products_block dl {
+    border-top-color: #374853;
+}
+.products_block dl dt {
+    color: #595a5e;
+}
+#center_column .products_block ul li {
+    border-right-color: #999999;
+    border-bottom-color: #999999;
+}
+#center_column div.products_block h5 a {
+    color: #ffffff;
+}
+#center_column div.products_block p.product_desc {
+    color: #595a5e;
+}
+#center_column div.products_block h5 {
+    background: #5a0c0c;
+}
+#center_column div.products_block p.product_desc, #center_column div.products_block h5 {
+    color: #ffffff;
+}
+#center_column .products_block.accessories_block .block_content li a.product_image, #center_column .products_block.accessories_block .block_content li a.product_description {
+    border-right: 1px solid #d0d3d8;
+}
+div.tags_block p a: hover {
+    color: #ffffff!important;
+    background-color: #5D717E;
+}
+div#categories_block_left ul.tree a {
+    color: #374853;
+}
+div#categories_block_left ul.tree a.selected {
+    color: #488c40;
+}
+ul#order_step {
+    background-color: #ffffff;
+}
+#cart_block span.price {
+    color: #000000;
+}
+#cart_block dl span.price {
+    color: #000000;
+}
+#cart_block table#vouchers {
+    border-top: 1px solid #ffffff;
+}
+#cart_block p#cart-prices {
+    border-top: 1px solid #ffffff;
+}
+#cart_block table#vouchers td.price {
+    color: #ffffff;
+}
+#cart_block #cart-price-precisions {
+    border-top: 1px solid #ffffff;
+}
+#authentication #login_form a {
+    color: #374853;
+}
+ul#product_list li {
+    border-top-color: #999999;
+}
+ul#product_list li a {
+    color: #374853;
+}
+ul#product_list a.product_img_link {
+    border-color: #d0d3d8;
+}
+ul#product_list li .new {
+    border: 1px solid #488C40;
+    color: #ffffff;
+}
+ul#product_list li .discount {
+    color: #da0f00;
+}
+ul#product_list li .on_sale {
+    color: #da0f00;
+}
+ul#product_list li span.availability {
+    color: #488c40;
+}
+#cart_summary tfoot tr.cart_total_product td {
+    border-top-color: #bdc2c9;
+}
+#cart_summary tfoot tr.cart_total_price td {
+    border-bottom-color: #bdc2c9;
+}
+#cart_summary .price, #cart_summary .price-discount {
+    color: #595A5E;
+}
+td.cart_product a img {
+    border-color: #d0d1d5;
+}
+td.cart_description h5 a, td.cart_ref, td.cart_total {
+    color: #595a5e;
+}
+#order form#voucher fieldset {
+    border-color: #bdc2c9;
+}
+#order #order_carrier {
+    border-color: #bdc2c9;
+}
+#block-history {
+    color: #374853;
+}
+.color-myaccount {
+    color: #dd2a81;
+}
+#block-history table#order-list thead th {
+    color: #ffffff;
+}
+#block-history table#order-list tbody {
+    background-color: #D0D1D5;
+}
+#block-history table#order-list tbody tr td {
+    background-color: #ffffff;
+}
+#block-history #block-order-detail {
+    border-top: 2px #dd2a81 solid;
+    border-bottom: 2px #dd2a81 solid;
+    background-color: #D0D1D5;
+}
+#primary_block ul#usefull_link_block li a, #primary_block ul#usefull_link_block span.span_link, #primary_block ul#usefull_link_block span.span_link: hover {
+    color: #76839b;
+    background-color: #ffffff;
+}
+#primary_block #short_description_block {
+    border-color: #999999;
+}
+#primary_block #color_picker {
+    background-color: #e5e6e7;
+    border-color: #d0d3d8 solid;
+}
+#primary_block form#buy_block span.on_sale {
+    color: #da0f00;
+}
+#primary_block form#buy_block span.discount {
+    color: #da0f00;
+}
+#primary_block form#buy_block p#reduction_percent {
+    color: #da0f00;
+}
+ul#suppliers_list li, ul#manufacturers_list li {
+    background-color: #d0d3d8;
+    border-color: #d0d3d8;
+}
+ul#suppliers_list li a, ul#manufacturers_list li a {
+    color: #374853;
+}
+ul#suppliers_list .logo, ul#manufacturers_list .logo {
+    border-color: #d0d3d8;
+}
+ul#suppliers_list .right_side span, ul#manufacturers_list .right_side span {
+    color: #da0f00;
+}
+div.addresses {
+    border-color: #d0d3d8;
+    background-color: #D0D1D5;
+}
+ul.address {
+    background-color: #ffffff;
+}
+li.address_title {
+    background-color: #d0d1d5;
+    color: #374853;
+}
+li.address_name, li.address_update a, li.address_delete a {
+    color: #dd2a81;
+}
+.payment_module a {
+    border-color: #595a5e;
+}
+.payment_module a: hover, .payment_module a: focus, .payment_module a: active {
+    border-color: #488c40;
+    background-color: #e5e6e7;
+    color: #374853;
+}
+img.customizationUploaded {
+    border-color: #888888;
+}
+#menu-top dl dt a {
+    background: #eeeeee;
+}
+#menu-top dl dd ul {
+    background: #cccccc;
+}
+.comparecart th, .comparecart td {
+    border-bottom-color: #5D717E;
+}
+.toptabs .tabHead, .toptabs ul.idTabsShort li a {
+    color: #ffffff;
+}
+div.datepickerContainer {
+    background: #ffffff !important;
+}
+div.datepickerContainer th, div.datepickerContainer th a {
+    color: #5a0c0c !important;
+}
+tbody.datepickerDays td a {
+    background: #5a0c0c;
+    color: #ffffff !important;
+}
+tbody.datepickerYears td a, tbody.datepickerMonths td a {
+    color: #5a0c0c !important;
+}
+tbody.datepickerDays td.datepickerDisabled a {
+    color: #5a5a5a !important;
+}
+tbody.datepickerDays td.datepickerNotInMonth a {
+    color: #5a0c0c !important;
+}
+tbody.datepickerDays td.datepickerDisabled.datepickerNotInMonth a {
+    background: #ffffff;
+    color: #999999 !important;
+}

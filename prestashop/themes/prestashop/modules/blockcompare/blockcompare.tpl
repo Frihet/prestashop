@@ -41,7 +41,7 @@
 		</div>
 	</div>
 	<div class="block_buttons">
-		<a href="{$base_dir_ssl}modules/blockcompare/comparecart.php" class="exclusive_right" title="{l s='Compare' mod='blockcompare'}">{l s='Compare' mod='blockcompare'}</a>
+		<a href="{$base_dir_ssl}modules/blockcompare/comparecart.php" class="button_right" title="{l s='Compare' mod='blockcompare'}">{l s='Compare' mod='blockcompare'}</a>
 
 	</div>
 </div>

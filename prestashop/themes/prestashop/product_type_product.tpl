@@ -94,10 +94,11 @@ var fieldRequired = '{l s='Please fill all required fields' js=1}';
 //]]>
 </script>
 
-<table class="variablebox product_type_article centre_column_content"><tr><td class="variablebox_top_left"></td><td class="variablebox_top_center"></td><td class="variablebox_top_right"></td></tr><tr><td class="variablebox_center_left"></td><td class="variablebox_center_center">
+{variablebox}
+	<h2>{$product->name|escape:'htmlall':'UTF-8'}</h2>
+{variablebox_content}
 	<div id="primary_block">
 
-		<h2>{$product->name|escape:'htmlall':'UTF-8'}</h2>
 		{if $confirmation}
 		<p class="confirmation">
 			{$confirmation}
@@ -147,29 +148,9 @@ var fieldRequired = '{l s='Please fill all required fields' js=1}';
 
 		<!-- left infos-->
 		<div id="pb-left-column">
-			{if $product->description_short OR $packItems|@count > 0}
-			<div id="short_description_block">
-				{if $product->description_short}
-					<div id="short_description_content" class="rte align_justify">{$product->description_short}</div>
-				{/if}
-				{if $product->description}
-				<p class="buttons_bottom_block"><a href="javascript:{ldelim}{rdelim}" class="button">{l s='More details'}</a></p>
-				{/if}
-				{if $packItems|@count > 0}
-					<h3>{l s='Pack content'}</h3>
-					{foreach from=$packItems item=packItem}
-						<div class="pack_content">
-							{$packItem.pack_quantity} x <a href="{$link->getProductLink($packItem.id_product, $packItem.link_rewrite, $packItem.category)}">{$packItem.name|escape:'htmlall':'UTF-8'}</a>
-							<p>{$packItem.description_short}</p>
-						</div>
-					{/foreach}
-				{/if}
-			</div>
-			{/if}
-
 			{if $colors}
 			<!-- colors -->
-			<div id="color_picker">
+			{variablebox}
 				<p>{l s='Pick a color:' js=1}</p>
 				<div class="clear"></div>
 				<ul id="color_to_pick_list">
@@ -179,10 +160,11 @@ var fieldRequired = '{l s='Please fill all required fields' js=1}';
 				</ul>
 					<a id="color_all" onclick="updateColorSelect(0);"><img src="{$img_dir}icon/cancel.gif" alt="" title="{$color.name}" /></a>
 				<div class="clear"></div>
-			</div>
+			{/variablebox}
 			{/if}
 
 			<!-- add to cart form-->
+			{variablebox}
 			<form id="buy_block" action="{$base_dir}cart.php" method="post">
 
 				<!-- hidden datas -->
@@ -200,8 +182,8 @@ var fieldRequired = '{l s='Please fill all required fields' js=1}';
 						<span class="on_sale">{l s='On sale!'}</span>
 					{elseif ($product->reduction_price != 0 || $product->reduction_percent != 0) && ($product->reduction_from == $product->reduction_to OR ($smarty.now|date_format:'%Y-%m-%d' <= $product->reduction_to && $smarty.now|date_format:'%Y-%m-%d' >= $product->reduction_from))}
 						<span class="discount">{l s='Price lowered!'}</span>
-					{/if}
 					<br />
+					{/if}
 					<span class="our_price_display">
 					{if !$priceDisplay || $priceDisplay == 2}
 						<span id="our_price_display">{convertPrice price=$product->getPriceLC(true, $smarty.const.NULL, 2)}</span>
@@ -266,21 +248,20 @@ var fieldRequired = '{l s='Please fill all required fields' js=1}';
 				<p id="quantity_wanted_p"{if (!$allow_oosp && $product->quantity == 0) || $virtual} style="display:none;"{/if}>
 					<label>{l s='Quantity :'}</label>
 					<input type="text" name="qty" id="quantity_wanted" class="text" value="{if isset($quantityBackup)}{$quantityBackup|intval}{else}1{/if}" size="2" maxlength="3" />
-				</p>
 
-				<!-- availability -->
-				<p id="availability_statut"{if ($allow_oosp && $product->quantity == 0 && !$product->available_later) || (!$product->available_now && $display_qties != 1) } style="display:none;"{/if}>
-					<span id="availability_label">{l s='Availability:'}</span>
-					<span id="availability_value"{if $product->quantity == 0} class="warning-inline"{/if}>
-						{if $product->quantity == 0}{if $allow_oosp}{$product->available_later}{else}{l s='This product is no longer in stock'}{/if}{else}{$product->available_now}{/if}
+					<span id="availability_statut"{if ($allow_oosp && $product->quantity == 0 && !$product->available_later) || (!$product->available_now && $display_qties != 1) } style="display:none;"{/if}>
+						<span id="availability_label">{l s='Availability:'}</span>
+						<span id="availability_value"{if $product->quantity == 0} class="warning-inline"{/if}>
+							{if $product->quantity == 0}{if $allow_oosp}{$product->available_later}{else}{l s='This product is no longer in stock'}{/if}{else}{$product->available_now}{/if}
+						</span>
 					</span>
-				</p>
 
-				<!-- number of item in stock -->
-				<p id="pQuantityAvailable"{if $display_qties != 1 || ($allow_oosp && $product->quantity == 0)} style="display:none;"{/if}>
-					<span id="quantityAvailable">{$product->quantity|intval}</span>
-					<span{if $product->quantity > 1} style="display:none;"{/if} id="quantityAvailableTxt">{l s='item in stock'}</span>
-					<span{if $product->quantity < 2} style="display:none;"{/if} id="quantityAvailableTxtMultiple">{l s='items in stock'}</span>
+					<span id="pQuantityAvailable"{if $display_qties != 1 || ($allow_oosp && $product->quantity == 0)} style="display:none;"{/if}>
+						<span id="quantityAvailable">{$product->quantity|intval}</span>
+						<span{if $product->quantity > 1} style="display:none;"{/if} id="quantityAvailableTxt">{l s='item in stock'}</span>
+						<span{if $product->quantity < 2} style="display:none;"{/if} id="quantityAvailableTxtMultiple">{l s='items in stock'}</span>
+					</span>
+
 				</p>
 
 				<!-- Out of stock hook -->
@@ -296,10 +277,33 @@ var fieldRequired = '{l s='Please fill all required fields' js=1}';
 
 				<p{if !$allow_oosp && $product->quantity == 0} style="display:none;"{/if} id="add_to_cart" class="buttons_bottom_block"><input type="submit" name="Submit" value="{l s='Add to cart'}" class="exclusive" /></p>
 			</form>
+			{/variablebox}
 			{if $HOOK_EXTRA_RIGHT}{$HOOK_EXTRA_RIGHT}{/if}
 		</div>
 	</div>
 	<br class="clear" />
+
+	{if $product->description_short OR $packItems|@count > 0}
+	{variablebox}
+		{if $product->description_short}
+			<div id="short_description_content" class="rte align_justify">{$product->description_short}</div>
+		{/if}
+<!--
+		{if $product->description}
+		<p class="buttons_bottom_block"><a href="javascript:{ldelim}{rdelim}" class="button_small">{l s='More...'}</a></p>
+		{/if}
+-->
+		{if $packItems|@count > 0}
+			<h3>{l s='Pack content'}</h3>
+			{foreach from=$packItems item=packItem}
+				<div class="pack_content">
+					{$packItem.pack_quantity} x <a href="{$link->getProductLink($packItem.id_product, $packItem.link_rewrite, $packItem.category)}">{$packItem.name|escape:'htmlall':'UTF-8'}</a>
+					<p>{$packItem.description_short}</p>
+				</div>
+			{/foreach}
+		{/if}
+	{/variablebox}
+	{/if}
 
 	{if $quantity_discounts}
 	<!-- quantity discount -->
@@ -497,5 +501,5 @@ var fieldRequired = '{l s='Please fill all required fields' js=1}';
 		</div>
 	{/if}
 
-	{/if}
-</td><td class="variablebox_center_right"></td></tr><tr><td class="variablebox_bottom_left"></td><td class="variablebox_bottom_center"></td><td class="variablebox_bottom_right"></td></tr></table>
+{/variablebox}
+{/if}

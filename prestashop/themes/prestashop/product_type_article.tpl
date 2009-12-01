@@ -43,7 +43,7 @@ var fieldRequired = '{l s='Please fill all required fields' js=1}';
 //]]>
 </script>
 
-<table class="product_type_article centre_column_content centre_column_content variablebox"><tr><td class="variablebox_top_left"></td><td class="variablebox_top_center"></td><td class="variablebox_top_right"></td></tr><tr><td class="variablebox_center_left"></td><td class="variablebox_center_center">
+{variablebox}
 	<div id="primary_block">
 
 		<h2>{$product->name|escape:'htmlall':'UTF-8'}</h2>
@@ -100,7 +100,7 @@ var fieldRequired = '{l s='Please fill all required fields' js=1}';
 		<div id="pb-left-column">
 			{if isset($accessories) AND $accessories}
 				<!-- accessories -->
-				<div class="block">
+				{variablebox}
 					<h4>Products used</h4>
 					<div class="block_content">
 						<table>
@@ -130,7 +130,7 @@ var fieldRequired = '{l s='Please fill all required fields' js=1}';
 						{/foreach}
 						</table>
 					</div>
-				</div>
+				{/variablebox}
 			{/if}
 
 			{if $HOOK_EXTRA_RIGHT}{$HOOK_EXTRA_RIGHT}{/if}
@@ -167,5 +167,5 @@ var fieldRequired = '{l s='Please fill all required fields' js=1}';
 
 	</div>
 
-	{/if}
-</td><td class="variablebox_center_right"></td></tr><tr><td class="variablebox_bottom_left"></td><td class="variablebox_bottom_center"></td><td class="variablebox_bottom_right"></td></tr></table>
+{/variablebox}
+{/if}

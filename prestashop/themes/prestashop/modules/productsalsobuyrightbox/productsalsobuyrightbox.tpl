@@ -1,4 +1,4 @@
-<div class="block">
+{variablebox}
 	<h4>{l s='Customers also bought' mod='productsalsobuyrightbox'}</h4>
 	<div class="block_content">
 		<table>
@@ -28,4 +28,4 @@
 		{/foreach}
 		</table>
 	</div>
-</div>
+{/variablebox}
