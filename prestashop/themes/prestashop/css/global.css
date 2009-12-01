@@ -65,7 +65,7 @@ br.clear {
 noscript ul {
     list-style-type: none;
     padding: 10px;
-    border: 1px solid gray;
+    border: 1px solid;
 }
 
 
@@ -93,7 +93,7 @@ ul.footer_links li img.icon {
 
 /* transfert effect*/
 .transferProduct {
-    border: 2px solid #888;
+    border: 2px solid;
 }
 
 
@@ -127,7 +127,7 @@ ul.tree, ul.tree ul {
 }
 ul.tree li {
     padding-left: 1.2em;
-    border-left: 1px gray dotted;
+    border-left: 1px dotted;
     margin-left: 1em;
 }
 ul.tree a {
@@ -401,7 +401,6 @@ form.std {
     clear: both;
 }
 form.std h3 {
-    color: #555;
     font-size: 1.4em;
     font-weight: normal;
     padding: 0.5em;
@@ -498,7 +497,6 @@ input.button_mini, input.button_small, input.button, input.button_large, input.b
 input.button_mini_disabled, input.button_small_disabled, input.button_disabled, input.button_large_disabled, input.button_left_disabled, input.button_right_disabled, input.button_login_disabled, input.exclusive_mini_disabled, input.exclusive_small_disabled, input.exclusive_disabled, input.exclusive_large_disabled, input.exclusive_left_disabled, input.exclusive_right_disabled, input.exclusive_login_disabled, span.button_mini, span.button_small, span.button, span.button_large, span.button_left, span.button_right, span.button_login, span.exclusive_mini, span.exclusive_small, span.exclusive, span.exclusive_large, span.exclusive_left, span.exclusive_right, span.exclusive_login {
     background-position: left -34px;
     cursor: default;
-    color: #888!important;
 }
 input.button_left_disabled, input.button_right_disabled, input.exclusive_left_disabled, input.exclusive_right_disabled, span.button_left, span.button_right, span.exclusive_left, span.exclusive_right {
     background-position: left -38px;
@@ -597,11 +595,6 @@ ul.bullet li, .block ul.bullet li {
 .price-discount {
     text-decoration: line-through;
 }
-.price-pretax {
-    color: gray;
-}
-.price-ecotax {
-}
 img.icon {
     margin-right: 0.5em;
     vertical-align: middle;
@@ -643,14 +636,11 @@ img.icon {
 
 /* success */
 .success {
-    color: green;
-    border: 1px dashed green;
     font-weight: bold;
     margin: 0.2em 1em;
     padding: 0.3em 0.8em 1em;
 }
 .success_inline {
-    color: green;
     font-weight: bold;
 }
 
@@ -658,7 +648,6 @@ img.icon {
 /* breadcrumb.tpl */
 .breadcrumb {
     font-size: 1em;
-    color: #888;
     margin-bottom: 2pt;
 }
 .breadcrumb .navigation-pipe {
@@ -689,7 +678,7 @@ ul.pagination li, ul.pagination a, ul.pagination span {
     font-weight: bold;
 }
 ul.pagination a, ul.pagination span {
-    border: 1px solid #888;
+    border: 1px solid;
     padding: 0em 0.4em;
     display: block;
     line-height: 17px;
@@ -720,9 +709,6 @@ ul.pagination li.truncate {
 }
 #pagination_next a, #pagination_next span {
     border-right: none;
-}
-li.disabled span {
-    color: #888;
 }
 form.pagination {
     text-align: right;
@@ -963,7 +949,7 @@ ul#header_links {
 }
 #footer .block_various_links li {
     display: inline;
-    border-left: 1px solid #888;
+    border-left: 1px solid;
     padding: 0px 2px 0px 4px;
 }
 #footer .block_various_links li.first_item {
@@ -1350,7 +1336,6 @@ a.tag_level2 {
     font-size: 1.4em;
 }
 a.tag_level1 {
-    font-size: 1em;
     color: #888!important;
 }
 
@@ -1879,7 +1864,7 @@ td.cart_product a {
 td.cart_product a img {
 }
 td.cart_product a:hover img {
-    border: 1px solid #888;
+    border: 1px solid;
 }
 td.cart_description a {
     text-decoration: none;
@@ -1981,20 +1966,8 @@ form.std p.desc_contact span.like_input {
 
 
 /* history.tpl*/
-#block-history {
-}
-.color-myaccount {
-}
 #block-history table#order-list {
     border: none;
-}
-#block-history table#order-list thead th {
-}
-#block-history table#order-list thead th {
-}
-#block-history table#order-list tbody {
-}
-#block-history table#order-list tbody tr td {
 }
 #block-history table#order-list td.history_link {
     white-space: nowrap;
@@ -2123,11 +2096,11 @@ div.categTree {
     display: block;
     width: 20px;
     height: 20px;
-    border: 1px solid #666;
+    border: 1px solid;
     cursor: pointer;
 }
 #primary_block a.color_pick:hover {
-    border: 1px solid #000;
+    border: 1px solid;
 }
 #primary_block #image-block img#bigpic.jqzoom {
     cursor: crosshair;
@@ -2348,7 +2321,7 @@ ul.shop_info {
     padding: 0.6em;
     margin-top: 0.6em;
     margin-left: 2em;
-    border: 1px solid #888;
+    border: 1px solid;
 }
 ul.shop_info li {
     padding-left: 0.5em!important;
@@ -2411,10 +2384,10 @@ p#security_informations {
 	display: none;
     }
     div#center_column  {
-	width: 100%
+	width: 100%;
     }
     input.text {
-	border: 1px solid gray
+	border: 1px solid;
     }
     .block_hidden_only_for_screen  {
 	display: block;
@@ -2547,9 +2520,6 @@ ul.typedText {
     padding-left: 5px;
     padding-right: 5px;
 }
-#menu-top dl dt a:hover {
-    background: #ccc;
-}
 #menu-top dl:hover dd {
     display: block;
 }
@@ -2564,20 +2534,16 @@ ul.typedText {
 }
 #menu-top dl dd ul li a {
     display: block;
-    background: #eee;
     width: 100%;
     text-decoration: none;
     padding: 10px;
-}
-#menu-top dl dd ul li a:hover {
-    background: #ccc;
 }
 
 
 /* module blockwishlist */
 #wishlist_block #wishlist_block_list dl.products {
     font-size: 10px;
-    border-bottom: 1px solid #fff;
+    border-bottom: 1px solid;
     margin: 0 0 5px 0;
     padding: 0 0 5px 0;
 }
@@ -2683,7 +2649,6 @@ div#mywishlist div#block-order-detail ul li span.wishlist_product_detail {
     margin-left: 55px;
 }
 #view_wishlist #featured-products_block_center ul div li.address_name input.text {
-    color: #999;
     font-weight: bold;
     font-size: 11px;
     border: 0;
@@ -2697,7 +2662,7 @@ div#mywishlist div#block-order-detail ul li span.wishlist_product_detail {
     clear: both;
     display: block;
 }
-.rating: after {
+.rating:after {
     content: '.';
     display: block;
     height: 0;
@@ -2738,7 +2703,6 @@ div.star_hover a, div.star a:hover {
     font-size: 12px;
 }
 .confirmation {
-    color: forestgreen;
     font-weight: bold;
 }
 #page .rte {
