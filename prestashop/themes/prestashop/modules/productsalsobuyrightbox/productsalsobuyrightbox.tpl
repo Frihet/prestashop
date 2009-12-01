@@ -1,4 +1,4 @@
-{variablebox}
+{variablebox class=block}
 	<h4>{l s='Customers also bought' mod='productsalsobuyrightbox'}</h4>
 	<div class="block_content">
 		<table>
