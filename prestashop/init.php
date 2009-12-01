@@ -184,3 +184,5 @@ else
 		'page_name' => $page_name,
 		'customerName' => ($cookie->logged ? $cookie->customer_firstname.' '.$cookie->customer_lastname : false)));
 }
+
+$smarty->plugins_dir[] = _PS_THEME_DIR_ . '/smarty-plugins';
