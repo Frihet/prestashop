@@ -2,11 +2,13 @@
 
 #cluetip-outer {
         background: white;
-        padding: 4px;
 }
 
 #cluetip-inner {
-	border: 1px dashed #5a0c0c;
+	padding: 4px;
+}
+
+#cluetip-inner .variablebox_center_center {
 	padding: 4px;
 }
 

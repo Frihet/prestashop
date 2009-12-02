@@ -31,14 +31,14 @@ $(function () {
 	/* set cluetip parameters */
 	$('a.cluetip')
 		.cluetip({
-		        width: '283px',
+		        width: '300px',
 		        local:true,
 			cursor: 'pointer',
 			cluetipClass: 'product_scene',
 			dropShadow: false,
 			dropShadowSteps: 0,
 			showTitle: false,
-			tracking: true,
+			tracking: false,
 			sticky: false,
 			mouseOutClose: true,
 			closeText: i18n_scene_close,
@@ -46,8 +46,7 @@ $(function () {
 		    open:       'fadeIn',
 		    openSpeed:  'fast'
 		  }
-		})
-		.css('opacity', 0.8);
+		});
 	
 	/* set serialscroll parameters */
 	$('#scenes_list').serialScroll({

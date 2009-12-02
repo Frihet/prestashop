@@ -19,22 +19,24 @@ $(function () {ldelim}
 					<span style="margin-top:{math equation='a/2 -10' a=$product.zone_height}px; margin-left:{math equation='a/2 -10' a=$product.zone_width}px;">&nbsp;</span>
 				</a>
 				<div id="scene_products_cluetip_{$scene_key}_{$product_key}_{$product.id_product}" style="display:none;">
-					<h4><span class="product_name">{$product.details->name}</span>{if isset($product.details->new) AND $product.details->new}<span class="new">{l s='new'}</span>{/if}</h4>
-					<div class="prices">
-						<p class="price">{convertPrice price=$product.details->getPriceLC(true, $product.details->getDefaultAttribute($product.id_product))}</p>
-							{if $product.details->on_sale}
-							<span class="on_sale">{l s='On sale!'}</span>
-						{elseif ($product.details->reduction_price != 0 || $product.details->reduction_percent != 0) && ($product.details->reduction_from == $product.details->reduction_to OR ($smarty.now|date_format:'%Y-%m-%d' <= $product.details->reduction_to && $smarty.now|date_format:'%Y-%m-%d' >= $product.details->reduction_from))}
-							<span class="discount">{l s='Price lowered!'}</span>
-						{/if}
-					</div>
-					<div class="clear">
-						<a href="{$product.link|escape:'htmlall':'UTF-8'}" title="{$product.details->name|escape:'htmlall':'UTF-8'}">
-							<img src="{$link->getImageLink($product.id_product, $imageIds, 'medium')}" alt="" />
-						</a>
-						<p class="description">{$product.details->description_short|strip_tags|truncate:170:'...'}</p>
-					</div>
-					<div class="clear"></div>
+				        {variablebox}
+						<h4><span class="product_name">{$product.details->name}</span>{if isset($product.details->new) AND $product.details->new}<span class="new">{l s='new'}</span>{/if}</h4>
+						<div class="prices">
+							<p class="price">{convertPrice price=$product.details->getPriceLC(true, $product.details->getDefaultAttribute($product.id_product))}</p>
+								{if $product.details->on_sale}
+								<span class="on_sale">{l s='On sale!'}</span>
+							{elseif ($product.details->reduction_price != 0 || $product.details->reduction_percent != 0) && ($product.details->reduction_from == $product.details->reduction_to OR ($smarty.now|date_format:'%Y-%m-%d' <= $product.details->reduction_to && $smarty.now|date_format:'%Y-%m-%d' >= $product.details->reduction_from))}
+								<span class="discount">{l s='Price lowered!'}</span>
+							{/if}
+						</div>
+						<div class="clear">
+							<a href="{$product.link|escape:'htmlall':'UTF-8'}" title="{$product.details->name|escape:'htmlall':'UTF-8'}">
+								<img src="{$link->getImageLink($product.id_product, $imageIds, 'medium')}" alt="" />
+							</a>
+							<p class="description">{$product.details->description_short|strip_tags|truncate:170:'...'}</p>
+						</div>
+						<div class="clear"></div>
+					{/variablebox}
 				</div>
 			{/foreach}
 		</div>
