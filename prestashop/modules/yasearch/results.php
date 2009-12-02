@@ -5,6 +5,7 @@ include(dirname(__FILE__).'/../../config/config.inc.php');
 
 include_once(dirname(__FILE__).'/classes/AdvLink.php');
 include_once(dirname(__FILE__).'/classes/AdvSearch.php');
+include_once(dirname(__FILE__).'/yasearch.php');
 
 if (Tools::getValue('ajaxSearch') AND $query = urldecode(Tools::getValue('q')) AND !is_array($query))
 {
@@ -83,7 +84,8 @@ if (!isset($_GET['id_supplier'])) $_GET['id_supplier'] = 0;
 
 $smarty->register_function("HOOK_PRODUCT_LIST_ACTIONS", "HOOK_PRODUCT_LIST_ACTIONS");
 
-$smarty->display(dirname(__FILE__).'/themes/prestashop/yasearch.tpl');
+$yasearch = new Yasearch();
+echo $yasearch->display(dirname(__FILE__).'/yasearch.php', 'yasearch.tpl');
 
 include(dirname(__FILE__).'/../../footer.php');
 
