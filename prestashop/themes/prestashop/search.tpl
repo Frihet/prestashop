@@ -1,7 +1,9 @@
 {capture name=path}{l s='Search'}{/capture}
 {include file=$tpl_dir./breadcrumb.tpl}
 
+{variablebox}
 <h2>{l s='Search'}&nbsp;{if $nbProducts > 0}"{if $query}{$query|escape:'htmlall':'UTF-8'}{elseif $tag}{$tag|escape:'htmlall':'UTF-8'}{elseif $ref}{$ref|escape:'htmlall':'UTF-8'}{/if}"{/if}</h2>
+{variablebox_content}
 
 {include file=$tpl_dir./errors.tpl}
 
@@ -19,3 +21,4 @@
 	{include file=$tpl_dir./product-list.tpl products=$products}
 	{include file=$tpl_dir./pagination.tpl}
 {/if}
+{/variablebox}

@@ -1,13 +1,14 @@
 {include file=$tpl_dir./breadcrumb.tpl} 
 {include file=$tpl_dir./errors.tpl}
 
-<table class="centre_column_content variablebox"><tr><td class="variablebox_top_left"></td><td class="variablebox_top_center"></td><td class="variablebox_top_right"></td></tr><tr><td class="variablebox_center_left"></td><td class="variablebox_center_center">
+{variablebox}
 	{if $category->id AND $category->active}
 		{if $path|regex_replace:"/.*a href.*/":"" == ""}
 			<h2 class="category_title">
 				{$category->name|escape:'htmlall':'UTF-8'}
 				<span>{$nb_products|intval}&nbsp;{if $nb_products>1}{l s='products'}{else}{l s='product'}{/if}</span>
 			</h2>
+			{variablebox_content}
 		{/if}
 
 		{if $scenes}
@@ -68,5 +69,4 @@
 	{elseif $category->id}
 		<p class="warning">{l s='This category is currently unavailable.'}</p>
 	{/if}
-</td><td class="variablebox_center_right"></td></tr><tr><td class="variablebox_bottom_left"></td><td class="variablebox_bottom_center"></td><td class="variablebox_bottom_right"></td></tr></table>
-
+{/variablebox}
