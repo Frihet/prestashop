@@ -106,7 +106,9 @@ ul.pagination li.current span {
 #header_user #your_account a {
     background-image: url('../img/icon/my-account.gif');
 }
-
+#header #adv_search_block_top {
+    background: url(../img/universal/cart/box_bottom.jpg) no-repeat scroll left bottom;
+}
 
 /* block exclusive */
 #left_column div.exclusive, #right_column div.exclusive {

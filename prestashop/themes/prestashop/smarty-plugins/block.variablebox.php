@@ -27,8 +27,12 @@ function smarty_block_variablebox($params, $content, &$smarty, &$repeat)
         return;
     }
 
+    $class = '';
+    if (isset($params['class']))
+        $class = $params['class'];
+
     return "
-     <table class='variablebox product_type_article centre_column_content {$params['class']}'>
+     <table class='variablebox product_type_article centre_column_content {$class}'>
       <tr>
        <td class='variablebox_top_left'></td>
        <td class='variablebox_top_center'></td>

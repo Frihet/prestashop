@@ -436,3 +436,6 @@ tbody.datepickerDays td.datepickerDisabled.datepickerNotInMonth a {
 #view_wishlist #featured-products_block_center ul div li.address_name input.text {
     color: #999;
 }
+.dialog {
+    background-color: #ffffff !important;
+}

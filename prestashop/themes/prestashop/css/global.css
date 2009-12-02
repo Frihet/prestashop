@@ -439,6 +439,8 @@ input, textarea, select, span.editable {
     font-family: Verdana, Arial, Helvetica, Sans-Serif;
     vertical-align: top;
     outline: none;
+    border-style: solid;
+    border-width: 1px;
 }
 input, textarea, select {
 }
@@ -470,7 +472,15 @@ form.std p.submit {
 }
 
 
-/* START OF BUTTONS SECTION  *  -tags : input, a, span  *  -sizes : mini, small, normal, large, left, right, login  *  -types : button, exlusive  *  -status : normal, hover, disabled  *  -rule : the span.button is a a.button disabled */
+/* START OF BUTTONS SECTION
+
+ *  -tags : input, a, span  
+ *  -sizes : mini, small, normal, large, left, right, login  
+ *  -types : button, exlusive  
+ *  -status : normal, hover, disabled  
+ *  -rule : the span.button is a a.button disabled
+
+ */
 
 
 /* global button */
@@ -847,12 +857,12 @@ ul#header_links {
 
 /* block top search */
 #header #search_block_top {
-    height: 32px;
-    width: 200px;
+    height: 18px;
+    width: 192px;
     float: right;
     clear: right;
     margin-top: 4px;
-    padding-right: 30px;
+    padding-right: 32px;
 }
 #header #search_block_top label {
     display: none;
@@ -895,8 +905,7 @@ ul#header_links {
 #header #header_user {
     float: right;
     text-align: right;
-    margin: 0.6em 0.6em 0 0;
-    padding-right: 30px;
+    margin: 0.6em 32px 0 0;
 }
 #header_user p {
 }
@@ -932,11 +941,18 @@ ul#header_links {
 #header #adv_search_block_top {
     float: right;
     clear: both;
-    text-align: right;
-    margin: 0;
-    padding-right: 30px;
+    text-align: center;
+    margin-top: 0;
+    margin-bottom: 10px;
+    margon-left: 2px;
+    margin-right: 32px;
+    padding: 0 !important;
+    width: 192px;
+    height: 19px;
 }
-
+.advcontainer {
+    padding: 0 !important;
+}
 
 /* Footer */
 #footer {
@@ -1597,9 +1613,11 @@ ul#order_step {
 .block_buttons {
     height: 17px;
 }
-.block_buttons a {
+.block_buttons a,
+.block_buttons input {
     float: right;
 }
+.block_buttons input.button_left, .block_buttons input.exclusive_left,
 .block_buttons a.button_left, .block_buttons a.exclusive_left {
     float: left;
 }
@@ -2723,10 +2741,6 @@ div.datepickerContainer {
     left: inherit !important;
     top: inherit !important;
 }
-div.datepickerContainer th, div.datepickerContainer th a {
-}
-tbody.datepickerDays td a {
-}
 tbody.datepickerYears td a, tbody.datepickerMonths td a {
     background: inherit;
 }
@@ -2735,4 +2749,71 @@ tbody.datepickerDays td.datepickerDisabled a {
 }
 tbody.datepickerDays td.datepickerNotInMonth a {
     background: inherit;
+}
+.dialog {
+    position: absolute;
+    z-index: 101;
+    padding: 5px;
+}
+
+.dialog{
+    display:none;
+    text-align:center;
+}
+.dialogcontent{
+    width:650px;
+    margin:0 auto;
+    text-align:left;
+}
+.grouptitle{
+    font-weight:bold;
+}
+.closeAdvSearch{
+    padding:2px;
+    width:150px;
+    text-align:center;
+    cursor:pointer;
+}
+.dialogOpcjeTitle{
+    font-weight:bold;
+    cursor:pointer;
+    padding:3px;
+    width:100%;
+}
+#advSearchTags{
+    float:left;
+    font-weight:bold;
+    cursor:pointer;
+    padding:3px;
+}
+.opcjeItem{
+    display:none;
+    padding:3px;
+}
+.dialogform{
+    padding:20px;
+    margin:0 auto;
+    width:600px;
+
+}
+.adsearchOpcje{
+    padding:50px;
+    margin:10px;
+}
+.dialoginput{
+    clear:both;
+    float:none;
+    background:none;
+    padding:3px;
+    border:0;
+}
+.catGroup{
+    cursor:pointer;
+    padding:3px;
+}
+.advcontainer{
+    cursor:pointer;
+    text-decoration:underline;
+    clear:both;
+    padding:3px;
 }
