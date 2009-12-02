@@ -5,6 +5,7 @@ try {
 include(dirname(__FILE__).'/../../debug.php');
 include(dirname(__FILE__).'/../../config/config.inc.php');
 include(dirname(__FILE__).'/../../init.php');
+include(dirname(__FILE__).'/blockeventcalendar.php');
 
 //will be initialized bellow...
 if(intval(Configuration::get('PS_REWRITING_SETTINGS')) === 1)
@@ -49,7 +50,8 @@ if (!isset($_GET['id_supplier'])) $_GET['id_supplier'] = 0;
 
 $smarty->register_function("HOOK_PRODUCT_LIST_ACTIONS", "HOOK_PRODUCT_LIST_ACTIONS");
 
-$smarty->display(dirname(__FILE__).'/eventsfordate.tpl');
+$block = new BlockEventCalendar();
+echo $block->display(dirname(__FILE__).'/blockeventcalendar.php', 'eventsfordate.tpl');
 
 include(dirname(__FILE__).'/../../footer.php');
 
