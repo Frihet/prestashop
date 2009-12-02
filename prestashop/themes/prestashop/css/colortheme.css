@@ -169,9 +169,6 @@ li.disabled span {
 .exclusive h4 a {
     color: #ffffff;
 }
-.exclusive, div.exclusive a {
-    color: #ffffff;
-}
 .exclusive .block_content {
     background-color: #bdc2c9;
     border-left-color: #595a5e;

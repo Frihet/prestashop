@@ -1554,9 +1554,6 @@ ul#order_step {
     font-size: 0;
     display: block;
 }
-#compare_block .compare_block_product_description {
-    float: left;
-}
 #cart_block a.ajax_cart_block_remove_link:hover {
     text-decoration: none;
 }
