@@ -108,6 +108,7 @@ var ajaxCompare = {
 			data: 'add&ajax=true&id_product=' + idProduct + '&token=' + static_token,
 			success: function(jsonData)
 			{
+			 console.log(jsonData);
 				//apply 'transfert' effect
 				var elementToTransfert = null;
 				if (callerElement && callerElement != null)
@@ -126,6 +127,7 @@ var ajaxCompare = {
 				});
 			},
 			error: function(XMLHttpRequest, textStatus, errorThrown) {
+console.log(XMLHttpRequest.responseText);
 				alert("TECHNICAL ERROR: unable to add the product.\n\nDetails:\nError thrown: " + XMLHttpRequest + "\n" + 'Text status: ' + textStatus);
 			}
 		});

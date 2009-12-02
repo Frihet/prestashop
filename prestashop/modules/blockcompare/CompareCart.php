@@ -44,6 +44,7 @@ class		CompareCart extends ObjectModel
 		parent::validateFields();
 
 		$fields['id_customer'] = intval($this->id_customer);
+		$fields['id_lang'] = intval($this->id_lang);
 		$fields['id_guest'] = intval($this->id_guest);
 		$fields['date_add'] = pSQL($this->date_add);
 		$fields['date_upd'] = pSQL($this->date_upd);
@@ -125,7 +126,7 @@ class		CompareCart extends ObjectModel
 		return Db::getInstance()->getRow('
 			SELECT id_product
 			FROM `'._DB_PREFIX_.'compare_cart_product`
-			WHERE `id_product` = '.intval($id_product));
+			WHERE `id_product` = '.intval($id_product).' and id_compare_cart = '.intval($this->id));
 	}
 
 

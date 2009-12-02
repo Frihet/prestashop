@@ -32,7 +32,6 @@ if ($add OR $update OR $delete)
 		{
 			if ($add)
 			{
-				$compare_cart->addProduct(intval($idProduct));
 
 				/* Product addition to the compare_cart */
 				if (!isset($compare_cart->id) OR !$compare_cart->id)
@@ -42,6 +41,7 @@ if ($add OR $update OR $delete)
 						$cookie->id_compare_cart = intval($compare_cart->id);
 				}
 
+				$compare_cart->addProduct(intval($idProduct));
 			}
 			elseif ($delete)
 			{

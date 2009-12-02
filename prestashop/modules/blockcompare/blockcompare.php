@@ -80,6 +80,8 @@ class BlockCompare extends Module
 			$compare_cart->id_guest = intval($cookie->id_guest);
 		        if ($cookie->id_customer)
 			        $compare_cart->id_customer = intval($cookie->id_customer);
+		        if ($cookie->id_lang)
+			        $compare_cart->id_lang = intval($cookie->id_lang);
 		}
         }
 
