@@ -1806,6 +1806,7 @@ table.cart_last_product_content {
     margin: 5px 0px 10px 130px;
 }
 p.cart_navigation {
+    clear: left;
     padding: 1em 0!important;
 }
 p.cart_navigation .button, p.cart_navigation .button_large {
