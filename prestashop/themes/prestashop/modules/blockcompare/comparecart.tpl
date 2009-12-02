@@ -24,7 +24,7 @@
   <tr>
    <th>{$feature_name|escape:'htmlall':'UTF-8'}</th>
    {foreach from=$products item='product' name='products'}
-    <td>{$feature[$product.id]|escape:'htmlall':'UTF-8'}</td>
+    <td>{if isset($feature[$product.id])}{$feature[$product.id]|escape:'htmlall':'UTF-8'}{else}-{/if}</td>
    {/foreach}
   </tr>
  {/foreach}
