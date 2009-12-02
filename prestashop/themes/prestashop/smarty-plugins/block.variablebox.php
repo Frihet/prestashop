@@ -27,29 +27,45 @@ function smarty_block_variablebox($params, $content, &$smarty, &$repeat)
         return;
     }
 
-    $class = '';
-    if (isset($params['class']))
-        $class = $params['class'];
 
-    return "
-     <table class='variablebox product_type_article centre_column_content {$class}'>
-      <tr>
-       <td class='variablebox_top_left'></td>
-       <td class='variablebox_top_center'></td>
-       <td class='variablebox_top_right'></td>
-      </tr>
-      <tr>
-       <td class='variablebox_center_left'></td>
-       <td class='variablebox_center_center'>{$content}</td>
-       <td class='variablebox_center_right'></td>
-      </tr>
-      <tr>
-       <td class='variablebox_bottom_left'></td>
-       <td class='variablebox_bottom_center'></td>
-       <td class='variablebox_bottom_right'></td>
-      </tr>
-     </table>
-    ";
+    $boxparams = array_merge(
+        array(
+	    'class' => '',
+	    'border_left' => 'shown',
+	    'border_right' => 'shown',
+	    'border_top' => 'shown',
+	    'border_bottom' => 'shown',
+	),
+	$params);
+
+    $res = "<table class='variablebox product_type_article centre_column_content {$boxparams['class']}'>";
+    if ($boxparams['border_top'] == "shown") {
+        $res .= "<tr>";
+	if ($boxparams['border_left'] == "shown")
+           $res .= "<td class='variablebox_top_left'></td>";
+	$res .= "<td class='variablebox_top_center'></td>";
+	if ($boxparams['border_right'] == "shown")
+	   $res .= "<td class='variablebox_top_right'></td>";
+        $res .= "</tr>";
+    }
+    $res .= "<tr>";
+    if ($boxparams['border_left'] == "shown")
+       $res .= "<td class='variablebox_center_left'></td>";
+    $res .= "<td class='variablebox_center_center'>{$content}</td>";
+    if ($boxparams['border_right'] == "shown")
+       $res .= "<td class='variablebox_center_right'></td>";
+    $res .= "</tr>";
+    if ($boxparams['border_bottom'] == "shown") {
+        $res .= "<tr>";
+	if ($boxparams['border_left'] == "shown")
+           $res .= "<td class='variablebox_bottom_left'></td>";
+	$res .= "<td class='variablebox_bottom_center'></td>";
+	if ($boxparams['border_right'] == "shown")
+	   $res .= "<td class='variablebox_bottom_right'></td>";
+        $res .= "</tr>";
+    }
+    $res .= "</table>";
+    return $res;
 }
 
 /* vim: set expandtab: */
