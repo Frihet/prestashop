@@ -31,7 +31,7 @@ foreach ($products as $product) {
 }
 $smarty->assign(array('features' => $features));
 
-$smarty->display(dirname(__FILE__).'/comparecart.tpl');
-
+$block = new BlockCompare();
+echo $block->display(dirname(__FILE__).'/blockcompare.php', 'comparecart.tpl');
 
 include_once(dirname(__FILE__).'/../../footer.php');
