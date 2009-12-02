@@ -39,7 +39,7 @@ class OrderPayment extends OrderPage
 
 		Tools::safePostVars();
 		include_once(dirname(__FILE__).'/../../header.php');
-		$smarty->display(_PS_THEME_DIR_.'module-order-payment.tpl');
+		echo $this->display(__FILE__, 'orderpayment.tpl');
 	}
 }
 

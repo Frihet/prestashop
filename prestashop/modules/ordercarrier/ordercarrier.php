@@ -130,7 +130,7 @@ class OrderCarrier extends OrderPage
 		$css_files = array(__PS_BASE_URI__.'css/thickbox.css' => 'all');
 		$js_files = array(__PS_BASE_URI__.'js/jquery/thickbox-modified.js');
 		include_once(dirname(__FILE__).'/../../header.php');
-		$smarty->display(_PS_THEME_DIR_.'module-order-carrier.tpl');
+		echo $this->display(__FILE__, 'ordercarrier.tpl');
 	}
 }
 

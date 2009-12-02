@@ -91,7 +91,7 @@ class OrderPriceAdjustment extends OrderPage
 
 		Tools::safePostVars();
 		include_once(dirname(__FILE__).'/../../header.php');
-		$smarty->display(dirname(__FILE__).'/module-order-priceadjustment.tpl');
+		echo $this->display(__FILE__, 'orderpriceadjustment.tpl');
 	}
 }
 

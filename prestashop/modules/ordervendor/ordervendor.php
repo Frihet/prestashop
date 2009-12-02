@@ -95,7 +95,7 @@ class OrderVendor extends OrderPage
 
 		Tools::safePostVars();
 		include_once(dirname(__FILE__).'/../../header.php');
-		$smarty->display(dirname(__FILE__).'/module-order-vendor.tpl');
+		echo $this->display(__FILE__, 'ordervendor.tpl');
 	}
 }
 

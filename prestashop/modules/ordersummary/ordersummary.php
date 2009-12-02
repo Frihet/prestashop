@@ -96,7 +96,7 @@ class OrderSummary extends OrderPage
 			));
 		Tools::safePostVars();
 		include_once(dirname(__FILE__).'/../../header.php');
-		$smarty->display(_PS_THEME_DIR_.'module-order-summary.tpl');
+		echo $this->display(__FILE__, 'ordersummary.tpl');
 	}
 }
 
