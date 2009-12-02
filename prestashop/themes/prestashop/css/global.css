@@ -659,6 +659,8 @@ img.icon {
 
 /* breadcrumb.tpl */
 .breadcrumb {
+    position: absolute;
+    top: 94px;
     font-size: 1em;
     margin-bottom: 2pt;
 }
