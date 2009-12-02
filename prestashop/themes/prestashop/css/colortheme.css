@@ -9,9 +9,6 @@ noscript ul {
 ul.footer_links li a:hover {
     color: #000000;
 }
-ul.idTabs {
-    border-bottom: #5a0c0c;
-}
 ul.idTabsShort li a, ul.idTabs li a {
     background: #999999;
     color: #ffffff;
@@ -166,21 +163,21 @@ li.disabled span {
 .block a {
     color: #595a5e;
 }
-div.exclusive h4 {
+.exclusive h4 {
     color: #ffffff;
 }
-div.exclusive h4 a {
+.exclusive h4 a {
     color: #ffffff;
 }
-div.exclusive, div.exclusive a {
+.exclusive, div.exclusive a {
     color: #ffffff;
 }
-div.exclusive .block_content {
+.exclusive .block_content {
     background-color: #bdc2c9;
     border-left-color: #595a5e;
     border-right-color: #595a5e;
 }
-div.universal, div.universal a, div.universal h4 a, div.universal h4 {
+.universal, .universal a, .universal h4 a, .universal h4 {
     color: #000000;
 }
 #left_column .block.universal .block_content, #right_column .block.universal .block_content {
@@ -191,6 +188,12 @@ div.universal, div.universal a, div.universal h4 a, div.universal h4 {
 }
 .products_block dl dt {
     color: #595a5e;
+}
+#center_column .block h4 {
+    color: #5a0c0c;
+    background: inherit;
+    padding: 0;
+    margin: 0.5em;
 }
 #center_column .products_block ul li {
     border-right-color: #999999;

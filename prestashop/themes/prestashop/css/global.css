@@ -149,6 +149,8 @@ ul.idTabs {
     list-style-type: none;
     height: 21px;
     margin-top: 1em;
+    border-bottom-style: solid;
+    border-bottom-width: 1px;
 }
 ul.idTabs li {
     float: left;
@@ -201,13 +203,13 @@ a img {
     text-decoration: none;
 }
 h2 {
-    font-size: 1.1em;
+    font-size: 1.2em;
     line-height: 1.6em;
     padding-left: 0.5em;
     margin: 0.5em 0;
     text-transform: uppercase;
     font-weight: bold;
-    height: 21px;
+    height: 1.6em;
 }
 h2 span {
     font-size: 0.9em;
@@ -263,7 +265,7 @@ h1#logo a {
 .centre_column_content {
 }
 .centre_column_content h2 {
-    margin-top: 0;
+    margin: 0;
 }
 
 
@@ -1082,6 +1084,10 @@ div.universal, div.universal a, div.universal h4 a, div.universal h4 {
 #center_column p {
     margin: 0.5em 0;
     padding-left: 0.7em;
+}
+
+#center_column .block h4 {
+    text-transform: none;
 }
 
 
