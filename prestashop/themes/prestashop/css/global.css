@@ -660,7 +660,7 @@ img.icon {
 /* breadcrumb.tpl */
 .breadcrumb {
     position: absolute;
-    top: 94px;
+    top: 91px;
     font-size: 1em;
     margin-bottom: 2pt;
 }
@@ -950,7 +950,7 @@ ul#header_links {
     margin-right: 32px;
     padding: 0 !important;
     width: 192px;
-    height: 19px;
+    height: 16px;
 }
 .advcontainer {
     padding: 0 !important;
