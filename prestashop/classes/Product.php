@@ -547,8 +547,10 @@ class		Product extends ObjectModel
 	{
 		if (!Validate::isOrderBy($orderBy) OR !Validate::isOrderWay($orderWay))
 			die (Tools::displayError());
-		if ($orderBy == 'id_product' OR	$orderBy == 'price' OR	$orderBy == 'date_add')
+		if ($orderBy == 'id_product' OR	$orderBy == 'date_add')
 			$orderByPrefix = 'p';
+		if ($orderBy == 'price')
+			$orderByPrefix = 'pp';
 		elseif ($orderBy == 'name')
 			$orderByPrefix = 'pl';
 		elseif ($orderBy == 'position')
@@ -1014,8 +1016,10 @@ class		Product extends ObjectModel
 		if ($nbProducts < 1) $nbProducts = 10;
 		if (empty($orderBy) || $orderBy == 'position') $orderBy = 'date_add';
 		if (empty($orderWay)) $orderWay = 'DESC';
-		if ($orderBy == 'id_product' OR $orderBy == 'price' OR $orderBy == 'date_add')
+		if ($orderBy == 'id_product' OR $orderBy == 'date_add')
 			$orderByPrefix = 'p';
+		if ($orderBy == 'price')
+			$orderByPrefix = 'pp';
 		elseif ($orderBy == 'name')
             $orderByPrefix = 'pl';
 		if (!Validate::isOrderBy($orderBy) OR !Validate::isOrderWay($orderWay))
@@ -1046,7 +1050,8 @@ class		Product extends ObjectModel
 		$price_sql = self::getProductPriceSql('p.id_product', 'pp');
 
 		$sql = "
-		 SELECT p.*,
+		 SELECT
+		  p.*,
 		  pl.`description`,
 		  pl.`description_short`,
 		  pl.`link_rewrite`,
@@ -1190,8 +1195,10 @@ class		Product extends ObjectModel
 		if ($nbProducts < 1) $nbProducts = 10;
 		if (empty($orderBy) || $orderBy == 'position') $orderBy = 'myprice';
 		if (empty($orderWay)) $orderWay = 'DESC';
-		if ($orderBy == 'id_product' OR $orderBy == 'price' OR $orderBy == 'date_add')
+		if ($orderBy == 'id_product' OR $orderBy == 'date_add')
 			$orderByPrefix = 'p';
+		if ($orderBy == 'price')
+			$orderByPrefix = 'pp';
 		elseif ($orderBy == 'name')
             $orderByPrefix = 'pl';
 		if (!Validate::isOrderBy($orderBy) OR !Validate::isOrderWay($orderWay))
