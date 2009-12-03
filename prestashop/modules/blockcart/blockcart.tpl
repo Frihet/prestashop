@@ -2,6 +2,10 @@
 {* IMPORTANT : If you change some data here, you have to report these changes in the ./blockcart-json.js (to let ajaxCart available) *}
 {*************************************************************************************************************************************}
 
+{if !isset($colapseExpandStatus)}
+    {assign var=colapseExpandStatus value=expanded}
+{/if}
+
 {if $ajax_allowed}
 <script type="text/javascript" src="{$content_dir}js/jquery/iutil.prestashop-modifications.js"></script>
 {* to perfectly play the tranfert animation, the script ifx.js has to be called here, but it creates a method conflict with jquery.serialScroll.js file *}
