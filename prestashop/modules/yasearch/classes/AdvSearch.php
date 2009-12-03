@@ -111,47 +111,47 @@ class AdvSearch extends Search
 		}
 		$displaycategories=AdvSearch::queryCategories(Tools::getValue('categories'));
 		$price_brutto="CASE WHEN t.rate>0 THEN
-	CASE WHEN p.reduction_from!=p.reduction_to THEN
-		CASE WHEN p.reduction_to>='".date("Y-m-d")."' and p.reduction_from<='".date("Y-m-d")."' THEN
-			CASE WHEN p.reduction_price>0 THEN
-				ROUND(((p.price*(1+(t.rate/100)))-p.reduction_price)*cu.conversion_rate,2)
-			WHEN p.reduction_percent>0 THEN
-				ROUND(((p.price*(1+(t.rate/100)))-((p.price*(1+(t.rate/100)))*(p.reduction_percent/100)))*cu.conversion_rate,2)
+	CASE WHEN pp.reduction_from!=pp.reduction_to THEN
+		CASE WHEN pp.reduction_to>='".date("Y-m-d")."' and pp.reduction_from<='".date("Y-m-d")."' THEN
+			CASE WHEN pp.reduction_price>0 THEN
+				ROUND(((pp.price*(1+(t.rate/100)))-pp.reduction_price)*cu.conversion_rate,2)
+			WHEN pp.reduction_percent>0 THEN
+				ROUND(((pp.price*(1+(t.rate/100)))-((pp.price*(1+(t.rate/100)))*(pp.reduction_percent/100)))*cu.conversion_rate,2)
 			ELSE
-				ROUND((p.price*(1+t.rate/100))*cu.conversion_rate,2)
+				ROUND((pp.price*(1+t.rate/100))*cu.conversion_rate,2)
 			END 
 		ELSE
-			ROUND((p.price*(1+t.rate/100))*cu.conversion_rate,2)
+			ROUND((pp.price*(1+t.rate/100))*cu.conversion_rate,2)
 		END  
 	ELSE
-		CASE WHEN p.reduction_price>0 THEN
-			ROUND(((p.price*(1+t.rate/100))-p.reduction_price)*cu.conversion_rate,2)
-		WHEN p.reduction_percent>0 THEN
-			ROUND(((p.price*(1+t.rate/100))-((p.price*(1+(t.rate/100)))*(p.reduction_percent/100)))*cu.conversion_rate,2)
+		CASE WHEN pp.reduction_price>0 THEN
+			ROUND(((pp.price*(1+t.rate/100))-pp.reduction_price)*cu.conversion_rate,2)
+		WHEN pp.reduction_percent>0 THEN
+			ROUND(((pp.price*(1+t.rate/100))-((pp.price*(1+(t.rate/100)))*(pp.reduction_percent/100)))*cu.conversion_rate,2)
 		ELSE
-			ROUND((p.price*(1+t.rate/100))*cu.conversion_rate,2)
+			ROUND((pp.price*(1+t.rate/100))*cu.conversion_rate,2)
 		END 
 	END 
 ELSE
-	CASE WHEN p.reduction_from!=p.reduction_to THEN
-		CASE WHEN p.reduction_to>='".date("Y-m-d")."' and p.reduction_from<='".date("Y-m-d")."' THEN
-			CASE WHEN p.reduction_price>0 THEN
-				ROUND((p.price-p.reduction_price)*cu.conversion_rate,2)
-			WHEN p.reduction_percent>0 THEN
-				ROUND((p.price-(p.price*(p.reduction_percent/100)))*cu.conversion_rate,2)
+	CASE WHEN pp.reduction_from!=pp.reduction_to THEN
+		CASE WHEN pp.reduction_to>='".date("Y-m-d")."' and pp.reduction_from<='".date("Y-m-d")."' THEN
+			CASE WHEN pp.reduction_price>0 THEN
+				ROUND((pp.price-pp.reduction_price)*cu.conversion_rate,2)
+			WHEN pp.reduction_percent>0 THEN
+				ROUND((pp.price-(pp.price*(pp.reduction_percent/100)))*cu.conversion_rate,2)
 			ELSE
-				ROUND((p.price)*cu.conversion_rate,2)
+				ROUND((pp.price)*cu.conversion_rate,2)
 			END 
 		ELSE
-			ROUND((p.price)*cu.conversion_rate,2)
+			ROUND((pp.price)*cu.conversion_rate,2)
 		END 	
 	ELSE	
-		CASE WHEN p.reduction_price>0 THEN
-			ROUND((p.price-p.reduction_price)*cu.conversion_rate,2)
-		WHEN p.reduction_percent>0 THEN
-			ROUND((p.price-(p.price*(p.reduction_percent/100)))*cu.conversion_rate,2)
+		CASE WHEN pp.reduction_price>0 THEN
+			ROUND((pp.price-pp.reduction_price)*cu.conversion_rate,2)
+		WHEN pp.reduction_percent>0 THEN
+			ROUND((pp.price-(pp.price*(pp.reduction_percent/100)))*cu.conversion_rate,2)
 		ELSE
-			ROUND((p.price)*cu.conversion_rate,2)
+			ROUND((pp.price)*cu.conversion_rate,2)
 		END 			
 	END 
 
