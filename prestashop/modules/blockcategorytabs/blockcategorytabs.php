@@ -152,7 +152,7 @@ class BlockCategoryTabs extends Module
 			}
 		}
 
-		if (isset($_GET['id_category']) || isset($_GET['id_product'])) {
+		if (isset($cookie->last_visited_category)) {
 			$smarty->assign('currentCategoryId', $cookie->last_visited_category);
 			$smarty->assign('currentCategoryPath', array_reverse($this->findCurrentCategoryPath($blockCategTree, $cookie->last_visited_category)));
 		}
