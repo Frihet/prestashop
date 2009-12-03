@@ -1,8 +1,10 @@
 {if isset($products)}
 	<!-- Products list -->
-	<ul id="product_list" class="clear">
+	<ul id="product_list" class="clear product_list">
 	{foreach from=$products item=product name=products}
-		<li class="ajax_block_product {if $smarty.foreach.products.first}first_item{elseif $smarty.foreach.products.last}last_item{/if} {if $smarty.foreach.products.index % 2}alternate_item{else}item{/if}">
+		<li class="ajax_block_product product_list_item {if $smarty.foreach.products.first}first_item{elseif $smarty.foreach.products.last}last_item{/if} {if $smarty.foreach.products.index % 2}alternate_item{else}item{/if}">
+			{variablebox border_left="hidden" border_top="hidden" border_right="hidden"}
+
 			<div class="center_block">
                                 {if ($product.type != 'article')}
  				       <span class="availability">{if ($product.allow_oosp OR $product.quantity > 0)}{l s='Available'}{else}{l s='Out of stock'}{/if}</span>
@@ -32,6 +34,7 @@
 				{/if}
 			</div>
 			<br class="clear"/>
+			{/variablebox}
 		</li>
 	{/foreach}
 	</ul>

@@ -1724,25 +1724,28 @@ body#category  div#subcategories ul.inline_list  li a img {
 
 /* product-list.tpl */
 
-.product_list_item {
+.product_list {
+    list-style: none;
+}
+.product_list_category_item {
     width: 150px;
     float: left;
 }
 
-.product_list_item a {
+.product_list_item a, .product_list_category_item a {
     text-decoration: none;
 }
-.product_list_item a.product_img_link {
+.product_list_item a.product_img_link, .product_list_category_item a.product_img_link {
     float: left;
     margin-right: 0.6em;
 }
-.product_list_item a.product_img_link img {
+.product_list_item a.product_img_link img, .product_list_category_item a.product_img_link img {
     vertical-align: bottom;
 }
-.product_list_item h3 {
+.product_list_item h3, .product_list_category_item h3 {
     margin: 0.4em 0;
 }
-.product_list_item .new {
+.product_list_item .new, .product_list_category_item .new {
     font-size: 0.6em;
     font-weight: bold;
     margin: 0pt 1em 0pt 0pt;
@@ -1750,43 +1753,48 @@ body#category  div#subcategories ul.inline_list  li a img {
     text-transform: uppercase;
     vertical-align: 0.3em;
 }
-.product_list_item p.product_desc {
+.product_list_item p.product_desc, .product_list_category_item p.product_desc {
     font-size: 0.92em;
 }
-.product_list_item div.center_block {
+.product_list_item div.center_block, .product_list_category_item div.center_block {
     float: left;
     width: 74%;
 }
 .product_list_item div.right_block {
+    float: right;
+}
+.product_list_category_item div.right_block {
     float: left;
+}
+.product_list_item div.right_block, .product_list_category_item div.right_block {
     width: 11em;
     text-align: right;
     margin-left: 1em;
     margin-top: 0;
 }
-.product_list_item .discount {
+.product_list_item .discount, .product_list_category_item .discount {
     text-transform: uppercase;
     font-weight: bold;
     display: block;
 }
-.product_list_item .on_sale {
+.product_list_item .on_sale, .product_list_category_item .on_sale {
     text-transform: uppercase;
     font-weight: bold;
     display: block;
 }
-.product_list_item .reduction {
+.product_list_item .reduction, .product_list_category_item .reduction {
     display: block;
     margin-bottom: 0.3em;
 }
-.product_list_item .price {
+.product_list_item .price, .product_list_category_item .price {
     display: block;
     font-size: 1.5em;
     margin-bottom: 0.2em;
 }
-.product_list_item span.availability {
+.product_list_item span.availability, .product_list_category_item span.availability {
     font-size: 0.9em;
 }
-.product_list_item a.button {
+.product_list_item a.button, .product_list_category_item a.button {
     margin-top: 0.5em;
 }
 

@@ -1,5 +1,5 @@
 {foreach from=$products item=product name=homeFeaturedProducts}
-	{variablebox border_left="hidden" border_top="hidden" class="product_list_item ajax_block_product"}
+	{variablebox border_left="hidden" border_top="hidden" class="product_list_category_item ajax_block_product"}
 		<h5><a href="{$product.link}" title="{$product.name|truncate:32:'...'|escape:'htmlall':'UTF-8'}">{$product.name|truncate:27:'...'|escape:'htmlall':'UTF-8'}</a></h5>
 		{if !isset($hide_description)}
 			<p class="product_desc"><a href="{$product.link}" title="{l s='More' mod='homefeatured'}">{$product.description_short|strip_tags|truncate:130:'...'}</a></p>
