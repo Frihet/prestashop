@@ -29,15 +29,14 @@ function find_tag(&$smarty, $tag)
 
 function smarty_function_variablebox_content($params, &$smarty)
 {
-    $boxparams = array_merge(
-        array(
+    $boxparams = array(
 	    'border_left' => 'shown',
 	    'border_right' => 'shown',
 	    'border_top' => 'shown',
-	    'border_bottom' => 'shown',
-	),
-	find_tag($smarty, 'variablebox'));
-
+	    'border_bottom' => 'shown');
+    $parentboxparams = find_tag($smarty, 'variablebox');
+    if ($parentboxparams != null)
+        $boxparams = array_merge($boxparams, $parentboxparams);
     $res = "</td>";
     if ($boxparams['border_right'] == 'shown')
         $res .= "<td class='variablebox_center_right'></td>";
