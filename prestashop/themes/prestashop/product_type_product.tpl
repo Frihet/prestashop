@@ -401,25 +401,7 @@ var fieldRequired = '{l s='Please fill all required fields' js=1}';
 			<!-- accessories -->
 			<ul id="idTab4" class="bullet">
 				<div class="block products_block accessories_block">
-					<div class="block_content">
-						<ul>
-						{foreach from=$accessories item=accessory name=accessories_list}
-							{assign var='accessoryLink' value=$link->getProductLink($accessory.id_product, $accessory.link_rewrite, $accessory.category)}
-							<li class="ajax_block_product {if $smarty.foreach.accessories_list.first}first_item{elseif $smarty.foreach.accessories_list.last}last_item{else}item{/if} product_accessories_description">
-								<h5 class="align_center"><a href="{$accessoryLink|escape:'htmlall':'UTF-8'}">{$accessory.name|truncate:22:'...'|escape:'htmlall':'UTF-8'}</a></h5>
-								<p class="product_desc">
-									<a href="{$accessoryLink|escape:'htmlall':'UTF-8'}" title="{$accessory.legend|escape:'htmlall':'UTF-8'}" class="product_image"><img src="{$link->getImageLink($accessory.link_rewrite, $accessory.id_image, 'medium')}" alt="{$accessory.legend|escape:'htmlall':'UTF-8'}" /></a>
-									<a href="{$accessoryLink|escape:'htmlall':'UTF-8'}" title="{l s='More'}" class="product_description">{$accessory.description_short|strip_tags|truncate:100:'...'}</a>
-								</p>
-								<p class="product_accessories_price">
-									<span class="price">{displayWtPrice p=$accessory.price}</span>
-									<a class="button" href="{$accessoryLink|escape:'htmlall':'UTF-8'}" title="{l s='View'}">{l s='View'}</a>
-									<a class="button ajax_add_to_cart_button" href="{$base_dir}cart.php?qty=1&amp;id_product={$accessory.id_product|intval}&amp;token={$static_token}&amp;add" rel="ajax_id_product_{$accessory.id_product|intval}" title="{l s='Add to cart'}">{l s='Add to cart'}</a>
-								</p>
-							</li>
-						{/foreach}
-						</ul>
-					</div>
+					{include file=$tpl_dir./product-list-category.tpl products=$accessories}
 				</div>
 				<div class="clear"></div>
 			</ul>
