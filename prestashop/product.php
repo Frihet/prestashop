@@ -172,34 +172,6 @@ else
 		$features = $product->getFrontFeatures(intval($cookie->id_lang));
 		$attachments = $product->getAttachments(intval($cookie->id_lang));
 		
-		/* Category */
-		$category = false;
-		if (isset($_SERVER['HTTP_REFERER']) AND preg_match('!^(.*)\/([0-9]+)\-(.*[^\.])|(.*)id_category=([0-9]+)(.*)$!', $_SERVER['HTTP_REFERER'], $regs) AND !strstr($_SERVER['HTTP_REFERER'], '.html'))
-		{
-			if (isset($regs[2]) AND is_numeric($regs[2]))
-			{
-				if (Product::idIsOnCategoryId(intval($product->id), array('0' => array('id_category' => intval($regs[2])))))
-					$category = new Category(intval($regs[2]), intval($cookie->id_lang));
-			}
-			elseif (isset($regs[5]) AND is_numeric($regs[5]))
-			{
-				if (Product::idIsOnCategoryId(intval($product->id), array('0' => array('id_category' => intval($regs[5])))))
-					$category = new Category(intval($regs[5]), intval($cookie->id_lang));
-			}
-		}
-		if (!$category)
-			$category = new Category($product->id_category_default, intval($cookie->id_lang));
-
-		if (isset($category) AND Validate::isLoadedObject($category))
-		{
-			$smarty->assign(array(
-			'category' => $category,
-			'subCategories' => $category->getSubCategories(intval($cookie->id_lang), true),
-			'id_category_current' => intval($category->id),
-			'id_category_parent' => intval($category->id_parent),
-			'return_category_name' => Tools::safeOutput(Category::hideCategoryPosition($category->name))));
-		}
-
 		$smarty->assign(array(
 			'return_link' => (isset($category->id) AND $category->id) ? Tools::safeOutput($link->getCategoryLink($category)) : 'javascript: history.back();',
 			'path' => ((isset($category->id) AND $category->id) ? Tools::getFullPath(intval($category->id), $product->name) : Tools::getFullPath(intval($product->id_default_category), $product->name))
