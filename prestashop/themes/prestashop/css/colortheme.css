@@ -9,6 +9,9 @@ noscript ul {
 ul.footer_links li a:hover {
     color: #000000;
 }
+ul.idTabsShort, ul.idTabs {
+    border-color: #5a0c0c;
+}
 ul.idTabsShort li a, ul.idTabs li a {
     background: #999999;
     color: #ffffff;
