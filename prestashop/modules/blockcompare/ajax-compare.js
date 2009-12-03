@@ -11,7 +11,7 @@ var ajaxCompare = {
 			return false;
 		});
 		//for product page 'add' button...
-		$('body#product .ajax_add_to_compare_cart_button').unbind('click').click(function(){
+		$('.ajax_product_page_add_to_compare_cart_button').unbind('click').click(function(){
 			ajaxCompare.add($('#product_page_product_id').val(), true, null);
 			return false;
 		});
