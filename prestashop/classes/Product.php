@@ -1199,15 +1199,33 @@ class		Product extends ObjectModel
 
 		if ($count)
 		{
-			$sql = '
-			SELECT COUNT(DISTINCT p.`id_product`) AS nb
-			FROM `'._DB_PREFIX_.'product` p
-			LEFT JOIN `'._DB_PREFIX_.'category_product` cp ON (cp.`id_product` = p.`id_product`)
-			INNER JOIN `'._DB_PREFIX_.'category_group` ctg ON (ctg.`id_category` = cp.`id_category`)
-			'.($cookie->id_customer ? 'INNER JOIN `'._DB_PREFIX_.'customer_group` cg ON (cg.`id_group` = ctg.`id_group`)' : '').'
-			WHERE (p.`reduction_price` > 0 OR p.`reduction_percent` > 0)
-			AND ('.($cookie->id_customer ? 'cg.`id_customer` = '.intval($cookie->id_customer).' OR' : '').' ctg.`id_group` = 1)
-			AND p.`active` = 1';
+			$price_sql = self::getProductPriceSql('p.id_product', 'pp');
+			$customer_join = '';
+			$customer_where = '';
+			if ($cookie->id_customer) {
+			 $customer_join = "
+			  INNER JOIN `PREFIX_customer_group` cg ON
+			   cg.`id_group` = ctg.`id_group`
+			 ";
+			 $customer_where = "cg.`id_customer` = {$cookie->id_customer} OR";
+			}
+			$sql = "
+			 SELECT
+			  COUNT(DISTINCT p.`id_product`) AS nb
+			 FROM
+			  `PREFIX_product` p
+			  {$price_sql}
+			  LEFT JOIN `PREFIX_category_product` cp ON
+			   cp.`id_product` = p.`id_product`
+			  INNER JOIN `PREFIX_category_group` ctg ON
+			   ctg.`id_category` = cp.`id_category`
+			  {$customer_join}
+			 WHERE
+			  (pp.`reduction_price` > 0 OR pp.`reduction_percent` > 0)
+			  AND ({$customer_where} ctg.`id_group` = 1)
+			  AND p.`active` = 1
+			";
+			$sql = str_replace('PREFIX_', _DB_PREFIX_, $sql);
 			$result = Db::getInstance()->getRow($sql);
 			return intval($result['nb']);
 		}
@@ -1242,6 +1260,7 @@ class		Product extends ObjectModel
 		$sql = "
 		 SELECT
 		  p.*,
+		  pp.*,
 		  pl.`description`,
 		  pl.`description_short`,
 		  pl.`link_rewrite`,
@@ -1265,7 +1284,7 @@ class		Product extends ObjectModel
 		   i.`id_image` = il.`id_image` AND il.`id_lang` = {$id_lang}
 		  {$price_sql}
 		  LEFT JOIN `PREFIX_tax` t ON
-		   t.`id_tax` = p.`id_tax`
+		   t.`id_tax` = pp.`id_tax`
 		  LEFT JOIN `PREFIX_manufacturer` m ON
 		   m.`id_manufacturer` = p.`id_manufacturer`
 		  LEFT JOIN `PREFIX_category_product` cp ON
@@ -1283,6 +1302,7 @@ class		Product extends ObjectModel
 		 LIMIT ".intval($pageNumber * $nbProducts).", {$nbProducts}
                 ";
 
+		$sql = str_replace('PREFIX_', _DB_PREFIX_, $sql);
 		$result = Db::getInstance()->ExecuteS($sql);
 		if($orderBy == 'price')
 		{

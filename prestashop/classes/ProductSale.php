@@ -57,26 +57,60 @@ class		ProductSale
 		if ($nbProducts < 1) $nbProducts = 10;
 		if (empty($orderBy) || $orderBy == 'position') $orderBy = 'sales';
 		if (empty($orderWay)) $orderWay = 'DESC';
-		
-		$result = Db::getInstance()->ExecuteS('
-		SELECT p.*,
-			pl.`description`, pl.`description_short`, pl.`link_rewrite`, pl.`meta_description`, pl.`meta_keywords`, pl.`meta_title`, pl.`name`,
-			i.`id_image`, il.`legend`,
-			ps.`quantity` AS sales, t.`rate`, pl.`meta_keywords`, pl.`meta_title`, pl.`meta_description`
-		FROM `'._DB_PREFIX_.'product_sale` ps 
-		LEFT JOIN `'._DB_PREFIX_.'product` p ON ps.`id_product` = p.`id_product`
-		LEFT JOIN `'._DB_PREFIX_.'product_lang` pl ON (p.`id_product` = pl.`id_product` AND pl.`id_lang` = '.intval($id_lang).')
-		LEFT JOIN `'._DB_PREFIX_.'image` i ON (i.`id_product` = p.`id_product` AND i.`cover` = 1)
-		LEFT JOIN `'._DB_PREFIX_.'image_lang` il ON (i.`id_image` = il.`id_image` AND il.`id_lang` = '.intval($id_lang).')
-		LEFT JOIN `'._DB_PREFIX_.'tax` t ON (t.`id_tax` = p.`id_tax`)
-		LEFT JOIN `'._DB_PREFIX_.'category_product` cp ON (cp.`id_product` = p.`id_product`)
-		INNER JOIN `'._DB_PREFIX_.'category_group` ctg ON (ctg.`id_category` = cp.`id_category`)
-		'.($cookie->id_customer ? 'INNER JOIN `'._DB_PREFIX_.'customer_group` cg ON (cg.`id_group` = ctg.`id_group`)' : '').'
-		WHERE p.`active` = 1
-		AND ('.($cookie->id_customer ? 'cg.`id_customer` = '.intval($cookie->id_customer).' OR' : '').' ctg.`id_group` = 1)
-		GROUP BY p.`id_product`
-		ORDER BY '.(isset($orderByPrefix) ? $orderByPrefix.'.' : '').'`'.pSQL($orderBy).'` '.pSQL($orderWay).'
-		LIMIT '.intval($pageNumber * $nbProducts).', '.intval($nbProducts));
+
+		$price_sql = Product::getProductPriceSql('p.id_product', 'pp');
+		$customer_join = '';
+		$customer_where = '';
+		if ($cookie->id_customer) {
+		 $customer_join = "
+		  INNER JOIN `PREFIX_customer_group` cg ON
+		   cg.`id_group` = ctg.`id_group`
+		 ";
+		 $customer_where = "cg.`id_customer` = {$cookie->id_customer} OR";
+		}
+		if (isset($orderByPrefix))
+		    $orderByPrefix .= '.';
+		else
+		    $orderByPrefix = '';
+		$orderBy = pSQL($orderBy);
+		$orderWay = pSQL($orderWay);
+		$pageStart = intval($pageNumber * $nbProducts);
+		$nbProducts = intval($nbProducts);
+
+		$sql = "
+		 SELECT
+		  p.*, pp.*,
+		  pl.`description`, pl.`description_short`, pl.`link_rewrite`, pl.`meta_description`, pl.`meta_keywords`, pl.`meta_title`, pl.`name`,
+		  i.`id_image`, il.`legend`,
+		  ps.`quantity` AS sales, t.`rate`, pl.`meta_keywords`, pl.`meta_title`, pl.`meta_description`
+		 FROM
+		  `PREFIX_product_sale` ps 
+		  LEFT JOIN `PREFIX_product` p ON
+		   ps.`id_product` = p.`id_product`
+		  {$price_sql}
+		  LEFT JOIN `PREFIX_product_lang` pl ON
+		   p.`id_product` = pl.`id_product` AND pl.`id_lang` = {$id_lang}
+		  LEFT JOIN `PREFIX_image` i ON
+		   i.`id_product` = p.`id_product` AND i.`cover` = 1
+		  LEFT JOIN `PREFIX_image_lang` il ON
+		   i.`id_image` = il.`id_image` AND il.`id_lang` = {$id_lang}
+		  LEFT JOIN `PREFIX_tax` t ON
+		   t.`id_tax` = pp.`id_tax`
+		  LEFT JOIN `PREFIX_category_product` cp ON
+		   cp.`id_product` = p.`id_product`
+		  INNER JOIN `PREFIX_category_group` ctg ON
+		   ctg.`id_category` = cp.`id_category`
+		  {$customer_join}
+		 WHERE
+		  p.`active` = 1
+		 AND ({$customer_where} ctg.`id_group` = 1)
+		 GROUP BY p.`id_product`
+		 ORDER BY {$orderByPrefix}`{$orderBy}` {$orderWay}
+		 LIMIT {$pageStart}, {$nbProducts}
+		";
+
+		$sql = str_replace('PREFIX_', _DB_PREFIX_, $sql);	
+		$result = Db::getInstance()->ExecuteS($sql);
 
 		if($orderBy == 'price')
 		{	
