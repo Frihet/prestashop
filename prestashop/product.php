@@ -338,6 +338,7 @@ $smarty->assign(array(
 	'currencyFormat' => $currency->format,
 	'currencyBlank' => $currency->blank)
 	);
+
 $smarty->display(_PS_THEME_DIR_.'product.tpl');
 
 include(dirname(__FILE__).'/footer.php');

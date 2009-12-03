@@ -28,7 +28,7 @@
                                 {/if}
 				<a class="button" href="{$product.link|escape:'htmlall':'UTF-8'}" title="{l s='View'}">{l s='View'}</a>
 				{if ($product.type != 'article')}
-					{HOOK_PRODUCT_LIST_ACTIONS product=$product}
+        				{hookExec hook="productListActions" product=$product}
 				{/if}
 			</div>
 			<br class="clear"/>

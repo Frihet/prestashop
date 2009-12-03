@@ -8,7 +8,7 @@
 			{if $priceDisplay}<p class="price_container"><span class="price">{convertPrice price=$product.price_tax_exc}</span>{if $priceDisplay == 2} {l s='-Tx' mod='homefeatured'}{/if}</p>{/if}
 			<a class="button" href="{$product.link}" title="{l s='View' mod='homefeatured'}">{l s='View' mod='homefeatured'}</a>
 			{if ($product.type != 'article')}
-				{HOOK_PRODUCT_LIST_ACTIONS product=$product}
+				{hookExec hook="productListActions" product=$product}
 				{if ($product.quantity > 0 OR $product.allow_oosp) AND $product.customizable != 2}
 				        <a class="exclusive ajax_add_to_cart_button" rel="ajax_id_product_{$product.id_product}" href="{$base_dir}cart.php?qty=1&amp;id_product={$product.id_product}&amp;token={$static_token}&amp;add" title="{l s='Add to cart' mod='homefeatured'}">{l s='Add to cart' mod='homefeatured'}</a>
 				{else}

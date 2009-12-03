@@ -81,15 +81,6 @@ if (isset($subCategories))
 		'subcategories_nb_total' => sizeof($subCategories),
 		'subcategories_nb_half' => ceil(sizeof($subCategories) / 2)));
 
-function HOOK_PRODUCT_LIST_ACTIONS($params) {
- global $product;
-
- $product = $params['product'];
- return Module::hookExec('productListActions');
-}
-
-$smarty->register_function("HOOK_PRODUCT_LIST_ACTIONS", "HOOK_PRODUCT_LIST_ACTIONS");
-
 $smarty->display(_PS_THEME_DIR_.'category.tpl');
 
 include(dirname(__FILE__).'/footer.php');
