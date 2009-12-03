@@ -1,10 +1,10 @@
 {if isset($orderby) AND isset($orderway)}
 <!-- Sort products -->
-{if $smarty.get.id_category|intval}
+{if isset($smarty.get.id_category)}
 	{assign var='request' value=$link->getPaginationLink('category', $category, 0, true)}
-{elseif $smarty.get.id_manufacturer|intval}
+{elseif isset($smarty.get.id_manufacturer)}
 	{assign var='request' value=$link->getPaginationLink('manufacturer', $manufacturer, 0, true)}
-{elseif $smarty.get.id_supplier|intval}
+{elseif isset($smarty.get.id_supplier)}
 	{assign var='request' value=$link->getPaginationLink('supplier', $supplier, 0, true)}
 {else}
 	{assign var='request' value=$link->getPaginationLink(false, false, 0, true)}

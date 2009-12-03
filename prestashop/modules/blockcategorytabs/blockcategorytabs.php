@@ -97,7 +97,7 @@ class BlockCategoryTabs extends Module
 				  return $path;
 			}
 		}
-		return null;
+		return array();
 	}
 
 	function prepareDisplay($params) {

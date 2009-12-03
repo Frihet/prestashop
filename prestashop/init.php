@@ -217,7 +217,7 @@ if (!$category && isset($cookie->last_visited_category))  {
 
 if (isset($category) AND Validate::isLoadedObject($category))
 {
-	$cookie->last_visited_category = $category->id_category;
+	$cookie->last_visited_category = $category->id;
 	$smarty->assign(array(
 		'category' => $category,
 		'subCategories' => $category->getSubCategories(intval($cookie->id_lang), true),
