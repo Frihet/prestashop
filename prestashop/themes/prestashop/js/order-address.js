@@ -11,12 +11,12 @@ function updateAddressesDisplay(first_view)
 
 	// update content of invoice address
 	//if addresses have to be equals...
-	var txtInvoiceTitle = $('ul#address_invoice li.address_title').html();	
+	var txtInvoiceTitle = $('#address_invoice li.address_title').html();	
 	if ($('input[type=checkbox]#addressesAreEquals:checked').length == 1)
 	{
 		$('#address_invoice_form:visible').hide('fast');
-		$('ul#address_invoice').html($('ul#address_delivery').html());
-		$('ul#address_invoice li.address_title').html(txtInvoiceTitle);
+		$('#address_invoice').html($('#address_delivery').html());
+		$('#address_invoice li.address_title').html(txtInvoiceTitle);
 	}
 	else
 	{
@@ -25,8 +25,8 @@ function updateAddressesDisplay(first_view)
 			updateAddressDisplay('invoice');
 		else
 		{
-			$('ul#address_invoice').html($('ul#address_delivery').html());
-			$('ul#address_invoice li.address_title').html(txtInvoiceTitle);
+			$('#address_invoice').html($('#address_delivery').html());
+			$('#address_invoice li.address_title').html(txtInvoiceTitle);
 		}	
 	}
 	
@@ -39,25 +39,25 @@ function updateAddressesDisplay(first_view)
 function updateAddressDisplay(addressType)
 {
 	var idAddress = $('select#id_address_' + addressType + '').val();
-	$('ul#address_' + addressType + ' li.address_company').html(addresses[idAddress][0]);
+	$('#address_' + addressType + ' li.address_company').html(addresses[idAddress][0]);
 	if(addresses[idAddress][0] == '')
-		$('ul#address_' + addressType + ' li.address_company').hide();
+		$('#address_' + addressType + ' li.address_company').hide();
 	else
-		$('ul#address_' + addressType + ' li.address_company').show();
-	$('ul#address_' + addressType + ' li.address_name').html(addresses[idAddress][1] + ' ' + addresses[idAddress][2]);
-	$('ul#address_' + addressType + ' li.address_address1').html(addresses[idAddress][3]);
-	$('ul#address_' + addressType + ' li.address_address2').html(addresses[idAddress][4]);
+		$('#address_' + addressType + ' li.address_company').show();
+	$('#address_' + addressType + ' li.address_name').html(addresses[idAddress][1] + ' ' + addresses[idAddress][2]);
+	$('#address_' + addressType + ' li.address_address1').html(addresses[idAddress][3]);
+	$('#address_' + addressType + ' li.address_address2').html(addresses[idAddress][4]);
 	if(addresses[idAddress][4] == '')
-		$('ul#address_' + addressType + ' li.address_address2').hide();
+		$('#address_' + addressType + ' li.address_address2').hide();
 	else
-		$('ul#address_' + addressType + ' li.address_address2').show();
-	$('ul#address_' + addressType + ' li.address_city').html(addresses[idAddress][5] + ' ' + addresses[idAddress][6]);
-	$('ul#address_' + addressType + ' li.address_country').html(addresses[idAddress][7] + (addresses[idAddress][8] != '' ? ' (' + addresses[idAddress][8] +')' : ''));
+		$('#address_' + addressType + ' li.address_address2').show();
+	$('#address_' + addressType + ' li.address_city').html(addresses[idAddress][5] + ' ' + addresses[idAddress][6]);
+	$('#address_' + addressType + ' li.address_country').html(addresses[idAddress][7] + (addresses[idAddress][8] != '' ? ' (' + addresses[idAddress][8] +')' : ''));
 	// change update link
-	var link = $('ul#address_' + addressType + ' li.address_update a').attr('href');
+	var link = $('#address_' + addressType + ' a.address_update').attr('href');
 	var expression = /id_address=\d+/;
 	link = link.replace(expression, 'id_address='+idAddress);
-	$('ul#address_' + addressType + ' li.address_update a').attr('href', link);
+	$('#address_' + addressType + ' a.address_update').attr('href', link);
 }
 
 function updateAddresses()

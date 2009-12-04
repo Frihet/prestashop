@@ -49,12 +49,11 @@ table.std tr.item td, table.std tr.item th {
 table.std tr.even_item td, table.std tr.even_item th {
     background-color: #ededed;
 }
-table.std tr tbody td {
-    border-left-color: #484848;
-    border-right-color: #484848;
-}
-table.std tfoot {
-    border-top-color: #484848;
+table.std tbody tr td,
+table.std tbody,
+table.std thead {
+    background-color: #ffffff;
+    border-color: #484848;
 }
 table.std thead th {
     color: #ffffff;
@@ -295,9 +294,6 @@ td.cart_description h5 a, td.cart_ref, td.cart_total {
 #block-history {
     color: #374853;
 }
-.color-myaccount {
-    color: #dd2a81;
-}
 #block-history table#order-list thead th {
     color: #ffffff;
 }
@@ -308,8 +304,6 @@ td.cart_description h5 a, td.cart_ref, td.cart_total {
     background-color: #ffffff;
 }
 #block-history #block-order-detail {
-    border-top-color: #dd2a81;
-    border-bottom-color: #dd2a81;
     background-color: #D0D1D5;
 }
 #primary_block ul#usefull_link_block li a, #primary_block ul#usefull_link_block span.span_link, #primary_block ul#usefull_link_block span.span_link:hover {
@@ -361,9 +355,6 @@ ul.address {
 li.address_title {
     background-color: #d0d1d5;
     color: #374853;
-}
-li.address_name, li.address_update a, li.address_delete a {
-    color: #dd2a81;
 }
 .payment_module a {
     border-color: #595a5e;

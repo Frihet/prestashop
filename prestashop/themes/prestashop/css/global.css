@@ -375,9 +375,9 @@ table.std tbody tr td {
     border-right-style: solid;
     border-right-width: 1px;
 }
-table.std tfoot {
-    border-top-style: solid;
-    border-top-width: 1px;
+table.std tbody {
+    border-bottom-style: solid;
+    border-bottom-width: 1px;
 }
 table.std thead th {
     background-color: transparent;
@@ -1107,8 +1107,7 @@ div.universal, div.universal a, div.universal h4 a, div.universal h4 {
 
 /* block in the center column */
 #center_column p {
-    margin: 0.5em 0;
-    padding-left: 0.7em;
+    margin-top: 0.5em
 }
 
 #center_column .block h4 {
@@ -1995,7 +1994,7 @@ form.std p.desc_contact span.like_input {
 #ordermsg textarea {
     margin: 0;
     padding: 0;
-    width: 528px;
+    width: 100%;
 }
 
 
@@ -2247,8 +2246,6 @@ ul#suppliers_list li a.button, ul#manufacturers_list li a.button {
 /* adresses */
 div.addresses {
     padding: 0.6em;
-    position: relative;
-    width: 544px;
 }
 div.addresses h3 {
     margin: 0;
@@ -2258,15 +2255,12 @@ div.addresses p.checkbox input {
     margin-top: -3px;
 }
 ul.address {
-    float: left;
     list-style-image: none;
     list-style-position: outside;
     list-style-type: none;
     margin-left: 0.25em;
     padding-bottom: 0.6em;
     margin-bottom: 1em;
-    position: relative;
-    width: 268px;
 }
 ul.address li {
     padding-left: 1.4em;

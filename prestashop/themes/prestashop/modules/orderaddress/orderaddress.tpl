@@ -47,26 +47,40 @@
 			{/if}
 		</p>
 		<div class="clear"></div>
-		<ul class="address item" id="address_delivery">
-			<li class="address_title">{l s='Your delivery address'}</li>
-			<li class="address_company"></li>
-			<li class="address_name"></li>
-			<li class="address_address1"></li>
-			<li class="address_address2"></li>
-			<li class="address_city"></li>
-			<li class="address_country"></li>
-			<li class="address_update"><a href="{$base_dir_ssl}address.php?id_address={$address.id_address|intval}&amp;back=order.php&amp;step={$order_step}" title="{l s='Update'}">{l s='Update'}</a></li>
-		</ul>
-		<ul class="address alternate_item" id="address_invoice">
-			<li class="address_title">{l s='Your billing address'}</li>
-			<li class="address_company"></li>
-			<li class="address_name"></li>
-			<li class="address_address1"></li>
-			<li class="address_address2"></li>
-			<li class="address_city"></li>
-			<li class="address_country"></li>
-			<li class="address_update"><a href="{$base_dir_ssl}address.php?id_address={$address.id_address|intval}&amp;back=order.php&amp;step={$order_step}" title="{l s='Update'}">{l s='Update'}</a></li>
-		</ul>
+		<table class="std">
+		        <thead>
+				<tr>
+					<th>{l s='Your delivery address'}</th>
+					<th>{l s='Your billing address'}</th>
+				</tr>
+			</thead>
+			<tbody>
+				<tr>
+					<td id="address_delivery">
+						<ul class="address item">
+							<li class="address_company"></li>
+							<li class="address_name"></li>
+							<li class="address_address1"></li>
+							<li class="address_address2"></li>
+							<li class="address_city"></li>
+							<li class="address_country"></li>
+						</ul>
+						<a href="{$base_dir_ssl}address.php?id_address={$address.id_address|intval}&amp;back=order.php&amp;step={$order_step}" title="{l s='Update'}" class="button address_update">{l s='Update'}</a>
+					</td>
+					<td id="address_invoice">
+						<ul class="address alternate_item">
+							<li class="address_company"></li>
+							<li class="address_name"></li>
+							<li class="address_address1"></li>
+							<li class="address_address2"></li>
+							<li class="address_city"></li>
+							<li class="address_country"></li>
+						</ul>
+						<a href="{$base_dir_ssl}address.php?id_address={$address.id_address|intval}&amp;back=order.php&amp;step={$order_step}" title="{l s='Update'}" class="button address_update">{l s='Update'}</a>
+					</td>
+				</tr>
+			</tbody>
+		</table>
 		<br class="clear" />
 		<p class="address_add submit">
 			<a href="{$base_dir_ssl}address.php?back=order.php&amp;step={$order_step}" title="{l s='Add'}" class="button_large">{l s='Add a new address'}</a>
