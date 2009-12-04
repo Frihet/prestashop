@@ -25,7 +25,9 @@ $(function(){ldelim}
 {capture name=path}{l s='Your addresses'}{/capture}
 {include file=$tpl_dir./breadcrumb.tpl}
 
+{variablebox class="universal"}
 <h2>{l s='Your addresses'}</h2>
+{variablebox_content}
 
 <h3>{if isset($id_address)}{l s='Modify the address'} {if isset($smarty.post.alias)}"{$smarty.post.alias}"{elseif $address->alias}"{$address->alias|escape:'htmlall':'UTF-8'}"{/if}{else}{l s='To add a new address, please fill out the form below.'}{/if}</h3>
 
@@ -100,9 +102,10 @@ $(function(){ldelim}
 	</fieldset>
 	<p class="submit2">
 		{if isset($id_address)}<input type="hidden" name="id_address" value="{$id_address|intval}" />{/if}
-		{if isset($back)}<input type="hidden" name="back" value="{$back}?step=1" />{/if}
+		{if isset($back)}<input type="hidden" name="back" value="{$back}" />{/if}
 		{if isset($select_address)}<input type="hidden" name="select_address" value="{$select_address|intval}" />{/if}
 		<input type="submit" name="submitAddress" id="submitAddress" value="{l s='Save'}" class="button" />
 	</p>
 	<p class="required"><sup>*</sup>{l s='Required field'}</p>
 </form>
+{/variablebox}

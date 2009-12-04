@@ -65,7 +65,7 @@
 							<li class="address_city"></li>
 							<li class="address_country"></li>
 						</ul>
-						<a href="{$base_dir_ssl}address.php?id_address={$address.id_address|intval}&amp;back=order.php&amp;step={$order_step}" title="{l s='Update'}" class="button address_update">{l s='Update'}</a>
+						<a href="{$base_dir_ssl}address.php?id_address={$address.id_address|intval}&amp;back=order.php?step={$order_step}" title="{l s='Update'}" class="button address_update">{l s='Update'}</a>
 					</td>
 					<td id="address_invoice">
 						<ul class="address alternate_item">
@@ -76,7 +76,7 @@
 							<li class="address_city"></li>
 							<li class="address_country"></li>
 						</ul>
-						<a href="{$base_dir_ssl}address.php?id_address={$address.id_address|intval}&amp;back=order.php&amp;step={$order_step}" title="{l s='Update'}" class="button address_update">{l s='Update'}</a>
+						<a href="{$base_dir_ssl}address.php?id_address={$address.id_address|intval}&amp;back=order.php?step={$order_step}" title="{l s='Update'}" class="button address_update">{l s='Update'}</a>
 					</td>
 				</tr>
 			</tbody>
