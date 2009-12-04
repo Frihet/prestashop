@@ -16,7 +16,9 @@ countries = new Array();
 //]]>
 </script>
 
+{variablebox class="universal"}
 <h2>{if !isset($email_create)}{l s='Log in'}{else}{l s='Create your account'}{/if}</h2>
+{variablebox_content}
 
 {include file=$tpl_dir./module-order-steps.tpl}
 
@@ -221,3 +223,4 @@ countries = new Array();
 	</form>
 	{/if}
 {/if}
+{/variablebox}
