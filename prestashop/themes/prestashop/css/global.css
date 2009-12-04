@@ -360,7 +360,7 @@ table.std {
     width: 100%;
 }
 table.std td, table.std th {
-    padding: 0.4em 0.5em;
+    padding-left: 0.4em;
 }
 table.std th {
     white-space: nowrap;
@@ -369,12 +369,20 @@ table.std tr.item td, table.std tr.item th {
 }
 table.std tr.alternate_item td, table.std tr.alternate_item th {
 }
-table.std tbody tr td, table.std tfoot tr td {
+table.std tr td {
+    border-left-style: solid;
+    border-left-width: 1px;
+    border-right-style: solid;
+    border-right-width: 1px;
+}
+table.std {
+    border-bottom-style: solid;
+    border-bottom-width: 1px;
 }
 table.std thead th {
     background-color: transparent;
-    background-repeat: no-repeat;
-    height: 24px;
+    background-repeat: repeat-x;
+    height: 19px;
     font-weight: bold;
     text-align: left;
     white-space: nowrap;
@@ -1826,12 +1834,7 @@ form.std p.cart_navigation span {
     width: auto;
 }
 #cart_summary tfoot tr td {
-    border-top: none;
     line-height: 1.5em;
-}
-#cart_summary tfoot tr.cart_total_product td {
-}
-#cart_summary tfoot tr.cart_total_price td {
 }
 #cart_summary .price, #cart_summary .price-discount {
     font-size: 1em;
@@ -1968,9 +1971,6 @@ form.std p.desc_contact span.like_input {
 }
 #order-detail-content tbody tr {
     height: 3em;
-}
-#order-detail-content tfoot td {
-    border: none;
 }
 #order-detail-content table td input.order_qte_input {
     display: none;

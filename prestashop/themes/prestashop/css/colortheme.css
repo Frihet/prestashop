@@ -49,11 +49,15 @@ table.std tr.item td, table.std tr.item th {
 table.std tr.alternate_item td, table.std tr.alternate_item th {
     background-color: #f1f2f4;
 }
-table.std tbody tr td, table.std tfoot tr td {
-    border-top-color: #bdc2c9;
+table.std tr td {
+    border-left-color: #484848;
+    border-right-color: #484848;
+}
+table.std {
+    border-bottom-color: #484848;
 }
 table.std thead th {
-    color: #374853;
+    color: #ffffff;
 }
 table.std tfoot td {
     color: #374853;
@@ -272,12 +276,6 @@ ul#product_list li .on_sale {
 }
 ul#product_list li span.availability {
     color: #488c40;
-}
-#cart_summary tfoot tr.cart_total_product td {
-    border-top-color: #bdc2c9;
-}
-#cart_summary tfoot tr.cart_total_price td {
-    border-bottom-color: #bdc2c9;
 }
 #cart_summary .price, #cart_summary .price-discount {
     color: #595A5E;

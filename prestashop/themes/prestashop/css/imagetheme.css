@@ -13,11 +13,8 @@ h1#logo a {
 #header {
     background: url('../img/subsite_specific/top_repeat.jpg') repeat-x 0px 32px;
 }
-div.table_block {
-    background: transparent url('../img/table_footer.gif') no-repeat bottom left;
-}
 table.std thead th {
-    background-image: url('../img/table_header.gif');
+    background-image: url('../img/universal/table_header.png');
 }
 form.std fieldset {
     background: url('../img/form_bg.jpg') repeat-x top left;

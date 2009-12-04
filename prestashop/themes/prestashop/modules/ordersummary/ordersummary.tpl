@@ -19,35 +19,40 @@
 	<p class="warning">{l s='Your shopping cart is empty.'}</p>
 
 {else}
-{if isset($lastProductAdded) AND $lastProductAdded}
-	{foreach from=$products item=product}
-		{if $product.id_product == $lastProductAdded.id_product AND (!$product.id_product_attribute OR ($product.id_product_attribute == $lastProductAdded.id_product_attribute))}
-			<table class="std cart_last_product">
-				<thead>
-					<tr>
-						<th class="cart_product first_item">&nbsp;</th>
-						<th class="cart_description item">{l s='Last added product'}</th>
-						<th class="cart_total last_item">&nbsp;</th>
-					</tr>
-				</thead>
-			</table>
-			<table class="cart_last_product_content">
-				<tr>
-					<td class="cart_product"><a href="{$link->getProductLink($product.id_product, $product.link_rewrite, $product.category)|escape:'htmlall':'UTF-8'}"><img src="{$link->getImageLink($product.link_rewrite, $product.id_image, 'small')}" alt="{$product.name|escape:'htmlall':'UTF-8'}" /></a></td>
-					<td class="cart_description">
-						<h5><a href="{$link->getProductLink($product.id_product, $product.link_rewrite, $product.category)|escape:'htmlall':'UTF-8'}">{$product.name|escape:'htmlall':'UTF-8'}</a></h5>
-						{if $product.attributes}<a href="{$link->getProductLink($product.id_product, $product.link_rewrite, $product.category)|escape:'htmlall':'UTF-8'}">{$product.attributes|escape:'htmlall':'UTF-8'}</a>{/if}
-					</td>
-				</tr>
-			</table>
-		{/if}
-	{/foreach}
-{/if}
 <p>
 	{l s='Your shopping cart contains'} {$products|@count} {if $products|@count > 1}{l s='products'}{else}{l s='product'}{/if}
 </p>
 <div id="order-detail-content" class="table_block">
 	<table id="cart_summary" class="std">
+
+	        {if !isset($empty) AND isset($lastProductAdded) AND $lastProductAdded}
+			<thead>
+				<tr>
+					<th class="cart_product first_item" colspan="7">{l s='Last added product'}</th>
+				</tr>
+			</thead>
+			<tbody>
+				{foreach from=$products item=product}
+					{if $product.id_product == $lastProductAdded.id_product AND (!$product.id_product_attribute OR ($product.id_product_attribute == $lastProductAdded.id_product_attribute))}
+						<tr>
+							<td class="cart_product">
+								<a href="{$link->getProductLink($product.id_product, $product.link_rewrite, $product.category)|escape:'htmlall':'UTF-8'}"><img src="{$link->getImageLink($product.link_rewrite, $product.id_image, 'small')}" alt="{$product.name|escape:'htmlall':'UTF-8'}" /></a>
+							</td>
+							<td class="cart_description">
+								<h5><a href="{$link->getProductLink($product.id_product, $product.link_rewrite, $product.category)|escape:'htmlall':'UTF-8'}">{$product.name|escape:'htmlall':'UTF-8'}</a></h5>
+								{if $product.attributes}<a href="{$link->getProductLink($product.id_product, $product.link_rewrite, $product.category)|escape:'htmlall':'UTF-8'}">{$product.attributes|escape:'htmlall':'UTF-8'}</a>{/if}
+							</td>
+							<td></td>
+							<td></td>
+							<td></td>
+							<td></td>
+							<td></td>
+						</tr>
+					{/if}
+				{/foreach}
+			</tbody>
+		{/if}
+
 		<thead>
 			<tr>
 				<th class="cart_product first_item">{l s='Product'}</th>
@@ -220,39 +225,6 @@
 </div>
 {/if}
 {$HOOK_SHOPPING_CART}
-{if ($carrier->id AND !$virtualCart) OR $delivery->id OR $invoice->id}
-<div class="order_delivery">
-	{if $delivery->id}
-	<ul id="delivery_address" class="address item">
-		<li class="address_title">{l s='Delivery address'}</li>
-		{if $delivery->company}<li class="address_company">{$delivery->company|escape:'htmlall':'UTF-8'}</li>{/if}
-		<li class="address_name">{$delivery->lastname|escape:'htmlall':'UTF-8'} {$delivery->firstname|escape:'htmlall':'UTF-8'}</li>
-		<li class="address_address1">{$delivery->address1|escape:'htmlall':'UTF-8'}</li>
-		{if $delivery->address2}<li class="address_address2">{$delivery->address2|escape:'htmlall':'UTF-8'}</li>{/if}
-		<li class="address_city">{$delivery->postcode|escape:'htmlall':'UTF-8'} {$delivery->city|escape:'htmlall':'UTF-8'}</li>
-		<li class="address_country">{$delivery->country|escape:'htmlall':'UTF-8'}</li>
-	</ul>
-	{/if}
-	{if $invoice->id}
-	<ul id="invoice_address" class="address alternate_item">
-		<li class="address_title">{l s='Invoice address'}</li>
-		{if $invoice->company}<li class="address_company">{$invoice->company|escape:'htmlall':'UTF-8'}</li>{/if}
-		<li class="address_name">{$invoice->lastname|escape:'htmlall':'UTF-8'} {$invoice->firstname|escape:'htmlall':'UTF-8'}</li>
-		<li class="address_address1">{$invoice->address1|escape:'htmlall':'UTF-8'}</li>
-		{if $invoice->address2}<li class="address_address2">{$invoice->address2|escape:'htmlall':'UTF-8'}</li>{/if}
-		<li class="address_city">{$invoice->postcode|escape:'htmlall':'UTF-8'} {$invoice->city|escape:'htmlall':'UTF-8'}</li>
-		<li class="address_country">{$invoice->country|escape:'htmlall':'UTF-8'}</li>
-	</ul>
-	{/if}
-	{if $carrier->id AND !$virtualCart}
-	<div id="order_carrier">
-		<h4>{l s='Carrier:'}</h4>
-		{if isset($carrierPicture)}<img src="{$img_ship_dir}{$carrier->id}.jpg" alt="{l s='Carrier'}" />{/if}
-		<span>{$carrier->name|escape:'htmlall':'UTF-8'}</span>
-	</div>
-	{/if}
-</div>
-{/if}
 <p class="cart_navigation">
 	<a href="{$base_dir_ssl}order.php?step={$order_step+1}" class="exclusive" title="{l s='Next'}">{l s='Next'} &raquo;</a>
 	<a href="{if $smarty.server.HTTP_REFERER && strstr($smarty.server.HTTP_REFERER, 'order.php')}{$base_dir}index.php{else}{$smarty.server.HTTP_REFERER|escape:'htmlall':'UTF-8'}{/if}" class="button_large" title="{l s='Continue shopping'}">&laquo; {l s='Continue shopping'}</a>
