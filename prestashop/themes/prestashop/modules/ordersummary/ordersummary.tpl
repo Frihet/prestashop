@@ -7,7 +7,9 @@
 {capture name=path}{l s='Your shopping cart'}{/capture}
 {include file=$tpl_dir./breadcrumb.tpl}
 
+{variablebox class="universal"}
 <h2>{l s='Shopping cart summary'}</h2>
+{variablebox_content}
 
 {include file=$tpl_dir./module-order-steps.tpl}
 
@@ -257,3 +259,4 @@
 	{$HOOK_SHOPPING_CART_EXTRA}
 </p>
 {/if}
+{/variablebox}

@@ -274,3 +274,58 @@ background: url(../../../modules/productcomments/img/star.gif) no-repeat 0 0px;
 .toptabs ul.idTabsShort li a:hover {
     background: url(../img/subsite_specific/toptabs_hover.jpg);
 }
+
+
+/* Universal style */
+.universal .variablebox_top_left {
+    background: none;
+}
+.universal .variablebox_top_center {
+    background: none;
+}
+.universal .variablebox_top_right {
+    background: none;
+}
+
+.universal .variablebox_center_left {
+    background: url('../img/universal/variablebox_center_left.jpg');
+}
+.universal .variablebox_center_center {
+    background: none;
+}
+.universal .variablebox_center_right {
+    background: url('../img/universal/variablebox_center_right.jpg');
+}
+
+.universal .content_1 .variablebox_center_left {
+    background: url('../img/universal/variablebox_top_left.jpg');
+}
+.universal .content_1 .variablebox_center_center {
+    background: url('../img/universal/variablebox_top_center.jpg');
+}
+.universal .content_1 .variablebox_center_right {
+    background: url('../img/universal/variablebox_top_right.jpg');
+}
+
+.universal .variablebox_middle_left {
+    background: none;
+}
+.universal .variablebox_middle_center {
+    background: none;
+}
+.universal .variablebox_middle_middle {
+    background: none;
+}
+.universal .variablebox_middle_right {
+    background: none;
+}
+
+.universal .variablebox_bottom_left {
+    background: url('../img/universal/variablebox_bottom_left.jpg');
+}
+.universal .variablebox_bottom_center {
+    background: url('../img/universal/variablebox_bottom_center.jpg');
+}
+.universal .variablebox_bottom_right {
+    background: url('../img/universal/variablebox_bottom_right.jpg');
+}

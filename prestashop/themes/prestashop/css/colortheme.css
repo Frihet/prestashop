@@ -439,3 +439,9 @@ tbody.datepickerDays td.datepickerDisabled.datepickerNotInMonth a {
 .dialog {
     background-color: #ffffff !important;
 }
+
+/* Universal theme */
+.universal h2 {
+    background: transparent;
+    color: #000000;
+}

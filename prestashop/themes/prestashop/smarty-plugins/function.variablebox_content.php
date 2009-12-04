@@ -5,6 +5,8 @@
  * @subpackage plugins
  */
 
+require_once(dirname(__FILE__) . "/variablebox.php");
+
 /**
  * Smarty {variablebox_content} plugin
  *
@@ -19,34 +21,26 @@
  * @return string divider code 
  */
 
-function find_tag(&$smarty, $tag)
-{
-    foreach (array_reverse($smarty->_tag_stack) as $stackentry)
-        if ($stackentry[0] == $tag)
-	    return $stackentry[1];
-    return null;
-}
-
 function smarty_function_variablebox_content($params, &$smarty)
 {
-    $boxparams = array(
-	    'border_left' => 'shown',
-	    'border_right' => 'shown',
-	    'border_top' => 'shown',
-	    'border_bottom' => 'shown');
-    $parentboxparams = find_tag($smarty, 'variablebox');
-    if ($parentboxparams != null)
-        $boxparams = array_merge($boxparams, $parentboxparams);
+    $boxparams = &smarty_find_tag($smarty, 'variablebox');
+    if ($boxparams === null)
+        throw new Exception('Unable to find parent variablebox for variablebox_content');
+
     $res = "</td>";
     if ($boxparams['border_right'] == 'shown')
         $res .= "<td class='variablebox_center_right'></td>";
-    $res .= "</tr><tr>";
+
+    $boxparams['content_count'] += 1;
+    $res .= "</tr><tr class='content_{$boxparams['content_count']}'>";
     if ($boxparams['border_left'] == 'shown')
         $res .= "<td class='variablebox_middle_left'></td>";
     $res .= "<td class='variablebox_middle_center'></td>";
     if ($boxparams['border_right'] == 'shown')
         $res .= "<td class='variablebox_middle_right'></td>";
-    $res .= "</tr><tr>";
+
+    $boxparams['content_count'] += 1;
+    $res .= "</tr><tr class='content_{$boxparams['content_count']}'>";
     if ($boxparams['border_left'] == 'shown')
         $res .= "<td class='variablebox_center_left'></td>";
     $res .= "<td class='variablebox_center_center'>";
