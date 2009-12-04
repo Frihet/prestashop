@@ -161,7 +161,7 @@ var fieldRequired = '{l s='Please fill all required fields' js=1}';
 	{/if}
 
 	{if $HOOK_PRODUCT_FOOTER}
-		<hr />
+		{variablebox_content}
 		{$HOOK_PRODUCT_FOOTER}
 	{/if}
 

@@ -2,8 +2,6 @@
 <script type="text/javascript">var middle = {$middlePosition};</script>
 <script type="text/javascript" src="{$content_dir}modules/productscategory/js/productscategory.js"></script>
 
-{variablebox_content}
-
 <div class="block">
 	<h4>{l s='In the same category' mod='productscategory'}</h4>
 	<div class="products_block">

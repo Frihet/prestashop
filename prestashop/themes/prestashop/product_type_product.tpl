@@ -474,7 +474,10 @@ var fieldRequired = '{l s='Please fill all required fields' js=1}';
 		</div>
 	{/if}
 
-	{$HOOK_PRODUCT_FOOTER}
+	{if $HOOK_PRODUCT_FOOTER}
+		{variablebox_content}
+		{$HOOK_PRODUCT_FOOTER}
+	{/if}
 
 	{if $packItems|@count > 0}
 		<div>
