@@ -145,12 +145,13 @@
 			{assign var='productId' value=$product.id_product}
 			{assign var='productAttributeId' value=$product.id_product_attribute}
 			{assign var='quantityDisplayed' value=0}
+			{cycle values="odd_item,even_item" assign=item_oddity name=item_oddity}
 			{* Display the product line *}
 			{include file=$tpl_dir./shopping-cart-product-line.tpl}
 			{* Then the customized datas ones*}
 			{if isset($customizedDatas.$productId.$productAttributeId)}
 				{foreach from=$customizedDatas.$productId.$productAttributeId key='id_customization' item='customization'}
-					<tr class="alternate_item cart_item">
+					<tr class="{$item_oddity} cart_item">
 						<td colspan="5">
 							{foreach from=$customization.datas key='type' item='datas'}
 								{if $type == $CUSTOMIZE_FILE}
@@ -184,7 +185,8 @@
 	{if $discounts}
 		<tbody>
 		{foreach from=$discounts item=discount name=discountLoop}
-			<tr class="cart_discount {if $smarty.foreach.discountLoop.last}last_item{elseif $smarty.foreach.discountLoop.first}first_item{else}item{/if}">
+			{cycle values="odd_item,even_item" assign=item_oddity name=item_oddity}
+			<tr class="cart_discount {if $smarty.foreach.discountLoop.last}last_item{elseif $smarty.foreach.discountLoop.first}first_item{else}item{/if} {$item_oddity}">
 				<td class="cart_discount_name" colspan="2">{$discount.name}</td>
 				<td class="cart_discount_description" colspan="3">{$discount.description}</td>
 				<td class="cart_discount_delete"><a href="{$base_dir_ssl}order.php?step={$order_step}&process{$order_step}=1&deleteDiscount={$discount.id_discount}" title="{l s='Delete'}"><img src="{$img_dir}icon/delete.gif" alt="{l s='Delete'}" class="icon" /></a></td>

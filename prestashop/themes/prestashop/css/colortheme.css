@@ -46,15 +46,15 @@ div.rte th, .mceContentBody th {
 table.std tr.item td, table.std tr.item th {
     background-color: #ffffff;
 }
-table.std tr.alternate_item td, table.std tr.alternate_item th {
-    background-color: #f1f2f4;
+table.std tr.even_item td, table.std tr.even_item th {
+    background-color: #ededed;
 }
-table.std tr td {
+table.std tr tbody td {
     border-left-color: #484848;
     border-right-color: #484848;
 }
-table.std {
-    border-bottom-color: #484848;
+table.std tfoot {
+    border-top-color: #484848;
 }
 table.std thead th {
     color: #ffffff;

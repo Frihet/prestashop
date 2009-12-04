@@ -79,7 +79,7 @@
 
 /*TMP*/
 #scenes a.cluetip span{
-	background:transparent url(../img/icon/cible.gif) no-repeat scroll center center;
+	background: transparent no-repeat scroll center center;
 	color:black;
 	display:block;
 	font-size:1.1em;

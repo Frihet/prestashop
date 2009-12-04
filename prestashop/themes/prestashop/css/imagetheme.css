@@ -272,6 +272,9 @@ background: url(../../../modules/productcomments/img/star.gif) no-repeat 0 0px;
     background: url(../img/subsite_specific/toptabs_hover.jpg);
 }
 
+#scenes a.cluetip span{
+	background-image: url(../img/icon/imageplus.jpg);
+}
 
 /* Universal style */
 .universal .variablebox_top_left {

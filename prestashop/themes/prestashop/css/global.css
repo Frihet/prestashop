@@ -369,15 +369,15 @@ table.std tr.item td, table.std tr.item th {
 }
 table.std tr.alternate_item td, table.std tr.alternate_item th {
 }
-table.std tr td {
+table.std tbody tr td {
     border-left-style: solid;
     border-left-width: 1px;
     border-right-style: solid;
     border-right-width: 1px;
 }
-table.std {
-    border-bottom-style: solid;
-    border-bottom-width: 1px;
+table.std tfoot {
+    border-top-style: solid;
+    border-top-width: 1px;
 }
 table.std thead th {
     background-color: transparent;
@@ -2824,13 +2824,13 @@ tbody.datepickerDays td.datepickerNotInMonth a {
 
 
 /* Universal style */
-.universal .variablebox_top_left, .universal .variablebox_top_center, .universal .variablebox_top_middle, .universal .variablebox_top_right, .universal .variablebox_bottom_left, .universal .variablebox_bottom_center, .universal .variablebox_bottom_middle, .universal .variablebox_bottom_right {
+.universal .variablebox_bottom_left, .universal .variablebox_bottom_center, .universal .variablebox_bottom_middle, .universal .variablebox_bottom_right {
     height: 4px;
 }
 .universal .content_1 h2 {
     height: 19px;
 }
-.universal .variablebox_middle_left, .universal .variablebox_middle_center, .universal .variablebox_middle_middle, .universal .variablebox_middle_right {
+.universal .variablebox_top_left, .universal .variablebox_top_center, .universal .variablebox_top_middle, .universal .variablebox_top_right, .universal .variablebox_middle_left, .universal .variablebox_middle_center, .universal .variablebox_middle_middle, .universal .variablebox_middle_right {
     height: 0;
 }
 .universal .variablebox_top_left, .universal .variablebox_center_left, .universal .variablebox_middle_left, .universal .variablebox_bottom_left, .universal .variablebox_top_middle, .universal .variablebox_center_middle, .universal .variablebox_middle_middle, .universal .variablebox_bottom_middle, .universal .variablebox_top_bottom, .universal .variablebox_center_right, .universal .variablebox_middle_right, .universal .variablebox_bottom_right {
