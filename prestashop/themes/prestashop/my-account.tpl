@@ -7,7 +7,9 @@
 {capture name=path}{l s='My account'}{/capture}
 {include file=$tpl_dir./breadcrumb.tpl}
 
+{variablebox class="universal"}
 <h2>{l s='My account'}</h2>
+{variablebox_content}
 <h4>{l s='Welcome to your account. Here you can manage your addresses and orders.'}</h4>
 <ul>
 	<li><a href="{$base_dir_ssl}history.php" title="{l s='Orders'}"><img src="{$img_dir}icon/order.gif" alt="{l s='Orders'}" class="icon" /></a><a href="{$base_dir_ssl}history.php" title="{l s='Orders'}">{l s='History and details of your orders'}</a></li>
@@ -23,3 +25,4 @@
 	{$HOOK_CUSTOMER_ACCOUNT}
 </ul>
 <p><a href="{$base_dir}" title="{l s='Home'}"><img src="{$img_dir}icon/home.gif" alt="{l s='Home'}" class="icon" /></a><a href="{$base_dir}" title="{l s='Home'}">{l s='Home'}</a></p>
+{/variablebox}
