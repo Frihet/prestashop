@@ -1,5 +1,5 @@
 <!-- Block myaccount module -->
-<div class="universal block myaccount">
+<div class="universal block">
 	<h4><a href="{$base_dir_ssl}my-account.php">{l s='My account' mod='blockmyaccount'}</a></h4>
 	<div class="block_content">
 		<ul class="bullet">

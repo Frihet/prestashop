@@ -492,7 +492,7 @@ form.std p.submit {
 
 
 /* global button */
-input.button_mini, input.button_small, input.button, input.button_large, input.button_left, input.button_right, input.button_login, input.button_mini_disabled, input.button_small_disabled, input.button_disabled, input.button_large_disabled, input.button_left_disabled, input.button_right_disabled, input.button_login_disabled, input.exclusive_mini, input.exclusive_small, input.exclusive, input.exclusive_large, input.exclusive_left, input.exclusive_right, input.exclusive_login, input.exclusive_mini_disabled, input.exclusive_small_disabled, input.exclusive_disabled, input.exclusive_large_disabled, input.exclusive_left_disabled, input.exclusive_right_disabled, input.exclusive_login_disabled, a.button_mini, a.button_small, a.button, a.button_large, a.button_left, a.button_right, a.button_login, a.exclusive_mini, a.exclusive_small, a.exclusive, a.exclusive_large, a.exclusive_left, a.exclusive_right, a.exclusive_login, span.button_mini, span.button_small, span.button, span.button_large, span.button_left, span.button_right, span.button_login, span.exclusive_mini, span.exclusive_small, span.exclusive, span.exclusive_large, span.exclusive_left, span.exclusive_right, span.exclusive_login {
+.button_mini, .button_small, .button, .button_large, .button_left, .button_right, .button_login, .button_mini_disabled, .button_small_disabled, .button_disabled, .button_large_disabled, .button_left_disabled, .button_right_disabled, .button_login_disabled, .exclusive_mini, .exclusive_small, .exclusive, .exclusive_large, .exclusive_left, .exclusive_right, .exclusive_login, .exclusive_mini_disabled, .exclusive_small_disabled, .exclusive_disabled, .exclusive_large_disabled, .exclusive_left_disabled, .exclusive_right_disabled, .exclusive_login_disabled, a.button_mini, a.button_small, a.button, a.button_large, a.button_left, a.button_right, a.button_login, a.exclusive_mini, a.exclusive_small, a.exclusive, a.exclusive_large, a.exclusive_left, a.exclusive_right, a.exclusive_login, span.button_mini, span.button_small, span.button, span.button_large, span.button_left, span.button_right, span.button_login, span.exclusive_mini, span.exclusive_small, span.exclusive, span.exclusive_large, span.exclusive_left, span.exclusive_right, span.exclusive_login {
     background-repeat: no-repeat;
     background-position: top left;
     border: none;
@@ -514,69 +514,69 @@ input.button_mini, input.button_small, input.button, input.button_large, input.b
 
 
 /* disabled button */
-input.button_mini_disabled, input.button_small_disabled, input.button_disabled, input.button_large_disabled, input.button_left_disabled, input.button_right_disabled, input.button_login_disabled, input.exclusive_mini_disabled, input.exclusive_small_disabled, input.exclusive_disabled, input.exclusive_large_disabled, input.exclusive_left_disabled, input.exclusive_right_disabled, input.exclusive_login_disabled, span.button_mini, span.button_small, span.button, span.button_large, span.button_left, span.button_right, span.button_login, span.exclusive_mini, span.exclusive_small, span.exclusive, span.exclusive_large, span.exclusive_left, span.exclusive_right, span.exclusive_login {
+.button_mini_disabled, .button_small_disabled, .button_disabled, .button_large_disabled, .button_left_disabled, .button_right_disabled, .button_login_disabled, .exclusive_mini_disabled, .exclusive_small_disabled, .exclusive_disabled, .exclusive_large_disabled, .exclusive_left_disabled, .exclusive_right_disabled, .exclusive_login_disabled, span.button_mini, span.button_small, span.button, span.button_large, span.button_left, span.button_right, span.button_login, span.exclusive_mini, span.exclusive_small, span.exclusive, span.exclusive_large, span.exclusive_left, span.exclusive_right, span.exclusive_login {
     background-position: left -34px;
     cursor: default;
 }
-input.button_left_disabled, input.button_right_disabled, input.exclusive_left_disabled, input.exclusive_right_disabled, span.button_left, span.button_right, span.exclusive_left, span.exclusive_right {
+.button_left_disabled, .button_right_disabled, .exclusive_left_disabled, .exclusive_right_disabled, span.button_left, span.button_right, span.exclusive_left, span.exclusive_right {
     background-position: left -38px;
 }
-input.button_login_disabled, input.exclusive_login_disabled, span.button_login, span.exclusive_login {
+.button_login_disabled, .exclusive_login_disabled, span.button_login, span.exclusive_login {
     background-position: left -22px;
 }
 
 
 /* exclusive button */
-input.exclusive_mini, input.exclusive_small, input.exclusive, input.exclusive_large, input.exclusive_left, input.exclusive_right, input.exclusive_login, input.exclusive_mini_disabled, input.exclusive_small_disabled, input.exclusive_disabled, input.exclusive_large_disabled, input.exclusive_left_disabled, input.exclusive_right_disabled, input.exclusive_login_disabled, a.exclusive_mini, a.exclusive_small, a.exclusive, a.exclusive_large, a.exclusive_left, a.exclusive_right, a.exclusive_login, span.exclusive_mini, span.exclusive_small, span.exclusive, span.exclusive_large, span.exclusive_left, span.exclusive_right, span.exclusive_login {
+.exclusive_mini, .exclusive_small, .exclusive, .exclusive_large, .exclusive_left, .exclusive_right, .exclusive_login, .exclusive_mini_disabled, .exclusive_small_disabled, .exclusive_disabled, .exclusive_large_disabled, .exclusive_left_disabled, .exclusive_right_disabled, .exclusive_login_disabled, a.exclusive_mini, a.exclusive_small, a.exclusive, a.exclusive_large, a.exclusive_left, a.exclusive_right, a.exclusive_login, span.exclusive_mini, span.exclusive_small, span.exclusive, span.exclusive_large, span.exclusive_left, span.exclusive_right, span.exclusive_login {
 }
 
 
 /* exclusive disabled button */
-input.exclusive_mini_disabled, input.exclusive_small_disabled, input.exclusive_disabled, input.exclusive_large_disabled, input.exclusive_left_disabled, input.exclusive_right_disabled, input.exclusive_login_disabled, span.exclusive_mini, span.exclusive_small, span.exclusive, span.exclusive_large, span.exclusive_left, span.exclusive_right, span.exclusive_login {
+.exclusive_mini_disabled, .exclusive_small_disabled, .exclusive_disabled, .exclusive_large_disabled, .exclusive_left_disabled, .exclusive_right_disabled, .exclusive_login_disabled, span.exclusive_mini, span.exclusive_small, span.exclusive, span.exclusive_large, span.exclusive_left, span.exclusive_right, span.exclusive_login {
 }
 
 
 /* hover button */
-input.button_mini:hover, input.button_small:hover, input.button:hover, input.button_large:hover, input.exclusive_mini:hover, input.exclusive_small:hover, input.exclusive:hover, input.exclusive_large:hover, a.button_mini:hover, a.button_small:hover, a.button:hover, a.button_large:hover, a.exclusive_mini:hover, a.exclusive_small:hover, a.exclusive:hover, a.exclusive_large:hover {
+.button_mini:hover, .button_small:hover, .button:hover, .button_large:hover, .exclusive_mini:hover, .exclusive_small:hover, .exclusive:hover, .exclusive_large:hover, a.button_mini:hover, a.button_small:hover, a.button:hover, a.button_large:hover, a.exclusive_mini:hover, a.exclusive_small:hover, a.exclusive:hover, a.exclusive_large:hover {
     background-position: left -17px;
 }
-input.button_left:hover, input.button_right:hover, input.exclusive_left:hover, input.exclusive_right:hover, a.button_left:hover, a.button_right:hover, a.exclusive_left:hover, a.exclusive_right:hover {
+.button_left:hover, .button_right:hover, .exclusive_left:hover, .exclusive_right:hover, a.button_left:hover, a.button_right:hover, a.exclusive_left:hover, a.exclusive_right:hover {
     background-position: left -19px;
 }
-input.button_login:hover, input.exclusive_login:hover, a.button_login:hover, a.exclusive_login:hover {
+.button_login:hover, .exclusive_login:hover, a.button_login:hover, a.exclusive_login:hover {
     background-position: left -11px;
 }
 
 
 /* exclusive hover button */
-input.exclusive_mini:hover, input.exclusive_small:hover, input.exclusive:hover, input.exclusive_large:hover, input.exclusive_left:hover, input.exclusive_right:hover, input.exclusive_login:hover, a.exclusive_mini:hover, a.exclusive_small:hover, a.exclusive:hover, a.exclusive_large:hover, a.exclusive_left:hover, a.exclusive_right:hover {
+.exclusive_mini:hover, .exclusive_small:hover, .exclusive:hover, .exclusive_large:hover, .exclusive_left:hover, .exclusive_right:hover, .exclusive_login:hover, a.exclusive_mini:hover, a.exclusive_small:hover, a.exclusive:hover, a.exclusive_large:hover, a.exclusive_left:hover, a.exclusive_right:hover {
 }
 
 
 /* classic buttons */
-input.button_mini, input.button_mini_disabled, input.exclusive_mini, input.exclusive_mini_disabled, a.button_mini, a.exclusive_mini, span.button_mini, span.exclusive_mini {
+.button_mini, .button_mini_disabled, .exclusive_mini, .exclusive_mini_disabled, a.button_mini, a.exclusive_mini, span.button_mini, span.exclusive_mini {
     width: 30px;
 }
-input.button_small, input.button_small_disabled, input.exclusive_small, input.exclusive_small_disabled, a.button_small, a.exclusive_small, span.button_small, span.exclusive_small {
+.button_small, .button_small_disabled, .exclusive_small, .exclusive_small_disabled, a.button_small, a.exclusive_small, span.button_small, span.exclusive_small {
     width: 60px;
 }
-input.button, input.button_disabled, input.exclusive, input.exclusive_disabled, a.button, a.exclusive, span.button, span.exclusive {
+.button, .button_disabled, .exclusive, .exclusive_disabled, a.button, a.exclusive, span.button, span.exclusive {
     width: 120px;
 }
-input.button_large, input.button_large_disabled, input.exclusive_large, input.exclusive_large_disabled, a.button_large, a.exclusive_large, span.button_large, span.exclusive_large {
+.button_large, .button_large_disabled, .exclusive_large, .exclusive_large_disabled, a.button_large, a.exclusive_large, span.button_large, span.exclusive_large {
     width: 180px;
 }
-input.button_left, input.button_left_disabled, input.exclusive_left, input.exclusive_left_disabled, a.button_left, a.exclusive_left, span.button_left, span.exclusive_left {
+.button_left, .button_left_disabled, .exclusive_left, .exclusive_left_disabled, a.button_left, a.exclusive_left, span.button_left, span.exclusive_left {
     width: 95px;
     height: 19px;
     line-height: 19px;
 }
-input.button_right, input.button_right_disabled, input.exclusive_right, input.exclusive_right_disabled, a.button_right, a.exclusive_right, span.button_right, span.exclusive_right {
+.button_right, .button_right_disabled, .exclusive_right, .exclusive_right_disabled, a.button_right, a.exclusive_right, span.button_right, span.exclusive_right {
     width: 95px;
     height: 19px;
     line-height: 19px;
 }
-input.button_login, input.button_login_disabled, input.exclusive_login, input.exclusive_login_disabled, a.button_login, a.exclusive_login, span.button_login, span.exclusive_login {
+.button_login, .button_login_disabled, .exclusive_login, .exclusive_login_disabled, a.button_login, a.exclusive_login, span.button_login, span.exclusive_login {
     width: 60px;
     height: 11px;
     line-height: 11px;
@@ -585,19 +585,19 @@ input.button_login, input.button_login_disabled, input.exclusive_login, input.ex
 
 
 /* exclusive button */
-input.exclusive, input.exclusive_disabled, a.exclusive, span.exclusive {
+.exclusive, .exclusive_disabled, a.exclusive, span.exclusive {
 }
-input.exclusive_mini, input.exclusive_mini_disabled, a.exclusive_mini, span.exclusive_mini {
+.exclusive_mini, .exclusive_mini_disabled, a.exclusive_mini, span.exclusive_mini {
 }
-input.exclusive_small, input.exclusive_small_disabled, a.exclusive_small, span.exclusive_small {
+.exclusive_small, .exclusive_small_disabled, a.exclusive_small, span.exclusive_small {
 }
-input.exclusive_large, input.exclusive_large_disabled, a.exclusive_large, span.exclusive_large {
+.exclusive_large, .exclusive_large_disabled, a.exclusive_large, span.exclusive_large {
 }
-input.exclusive_left, input.exclusive_left_disabled, a.exclusive_left, span.exclusive_left {
+.exclusive_left, .exclusive_left_disabled, a.exclusive_left, span.exclusive_left {
 }
-input.exclusive_right, input.exclusive_right_disabled, a.exclusive_right, span.exclusive_right {
+.exclusive_right, .exclusive_right_disabled, a.exclusive_right, span.exclusive_right {
 }
-input.exclusive_login, input.exclusive_login_disabled, a.exclusive_login, span.exclusive_login {
+.exclusive_login, .exclusive_login_disabled, a.exclusive_login, span.exclusive_login {
 }
 
 
@@ -656,8 +656,10 @@ img.icon {
 /* success */
 .success {
     font-weight: bold;
-    margin: 0.2em 1em;
+    margin: 1em 1em;
     padding: 0.3em 0.8em 1em;
+    border-style: solid;
+    border-width: 2px;
 }
 .success_inline {
     font-weight: bold;

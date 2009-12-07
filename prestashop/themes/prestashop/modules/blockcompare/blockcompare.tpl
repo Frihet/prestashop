@@ -12,7 +12,7 @@
 {assign var='id_lang' value=$cookie->id_lang|intval}
 
 <!-- MODULE Block compare -->
-<div id="compare_block" class="universal block exclusive">
+<div id="compare_block" class="universal block">
 	<h4>
 		<a href="{$base_dir_ssl}modules/blockcompare/compare.php">{l s='Compare' mod='blockcompare'}</a>
 		{if $ajax_allowed}

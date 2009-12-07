@@ -16,46 +16,46 @@ h1#logo a {
 table.std thead th {
     background-image: url('../img/universal/table_header.png');
 }
-input.button_mini, input.button_mini_disabled, input.exclusive_mini, input.exclusive_mini_disabled, a.button_mini, a.exclusive_mini, span.button_mini, span.exclusive_mini {
+.button_mini, .button_mini_disabled, .exclusive_mini, .exclusive_mini_disabled, a.button_mini, a.exclusive_mini, span.button_mini, span.exclusive_mini {
     background-image: url('../img/button-mini.jpg');
 }
-input.button_small, input.button_small_disabled, input.exclusive_small, input.exclusive_small_disabled, a.button_small, a.exclusive_small, span.button_small, span.exclusive_small {
+.button_small, .button_small_disabled, .exclusive_small, .exclusive_small_disabled, a.button_small, a.exclusive_small, span.button_small, span.exclusive_small {
     background-image: url('../img/button-small.jpg');
 }
-input.button, input.button_disabled, input.exclusive, input.exclusive_disabled, a.button, a.exclusive, span.button, span.exclusive {
+.button, .button_disabled, .exclusive, .exclusive_disabled, a.button, a.exclusive, span.button, span.exclusive {
     background-image: url('../img/button-medium.jpg');
 }
-input.button_large, input.button_large_disabled, input.exclusive_large, input.exclusive_large_disabled, a.button_large, a.exclusive_large, span.button_large, span.exclusive_large {
+.button_large, .button_large_disabled, .exclusive_large, .exclusive_large_disabled, a.button_large, a.exclusive_large, span.button_large, span.exclusive_large {
     background-image: url('../img/button-large.jpg');
 }
-input.button_left, input.button_left_disabled, input.exclusive_left, input.exclusive_left_disabled, a.button_left, a.exclusive_left, span.button_left, span.exclusive_left {
+.button_left, .button_left_disabled, .exclusive_left, .exclusive_left_disabled, a.button_left, a.exclusive_left, span.button_left, span.exclusive_left {
     background-image: url('../img/universal/button-left.jpg');
 }
-input.button_right, input.button_right_disabled, input.exclusive_right, input.exclusive_right_disabled, a.button_right, a.exclusive_right, span.button_right, span.exclusive_right {
+.button_right, .button_right_disabled, .exclusive_right, .exclusive_right_disabled, a.button_right, a.exclusive_right, span.button_right, span.exclusive_right {
     background-image: url('../img/universal/button-right.jpg');
 }
-input.button_login, input.button_login_disabled, input.exclusive_login, input.exclusive_login_disabled, a.button_login, a.exclusive_login, span.button_login, span.exclusive_login {
+.button_login, .button_login_disabled, .exclusive_login, .exclusive_login_disabled, a.button_login, a.exclusive_login, span.button_login, span.exclusive_login {
     background-image: url('../img/universal/button-login.jpg');
 }
-input.exclusive, input.exclusive_disabled, a.exclusive, span.exclusive {
+.exclusive, .exclusive_disabled, a.exclusive, span.exclusive {
     background-image: url('../img/button-medium_exclusive.jpg');
 }
-input.exclusive_mini, input.exclusive_mini_disabled, a.exclusive_mini, span.exclusive_mini {
+.exclusive_mini, .exclusive_mini_disabled, a.exclusive_mini, span.exclusive_mini {
     background-image: url('../img/button-mini_exclusive.jpg');
 }
-input.exclusive_small, input.exclusive_small_disabled, a.exclusive_small, span.exclusive_small {
+.exclusive_small, .exclusive_small_disabled, a.exclusive_small, span.exclusive_small {
     background-image: url('../img/button-small_exclusive.jpg');
 }
-input.exclusive_large, input.exclusive_large_disabled, a.exclusive_large, span.exclusive_large {
+.exclusive_large, .exclusive_large_disabled, a.exclusive_large, span.exclusive_large {
     background-image: url('../img/button-large_exclusive.jpg');
 }
-input.exclusive_left, input.exclusive_left_disabled, a.exclusive_left, span.exclusive_left {
+.exclusive_left, .exclusive_left_disabled, a.exclusive_left, span.exclusive_left {
     background-image: url('../img/universal/button-left_exclusive.jpg');
 }
-input.exclusive_right, input.exclusive_right_disabled, a.exclusive_right, span.exclusive_right {
+.exclusive_right, .exclusive_right_disabled, a.exclusive_right, span.exclusive_right {
     background-image: url('../img/universal/button-right_exclusive.jpg');
 }
-input.exclusive_login, input.exclusive_login_disabled, a.exclusive_login, span.exclusive_login {
+.exclusive_login, .exclusive_login_disabled, a.exclusive_login, span.exclusive_login {
     background-image: url('../img/universal/button-login_exclusive.jpg');
 }
 ul.bullet li, .block ul.bullet li {

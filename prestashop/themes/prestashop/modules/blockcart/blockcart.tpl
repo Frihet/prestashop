@@ -19,7 +19,7 @@ var removingLinkText = '{l s='remove this product from my cart' mod='blockcart' 
 {/if}
 
 <!-- MODULE Block cart -->
-<div id="cart_block" class="universal block exclusive">
+<div id="cart_block" class="universal block">
 	<h4>
 		<a href="{$base_dir_ssl}order.php">{l s='Cart' mod='blockcart'}</a>
 		{if $ajax_allowed}

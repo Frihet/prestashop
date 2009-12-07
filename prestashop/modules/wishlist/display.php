@@ -4,6 +4,7 @@ include_once(dirname(__FILE__).'/../../config/config.inc.php');
 include_once(dirname(__FILE__).'/../../init.php');
 
 require_once(dirname(__FILE__).'/../../classes/Product.php');
+require_once(dirname(__FILE__).'/wishlist.php');
 
 
 function getHashFromCart($cart)
@@ -173,7 +174,9 @@ $smarty->assign('cart', $wishlist_cart);
 
 Tools::safePostVars();
 include_once(dirname(__FILE__).'/../../header.php');
-$smarty->display(dirname(__FILE__).'/wishlist.tpl');
+
+$lst = new WishList();
+echo $lst->display(dirname(__FILE__).'/wishlist.php', 'wishlist.tpl');
 
 include(dirname(__FILE__).'/../../footer.php');
 
