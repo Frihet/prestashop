@@ -16,9 +16,6 @@ h1#logo a {
 table.std thead th {
     background-image: url('../img/universal/table_header.png');
 }
-form.std fieldset {
-    background: url('../img/form_bg.jpg') repeat-x top left;
-}
 input.button_mini, input.button_mini_disabled, input.exclusive_mini, input.exclusive_mini_disabled, a.button_mini, a.exclusive_mini, span.button_mini, span.exclusive_mini {
     background-image: url('../img/button-mini.jpg');
 }
@@ -210,15 +207,6 @@ ul.step li#step_end.step_current {
 ul#product_list li .new {
     background: url(../img/flag_new_bg.jpg) repeat-x scroll 0%;
 }
-#block-history table#order-list thead th {
-    background-image: url('../img/block_myaccount_header_large.gif');
-}
-#block-history table#order-list tbody {
-    background: url('../img/form_bg.jpg') repeat-x top left;
-}
-#block-history #block-order-detail {
-    background: url('../img/form_bg.jpg') repeat-x top left;
-}
 #primary_block ul#usefull_link_block li a, #primary_block ul#usefull_link_block span.span_link, #primary_block ul#usefull_link_block span.span_link:hover {
     background: url('../img/bullet_alt.jpg') no-repeat top left;
 }
@@ -233,9 +221,6 @@ ul#product_list li .new {
 }
 ul#suppliers_list li, ul#manufacturers_list li {
     background: url('../img/block_category_item_bg.jpg') repeat-x;
-}
-div.addresses {
-    background: url('../img/form_bg.jpg') repeat-x top left;
 }
 ul.item li.address_title {
     background-image: url('../img/address_alias_left.gif');

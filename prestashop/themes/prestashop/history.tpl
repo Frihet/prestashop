@@ -7,7 +7,10 @@
 {capture name=path}<a href="{$base_dir_ssl}my-account.php">{l s='My account'}</a><span class="navigation-pipe">{$navigationPipe}</span>{l s='Order history'}{/capture}
 {include file=$tpl_dir./breadcrumb.tpl}
 
+{variablebox class="universal"}
 <h2>{l s='Order history'}</h2>
+{variablebox_content}
+
 <p>{l s='Here are the orders you have placed since the creation of your account'}.</p>
 
 <div class="block-center" id="block-history">
@@ -56,3 +59,4 @@
 	<li><a href="{$base_dir_ssl}my-account.php"><img src="{$img_dir}icon/my-account.gif" alt="" class="icon" /></a><a href="{$base_dir_ssl}my-account.php">{l s='Back to Your Account'}</a></li>
 	<li><a href="{$base_dir}"><img src="{$img_dir}icon/home.gif" alt="" class="icon" /></a><a href="{$base_dir}">{l s='Home'}</a></li>
 </ul>
+{/variablebox}

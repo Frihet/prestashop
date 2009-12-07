@@ -7,7 +7,9 @@
 {capture name=path}<a href="{$base_dir_ssl}my-account.php">{l s='My account'}</a><span class="navigation-pipe">{$navigationPipe}</span>{l s='Your vouchers'}{/capture}
 {include file=$tpl_dir./breadcrumb.tpl}
 
+{variablebox class="universal"}
 <h2>{l s='Your vouchers'}</h2>
+{variablebox_content}
 
 {if $discount && count($discount) && $nbDiscounts}
 <table class="discount std">
@@ -67,3 +69,4 @@
 	<li><a href="{$base_dir_ssl}my-account.php"><img src="{$img_dir}icon/my-account.gif" alt="" class="icon" /></a><a href="{$base_dir_ssl}my-account.php">{l s='Back to Your Account'}</a></li>
 	<li><a href="{$base_dir}"><img src="{$img_dir}icon/home.gif" alt="" class="icon" /></a><a href="{$base_dir}">{l s='Home'}</a></li>
 </ul>
+{/variablebox}

@@ -7,7 +7,9 @@
 {capture name=path}<a href="{$base_dir_ssl}my-account.php">{l s='My account'}</a><span class="navigation-pipe">{$navigationPipe}</span>{l s='Credit slips'}{/capture}
 {include file=$tpl_dir./breadcrumb.tpl}
 
+{variablebox class="universal"}
 <h2>{l s='Credit slips'}</h2>
+{variablebox_content}
 <p>{l s='Credit slips you received after canceled orders'}.</p>
 <div class="block-center" id="block-history">
 	{if $ordersSlip && count($ordersSlip)}
@@ -43,3 +45,4 @@
 	<li><a href="{$base_dir_ssl}my-account.php"><img src="{$img_dir}icon/my-account.gif" alt="" class="icon" /></a><a href="{$base_dir_ssl}my-account.php">{l s='Back to Your Account'}</a></li>
 	<li><a href="{$base_dir}"><img src="{$img_dir}icon/home.gif" alt="" class="icon" /></a><a href="{$base_dir}">{l s='Home'}</a></li>
 </ul>
+{/variablebox}

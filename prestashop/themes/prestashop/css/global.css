@@ -418,6 +418,7 @@ form.std h3 {
 form.std fieldset {
     margin-bottom: 1em;
     padding-bottom: 1em;
+    border: none;
 }
 form.std fieldset legend {
     padding: 0.3em 0.6em;
@@ -440,7 +441,7 @@ form.std p span.like_input {
     width: auto;
     margin-left: 0.7em;
 }
-input, textarea, select, span.editable {
+input, textarea, select {
     margin-left: 0.7em;
     font-size: 12px;
     font-family: Verdana, Arial, Helvetica, Sans-Serif;
@@ -1948,21 +1949,6 @@ form.std p.desc_contact span.like_input {
 }
 
 
-/* history.tpl*/
-#block-history table#order-list {
-    border: none;
-}
-#block-history table#order-list td.history_link {
-    white-space: nowrap;
-    text-align: right;
-}
-#block-history #block-order-detail {
-    padding: 0.5em;
-}
-#block-history #block-order-detail p {
-    padding-left : 0;
-    padding-right : 0;
-}
 #order-detail-content {
     clear: both;
     margin-top: 1.5em;
@@ -1975,20 +1961,6 @@ form.std p.desc_contact span.like_input {
 }
 #order-detail-content table td.order_cb input {
     border: none;
-}
-#order-detail-content table td span.order_qte_span {
-    width: 100%;
-    display: block;
-}
-#block-history #block-order-detail h4 {
-    font-size: 1.4em;
-}
-#block-history #block-order-detail #sendOrderMessage p {
-    padding: 0pt 4px 0pt 1px;
-}
-#block-history #block-order-detail textarea {
-    margin: 0 auto;
-    width: 100%;
 }
 #ordermsg textarea {
     margin: 0;

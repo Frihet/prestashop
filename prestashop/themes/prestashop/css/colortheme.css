@@ -290,21 +290,6 @@ td.cart_description h5 a, td.cart_ref, td.cart_total {
 #order #order_carrier {
     border-color: #bdc2c9;
 }
-#block-history {
-    color: #374853;
-}
-#block-history table#order-list thead th {
-    color: #ffffff;
-}
-#block-history table#order-list tbody {
-    background-color: #D0D1D5;
-}
-#block-history table#order-list tbody tr td {
-    background-color: #ffffff;
-}
-#block-history #block-order-detail {
-    background-color: #D0D1D5;
-}
 #primary_block ul#usefull_link_block li a, #primary_block ul#usefull_link_block span.span_link, #primary_block ul#usefull_link_block span.span_link:hover {
     color: #76839b;
     background-color: #ffffff;
