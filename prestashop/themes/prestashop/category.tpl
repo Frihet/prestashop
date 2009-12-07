@@ -25,6 +25,8 @@
 			<div class="cat_desc">{$category->description}</div>
 		{/if}
 
+		<br class="clear"/>
+
 		{if $path|regex_replace:"/.*a href.*/":"" == ""}
 			{if isset($subcategories)}
 				<!-- Subcategories -->

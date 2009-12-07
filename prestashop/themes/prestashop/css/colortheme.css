@@ -111,8 +111,7 @@ input.exclusive_mini:hover, input.exclusive_small:hover, input.exclusive:hover, 
 }
 .warning {
     color: #000000;
-    background-color: #F8E1A0;
-    border-color: #F9E400;
+    background-color: #d9d9d9;
 }
 .warning_inline {
     color: #da0f00;

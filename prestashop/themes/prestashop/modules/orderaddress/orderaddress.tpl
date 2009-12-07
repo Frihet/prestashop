@@ -43,7 +43,7 @@
 			{/section}
 			</select>
 			{else}
-				<a style="margin-left: 221px;" href="{$base_dir_ssl}address.php?back=order.php&amp;step={$order_step}&select_address=1" title="{l s='Add'}" class="button_large">{l s='Add a new address'}</a>
+				<a style="margin-left: 221px;" href="{$base_dir_ssl}address.php?back=order.php?step={$order_step}&select_address=1" title="{l s='Add'}" class="button_large">{l s='Add a new address'}</a>
 			{/if}
 		</p>
 		<div class="clear"></div>
@@ -83,7 +83,7 @@
 		</table>
 		<br class="clear" />
 		<p class="address_add submit">
-			<a href="{$base_dir_ssl}address.php?back=order.php&amp;step={$order_step}" title="{l s='Add'}" class="button_large">{l s='Add a new address'}</a>
+			<a href="{$base_dir_ssl}address.php?back=order.php?step={$order_step}" title="{l s='Add'}" class="button_large">{l s='Add a new address'}</a>
 		</p>
 		<div id="ordermsg">
 			<p>{l s='If you want to leave us comment about your order, please write it below.'}</p>

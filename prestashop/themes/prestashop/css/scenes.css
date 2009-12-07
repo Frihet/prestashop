@@ -67,6 +67,11 @@
 
 /* END Cluetip design */
 
+
+#scenes {
+        float: right;
+}
+
 #scenes .screen_scene {
 	margin:0 auto;
 }
@@ -116,7 +121,6 @@
 #scenes .thumbs_banner #scenes_list{
 	overflow:hidden;
 	width:504px;
-	float:left;
 	border:1px solid #EEE;
 }
 
