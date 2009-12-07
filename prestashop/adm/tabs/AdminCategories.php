@@ -37,7 +37,6 @@ class AdminCategories extends AdminTab
 		$this->fieldsDisplay = array(
 		'id_category' => array('title' => $this->l('ID'), 'align' => 'center', 'width' => 30),
 		'name' => array('title' => $this->l('Name'), 'width' => 100, 'callback' => 'hideCategoryPosition'),
-		'description' => array('title' => $this->l('Description'), 'width' => 480, 'maxlength' => 90, 'orderby' => false),
 		'physical_products_quantity' => array('title' => $this->l('In stock Products'), 'align' => 'center', 'width' => 50),
 		'active' => array('title' => $this->l('Displayed'), 'active' => 'status', 'align' => 'center', 'type' => 'bool', 'orderby' => false));
 		
@@ -89,7 +88,6 @@ class AdminCategories extends AdminTab
 		global $cookie;
 
 		$this->tabAccess = Profile::getProfileAccess($cookie->profile, $this->id);
-
 		if (Tools::isSubmit('submitAdd'.$this->table))
 		{
 			if ($id_category = intval(Tools::getValue('id_category')))
@@ -155,8 +153,44 @@ class AdminCategories extends AdminTab
 		$active = $this->getFieldValue($obj, 'active');
 		$customer_groups = $obj->getGroups();
 		
+		$iso = Language::getIsoById($cookie->id_lang);
+
 		echo '
+		<script type="text/javascript" src="'.__PS_BASE_URI__.'js/tinymce/jscripts/tiny_mce/jquery.tinymce.js"></script>
 		<script type="text/javascript">
+			function tinyMCEInit(element)
+			{
+				$().ready(function() {
+					$(element).tinymce({
+						// Location of TinyMCE script
+						script_url : \''.__PS_BASE_URI__.'js/tinymce/jscripts/tiny_mce/tiny_mce.js\',
+						// General options
+						theme : "advanced",
+						plugins : "safari,pagebreak,style,layer,table,advimage,advlink,inlinepopups,media,searchreplace,contextmenu,paste,directionality,fullscreen",
+						// Theme options
+						theme_advanced_buttons1 : "newdocument,|,bold,italic,underline,strikethrough,|,justifyleft,justifycenter,justifyright,justifyfull,styleselect,formatselect,fontselect,fontsizeselect",
+						theme_advanced_buttons2 : "cut,copy,paste,pastetext,pasteword,|,search,replace,|,bullist,numlist,|,outdent,indent,blockquote,|,undo,redo,|,link,unlink,anchor,image,cleanup,help,code,,|,forecolor,backcolor",
+						theme_advanced_buttons3 : "tablecontrols,|,hr,removeformat,visualaid,|,sub,sup,|,charmap,media,|,ltr,rtl,|,fullscreen",
+						theme_advanced_buttons4 : "insertlayer,moveforward,movebackward,absolute,|,styleprops,|,cite,abbr,acronym,del,ins,attribs,|,pagebreak",
+						theme_advanced_toolbar_location : "top",
+						theme_advanced_toolbar_align : "left",
+						width : "100",
+						theme_advanced_statusbar_location : "bottom",
+						theme_advanced_resizing : true,
+						content_css : "'.__PS_BASE_URI__.'themes/'._THEME_NAME_.'/css/global.css",
+						// Drop lists for link/image/media/template dialogs
+						template_external_list_url : "lists/template_list.js",
+						external_link_list_url : "lists/link_list.js",
+						external_image_list_url : "lists/image_list.js",
+						media_external_list_url : "lists/media_list.js",
+						elements : "nourlconvert",
+						convert_urls : false,
+						language : "'.(file_exists(_PS_ROOT_DIR_.'/js/tinymce/jscripts/tiny_mce/langs/'.$iso.'.js') ? $iso : 'en').'"
+					});
+				});
+			}
+			tinyMCEInit(\'textarea.rte\');
+
 			id_language = Number('.$defaultLanguage.');
 		</script>
 		<form action="'.$currentIndex.'&submitAdd'.$this->table.'=1&token='.($token!=NULL ? $token : $this->token).'" method="post" enctype="multipart/form-data">
@@ -193,7 +227,7 @@ class AdminCategories extends AdminTab
 		foreach ($languages as $language)
 			echo '
 					<div id="cdescription_'.$language['id_lang'].'" style="display: '.($language['id_lang'] == $defaultLanguage ? 'block' : 'none').'; float: left;">
-						<textarea name="description_'.$language['id_lang'].'" rows="5" cols="40">'.htmlentities($this->getFieldValue($obj, 'description', intval($language['id_lang'])), ENT_COMPAT, 'UTF-8').'</textarea>
+						<textarea class="rte" name="description_'.$language['id_lang'].'" rows="5" cols="40">'.htmlentities($this->getFieldValue($obj, 'description', intval($language['id_lang'])), ENT_COMPAT, 'UTF-8').'</textarea>
 					</div>';
 		$this->displayFlags($languages, $defaultLanguage, $langtags, 'cdescription');
 		echo '		<div class="clear"></div>

@@ -291,11 +291,13 @@ abstract class ObjectModel
 			 	if (!Validate::isTableOrIdentifier($field))
 	 				die(Tools::displayError());
 
+				$htmlOK = $this->fieldsValidateLang[$field] == 'isCleanHtml';
+
 				/* Copy the field, or the default language field if it's both required and empty */
 				if (isset($this->{$field}[$language['id_lang']]) AND !Tools::isEmpty($this->{$field}[$language['id_lang']]))
-					$fields[$language['id_lang']][$field] = pSQL($this->{$field}[$language['id_lang']]);
+					$fields[$language['id_lang']][$field] = pSQL($this->{$field}[$language['id_lang']], $htmlOK);
 				elseif (in_array($field, $this->fieldsRequiredLang))
-					$fields[$language['id_lang']][$field] = pSQL($this->{$field}[$defaultLanguage]);
+					$fields[$language['id_lang']][$field] = pSQL($this->{$field}[$defaultLanguage], $htmlOK);
 				else
 					$fields[$language['id_lang']][$field] = '';
 			}
