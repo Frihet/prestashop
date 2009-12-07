@@ -43,7 +43,8 @@ class		ProductInstance extends ObjectModel
 
 		$fields = array();
 		$fields['serial'] = $this->serial;
-		$fields['id_order_detail'] = intval($this->id);
+		$fields['id_product_instance'] = intval($this->id);
+		$fields['id_order_detail'] = intval($this->id_order_detail);
 		$fields['id_current_owner'] = intval($this->id_current_owner);
 		$fields['date_add'] = pSQL($this->date_add);
 		$fields['date_upd'] = pSQL($this->date_upd);

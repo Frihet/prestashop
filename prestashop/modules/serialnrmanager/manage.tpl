@@ -29,7 +29,7 @@
      <td>{$instance.order_invoice_date}</td>
      <td>{$instance.vendor_title}</td>
      <td>{$instance.current_owner_firstname} {$instance.current_owner_lastname} &lt;{$instance.current_owner_email}&gt;</td>
-     <td><a href="changeowner.php?serial={$instance.serial}">Change owner</a></td>
+     <td>{if $current_vendor || $instance.id_current_owner == $current_customer}<a href="changeowner.php?serial={$instance.serial}">Change owner</a>{/if}</td>
     </tr>
    {/foreach}
   </tbody>
