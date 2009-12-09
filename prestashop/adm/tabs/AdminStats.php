@@ -70,24 +70,29 @@ class AdminStats extends AdminStatsTab
 	
 	public static function getCarts($dateBetween)
 	{
-		return Db::getInstance()->getRow('
-		SELECT AVG(cartsum) as average, MAX(cartsum) as highest, MIN(cartsum) as lowest
-		FROM (
-			SELECT SUM(
-				((1+t.rate/100) * p.`price` + IF(cp.id_product_attribute IS NULL OR cp.id_product_attribute = 0, 0, (
-					SELECT IFNULL(pa.price, 0) 
-					FROM '._DB_PREFIX_.'product_attribute pa
-					WHERE pa.id_product = cp.id_product
-					AND pa.id_product_attribute = cp.id_product_attribute
-				))) * cp.quantity) / cu.conversion_rate as cartsum
-			FROM `'._DB_PREFIX_.'cart` c
-			LEFT JOIN `'._DB_PREFIX_.'currency` cu ON c.id_currency = cu.id_currency
-			LEFT JOIN `'._DB_PREFIX_.'cart_product` cp ON c.`id_cart` = cp.`id_cart`
-			LEFT JOIN `'._DB_PREFIX_.'product` p ON p.`id_product` = cp.`id_product`
-			LEFT JOIN `'._DB_PREFIX_.'tax` t ON p.`id_tax` = t.`id_tax`
-			WHERE c.`date_upd` BETWEEN '.$dateBetween.'
-			GROUP BY c.`id_cart`
-		) carts');
+		$price_sql = Product::getProductPriceSql('p.id_product', 'pp', 'c.id_currency');
+		$sql = "
+		 SELECT AVG(cartsum) as average, MAX(cartsum) as highest, MIN(cartsum) as lowest
+		 FROM (
+			 SELECT SUM(
+				 ((1+t.rate/100) * pp.`price` + IF(cp.id_product_attribute IS NULL OR cp.id_product_attribute = 0, 0, (
+					 SELECT IFNULL(pa.price, 0) 
+					 FROM PREFIX_product_attribute pa
+					 WHERE pa.id_product = cp.id_product
+					 AND pa.id_product_attribute = cp.id_product_attribute
+				 ))) * cp.quantity) / cu.conversion_rate as cartsum
+			 FROM `PREFIX_cart` c
+			 LEFT JOIN `PREFIX_currency` cu ON c.id_currency = cu.id_currency
+			 LEFT JOIN `PREFIX_cart_product` cp ON c.`id_cart` = cp.`id_cart`
+			 LEFT JOIN `PREFIX_product` p ON p.`id_product` = cp.`id_product`
+			 {$price_sql}
+			 LEFT JOIN `PREFIX_tax` t ON pp.`id_tax` = t.`id_tax`
+			 WHERE c.`date_upd` BETWEEN {$dateBetween}
+			 GROUP BY c.`id_cart`
+		 ) carts
+		";
+		$sql = str_replace('PREFIX_', _DB_PREFIX_, $sql);
+		return Db::getInstance()->getRow($sql);
 	}
 	
 	public function display()

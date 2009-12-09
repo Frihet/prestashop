@@ -1,17 +1,5 @@
 /* Cluetip design */
 
-#cluetip-outer {
-        background: white;
-}
-
-#cluetip-inner {
-	padding: 4px;
-}
-
-#cluetip-inner .variablebox_center_center {
-	padding: 4px;
-}
-
 .cluetip-product_scene {
 	text-align:left;
 }

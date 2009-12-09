@@ -31,7 +31,7 @@ $(function () {
 	/* set cluetip parameters */
 	$('a.cluetip')
 		.cluetip({
-		        width: '300px',
+		        width: '313px',
 		        local:true,
 			cursor: 'pointer',
 			cluetipClass: 'product_scene',

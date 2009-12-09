@@ -21,7 +21,7 @@ ul.idTabsShort li a.selected, ul.idTabs li a.selected {
     color: #ffffff;
 }
 a {
-    color: #5a5a5a;
+    color: #5a0c0c;
 }
 h2 {
     color: #ffffff;
@@ -95,9 +95,9 @@ input, textarea, select {
     color: #5A0C0C;
 }
 .error {
-    color: #5A0C0C;
-    background-color: #f1f2f4;
-    border-color: #5A0C0C;
+    color: #000000;
+    background-color: #c5715f;
+    border-color: #680d0e;
 }
 .warning {
     color: #000000;
@@ -109,8 +109,8 @@ input, textarea, select {
 }
 .success {
     color: #000000;
-    background-color: #bdedc5;
-    border-color: #00ff00;
+    background-color: #bee361;
+    border-color: #59852d;
 }
 .breadcrumb {
     color: #5A5A5A;
@@ -158,9 +158,6 @@ li.disabled span {
 }
 .block .block_content {
     border-top-color: #999999;
-}
-.block a {
-    color: #5a5a5a;
 }
 .exclusive h4 {
     color: #ffffff;

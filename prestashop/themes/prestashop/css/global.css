@@ -361,6 +361,7 @@ table.std {
 }
 table.std td, table.std th {
     padding-left: 0.4em;
+    padding-bottom: 2px;
 }
 table.std th {
     white-space: nowrap;
@@ -401,9 +402,6 @@ table.std tfoot td {
     white-space: nowrap;
     padding-right: 0.4em;
 }
-
-
-/*/global table style */
 
 
 /* global form style */
@@ -1137,7 +1135,7 @@ div.universal, div.universal a, div.universal h4 a, div.universal h4 {
     margin: 0 0 0 0.4em;
 }
 .products_block li h5 {
-    display: inline;
+    margin-bottom: 1em;
     font-size: 0.9em;
 }
 .products_block li p a {
@@ -2319,7 +2317,16 @@ p#security_informations {
 
 /* Printable version */
 @media print {
-    div#left_column, div#right_column, div#footer, a.button, span.button, .button, ul#usefull_link_block, div#header_user, #languages_block_top, #search_block_top, #currencies_block_top, ul#header_links, ul.idTabs, #availability_statut br  {
+    .noprint, #left_column, #right_column, #footer, #header,
+    a.button_mini, span.button_mini, .button_mini,
+    a.button_small, span.button_small, .button_small,
+    a.button, span.button, .button,
+    a.button_large, span.button_large, .button_large,
+    a.exclusive_mini, span.exclusive_mini, .exclusive_mini,
+    a.exclusive_small, span.exclusive_small, .exclusive_small,
+    a.exclusive, span.exclusive, .exclusive,
+    a.exclusive_large, span.exclusive_large, .exclusive_large,
+    #usefull_link_block, #header_user, #languages_block_top, #search_block_top, #currencies_block_top, #header_links, ul.idTabs, #availability_statut br  {
 	display: none;
     }
     div#center_column  {
@@ -2779,6 +2786,22 @@ tbody.datepickerDays td.datepickerNotInMonth a {
     padding:3px;
 }
 
+table.product_list td {
+    padding-left: 2px;
+    padding-right: 2px;
+}
+table.product_list td.product_desc {
+    width: 100%;
+}
+
+.cluetip-product_scene {
+    width: 315px;
+    height: 154px;
+}
+
+#cluetip-inner {
+	padding: 20px;
+}
 
 /* Universal style */
 .universal .variablebox_bottom_left, .universal .variablebox_bottom_center, .universal .variablebox_bottom_middle, .universal .variablebox_bottom_right {

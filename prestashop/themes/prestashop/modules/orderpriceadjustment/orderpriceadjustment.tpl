@@ -16,7 +16,7 @@
 {include file=$tpl_dir./errors.tpl}
 
 <div class="warning">
- <div>{l s='Warning: Prices are different for each country/currency!'}</div>
+ <div>{l s='Note: Prices are different for each country/currency!'}</div>
  <div>Your currency is: {$currency_name} ({$currency_iso_code})</div>
 </div>
 

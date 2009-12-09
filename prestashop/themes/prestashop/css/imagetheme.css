@@ -16,25 +16,25 @@ h1#logo a {
 table.std thead th {
     background-image: url('../img/universal/table_header.png');
 }
-.button_mini, .button_mini_disabled, .exclusive_mini, .exclusive_mini_disabled, a.button_mini, a.exclusive_mini, span.button_mini, span.exclusive_mini {
+.button_mini, .button_mini_disabled, a.button_mini, span.button_mini {
     background-image: url('../img/button-mini.jpg');
 }
-.button_small, .button_small_disabled, .exclusive_small, .exclusive_small_disabled, a.button_small, a.exclusive_small, span.button_small, span.exclusive_small {
+.button_small, .button_small_disabled, a.button_small, span.button_small {
     background-image: url('../img/button-small.jpg');
 }
-.button, .button_disabled, .exclusive, .exclusive_disabled, a.button, a.exclusive, span.button, span.exclusive {
+.button, .button_disabled, .a.button, span.button {
     background-image: url('../img/button-medium.jpg');
 }
-.button_large, .button_large_disabled, .exclusive_large, .exclusive_large_disabled, a.button_large, a.exclusive_large, span.button_large, span.exclusive_large {
+.button_large, .button_large_disabled, a.button_large, span.button_large {
     background-image: url('../img/button-large.jpg');
 }
-.button_left, .button_left_disabled, .exclusive_left, .exclusive_left_disabled, a.button_left, a.exclusive_left, span.button_left, span.exclusive_left {
+.button_left, .button_left_disabled, a.button_left, span.button_left {
     background-image: url('../img/universal/button-left.jpg');
 }
-.button_right, .button_right_disabled, .exclusive_right, .exclusive_right_disabled, a.button_right, a.exclusive_right, span.button_right, span.exclusive_right {
+.button_right, .button_right_disabled, a.button_right, span.button_right {
     background-image: url('../img/universal/button-right.jpg');
 }
-.button_login, .button_login_disabled, .exclusive_login, .exclusive_login_disabled, a.button_login, a.exclusive_login, span.button_login, span.exclusive_login {
+.button_login, .button_login_disabled, a.button_login, span.button_login {
     background-image: url('../img/universal/button-login.jpg');
 }
 .exclusive, .exclusive_disabled, a.exclusive, span.exclusive {
@@ -260,6 +260,9 @@ background: url(../../../modules/productcomments/img/star.gif) no-repeat 0 0px;
 #scenes a.cluetip span{
 	background-image: url(../img/icon/imageplus.jpg);
 }
+.cluetip-product_scene {
+	background-image: url('../img/cluetip.gif');
+}
 
 /* Universal style */
 .universal .variablebox_top_left {
@@ -313,4 +316,17 @@ background: url(../../../modules/productcomments/img/star.gif) no-repeat 0 0px;
 }
 .universal .variablebox_bottom_right {
     background: url('../img/universal/variablebox_bottom_right.jpg');
+}
+
+.universal .button_mini, .universal .button_mini_disabled, .universal a.button_mini, .universal span.button_mini {
+    background-image: url('../img/universal/button-mini.jpg');
+}
+.universal .button_small, .universal .button_small_disabled, .universal a.button_small, .universal span.button_small {
+    background-image: url('../img/universal/button-small.jpg');
+}
+.universal .button, .universal .button_disabled, .universal .a.button, .universal span.button {
+    background-image: url('../img/universal/button-medium.jpg');
+}
+.universal .button_large, .universal .button_large_disabled, .universal a.button_large, .universal span.button_large {
+    background-image: url('../img/universal/button-large.jpg');
 }
