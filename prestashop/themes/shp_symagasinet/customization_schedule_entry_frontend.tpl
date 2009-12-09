@@ -1,0 +1,1 @@
+.././shp_generic/./customization_schedule_entry_frontend.tpl

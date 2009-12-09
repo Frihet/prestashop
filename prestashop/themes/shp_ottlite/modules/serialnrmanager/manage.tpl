@@ -1,0 +1,1 @@
+.././../../shp_generic/./modules/serialnrmanager/manage.tpl

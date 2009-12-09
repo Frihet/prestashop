@@ -1,0 +1,1 @@
+.././../../shp_generic/./modules/blockcompare/blockcompare.tpl

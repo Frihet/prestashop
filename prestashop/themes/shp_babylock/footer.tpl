@@ -1,0 +1,1 @@
+.././shp_generic/./footer.tpl

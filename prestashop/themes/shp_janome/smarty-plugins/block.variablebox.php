@@ -1,0 +1,1 @@
+.././../shp_generic/./smarty-plugins/block.variablebox.php

@@ -1,0 +1,1 @@
+.././../../shp_generic/./modules/blockrss2/blockrss2.tpl

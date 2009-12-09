@@ -1,0 +1,1 @@
+.././../../shp_generic/./modules/blockviewed/blockviewed.tpl
