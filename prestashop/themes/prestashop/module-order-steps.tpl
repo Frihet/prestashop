@@ -17,4 +17,5 @@
 		</li>
 	{/foreach}
 </ul>
+<div class="clear"></div>
 <!-- /Steps -->

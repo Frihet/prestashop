@@ -1,5 +1,5 @@
 <!-- MODULE Block specials -->
-<div id="special_block_right" class="block products_block exclusive blockspecials">
+<div id="special_block_right" class="block products_block blockspecials">
 	<h4><a href="{$base_dir}prices-drop.php" title="{l s='Specials' mod='blockspecials'}">{l s='Specials' mod='blockspecials'}</a></h4>
 	<div class="block_content">
 {if $special}

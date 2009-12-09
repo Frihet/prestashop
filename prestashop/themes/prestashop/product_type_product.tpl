@@ -284,7 +284,7 @@ var fieldRequired = '{l s='Please fill all required fields' js=1}';
 	<br class="clear" />
 
 	{if $product->description_short OR $packItems|@count > 0}
-	{variablebox}
+	{variablebox_content}
 		{if $product->description_short}
 			<div id="short_description_content" class="rte align_justify">{$product->description_short}</div>
 		{/if}
@@ -302,7 +302,7 @@ var fieldRequired = '{l s='Please fill all required fields' js=1}';
 				</div>
 			{/foreach}
 		{/if}
-	{/variablebox}
+	{variablebox_content}
 	{/if}
 
 	{if $quantity_discounts}

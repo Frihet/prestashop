@@ -8,7 +8,7 @@
 }
 body {
     font-size: 11px;
-    font-family: Verdana, Arial, Helvetica, Sans-Serif;
+    font-family: Arial, Helvetica, Sans-Serif;
     text-align: center;
 }
 
@@ -399,6 +399,7 @@ table.std thead th.item {
 table.std tfoot td {
     text-align: right;
     white-space: nowrap;
+    padding-right: 0.4em;
 }
 
 
@@ -444,7 +445,7 @@ form.std p span.like_input {
 input, textarea, select {
     margin-left: 0.7em;
     font-size: 12px;
-    font-family: Verdana, Arial, Helvetica, Sans-Serif;
+    font-family: Arial, Helvetica, Sans-Serif;
     vertical-align: top;
     outline: none;
     border-style: solid;
@@ -626,12 +627,18 @@ img.icon {
 }
 
 
-/* errors */
-.error {
-    width: 90%;
-    margin: 0.3em auto 1.5em auto;
-    padding: 0.3em 0.8em 1em;
+/* Messages */
+
+.error, .warning, .success {
+    margin: 1em;
+    padding: 1em;
+    font-size: 1.2em;
+    font-weight: bold;
+    border-style: solid;
+    border-width: 2px;
 }
+
+/* errors */
 .error p {
     font-weight: bold;
 }
@@ -643,24 +650,12 @@ img.icon {
 
 
 /* warning */
-.warning {
-    font-size: 1.2em;
-    font-weight: bold;
-    padding: 0.6em 1em;
-}
 .warning_inline {
     font-weight: bold;
 }
 
 
 /* success */
-.success {
-    font-weight: bold;
-    margin: 1em 1em;
-    padding: 0.3em 0.8em 1em;
-    border-style: solid;
-    border-width: 2px;
-}
 .success_inline {
     font-weight: bold;
 }
@@ -784,7 +779,7 @@ form#productsSortForm p select {
 
 /* block top currencies */
 #header #currencies_block_top {
-    margin: 0.4em 0.5em 0 0;
+    margin: 0 0.5em 0 0;
     float: right;
 }
 #header #currencies_block_top ul {
@@ -818,7 +813,7 @@ form#productsSortForm p select {
 
 /* block top languages */
 #header #languages_block_top {
-    margin: 0.4em 0.1em 0 0;
+    margin: 0 0.1em 0 0;
     float: right
 }
 #header #languages_block_top p {
@@ -872,7 +867,7 @@ ul#header_links {
     width: 192px;
     float: right;
     clear: right;
-    margin-top: 4px;
+    margin-top: 10px;
     padding-right: 32px;
 }
 #header #search_block_top label {
@@ -916,7 +911,7 @@ ul#header_links {
 #header #header_user {
     float: right;
     text-align: right;
-    margin: 0.6em 32px 0 0;
+    margin: 0 32px 0 0;
 }
 #header_user p {
 }
@@ -969,9 +964,11 @@ ul#header_links {
 #footer {
     padding: 0.5em 0;
     clear: both;
+    text-align: center;
 }
 #footer .block_various_links {
     list-style: none;
+    display: inline;
 }
 #footer .block_various_links li a {
     text-decoration: none;
@@ -999,9 +996,7 @@ ul#header_links {
 }
 .block h4 {
     padding: 2px;
-    height: 1.3em;
-    line-height: 1.3em;
-    font-size: 1.2em;
+    font-size: 11px;
 }
 .block h4, .block h4 *, .block h4 a {
     text-transform: uppercase;
@@ -1047,6 +1042,7 @@ ul#header_links {
 }
 #pb-left-column .variablebox {
     width: 300px;
+    margin-bottom: 2px;
 }
 
 
@@ -1841,27 +1837,21 @@ form.std p.cart_navigation span {
     font-size: 1em;
     text-decoration: none;
 }
-tr.cart_item td {
-    padding: 0.5em 0;
-}
-td.cart_product a {
-    margin: 0 0.6em;
-}
 td.cart_product a img {
-}
-td.cart_product a:hover img {
-    border: 1px solid;
 }
 td.cart_description a {
     text-decoration: none;
+    font-size: 7pt;
 }
 td.cart_description a:hover {
     text-decoration: underline;
 }
-td.cart_description h5 a, td.cart_ref, td.cart_total {
+td.cart_description h5 a {
+    font-size: 9pt;
 }
 td.cart_unit, td.cart_total, td.cart_discount_price {
     text-align: right;
+    padding-right: 0.4em;
 }
 td.cart_availability, td.cart_ref {
     text-align: center;
@@ -1873,7 +1863,7 @@ tr.cart_item td.cart_unit {
     padding-right: 1em;
 }
 td.cart_quantity {
-    width: 5.5em;
+    width: 4.5em;
     text-align: right;
 }
 td.cart_quantity p, td.cart_quantity a {
