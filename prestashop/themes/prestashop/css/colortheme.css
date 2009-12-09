@@ -118,13 +118,8 @@ input, textarea, select {
 ul.pagination li, ul.pagination a, ul.pagination span {
     color: #5a5a5a;
 }
-ul.pagination a, ul.pagination span {
-    background-color: #989898;
-}
 ul.pagination li.current span {
-    background-color: #5a5a5a;
-    color: #ffffff;
-    border-color: #5a5a5a;
+    color: #5A0C0C;
 }
 #pagination_previous a, #pagination_previous span, #pagination_next a, #pagination_next span {
     border-color: #d9d9d9;
@@ -357,10 +352,10 @@ img.customizationUploaded {
     border-bottom-color: #5A5A5A;
 }
 .success_inline {
-    color: #00ff00;
+    color: #59852d;
 }
 .confirmation {
-    color: #009900;
+    color: #680d0e;
 }
 .toptabs .tabHead, .toptabs ul.idTabsShort li a {
     color: #ffffff;
@@ -386,11 +381,11 @@ tbody.datepickerDays td.datepickerNotInMonth a {
 }
 tbody.datepickerDays td.datepickerDisabled.datepickerNotInMonth a {
     background: #ffffff;
-    color: #999999 !important;
+    color: #989898 !important;
 }
 
 #view_wishlist #featured-products_block_center ul div li.address_name input.text {
-    color: #999;
+    color: #989898;
 }
 .dialog {
     background-color: #ffffff !important;

@@ -694,9 +694,6 @@ ul.pagination li, ul.pagination a, ul.pagination span {
     font-weight: bold;
 }
 ul.pagination a, ul.pagination span {
-    border: 1px solid;
-    padding: 0em 0.4em;
-    display: block;
     line-height: 17px;
 }
 ul.pagination a {
@@ -707,24 +704,6 @@ ul.pagination li.current span {
 ul.pagination li.truncate {
     padding: 0.3em;
     background: none;
-}
-#pagination_previous a, #pagination_previous span, #pagination_next a, #pagination_next span {
-    border: none;
-    line-height: 19px;
-    border-style: solid;
-    border-width: 0 1px;
-}
-#pagination_previous {
-    padding-left: 6px;
-}
-#pagination_previous a, #pagination_previous span {
-    border-left: none;
-}
-#pagination_next {
-    padding-right: 6px;
-}
-#pagination_next a, #pagination_next span {
-    border-right: none;
 }
 form.pagination {
     text-align: right;

@@ -18,9 +18,9 @@
 		<ul class="pagination">
 		{if $p != 1}
 			{assign var='p_previous' value=$p-1}
-			<li id="pagination_previous"><a href="{$link->goPage($requestPage, $p_previous)}">&laquo;&nbsp;{l s='Previous'}</a></li>
+			<li id="pagination_previous"><a class="button_small" href="{$link->goPage($requestPage, $p_previous)}">&laquo;&nbsp;{l s='Prev'}</a></li>
 		{else}
-			<li id="pagination_previous" class="disabled"><span>&laquo;&nbsp;{l s='Previous'}</span></li>
+			<li id="pagination_previous" class="disabled"><span class="button_small">&laquo;&nbsp;{l s='Prev'}</span></li>
 		{/if}
 		{if $start>3}
 			<li><a href="{$link->goPage($requestPage, 1)}">1</a></li>
@@ -39,9 +39,9 @@
 		{/if}
 		{if $pages_nb > 1 AND $p != $pages_nb}
 			{assign var='p_next' value=$p+1}
-			<li id="pagination_next"><a href="{$link->goPage($requestPage, $p_next)}">{l s='Next'}&nbsp;&raquo;</a></li>
+			<li id="pagination_next"><a class="button_small" href="{$link->goPage($requestPage, $p_next)}">{l s='Next'}&nbsp;&raquo;</a></li>
 		{else}
-			<li id="pagination_next" class="disabled"><span>{l s='Next'}&nbsp;&raquo;</span></li>
+			<li id="pagination_next" class="disabled"><span class="button_small">{l s='Next'}&nbsp;&raquo;</span></li>
 		{/if}
 		</ul>
 	{/if}

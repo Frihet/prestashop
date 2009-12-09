@@ -8,10 +8,10 @@ ul.tree li.last {
     background:url(../img/sitemap-last.gif) no-repeat -12px -2px;
 }
 h1#logo a {
-    background: url('../img/subsite_specific/top_left.jpg') no-repeat bottom left;
+    background: url('../img/top_left.jpg') no-repeat bottom left;
 }
 #header {
-    background: url('../img/subsite_specific/top_repeat.jpg') repeat-x 0px 32px;
+    background: url('../img/top_repeat.jpg') repeat-x 0px 32px;
 }
 table.std thead th {
     background-image: url('../img/universal/table_header.png');
@@ -61,21 +61,6 @@ table.std thead th {
 ul.bullet li, .block ul.bullet li {
     background: transparent url('../img/bullet.gif') no-repeat 0.6em 0.5em;
 }
-ul.pagination a, ul.pagination span {
-    background: #bdc2c9 url('../img/pagination_bg.gif') repeat-x top right;
-}
-ul.pagination li.current span {
-    background-image: url('../img/pagination-bg-current.gif');
-}
-#pagination_previous a, #pagination_previous span, #pagination_next a, #pagination_next span {
-    background-image: url('../img/pagination-prevnext-bg.gif');
-}
-#pagination_previous {
-    background: transparent url('../img/pagination-prev-border.gif') no-repeat top left;
-}
-#pagination_next {
-    background: transparent url('../img/pagination-next-border.gif') no-repeat top right;
-}
 #header_links #header_link_sitemap a {
     background-image: url('../img/icon/sitemap.gif');
 }
@@ -86,7 +71,7 @@ ul.pagination li.current span {
     background-image: url('../img/icon/star.gif');
 }
 #header #search_block_top {
-    background: url('../img/subsite_specific/search_input.jpg') no-repeat top left;
+    background: url('../img/search_input.jpg') no-repeat top left;
 }
 #header #search_block_top input.button {
     background: url('../img/universal/search_icon_inactive.jpg') no-repeat top left;
@@ -104,16 +89,6 @@ ul.pagination li.current span {
     background: url('../img/advancedsearch_back.jpg') no-repeat scroll left bottom;
 }
 
-/* block exclusive */
-#left_column div.exclusive, #right_column div.exclusive {
-    background: url('../img/block_exclusive_footer.jpg') no-repeat bottom left;
-}
-div.exclusive h4 {
-    background: url('../img/block_header_exclusive.gif') no-repeat top left;
-}
-div.exclusive .block_content {
-    background: url('../img/block_exclusive_bg.jpg') repeat-x bottom left;
-}
 .variablebox_top_left {
     background: url('../img/variablebox_top_left.jpg');
 }
@@ -222,16 +197,6 @@ ul#product_list li .new {
 ul#suppliers_list li, ul#manufacturers_list li {
     background: url('../img/block_category_item_bg.jpg') repeat-x;
 }
-ul.item li.address_title {
-    background-image: url('../img/address_alias_left.gif');
-}
-ul.alternate_item li.address_title {
-    background-image: url('../img/address_alias_right.gif');
-}
-li.address_update, li.address_delete {
-    background: url('../img/bullet_myaccount.gif') no-repeat 0 0.5em!important;
-    background: url('../img/bullet_myaccount.gif') no-repeat 0 0.4em;
-}
 #conditions h2 {
     background: url('../img/title_bg_large.gif') no-repeat top left;
 }
@@ -248,13 +213,13 @@ background: url(../../../modules/productcomments/img/delete.gif) no-repeat 0 -16
 background: url(../../../modules/productcomments/img/star.gif) no-repeat 0 0px;
 }
 .toptabs {
-    background: url(../img/subsite_specific/toptabs_repeat.jpg);
+    background: url(../img/toptabs_repeat.jpg);
 }
 .toptabs ul.idTabsShort li a.selected, .toptabs ul.idTabsShort li a.selected:hover {
-    background: url(../img/subsite_specific/toptabs_activetab.jpg);
+    background: url(../img/toptabs_activetab.jpg);
 }
 .toptabs ul.idTabsShort li a:hover {
-    background: url(../img/subsite_specific/toptabs_hover.jpg);
+    background: url(../img/toptabs_hover.jpg);
 }
 
 #scenes a.cluetip span{
