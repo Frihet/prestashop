@@ -2724,6 +2724,20 @@ class		Product extends ObjectModel
 		return false;
 	}
 
+	/* These functions generate SQL code for price selection based
+ 	   on the current currency and user (groups).
+
+	   The price is selected based on a fallback mechanism:
+
+	   If there is at least one price for at least one of the user
+	   groups in the current currency, use that currency, if not,
+	   use the default currency.
+
+	   If there are more than one matching price in the selected
+	   currency (that is, there are prices for more than one
+	   group), select the lowest price.
+
+	   */
 	public static function getProductPriceSql($id_product, $alias = 'pp')
 	{
 		global $currency;
@@ -2736,19 +2750,19 @@ class		Product extends ObjectModel
 		  (SELECT pp.id_product, min(abs(pp.id_currency - {$currency->id})) as currency_diff
 		   FROM PREFIX_product_price pp
 		   WHERE (pp.id_currency in ({$currency->id}, {$default_currency}) AND pp.id_group IS NULL {$product_groups_where})
-		   GROUP BY pp.id_product) AS {$alias}_2 ON
-		  {$alias}_2.id_product = {$id_product}
+		   GROUP BY pp.id_product) AS {$alias}_currency_selector ON
+		  {$alias}_currency_selector.id_product = {$id_product}
 		 LEFT JOIN
 		  (SELECT pp.id_product, pp.id_currency, min(pp.price) as min_price
 		   FROM PREFIX_product_price pp
 		   WHERE (pp.id_group IS NULL {$product_groups_where})
-		   GROUP BY pp.id_product, pp.id_currency) AS {$alias}_1 ON
-		  {$alias}_1.id_product = {$id_product}
-		  AND abs({$alias}_1.id_currency - {$currency->id}) = {$alias}_2.currency_diff
+		   GROUP BY pp.id_product, pp.id_currency) AS {$alias}_min_price ON
+		  {$alias}_min_price.id_product = {$id_product}
+		  AND abs({$alias}_min_price.id_currency - {$currency->id}) = {$alias}_currency_selector.currency_diff
 		 LEFT JOIN `PREFIX_product_price` {$alias} ON
 		  {$alias}.id_product = {$id_product}
-		  AND abs({$alias}.id_currency - {$currency->id}) = {$alias}_2.currency_diff
-		  AND {$alias}.price = {$alias}_1.min_price";
+		  AND abs({$alias}.id_currency - {$currency->id}) = {$alias}_currency_selector.currency_diff
+		  AND {$alias}.price = {$alias}_min_price.min_price";
 
 	}
 
@@ -2764,19 +2778,19 @@ class		Product extends ObjectModel
 		  (SELECT pap.id_product_attribute, min(abs(pap.id_currency - {$currency->id})) as currency_diff
 		   FROM PREFIX_product_attribute_price pap
 		   WHERE (pap.id_currency in ({$currency->id}, {$default_currency}) AND pap.id_group IS NULL {$product_groups_where})
-		   GROUP BY pap.id_product_attribute) AS {$alias}_2 ON
-		  {$alias}_2.id_product_attribute = {$id_product_attribute}
+		   GROUP BY pap.id_product_attribute) AS {$alias}_currency_selector ON
+		  {$alias}_currency_selector.id_product_attribute = {$id_product_attribute}
 		 LEFT JOIN
 		  (SELECT pap.id_product_attribute, pap.id_currency, min(pap.price) as min_price
 		   FROM PREFIX_product_attribute_price pap
 		   WHERE (pap.id_group IS NULL {$product_groups_where})
-		   GROUP BY pap.id_product_attribute, pap.id_currency) AS {$alias}_1 ON
-		  {$alias}_1.id_product_attribute = {$id_product_attribute}
-		  AND abs({$alias}_1.id_currency - {$currency->id}) = {$alias}_2.currency_diff
+		   GROUP BY pap.id_product_attribute, pap.id_currency) AS {$alias}_min_price ON
+		  {$alias}_min_price.id_product_attribute = {$id_product_attribute}
+		  AND abs({$alias}_min_price.id_currency - {$currency->id}) = {$alias}_currency_selector.currency_diff
 		 LEFT JOIN `PREFIX_product_attribute_price` {$alias} ON
 		  {$alias}.id_product_attribute = {$id_product_attribute}
-		  AND abs({$alias}.id_currency - {$currency->id}) = {$alias}_2.currency_diff
-		  AND {$alias}.price = {$alias}_1.min_price";
+		  AND abs({$alias}.id_currency - {$currency->id}) = {$alias}_currency_selector.currency_diff
+		  AND {$alias}.price = {$alias}_min_price.min_price";
 
 	} 
 }
