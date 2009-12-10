@@ -97,6 +97,11 @@ else product can have.
 
 Price per currency
 -------------------
-
+The pricing system has been changed so that prices can be set
+differently for each currency and customer group. This uses two
+separate tables, product_price and product_attribute_price, and two
+methods to generate the query SQL to fish out the right price,
 classes/Product.php:Product::getProductPriceSql and
-classes/Product.php:Product::getProductAttributePriceSql.
+classes/Product.php:Product::getProductAttributePriceSql. Note that
+transport price does not use such a system, but just converts price
+using a global currency exchange rate.
