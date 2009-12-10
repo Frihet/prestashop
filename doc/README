@@ -1,0 +1,48 @@
+GIT logs and which patches do what
+-----------------------------------
+patchlog.sh generates a set of text-files, each listing a set of git
+commits that implements some feature or set of features. All pure
+modules are grouped together, while all core changes (diffs to the
+Prestashop code) are grouped properly according to functionality.
+
+
+The order process
+------------------
+The order process has been modularized. New order pages are modules
+that inherit from OrderPage. These must provide a member variable
+orderPageTitle, and from these the order steps "trainmap" till be
+constructed for each order page.
+
+Themes
+-------
+Themes can be set per category, but are inherited from the parent
+category of a category if it doesn't specify one. This is, by uggly
+neccessity, done in config/config.inc.php. The name of the theme for a
+category is stored in a varchar column in the category table (null
+means inherit).
+
+$NAME_OF_THEME/smarty-plugins is added to the smarty plugin search
+path so that themes can add their own smarty plugins.
+
+A smarty function called hookExec has been added that can be used to
+call Prestashop hooks directly from templates. This, as opposed to the
+standard hook execution (using $smarty->assign) allows the same hook
+to be executed multiple times with different data within the same
+page. This is used to add action buttons to products in the product
+listing displays.
+
+Hooks
+------
+Miscelanous extra hooks have been added here and there just to add the
+ability to add content like buttons in specific places.
+
+Articles
+---------
+A "type" columnt has been added to the product table, and this is used
+to select different templates when rendering the product, as well as
+select if product actions are shown or not, and which fields to show
+during editing of a product. There are currently two types - product
+and article. An article is a "product" that is not sold, and is shown
+mostly like a newspaper article. It does not have a price, but can
+have "accessories" (shown as "products used"), comments and everything
+else product can have.
