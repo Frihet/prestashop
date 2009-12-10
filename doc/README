@@ -5,6 +5,53 @@ commits that implements some feature or set of features. All pure
 modules are grouped together, while all core changes (diffs to the
 Prestashop code) are grouped properly according to functionality.
 
+Generic stuff about Prestashop
+-------------------------------
+-{Hooks}-
+Prestashop has something called hooks - it's a way for modules to
+register content to be inserted in the page at various places. Hooks
+are registered at install-time and can be re-registered/changed by the
+admin user. that is, your module can hook a function into
+hookLeftColumn at install time, and later be "transplanted" by the
+admin so that that same function is registered for hookRightColumn.
+
+If your module provides hooks itself for other modules, it needs to
+create a hook entry in the database. This is done with the following
+code snipped from within the install method:
+
+	if (Hook::get('orderPriceAdjustment') == false) {
+		$hook = new Hook();
+		$hook->name = 'thisIsAHookName';
+		$hook->title = 'Name to display in admin interface';
+		$hook->description = 'Description to display in admin
+		interface.';
+		$hook->add();
+	}
+
+After that is done, the module can execute the hooked functions using
+
+        $html = Module::hookExec('thisIsAHookName',
+        array("some"=>"params","goes"=>"here"))
+
+-{Templates'}
+To display a smarty template from a module, don't use
+$smarty->display("long/path/something.tpl"), but echo
+$this->display(__FILE__, "something.tpl"), that way the template is
+fethed either from the current directory, or from the theme if it has
+such a template. If you have separate top-level php-files that needs
+to do the same thing, do something like:
+
+        require_once(dirname(__FILE__).'/mymodule.php');
+	$mod = new MyModule();
+	echo $mod->display(dirname(__FILE__).'/mymodule.php',
+	'something.tpl');
+
+-{ORM}-
+Prestashop uses a home-grown object relationship mapper (ORM),
+implemented in classes/ObjectModel.php. It is very simple, dumb and
+easy to learn to use, except maybe the type system, where you can
+declare the syntax for columns and have them auto-validated or
+converted.
 
 The order process
 ------------------
@@ -34,7 +81,8 @@ listing displays.
 Hooks
 ------
 Miscelanous extra hooks have been added here and there just to add the
-ability to add content like buttons in specific places.
+ability to add content like buttons in specific places. Also note the
+added hookExec theme function (see above un der Themes).
 
 Articles
 ---------
@@ -46,3 +94,9 @@ and article. An article is a "product" that is not sold, and is shown
 mostly like a newspaper article. It does not have a price, but can
 have "accessories" (shown as "products used"), comments and everything
 else product can have.
+
+Price per currency
+-------------------
+
+classes/Product.php:Product::getProductPriceSql and
+classes/Product.php:Product::getProductAttributePriceSql.

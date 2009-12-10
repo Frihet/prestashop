@@ -1,0 +1,6 @@
+dropdb redhog
+createdb redhog
+psql < $1 2>&1 | grep ERROR
+~/Programs/postgresql_autodoc/postgresql_autodoc  -l ~/Programs/postgresql_autodoc/
+dot -Tpdf -Gsize=11.69,16.53 -Gratio=fill -Efontsize=1 -o redhog.pdf redhog.dot
+mv redhog.pdf $1.pdf
