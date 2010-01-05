@@ -28,7 +28,7 @@ class Netaxept extends PaymentModule
 	
 	
 	
-	public function getNetaxeptUrl()
+	public function getNetaxeptTerminalUrl()
 	{
 		return Configuration::get('NETAXEPT_TERMINAL_URL');
 	}
@@ -39,6 +39,13 @@ class Netaxept extends PaymentModule
 	{
 		return Configuration::get('NETAXEPT_WSDL_URL');
 	}
+	
+	
+	
+	public function getNetaxeptTqWsdlUrl()
+	{
+		return Configuration::get('NETAXEPT_TQ_WSDL_URL');
+	}
 
 
 
@@ -48,6 +55,7 @@ class Netaxept extends PaymentModule
 			OR !Configuration::updateValue('NETAXEPT_MID_TOKEN_CURR', '10000327;5e_R-Zp9;NOK')
 			OR !Configuration::updateValue('NETAXEPT_TERMINAL_URL', 'https://epayment-test.bbs.no/terminal/default.aspx')
 			OR !Configuration::updateValue('NETAXEPT_WSDL_URL', 'https://epayment-test.bbs.no/service.svc?wsdl')
+			OR !Configuration::updateValue('NETAXEPT_TQ_WSDL_URL', 'https://epayment-test.bbs.no/TokenQuery.svc?wsdl')
 			OR !$this->registerHook('payment')
 			OR !$this->registerHook('paymentReturn'))
 			return false;
@@ -62,6 +70,7 @@ class Netaxept extends PaymentModule
 		if (!Configuration::deleteByName('NETAXEPT_MID_TOKEN_CURR')
 			OR !Configuration::deleteByName('NETAXEPT_TERMINAL_URL')
 			OR !Configuration::deleteByName('NETAXEPT_WSDL_URL')
+			OR !Configuration::deleteByName('NETAXEPT_TQ_WSDL_URL')
 			OR !parent::uninstall())
 			return false;
 
@@ -79,6 +88,7 @@ class Netaxept extends PaymentModule
 				Configuration::updateValue('NETAXEPT_MID_TOKEN_CURR', strval($_POST['mid_token_curr']));
 				Configuration::updateValue('NETAXEPT_TERMINAL_URL', strval($_POST['terminal_url']));
 				Configuration::updateValue('NETAXEPT_WSDL_URL', strval($_POST['wsdl_url']));
+				Configuration::updateValue('NETAXEPT_TQ_WSDL_URL', strval($_POST['tq_wsdl_url']));
 				$this->displayConf();
 		} else {
 			$this->displayErrors();
@@ -134,10 +144,11 @@ class Netaxept extends PaymentModule
 
 	public function displayFormSettings()
 	{
-		$conf = Configuration::getMultiple(array('NETAXEPT_MID_TOKEN_CURR', 'NETAXEPT_TERMINAL_URL', 'NETAXEPT_WSDL_URL'));
+		$conf = Configuration::getMultiple(array('NETAXEPT_MID_TOKEN_CURR', 'NETAXEPT_TERMINAL_URL', 'NETAXEPT_WSDL_URL', 'NETAXEPT_TQ_WSDL_URL'));
 		$mid_token_curr = array_key_exists('uid', $_POST) ? $_POST['mid_token_curr'] : (array_key_exists('NETAXEPT_MID_TOKEN_CURR', $conf) ? $conf['NETAXEPT_MID_TOKEN_CURR'] : '');
 		$terminal_url = array_key_exists('terminal_url', $_POST) ? $_POST['terminal_url'] : (array_key_exists('NETAXEPT_TERMINAL_URL', $conf) ? $conf['NETAXEPT_TERMINAL_URL'] : '');
 		$wsdl_url = array_key_exists('wsdl_url', $_POST) ? $_POST['wsdl_url'] : (array_key_exists('NETAXEPT_WSDL_URL', $conf) ? $conf['NETAXEPT_WSDL_URL'] : '');
+		$tq_wsdl_url = array_key_exists('tq_wsdl_url', $_POST) ? $_POST['tq_wsdl_url'] : (array_key_exists('NETAXEPT_TQ_WSDL_URL', $conf) ? $conf['NETAXEPT_TQ_WSDL_URL'] : '');
 
 
 		$this->_html .= '
@@ -153,6 +164,8 @@ class Netaxept extends PaymentModule
 			<div class="margin-form"><input type="text" size="60" name="terminal_url" value="'.htmlentities($terminal_url, ENT_COMPAT, 'UTF-8').'" /></div>
 			<label>'.$this->l('Netaxept WSDL URL').'</label>
 			<div class="margin-form"><input type="text" size="60" name="wsdl_url" value="'.htmlentities($wsdl_url, ENT_COMPAT, 'UTF-8').'" /></div>
+			<label>'.$this->l('Netaxept TokenQuery WSDL URL').'</label>
+			<div class="margin-form"><input type="text" size="60" name="tq_wsdl_url" value="'.htmlentities($tq_wsdl_url, ENT_COMPAT, 'UTF-8').'" /></div>
 			<br /><br /><br />
 			<center><input type="submit" name="submitNetaxept" value="'.$this->l('Update settings').'" class="button" /></center>
 		</fieldset>
@@ -162,10 +175,15 @@ class Netaxept extends PaymentModule
 			'.$this->l('To test payments go to ').
 				'<a href="https://epayment-test.bbs.no/admin/Help/Reference.aspx" target="_blank">https://epayment-test.bbs.no/admin/Help/Reference.aspx</a>'
 				.$this->l(' to get test card numbers.').'<br /><br />
+				<strong>'. $this->l('Netaxept test and production domains') .'</strong><br />
+				- '.$this->l('Test').': https://epayment-test.bbs.no/<br />
+				- '.$this->l('Production').': https://epayment.bbs.no/
+				<br /><br />
 		</fieldset>';
 	}
 	
 	
+	//get merchant id
 	public function getMidToken($currency_iso_code)
 	{
 		$mid_token_curr = Configuration::get('NETAXEPT_MID_TOKEN_CURR');

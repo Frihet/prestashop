@@ -5,7 +5,7 @@
 	include(dirname(__FILE__).'/netaxept.php');
 	
 	
-	$errors 		= '';
+	$err_msg 		= '';
 	$result 		= false;
 	$netaxept 		= new Netaxept();
 	$mid_token 		= $netaxept->getMidToken($currency->iso_code);
@@ -15,7 +15,9 @@
 	$authorized		= false;
 	$force			= false;
 	$customer 		= new Customer(intval($cart->id_customer));
-	$retry_url		= '<a href="'. __PS_BASE_URI__ .'order.php?step=6">'. $netaxept->l('Try again') .'</a>';
+	$retry_url		= '<a href="'. __PS_BASE_URI__ .'order.php?step=1">'. $netaxept->l('Try again') .'</a>';
+	$error_99		= 'Payment failed, please contact your card issuer.';
+	$error_17		= 'The transaction was cancelled by you.';
 
 	
 	//Continue only if BBSePay_transaction redir from BBS Terminal
@@ -30,6 +32,7 @@
 
 		$client = new SoapClient($netaxept->getNetaxeptWsdlUrl(), array('trace' => true,'exceptions' => true ));
 
+		//process setup
 		try
 		{
 			$result = $client->__call('ProcessSetup' , array("parameters"=>$params));
@@ -43,54 +46,60 @@
 		
 		}
 		catch (SoapFault $fault) {
-			print_r($fault->detail->BBSException->Result);
-			if ($fault->detail->BBSException->Result->ResponseText == 'Auth Reg Failure') {
-				$errors .= $netaxept->l('Payment failed, please contact your card issuer.');
+			//user cancelled
+			if ($fault->detail->UserCancelledException->Result->ResponseCode == 17) {
+				$err_msg = $error_17;
 			}
-			$errors .= ' - '. $fault->detail->BBSException->Result->ResponseText;
+			//processsetup failed
+			elseif ($fault->detail->BBSException->Result->ResponseText == 'Auth Reg Failure') {
+				$err_msg = $error_99;
+			}
 		}
 
-		try
-		{
-			$result = $client->__call('Auth', array("parameters"=>$params_auth));
-
-		}
-		catch (SoapFault $fault)
-		{
-			print_r($fault->detail->BBSException->Result);
-			if ($fault->detail->BBSException->Result->ResponseText == 'Transaction already processed') {
-				$force = true;
-			} else {
-				$errors .= ' - '. $fault->detail->BBSException->Result->ResponseText;
+		if ($err_msg == '') {
+			//authorize the transaction
+			try
+			{
+				$result = $client->__call('Auth', array("parameters"=>$params_auth));
+	
+			}
+			catch (SoapFault $fault)
+			{
+				if ($fault->detail->BBSException->Result->ResponseText == 'Transaction already processed') {
+					$force = true;
+				} else {
+					$err_msg = $error_99;
+				}
 			}
 		}
 
 		//check if authorized
 		$tq_wsdl = "https://epayment-test.bbs.no/TokenQuery.svc?wsdl";
 		$tq_client = new SoapClient($tq_wsdl, array('trace' => true,'exceptions' => true ));
-		try
-		{
-			$tq_result = $tq_client->__call('Query' , array("parameters"=>$params_auth));
-			if ($tq_result->QueryResult->Summary->Authorized === true) {
-				$authorized = true;
+		if ($err_msg == '') {
+			try
+			{
+				$tq_result = $tq_client->__call('Query' , array("parameters"=>$params_auth));
+				if ($tq_result->QueryResult->Summary->Authorized === true) {
+					$authorized = true;
+				}
+			}
+			catch (SoapFault $fault) {
+				$err_msg = $error_99;
 			}
 		}
-		catch (SoapFault $fault) {
-			$errors .= ' - '. $fault->detail->BBSException->Result->ResponseText;
-		}
 
-
-		if ($authorized && (stristr($result->AuthResult->ResponseCode,"OK") || $force)) {
+		if ($authorized && (stristr($result->AuthResult->ResponseCode, "OK") || $force)) {
 			$total = $cart->getOrderTotalLC(true, 3);
 			$mail_vars = array();
 			$netaxept->validateOrder($cart->id, _PS_OS_PAYMENT_, $total, $netaxept->displayName, NULL, $mail_vars, $currency->id);
 			$confirmed = true;
 		} else {
-			echo $netaxept->l("Payment failed with error message: "). $errors;
+			echo $netaxept->l($err_msg);
 			echo '<br />'. $retry_url;
 		}
 	} else {
-		echo $netaxept->l('Error: No BBSePay_transaction. Payment cancelled.');
+		echo $netaxept->l('Payment error.');
 		echo '<br />'. $retry_url;
 	}
 	
