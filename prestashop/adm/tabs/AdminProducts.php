@@ -102,7 +102,8 @@ class AdminProducts extends AdminTab
 				Attribute::updateQtyProduct($this->_list[$i]);
 			/* update product final price */
 			for ($i = 0; $i < $nb; $i++) {
-				$this->_list[$i] = array_merge($this->_list[$i], Product::getBasePriceStaticLC($this->_list[$i]['id_product'], $id_product_attribute = NULL));
+				//Product::getBasePriceStaticLC does not allways return an array. Added cast to array.
+				$this->_list[$i] = array_merge($this->_list[$i], (array)Product::getBasePriceStaticLC($this->_list[$i]['id_product'], $id_product_attribute = NULL));
 				$this->_list[$i]['price_tmp'] = Product::getPriceStaticLC($this->_list[$i]['id_product'], $usetax = true, $id_product_attribute = NULL, $decimals = 6, $divisor = NULL, $only_reduc = false, $usereduc = true, $quantity = 1, $forceAssociatedTax = true);
 			}
 		}
@@ -602,6 +603,21 @@ class AdminProducts extends AdminTab
 	 */
 	public function addProductImage($product, $method = 'auto')
 	{
+		/**HANDLING GALLERY IMAGES*/
+		if(isset($_POST['imageurl']) && strlen(trim($_POST['imageurl']))!=0){
+			$url=$_POST['imageurl'];
+			$urlimage = file_get_contents($url);
+			$filename = time(). substr($url, strtolower(strrpos($url,'.')));
+			$filename = strtolower($filename);
+			$filepath = '/tmp/'.$filename;
+			file_put_contents($filepath, $urlimage);
+			$mimetype = mime_content_type($filepath) ;
+			$filesize = filesize($filepath);
+			$galleryfile= array('name' => $filename,'type' => $mimetype,'tmp_name' => $filepath,'error' => 0, 'size' => $filesize);
+			$_FILES['image_product'] = $galleryfile;
+		}
+
+
 		/* Updating an existing product image */
 		if ($id_image = (intval(Tools::getValue('id_image'))))
 		{
@@ -666,13 +682,24 @@ class AdminProducts extends AdminTab
 	 */
 	public function copyImage($id_product, $id_image, $method = 'auto')
 	{
+		
 		if (!isset($_FILES['image_product']['tmp_name']) OR !file_exists($_FILES['image_product']['tmp_name']))
 			return false;
 		if ($error = checkImage($_FILES['image_product'], $this->maxImageSize))
 			$this->_errors[] = $error;
 		else
-		{		
-			if (!$tmpName = tempnam(_PS_TMP_IMG_DIR_, 'PS') OR !move_uploaded_file($_FILES['image_product']['tmp_name'], $tmpName))
+		{
+			$tmpName = tempnam(_PS_TMP_IMG_DIR_, 'PS');
+
+			if ($tmpName) {
+				if (isset($_POST['imageurl'])) {
+					$err = !rename($_FILES['image_product']['tmp_name'], $tmpName);
+				} else {
+					$err = !move_uploaded_file($_FILES['image_product']['tmp_name'], $tmpName);
+				}
+			}
+
+			if (!$tmpName OR $err)
 				$this->_errors[] = Tools::displayError('An error occured during the image upload');
 			elseif (!imageResize($tmpName, _PS_IMG_DIR_.'p/'.$id_product.'-'.$id_image.'.jpg'))
 				$this->_errors[] = Tools::displayError('an error occurred while copying image');
@@ -686,6 +713,7 @@ class AdminProducts extends AdminTab
 			@unlink($tmpName);
 			Module::hookExec('watermark', array('id_image' => $id_image, 'id_product' => $id_product));
 		}
+		
 	}
 
 	/**
@@ -1650,6 +1678,7 @@ class AdminProducts extends AdminTab
 					var result = data.getAttribute("result");
 					var msg = data.getAttribute("msg");
 					var fileName = data.getAttribute("filename");
+					var imageurl = data.getAttribute("imageurl");
 
 					if(result == "error")
 					{
@@ -2158,6 +2187,8 @@ class AdminProducts extends AdminTab
 	{
 		global $cookie, $currentIndex, $attributeJs, $images;
 
+		$gallerAnchor = '&nbsp;&nbsp;<a href="#" onclick="return openImagePicker();">Gallery</a>';
+
 		echo '
 		<div class="tab-page" id="step2">
 				<h4 class="tab">2. '.$this->l('Images').'</h4>
@@ -2171,10 +2202,12 @@ class AdminProducts extends AdminTab
 					<tr>
 						<td class="col-left">'.$this->l('File:').'</td>
 						<td style="padding-bottom:5px;">
-							<input type="file" id="image_product" name="image_product" />
+							<input type="file" id="image_product" name="image_product" /> OR <input type="text" name="imageurl" id="imageurl" />'.$gallerAnchor.'
 							<p>'.$this->l('Format:').' JPG, GIF, PNG<br />'.$this->l('Filesize:').' '.($this->maxImageSize / 1000).''.$this->l('Kb max.').'</p>
 						</td>
 					</tr>
+
+					
 					<tr>
 						<td class="col-left">'.$this->l('Caption:').'</td>
 						<td style="padding-bottom:5px;">';
