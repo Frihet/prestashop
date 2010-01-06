@@ -42,7 +42,8 @@ class BlockBestSellers extends Module
 		}
 		$smarty->assign(array(
 			'best_sellers' => $best_sellers,
-			'mediumSize' => Image::getSize('medium')));
+			'mediumSize' => Image::getSize('medium'),
+			'static_token' => Tools::getToken(false)));
 		return $this->display(__FILE__, 'blockbestsellers.tpl');
 	}
 	
