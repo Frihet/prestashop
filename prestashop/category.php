@@ -76,6 +76,9 @@ $smarty->assign(array(
 	'suppliers' => Supplier::getSuppliers(),
 	'errors' => $errors));
 
+$smarty->assign(array(
+	'homeSize' => Image::getSize('home')));
+
 if (isset($subCategories))
 	$smarty->assign(array(
 		'subcategories_nb_total' => sizeof($subCategories),
