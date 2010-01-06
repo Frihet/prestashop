@@ -22,7 +22,7 @@
 			</tr>
 			<tr>
 
-			</tr
+			</tr>
 		{/foreach}
 		</table>
 
