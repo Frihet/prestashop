@@ -191,9 +191,9 @@ class Netaxept extends PaymentModule
 
 		foreach ($arr as $val)
 		{
-			if (stristr($val, ';'.$currency_iso_code))
+			$ex = explode(";",$val);
+			if (count($ex) == 3 && $ex[2] == $currency_iso_code)
 			{
-				$ex = explode(';', $val);
 				return array('merchant_id' => $ex[0], 'token' => $ex[1]);
 			}
 		}
