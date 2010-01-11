@@ -189,12 +189,18 @@ else
 if (isset($category) AND Validate::isLoadedObject($category))
 {
 	$cookie->last_visited_category = $category->id;
+	if (is_array($category->name)) {
+		$category_name =  $category->name[1];
+	} else {
+		$category_name =  $category->name;
+	}
+
 	$smarty->assign(array(
 		'category' => $category,
 		'subCategories' => $category->getSubCategories(intval($cookie->id_lang), true),
 		'id_category_current' => intval($category->id),
 		'id_category_parent' => intval($category->id_parent),
-		'return_category_name' => Tools::safeOutput(Category::hideCategoryPosition($category->name))));
+		'return_category_name' => Tools::safeOutput(Category::hideCategoryPosition($category_name))));
 }
 
 $smarty->plugins_dir[] = _PS_THEME_DIR_ . '/smarty-plugins';
