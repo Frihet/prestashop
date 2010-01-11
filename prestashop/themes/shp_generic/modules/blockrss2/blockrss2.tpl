@@ -59,6 +59,11 @@ href="http://digg.com/submit?url={$base_dir_ssl}">
 <a title="{l s='Bookmark and Share' mod='blockrss2'}"
 href="http://www.addthis.com/bookmark.php?v=20" onmouseover="return addthis_open(this, '', '{$base_dir_ssl}', '{$shop_name}')" onmouseout="addthis_close()" onclick="return addthis_sendto()">
 <img src="modules/blockrss2/icons/bookmark.png" alt="{l s='Bookmark and Share' mod='blockrss2'}" style="border:0"/></a>
+<script type="text/javascript">
+{literal}
+	var addthis_config = {data_use_flash: false};
+{/literal}
+</script>
 <script type="text/javascript" src="http://s7.addthis.com/js/200/addthis_widget.js"></script>
 <!-- AddThis Button END -->
 </div>
