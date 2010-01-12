@@ -32,6 +32,11 @@ class BlockSpecials extends Module
 			'special' => $special,
 			'oldPrice' => number_format($special['price'] + $special['reduction'], 2, '.', ''),
 			'mediumSize' => Image::getSize('medium')));
+		else
+			$smarty->assign(array(
+			'special' => '',
+			'oldPrice' => '',
+			'mediumSize' => ''));
 		return $this->display(__FILE__, 'blockspecials.tpl');
 	}
 	
