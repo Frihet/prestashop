@@ -1117,6 +1117,12 @@ class		Product extends ObjectModel
 			$customer_join = "INNER JOIN `PREFIX_customer_group` cg ON cg.`id_group` = ctg.`id_group`";
 			$customer_where = "cg.`id_customer` = {$cookie->id_customer} OR";
 		}
+		
+		$currency_where = '';
+		if ($cookie->id_currency) {
+			$currency_where = " AND pp.`id_currency` = {$cookie->id_currency} ";
+		}
+		
 
 		$date_where = '';
 		if (!$beginning AND !$ending) {
@@ -1130,7 +1136,7 @@ class		Product extends ObjectModel
 
 		$price_sql = self::getProductPriceSql('p.id_product', 'pp');
 		$sql = "
-		 SELECT
+		 SELECT DISTINCT
 	          p.*,
 		  pl.`description`,
 		  pl.`description_short`,
@@ -1165,9 +1171,11 @@ class		Product extends ObjectModel
 		  {$date_where}
 		  AND p.`active` = 1
 		  AND ({$customer_where} ctg.`id_group` = 1)
+		  {$currency_where}
 		  ORDER BY RAND()";
 
 		$sql = str_replace('PREFIX_', _DB_PREFIX_, $sql);
+//die($sql);
 		$row = Db::getInstance()->getRow($sql);
 
 		if ($row)
@@ -1399,6 +1407,7 @@ class		Product extends ObjectModel
 			else
 				$ret = $product_price * $reduction_percent / 100;
 		}
+
 		return isset($ret) ? $ret : 0;
 	}
 
@@ -1533,7 +1542,7 @@ class		Product extends ObjectModel
 
 		// Quantity discount
 		if ($quantity > 1 AND ($qtyD = QuantityDiscount::getDiscountFromQuantity($id_product, $quantity)))
-			$price -= QuantityDiscount::getValue($price, $qtyD->id_discount_type, $qtyD->value) * $currency->conversion_rate;
+			$price -= QuantityDiscount::getValue($price, $qtyD->id_discount_type, $qtyD->value);// * $currency->conversion_rate;
 
 		// Group reduction
 		if ($id_customer)
