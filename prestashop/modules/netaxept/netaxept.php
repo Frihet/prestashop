@@ -211,19 +211,20 @@ class Netaxept extends PaymentModule
 
 		$wsdl_url 				= $this->getNetaxeptWsdlUrl();
 		
-		$currency_iso_code 		= $currency->iso_code;
+		$currency_iso_code 		= $currency->iso_code; // FIXME: Currency from invoice
 		$mid_token				= $this->getMidToken($currency_iso_code);
 		$token 					= $mid_token['token'];
 		$merchant_id			= $mid_token['merchant_id'];
 
 		$netaxept_url 			= Configuration::get('NETAXEPT_TERMINAL_URL');
+		// FIXME: https
 		$redirect_url 			= 'http://'.htmlspecialchars($_SERVER['HTTP_HOST'], ENT_COMPAT, 'UTF-8').__PS_BASE_URI__.'modules/netaxept/validation.php';
 		$service_type			= 'B'; //B = BBS hosted terminal
 		$transaction_id			= md5(uniqid(rand(), true));
 		$amount					= round($cart->getOrderTotalLC(), 2) * 100;
 		$order_number			= intval($params['cart']->id);
 
-		switch ($currency_iso_code) {
+		switch ($currency_iso_code) { // FIXME: Use global $language variable
 			case 'NOK':
 				$language == 'no_NO';
 				break;
