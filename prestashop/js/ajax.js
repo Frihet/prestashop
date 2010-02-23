@@ -47,3 +47,10 @@ function ajax_power(src, action, id_tab, id_profile, token)
 }
 
 function redirect(new_page) { window.location = new_page; }
+
+function openImagePicker(targetField, link){
+		     window.targetField = $('#imageurl')[0]; //create target field variable in popup window with the passed targetField as value
+		     var w = window.open('../../cpg/select_image.php','Select Image','width=610,height=550,scrollbars=1');
+		     w.focus();
+		     return false;
+	     }

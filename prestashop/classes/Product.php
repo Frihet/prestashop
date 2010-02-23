@@ -1175,7 +1175,6 @@ class		Product extends ObjectModel
 		  ORDER BY RAND()";
 
 		$sql = str_replace('PREFIX_', _DB_PREFIX_, $sql);
-//die($sql);
 		$row = Db::getInstance()->getRow($sql);
 
 		if ($row)

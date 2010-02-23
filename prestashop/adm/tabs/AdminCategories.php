@@ -17,6 +17,8 @@ include_once(PS_ADMIN_DIR.'/../classes/AdminTab.php');
 class AdminCategories extends AdminTab
 {
 	protected $maxImageSize = 300000;
+	
+	
 
 	/** @var object Category() instance for navigation*/
 	private $_category;
@@ -146,6 +148,8 @@ class AdminCategories extends AdminTab
 	{
 		global $currentIndex, $cookie;
 
+		$gallerAnchor = "&nbsp;&nbsp;<a href='#' onclick='return openImagePicker();'>Gallery</a>";
+
 		$obj = $this->loadObject(true);
 		$defaultLanguage = intval(Configuration::get('PS_LANG_DEFAULT'));
 		$languages = Language::getLanguages();
@@ -234,7 +238,10 @@ class AdminCategories extends AdminTab
 				</div>
 				<label>'.$this->l('Image:').' </label>
 				<div class="margin-form">
-					<input type="file" name="image" />
+					<input type="file" name="image" />&nbsp; OR <input type="text" name="imageurl" id="imageurl"/>'.$gallerAnchor.'
+				</div>
+				<div class="margin-form">
+					
 				</div>';
 		$this->displayImage($obj->id, _PS_IMG_DIR_.'c/'.$obj->id.'.jpg', 350, NULL, Tools::getAdminToken('AdminCatalog'.intval(Tab::getIdFromClassName('AdminCatalog')).intval($cookie->id_employee)), 'left');				
 		echo'	<div class="clear"><br /></div>	

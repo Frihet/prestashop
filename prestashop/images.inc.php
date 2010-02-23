@@ -51,7 +51,7 @@ function cacheImage($image, $cacheImage, $size, $imageType = 'jpg')
   * @param array $file Upload $_FILE value
   * @param integer $maxFileSize Maximum upload size
   */
-function	checkImage($file, $maxFileSize)
+function checkImage($file, $maxFileSize)
 {
 	if ($file['size'] > $maxFileSize)
 		return Tools::displayError('image is too large').' ('.($file['size'] / 1000).Tools::displayError('KB').'). '.Tools::displayError('Maximum allowed:').' '.($maxFileSize / 1000).Tools::displayError('KB');

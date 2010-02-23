@@ -86,7 +86,6 @@ class QuantityDiscount extends ObjectModel
 		WHERE dq.`quantity` <= '.intval($quantity).'
 		AND dq.`id_product` = '.intval($id_product).'
         ORDER BY quantity DESC');
-
         if (!$result)
             return false;
         return new QuantityDiscount($result['id_discount_quantity']);

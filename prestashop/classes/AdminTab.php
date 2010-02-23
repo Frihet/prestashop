@@ -692,34 +692,68 @@ abstract class AdminTab
 
 	protected function uploadImage($id, $name, $dir, $ext = false)
 	{
-		if (isset($_FILES[$name]['tmp_name']) AND !empty($_FILES[$name]['tmp_name']))
+		/**HANDLING GALLERY IMAGES*/
+		if(isset($_POST['imageurl']) && strlen(trim($_POST['imageurl']))!=0){
+			$url=$_POST['imageurl'];
+			
+			$urlimage = file_get_contents($url);
+			$filename = time(). substr($url, strtolower(strrpos($url,'.')));
+			$filename = strtolower($filename);
+			$filepath = '/tmp/'.$filename;
+			file_put_contents($filepath, $urlimage);
+			$mimetype = mime_content_type($filepath) ;
+			$filesize = filesize($filepath);
+			$galleryfile= array('name' => $filename,'type' => $mimetype,'tmp_name' => $filepath,'error' => 0, 'size' => $filesize);
+			$_FILES[$name] = $galleryfile;			
+		}
+
+		
+
+		if (isset($_FILES[$name]['tmp_name']) AND !empty($_FILES[$name]['tmp_name']))	
 		{
+			
 			// Delete old image
 			$this->deleteImage($id);
-
+			
 			// Check image validity
 			if ($error = checkImage($_FILES[$name], $this->maxImageSize))
 				$this->_errors[] = $error;
-			elseif (!$tmpName = tempnam(_PS_TMP_IMG_DIR_, 'PS') OR !move_uploaded_file($_FILES[$name]['tmp_name'], $tmpName))
-				return false;
-			else
-			{
-				$_FILES[$name]['tmp_name'] = $tmpName;
-				// Copy new image
-				if (!imageResize($tmpName, _PS_IMG_DIR_.$dir.$id.'.'.$this->imageType, NULL, NULL, ($ext ? $ext : $this->imageType)))
-					$this->_errors[] = Tools::displayError('an error occurred while uploading image');
-				if (sizeof($this->_errors))
-					return false;
-				if ($this->afterImageUpload())
-				{
-					unlink($tmpName);
-					return true;
+			else{
+				
+				$tmpName = tempnam(_PS_TMP_IMG_DIR_, 'PS');
+				
+				if ($tmpName) {
+					
+					if (isset($_POST['imageurl'])) {
+						$err = !rename($_FILES[$name]['tmp_name'], $tmpName);
+						
+					} else {
+						$err = !move_uploaded_file($_FILES[$name]['tmp_name'], $tmpName);
+					}
 				}
-				return false;
+				
+				if (!$tmpName OR $err)
+					return false;
+				else
+				{
+					$_FILES[$name]['tmp_name'] = $tmpName;
+					// Copy new image
+					if (!imageResize($tmpName, _PS_IMG_DIR_.$dir.$id.'.'.$this->imageType, NULL, NULL, ($ext ? $ext : $this->imageType)))
+						$this->_errors[] = Tools::displayError('an error occurred while uploading image');
+					if (sizeof($this->_errors))
+						return false;
+					if ($this->afterImageUpload())
+					{
+						unlink($tmpName);
+						return true;
+					}
+					return false;
+				}
 			}
 		}
 		return true;
 	}
+
 
 	
 	
