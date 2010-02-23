@@ -1429,6 +1429,7 @@ class		Product extends ObjectModel
 
 		$sql = "
 		 SELECT
+		  pp.`id_product_price`,
 		  pp.`id_product`,
 		  pp.`id_currency`,
 		  pp.`id_group`,
@@ -1442,6 +1443,7 @@ class		Product extends ObjectModel
 		  pp.`reduction_from`,
 		  pp.`reduction_to`,
 		  t.`rate`, 
+		  pap.`id_product_attribute_price`,
 		  pap.`id_currency` AS attribute_id_currency,
 		  IFNULL(pap.`ecotax`, 0) AS attribute_ecotax,
 		  IFNULL(pap.`price`, 0) AS attribute_price,

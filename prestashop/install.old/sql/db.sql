@@ -479,11 +479,13 @@ CREATE TABLE `PREFIX_discount_lang` (
 CREATE TABLE `PREFIX_discount_quantity` (
   `id_discount_quantity` int(10) unsigned NOT NULL auto_increment,
   `id_discount_type` int(10) unsigned NOT NULL,
-  `id_product` int(10) unsigned NOT NULL,
-  `id_product_attribute` int(10) unsigned default NULL,
+  `id_product_price` int(10) unsigned NOT NULL,
+  `id_product_attribute_price` int(10) unsigned default NULL,
   `quantity` int(10) unsigned NOT NULL,
   `value` decimal(10,2) unsigned NOT NULL,
   PRIMARY KEY  (`id_discount_quantity`)
+  KEY `id_product_price` REFERENCES `PREFIX_product_price` (`id_product_price`),
+  KEY `id_product_attribute_price` REFERENCES `PREFIX_product_attribute_price` (`id_product_attribute_price`)
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8;
 
 CREATE TABLE `PREFIX_discount_type` (
@@ -969,6 +971,7 @@ CREATE TABLE `PREFIX_product` (
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8;
 
 CREATE TABLE `PREFIX_product_price` (
+  `id_product_price` int(10) unsigned UNIQUE NOT NULL auto_increment,
   `id_product` int(10) unsigned NOT NULL,
   `id_currency` int(10) unsigned NOT NULL,
   `id_group` int(10) unsigned DEFAULT NULL,
@@ -1009,6 +1012,7 @@ CREATE TABLE `PREFIX_product_attribute` (
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8;
 
 CREATE TABLE `PREFIX_product_attribute_price` (
+  `id_product_attribute_price` int(10) unsigned UNIQUE NOT NULL auto_increment,
   `id_product_attribute` int(10) unsigned NOT NULL,
   `id_currency` int(10) unsigned NOT NULL,
   `id_group` int(10) unsigned DEFAULT NULL,
