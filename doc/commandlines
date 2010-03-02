@@ -1,0 +1,14 @@
+git add $filename
+git rm $filename
+git status
+git commit
+git push
+git pull
+
+
+git push --help
+ to get more help on the push command
+
+mysql -p -u $username $database
+mysqldump -p -u $username $database > $filename.dump.sql
+mysql -p -u $username $database < $filename.dump.sql
