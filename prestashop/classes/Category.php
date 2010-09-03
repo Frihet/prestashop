@@ -456,7 +456,28 @@ class		Category extends ObjectModel
 
 		$sql = "
                  SELECT
-		  p.*,
+                  p.id_product,
+                  p.id_supplier,
+                  p.id_manufacturer,
+                  p.id_category_default,
+                  p.id_color_default,
+                  p.ean13,
+                  p.quantity,
+                  p.reference,
+                  p.supplier_reference,
+                  p.location,
+                  p.weight,
+                  p.out_of_stock,
+                  p.quantity_discount,
+                  p.customizable,
+                  p.uploadable_files,
+                  p.text_fields,
+                  p.active,
+                  p.indexed,
+                  p.date_add,
+                  p.date_upd,
+                  p.type,
+                  p.schedules,
 		  pa.`id_product_attribute`,
 		  pl.`description`,
 		  pl.`description_short`,
@@ -477,7 +498,19 @@ class		Category extends ObjectModel
                    p.`date_add`,
                    DATE_SUB(NOW(), INTERVAL {$days_new_product} DAY)
                   ) > 0 AS new,
-                  pp3.*,
+                  pp3.id_currency,
+                  pp3.id_group,
+                  pp3.id_tax,
+                  pp3.on_sale,
+                  pp3.ecotax,
+                  pp3.price   ,
+                  pp3.wholesale_price,
+                  pp3.reduction_price,
+                  pp3.reduction_percent,
+                  pp3.reduction_from,
+                  pp3.reduction_to,
+                  pp3.min_quantity,
+                  pp3.id_product_price,
                   (pp3.price
 		   -
 		    IF
@@ -533,7 +566,6 @@ class		Category extends ObjectModel
 			$sql .= 'ORDER BY '.(isset($orderByPrefix) ? $orderByPrefix.'.' : '').'`'.pSQL($orderBy).'` '.pSQL($orderWay).'
 			LIMIT '.((intval($p) - 1) * intval($n)).','.intval($n);
 		}
-		
 		$result = Db::getInstance()->ExecuteS($sql);
 		
 		if ($orderBy == 'orderprice')

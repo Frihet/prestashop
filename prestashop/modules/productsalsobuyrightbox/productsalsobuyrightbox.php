@@ -190,6 +190,11 @@ class productsAlsobuyRightBox extends Module
 		global $smarty, $cookie;
 		
 		$idProduct = intval(Tools::getValue('id_product'));
+
+		$product = new Product($idProduct);
+		if (strcmp($product->type, "article") == 0)
+		        return "";
+
 		$id_lang = intval($cookie->id_lang);
 		$relatedProducts = $this->getRelatedProducts($id_lang, $idProduct);
 	    if(sizeof($relatedProducts)>0)

@@ -33,7 +33,7 @@ var quantityAvailable = {if $display_qties == 1 && $product->quantity}{$product-
 var allowBuyWhenOutOfStock = {if $allow_oosp == 1}true{else}false{/if};
 var availableNowValue = '{$product->available_now|escape:'quotes':'UTF-8'}';
 var availableLaterValue = '{$product->available_later|escape:'quotes':'UTF-8'}';
-var productPriceWithoutReduction = {$product->getPriceWithoutReductLC()|default:'null'};
+var productPriceWithoutReduction = {if $product->getPriceWithoutReductLC() != false}{$product->getPriceWithoutReductLC()|default:'null'}{else}0{/if};
 var reduction_percent = {if $product->reduction_percent}{$product->reduction_percent}{else}0{/if};
 var reduction_price = {if $product->reduction_percent}0{else}{$product->getPriceLC(true, $smarty.const.NULL, 2, $smarty.const.NULL, true)}{/if};
 var reduction_from = '{$product->reduction_from}';
