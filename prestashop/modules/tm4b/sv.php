@@ -1,0 +1,37 @@
+<?php
+
+global $_MODULE;
+$_MODULE = array();
+$_MODULE['<{tm4b}prestashop>tm4b_599f02a21a8d80cfa87a3a42f9aef067'] = 'Skickar ett SMS för varje ny beställning';
+$_MODULE['<{tm4b}prestashop>tm4b_2c8be96b677dc6b891a343193822fea4'] = 'Är du säker att du vill radera din info?';
+$_MODULE['<{tm4b}prestashop>tm4b_0c478a7069ab13f446e9e765cffd1550'] = 'Meddelande skickades';
+$_MODULE['<{tm4b}prestashop>tm4b_0cda570a27de3fbd0940da019f759721'] = 'Fel när meddelande skickades';
+$_MODULE['<{tm4b}prestashop>tm4b_884b60418e2f1f9a6a40f12e8ca0a64d'] = 'Login och telefonnummer';
+$_MODULE['<{tm4b}prestashop>tm4b_a82be0f551b8708bc08eb33cd9ded0cf'] = 'Information';
+$_MODULE['<{tm4b}prestashop>tm4b_8b58aafd28dcaee7f6e92442c96e31db'] = 'Sänd test SMS:';
+$_MODULE['<{tm4b}prestashop>tm4b_43e9e66e3a7acefd0663287c95acd407'] = 'Ange ditt telefonnummer';
+$_MODULE['<{tm4b}prestashop>tm4b_35ba634a7df95f937550c54b7b94d2c5'] = 't.ex: 0701231231';
+$_MODULE['<{tm4b}prestashop>tm4b_2e1779891f69b099b16616ae7ea2e76c'] = 'SMS krediter:';
+$_MODULE['<{tm4b}prestashop>tm4b_00db7aae85aecb79c75afca7daa8f22e'] = 'Du har';
+$_MODULE['<{tm4b}prestashop>tm4b_928735d6f2c63bee316dd511c8ccaf55'] = 'krediter';
+$_MODULE['<{tm4b}prestashop>tm4b_f4f70727dc34561dfde1a3c529b6205c'] = 'Inställningar';
+$_MODULE['<{tm4b}prestashop>tm4b_cac81c648846c9b8c3e6085a45782c7e'] = 'Användarnamn:';
+$_MODULE['<{tm4b}prestashop>tm4b_b341a59d5636ed3d6a819137495b08a0'] = 'Lösenord:';
+$_MODULE['<{tm4b}prestashop>tm4b_6c47d739c79e0f93ec0cd90663a68ebf'] = 'Vidarebefodra:';
+$_MODULE['<{tm4b}prestashop>tm4b_43e7396afc9f4633157a47bf5f5af96c'] = 'SMS sändarens telefon #';
+$_MODULE['<{tm4b}prestashop>tm4b_1ee1c44c2dc81681f961235604247b81'] = 'Läge:';
+$_MODULE['<{tm4b}prestashop>tm4b_4f502b57d2835715eaa382c7d4c32e94'] = 'Simulering';
+$_MODULE['<{tm4b}prestashop>tm4b_756d97bb256b8580d4d71ee0c547804e'] = 'Produktion';
+$_MODULE['<{tm4b}prestashop>tm4b_ea24be6a78dd661afe60448e87b75065'] = 'Larma vid ny beställning:';
+$_MODULE['<{tm4b}prestashop>tm4b_93cba07454f06a4a960172bbd6e2a435'] = 'Ja';
+$_MODULE['<{tm4b}prestashop>tm4b_ff914fecb4b37bd6edb2e4515ec1d4dc'] = 'Larmar vid produktlager:';
+$_MODULE['<{tm4b}prestashop>tm4b_481bfc100d0a3590edb72f53679e310c'] = 'SMS mottagarens telefon#';
+$_MODULE['<{tm4b}prestashop>tm4b_b17f3f4dcf653a5776792498a9b44d6a'] = 'Spara inställningar';
+$_MODULE['<{tm4b}prestashop>tm4b_c888438d14855d7d96a2724ee9c306bd'] = 'Inställningar sparade';
+$_MODULE['<{tm4b}prestashop>tm4b_b1a293b0efa4e1e7c35ef375c3cd7a44'] = 'Användarnamn är obligatoriskt';
+$_MODULE['<{tm4b}prestashop>tm4b_8c194fef39e0d251494686926884733e'] = 'Lösenord är obligatoriskt';
+$_MODULE['<{tm4b}prestashop>tm4b_6ac6840e86a7b09bf9eb326228060981'] = 'Väg är obligatoriskt';
+$_MODULE['<{tm4b}prestashop>tm4b_486493b98a473ebb777dd86bbf264e06'] = 'Ursprung är obligatoriskt';
+$_MODULE['<{tm4b}prestashop>tm4b_30c94c563402b0a87e4b5411518ab542'] = 'Läge är obligatoriskt';
+$_MODULE['<{tm4b}prestashop>tm4b_aea21c9ea4f10d22071eb479eee918c3'] = 'Ange ett telefonnummer';
+$_MODULE['<{tm4b}prestashop>tm4b_713569f69019a591adfda481f6668a06'] = 'Telefonnummer är ogiltigt';

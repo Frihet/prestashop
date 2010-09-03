@@ -1,0 +1,20 @@
+Hi {firstname} {lastname},
+
+Your order #{id_order} has been placed successfully. Your order will be shipped as soon as payment is received.
+
+Please note that you have selected to pay by cheque. Please send your cheque:
+
+- an amout of {total_paid}
+
+- to the order of {cheque_name}
+
+- at {cheque_address}
+
+You can review this order and download your invoice from the &quot;Order history&quot; section of your account by clicking &quot;My account&quot; on our Website.
+
+Thank you for shopping at {shop_name}.
+
+{shop_name} - {shop_url}
+
+
+{shop_url} powered by PrestaShop&trade;

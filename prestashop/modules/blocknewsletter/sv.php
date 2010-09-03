@@ -1,0 +1,30 @@
+<?php
+
+global $_MODULE;
+$_MODULE = array();
+$_MODULE['<{blocknewsletter}prestashop>blocknewsletter_9e31b08a00c1ed653bcaa517dee84714'] = 'Nyhetsbrev block';
+$_MODULE['<{blocknewsletter}prestashop>blocknewsletter_e95e612048e381ba2b1f310e07d1b1a3'] = 'Lägger till ett block för nyhetsbrevsprenumerationer';
+$_MODULE['<{blocknewsletter}prestashop>blocknewsletter_179bbcbd2e1104cdf9dcecd91264a961'] = 'Är du säker på att du vill radera alla dina kontakter?';
+$_MODULE['<{blocknewsletter}prestashop>blocknewsletter_f0e9c1e3969d351170373b5cec2131c2'] = 'Kupong koden är inte giltig';
+$_MODULE['<{blocknewsletter}prestashop>blocknewsletter_3f9b87832191fff1d2136c2c2d699e76'] = 'Uppdatering lyckad';
+$_MODULE['<{blocknewsletter}prestashop>blocknewsletter_f4f70727dc34561dfde1a3c529b6205c'] = 'Inställningar';
+$_MODULE['<{blocknewsletter}prestashop>blocknewsletter_948f6c829388992fb60b74b55d4c9cc4'] = 'Visa konfiguration i en ny sida?';
+$_MODULE['<{blocknewsletter}prestashop>blocknewsletter_a6105c0a611b41b08f1209506350279e'] = 'ja';
+$_MODULE['<{blocknewsletter}prestashop>blocknewsletter_7fa3b767c460b54a2be4d49030b349c7'] = 'nej';
+$_MODULE['<{blocknewsletter}prestashop>blocknewsletter_e6c433ce875a8034672996e8aff25fc2'] = 'Skicka bekräftelse mejl efter prenumeration?';
+$_MODULE['<{blocknewsletter}prestashop>blocknewsletter_506e58042922bff5bd753dc612e84f5b'] = 'Välkommen kupong kod';
+$_MODULE['<{blocknewsletter}prestashop>blocknewsletter_de3bd7faad12c79178b1b22bf6119e35'] = 'Lämna tomt för att inaktivera';
+$_MODULE['<{blocknewsletter}prestashop>blocknewsletter_06933067aafd48425d67bcb01bba5cb6'] = 'Uppdatera';
+$_MODULE['<{blocknewsletter}prestashop>blocknewsletter_6e659c47c94d1e1dc7121859f43fb2b0'] = 'Ogiltig e-post adress';
+$_MODULE['<{blocknewsletter}prestashop>blocknewsletter_9e6df6e72be5be5b8ff962ee3406907e'] = 'E-post adress inte registrerad';
+$_MODULE['<{blocknewsletter}prestashop>blocknewsletter_29003419c075963848f1907174bdc224'] = 'Ett fel uppstod när du gick ur prenumerationen';
+$_MODULE['<{blocknewsletter}prestashop>blocknewsletter_f7dc297e2a139ab4f5a771825b46df43'] = 'Du har slutat prenumerera';
+$_MODULE['<{blocknewsletter}prestashop>blocknewsletter_8dc3b88902df97bb96930282e56ed381'] = 'E-postadressen redan registrerad';
+$_MODULE['<{blocknewsletter}prestashop>blocknewsletter_b7d9eb38dd2e375648ab08e224e22e43'] = 'Fel under prenumeration';
+$_MODULE['<{blocknewsletter}prestashop>blocknewsletter_ed3cd7b3cc134222fa70602921ec27e1'] = 'Du prenumererar nu på nyhetsbrevet';
+$_MODULE['<{blocknewsletter}prestashop>blocknewsletter_a95bc59685fb4546de3884a5fbe474ea'] = 'Nyhetsbrevskupong';
+$_MODULE['<{blocknewsletter}prestashop>blocknewsletter_efabbb0eb84d3c8e487a72e879953673'] = 'Nyhetsbrevsbekräftelse';
+$_MODULE['<{blocknewsletter}prestashop>blocknewsletter_ffb7e666a70151215b4c55c6268d7d72'] = 'Nyhetsbrev';
+$_MODULE['<{blocknewsletter}prestashop>blocknewsletter_416f61a2ce16586f8289d41117a2554e'] = 'din e-post';
+$_MODULE['<{blocknewsletter}prestashop>blocknewsletter_b26917587d98330d93f87808fc9d7267'] = 'Prenumerera';
+$_MODULE['<{blocknewsletter}prestashop>blocknewsletter_4182c8f19d40c7ca236a5f4f83faeb6b'] = 'Avbryt prenumeration';
