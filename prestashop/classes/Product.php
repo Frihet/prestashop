@@ -2754,12 +2754,14 @@ class		Product extends ObjectModel
 
 		$product_groups_where = 'OR ' . Tools::slqIn("pp.id_group", Tools::colArray(Group::getGroupsForCustomer(), 'id_group'));
 		$default_currency = Configuration::get('PS_CURRENCY_DEFAULT');
+	        $currency_id = $default_currency;
+		if ($currency != null) { $currency_id = $currency->id; }
 
 		return "
 		 LEFT JOIN
-		  (SELECT pp.id_product, min(abs(pp.id_currency - {$currency->id})) as currency_diff
+		  (SELECT pp.id_product, min(abs(pp.id_currency - {$currency_id})) as currency_diff
 		   FROM PREFIX_product_price pp
-		   WHERE (pp.id_currency in ({$currency->id}, {$default_currency}) AND pp.id_group IS NULL {$product_groups_where})
+		   WHERE (pp.id_currency in ({$currency_id}, {$default_currency}) AND pp.id_group IS NULL {$product_groups_where})
 		   GROUP BY pp.id_product) AS {$alias}_currency_selector ON
 		  {$alias}_currency_selector.id_product = {$id_product}
 		 LEFT JOIN
@@ -2768,10 +2770,10 @@ class		Product extends ObjectModel
 		   WHERE (pp.id_group IS NULL {$product_groups_where})
 		   GROUP BY pp.id_product, pp.id_currency) AS {$alias}_min_price ON
 		  {$alias}_min_price.id_product = {$id_product}
-		  AND abs({$alias}_min_price.id_currency - {$currency->id}) = {$alias}_currency_selector.currency_diff
+		  AND abs({$alias}_min_price.id_currency - {$currency_id}) = {$alias}_currency_selector.currency_diff
 		 LEFT JOIN `PREFIX_product_price` {$alias} ON
 		  {$alias}.id_product = {$id_product}
-		  AND abs({$alias}.id_currency - {$currency->id}) = {$alias}_currency_selector.currency_diff
+		  AND abs({$alias}.id_currency - {$currency_id}) = {$alias}_currency_selector.currency_diff
 		  AND {$alias}.price = {$alias}_min_price.min_price";
 
 	}
@@ -2782,12 +2784,14 @@ class		Product extends ObjectModel
 
 		$product_groups_where = 'OR ' . Tools::slqIn("pap.id_group", Tools::colArray(Group::getGroupsForCustomer(), 'id_group'));
 		$default_currency = Configuration::get('PS_CURRENCY_DEFAULT');
+	        $currency_id = $default_currency;
+		if ($currency != null) { $currency_id = $currency->id; }
 
 		return "
 		 LEFT JOIN
-		  (SELECT pap.id_product_attribute, min(abs(pap.id_currency - {$currency->id})) as currency_diff
+		  (SELECT pap.id_product_attribute, min(abs(pap.id_currency - {$currency_id})) as currency_diff
 		   FROM PREFIX_product_attribute_price pap
-		   WHERE (pap.id_currency in ({$currency->id}, {$default_currency}) AND pap.id_group IS NULL {$product_groups_where})
+		   WHERE (pap.id_currency in ({$currency_id}, {$default_currency}) AND pap.id_group IS NULL {$product_groups_where})
 		   GROUP BY pap.id_product_attribute) AS {$alias}_currency_selector ON
 		  {$alias}_currency_selector.id_product_attribute = {$id_product_attribute}
 		 LEFT JOIN
@@ -2796,10 +2800,10 @@ class		Product extends ObjectModel
 		   WHERE (pap.id_group IS NULL {$product_groups_where})
 		   GROUP BY pap.id_product_attribute, pap.id_currency) AS {$alias}_min_price ON
 		  {$alias}_min_price.id_product_attribute = {$id_product_attribute}
-		  AND abs({$alias}_min_price.id_currency - {$currency->id}) = {$alias}_currency_selector.currency_diff
+		  AND abs({$alias}_min_price.id_currency - {$currency_id}) = {$alias}_currency_selector.currency_diff
 		 LEFT JOIN `PREFIX_product_attribute_price` {$alias} ON
 		  {$alias}.id_product_attribute = {$id_product_attribute}
-		  AND abs({$alias}.id_currency - {$currency->id}) = {$alias}_currency_selector.currency_diff
+		  AND abs({$alias}.id_currency - {$currency_id}) = {$alias}_currency_selector.currency_diff
 		  AND {$alias}.price = {$alias}_min_price.min_price";
 
 	} 

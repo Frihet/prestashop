@@ -71,13 +71,14 @@ class AdminStats extends AdminStatsTab
 	public static function getCarts($dateBetween)
 	{
 		$price_sql = Product::getProductPriceSql('p.id_product', 'pp', 'c.id_currency');
+		$attribute_price_sql = Product::getProductPriceSql('pa.id_product_attribute', 'pap', 'c.id_currency');
 		$sql = "
 		 SELECT AVG(cartsum) as average, MAX(cartsum) as highest, MIN(cartsum) as lowest
 		 FROM (
 			 SELECT SUM(
 				 ((1+t.rate/100) * pp.`price` + IF(cp.id_product_attribute IS NULL OR cp.id_product_attribute = 0, 0, (
-					 SELECT IFNULL(pa.price, 0) 
-					 FROM PREFIX_product_attribute pa
+					 SELECT IFNULL(pap.price, 0) 
+					 FROM PREFIX_product_attribute pa {$attribute_price_sql}
 					 WHERE pa.id_product = cp.id_product
 					 AND pa.id_product_attribute = cp.id_product_attribute
 				 ))) * cp.quantity) / cu.conversion_rate as cartsum
