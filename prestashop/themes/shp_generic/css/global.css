@@ -2066,12 +2066,10 @@ div.categTree {
 }
 #primary_block form#buy_block label,#primary_block form#buy_block select {
     display: block;
-    width: 47%;
     float: left;
 }
 #primary_block div#attributes p, #quantity_wanted_p {
     clear: left;
-    height: 2em;
 }
 
 
