@@ -15,9 +15,25 @@ class OrderAddress extends OrderPage
 		$this->description = $this->l('Lets the user choose a local address / repair/guarantee provider for each product');
 	}
 
+	function install()
+	{
+			if (Hook::get('orderAddressVerification') == false) {
+				$hook = new Hook();
+				$hook->name = 'orderAddressVerification';
+				$hook->title = 'Order address verificatio';
+				$hook->description = 'Allows modules to verify delivery and billing address in an order, e.g. require them to be in the same country';
+				$hook->add();
+			}
+			if
+			(
+				parent::install() == false
+			)
+			return false;
+		return true;
+	}
 
         function validateOrderStep ($params) {	
-		global $cart;
+		global $cart, $errors;
 
 		if (!$cart->id_address_delivery OR !$cart->id_address_invoice)
 			return false;
@@ -38,9 +54,8 @@ class OrderAddress extends OrderPage
 
 	function processOrderStep($params)
 	{
-		global $cart, $smarty;
-		$errors = array();
-
+		global $cart, $smarty, $errors;
+		
 		if (!isset($_POST['id_address_delivery']) OR !Address::isCountryActiveById(intval($_POST['id_address_delivery'])))
 			$errors[] = 'this address is not in a valid area';
 		else
@@ -49,6 +64,8 @@ class OrderAddress extends OrderPage
 			$cart->id_address_invoice = isset($_POST['same']) ? intval($_POST['id_address_delivery']) : intval($_POST['id_address_invoice']);
 			if (!$cart->update())
 				$errors[] = Tools::displayError('an error occured while updating your cart');
+
+			Module::hookExec('orderAddressVerification', array());
 
 			if (isset($_POST['message']) AND !empty($_POST['message']))
 			{
@@ -70,17 +87,6 @@ class OrderAddress extends OrderPage
 				}
 			}
 		}
-		if (sizeof($errors))
-		{
-			if (Tools::getValue('ajax'))
-				die('{\'hasError\' : true, errors : [\''.implode('\',\'', $errors).'\']}');
-			$smarty->assign('errors', $errors);
-			displayAddress();
-			include_once(dirname(__FILE__).'/../../footer.php');
-			exit;
-		}
-		if (Tools::getValue('ajax'))
-			die(true);
 	}
 
 	function displayOrderStep($params)

@@ -24,11 +24,15 @@ class OrderPage extends Module
         {
 		global $smarty, $cookie, $cart, $errors, $order_pages_hook_stay, $order_pages_hook_position, $order_pages_hook_titles, $order_pages_hook_names;
 
+		$errors = array();
+
 		if ($params['part'] == 'title') {
 			$order_pages_hook_titles[] = $this->orderPageTitle;
                 } else if ($params['part'] == 'name') {
 			$order_pages_hook_names[] = $this->name;
                 } else if ($params['part'] == 'body') {
+			if (Tools::getValue('ajax'))
+			        die("AJAX is not supported for now");
 			if ($params['step'] == $order_pages_hook_position) {
 				if (Tools::isSubmit('process' . $order_pages_hook_position) OR isset($_GET['submit' . $order_pages_hook_position])) {
 					$order_pages_hook_stay = false;
@@ -37,8 +41,9 @@ class OrderPage extends Module
 						Tools::redirect('order.php?step=' . ($params['step'] + 1));
 					}
 				}
-				if (sizeof($errors))
+				if (sizeof($errors)) {
 					$smarty->assign('errors', $errors);
+				}
 
 				$smarty->assign('order_steps', $order_pages_hook_titles);
 				$smarty->assign('order_step', $order_pages_hook_position);
