@@ -174,7 +174,7 @@ class BlockCategoryTabs extends Module
 		global $smarty;
 
 		$this->prepareDisplay($params);
-		if (file_exists(_PS_THEME_DIR_.'modules/blockcategorytabs/blockcategorytabs.tpl'))
+		if (file_exists(_PS_THEME_DIR_.'modules/blockcategorytabs/category-tree-branch.tpl'))
 			$smarty->assign('branche_tpl_path', _PS_THEME_DIR_.'modules/blockcategorytabs/category-tree-branch.tpl');
 		else
 			$smarty->assign('branche_tpl_path', _PS_MODULE_DIR_.'blockcategorytabs/category-tree-branch.tpl');		

@@ -12,7 +12,7 @@
 			<a
 			 href="{$child.link|escape:htmlall:'UTF-8'}"
 			 {if isset($currentCategoryId) && in_array($child.id, $currentCategoryPath)}class="selected"{/if}
-			 title="{$child.desc|escape:htmlall:'UTF-8'}">
+			 title="{$child.desc|strip_tags}">
 				{$child.name|escape:htmlall:'UTF-8'}
 			</a>
 		</li>
@@ -21,7 +21,7 @@
 </div>
 
 {if isset($currentCategory)}
-    <h1 id="logo"><a href="{$currentCategory.link|escape:htmlall:'UTF-8'}" title="{$currentCategory.desc|escape:htmlall:'UTF-8'}"></a></h1>
+    <h1 id="logo"><a href="{$currentCategory.link|escape:htmlall:'UTF-8'}" title="{$currentCategory.desc|strip_tags}"></a></h1>
 {else}
-    <h1 id="logo"><a href="{$base_dir}" title="{$shop_name|escape:'htmlall':'UTF-8'}"></a></h1>
+    <h1 id="logo"><a href="{$base_dir}" title="{$shop_name|strip_tags}"></a></h1>
 {/if}
