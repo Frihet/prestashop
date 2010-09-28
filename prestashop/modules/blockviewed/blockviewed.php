@@ -62,11 +62,12 @@ class BlockViewed extends Module
 
 	function hookRightColumn($params)
 	{
-		global $link, $smarty;
+		global $link, $smarty, $category_path;
 		$id_product = intval(Tools::getValue('id_product'));
 		if ($id_product)
 			$product = new Product($id_product);
 		$productsViewed = (isset($params['cookie']->viewed) AND !empty($params['cookie']->viewed)) ? array_slice(explode(',', $params['cookie']->viewed), 0, 2*Configuration::get('PRODUCTS_VIEWED_NBR')) : array();
+
 		if (sizeof($productsViewed))
 		{
 			$productsViewedObj = array();
@@ -74,6 +75,9 @@ class BlockViewed extends Module
 			
 			$nrProducts = 0;
 			$nrArticles = 0;
+			$category_path_ids = array();
+			foreach ($category_path as $cat)
+			        $category_path_ids[] = $cat['id_category'];
 			foreach ($productsViewed AS $productViewed)
 			{
 			        $obj = new Product(intval($productViewed), false, intval($params['cookie']->id_lang));
@@ -96,12 +100,22 @@ class BlockViewed extends Module
 						$obj->cover = Language::getIsoById($params['cookie']->id_lang).'-default';
 						$obj->legend = '';
 					}
-					if ($obj->type == 'product') {
-					        $productsViewedObj[] = $obj;
-						$nrProducts += 1;
-					} else if ($obj->type == 'article') {
-					        $articlesViewedObj[] = $obj;
-						$nrArticles += 1;
+
+					$display = false;
+					foreach(Product::getIndexedCategories($obj->id) as $row) {
+						if (in_array($row['id_category'], $category_path_ids)) {
+						        $display = true;
+							break;
+						}
+					}
+					if ($display) {
+						if ($obj->type == 'product') {
+							$productsViewedObj[] = $obj;
+							$nrProducts += 1;
+						} else if ($obj->type == 'article') {
+							$articlesViewedObj[] = $obj;
+							$nrArticles += 1;
+						}
 					}
 				}
 			}
@@ -111,9 +125,6 @@ class BlockViewed extends Module
 			foreach ($productsViewed AS $id_product_viewed)
 				$viewed .= intval($id_product_viewed).',';
 			$params['cookie']->viewed = rtrim($viewed, ',');
-
-			if (!sizeof($productsViewedObj))
-				return ;
 			
 			$smarty->assign(array(
 				'productsViewedObj' => $productsViewedObj,
