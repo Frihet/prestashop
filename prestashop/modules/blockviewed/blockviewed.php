@@ -66,14 +66,17 @@ class BlockViewed extends Module
 		$id_product = intval(Tools::getValue('id_product'));
 		if ($id_product)
 			$product = new Product($id_product);
-		$productsViewed = (isset($params['cookie']->viewed) AND !empty($params['cookie']->viewed)) ? array_slice(explode(',', $params['cookie']->viewed), 0, Configuration::get('PRODUCTS_VIEWED_NBR')) : array();
+		$productsViewed = (isset($params['cookie']->viewed) AND !empty($params['cookie']->viewed)) ? array_slice(explode(',', $params['cookie']->viewed), 0, 2*Configuration::get('PRODUCTS_VIEWED_NBR')) : array();
 		if (sizeof($productsViewed))
 		{
 			$productsViewedObj = array();
+			$articlesViewedObj = array();
 			
+			$nrProducts = 0;
+			$nrArticles = 0;
 			foreach ($productsViewed AS $productViewed)
 			{
-				$obj = new Product(intval($productViewed), false, intval($params['cookie']->id_lang));
+			        $obj = new Product(intval($productViewed), false, intval($params['cookie']->id_lang));
 				if (!Validate::isLoadedObject($obj) OR !$obj->active)
 					continue;
 				else
@@ -93,7 +96,13 @@ class BlockViewed extends Module
 						$obj->cover = Language::getIsoById($params['cookie']->id_lang).'-default';
 						$obj->legend = '';
 					}
-					$productsViewedObj[] = $obj;
+					if ($obj->type == 'product') {
+					        $productsViewedObj[] = $obj;
+						$nrProducts += 1;
+					} else if ($obj->type == 'article') {
+					        $articlesViewedObj[] = $obj;
+						$nrArticles += 1;
+					}
 				}
 			}
 			if (isset($product) AND $product AND !in_array($product->id, $productsViewed))
@@ -108,6 +117,7 @@ class BlockViewed extends Module
 			
 			$smarty->assign(array(
 				'productsViewedObj' => $productsViewedObj,
+				'articlesViewedObj' => $articlesViewedObj,
 				'mediumSize' => Image::getSize('medium')));
 			return $this->display(__FILE__, 'blockviewed.tpl');
 		}

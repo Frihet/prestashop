@@ -25,3 +25,29 @@
 		</table>
 	</div>
 </div>
+
+
+<div id="viewed-products_block_left" class="block products_block">
+	<h4>{l s='Viewed articles' mod='blockviewed'}</h4>
+	<div class="block_content">
+		<table class="product_list">
+		{foreach from=$articlesViewedObj item='article' name=article}
+			{assign var='productLink' value=$link->getProductLink($article, $article->link_rewrite)}
+			<tr class="ajax_block_product">
+				<td class="product_desc">
+				 <a
+				  href="{$articleLink|escape:'htmlall':'UTF-8'}"
+				  title="{$article->name|escape:'htmlall':'UTF-8'}: {$article->description_short|strip_tags|truncate:100:'...'}"
+				 >
+				  {$article->name|truncate:15:'..'|escape:'htmlall':'UTF-8'}
+
+				 </a>
+				</td>
+			</tr>
+			<tr>
+
+			</tr>
+		{/foreach}
+		</table>
+	</div>
+</div>
