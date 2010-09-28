@@ -169,10 +169,21 @@ if (!$category && isset($_SERVER['HTTP_REFERER']) && preg_match('!^(.*)\/([0-9]+
 
 if (!$category && isset($_GET['id_product'])) {
    	$product = new Product(intval($_GET['id_product']), true, intval($cookie->id_lang));
-	$category = new Category($product->id_category_default, intval($cookie->id_lang));
+
+	$category_ids = array();
+	foreach(Product::getIndexedCategories($product->id) as $row)
+	        $category_ids[] = $row['id_category'];
+	
+	$category_id = $product->id_category_default;
+
+	if (   isset($cookie->last_visited_category)
+	    && in_array(intval($cookie->last_visited_category), $category_ids))
+	        $category_id = intval($cookie->last_visited_category);
+
+	$category = new Category($category_id, intval($cookie->id_lang));
 }
 
-if (!$category && isset($cookie->last_visited_category))  {
+if (!$category && isset($cookie->last_visited_category)) {
    	$category = new Category($cookie->last_visited_category, intval($cookie->id_lang));
 }
 
