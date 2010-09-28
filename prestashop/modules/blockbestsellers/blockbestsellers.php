@@ -30,15 +30,32 @@ class BlockBestSellers extends Module
 
     function hookRightColumn($params)
     {
-		global $smarty;
+		global $smarty, $category_path;
+
+		$category_path_ids = array();
+		foreach ($category_path as $cat)
+			$category_path_ids[] = $cat['id_category'];
+
 		$currency = new Currency(intval($params['cookie']->id_currency));
-		$bestsellers = ProductSale::getBestSalesLight(intval($params['cookie']->id_lang), 0, 5);
+		$bestsellers = ProductSale::getBestSalesLight(intval($params['cookie']->id_lang), 0, 25);
 
 		$best_sellers = array();
-		foreach ($bestsellers AS $bestseller)
-		{
-			$bestseller['price'] = Tools::displayPrice(Product::getPriceStaticLC(intval($bestseller['id_product'])), $currency);
-			$best_sellers[] = $bestseller;
+		$nr = 0;
+		foreach ($bestsellers AS $bestseller) {
+			if ($nr >= 5)
+			        break;
+		        $display = false;
+			foreach(Product::getIndexedCategories($bestseller['id_product']) as $row) {
+				if (in_array($row['id_category'], $category_path_ids)) {
+					$display = true;
+					break;
+				}
+			}
+			if ($display) {
+			        $bestseller['price'] = Tools::displayPrice(Product::getPriceStaticLC(intval($bestseller['id_product'])), $currency);
+				$best_sellers[] = $bestseller;
+				$nr += 1;
+			}
 		}
 		$smarty->assign(array(
 			'best_sellers' => $best_sellers,

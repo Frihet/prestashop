@@ -62,14 +62,32 @@ class BlockNewProducts extends Module
 
     function hookRightColumn($params)
     {
-		global $smarty;
+		global $smarty, $category_path;
+
+		$category_path_ids = array();
+		foreach ($category_path as $cat)
+			$category_path_ids[] = $cat['id_category'];
+
 		$currency = new Currency(intval($params['cookie']->id_currency));
-		$newProducts = Product::getNewProducts(intval($params['cookie']->id_lang), 0, Configuration::get('NEW_PRODUCTS_NBR'));
+		$newProducts = Product::getNewProducts(intval($params['cookie']->id_lang), 0, 5*Configuration::get('NEW_PRODUCTS_NBR'));
 		$new_products = array();
 		if ($newProducts)
-			foreach ($newProducts AS $newProduct)
-				$new_products[] = $newProduct;
-
+		        $nr = 0;
+			foreach ($newProducts AS $newProduct) {
+			        if ($nr >= Configuration::get('NEW_PRODUCTS_NBR'))
+				        break;
+				$display = false;
+				foreach(Product::getIndexedCategories($newProduct->id) as $row) {
+					if (in_array($row['id_category'], $category_path_ids)) {
+						$display = true;
+						break;
+					}
+				}
+				if ($display) {
+				        $new_products[] = $newProduct;
+					$nr += 1;
+				}
+			}
 		$smarty->assign(array(
 			'new_products' => $new_products,
 			'mediumSize' => Image::getSize('medium')));
