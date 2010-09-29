@@ -316,7 +316,7 @@ class Loyalty extends Module
 		if (is_numeric($id_product))
 		{
 			$product = new Product(intval($id_product));
-			if (Validate::isLoadedObject($product))
+			if (Validate::isLoadedObject($product) && $product->type == "product")
 			{
 				$points = LoyaltyModule::getNbPointsByProduct($product);
 				$smarty->assign(array(
