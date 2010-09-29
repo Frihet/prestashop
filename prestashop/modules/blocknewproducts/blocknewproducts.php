@@ -71,7 +71,7 @@ class BlockNewProducts extends Module
 		$currency = new Currency(intval($params['cookie']->id_currency));
 		$newProducts = Product::getNewProducts(intval($params['cookie']->id_lang), 0, 5*Configuration::get('NEW_PRODUCTS_NBR'));
 		$new_products = array();
-		if ($newProducts)
+		if ($newProducts) {
 		        $nr = 0;
 			foreach ($newProducts AS $newProduct) {
 			        if ($nr >= Configuration::get('NEW_PRODUCTS_NBR'))
@@ -88,6 +88,7 @@ class BlockNewProducts extends Module
 					$nr += 1;
 				}
 			}
+		}
 		$smarty->assign(array(
 			'new_products' => $new_products,
 			'mediumSize' => Image::getSize('medium')));
