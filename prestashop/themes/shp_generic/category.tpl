@@ -27,6 +27,7 @@
 
 		<br class="clear"/>
 
+		<!--
 		{if $path|regex_replace:"/.*a href.*/":"" == ""}
 			{if isset($subcategories)}
 				<!-- Subcategories -->
@@ -51,6 +52,7 @@
 				</div>
 			{/if}
 		{/if}
+		-->
 
 		{if $products}
 			{if $path|regex_replace:"/.*a href.*/":"" == ""}
