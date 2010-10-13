@@ -64,6 +64,8 @@ class OrderSummary extends OrderPage
 
 		if (file_exists(_PS_SHIP_IMG_DIR_.intval($cart->id_carrier).'.jpg'))
 			$smarty->assign('carrierPicture', 1);
+
+		$cart->save(); // Hack to get loyalty and other modules happy
 		$summary = $cart->getSummaryDetails();
 		$customizedDatas = Product::getAllCustomizedDatas(intval($cart->id));
 		Product::addCustomizationPrice($summary['products'], $customizedDatas);
