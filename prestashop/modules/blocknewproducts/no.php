@@ -2,8 +2,6 @@
 
 global $_MODULE;
 $_MODULE = array();
-
-
 $_MODULE['<{blocknewproducts}prestashop>blocknewproducts_f7c34fc4a48bc683445c1e7bbc245508'] = 'Nye produkter boks';
 $_MODULE['<{blocknewproducts}prestashop>blocknewproducts_2dabfba3a3ebc0a7e4728f08ba165d1e'] = 'Vis en boks med nye produkter';
 $_MODULE['<{blocknewproducts}prestashop>blocknewproducts_be3695bcf32c0086aa98108330d9bfa1'] = 'Du burde fylle ut \\\"Produkter vist\\\" feltet';

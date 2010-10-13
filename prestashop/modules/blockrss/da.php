@@ -8,7 +8,6 @@ $_MODULE['<{blockrss}prestashop>blockrss_9680162225162baf2a085dfdc2814deb'] = 'R
 $_MODULE['<{blockrss}prestashop>blockrss_6706b6d8ba45cc4f0eda0506ba1dc3c8'] = 'Ugyldig feed-URL';
 $_MODULE['<{blockrss}prestashop>blockrss_36ed65ce17306e812fd68d9f634c0c57'] = 'Ugyldig titel';
 $_MODULE['<{blockrss}prestashop>blockrss_1b3d34e25aef32a3c8daddfff856577f'] = 'Ugyldigt antal feeds';
-$_MODULE['<{blockrss}prestashop>blockrss_39efd1def8be174e197eefa851cdf69b'] = 'Du kan ikke vælge din egen RSS-feed';
 $_MODULE['<{blockrss}prestashop>blockrss_c888438d14855d7d96a2724ee9c306bd'] = 'Indstillinger opdateret';
 $_MODULE['<{blockrss}prestashop>blockrss_f4f70727dc34561dfde1a3c529b6205c'] = 'Indstillinger';
 $_MODULE['<{blockrss}prestashop>blockrss_b22c8f9ad7db023c548c3b8e846cb169'] = 'Blok titel';

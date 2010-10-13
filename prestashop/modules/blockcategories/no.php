@@ -2,8 +2,6 @@
 
 global $_MODULE;
 $_MODULE = array();
-
-
 $_MODULE['<{blockcategories}prestashop>blockcategories_8f0ed7c57fca428f7e3f8e64d2f00918'] = 'Kategorier boks';
 $_MODULE['<{blockcategories}prestashop>blockcategories_bdfd1b1bece2a3a5a52afa810a643a0d'] = 'Legg til boks som viser kategoriene';
 $_MODULE['<{blockcategories}prestashop>blockcategories_23e0d4ecc25de9b2777fdaca3e2f3193'] = 'Maks dybde: Ugyldig tall.';

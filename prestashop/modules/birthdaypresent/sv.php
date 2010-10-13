@@ -4,7 +4,7 @@ global $_MODULE;
 $_MODULE = array();
 $_MODULE['<{birthdaypresent}prestashop>birthdaypresent_c2796655c25e1b0b8582716036aece08'] = 'Födelsedagspresent';
 $_MODULE['<{birthdaypresent}prestashop>birthdaypresent_d1f5899bf2af57ed816390d9d740daf6'] = 'Erbjud dina kunder födelsedagspresenter automatiskt';
-$_MODULE['<{birthdaypresent}prestashop>birthdaypresent_ccfcf858237a83953c1ac03b5abde35e'] = 'Skapa en rabattkod för kunder som fyller år och har minst en giltig order';
+$_MODULE['<{birthdaypresent}prestashop>birthdaypresent_487011dccb5c5f3f8b6cfa32b1d4c4b9'] = 'Erbjud en kupong till dina kunder som firar födelsedag';
 $_MODULE['<{birthdaypresent}prestashop>birthdaypresent_4d3d769b812b6faa6b76e1a8abaece2d'] = 'Aktiv';
 $_MODULE['<{birthdaypresent}prestashop>birthdaypresent_59cb7946b9d916e80a7e05defd004120'] = 'Du behöver också skapa ett CRON-jobb som anropar filen';
 $_MODULE['<{birthdaypresent}prestashop>birthdaypresent_9939846b096f52609cb7c31de24e20e7'] = 'varje dag';

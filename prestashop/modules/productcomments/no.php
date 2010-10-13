@@ -2,5 +2,31 @@
 
 global $_MODULE;
 $_MODULE = array();
-
-
+$_MODULE['<{productcomments}prestashop>productcomments_b91c4e8b229a399a3bc911d352524a9b'] = 'Produktkommentarer';
+$_MODULE['<{productcomments}prestashop>productcomments_eb4783ce47d29a12b944635fc255893f'] = 'Lar brukere kommentere produkter';
+$_MODULE['<{productcomments}prestashop>productcomments_f4d1ea475eaa85102e2b4e6d95da84bd'] = 'Bekreftelse';
+$_MODULE['<{productcomments}prestashop>productcomments_c888438d14855d7d96a2724ee9c306bd'] = 'Instillinger oppdatert';
+$_MODULE['<{productcomments}prestashop>productcomments_0a36c5f3ea6825804e6b4314c4084a12'] = 'Moderer Kommentarer';
+$_MODULE['<{productcomments}prestashop>productcomments_519532ca486f468a9dd44232e7b0cafa'] = 'Vurdering av innlegg nødvendig';
+$_MODULE['<{productcomments}prestashop>productcomments_00d23a76e43b46dae9ec7aa9dcbebb32'] = 'Aktivert';
+$_MODULE['<{productcomments}prestashop>productcomments_b9f5c797ebbf55adccdd8539a65a0241'] = 'Deaktivert';
+$_MODULE['<{productcomments}prestashop>productcomments_c9cc8cce247e49bae79f15173ce97354'] = 'Lagre';
+$_MODULE['<{productcomments}prestashop>productcomments_06df33001c1d7187fdd81ea1f5b277aa'] = 'Hendelser';
+$_MODULE['<{productcomments}prestashop>productcomments_a517747c3d12f99244ae598910d979c5'] = 'Forfatter';
+$_MODULE['<{productcomments}prestashop>productcomments_0be8406951cdfda82f00f79328cf4efc'] = 'Kommentar';
+$_MODULE['<{productcomments}prestashop>productcomments_c4408d335012a56ff58937d78050efad'] = 'Godkjenn';
+$_MODULE['<{productcomments}prestashop>productcomments_f2a6c498fb90ee345d997f888fce3b18'] = 'Slett';
+$_MODULE['<{productcomments}prestashop>productcomments_0e1a03b7b26ffce9312556aa4de91a00'] = 'Ingen kommentarer å vurdere';
+$_MODULE['<{productcomments}prestashop>productcomments_0048bfb5ec7540fce6a8262321abb68b'] = 'Kommentarers kriterier';
+$_MODULE['<{productcomments}prestashop>productcomments_5425e30a4f2d17eebb3ccbc8d9e4b879'] = 'Kommentarers kriterium';
+$_MODULE['<{productcomments}prestashop>productcomments_ec211f7c20af43e742bf2570c3cb84f9'] = 'Legg til';
+$_MODULE['<{productcomments}prestashop>productcomments_deb10517653c255364175796ace3553f'] = 'Produkt';
+$_MODULE['<{productcomments}prestashop>productcomments_92c8811185c56998dfbcbdd30ad649d3'] = 'Vurderingskriterier';
+$_MODULE['<{productcomments}prestashop>productcomments_7c3b0e9898b88deee7ea75aafd2e37e2'] = 'Gjennomsnittlig vurdering';
+$_MODULE['<{productcomments}prestashop>productcomments_b1897515d548a960afe49ecf66a29021'] = 'Gjennomsnitt';
+$_MODULE['<{productcomments}prestashop>productcomments_5da618e8e4b89c66fe86e32cdafde142'] = 'Fra';
+$_MODULE['<{productcomments}prestashop>productcomments_08621d00a3a801b9159a11b8bbd69f89'] = 'Ingen kundekommentarer for øyeblikket';
+$_MODULE['<{productcomments}prestashop>productcomments_c3edcf2cedbd4ce230fd6d4ea8915718'] = 'Legg til kommentar';
+$_MODULE['<{productcomments}prestashop>productcomments_94966d90747b97d1f0f206c98a8b1ac3'] = 'Send';
+$_MODULE['<{productcomments}prestashop>productcomments_75b4e58a3954686f84e68e2eafb730d9'] = 'Du må være registrert som bruker for å kunne legge inn kommentarer';
+$_MODULE['<{productcomments}prestashop>tab_8413c683b4b27cc3f4dbd4c90329d8ba'] = 'Kommentarer';

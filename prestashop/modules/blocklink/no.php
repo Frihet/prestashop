@@ -2,9 +2,9 @@
 
 global $_MODULE;
 $_MODULE = array();
-
-
 $_MODULE['<{blocklink}prestashop>blocklink_fc738410141e4ec0c0319a81255a1431'] = 'Lenke boks';
+$_MODULE['<{blocklink}prestashop>blocklink_3282cf44226c46a899eedd1a2127c2e5'] = 'Legger til en boks med tilleggslenker';
+$_MODULE['<{blocklink}prestashop>blocklink_d98d5daaf408b77b05a2eeb6ae88d6df'] = 'Er du helt sikker på at du vil slette alle lenkene dine';
 $_MODULE['<{blocklink}prestashop>blocklink_fe3f38c46c80813d94b6775299e59f13'] = 'Du må fylle ut alle felter';
 $_MODULE['<{blocklink}prestashop>blocklink_9394bb34611399534ffac4f0ece96b7f'] = 'Ugyldig URL';
 $_MODULE['<{blocklink}prestashop>blocklink_c95df8ad4297e9cb6bc0019e4462ddbb'] = 'Linken har vellykket blitt lagt til';

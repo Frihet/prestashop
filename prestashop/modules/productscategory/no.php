@@ -2,8 +2,6 @@
 
 global $_MODULE;
 $_MODULE = array();
-
-
 $_MODULE['<{productscategory}prestashop>productscategory_db33983df8ef521000b0ab60dcb5a83f'] = 'Produkt katalog';
 $_MODULE['<{productscategory}prestashop>productscategory_c167dc9a6cdefdab35fb3b5e325cc815'] = 'Viser produkter fra samme katalog på produktets side';
 $_MODULE['<{productscategory}prestashop>productscategory_3029e678e2d59c6f5e1d450e9b6c03a7'] = 'I samme katalog';

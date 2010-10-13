@@ -381,8 +381,11 @@ class Loyalty extends Module
 	/* Hook display on shopping cart summary */
 	public function hookShoppingCart($params)
 	{
-		if (!Validate::isLoadedObject($params['cart']))
+		if (!Validate::isLoadedObject($params['cart'])) {
+		        foreach(debug_backtrace() as $line)
+			  echo "{$line['file']}:{$line['line']}:{$line['function']}<br>";
 			die (Tools::displayError('Cart parameter is missing.'));
+                }
 		global $smarty;
 		$points = LoyaltyModule::getCartNbPoints($params['cart']);
 		$smarty->assign(array(

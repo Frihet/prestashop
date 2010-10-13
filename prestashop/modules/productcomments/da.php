@@ -14,7 +14,6 @@ $_MODULE['<{productcomments}prestashop>productcomments_c9cc8cce247e49bae79f15173
 $_MODULE['<{productcomments}prestashop>productcomments_06df33001c1d7187fdd81ea1f5b277aa'] = 'Handlinger';
 $_MODULE['<{productcomments}prestashop>productcomments_a517747c3d12f99244ae598910d979c5'] = 'Forfatter';
 $_MODULE['<{productcomments}prestashop>productcomments_0be8406951cdfda82f00f79328cf4efc'] = 'Kommentar';
-$_MODULE['<{productcomments}prestashop>productcomments_df644ae155e79abf54175bd15d75f363'] = 'Varenavn';
 $_MODULE['<{productcomments}prestashop>productcomments_c4408d335012a56ff58937d78050efad'] = 'Acceptér';
 $_MODULE['<{productcomments}prestashop>productcomments_f2a6c498fb90ee345d997f888fce3b18'] = 'Slet';
 $_MODULE['<{productcomments}prestashop>productcomments_0e1a03b7b26ffce9312556aa4de91a00'] = 'Ingen anmeldelser at validere.';
@@ -40,5 +39,4 @@ $_MODULE['<{productcomments}prestashop>productcomments_5da618e8e4b89c66fe86e32cd
 $_MODULE['<{productcomments}prestashop>productcomments_08621d00a3a801b9159a11b8bbd69f89'] = 'Ingen kundeanmeldelser for tiden.';
 $_MODULE['<{productcomments}prestashop>productcomments_c3edcf2cedbd4ce230fd6d4ea8915718'] = 'Tilføj en anmeldelse';
 $_MODULE['<{productcomments}prestashop>productcomments_94966d90747b97d1f0f206c98a8b1ac3'] = 'Send';
-$_MODULE['<{productcomments}prestashop>productcomments_720fae7db6e6055d2b47890240bb3598'] = 'Kun registrerede kunder kan indsende en ny anmeldelse.';
 $_MODULE['<{productcomments}prestashop>tab_8413c683b4b27cc3f4dbd4c90329d8ba'] = 'Bemærkninger';

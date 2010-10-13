@@ -2,8 +2,6 @@
 
 global $_MODULE;
 $_MODULE = array();
-
-
 $_MODULE['<{blockviewed}prestashop>blockviewed_859e85774d372c6084d62d02324a1cc3'] = 'Sist viste boks';
 $_MODULE['<{blockviewed}prestashop>blockviewed_3b2eba71c233156a12f94f26b3b188ab'] = 'Legg til boks som viser sist viste produkter';
 $_MODULE['<{blockviewed}prestashop>blockviewed_7c19473789fd795286056bb0e2593382'] = 'Du må fylle inn \'produkter vist\' feltet';
@@ -16,3 +14,4 @@ $_MODULE['<{blockviewed}prestashop>blockviewed_8ce2b5b3ffa27a8a66220a49357a1582'
 $_MODULE['<{blockviewed}prestashop>blockviewed_c9cc8cce247e49bae79f15173ce97354'] = 'Lagre';
 $_MODULE['<{blockviewed}prestashop>blockviewed_43560641f91e63dc83682bc598892fa1'] = 'Viste produkter';
 $_MODULE['<{blockviewed}prestashop>blockviewed_49fa2426b7903b3d4c89e2c1874d9346'] = 'Mer om';
+$_MODULE['<{blockviewed}prestashop>blockviewed_72e1372ec1ced7355cc8f8fe029bce2b'] = 'Viste artikler';

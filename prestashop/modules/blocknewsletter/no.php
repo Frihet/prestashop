@@ -2,10 +2,9 @@
 
 global $_MODULE;
 $_MODULE = array();
-
-
 $_MODULE['<{blocknewsletter}prestashop>blocknewsletter_9e31b08a00c1ed653bcaa517dee84714'] = 'Boks for nyhetsbrev';
 $_MODULE['<{blocknewsletter}prestashop>blocknewsletter_e95e612048e381ba2b1f310e07d1b1a3'] = 'Legg til boks for abonnering av nyhetsbrev';
+$_MODULE['<{blocknewsletter}prestashop>blocknewsletter_179bbcbd2e1104cdf9dcecd91264a961'] = 'Er du helt sikker på at du vil slette all kontakter?';
 $_MODULE['<{blocknewsletter}prestashop>blocknewsletter_f0e9c1e3969d351170373b5cec2131c2'] = 'Rabattkode er ikke gyldig';
 $_MODULE['<{blocknewsletter}prestashop>blocknewsletter_3f9b87832191fff1d2136c2c2d699e76'] = 'Vellykket oppdatert';
 $_MODULE['<{blocknewsletter}prestashop>blocknewsletter_f4f70727dc34561dfde1a3c529b6205c'] = 'Innstillinger';
@@ -23,6 +22,7 @@ $_MODULE['<{blocknewsletter}prestashop>blocknewsletter_f7dc297e2a139ab4f5a771825
 $_MODULE['<{blocknewsletter}prestashop>blocknewsletter_8dc3b88902df97bb96930282e56ed381'] = 'Epost-adresse er allerede registrert';
 $_MODULE['<{blocknewsletter}prestashop>blocknewsletter_b7d9eb38dd2e375648ab08e224e22e43'] = 'Feil med påmelding';
 $_MODULE['<{blocknewsletter}prestashop>blocknewsletter_ed3cd7b3cc134222fa70602921ec27e1'] = 'Påmelding var vellykket';
+$_MODULE['<{blocknewsletter}prestashop>blocknewsletter_a95bc59685fb4546de3884a5fbe474ea'] = 'Nyhetsbrev gavekort';
 $_MODULE['<{blocknewsletter}prestashop>blocknewsletter_efabbb0eb84d3c8e487a72e879953673'] = 'Nyhetsbrev bekreftelse';
 $_MODULE['<{blocknewsletter}prestashop>blocknewsletter_ffb7e666a70151215b4c55c6268d7d72'] = 'Nyhetsbrev';
 $_MODULE['<{blocknewsletter}prestashop>blocknewsletter_416f61a2ce16586f8289d41117a2554e'] = 'din epost';

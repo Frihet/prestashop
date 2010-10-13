@@ -24,6 +24,5 @@ $_MODULE['<{gcheckout}prestashop>gcheckout_a82be0f551b8708bc08eb33cd9ded0cf'] = 
 $_MODULE['<{gcheckout}prestashop>gcheckout_c4ddab20febbb0e75bb211ac8cd4c541'] = 'For at benytte Google Checkout-modulet, skal du konfigurere din Google Checkout-konto (\"Sandkasse\" og \"Rigtig\"). Log ind på Google Checkout og gå til Indstillinger -> Integration. API\'et til callback-URL\'en er:';
 $_MODULE['<{gcheckout}prestashop>gcheckout_dba727a9adc372723baef4533a7fc9da'] = 'Callback-metoden skal sættes til';
 $_MODULE['<{gcheckout}prestashop>gcheckout_e2e882d58bbd478e17c5a542d5d6fcda'] = 'Ordrerne skal placeres i den samme valuta som din sælgerkonto. Kurve i andre valutaer vil blive konverteret, hvis kunden ønsker at betale med dette modul.';
-$_MODULE['<{gcheckout}prestashop>gcheckout_ba794350deb07c0c96fe73bd12239059'] = 'Indpakning';
 $_MODULE['<{gcheckout}prestashop>gcheckout_9f06b28a40790c4c4df5739bce3c1eb0'] = 'Forsendelsesomkostninger';
 $_MODULE['<{gcheckout}prestashop>gcheckout_8dd85f4218069de952672fe3180dacdb'] = 'Betal med Google Checkout';

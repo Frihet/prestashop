@@ -2,5 +2,42 @@
 
 global $_MODULE;
 $_MODULE = array();
-
-
+$_MODULE['<{bankwire}prestashop>bankwire_85ee0d0492a4e37e6c183520f5d59c40'] = 'Bankoverføring';
+$_MODULE['<{bankwire}prestashop>bankwire_e3812ea692bf9e274abec33c85a9d7d1'] = 'Godta betalinger via bankoverføring';
+$_MODULE['<{bankwire}prestashop>bankwire_69a1a3ad8dd5da6db3c4da838a0cf9c7'] = 'Er du sikker på at du vil slette dine detaljer';
+$_MODULE['<{bankwire}prestashop>bankwire_08a9ba34ea3198c967321921f2df8de8'] = 'Kontoinnehaver og detaljer må konfigureres for at denne modulen skal fungere korrekt';
+$_MODULE['<{bankwire}prestashop>bankwire_4402acab1c8f90dcf4a31dc96833bd86'] = 'Ingen valuta valgt for denne modulen';
+$_MODULE['<{bankwire}prestashop>bankwire_a0d6bf23b6b2da87d44c0deaa43836bd'] = 'kontodetaljer er nødvendig';
+$_MODULE['<{bankwire}prestashop>bankwire_ccab155f173ac76f79eb192703f86b18'] = 'Kontoinnehaver er nødvendig';
+$_MODULE['<{bankwire}prestashop>bankwire_444bcb3a3fcf8389296c49467f27e1d6'] = 'ok';
+$_MODULE['<{bankwire}prestashop>bankwire_c888438d14855d7d96a2724ee9c306bd'] = 'Instillinger oppdatert';
+$_MODULE['<{bankwire}prestashop>bankwire_fcec4d73cccd149a2d18695fd8785f88'] = 'Denne modulen lar deg motta betalinger via bankoverføring';
+$_MODULE['<{bankwire}prestashop>bankwire_b6af2d31afe71aedcceca73cc27fec29'] = 'Dersom kunden velger denne betalingsformen, vil ordrestatus endres til \"venter på betaling\"';
+$_MODULE['<{bankwire}prestashop>bankwire_2ded29a107e6fbc944cf4a3c3f157f2e'] = 'Derfor må du manuelt bekrefte ordren så snart overføringen er mottatt';
+$_MODULE['<{bankwire}prestashop>bankwire_5dd532f0a63d89c5af0243b74732f63c'] = 'Kontaktdetaljer';
+$_MODULE['<{bankwire}prestashop>bankwire_17e6954ea60d238857324fea1f10b8f3'] = 'Vennligst spesifiser kontodetaljer for bankoverføringen for kunder';
+$_MODULE['<{bankwire}prestashop>bankwire_857216dd1b374de9bf54068fcd78a8f3'] = 'Kontoinnehaver';
+$_MODULE['<{bankwire}prestashop>bankwire_3ec365dd533ddb7ef3d1c111186ce872'] = 'Detaljer';
+$_MODULE['<{bankwire}prestashop>bankwire_6b154cafbab54ba3a1e76a78c290c02a'] = 'Som filial, IBAN nummer, BIC, osv.';
+$_MODULE['<{bankwire}prestashop>bankwire_f9a1a1bb716cbae0503d351ea2af4b34'] = 'Bankens adresse';
+$_MODULE['<{bankwire}prestashop>bankwire_b17f3f4dcf653a5776792498a9b44d6a'] = 'Oppdater instillinger';
+$_MODULE['<{bankwire}prestashop>payment_5e1695822fc5af98f6b749ea3cbc9b4c'] = 'Betal med bankoverføring';
+$_MODULE['<{bankwire}prestashop>payment_eb1d50032721fa4c9d3518c417f91b9d'] = 'Betal med bankoverføring(ordreprosessen blir lengre)';
+$_MODULE['<{bankwire}prestashop>payment_execution_c5e8668ba5e211603955f0b5e913d83d'] = 'Betaling med bankoverføring';
+$_MODULE['<{bankwire}prestashop>payment_execution_f1d3b424cd68795ecaa552883759aceb'] = 'Ordreoversikt';
+$_MODULE['<{bankwire}prestashop>payment_execution_879f6b8877752685a966564d072f498f'] = 'Din handlevogn er tom';
+$_MODULE['<{bankwire}prestashop>payment_execution_e40a43534d7f4ece69347847d75401e0'] = 'Bankoverføring';
+$_MODULE['<{bankwire}prestashop>payment_execution_afda466128ee0594745d9f8152699b74'] = 'Du har valgt bankoverføring';
+$_MODULE['<{bankwire}prestashop>payment_execution_c884ed19483d45970c5bf23a681e2dd2'] = 'Her er en kort oversikt over din ordre';
+$_MODULE['<{bankwire}prestashop>payment_execution_e2867a925cba382f1436d1834bb52a1c'] = 'Totalt beløp for ordren er';
+$_MODULE['<{bankwire}prestashop>payment_execution_1f87346a16cf80c372065de3c54c86d9'] = '(inkl MVA.)';
+$_MODULE['<{bankwire}prestashop>payment_execution_e2c147f82d998eeeb147ae172a31a88e'] = 'We godtar flere valutaer via bankoverføring';
+$_MODULE['<{bankwire}prestashop>payment_execution_a7a08622ee5c8019b57354b99b7693b2'] = 'Velg en av disse:';
+$_MODULE['<{bankwire}prestashop>payment_execution_2c1ce705702e11fd5e2188c2353c0c86'] = 'We godtar disse valutaene via bankoverføring';
+$_MODULE['<{bankwire}prestashop>payment_execution_3dd021316505c0204989f984246c6ff1'] = 'Informasjon om bankoverføringen vil vises på neste side';
+$_MODULE['<{bankwire}prestashop>payment_execution_0881a11f7af33bc1b43e437391129d66'] = 'Vennligst bekreft din ordre ved å klikke \"Jeg bekrefter min ordre\"';
+$_MODULE['<{bankwire}prestashop>payment_execution_569fd05bdafa1712c4f6be5b153b8418'] = 'Andre betalingsmåter';
+$_MODULE['<{bankwire}prestashop>payment_execution_46b9e3665f187c739c55983f757ccda0'] = 'Jeg bekrefter min ordre';
+$_MODULE['<{bankwire}prestashop>payment_return_2e2117b7c81aa9ea6931641ea2c6499f'] = 'Din ordre den';
+$_MODULE['<{bankwire}prestashop>payment_return_75fbf512d744977d62599cc3f0ae2bb4'] = 'er ferdig.';
+$_MODULE['<{bankwire}prestashop>payment_return_619b26a60df1af3649d2e8920a7949cd'] = 'til denne banken';

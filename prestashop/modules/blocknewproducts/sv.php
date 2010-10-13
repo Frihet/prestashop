@@ -14,4 +14,4 @@ $_MODULE['<{blocknewproducts}prestashop>blocknewproducts_cc4bbebd6a8d2fb633a1dd8
 $_MODULE['<{blocknewproducts}prestashop>blocknewproducts_c9cc8cce247e49bae79f15173ce97354'] = 'Spara';
 $_MODULE['<{blocknewproducts}prestashop>blocknewproducts_9ff0635f5737513b1a6f559ac2bff745'] = 'Nyheter';
 $_MODULE['<{blocknewproducts}prestashop>blocknewproducts_60efcc704ef1456678f77eb9ee20847b'] = 'Alla nyheter';
-$_MODULE['<{blocknewproducts}prestashop>blocknewproducts_2bc4c1efe10bba9f03fac3c59b4d2ae9'] = 'Inga nya produkter för tillfället';
+$_MODULE['<{blocknewproducts}prestashop>blocknewproducts_d3cf1fa1c9e0e3187f9156ae8c121d06'] = 'Inga nya produkter för tillfället';

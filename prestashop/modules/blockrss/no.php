@@ -2,8 +2,6 @@
 
 global $_MODULE;
 $_MODULE = array();
-
-
 $_MODULE['<{blockrss}prestashop>blockrss_2516c13a12d3dbaf4efa88d9fce2e7da'] = 'Boks for RSS mating';
 $_MODULE['<{blockrss}prestashop>blockrss_be3b59f9eca89af2df840316a25e4b1d'] = 'Legg til boks med lenker til RSS mating';
 $_MODULE['<{blockrss}prestashop>blockrss_9680162225162baf2a085dfdc2814deb'] = 'RSS mating';

@@ -19,5 +19,13 @@ $_MODULE['<{newsletter}prestashop>newsletter_f8db2243069bf76570a084ea11d1c667'] 
 $_MODULE['<{newsletter}prestashop>newsletter_55caa4828d4e935c2ba9f1558f1c4edd'] = 'kunder hittade';
 $_MODULE['<{newsletter}prestashop>newsletter_48e3d5f66961b621c78f709afcd7d437'] = 'Ladda ner filen';
 $_MODULE['<{newsletter}prestashop>newsletter_d04e6ff103ecd59c2e24d89137fd772c'] = 'Fel: kan inte skriva till';
+$_MODULE['<{newsletter}prestashop>newsletter_8d550e9bf69bfc7a09be6eeb1622ae23'] = 'Det finns sorter för den här modulen';
+$_MODULE['<{newsletter}prestashop>newsletter_23e8f8a55548b88bfbdcd1f6ba26a010'] = 'Personer som prenumererar på Block Newsletter blocket i Front Office.';
+$_MODULE['<{newsletter}prestashop>newsletter_9f1f1e7064f60721a843c1006f4c0569'] = 'Det här blir en lista av e-postadresser för personer som kommer till din affär och inte är kunder men vill ha ditt nyhetsbrev. Använd \" exportera nyhetsbrevs prenumerationer\" nedan kommer att generera en .CSV fil baserad på Nyhetsbrevsprenumerationers data.';
+$_MODULE['<{newsletter}prestashop>newsletter_74ca54506cdbc82e3aa763ba91b8fa39'] = 'Kunder som har klickat i \"Ja\" för att få ett nyhetsbrev i deras kundprofil. ';
+$_MODULE['<{newsletter}prestashop>newsletter_3387c45f70871b981a14bbbdd73a5646'] = '\"Exportera kunder\" delen nedan filtrerar vilken kunder du vill skicka ett nyhetsbrev till.';
+$_MODULE['<{newsletter}prestashop>newsletter_b192ab83a19105bbf1e2d1fab548249a'] = 'Exportera Nyhetsbrevs prenumeranter';
+$_MODULE['<{newsletter}prestashop>newsletter_a60401e616125189d78605b2ddd7ff45'] = 'Generera en .CSV fil baserad på prenumeranters data för Nyhetsbrev';
 $_MODULE['<{newsletter}prestashop>newsletter_dbb392a2dc9b38722e69f6032faea73e'] = 'Exportera .CSV fil';
 $_MODULE['<{newsletter}prestashop>newsletter_4713ef5f2d6fc1e8f088c850e696a04b'] = 'Exportera kunder';
+$_MODULE['<{newsletter}prestashop>newsletter_507db84221164a388b0c9f3991061ae0'] = 'Generera en .CSV fil från kunders konto information';
