@@ -77,7 +77,7 @@ class BlockNewProducts extends Module
 			        if ($nr >= Configuration::get('NEW_PRODUCTS_NBR'))
 				        break;
 				$display = false;
-				foreach(Product::getIndexedCategories($newProduct->id) as $row) {
+				foreach(Product::getIndexedCategories($newProduct['id_product']) as $row) {
 					if (in_array($row['id_category'], $category_path_ids)) {
 						$display = true;
 						break;
