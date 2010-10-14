@@ -1,4 +1,4 @@
-<p id="loyalty" class="align_justify">
+<p id="loyalty" class="variablebox align_justify">
 	<img src="{$module_template_dir}loyalty.gif" alt="{l s='Loyalty program' mod='loyalty'}" />
 {if $points}
 	{l s='By buying this product you can collect up to' mod='loyalty'} {$points} {l s='reward points as a voucher of' mod='loyalty'} {convertPrice price=$voucher}.
