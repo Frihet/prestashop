@@ -357,38 +357,43 @@ var fieldRequired = '{l s='Please fill all required fields' js=1}';
 			<!-- product's features -->
 			<div id="idTab2" class="bullet">
 
-				{set var=$feature_categories value=array()}
-				{foreach from=$features item=feature}
-					{set var=$feature_category value=$feature.name|regex_replace:"+[^/]*$+":""|regex_replace:"+/$+":""}
-					{if $feature_category != ''}
-					    {set var=$feature_categories.$feature_category value=true}
-					{/if}
-				{/foreach}
+				{php}
+				    /* This is just wayyyy too hard to do in stupid smarty */
+				    /* First, parse descriptions and use their names as /-separated paths - build a tree */
+				    $features = $this->get_template_vars('features');
+				    $featuretree = array('items' => array(), 'children' => array());
+				    foreach ($features as $feature) {
+				        $path = explode('/', $feature['name']);
+					$name = $path[count($path)-1];
+					unset($path[count($path)-1]);
+					$treenode = &$featuretree;
+					foreach ($path as $item) {
+					    if (!isset($treenode['children'][$item])) {
+					        $treenode['children'][$item] = array('items' => array(), 'children' => array());
+					    }
+					    $treenode = &$treenode['children'][$item];
+					}
+					$treenode['items'][$name] = $feature['value'];
+				    }
+				    /* Now, print that tree */
+				    function print_featuretree($node, $level = 1) {
+				        if (count($node['items']) > 0) {
+				            foreach ($node['items'] as $name => $value) {
+					        echo "<tr><th>{$name}</th><td>{$value}</td></tr>";
+					    }
+					}
+					if (count($node['children']) > 0) {
+				            foreach ($node['children'] as $name => $child) {
+					        echo "<th colspan='2'><h{$level}>{$name}</h{$level}></th>";
+						print_featuretree($child, $level + 1);
+					    }
+					}
+				    }
+			            echo "<table>";
+				    print_featuretree($featuretree);
+			            echo "</table>";
+				{/php}
 
-				<ul id="features_info_tabs" class="idTabs idTabsShort">
-					<li><a id="features_tab_general" href="#features_general">{l s='General information'}</a></li>
-					{foreach from=$feature_categories key=feature_category item=blah}
-						<li><a id="features_tab_{$feature_category|escape:urlpathinfo}" href="#features_{$feature_category|escape:urlpathinfo}">{$feature_category}</a></li>
-					{/foreach}
-				</ul>
-				<div id="features_info_sheets" class="sheets align_justify">
-					<div id="features_general">
-						{foreach from=$features item=feature}
-							{if $feature.name|regex_replace:"+^[^/]*$+":"" == ""}
-								<li><span>{$feature.name|escape:'htmlall':'UTF-8'}</span> {$feature.value|escape:'htmlall':'UTF-8'}</li>
-							{/if}
-						{/foreach}
-					</div>
-					{foreach from=$feature_categories key=feature_category item=blah}
-						<div id="features_{$feature_category|escape:urlpathinfo}">
-							{foreach from=$features item=feature}
-								{if $feature.name|regex_replace:"+/[^/]*$+":"" == $feature_category}
-									<li><span>{$feature.name|regex_replace:"+^[^/]*/+":""|escape:'htmlall':'UTF-8'}</span> {$feature.value|escape:'htmlall':'UTF-8'}</li>
-								{/if}
-							{/foreach}
-						</div>
-					{/foreach}
-				</div>
 			</div>
 		{/if}
 		{if $attachments}
