@@ -68,6 +68,10 @@ class BlockNewProducts extends Module
 		foreach ($category_path as $cat)
 			$category_path_ids[] = $cat['id_category'];
 
+		$smarty->caching = 1;
+		$cache_id = $category_path_ids[count($category_path_ids) - 1] . '-' . $params['cookie']->id_lang . '-' . $params['cookie']->id_currency;
+		if (!$smarty->is_cached($this->find_template(__FILE__, 'blocknewproducts.tpl'), $cache_id)) {
+
 		$currency = new Currency(intval($params['cookie']->id_currency));
 		$newProducts = Product::getNewProducts(intval($params['cookie']->id_lang), 0, 5*Configuration::get('NEW_PRODUCTS_NBR'));
 		$new_products = array();
@@ -92,7 +96,10 @@ class BlockNewProducts extends Module
 		$smarty->assign(array(
 			'new_products' => $new_products,
 			'mediumSize' => Image::getSize('medium')));
-		return $this->display(__FILE__, 'blocknewproducts.tpl');
+		
+		} // End if not cached
+
+		return $this->display(__FILE__, 'blocknewproducts.tpl', $cache_id);
 	}
 	
 	function hookLeftColumn($params)

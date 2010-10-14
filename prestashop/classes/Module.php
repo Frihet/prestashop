@@ -609,24 +609,37 @@ abstract class Module
 		return (array_key_exists(intval($id_hook).'-'.intval($this->id), self::$exceptionsCache) ? self::$exceptionsCache[intval($id_hook).'-'.intval($this->id)] : array());
 	}
 
-	public static function display($file, $template)
+	public static function find_template($file, $template)
 	{
 		global $smarty;
-		$previousTemplate = $smarty->currentTemplate;
-		$smarty->currentTemplate = substr(basename($template), 0, -4);
+
 		$smarty->assign('module_dir', __PS_BASE_URI__.'modules/'.basename($file, '.php').'/');
 		if (file_exists(_PS_THEME_DIR_.'modules/'.basename($file, '.php').'/'.$template))
 		{
 			$smarty->assign('module_template_dir', _THEME_DIR_.'modules/'.basename($file, '.php').'/');
-			$result = $smarty->fetch(_PS_THEME_DIR_.'modules/'.basename($file, '.php').'/'.$template);
+			return _PS_THEME_DIR_.'modules/'.basename($file, '.php').'/'.$template;
 		}
 		elseif (file_exists(dirname($file).'/'.$template))
 		{
 			$smarty->assign('module_template_dir', __PS_BASE_URI__.'modules/'.basename($file, '.php').'/');
-			$result = $smarty->fetch(dirname($file).'/'.$template);
+			return dirname($file).'/'.$template;
 		}
 		else
+			return null;
+	}
+
+	public static function display($file, $template, $cache_id = null)
+	{
+		global $smarty;
+		$previousTemplate = $smarty->currentTemplate;
+		$smarty->currentTemplate = substr(basename($template), 0, -4);
+
+		$template = Module::find_template($file, $template);	
+		if ($template != null)
+			$result = $smarty->fetch($template, $cache_id);
+		else
 			$result = Tools::displayError('No template found');
+
 		$smarty->currentTemplate = $previousTemplate;
 		return $result;
 	}
