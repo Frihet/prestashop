@@ -92,6 +92,8 @@ class AdminCatalog extends AdminTab
 	{
 		global $currentIndex;
 
+		$currentIndex .= "&id_category={$_GET['id_category']}";
+
 		if (((Tools::isSubmit('submitAddcategory') OR Tools::isSubmit('submitAddcategoryAndStay')) AND sizeof($this->adminCategories->_errors)) OR isset($_GET['updatecategory']) OR isset($_GET['addcategory']))
 		{
 			$this->adminCategories->displayForm($this->token);
