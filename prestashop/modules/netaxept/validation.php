@@ -97,7 +97,7 @@
 			if ($authorized && (stristr($result->AuthResult->ResponseCode, "OK") || $force)) {
 				$total = $cart->getOrderTotalLC(true, 3);
 				$mail_vars = array();
-				$netaxept->validateOrder($cart->id, _PS_OS_PAYMENT_, $total, $netaxept->displayName, NULL, $mail_vars, $currency->id);
+				$netaxept->validateOrder($cart->id, _PS_OS_PAYMENT_, $total, $netaxept->displayName, NULL, $mail_vars, $currency->id, false, $transaction_id);
 				$confirmed = true;
 			} else {
 				echo $netaxept->l($err_msg);

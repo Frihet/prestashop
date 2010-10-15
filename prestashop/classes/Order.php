@@ -95,6 +95,8 @@ class		Order extends ObjectModel
 	/** @var string Object last modification date */
 	public 		$date_upd;
 
+	public 		$payment_reference;
+
 	protected $tables = array ('orders');
 
 	protected	$fieldsRequired = array('id_address_delivery', 'id_address_invoice', 'id_cart', 'id_currency', 'id_lang', 'id_customer', 'id_carrier', 'payment', 'total_paid', 'total_paid_real', 'total_products');
@@ -156,6 +158,7 @@ class		Order extends ObjectModel
 		$fields['valid'] = intval($this->valid) ? 1 : 0;
 		$fields['date_add'] = pSQL($this->date_add);
 		$fields['date_upd'] = pSQL($this->date_upd);
+		$fields['payment_reference'] = pSQL($this->payment_reference);
 
 		return $fields;
 	}

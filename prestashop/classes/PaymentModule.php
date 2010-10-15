@@ -76,7 +76,7 @@ abstract class PaymentModule extends Module
 	* @param string $message Message to attach to order
 	*/
 
-	function validateOrder($id_cart, $id_order_state, $amountPaid, $paymentMethod = 'Unknown', $message = NULL, $extraVars = array(), $currency_special = NULL, $dont_touch_amount = false)
+	function validateOrder($id_cart, $id_order_state, $amountPaid, $paymentMethod = 'Unknown', $message = NULL, $extraVars = array(), $currency_special = NULL, $dont_touch_amount = false, $payment_reference = null)
 	{
 		$cart = new Cart(intval($id_cart));
 
@@ -118,6 +118,8 @@ abstract class PaymentModule extends Module
 			// Amount paid by customer is not the right one -> Status = payment error
 			if ($order->total_paid != $order->total_paid_real)
 				$id_order_state = _PS_OS_ERROR_;
+
+			 $order->payment_reference = $payment_reference;
 
 			// Creating order
 			if ($cart->OrderExists() === 0)
