@@ -1,2 +1,6 @@
 tools/smarty/compile/*.php
 img/**
+dbdumps/*
+download/*
+translations/export/*
+tools/smarty/cache/*
