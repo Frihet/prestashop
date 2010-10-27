@@ -10,7 +10,7 @@
   {foreach from=$shipments item='shipment'}
    <tr>
     <td>{$shipment->date_add}</td>
-    <td>{shiptrack carrier=$shipment->shiptrackcode tracking_number=$shipment->tracking_number linktext=$shipment->tracking_number}</td>
+    <td><a href="{$shipment->url}">{$shipment->tracking_number}</a></td>
    </tr>
   {/foreach}
  </tbody>

@@ -65,10 +65,10 @@ class		OrderShipment extends ObjectModel
 		$order = new Order($id_order);
 
 
-		$sql = "select shiptrackcode from PREFIX_carrier where id_carrier = $order->id_carrier";
+		$sql = "select url from PREFIX_carrier where id_carrier = $order->id_carrier";
 		$sql = str_replace('PREFIX_', _DB_PREFIX_, $sql);
 		$row = Db::getInstance()->getRow($sql);
-		$shiptrackcode = $row['shiptrackcode'];
+		$url = $row['url'];
 
 		$sql = "select id_order_shipment from PREFIX_order_shipment where id_order = {$id_order} order by date_add desc";
 		$sql = str_replace('PREFIX_', _DB_PREFIX_, $sql);
@@ -76,7 +76,7 @@ class		OrderShipment extends ObjectModel
 		$results = array();
 		foreach ($rows as $row) {
 			$shipment = new self($row['id_order_shipment']);
-			$shipment->shiptrackcode = $shiptrackcode;
+			$shipment->url = str_replace('@', $shipment->tracking_number, $url);
 			$results[] = $shipment;
 		}
 		return $results;

@@ -1,11 +1,5 @@
 <?php
 
-function shiptrack($params) {
-	 require_once(dirname(__FILE__) . "/shiptrack/shiptrack.inc");
-	 $link = new ShipTrack();
-    	 return $link->ReturnLink($params['carrier'], $params['tracking_number'], $params['linktext'], $params['shipping_type'], $params['openwindow'], $params['extracode']);
-}
-
 class ShipmentTracking extends Module
 {
 	function __construct()
@@ -31,13 +25,6 @@ class ShipmentTracking extends Module
 			foreach ($sql as $query)
 				if (trim($query) && !Db::getInstance()->Execute(trim($query)))
 					return (false);
-
-                        $sql = "ALTER TABLE `PREFIX_carrier` ADD COLUMN (`shiptrackcode` varchar(32))";
-                        $sql = str_replace('PREFIX_', _DB_PREFIX_, $sql);
-                        try {
-                                Db::getInstance()->Execute(trim($sql));
-                        } catch (Exception $e) {}
-
 			if
 			(
 				parent::install() == false
@@ -52,8 +39,6 @@ class ShipmentTracking extends Module
 		global $order, $smarty;
 
 		require_once(dirname(__FILE__) . "/OrderShipment.php");
-
-		$smarty->register_function("shiptrack", "shiptrack");
 
 		$smarty->assign("order", $order);
 		$smarty->assign("shipments", OrderShipment::get_from_order($order->id));
