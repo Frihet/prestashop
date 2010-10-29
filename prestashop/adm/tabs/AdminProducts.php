@@ -1609,6 +1609,9 @@ class AdminProducts extends AdminTab
     	tb_pathToImage = '../img/loadingAnimation.gif';
     //]]>
     </script>
+        <link rel="stylesheet" type="text/css" href="<?php echo _PS_CSS_DIR_ ?>jquery.autocomplete.css" />
+	<script type="text/javascript" src="<?php echo _PS_JS_DIR_ ?>jquery/jquery.autocomplete.js"></script>
+
 	<script type="text/javascript" src="<?php echo _PS_JS_DIR_ ?>jquery/thickbox-modified.js"></script>
 	<script type="text/javascript" src="<?php echo _PS_JS_DIR_ ?>jquery/ajaxfileupload.js"></script>
 	<script type="text/javascript" src="<?php echo _PS_JS_DIR_ ?>date.js"></script>
@@ -2086,52 +2089,20 @@ class AdminProducts extends AdminTab
 						echo $accessory['name'].'¤';
 
 					echo '" />
+							<input type="text" value="" id="selectAccessories" />
 							<script type="text/javascript">
-								var formProduct;
-								var accessories = new Array();
-								
-								function fillAccessories()
-								{
-									$.getJSON("'.dirname($currentIndex).'/ajax.php",{ajaxProductAccessories:1,id_lang:'.intval($cookie->id_lang).',id_product:'.($obj->id ? intval($obj->id) : 0).'},
-										function(j)
-										{
-											for (var i = 0; i < j.length; i++)
-												accessories[i] = new Array(j[i].value, j[i].text);
-												
-											formProduct = document.layers ? document.forms.product : document.product;
-											formProduct.selectAccessories.length = accessories.length + 1;
-											for (i = 0, j = 1; i < accessories.length; i++)
-											{
-												if (formProduct.filter.value)
-													if (accessories[i][1].toLowerCase().indexOf(formProduct.filter.value.toLowerCase()) == -1)
-														continue;
-												formProduct.selectAccessories.options[j].value = accessories[i][0];
-												formProduct.selectAccessories.options[j].text = accessories[i][1];
-												j++;
-											}
-											if (j == 1)
-											{
-												formProduct.selectAccessories.length = 2;
-												formProduct.selectAccessories.options[1].value = -1;
-												formProduct.selectAccessories.options[1].text = \''.$this->l('No match found').'\';
-												formProduct.selectAccessories.options.selectedIndex = 1;
-											}
-											else
-											{
-												formProduct.selectAccessories.length = j;
-												formProduct.selectAccessories.options.selectedIndex = (formProduct.filter.value == \'\' ? 0 : 1);
-											}
-										}
-									);
-								}
+								$(window).load(function () {
+								        $("#selectAccessories").autocomplete("ajax_products_list.php", {
+									        minChars: 1,
+										autoFill: true,
+										max:20,
+										matchContains: true,
+										mustMatch:true,
+										scroll:false
+									}).result(addAccessory);
+								});
 							</script>
-							<select id="selectAccessories" name="selectAccessories" style="width: 380px;">
-								<option value="0" selected="selected">-- '.$this->l('Choose').' --</option>
-							</select>
-							<script type="text/javascript">
-								fillAccessories();
-							</script>
-							<span onclick="addAccessory();" style="cursor: pointer;"><img src="../img/admin/add.gif" alt="'.$this->l('Add an accessory').'" title="'.$this->l('Add an accessory').'" /></span>
+							<!-- span onclick="addAccessory();" style="cursor: pointer;"><img src="../img/admin/add.gif" alt="'.$this->l('Add an accessory').'" title="'.$this->l('Add an accessory').'" /></span -->
 							<br />'.$this->l('Filter:').' <input type="text" size="25" name="filter" onkeyup="fillAccessories();" class="space" />
 						</td>
 					</tr>
