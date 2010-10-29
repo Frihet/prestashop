@@ -30,6 +30,40 @@ class OrderCarrierTollpost extends Module
 		return true;
 	}
 
+
+
+	public function getContent()
+	{
+		$output = '<h2>'.$this->displayName.'</h2>';
+		if (Tools::isSubmit('submitOrderCarrierTollpost'))
+		{
+			Configuration::updateValue('ORDER_CARRIER_TOLLPOST_USERNAME', Tools::getValue('username'));
+			Configuration::updateValue('ORDER_CARRIER_TOLLPOST_PASSWORD', Tools::getValue('password'));			
+		}
+		return $output.$this->displayForm();
+	}
+
+	public function displayForm()
+	{
+		return '
+		<form action="'.$_SERVER['REQUEST_URI'].'" method="post">
+			<fieldset>
+				<legend>'.$this->l('Settings').'</legend>
+				<label>'.$this->l('Username').'</label>
+				<div class="margin-form">
+					<input type="text" name="username" value="'.Configuration::get('ORDER_CARRIER_TOLLPOST_USERNAME').'" />
+					<p class="clear">'.$this->l('Username for access to Tollposts API').'</p>
+				</div>
+				<label>'.$this->l('Password').'</label>
+				<div class="margin-form">
+					<input type="text" name="password" value="'.Configuration::get('ORDER_CARRIER_TOLLPOST_PASSWORD').'" />
+					<p class="clear">'.$this->l('Password for access to Tollposts API').'</p>
+				</div>
+				<center><input type="submit" name="submitOrderCarrierTollpost" value="'.$this->l('Save').'" class="button" /></center>
+			</fieldset>
+		</form>';
+	}
+
 	public function hookExtraCarrierDetailsProcess($params)
         {
 		global $cart, $smarty, $errors, $isVirtualCart, $orderTotal;
@@ -68,7 +102,9 @@ class OrderCarrierTollpost extends Module
 		$zip = $delivery->postcode;
 
 		$servicepartnerXml = new DOMDocument();
-		$servicepartnerXml->load("http://www.tollpost.no/rest.php?Object=servicepartnerproximity&Version=1&Action=get&username=XXXX@YYYY.no&password=SECRET&DAddressCombined={$street}&DZipCode={$zip}");
+		$username = Configuration::get('ORDER_CARRIER_TOLLPOST_USERNAME');
+		$password = Configuration::get('ORDER_CARRIER_TOLLPOST_PASSWORD');
+		$servicepartnerXml->load("http://www.tollpost.no/rest.php?Object=servicepartnerproximity&Version=1&Action=get&username={$username}&password={$password}&DAddressCombined={$street}&DZipCode={$zip}");
 
 		$xpath = new DOMXPath($servicepartnerXml);
 		$servicepartners = $xpath->query('//TollpostServicepartner');
