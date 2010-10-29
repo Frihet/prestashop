@@ -80,6 +80,9 @@
 						{/if}
 					</td>
 				</tr>
+				{if $carrier.extra}
+					<tr><td></td><td colspan="3">{$carrier.extra}</td></tr>
+				{/if}
 			{/foreach}
 			{$HOOK_EXTRACARRIER}
 			</tbody>

@@ -15,6 +15,25 @@ class OrderCarrier extends OrderPage
 		$this->description = $this->l('Lets the user select carrier');
 	}
 
+	function install()
+	{
+		if (Hook::get('extraCarrierDetails') == false) {
+				$hook = new Hook();
+				$hook->name = 'extraCarrierDetails';
+				$hook->title = 'Extra carrier dietails';
+				$hook->description = 'Extra carrier dietails display part';
+				$hook->add();
+		}
+		if (Hook::get('extraCarrierDetailsProcess') == false) {
+				$hook = new Hook();
+				$hook->name = 'extraCarrierDetailsProcess';
+				$hook->title = 'Extra carrier dietails';
+				$hook->description = 'Extra carrier dietails processing part';
+				$hook->add();
+		}
+		return parent::install();
+	}
+
 	/* Validate carrier information */
 	function validateOrderStep($params)
 	{
@@ -51,6 +70,8 @@ class OrderCarrier extends OrderPage
 			$cart->id_carrier = intval($_POST['id_carrier']);
 		elseif (!$isVirtualCart)
 			$errors[] = Tools::displayError('invalid carrier or no carrier selected');
+
+		Module::hookExec('extraCarrierDetailsProcess', array('carrier' => new Carrier($cart->id_carrier)));
 
 		$cart->update();
 	}
@@ -97,6 +118,7 @@ class OrderCarrier extends OrderPage
 			$row['price'] = $cart->getOrderShippingCostLC(intval($row['id_carrier']));
 			$row['price_tax_exc'] = $cart->getOrderShippingCostLC(intval($row['id_carrier']), false);
 			$row['img'] = file_exists(_PS_SHIP_IMG_DIR_.intval($row['id_carrier']).'.jpg') ? _THEME_SHIP_DIR_.intval($row['id_carrier']).'.jpg' : '';
+			$row['extra'] = Module::hookExec('extraCarrierDetails', array("row" => $row, "carrier" => $carrier));
 			$resultsArray[] = $row;
 		}
 
