@@ -747,6 +747,7 @@ CREATE TABLE `PREFIX_orders` (
   `id_address_invoice` int(10) unsigned NOT NULL,
   `secure_key` varchar(32) NOT NULL default '-1',
   `payment` varchar(255) NOT NULL,
+  `payment_reference` varchar(255),
   `module` varchar(255) default NULL,
   `recyclable` tinyint(1) unsigned NOT NULL default '0',
   `gift` tinyint(1) unsigned NOT NULL default '0',
