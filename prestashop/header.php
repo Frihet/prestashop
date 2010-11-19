@@ -30,6 +30,7 @@ if (isset($maintenance) AND (!isset($_SERVER['REMOTE_ADDR']) OR $_SERVER['REMOTE
 	exit;
 }
 
+$smarty->caching = 0;
 $smarty->display(_PS_THEME_DIR_.'header.tpl');
 
 ?>
