@@ -82,7 +82,7 @@ class OrderCarrierTollpost extends Module
         {
 		global $cart, $smarty, $errors, $isVirtualCart, $orderTotal;
 
-		if ($params['carrier']->name != 'Tollpost')
+		if ($params['carrier']->name != 'MyPack')
 		        return '';
 
 
