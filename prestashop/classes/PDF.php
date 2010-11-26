@@ -816,7 +816,7 @@ class PDF extends PDF_PageGroup
 		return (Tools::iconv('utf-8', self::encoding(), $str));
 	}
 
-	static private function encoding()
+	static public function encoding()
 	{
 		return (isset(self::$_pdfparams[self::$_iso]) AND is_array(self::$_pdfparams[self::$_iso]) AND self::$_pdfparams[self::$_iso]['encoding']) ? self::$_pdfparams[self::$_iso]['encoding'] : 'iso-8859-1';
 	}
