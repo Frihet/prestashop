@@ -1,4 +1,4 @@
-Please select place of pickup:
+{l s='Please select place of pickup:' mod='ordercarriertollpost'}
 
 <select name="carrier_tollpost_pickup">
   {foreach from=$pickups item=title key=value}

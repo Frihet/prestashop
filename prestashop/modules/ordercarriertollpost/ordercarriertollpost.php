@@ -96,32 +96,37 @@ class OrderCarrierTollpost extends Module
 		$cart_details = $cart->getSummaryDetails();
 		$delivery = $cart_details['delivery'];
 
-		$street = $delivery->address1;
-		if ($delivery->address2 != "")
-                  $street .= "," . $delivery->address2;
-		$zip = $delivery->postcode;
 
-		$servicepartnerXml = new DOMDocument();
-		$username = Configuration::get('ORDER_CARRIER_TOLLPOST_USERNAME');
-		$password = Configuration::get('ORDER_CARRIER_TOLLPOST_PASSWORD');
-		$servicepartnerXml->load("http://www.tollpost.no/rest.php?Object=servicepartnerproximity&Version=1&Action=get&username={$username}&password={$password}&DAddressCombined={$street}&DZipCode={$zip}");
+		if ($delivery->country == 'Norway') {
+		    $street = $delivery->address1;
+		    if ($delivery->address2 != "")
+		      $street .= "," . $delivery->address2;
+		    $zip = $delivery->postcode;
 
-		$xpath = new DOMXPath($servicepartnerXml);
-		$servicepartners = $xpath->query('//TollpostServicepartner');
+		    $servicepartnerXml = new DOMDocument();
+		    $username = Configuration::get('ORDER_CARRIER_TOLLPOST_USERNAME');
+		    $password = Configuration::get('ORDER_CARRIER_TOLLPOST_PASSWORD');
+		    $servicepartnerXml->load("http://www.tollpost.no/rest.php?Object=servicepartnerproximity&Version=1&Action=get&username={$username}&password={$password}&DAddressCombined={$street}&DZipCode={$zip}");
 
-		$pickups = array();
-		foreach ($servicepartners as $servicepartner) {
-		    $partner_id = $xpath->query('ServicepartnerID', $servicepartner); $partner_id = $partner_id->item(0)->textContent;
-		    $name = $xpath->query('CompanyName1', $servicepartner); $name = $name->item(0)->textContent;
-		    $street = $xpath->query('StreetAddress1', $servicepartner); $street = $street->item(0)->textContent;
-		    $zip = $xpath->query('PostalCode', $servicepartner); $zip = $zip->item(0)->textContent;
-		    $city = $xpath->query('City', $servicepartner); $city = $city->item(0)->textContent;
+		    $xpath = new DOMXPath($servicepartnerXml);
+		    $servicepartners = $xpath->query('//TollpostServicepartner');
 
-		    $pickups[$partner_id] = "$name ($street, $zip $city)";
-	        }
+		    $pickups = array();
+		    foreach ($servicepartners as $servicepartner) {
+			$partner_id = $xpath->query('ServicepartnerID', $servicepartner); $partner_id = $partner_id->item(0)->textContent;
+			$name = $xpath->query('CompanyName1', $servicepartner); $name = $name->item(0)->textContent;
+			$street = $xpath->query('StreetAddress1', $servicepartner); $street = $street->item(0)->textContent;
+			$zip = $xpath->query('PostalCode', $servicepartner); $zip = $zip->item(0)->textContent;
+			$city = $xpath->query('City', $servicepartner); $city = $city->item(0)->textContent;
+
+			$pickups[$partner_id] = "$name ($street, $zip $city)";
+		    }
+		} else {
+		    $pickups = array('auto' => $this->l('Your closest Tollpost service center'));
+		}
 
 		$smarty->assign(array('pickups' => $pickups));
-		return $this->display(__FILE__, 'selectpickup.tpl');
+		return $this->display(__FILE__, 'ordercarriertollpost.tpl');
 		
         }
 }
