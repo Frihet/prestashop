@@ -25,12 +25,12 @@ class OrderProductVendor
 			$id_vendor = 0;
 			if ($row)
 				$id_vendor = $row['id_vendor'];
-			$product_lines[$index]['vendors'] = self::getVendorsForPostcode($deliveryAddress->postcode, array($product_line['id_product']), $id_vendor);
+			$product_lines[$index]['vendors'] = self::getVendorsForPostcode($deliveryAddress->id_country, $deliveryAddress->postcode, array($product_line['id_product']), $id_vendor);
                 }
 		return $product_lines;
 	}
 
-	public function getVendorsForPostcode($postcode, $id_products, $id_vendor_default) {
+	public function getVendorsForPostcode($id_country, $postcode, $id_products, $id_vendor_default) {
 		// Okay, here we go: Select all vendors
 		// supporting the product that services an
 		// area covering the delivery postcode. This
@@ -54,10 +54,12 @@ class OrderProductVendor
 			where
 			 vendor_support.id_product in (' . $products_sql . ')
 			 and postcode_customer.name = "' . pSql($postcode) . '"
+			 and postcode_customer.id_country = "' . pSql($id_country) . '"
 
 			 and vendor_support.id_vendor = vendor.id_vendor
 			 and vendor.id_postcode = postcode_vendor.id_postcode
 
+			 and postcode_vendor.id_country = "' . pSql($id_country) . '"
 			 and sqrt(  power(abs(postcode_vendor.latitude - postcode_customer.latitude),2)
 				  + power(abs(postcode_vendor.longitude - postcode_customer.longitude),2)) <= vendor.distance
                         order by
