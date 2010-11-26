@@ -81,6 +81,9 @@ class BlockViewed extends Module
 			foreach ($productsViewed AS $productViewed)
 			{
 			        $obj = new Product(intval($productViewed), false, intval($params['cookie']->id_lang));
+				$currency = new Currency(intval($params['cookie']->id_currency));
+				$obj->price = Tools::displayPrice(Product::getPriceStaticLC(intval($productViewed)), $currency);
+
 				if (!Validate::isLoadedObject($obj) OR !$obj->active)
 					continue;
 				else
