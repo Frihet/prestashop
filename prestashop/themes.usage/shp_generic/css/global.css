@@ -2767,6 +2767,7 @@ tbody.datepickerDays td.datepickerNotInMonth a {
 table.product_list td {
     padding-left: 2px;
     padding-right: 2px;
+    whitespace: nowrap;
 }
 table.product_list td.product_desc {
     width: 100%;

@@ -4,25 +4,25 @@
 -->
 </script>
 
-{capture name=path}{l s='Your shopping cart'}{/capture}
+{capture name=path}{l s='Your shopping cart' mod='ordervendor'}{/capture}
 {include file=$tpl_dir./breadcrumb.tpl}
 
-<h2>{l s='Choose vendors for each product'}</h2>
+<h2>{l s='Choose vendors for each product' mod='ordervendor'}</h2>
 
 {include file=$tpl_dir./module-order-steps.tpl}
 
 {include file=$tpl_dir./errors.tpl}
 
 <form action="{$base_dir_ssl}order.php" method="post">
-	<p>{l s='Please select a vendor within your area for rapair and support purposes for each product. Note that not all vendors do not support all products.'}</p>
+	<p>{l s='Please select a vendor within your area for rapair and support purposes for each product. Note that not all vendors do not support all products.' mod='ordervendor'}</p>
 	<div id="order-detail-content" class="table_block">
 		<table id="cart_summary" class="std">
 			<thead>
 				<tr>
-					<th class="cart_product first_item">{l s='Product'}</th>
-					<th class="cart_description item">{l s='Description'}</th>
-					<th class="cart_ref item">{l s='Ref.'}</th>
-					<th class="cart_vendor last_item">{l s='Vendor'}</th>
+					<th class="cart_product first_item">{l s='Product' mod='ordervendor'}</th>
+					<th class="cart_description item">{l s='Description' mod='ordervendor'}</th>
+					<th class="cart_ref item">{l s='Ref.' mod='ordervendor'}</th>
+					<th class="cart_vendor last_item">{l s='Vendor' mod='ordervendor'}</th>
 				</tr>
 			</thead>
 			<tbody>
@@ -39,7 +39,7 @@
                                         <td>
 						<select name="vendor{$product.id_product}">
 							{foreach from=$product.vendors item=vendor name=vendorLoop}
-								<option value="{$vendor.id_vendor}">{$vendor.title} (postcode {$vendor.postcode})</option>
+								<option value="{$vendor.id_vendor}">{$vendor.title} ({l s='postcode' mod='ordervendor'} {$vendor.postcode})</option>
 							{/foreach}
 						</select>
                                         </td>
@@ -52,7 +52,7 @@
 	<p class="cart_navigation submit">
 		<input type="hidden" class="hidden" name="step" value="{$order_step}" />
 		<input type="hidden" name="back" value="{$back}" />
-		<a href="{$base_dir_ssl}order.php?step={$order_step-1}{if $back}&back={$back}{/if}" title="{l s='Previous'}" class="button">&laquo; {l s='Previous'}</a>
-		<input type="submit" name="process{$order_step}" value="{l s='Next'} &raquo;" class="exclusive" />
+		<a href="{$base_dir_ssl}order.php?step={$order_step-1}{if $back}&back={$back}{/if}" title="{l s='Previous' mod='ordervendor'}" class="button">&laquo; {l s='Previous' mod='ordervendor'}</a>
+		<input type="submit" name="process{$order_step}" value="{l s='Next' mod='ordervendor'} &raquo;" class="exclusive" />
 	</p>
 </form>

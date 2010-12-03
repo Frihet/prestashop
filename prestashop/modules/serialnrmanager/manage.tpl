@@ -1,23 +1,25 @@
-{capture name=path}<a href="{$base_dir_ssl}my-account.php">{l s='My account'}</a><span class="navigation-pipe">{$navigationPipe}</span>{l s='Manage serial nr:s'}{/capture}
+{capture name=path}<a href="{$base_dir_ssl}my-account.php">{l s='My account' mod='serialnrmanager'}</a><span class="navigation-pipe">{$navigationPipe}</span>{l s='Manage serial nr:s' mod='serialnrmanager'}{/capture}
 {include file=$tpl_dir./breadcrumb.tpl}
 
-<h2>{l s='Manage serial nr:s'}</h2>
+{variablebox class="universal"}
+<h2>{l s='Manage serial nr:s' mod='serialnrmanager'}</h2>
+{variablebox_content}
 
 <form method="get">
- <label for="serial">{l s='Serial number'}</label>
+ <label for="serial">{l s='Serial number' mod='serialnrmanager'}</label>
  <input type="text" name="serial" id="serial" value="{$serial}"></input>
- <input type="submit" class="button_small" value="{l s='Search'}"></input>
+ <input type="submit" class="button_small" value="{l s='Search' mod='serialnrmanager'}"></input>
 </form>
 
 {if $serial != ''}
  <table class="std">
   <thead>
    <tr>
-    <th class="first_item">{l s='Serial number'}</th>
-    <th class="item">{l s='Model'}</th>
-    <th class="item">{l s='Date of sale'}</th>
-    <th class="item">{l s='Vendor'}</th>
-    <th class="item">{l s='Current owner'}</th>
+    <th class="first_item">{l s='Serial number' mod='serialnrmanager'}</th>
+    <th class="item">{l s='Model' mod='serialnrmanager'}</th>
+    <th class="item">{l s='Date of sale' mod='serialnrmanager'}</th>
+    <th class="item">{l s='Vendor' mod='serialnrmanager'}</th>
+    <th class="item">{l s='Current owner' mod='serialnrmanager'}</th>
     <th class="last_item"></th>
    </tr>
   </thead>
@@ -39,6 +41,7 @@
 {/if}
 
 <ul class="footer_links">
-	<li><a href="{$base_dir_ssl}my-account.php"><img src="{$img_dir}icon/my-account.gif" alt="" class="icon" /></a><a href="{$base_dir_ssl}my-account.php">{l s='Back to Your Account'}</a></li>
-	<li><a href="{$base_dir}"><img src="{$img_dir}icon/home.gif" alt="" class="icon" /></a><a href="{$base_dir}">{l s='Home'}</a></li>
+	<li><a href="{$base_dir_ssl}my-account.php"><img src="{$img_dir}icon/my-account.gif" alt="" class="icon" /></a><a href="{$base_dir_ssl}my-account.php">{l s='Back to Your Account' mod='serialnrmanager'}</a></li>
+	<li><a href="{$base_dir}"><img src="{$img_dir}icon/home.gif" alt="" class="icon" /></a><a href="{$base_dir}">{l s='Home' mod='serialnrmanager'}</a></li>
 </ul>
+{/variablebox}
