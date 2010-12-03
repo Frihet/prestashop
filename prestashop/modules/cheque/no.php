@@ -36,7 +36,7 @@ $_MODULE['<{cheque}prestashop>payment_execution_504be670f962fa7630863857a0085632
 $_MODULE['<{cheque}prestashop>payment_execution_0881a11f7af33bc1b43e437391129d66'] = 'Vennligst bekreft ordre ved å trykke \"Jeg bekrefter orderen\"';
 $_MODULE['<{cheque}prestashop>payment_execution_569fd05bdafa1712c4f6be5b153b8418'] = 'Andre betalingsmuligheter';
 $_MODULE['<{cheque}prestashop>payment_execution_46b9e3665f187c739c55983f757ccda0'] = 'Jeg bekrefter orderen';
-$_MODULE['<{cheque}prestashop>payment_return_2e2117b7c81aa9ea6931641ea2c6499f'] = 'Din ordre den';
+$_MODULE['<{cheque}prestashop>payment_return_2e2117b7c81aa9ea6931641ea2c6499f'] = 'Din ordre hos';
 $_MODULE['<{cheque}prestashop>payment_return_75fbf512d744977d62599cc3f0ae2bb4'] = 'er ferdig.';
 $_MODULE['<{cheque}prestashop>payment_return_e4ee6e0eac588fe2611cc6fd195828af'] = 'Vennligst send oss en sjekk med:';
 $_MODULE['<{cheque}prestashop>payment_return_a35abd2d31d9e1da82599bc67e166506'] = 'beløpet';

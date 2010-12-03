@@ -4,7 +4,7 @@ global $_MODULE;
 $_MODULE = array();
 $_MODULE['<{cashondelivery}prestashop>cashondelivery_1f9497d3e8bac9b50151416f04119cec'] = 'Postoppkrav';
 $_MODULE['<{cashondelivery}prestashop>cashondelivery_7a3ef27eb0b1895ebf263ad7dd949fb6'] = 'Tillat postoppkrav';
-$_MODULE['<{cashondelivery}prestashop>confirmation_2e2117b7c81aa9ea6931641ea2c6499f'] = 'Din ordre den';
+$_MODULE['<{cashondelivery}prestashop>confirmation_2e2117b7c81aa9ea6931641ea2c6499f'] = 'Din ordre hos';
 $_MODULE['<{cashondelivery}prestashop>confirmation_75fbf512d744977d62599cc3f0ae2bb4'] = 'er komplett';
 $_MODULE['<{cashondelivery}prestashop>confirmation_8861c5d3fa54b330d1f60ba50fcc4aab'] = 'Du har valgt kontant betaling';
 $_MODULE['<{cashondelivery}prestashop>confirmation_e6dc7945b557a1cd949bea92dd58963e'] = 'Din ordre blir sendt snarest';

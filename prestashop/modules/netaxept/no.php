@@ -2,7 +2,7 @@
 
 global $_MODULE;
 $_MODULE = array();
-$_MODULE['<{netaxept}prestashop>confirmation_2e2117b7c81aa9ea6931641ea2c6499f'] = 'Din ordre den';
+$_MODULE['<{netaxept}prestashop>confirmation_2e2117b7c81aa9ea6931641ea2c6499f'] = 'Din ordre hos';
 $_MODULE['<{netaxept}prestashop>confirmation_75fbf512d744977d62599cc3f0ae2bb4'] = 'er ferdig';
 $_MODULE['<{netaxept}prestashop>confirmation_a5f6f7478ec32da932de34ff3b758b0a'] = 'Du har valg å betale via Netaxept';
 $_MODULE['<{netaxept}prestashop>confirmation_e6dc7945b557a1cd949bea92dd58963e'] = 'Din ordre vil bli sent snarest.';

@@ -38,7 +38,7 @@ $_MODULE['<{bankwire}prestashop>payment_execution_3dd021316505c0204989f984246c6f
 $_MODULE['<{bankwire}prestashop>payment_execution_0881a11f7af33bc1b43e437391129d66'] = 'Vennligst bekreft din ordre ved å klikke \"Jeg bekrefter min ordre\"';
 $_MODULE['<{bankwire}prestashop>payment_execution_569fd05bdafa1712c4f6be5b153b8418'] = 'Andre betalingsmåter';
 $_MODULE['<{bankwire}prestashop>payment_execution_46b9e3665f187c739c55983f757ccda0'] = 'Jeg bekrefter min ordre';
-$_MODULE['<{bankwire}prestashop>payment_return_2e2117b7c81aa9ea6931641ea2c6499f'] = 'Din ordre den';
+$_MODULE['<{bankwire}prestashop>payment_return_2e2117b7c81aa9ea6931641ea2c6499f'] = 'Din ordre hos';
 $_MODULE['<{bankwire}prestashop>payment_return_75fbf512d744977d62599cc3f0ae2bb4'] = 'er ferdig.';
 $_MODULE['<{bankwire}prestashop>payment_return_1552c5916ccfe019f35d91fd8955755e'] = 'Vennligst send oss en giro med:';
 $_MODULE['<{bankwire}prestashop>payment_return_c7c0ae2912f0fbc0edf688ae887aa50f'] = 'antallet av';
