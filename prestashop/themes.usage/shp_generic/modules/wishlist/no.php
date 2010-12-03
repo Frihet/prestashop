@@ -2,14 +2,14 @@
 
 global $_MODULE;
 $_MODULE = array();
-$_MODULE['<{wishlist}shp_generic>cartlink_cf5dbcbac5983717bf4edc91cc5a0900'] = 'FIXME: Publiser som ønskeliste';
+$_MODULE['<{wishlist}shp_generic>cartlink_cf5dbcbac5983717bf4edc91cc5a0900'] = 'Publisér som ønskeliste';
 $_MODULE['<{wishlist}shp_generic>wishlist-product-line_78945de8de090e90045d299651a68a9b'] = 'Tilgjengelig';
 $_MODULE['<{wishlist}shp_generic>wishlist-product-line_b55197a49e8c4cd8c314bc2aa39d6feb'] = 'Slutt på lager';
 $_MODULE['<{wishlist}shp_generic>wishlist-product-line_dc764c1fa1f8e4be404a15939070c390'] = 'Inkl. mva';
 $_MODULE['<{wishlist}shp_generic>wishlist-product-line_a312dde7f348b17424bc8e3c97816891'] = 'Eks. mva';
 $_MODULE['<{wishlist}shp_generic>wishlist-product-line_ec211f7c20af43e742bf2570c3cb84f9'] = 'Legg til';
 $_MODULE['<{wishlist}shp_generic>wishlist_641254d77e7a473aa5910574f3f9453c'] = 'Ønskeliste';
-$_MODULE['<{wishlist}shp_generic>wishlist_a4fbfd52b65d590054188f2f9b1ba9fd'] = 'FIXME: Du kan også boookmarka denne siden, eller sende en lenk til den til dine venner.';
+$_MODULE['<{wishlist}shp_generic>wishlist_a4fbfd52b65d590054188f2f9b1ba9fd'] = 'Du kan også legge siden inn som en Favourite, eller sende den som en link til dine venner.';
 $_MODULE['<{wishlist}shp_generic>wishlist_8a370d80d4a8602cf1a8d1394538a201'] = 'Ønskelisten inneholder';
 $_MODULE['<{wishlist}shp_generic>wishlist_86024cad1e83101d97359d7351051156'] = 'produkter';
 $_MODULE['<{wishlist}shp_generic>wishlist_f5bf48aa40cad7891eb709fcf1fde128'] = 'produkt';

@@ -17,8 +17,8 @@ $_MODULE['<{ordercarrier}shp_generic>ordercarrier_1f87346a16cf80c372065de3c54c86
 $_MODULE['<{ordercarrier}shp_generic>ordercarrier_e7a6ca4e744870d455a57b644f696457'] = 'Gratis!';
 $_MODULE['<{ordercarrier}shp_generic>ordercarrier_a1fd878f674cc7563f067f83f5ed42c1'] = 'Det finns ingen transportør som kan levere til denne adressen!';
 $_MODULE['<{ordercarrier}shp_generic>ordercarrier_0d9175fe89fb80d815e7d03698b6e83a'] = 'Gave';
-$_MODULE['<{ordercarrier}shp_generic>ordercarrier_ea3bd794dfeb4537c194ee43899516ed'] = 'Jeg ønsker gave innpakkning';
+$_MODULE['<{ordercarrier}shp_generic>ordercarrier_ea3bd794dfeb4537c194ee43899516ed'] = 'Jeg ønsker gaveinnpakkning';
 $_MODULE['<{ordercarrier}shp_generic>ordercarrier_5c2dfd55fea1f5c6adef500fcb6403b4'] = 'Ekstra kostnad på';
-$_MODULE['<{ordercarrier}shp_generic>ordercarrier_b4e59f3a4554655a099738382ebedbff'] = 'Hvis duønsker, kan du legge til en beskjed med gaven:';
+$_MODULE['<{ordercarrier}shp_generic>ordercarrier_b4e59f3a4554655a099738382ebedbff'] = 'Hvis du ønsker, kan du legge til en beskjed med gaven:';
 $_MODULE['<{ordercarrier}shp_generic>ordercarrier_dd1f775e443ff3b9a89270713580a51b'] = 'Forrige';
 $_MODULE['<{ordercarrier}shp_generic>ordercarrier_10ac3d04253ef7e1ddc73e6091c0cd55'] = 'Neste';

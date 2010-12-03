@@ -10,5 +10,5 @@ $_MODULE['<{ordercarriertollpost}prestashop>ordercarriertollpost_5cc29a271a45b6f
 $_MODULE['<{ordercarriertollpost}prestashop>ordercarriertollpost_dc647eb65e6711e155375218212b3964'] = 'Passord';
 $_MODULE['<{ordercarriertollpost}prestashop>ordercarriertollpost_ce849afa4d64fb10106822119fb75cda'] = 'Passord for tilgang til Tollpost API';
 $_MODULE['<{ordercarriertollpost}prestashop>ordercarriertollpost_c9cc8cce247e49bae79f15173ce97354'] = 'Spare';
-$_MODULE['<{ordercarriertollpost}prestashop>ordercarriertollpost_c4ea185528ec11ac50b1c2197dcc052a'] = 'FIXME: Ditt nermeste Tollpost servisesenter';
-$_MODULE['<{ordercarriertollpost}prestashop>ordercarriertollpost_2f567991e127d6e4213e5f11c4c71d43'] = 'FIXME: valg opphemtingsplass';
+$_MODULE['<{ordercarriertollpost}prestashop>ordercarriertollpost_c4ea185528ec11ac50b1c2197dcc052a'] = 'Ditt nærmeste Tollpost servisesenter';
+$_MODULE['<{ordercarriertollpost}prestashop>ordercarriertollpost_2f567991e127d6e4213e5f11c4c71d43'] = 'Velg henteplass';
