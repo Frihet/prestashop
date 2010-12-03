@@ -25,5 +25,5 @@ $_MODULE['<{serialnrmanager}prestashop>manage_0c290067a4a3bd02e87a01be201fba48']
 $_MODULE['<{serialnrmanager}prestashop>manage_0b3db27bc15f682e92ff250ebb167d4b'] = 'Tilbake til min konto';
 $_MODULE['<{serialnrmanager}prestashop>manage_8cf04a9734132302f96da8e113e80ce5'] = 'Hjem';
 $_MODULE['<{serialnrmanager}prestashop>menuitems_d0e7351e7a1ed19d3435691be0d4c135'] = 'Vedlikehold serienummer';
-$_MODULE['<{serialnrmanager}prestashop>serialnrmanager_591efb670219919f943d0c55a535bdc2'] = 'Serienummer vedlikehold';
+$_MODULE['<{serialnrmanager}prestashop>serialnrmanager_591efb670219919f943d0c55a535bdc2'] = 'Vedlikehold av serienummer';
 $_MODULE['<{serialnrmanager}prestashop>serialnrmanager_35fbb7e7a60c69b9d44e44f9c464391b'] = 'Verktøy for forhandlere for å vedlikeholde serienummer';

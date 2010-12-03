@@ -17,7 +17,7 @@
 
 <div class="warning">
  <div>{l s='Note: Prices are different for each country/currency!' mod='orderpriceadjustment'}</div>
- <div>Your currency is: {$currency_name} ({$currency_iso_code})</div>
+ <div>{l s='Your currency is:' mod='orderpriceadjustment'} {$currency_name} ({$currency_iso_code})</div>
 </div>
 
 {l s='Precis are different in each country/currency. The prices below are shown in your local currency. In addition, any extra discounts available to your class of customers have been applied. Thease are the final prices in your order. Please inspect them carefully before proceeding.' mod='orderpriceadjustment'}
