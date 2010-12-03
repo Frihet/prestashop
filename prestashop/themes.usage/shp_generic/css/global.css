@@ -2764,10 +2764,18 @@ tbody.datepickerDays td.datepickerNotInMonth a {
     padding:3px;
 }
 
+.block.products_block {
+    font-size: 0.75em;
+}
+
+.block.products_block .button_mini {
+    font-size: 1.333333333333333em;
+}
+
 table.product_list td {
     padding-left: 2px;
     padding-right: 2px;
-    whitespace: nowrap;
+    white-space: nowrap;
 }
 table.product_list td.product_desc {
     width: 100%;
