@@ -4,45 +4,45 @@
 -->
 </script>
 
-{capture name=path}{l s='Wishlist'}{/capture}
+{capture name=path}{l s='Wishlist' mod='wishlist'}{/capture}
 {include file=$tpl_dir./breadcrumb.tpl}
 
 {variablebox class="universal"}
-<h2>{l s='Wishlist'}</h2>
+<h2>{l s='Wishlist' mod='wishlist'}</h2>
 {variablebox_content}
 
-<div class="success">{l s="You can bookmark this page, or send the link to this page to friends."}</div>
+<div class="success">{l s='You can bookmark this page, or send the link to this page to friends.' mod='wishlist'}</div>
 {include file=$tpl_dir./errors.tpl}
 
 <form action="{$base_dir_ssl}modules/wishlist/display.php?id={$cart_hash_id}" method="post">
 	<p>
-		{l s='The wishlist contains'} {$products|@count} {if $products|@count > 1}{l s='products'}{else}{l s='product'}{/if}
+		{l s='The wishlist contains' mod='wishlist'} {$products|@count} {if $products|@count > 1}{l s='products' mod='wishlist'}{else}{l s='product' mod='wishlist'}{/if}
 	</p>
 	<div id="order-detail-content" class="table_block">
 		<table id="cart_summary" class="std">
 			<thead>
 				<tr>
-					<th class="cart_product first_item">{l s='Product'}</th>
-					<th class="cart_description item">{l s='Description'}</th>
-					<th class="cart_ref item">{l s='Ref.'}</th>
-					<th class="cart_availability item">{l s='Avail.'}</th>
-					<th class="cart_unit item">{l s='Unit price'}</th>
-					<th class="cart_quantity item">{l s='Qty'}</th>
-					<th class="cart_total item">{l s='Total'}</th>
+					<th class="cart_product first_item">{l s='Product' mod='wishlist'}</th>
+					<th class="cart_description item">{l s='Description' mod='wishlist'}</th>
+					<th class="cart_ref item">{l s='Ref.' mod='wishlist'}</th>
+					<th class="cart_availability item">{l s='Avail.' mod='wishlist'}</th>
+					<th class="cart_unit item">{l s='Unit price' mod='wishlist'}</th>
+					<th class="cart_quantity item">{l s='Qty' mod='wishlist'}</th>
+					<th class="cart_total item">{l s='Total' mod='wishlist'}</th>
 					<th class="cart_total last_item"></th>
 				</tr>
 			</thead>
 			<tfoot>
 				{if $priceDisplay}
 					<tr class="cart_total_price">
-						<td colspan="6">{l s='Total products (tax excl.):'}</td>
+						<td colspan="6">{l s='Total products (tax excl.):' mod='wishlist'}</td>
 						<td class="price">{convertPrice price=$total_products}</td>
 						<td></td>
 					</tr>
 				{/if}
 				{if !$priceDisplay || $priceDisplay == 2}
 					<tr class="cart_total_price">
-						<td colspan="6">{l s='Total products (tax incl.):'}</td>
+						<td colspan="6">{l s='Total products (tax incl.):' mod='wishlist'}</td>
 						<td class="price">{convertPrice price=$total_products_wt}</td>
 						<td></td>
 					</tr>
@@ -69,7 +69,7 @@
 										</div>
 									{elseif $type == $CUSTOMIZE_TEXTFIELD}
 										<ul class="typedText">
-											{foreach from=$datas item='textField' name='typedText'}<li>{l s='Text #'}{$smarty.foreach.typedText.index+1}{l s=':'} {$textField.value}</li>{/foreach}
+											{foreach from=$datas item='textField' name='typedText'}<li>{l s='Text #' mod='wishlist'}{$smarty.foreach.typedText.index+1}{l s=':' mod='wishlist'} {$textField.value}</li>{/foreach}
 										</ul>
 									{/if}
 								{/foreach}
@@ -78,7 +78,7 @@
 								<p>{$customization.quantity}</p>
 							</td>
 							<td class="cart_total"></td>
-							<td><button type="submit" name="addCustomizationToCart" value="{$id_customization}" class="button_small">{l s='Add'}</button></td>
+							<td><button type="submit" name="addCustomizationToCart" value="{$id_customization}" class="button_small">{l s='Add' mod='wishlist'}</button></td>
 						</tr>
 						{assign var='quantityDisplayed' value=$quantityDisplayed+$customization.quantity}
 					{/foreach}
@@ -88,7 +88,7 @@
 			{/foreach}
 			</tbody>
 		</table>
-		<button type="submit" name="addAllToCart" value="1" class="button">{l s='Add all to cart'}</button>
+		<button type="submit" name="addAllToCart" value="1" class="button">{l s='Add all to cart' mod='wishlist'}</button>
 	</div>
 </form>
 {/variablebox}

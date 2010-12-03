@@ -1,4 +1,1 @@
-<?php
-
-global $_MODULE;
-$_MODULE = array();
+../../../shp_generic/./modules/blockcategories/no.php

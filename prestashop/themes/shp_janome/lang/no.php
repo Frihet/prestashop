@@ -1,1 +1,1 @@
-../../shp_generic/lang/no.php
+../../shp_generic/./lang/no.php

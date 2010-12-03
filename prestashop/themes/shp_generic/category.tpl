@@ -61,7 +61,7 @@
 				{include file=$tpl_dir./pagination.tpl}
 			{else}
 				<div class="block">
-					<h4>{l s="Current products"}</h4>
+					<h4>{l s='Current products'}</h4>
 					<div class="products_block">
 					        {include file=$tpl_dir./product-list-category.tpl products=$products}
 					</div>

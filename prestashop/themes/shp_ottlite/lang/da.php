@@ -1,1 +1,1 @@
-../../shp_generic/lang/dk.php
+../../shp_generic/./lang/da.php

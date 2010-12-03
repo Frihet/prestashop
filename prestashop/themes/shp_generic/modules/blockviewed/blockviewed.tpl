@@ -17,7 +17,7 @@
 					 </a>
 					</td>
 					<td>{$product->price}</td>
-					<td><a class="button_mini ajax_add_to_cart_button" href="{$base_dir}cart.php?qty=1&amp;id_product={$product->id_product|intval}&amp;token={$static_token}&amp;add" rel="ajax_id_product_{$product->id_product|intval}" title="{l s='Add to cart'}">{l s='Buy'}</a></td>
+					<td><a class="button_mini ajax_add_to_cart_button" href="{$base_dir}cart.php?qty=1&amp;id_product={$product->id_product|intval}&amp;token={$static_token}&amp;add" rel="ajax_id_product_{$product->id_product|intval}" title="{l s='Add to cart' mod='blockviewed'}">{l s='Buy' mod='blockviewed'}</a></td>
 				</tr>
 				<tr>
 
