@@ -38,14 +38,14 @@ class SerialNrManager extends Module
 	public function hookMyAccountBlock($params)
         {
 		require_once(dirname(__FILE__)."/../ordervendor/Vendor.php");
-		//if (Vendor::currentVendor() != null)
+		if (Vendor::currentVendor() != null)
 			return $this->display(__FILE__, 'menuitems.tpl');
         }
 
 	public function hookCustomerAccount($params)
         {
 		require_once(dirname(__FILE__)."/../ordervendor/Vendor.php");
-		//if (Vendor::currentVendor() != null)
+		if (Vendor::currentVendor() != null)
 			return $this->display(__FILE__, 'menuitems.tpl');
         }
 }
