@@ -10,7 +10,7 @@ class OrderSummary extends OrderPage
 
 		parent::__construct();
 
-		$this->orderPageTitle = $this->l("Summary");
+		$this->orderPageTitle = $this->l('Summary');
 		$this->displayName = $this->l('Brief order summary');
 		$this->description = $this->l('Shows a brief summary of the order');
 	}

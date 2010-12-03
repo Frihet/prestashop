@@ -9,11 +9,11 @@
 </script>
 <script type="text/javascript" src="{$js_dir}order-address.js"></script>
 
-{capture name=path}{l s='Addresses'}{/capture}
+{capture name=path}{l s='Addresses' mod='orderaddress'}{/capture}
 {include file=$tpl_dir./breadcrumb.tpl}
 
 {variablebox class="universal"}
-<h2>{l s='Addresses'}</h2>
+<h2>{l s='Addresses' mod='orderaddress'}</h2>
 {variablebox_content}
 
 {include file=$tpl_dir./module-order-steps.tpl}
@@ -23,7 +23,7 @@
 <form action="{$base_dir_ssl}order.php" method="post">
 	<div class="addresses">
 		<p class="address_delivery select">
-			<label for="id_address_delivery">{l s='Choose a delivery address:'}</label>
+			<label for="id_address_delivery">{l s='Choose a delivery address:' mod='orderaddress'}</label>
 			<select name="id_address_delivery" id="id_address_delivery" class="address_select" onchange="updateAddressesDisplay();">
 			{foreach from=$addresses key=k item=address}
 				<option value="{$address.id_address|intval}" {if $address.id_address == $cart->id_address_delivery}selected="selected"{/if}>{$address.alias|escape:'htmlall':'UTF-8'}</option>
@@ -32,26 +32,26 @@
 		</p>
 		<p class="checkbox">
 			<input type="checkbox" name="same" id="addressesAreEquals" value="1" onclick="updateAddressesDisplay();" {if $cart->id_address_invoice == $cart->id_address_delivery || $addresses|@count == 1}checked="checked"{/if} />
-			<label for="addressesAreEquals">{l s='Use the same address for billing.'}</label>
+			<label for="addressesAreEquals">{l s='Use the same address for billing.' mod='orderaddress'}</label>
 		</p>
 		<p id="address_invoice_form" class="select" {if $cart->id_address_invoice == $cart->id_address_delivery}style="display: none;"{/if}>
 		{if $addresses|@count > 1}
-			<label for="id_address_invoice" class="strong">{l s='Choose a billing address:'}</label>
+			<label for="id_address_invoice" class="strong">{l s='Choose a billing address:' mod='orderaddress'}</label>
 			<select name="id_address_invoice" id="id_address_invoice" class="address_select" onchange="updateAddressesDisplay();">
 			{section loop=$addresses step=-1 name=address}
 				<option value="{$addresses[address].id_address|intval}" {if $addresses[address].id_address == $cart->id_address_invoice && $cart->id_address_delivery != $cart->id_address_invoice}selected="selected"{/if}>{$addresses[address].alias|escape:'htmlall':'UTF-8'}</option>
 			{/section}
 			</select>
 			{else}
-				<a style="margin-left: 221px;" href="{$base_dir_ssl}address.php?back=order.php?step={$order_step}&select_address=1" title="{l s='Add'}" class="button_large">{l s='Add a new address'}</a>
+				<a style="margin-left: 221px;" href="{$base_dir_ssl}address.php?back=order.php?step={$order_step}&select_address=1" title="{l s='Add' mod='orderaddress'}" class="button_large">{l s='Add a new address' mod='orderaddress'}</a>
 			{/if}
 		</p>
 		<div class="clear"></div>
 		<table class="std">
 		        <thead>
 				<tr>
-					<th>{l s='Your delivery address'}</th>
-					<th>{l s='Your billing address'}</th>
+					<th>{l s='Your delivery address' mod='orderaddress'}</th>
+					<th>{l s='Your billing address' mod='orderaddress'}</th>
 				</tr>
 			</thead>
 			<tbody>
@@ -65,7 +65,7 @@
 							<li class="address_city"></li>
 							<li class="address_country"></li>
 						</ul>
-						<a href="{$base_dir_ssl}address.php?id_address={$address.id_address|intval}&amp;back=order.php?step={$order_step}" title="{l s='Update'}" class="button address_update">{l s='Update'}</a>
+						<a href="{$base_dir_ssl}address.php?id_address={$address.id_address|intval}&amp;back=order.php?step={$order_step}" title="{l s='Update' mod='orderaddress'}" class="button address_update">{l s='Update' mod='orderaddress'}</a>
 					</td>
 					<td id="address_invoice">
 						<ul class="address alternate_item">
@@ -76,25 +76,25 @@
 							<li class="address_city"></li>
 							<li class="address_country"></li>
 						</ul>
-						<a href="{$base_dir_ssl}address.php?id_address={$address.id_address|intval}&amp;back=order.php?step={$order_step}" title="{l s='Update'}" class="button address_update">{l s='Update'}</a>
+						<a href="{$base_dir_ssl}address.php?id_address={$address.id_address|intval}&amp;back=order.php?step={$order_step}" title="{l s='Update' mod='orderaddress'}" class="button address_update">{l s='Update' mod='orderaddress'}</a>
 					</td>
 				</tr>
 			</tbody>
 		</table>
 		<br class="clear" />
 		<p class="address_add submit">
-			<a href="{$base_dir_ssl}address.php?back=order.php?step={$order_step}" title="{l s='Add'}" class="button_large">{l s='Add a new address'}</a>
+			<a href="{$base_dir_ssl}address.php?back=order.php?step={$order_step}" title="{l s='Add' mod='orderaddress'}" class="button_large">{l s='Add a new address' mod='orderaddress'}</a>
 		</p>
 		<div id="ordermsg">
-			<p>{l s='If you want to leave us comment about your order, please write it below.'}</p>
+			<p>{l s='If you want to leave us comment about your order, please write it below.' mod='orderaddress'}</p>
 			<p class="textarea"><textarea cols="60" rows="3" name="message">{$oldMessage}</textarea></p>
 		</div>
 	</div>
 	<p class="cart_navigation submit">
 		<input type="hidden" class="hidden" name="step" value="{$order_step}" />
 		<input type="hidden" name="back" value="{$back}" />
-		<a href="{$base_dir_ssl}order.php?step={$order_step-1}{if $back}&back={$back}{/if}" title="{l s='Previous'}" class="button">&laquo; {l s='Previous'}</a>
-		<input type="submit" name="process{$order_step}" value="{l s='Next'} &raquo;" class="exclusive" />
+		<a href="{$base_dir_ssl}order.php?step={$order_step-1}{if $back}&back={$back}{/if}" title="{l s='Previous' mod='orderaddress'}" class="button">&laquo; {l s='Previous' mod='orderaddress'}</a>
+		<input type="submit" name="process{$order_step}" value="{l s='Next' mod='orderaddress'} &raquo;" class="exclusive" />
 	</p>
 </form>
 {/variablebox}

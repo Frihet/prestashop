@@ -2,6 +2,7 @@
 
 global $_MODULE;
 $_MODULE = array();
+$_MODULE['<{wishlist}prestashop>cartlink_cf5dbcbac5983717bf4edc91cc5a0900'] = 'FIXME: Publiser som ønskeliste';
 $_MODULE['<{wishlist}prestashop>wishlist-product-line_78945de8de090e90045d299651a68a9b'] = 'Tilgjengelig';
 $_MODULE['<{wishlist}prestashop>wishlist-product-line_b55197a49e8c4cd8c314bc2aa39d6feb'] = 'Tom på lager';
 $_MODULE['<{wishlist}prestashop>wishlist-product-line_dc764c1fa1f8e4be404a15939070c390'] = '- MVA';
@@ -10,6 +11,7 @@ $_MODULE['<{wishlist}prestashop>wishlist-product-line_2d0f6b8300be19cf35e89e66f0
 $_MODULE['<{wishlist}prestashop>wishlist_865d7507b9e5e7c0de6b3dcb91e6095f'] = '#Ønskeliste';
 $_MODULE['<{wishlist}prestashop>wishlist_38aae379af52b17e3e1d9051902c8099'] = 'Allows the customer to link to his/her current cart';
 $_MODULE['<{wishlist}prestashop>wishlist_641254d77e7a473aa5910574f3f9453c'] = 'Ønskeliste';
+$_MODULE['<{wishlist}prestashop>wishlist_a4fbfd52b65d590054188f2f9b1ba9fd'] = 'FXIME: Du kan bookmarka denne siden, eller sende en lenke til den til en venn';
 $_MODULE['<{wishlist}prestashop>wishlist_8a370d80d4a8602cf1a8d1394538a201'] = 'Ønskelisten inneholder';
 $_MODULE['<{wishlist}prestashop>wishlist_86024cad1e83101d97359d7351051156'] = 'produkter';
 $_MODULE['<{wishlist}prestashop>wishlist_f5bf48aa40cad7891eb709fcf1fde128'] = 'produkt';

@@ -9,14 +9,14 @@
 	<td class="cart_ref">{if $product.reference}{$product.reference|escape:'htmlall':'UTF-8'}{else}--{/if}</td>
 	<td class="cart_availability">
 		{if $product.active AND ($product.allow_oosp OR $product.stock_quantity > 0)}
-			<img src="{$img_dir}icon/available.gif" alt="{l s='Available'}" />
+			<img src="{$img_dir}icon/available.gif" alt="{l s='Available' mod='wishlist'}" />
 		{else}
-			<img src="{$img_dir}icon/unavailable.gif" alt="{l s='Out of stock'}" />
+			<img src="{$img_dir}icon/unavailable.gif" alt="{l s='Out of stock' mod='wishlist'}" />
 		{/if}
 	</td>
 	<td class="cart_unit">
 		<span class="price">
-			{convertPrice price=$product.price} {l s='-Tx'}
+			{convertPrice price=$product.price} {l s='-Tx' mod='wishlist'}
 		</span>
 	</td>
 	<td class="cart_quantity"{if isset($customizedDatas.$productId.$productAttributeId) AND $quantityDisplayed == 0} style="text-align: center;"{/if}>
@@ -28,13 +28,13 @@
 	<td class="cart_total">
 		<span class="price">
 			{if $quantityDisplayed == 0 AND isset($customizedDatas.$productId.$productAttributeId)}
-				{if !$priceDisplay || $priceDisplay == 2}{convertPrice price=$product.total_customization_wt}{if $priceDisplay == 2} {l s='+Tx'}{/if}{/if}{if $priceDisplay == 2}<br />{/if}
-				{if $priceDisplay}{convertPrice price=$product.total_customization}{if $priceDisplay == 2} {l s='-Tx'}{/if}{/if}
+				{if !$priceDisplay || $priceDisplay == 2}{convertPrice price=$product.total_customization_wt}{if $priceDisplay == 2} {l s='+Tx' mod='wishlist'}{/if}{/if}{if $priceDisplay == 2}<br />{/if}
+				{if $priceDisplay}{convertPrice price=$product.total_customization}{if $priceDisplay == 2} {l s='-Tx' mod='wishlist'}{/if}{/if}
 			{else}
-				{if !$priceDisplay || $priceDisplay == 2}{convertPrice price=$product.total_wt}{if $priceDisplay == 2} {l s='+Tx'}{/if}{/if}{if $priceDisplay == 2}<br />{/if}
-				{if $priceDisplay}{convertPrice price=$product.total}{if $priceDisplay == 2} {l s='-Tx'}{/if}{/if}
+				{if !$priceDisplay || $priceDisplay == 2}{convertPrice price=$product.total_wt}{if $priceDisplay == 2} {l s='+Tx' mod='wishlist'}{/if}{/if}{if $priceDisplay == 2}<br />{/if}
+				{if $priceDisplay}{convertPrice price=$product.total}{if $priceDisplay == 2} {l s='-Tx' mod='wishlist'}{/if}{/if}
 			{/if}
 		</span>
 	</td>
-	<td><button type="submit" name="addProductToCart" value="{$productId}" class="button_small">{l s='Add to cart'}</button></td>
+	<td><button type="submit" name="addProductToCart" value="{$productId}" class="button_small">{l s='Add to cart' mod='wishlist'}</button></td>
 </tr>

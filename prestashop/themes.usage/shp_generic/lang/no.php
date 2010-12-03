@@ -96,6 +96,7 @@ $_LANG['best-sales_32af07c9205de16855c50c3d20a51698'] = 'Ingen bestselgere ennå
 $_LANG['category_86024cad1e83101d97359d7351051156'] = 'produkter';
 $_LANG['category_f5bf48aa40cad7891eb709fcf1fde128'] = 'produkt';
 $_LANG['category_f73cc399b5ce12735a57f03414f09ef9'] = 'Underkategori';
+$_LANG['category_9ed401edc687e3cc0487497e38ac1963'] = 'FIXME: Nåvarende produkter';
 $_LANG['category_4caec9c9521f964a541c6f70983b60d2'] = 'Det er ingen produkter i denne kategorien';
 $_LANG['category_2f4e54ec9bebe1122b5c23217e764828'] = 'Denne kategorien er for øyeblikket utilgjengelig.';
 $_LANG['cms_eecc2cef7e0fa128ecb0557b66486539'] = 'Denne siden eksisterer ikke';

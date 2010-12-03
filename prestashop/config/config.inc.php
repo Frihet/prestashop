@@ -149,42 +149,44 @@ if (function_exists('date_default_timezone_set'))
 $category = false;
 $cookie = new Cookie('ps');
 
-if (!$category && isset($_GET['id_category'])) {
-	$category = new Category($_GET['id_category'], intval($cookie->id_lang));
-}
-
-if (!$category && isset($_SERVER['HTTP_REFERER']) && preg_match('!^(.*)\/([0-9]+)\-(.*[^\.])|(.*)id_category=([0-9]+)(.*)$!', $_SERVER['HTTP_REFERER'], $regs) AND !strstr($_SERVER['HTTP_REFERER'], '.html'))
-{
-	if (isset($regs[2]) AND is_numeric($regs[2]))
-	{
-		if (!isset($_GET['id_product']) || Product::idIsOnCategoryId(intval($_GET['id_product']), array('0' => array('id_category' => intval($regs[2])))))
-			$category = new Category(intval($regs[2]), intval($cookie->id_lang));
+if (!defined('PS_ADMIN_DIR')) {
+	if (!$category && isset($_GET['id_category'])) {
+		$category = new Category($_GET['id_category'], intval($cookie->id_lang));
 	}
-	elseif (isset($regs[5]) AND is_numeric($regs[5]) && isset($_GET['id_product']))
+
+	if (!$category && isset($_SERVER['HTTP_REFERER']) && preg_match('!^(.*)\/([0-9]+)\-(.*[^\.])|(.*)id_category=([0-9]+)(.*)$!', $_SERVER['HTTP_REFERER'], $regs) AND !strstr($_SERVER['HTTP_REFERER'], '.html'))
 	{
-		if (!isset($_GET['id_product']) || Product::idIsOnCategoryId(intval($_GET['id_product']), array('0' => array('id_category' => intval($regs[5])))))
-			$category = new Category(intval($regs[5]), intval($cookie->id_lang));
+		if (isset($regs[2]) AND is_numeric($regs[2]))
+		{
+			if (!isset($_GET['id_product']) || Product::idIsOnCategoryId(intval($_GET['id_product']), array('0' => array('id_category' => intval($regs[2])))))
+				$category = new Category(intval($regs[2]), intval($cookie->id_lang));
+		}
+		elseif (isset($regs[5]) AND is_numeric($regs[5]) && isset($_GET['id_product']))
+		{
+			if (!isset($_GET['id_product']) || Product::idIsOnCategoryId(intval($_GET['id_product']), array('0' => array('id_category' => intval($regs[5])))))
+				$category = new Category(intval($regs[5]), intval($cookie->id_lang));
+		}
 	}
-}
 
-if (!$category && isset($_GET['id_product'])) {
-   	$product = new Product(intval($_GET['id_product']), true, intval($cookie->id_lang));
+	if (!$category && isset($_GET['id_product'])) {
+		$product = new Product(intval($_GET['id_product']), true, intval($cookie->id_lang));
 
-	$category_ids = array();
-	foreach(Product::getIndexedCategories($product->id) as $row)
-	        $category_ids[] = $row['id_category'];
-	
-	$category_id = $product->id_category_default;
+		$category_ids = array();
+		foreach(Product::getIndexedCategories($product->id) as $row)
+			$category_ids[] = $row['id_category'];
 
-	if (   isset($cookie->last_visited_category)
-	    && in_array(intval($cookie->last_visited_category), $category_ids))
-	        $category_id = intval($cookie->last_visited_category);
+		$category_id = $product->id_category_default;
 
-	$category = new Category($category_id, intval($cookie->id_lang));
-}
+		if (   isset($cookie->last_visited_category)
+		    && in_array(intval($cookie->last_visited_category), $category_ids))
+			$category_id = intval($cookie->last_visited_category);
 
-if (!$category && isset($cookie->last_visited_category)) {
-   	$category = new Category($cookie->last_visited_category, intval($cookie->id_lang));
+		$category = new Category($category_id, intval($cookie->id_lang));
+	}
+
+	if (!$category && isset($cookie->last_visited_category)) {
+		$category = new Category($cookie->last_visited_category, intval($cookie->id_lang));
+	}
 }
 
 /* Theme */

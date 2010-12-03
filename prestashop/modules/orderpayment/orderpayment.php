@@ -10,7 +10,7 @@ class OrderPayment extends OrderPage
 
 		parent::__construct();
 
-		$this->orderPageTitle = $this->l("Payment");
+		$this->orderPageTitle = $this->l('Payment');
 		$this->displayName = $this->l('Payment form');
 		$this->description = $this->l('Payment and order finalisation');
 	}

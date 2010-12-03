@@ -10,7 +10,7 @@ class OrderLogin extends OrderPage
 
 		parent::__construct();
 
-		$this->orderPageTitle = $this->l("Login");
+		$this->orderPageTitle = $this->l('Login');
 		$this->displayName = $this->l('Log in / account creation');
 		$this->description = $this->l('Requires the user to log in or register a new account before proceeding');
 	}

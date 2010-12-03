@@ -10,7 +10,7 @@ class OrderAddress extends OrderPage
 
 		parent::__construct();
 
-		$this->orderPageTitle = $this->l("Address");
+		$this->orderPageTitle = $this->l('Address');
 		$this->displayName = $this->l('Address chooser');
 		$this->description = $this->l('Lets the user choose a local address / repair/guarantee provider for each product');
 	}

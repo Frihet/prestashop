@@ -2,6 +2,7 @@
 
 global $_MODULE;
 $_MODULE = array();
+$_MODULE['<{orderpayment}prestashop>orderpayment_c453a4b8e8d98e82f35b67f433e3b4da'] = 'Betaling';
 $_MODULE['<{orderpayment}prestashop>orderpayment_3264e97baf14f374cce8b335a572bc35'] = 'Betalingsform';
 $_MODULE['<{orderpayment}prestashop>orderpayment_60df20870c5c4b98c0ed58499f6c9407'] = 'Betaling og ordre bekreftes';
 $_MODULE['<{orderpayment}prestashop>orderpayment_59319ac504f7ad04ae16126cf49e7f7e'] = 'Din betalingsmåte';

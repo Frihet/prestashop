@@ -10,7 +10,7 @@ class OrderPriceAdjustment extends OrderPage
 
 		parent::__construct();
 
-		$this->orderPageTitle = $this->l("Price adjustment");
+		$this->orderPageTitle = $this->l('Price adjustment');
 		$this->displayName = $this->l('Price adjustment summary');
 		$this->description = $this->l('Presents the user with a second order summary with prices in the local currency and with all group-specific discounts applied');
 	}

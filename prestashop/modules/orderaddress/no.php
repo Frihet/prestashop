@@ -2,6 +2,7 @@
 
 global $_MODULE;
 $_MODULE = array();
+$_MODULE['<{orderaddress}prestashop>orderaddress_dd7bf230fde8d4836917806aff6a6b27'] = 'Adresse';
 $_MODULE['<{orderaddress}prestashop>orderaddress_aa46290827911e7b6a2ca72a7d941ca9'] = 'Adressevelger';
 $_MODULE['<{orderaddress}prestashop>orderaddress_8263c3f63c0e5895d1fa4b96fca38b43'] = 'Lar brukeren bruke lokal adresse/ reprasjon/ garantitilbyder for hvert produkt';
 $_MODULE['<{orderaddress}prestashop>orderaddress_284b47b0bb63ae2df3b29f0e691d6fcf'] = 'Adresser';

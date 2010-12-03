@@ -6,6 +6,7 @@ $_MODULE['<{orderpriceadjustment}prestashop>module-product-line_78945de8de090e90
 $_MODULE['<{orderpriceadjustment}prestashop>module-product-line_b55197a49e8c4cd8c314bc2aa39d6feb'] = 'Tom på lager';
 $_MODULE['<{orderpriceadjustment}prestashop>module-product-line_dc764c1fa1f8e4be404a15939070c390'] = '- MVA';
 $_MODULE['<{orderpriceadjustment}prestashop>module-product-line_a312dde7f348b17424bc8e3c97816891'] = '+ MVA';
+$_MODULE['<{orderpriceadjustment}prestashop>orderpriceadjustment_d4c0943289c4df72795c254b06126640'] = 'Prisjustering';
 $_MODULE['<{orderpriceadjustment}prestashop>orderpriceadjustment_15feeb5cf2bf23c53fef650d565f5297'] = 'Prisjustering sammendrag';
 $_MODULE['<{orderpriceadjustment}prestashop>orderpriceadjustment_fc88fc4b42ae2cab53f437df9e37029f'] = 'Presenterer brukeren for andre ordens sammendrag med priser i lokal valuta og med alle gruppe-spesifikke rabatter anvendt';
 $_MODULE['<{orderpriceadjustment}prestashop>orderpriceadjustment_a40cab5994f36d4c48103a22ca082e8f'] = 'Din handlevogn';

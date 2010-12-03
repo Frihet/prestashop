@@ -2,6 +2,7 @@
 
 global $_MODULE;
 $_MODULE = array();
+$_MODULE['<{ordersummary}prestashop>ordersummary_290612199861c31d1036b185b4e69b75'] = 'Oppsummering';
 $_MODULE['<{ordersummary}prestashop>ordersummary_87ffd0d7fcaf878f880c6a91083a5a4a'] = 'Kort ordreoppsummering';
 $_MODULE['<{ordersummary}prestashop>ordersummary_cac767fbbe2ef9c999e6625ec8a16557'] = 'Viser en kort ordreoppsummering';
 $_MODULE['<{ordersummary}prestashop>ordersummary_a40cab5994f36d4c48103a22ca082e8f'] = 'Din handlevogn';
