@@ -9,7 +9,8 @@ $_MODULE['<{orderpriceadjustment}shp_generic>module-product-line_a312dde7f348b17
 $_MODULE['<{orderpriceadjustment}shp_generic>orderpriceadjustment_a40cab5994f36d4c48103a22ca082e8f'] = 'Din handlevogn';
 $_MODULE['<{orderpriceadjustment}shp_generic>orderpriceadjustment_1aa1f5c00cc6def2dd217e592729543b'] = 'Total pris og gjennomsyn';
 $_MODULE['<{orderpriceadjustment}shp_generic>orderpriceadjustment_b39b4ccbbf6f8f0be703a76e9bb1a6bc'] = 'Merk! Priser er forskjellig for hvert land og valuta';
-$_MODULE['<{orderpriceadjustment}shp_generic>orderpriceadjustment_b3b82dac1e54c9a4a5a1f80c832a3364'] = 'Priser er forskjellig for hvert land og valuta. Prisene under vises i din lokale valuta. Eventuelle rabatter er innregnet. Dette er totalt-prisen på din ordre, vennligst se igjennom för du går videre.';
+$_MODULE['<{orderpriceadjustment}shp_generic>orderpriceadjustment_cedbcc848d3134c14da105e4436fbf34'] = 'Din valuta:';
+$_MODULE['<{orderpriceadjustment}shp_generic>orderpriceadjustment_b3b82dac1e54c9a4a5a1f80c832a3364'] = 'Priser er forskjellig for hvert land og valuta. Prisene under vises i din lokale valuta. Eventuelle rabatter er innregnet. Dette er totalt-prisen på din ordre, vennligst se igjennom før du går videre.';
 $_MODULE['<{orderpriceadjustment}shp_generic>orderpriceadjustment_ab88d481b4332548cd3ca2aa26fd6edc'] = 'Handlevognen din inneholder';
 $_MODULE['<{orderpriceadjustment}shp_generic>orderpriceadjustment_86024cad1e83101d97359d7351051156'] = 'produkter';
 $_MODULE['<{orderpriceadjustment}shp_generic>orderpriceadjustment_f5bf48aa40cad7891eb709fcf1fde128'] = 'produkt';
