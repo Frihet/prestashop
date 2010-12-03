@@ -1,8 +1,8 @@
-{capture name=path}{l s='Compare products'}{/capture}
+{capture name=path}{l s='Compare products' mod='blockcompare'}{/capture}
 {include file=$tpl_dir./breadcrumb.tpl}
 
 {variablebox}
-<h2>{l s='Compare products'}</h2>
+<h2>{l s='Compare products' mod='blockcompare'}</h2>
 {variablebox_content}
 
 {include file=$tpl_dir./errors.tpl}

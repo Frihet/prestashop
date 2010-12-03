@@ -1,5 +1,5 @@
 <div id="category_tabs" class="toptabs">
-     	<div class="tabHead">{l s='Also visit these pages:'}</div>
+     	<div class="tabHead">{l s='Also visit these pages:' mod='blockcategorytabs'}</div>
 	<ul class="idTabs idTabsShort">
 	{foreach from=$blockCategTree.children item=child name=blockCategTree}
 		{assign var=last value=$smarty.foreach.blockCategTree.last}

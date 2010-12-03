@@ -1,0 +1,1 @@
+<a class="button ajax_add_to_compare_cart_button" rel="ajax_id_product_{$product.id_product|intval}" href="{$base_dir_ssl}modules/blockcompare/compare.php?add&amp;id_product={$product.id_product|intval}&amp;token={$static_token}" title="{l s='Compare' mod='blockcompare'}">{l s='Compare' mod='blockcompare'}</a>
