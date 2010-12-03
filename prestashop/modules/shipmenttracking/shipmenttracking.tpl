@@ -1,9 +1,9 @@
-<p class="bold">{l s='Shipments'}</p>
+<p class="bold">{l s='Shipments' mod='shipmenttracking'}</p>
 <table class="std">
  <thead>
   <tr>
-   <th class="first_item">{l s='Date'}</th>
-   <th class="last_item">{l s='Tracking number'}</th>
+   <th class="first_item">{l s='Date' mod='shipmenttracking'}</th>
+   <th class="last_item">{l s='Tracking number' mod='shipmenttracking'}</th>
   </tr>
  </thead>
  <tbody>
