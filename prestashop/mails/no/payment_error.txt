@@ -1,0 +1,13 @@
+{shop_name}
+ 
+Hei {firstname} {lastname},
+ 
+Din ordre #{id_order} historikk
+ 
+Det oppsto et problem med betalingen for ordre#{id_order}. Vennligst ta kontakt med oss.
+ 
+Din ordre vil ikke bli sendt f¿r vi har sett igjennom saken.
+ 
+Du kan se dine ordre og laste ned faktura under "Order history" i "My account".
+ 
+{shop_name}

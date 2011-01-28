@@ -1,0 +1,12 @@
+{shop_name}
+ 
+Hei {firstname} {lastname},
+ 
+Ordre #{id_order}
+ 
+
+Dessverre er en eller flere varer på din ordre #{id_order} midlertidig tom på lager. Dette kan skape forsinkelse i leveringen. Vi beklager forsinkelsen og gjør alt vi kan for at du skal få varene du har bestilt.
+ 
+Du kan se ordrene dine og laste ned faktura under "Order history" i "My account".
+ 
+{shop_name}

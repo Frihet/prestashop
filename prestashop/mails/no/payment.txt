@@ -1,0 +1,11 @@
+{shop_name}
+ 
+Hei {firstname} {lastname},
+ 
+Ordre #{id_order}
+ 
+Betalingen var vellykket!
+ 
+Du kan se ordre og laste ned faktura under "Order history" i "My account"
+ 
+{shop_name}

@@ -1,0 +1,11 @@
+{shop_name}
+ 
+Hei,
+ 
+Melding fra {shop_name}
+ 
+Du har fått en melding vedrørende din ordre #{id_order}:
+
+{message}
+ 
+{shop_name}

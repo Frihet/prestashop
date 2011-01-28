@@ -1,0 +1,11 @@
+{shop_name}
+ 
+Hei {firstname} {lastname},
+ 
+Ordre #{id_order}
+ 
+Din ordre er kansellert.
+ 
+Du kan se ordre og laste ned faktura under "Order history" ved å klikke på "My account".
+ 
+{shop_name}

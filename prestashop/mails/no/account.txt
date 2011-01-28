@@ -1,20 +1,19 @@
-Hi {firstname} {lastname},
-
-Thank you for creating your account at {shop_name}.
-
-Your account login details :
-
-E-mail address: {email}
-Password: {passwd}
+{shop_name}
  
-You can now place orders on our Website: {shop_url}
+Hei{firstname} {lastname},
+ 
+Din registrering er fullført:
+ 
+E-postadresse: {email}
+Passord: {passwd}
+ 
+Tips om sikkerhet:
 
-Safety Tips:
-
-* Keep your account details safe.
-* Do not disclose your login details to anyone.
-* Change your password regularly.
-* Should you suspect someone is using your account illegally, please notify us immediately.
-
-
-{shop_url} powered by PrestaShop&reg;
+Spar opplysningene dine på et sikkert sted.
+Ikke la andre benytte dine logg inn.
+Bytt passord regelmessig.
+Hvis du tror andre bruker din logg inn, ber vi deg ta kontakt snarest.
+ 
+Velkommen til en hyggelig handel: {shop_name}.
+ 
+{shop_name} powered with PrestaShop

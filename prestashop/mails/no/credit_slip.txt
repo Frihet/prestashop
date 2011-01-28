@@ -1,0 +1,13 @@
+{shop_name}
+ 
+Hei {firstname} {lastname},
+ 
+Din ordrehistorikk #{id_order}
+ 
+
+Vi ønsker å gjøre deg oppmerksom på at det nå er laget en kredittnota på din ordre#{id_order}.
+ 
+
+Du kan se kredittnotaen og laste ned din faktura under "Order follow" i din konto ved å klikke på "My account" i vår webshop.
+ 
+{shop_name}

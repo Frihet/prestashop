@@ -1,0 +1,11 @@
+{shop_name}
+ 
+Hei {firstname} {lastname},
+ 
+Din ordre #{id_order}
+ 
+Takk for at du handlet hos oss. Vi behandler nå din bestilling, og forventet leveringstid er 4-7 dager.
+ 
+Du kan se ordre og laste ned faktura under "Mine ordre" under "Min konto".
+ 
+{shop_name}

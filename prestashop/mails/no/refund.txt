@@ -1,0 +1,11 @@
+{shop_name}
+ 
+Hei {firstname} {lastname},
+ 
+Din ordre #{id_order}
+ 
+Tilbakebetalingen var vellykket.
+ 
+Du kan se ordre og laste ned faktura under "Order history" i "My account".
+ 
+{shop_name}

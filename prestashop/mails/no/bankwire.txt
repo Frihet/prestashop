@@ -1,0 +1,13 @@
+{shop_name}
+ 
+Hei {firstname} {lastname},
+ 
+Ordrebekreftelse #{id_order}
+ 
+Takk for at du valgte å handle hos oss. Din ordre er nå klar til å pakkes. Forventet leveringstid er 4-7 dager.
+ 
+ 
+ 
+Du kan se dine ordre under "Order history" og din konto på "My account".
+ 
+{shop_name}

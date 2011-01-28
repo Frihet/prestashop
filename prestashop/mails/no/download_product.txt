@@ -1,12 +1,14 @@
-{firstname} {lastname}, thank you for your order on {shop_name}!
+{shop_name}
+ 
+Hei {firstname} {lastname}, takk for at du valgte {shop_name}.
+ 
+Produkter som kan lastes ned
+ 
+Du har {nbProducts} som kan lastes ned.
+ 
+Dette er linken til det nedlastbare produktet: {virtualProducts}
+ 
 
-You have {nbProducts} product(s) to download.
-
-This is direct links to these products:
-{virtualProducts}
-
-
-You can review this order and download your invoice from the &quot;Order history&quot; section of your account by clicking &quot;My account&quot; on our Website. 
-
-
-{shop_url} powered by PrestaShop&trade;
+Du kan se ordre og laste ned din faktura under "Order history" eller se hele din konto under "My account"
+ 
+{shop_name}

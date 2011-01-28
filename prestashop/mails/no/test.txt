@@ -1,3 +1,5 @@
-	Hello,
-	
-	This is a test mail from your shop PrestaShop.
+Hei,
+
+Dette er en test mail fra din nettbutikk.
+ 
+ 
