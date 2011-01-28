@@ -4,3 +4,4 @@ dbdumps/**
 download/**
 translations/export/**
 tools/smarty/cache/**
+.project
