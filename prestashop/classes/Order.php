@@ -514,26 +514,8 @@ class		Order extends ObjectModel
      *
      * @return Product total with taxes
      */
+    // Espen Lyngaas fix for prices already including taxes
     public function getTotalProductsWithTaxes($products = false)
-	{
-		if (!$products)
-			$products = $this->getProductsDetail();
-
-        $total = 0;
-		foreach ($products AS $k => $row)
-		{
-			$qty = intval($row['product_quantity']);
-			$total += floatval($row['product_price']) * (floatval($row['tax_rate']) * 0.01 + 1) * $qty;
-		}
-		return round($total, 2);
-	}
-
-    /**
-     * Get product total without taxes
-     *
-     * @return Product total with taxes
-     */
-    public function getTotalProductsWithoutTaxes($products = false)
 	{
 		if (!$products)
 			$products = $this->getProductsDetail();
@@ -546,6 +528,52 @@ class		Order extends ObjectModel
 		}
 		return round($total, 2);
 	}
+
+    /**
+     * Get product total without taxes
+     *
+     * @return Product total with taxes
+     */
+    // Espen Lyngaas fix for prices already including taxes
+    public function getTotalProductsWithoutTaxes($products = false)
+	{
+		if (!$products)
+			$products = $this->getProductsDetail();
+
+        $tax_rate_neg = 0.20;
+        $total = 0;
+		foreach ($products AS $k => $row)
+		{
+			$qty = intval($row['product_quantity']);
+                        $tax = floatval($row['product_price']) * floatval($tax_rate_neg);
+                        $ex_tax = floatval($row['product_price'] - $tax);
+                        $total += floatval($ex_tax) * $qty;
+		}
+		return round($total, 2);
+	}
+
+    /**
+     * Get product total taxes
+     *
+     * @return Product total taxes
+     */
+    // Espen Lyngaas added function for returning taxes only
+    public function getTotalProductsTaxes($products = false)
+        {
+                if (!$products)
+                        $products = $this->getProductsDetail();
+
+        $tax_rate_neg = 0.20;
+        $total = 0;
+                foreach ($products AS $k => $row)
+                {
+                        $qty = intval($row['product_quantity']);
+                        $tax = floatval($row['product_price']) * floatval($tax_rate_neg);
+                        $total += floatval($tax) * $qty;
+                }
+
+                return round($total, 2);
+        }
 
 	/**
 	 * Get customer orders number
