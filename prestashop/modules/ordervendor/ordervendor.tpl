@@ -39,7 +39,7 @@
                                         <td>
 						<select name="vendor{$product.id_product}">
 							{foreach from=$product.vendors item=vendor name=vendorLoop}
-								<option value="{$vendor.id_vendor}">{$vendor.title} ({l s='postcode' mod='ordervendor'} {$vendor.postcode})</option>
+                                               <option value="{$vendor.id_vendor}">{$vendor.title}{$vendor.postcode}</option>
 							{/foreach}
 						</select>
                                         </td>

@@ -67,8 +67,9 @@ class OrderProductVendor
 			 and sqrt(  power(abs(postcode_vendor.latitude - postcode_customer.latitude),2)
 				  + power(abs(postcode_vendor.longitude - postcode_customer.longitude),2)) <= vendor.distance
                         order by
-                         abs(vendor.id_vendor - "' . pSql($id_vendor_default) . '")
-			 ';
+				vendor.distance';
+/*                         abs(vendor.id_vendor - "' . pSql($id_vendor_default) . '")
+			 ';*/
 		$query = str_replace('PREFIX_', _DB_PREFIX_, $query);
 		$result = Db::getInstance()->ExecuteS($query);
 		$vendors = array();
