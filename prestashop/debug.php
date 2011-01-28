@@ -86,15 +86,15 @@ function FCToolkitErrorHandler ($errno, $errstr, $errfile, $errline)
 {
     global $ignore_errno;
 
-/*    
+    // Espen Lyngaas re-enabled
     if(is_array($ignore_errno) && in_array($errno, $ignore_errno) && !DEBUG ) {
         return true;
         }
-*/
-/*
+
+
     if ($errno != E_USER_ERROR && $errno != E_USER_WARNING && $errno != E_USER_NOTICE)
         return  false;
-*/
+
     echo "<div class='php_error'>";
     switch ($errno)
             {
