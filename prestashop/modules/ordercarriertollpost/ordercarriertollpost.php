@@ -102,6 +102,9 @@ class OrderCarrierTollpost extends Module
 		    if ($delivery->address2 != "")
 		      $street .= "," . $delivery->address2;
 		    $zip = $delivery->postcode;
+                // Espen Lyngaas added line to remove spaces in postcodes
+                $zip = str_replace(" ","",$zip);
+
 
 		    $servicepartnerXml = new DOMDocument();
 		    $username = Configuration::get('ORDER_CARRIER_TOLLPOST_USERNAME');
