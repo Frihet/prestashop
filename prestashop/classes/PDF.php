@@ -135,8 +135,11 @@ class PDF extends PDF_PageGroup
 		$conf['PS_SHOP_COUNTRY'] = isset($conf['PS_SHOP_COUNTRY']) ? Tools::iconv('utf-8', self::encoding(), $conf['PS_SHOP_COUNTRY']) : 'Country';
 		$conf['PS_SHOP_STATE'] = isset($conf['PS_SHOP_STATE']) ? Tools::iconv('utf-8', self::encoding(), $conf['PS_SHOP_STATE']) : '';
 
-		if (file_exists(_PS_IMG_DIR_.'/logo.jpg'))
-			$this->Image(_PS_IMG_DIR_.'/logo.jpg', 10, 8, 0, 15);
+// Espen Lyngaas fix for text logo
+//		if (file_exists(_PS_IMG_DIR_.'/logo.jpg'))
+//			$this->Image(_PS_IMG_DIR_.'/logo.jpg', 10, 8, 0, 15);
+                $this->SetFont(self::fontname(),'B',18);
+                $this->Cell(80, 6, $conf['PS_SHOP_NAME'], 0, 2, 'L');
 		$this->SetFont(self::fontname(), 'B', 15);
 		$this->Cell(115);
 		
@@ -178,7 +181,7 @@ class PDF extends PDF_PageGroup
 		else
 			$this->Ln(4);
 		$this->Ln(9);
-		$arrayConf = array('PS_SHOP_NAME', 'PS_SHOP_ADDR1', 'PS_SHOP_CODE', 'PS_SHOP_CITY', 'PS_SHOP_COUNTRY', 'PS_SHOP_DETAILS', 'PS_SHOP_PHONE', 'PS_SHOP_STATE');
+		$arrayConf = array('PS_SHOP_NAME', 'PS_SHOP_ADDR1', 'PS_SHOP_CODE', 'PS_SHOP_CITY', 'PS_SHOP_COUNTRY', 'PS_SHOP_DETAILS', 'PS_SHOP_PHONE', 'PS_SHOP_STATE','PS_SHOP_FAX');
 		$conf = Configuration::getMultiple($arrayConf);
 		$conf['PS_SHOP_NAME_UPPER'] = Tools::strtoupper($conf['PS_SHOP_NAME']);
 		foreach($conf as $key => $value)
@@ -189,11 +192,52 @@ class PDF extends PDF_PageGroup
 		$this->SetFillColor(240, 240, 240);
 		$this->SetTextColor(0, 0, 0);
 		$this->SetFont(self::fontname(), '', 8);
-		$this->Cell(0, 5, $conf['PS_SHOP_NAME_UPPER'].
-		(!empty($conf['PS_SHOP_ADDR1']) ? ' - '.self::l('Headquarters:').' '.$conf['PS_SHOP_ADDR1'].(!empty($conf['PS_SHOP_ADDR2']) ? ' '.$conf['PS_SHOP_ADDR2'] : '').' '.$conf['PS_SHOP_CODE'].' '.$conf['PS_SHOP_CITY'].((isset($conf['PS_SHOP_STATE']) AND !empty($conf['PS_SHOP_STATE'])) ? (', '.$conf['PS_SHOP_STATE']) : '').' '.$conf['PS_SHOP_COUNTRY'] : ''), 0, 1, 'C', 1);
+                if(self::$currency->iso_code == 'NOK') {
+                   $conf['PS_SHOP_NAME'] = "Inter Sew Norge AS";
+                   $conf['PS_SHOP_ADDR1'] = Tools::iconv('utf-8', self::encoding(), 'Gråterudveien 2');
+                   $conf['PS_SHOP_ADDR2'] = "";
+                   $conf['PS_SHOP_CODE'] = "N-3036";
+                   $conf['PS_SHOP_CITY'] = "Drammen";
+                   $conf['PS_SHOP_STATE'] = "";
+                   $conf['PS_SHOP_COUNTRY'] = "Norge";
+                   $conf['PS_SHOP_DETAILS'] = "Orgnr: 979 964 617 MVA";
+                   $conf['PS_SHOP_PHONE'] = "+47 - 32 20 60 22";
+                   $conf['PS_SHOP_FAX'] = "+47 - 32 88 15 15";
+                   $conf['PS_SHOP_EMAIL'] = "kundeservice@intersew.no";
+                }
+                if(self::$currency->iso_code == 'DKK') {
+                   $conf['PS_SHOP_NAME'] = "Inter Sew Danmark ApS";
+                   $conf['PS_SHOP_ADDR1'] = "Algade 43";
+                   $conf['PS_SHOP_ADDR2'] = "";
+                   $conf['PS_SHOP_CODE'] = "DK-4300";
+                   $conf['PS_SHOP_CITY'] = "Roskilde";
+                   $conf['PS_SHOP_STATE'] = "";
+                   $conf['PS_SHOP_COUNTRY'] = "Danmark";
+                   $conf['PS_SHOP_DETAILS'] = "CVR/SE nr 27 92 14 93 MVA";
+                   $conf['PS_SHOP_PHONE'] = "";
+                   $conf['PS_SHOP_FAX'] = "";
+                   $conf['PS_SHOP_EMAIL'] = "kundeservice@intersew.dk";
+                }
+                if(self::$currency->iso_code == 'SEK') {
+                   $conf['PS_SHOP_NAME'] = "Inter Sew Sverige AB";
+                   $conf['PS_SHOP_ADDR1'] = "Glassbruksgatan 1";
+                   $conf['PS_SHOP_ADDR2'] = "";
+                   $conf['PS_SHOP_CODE'] = "SE-73231";
+                   $conf['PS_SHOP_CITY'] = "Arboga";
+                   $conf['PS_SHOP_STATE'] = "";
+                   $conf['PS_SHOP_COUNTRY'] = "Sverige";
+                   $conf['PS_SHOP_DETAILS'] = "Orgnr: 556528-3578 MVA";
+                   $conf['PS_SHOP_PHONE'] = "+47 32 20 60 22";
+                   $conf['PS_SHOP_FAX'] = "+47 32 88 15 15";
+                   $conf['PS_SHOP_EMAIL'] = "kundeservice@intersew.se";
+                }
+                $this->Cell(0, 5, $conf['PS_SHOP_NAME'].
+		(!empty($conf['PS_SHOP_ADDR1']) ? ' - '.$conf['PS_SHOP_ADDR1'].', '.(!empty($conf['PS_SHOP_ADDR2']) ? ' '.$conf['PS_SHOP_ADDR2'] : '').' '.$conf['PS_SHOP_CODE'].' '.$conf['PS_SHOP_CITY'].((isset($conf['PS_SHOP_STATE']) AND !empty($conf['PS_SHOP_STATE'])) ? (', '.$conf['PS_SHOP_STATE']) : '').', '.$conf['PS_SHOP_COUNTRY'] : ''), 0, 1, 'C', 1);
 		$this->Cell(0, 5,
-		(!empty($conf['PS_SHOP_DETAILS']) ? self::l('Details:').' '.$conf['PS_SHOP_DETAILS'].' - ' : '').
-		(!empty($conf['PS_SHOP_PHONE']) ? self::l('PHONE:').' '.$conf['PS_SHOP_PHONE'] : ''), 0, 1, 'C', 1);
+		(!empty($conf['PS_SHOP_DETAILS']) ? $conf['PS_SHOP_DETAILS'].'  ' : '').
+                (!empty($conf['PS_SHOP_EMAIL']) ? '  '.self::l('EMAIL:').' '.$conf['PS_SHOP_EMAIL'] : '').
+		(!empty($conf['PS_SHOP_PHONE']) ? '  '.self::l('PHONE:').' '.$conf['PS_SHOP_PHONE'] : '').
+                (!empty($conf['PS_SHOP_FAX']) ? '  '.self::l('FAX:').' '.$conf['PS_SHOP_FAX'] : ''), 0, 1, 'C', 1);
 	}
 
 	public static function multipleInvoices($invoices)
@@ -346,6 +390,7 @@ class PDF extends PDF_PageGroup
 	* @param object $order Order
 	* @param string $mode Download or display (optional)
 	*/
+        // Espen Lyngaas 
 	public static function invoice($order, $mode = 'D', $multiple = false, &$pdf = NULL, $slip = false, $delivery = false)
 	{
 	 	global $cookie, $ecotax;
@@ -460,12 +505,20 @@ class PDF extends PDF_PageGroup
 			$pdf->Cell(0, 0, self::convertSign(Tools::displayPrice($totalProductsTe, self::$currency, true, false)), 0, 0, 'R');
 			$pdf->Ln(4);
 
-			$pdf->SetFont(self::fontname(), 'B', 8);
-			$width = 165;
-			$pdf->Cell($width, 0, self::l('Total products (tax incl.)').' : ', 0, 0, 'R');
-			$totalProductsTi = self::$order->getTotalProductsWithTaxes((self::$orderSlip ? self::$order->products : false));
-			$pdf->Cell(0, 0, self::convertSign(Tools::displayPrice($totalProductsTi, self::$currency, true, false)), 0, 0, 'R');
-			$pdf->Ln(4);
+                        // Espen Lyngaas display taxes only
+                        $pdf->SetFont(self::fontname(), 'B', 8);
+                        $width = 165;
+                        $pdf->Cell($width, 0, self::l('Total Tax').' : ', 0, 0, 'R');
+                        $totalProductsTx = self::$order->getTotalProductsTaxes((self::$orderSlip ? self::$order->products : false));
+                        $pdf->Cell(0, 0, self::convertSign(Tools::displayPrice($totalProductsTx, self::$currency, true, false)), 0, 0, 'R');
+                        $pdf->Ln(4);
+
+//			$pdf->SetFont(self::fontname(), 'B', 8);
+//			$width = 165;
+//			$pdf->Cell($width, 0, self::l('Total products (tax incl.)').' : ', 0, 0, 'R');
+//			$totalProductsTi = self::$order->getTotalProductsWithTaxes((self::$orderSlip ? self::$order->products : false));
+//			$pdf->Cell(0, 0, self::convertSign(Tools::displayPrice($totalProductsTi, self::$currency, true, false)), 0, 0, 'R');
+//			$pdf->Ln(4);
 
 			if (self::$order->total_discounts != '0.00')
 			{
@@ -512,6 +565,7 @@ class PDF extends PDF_PageGroup
 
 	public function ProdTabHeader($delivery = false)
 	{
+        // Espen Lyngaas removed excluding tax field
 		if (!$delivery)
 		{
 			$header = array(
@@ -589,8 +643,9 @@ class PDF extends PDF_PageGroup
 				$ecotax += $product['ecotax'] * intval($product['product_quantity']);
 
 				// Unit vars
-				$unit_without_tax = $product['product_price'];
-				$unit_with_tax = $product['product_price'] * (1 + ($product['tax_rate'] * 0.01));
+                                // Espen Lyngaas hack for taxes
+				$unit_without_tax = floatval($product['product_price']) - floatval(($product['product_price'] * 0.20));
+				$unit_with_tax = $product['product_price'];
 				$productQuantity = $delivery ? (intval($product['product_quantity']) - intval($product['product_quantity_refunded'])) : intval($product['product_quantity']);
 
 				if ($productQuantity <= 0)
@@ -616,7 +671,7 @@ class PDF extends PDF_PageGroup
 					if (!$delivery)
 					{
 						$this->Cell($w[++$i], $lineSize, self::convertSign(Tools::displayPrice($unit_without_tax * intval($product['customizationQuantityTotal']), self::$currency, true, false)), 'B', 0, 'R');
-						$this->Cell($w[++$i], $lineSize, self::convertSign(Tools::displayPrice($unit_with_tax * intval($product['customizationQuantityTotal']), self::$currency, true, false)), 'B', 0, 'R');
+						$this->Cell($w[++$i], $lineSize, self::convertSign(Tools::displayPrice($unit_without_tax * intval($product['customizationQuantityTotal']), self::$currency, true, false)), 'B', 0, 'R');
 					}
 					$this->Ln();
 					$i = -1;
