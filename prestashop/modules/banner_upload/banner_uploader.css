@@ -1,0 +1,26 @@
+.content_images_table{
+	margin-bottom: 15px;
+	padding-top: 5px;
+	padding-bottom: 10px;
+	background-color: #fffff0;
+	border: 1px solid #dfd5c3;	
+}
+.content_images_line{
+	border-bottom: 1px solid #dfd5c3;	
+}
+.block_name{
+	display: none;
+}
+.banner_line_text{
+	float: left;
+	width:400px;
+	margin-left: 10px;
+	margin-bottom: 10px;
+	margin-top: 5px;
+	font-size: 14px;
+	line-height: 130%;
+	word-wrap: break-word;
+}
+.line_dark{
+	background-color: #f5ead0;
+}
