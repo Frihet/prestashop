@@ -52,7 +52,7 @@ class BlockBestSellers extends Module
 				}
 			}
 			if ($display) {
-			        $bestseller['price'] = Tools::displayPrice(Product::getPriceStaticLC(intval($bestseller['id_product'])), $currency);
+			        $bestseller['price'] = Tools::displayPrice(Product::getPriceStaticLC(intval($bestseller['id_product'])), $currency, false, false);
 				$best_sellers[] = $bestseller;
 				$nr += 1;
 			}
