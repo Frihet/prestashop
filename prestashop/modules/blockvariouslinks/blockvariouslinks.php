@@ -91,16 +91,29 @@ class BlockVariousLinks extends Module
 	* @param array $params Parameters
 	* @return string Content
 	*/
+
+
 	function hookFooter($params)
 	{
-		global $smarty, $cookie;
-		$cms = CMS::listCms($cookie->id_lang, $this->id);
-		$id_cms = array();
-		foreach($cms AS $row)
-			$id_cms[] = intval($row['id_cms']);
-			
-		$smarty->assign('cmslinks', CMS::getLinks($cookie->id_lang, $id_cms));
-		return $this->display(__FILE__, 'blockvariouslinks.tpl');
+                global $smarty, $cookie;
+                $smarty->caching = 0;
+                $cms = CMS::listCms($cookie->id_lang, $this->id);
+                $id_cms = array();
+                $rewlink = array();
+                foreach($cms AS $row) {
+                        $id_cms[] = intval($row['id_cms']);
+                }
+                $links = CMS::getLinks($cookie->id_lang,$id_cms);
+                for($x=0;$x<count($links);$x++) {
+                  $l = $links[$x]["link"];
+                  $s = strpos($l,"/prestashop/");
+                  $links[$x]["link"] = substr($l,$s);
+                }
+
+//                echo("<pre>");   print_r($links);   echo("</pre>");
+
+                $smarty->assign('cmslinks',$links);
+                return $this->display(__FILE__, 'blockvariouslinks.tpl');
 	}
 
 }
