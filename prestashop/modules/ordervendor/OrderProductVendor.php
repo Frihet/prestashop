@@ -35,6 +35,10 @@ class OrderProductVendor
 		// supporting the product that services an
 		// area covering the delivery postcode. This
 		// is basically a Pythagoras
+
+                // Espen Lyngaas added line to remove spaces in postcodes
+                $postcode = str_replace(" ","",$postcode);
+
 		$products_sql = '"' . $id_products[0] . '"';
 		foreach ($id_products as $id_product)
 			$product_sql .= ', "' . $id_product . '"';
