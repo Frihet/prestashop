@@ -12,5 +12,8 @@
 			<div id="footer">{$HOOK_FOOTER}</div>
 		</div>
 	{/if}
+	<img src="/prestashop/img/visa.jpg" height="40px">
+	<img src="/prestashop/img/mastercard-1.jpg" height="40px">
+	<img src="/prestashop/img/dankort.jpg" height="40px">
 	</body>
 </html>

@@ -14,7 +14,7 @@ $_MODULE['<{productsalsobuyrightbox}prestashop>productsalsobuyrightbox_6602bbeb2
 $_MODULE['<{productsalsobuyrightbox}prestashop>productsalsobuyrightbox_e836954e1fda4363c9442bf3293a8377'] = 'Kunder som kjøpte denne varen, kjøpte også';
 $_MODULE['<{productsalsobuyrightbox}prestashop>productsalsobuyrightbox_8ef12e6f1578309614f981a3348ab04e'] = 'Hva gjør den';
 $_MODULE['<{productsalsobuyrightbox}prestashop>productsalsobuyrightbox_12a8baf2ea12c00bf8341e17268d0c68'] = 'Vis produkter andre kunder har kjøpt i fotnoter';
-$_MODULE['<{productsalsobuyrightbox}prestashop>productsalsobuyrightbox_3728590253d03946a822601ab8da5a40'] = 'Kunder kjøpte også';
+$_MODULE['<{productsalsobuyrightbox}prestashop>productsalsobuyrightbox_3728590253d03946a822601ab8da5a40'] = 'Andre kjøpte også';
 $_MODULE['<{productsalsobuyrightbox}prestashop>productsalsobuyrightbox_2d0f6b8300be19cf35e89e66f0677f95'] = 'Legg til i handlevogn';
 $_MODULE['<{productsalsobuyrightbox}prestashop>productsalsobuyrightbox_831a28f1e8df07c553fcd59546465d13'] = 'Kjøp';
 $_MODULE['<{productsalsobuyrightbox}prestashop>productsalsobuyrightbox_d3da97e2d9aee5c8fbe03156ad051c99'] = 'Mer';

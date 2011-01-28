@@ -187,7 +187,7 @@ class Netaxept extends PaymentModule
 	public function getMidToken($currency_iso_code)
 	{
 		$mid_token_curr = Configuration::get('NETAXEPT_MID_TOKEN_CURR');
-		$arr = explode("\n", $mid_token_curr);
+		$arr = explode("|", $mid_token_curr);
 
 		foreach ($arr as $val)
 		{
@@ -231,6 +231,10 @@ class Netaxept extends PaymentModule
 			case 'SEK':
 				$language == 'sv_SE';
 				break;
+			case 'DKK':
+				$language == 'da_DK';
+				break;
+
 			default:
 				$language == 'en_GB';
 		}
@@ -267,7 +271,12 @@ class Netaxept extends PaymentModule
 				"merchantId"	=> "$merchant_id",
 				"request"		=> $setup_request );
 		$client = new SoapClient($wsdl_url, array('trace' => true,'exceptions' => true ));
+		try {
 		$result = $client->__call('Setup' , array("parameters" => $params_transaction));
+} catch (Exception $fault) {
+ print_r($fault);
+die(1);
+}
 		$setup_result = $result->SetupResult;
 
 		$smarty->assign(array(

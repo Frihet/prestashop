@@ -10,3 +10,5 @@ $_MODULE['<{ordercarriertollpost}prestashop>ordercarriertollpost_5cc29a271a45b6f
 $_MODULE['<{ordercarriertollpost}prestashop>ordercarriertollpost_dc647eb65e6711e155375218212b3964'] = 'Lösenord';
 $_MODULE['<{ordercarriertollpost}prestashop>ordercarriertollpost_ce849afa4d64fb10106822119fb75cda'] = 'Lösenord för tillgång till Tollpost API';
 $_MODULE['<{ordercarriertollpost}prestashop>ordercarriertollpost_c9cc8cce247e49bae79f15173ce97354'] = 'Spara';
+$_MODULE['<{ordercarriertollpost}prestashop>ordercarriertollpost_c4ea185528ec11ac50b1c2197dcc052a'] = 'Ditt närmaste postkontor';
+$_MODULE['<{ordercarriertollpost}prestashop>ordercarriertollpost_2f567991e127d6e4213e5f11c4c71d43'] = 'Uthämtningsställe:';

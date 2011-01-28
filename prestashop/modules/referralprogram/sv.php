@@ -69,7 +69,7 @@ $_MODULE['<{referralprogram}prestashop>referralprogram_c61851decdfb9e117db22a561
 $_MODULE['<{referralprogram}prestashop>referralprogram_f2df28e0986f3ddc39cc6c100f8e34a5'] = 'Antal vänner som krävs.';
 $_MODULE['<{referralprogram}prestashop>referralprogram_3d31dd445991f35b1ee6491eec7ac71c'] = 'Kan inte skriva till xml filen.';
 $_MODULE['<{referralprogram}prestashop>referralprogram_36bad0c5050aa8681926523cb705bbc0'] = 'Kan inte stänga xml filen.';
-$_MODULE['<{referralprogram}prestashop>referralprogram_21cc1fccae3b04bb8cd2719cc5269e1e'] = 'Det går inte att uppdatera XML-filen. Kontrollera xml-filens behörigheter\r\n';
+$_MODULE['<{referralprogram}prestashop>referralprogram_21cc1fccae3b04bb8cd2719cc5269e1e'] = 'Det går inte att uppdatera XML-filen. Kontrollera xml-filens behörigheterrn';
 $_MODULE['<{referralprogram}prestashop>referralprogram_5be920293db3e38c81330fd0798336b1'] = 'Ogiltig html område, javascript förbjuden';
 $_MODULE['<{referralprogram}prestashop>referralprogram_f4f70727dc34561dfde1a3c529b6205c'] = 'Inställningar';
 $_MODULE['<{referralprogram}prestashop>referralprogram_9a90c47f5f320658d2048852203ee2b9'] = 'Antal beställningar som behövs för att förtjäna rabatt:';

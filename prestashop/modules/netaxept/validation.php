@@ -1,5 +1,4 @@
 <?php
-	
 	include(dirname(__FILE__).'/../../config/config.inc.php');
 	include(dirname(__FILE__).'/../../header.php');
 	include(dirname(__FILE__).'/netaxept.php');
@@ -51,6 +50,8 @@
 			
 			}
 			catch (SoapFault $fault) {
+/*				print_r($fault);
+				die();*/
 				//user cancelled
 				if ($fault->detail->UserCancelledException->Result->ResponseCode == 17) {
 					$err_msg = $error_17;

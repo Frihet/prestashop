@@ -11,7 +11,7 @@ $_MODULE['<{blockcategories}prestashop>blockcategories_c888438d14855d7d96a2724ee
 $_MODULE['<{blockcategories}prestashop>blockcategories_f4f70727dc34561dfde1a3c529b6205c'] = 'Oppsett';
 $_MODULE['<{blockcategories}prestashop>blockcategories_19561e33450d1d3dfe6af08df5710dd0'] = 'Maks dybde';
 $_MODULE['<{blockcategories}prestashop>blockcategories_ef35cd8f1058f29151991e9ca94b36fb'] = 'Sett maksimum dybde av underkategorier vis i boksen (0 = alle)';
-$_MODULE['<{blockcategories}prestashop>blockcategories_971fd8cc345d8bd9f92e9f7d88fdf20c'] = 'Dynamsik';
+$_MODULE['<{blockcategories}prestashop>blockcategories_971fd8cc345d8bd9f92e9f7d88fdf20c'] = 'Dynamisk';
 $_MODULE['<{blockcategories}prestashop>blockcategories_00d23a76e43b46dae9ec7aa9dcbebb32'] = 'Tilgjengelig';
 $_MODULE['<{blockcategories}prestashop>blockcategories_b9f5c797ebbf55adccdd8539a65a0241'] = 'Utilgjengelig';
 $_MODULE['<{blockcategories}prestashop>blockcategories_2c1199ee18b344152f35ec237acb5796'] = 'Aktiver dynamsik (animert) modul for undernivåer';
