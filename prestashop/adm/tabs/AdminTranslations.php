@@ -296,7 +296,7 @@ class AdminTranslations extends AdminTab
 				if ($themes = scandir(_PS_ALL_THEMES_DIR_))
 				
 					foreach ($themes AS $theme)
-						if ($theme{0} != '.' AND is_dir(_PS_ALL_THEMES_DIR_.$theme) AND file_exists(_PS_ALL_THEMES_DIR_.$theme.'/modules/'))
+						if ($theme{0} != '.' AND is_dir(_PS_ALL_THEMES_DIR_.$theme) AND !is_link(_PS_ALL_THEMES_DIR_.$theme) AND file_exists(_PS_ALL_THEMES_DIR_.$theme.'/modules/'))
 						{
 							if ($modules = scandir(_PS_ALL_THEMES_DIR_.$theme.'/modules/'))
 								foreach ($modules AS $module)
@@ -720,7 +720,7 @@ class AdminTranslations extends AdminTab
 
 			if ($themes = scandir(_PS_ALL_THEMES_DIR_))
 				foreach ($themes AS $theme)
-					if ($theme{0} != '.' AND is_dir(_PS_ALL_THEMES_DIR_.$theme) AND file_exists(_PS_ALL_THEMES_DIR_.$theme.'/modules/'))
+					if ($theme{0} != '.' AND is_dir(_PS_ALL_THEMES_DIR_.$theme) AND !is_link(_PS_ALL_THEMES_DIR_.$theme) AND file_exists(_PS_ALL_THEMES_DIR_.$theme.'/modules/'))
 						{
 							$modules = scandir(_PS_ALL_THEMES_DIR_.$theme.'/modules/');
 							if ($modules)
