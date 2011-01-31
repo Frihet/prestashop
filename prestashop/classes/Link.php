@@ -154,11 +154,13 @@ class Link
 		else
 			$url = $this->url;
 		$vars = (!$array ? '' : array());
-		$varsNb = array('n', 'search_query');
+		$varsNb = array('n'); // This was here before but just breaks search: , 'search_query');
 		$varsSort = array('orderby', 'orderway');
 		$varsPagination = array('p');
 		$varsVarious = array('search_query');
 		
+		if (!$nb) $nb = 0;
+
 		foreach ($_GET as $k => $value)
 			if ($k != 'id_'.$type)
 			{
