@@ -1711,7 +1711,11 @@ body#category  div#subcategories ul.inline_list  li a img {
 }
 .product_list_category_item {
     width: 150px;
+    height: 385px;
     float: left;
+}
+.product_list_category_item .variablebox_center_center {
+    vertical-align: top;
 }
 
 .product_list_item a, .product_list_category_item a {
