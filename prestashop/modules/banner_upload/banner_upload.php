@@ -43,6 +43,7 @@ class banner_upload extends Module
 				`width` int(11) DEFAULT NULL,
 				`height` int(11) DEFAULT NULL,
 				`status` tinyint(1) DEFAULT NULL,
+				`id_lang` int(10) unsigned DEFAULT NULL,
 				PRIMARY KEY (`id`)
 			)';
 		$sql_blmod_banner_res = Db::getInstance()->Execute($sql_blmod_banner);
@@ -271,11 +272,19 @@ class banner_upload extends Module
 					$folder = '../banner_img/'.$banner_l['image'];
 					$img_size = $this->resize($folder);
 					
+					if ($banner_l['id_lang'] == "")
+                                                $banner_lang = "All languages";
+					else {
+						$banner_lang = Language::getLanguage($banner_l['id_lang']);
+						$banner_lang = $banner_lang['isoc_code'] . ': ' . $banner_lang['name'];
+					}
+
 					$this->_html .='<li id="recordsArray_'.$banner_l['id'].'" class = "content_images_line '.$bg_table.'">
 					
 						<div class="banner_line_text">
 						<img src="../img/admin/picture.gif" alt="" title="" /> <input type="radio" name="id" value="'.$banner_l['id'].'" /> <br/>
 						<img src="../img/admin/home.gif" alt="" title="" /> <b>'.$this->l('Title:').'</b> <span>'.$banner_l['alt'].'</span><br/>
+						<img src="../img/admin/home.gif" alt="" title="" /> <b>'.$this->l('Language:').'</b> <span>'.$banner_lang.'</span><br/>
 						<img src="../img/admin/subdomain.gif" alt="" title="" /> <b>'.$this->l('Link:').'</b> <a href = "'.$banner_l['url'].'" target = "_blank">'.$banner_l['url'].'<a/><br/>
 						<img src="../img/admin/access.png" /> <b>'.$this->l('Status:').'</b> <input type="checkbox" name="status"' . $this->status($banner_l['status'], true).'
 						</div>
@@ -340,7 +349,7 @@ class banner_upload extends Module
 		$this->_html .= '<div class="conf confirm"><img src="../img/admin/ok.gif" alt="'.$this->l('Confirmation').'" />'.$this->l('Delete successfully').'</div>'; 
 	}
 	
-	public function insert_image_to_db($Link, $NewTab, $NewFile, $ImgAlt, $Position, $status_banner)
+	public function insert_image_to_db($Link, $NewTab, $NewFile, $ImgAlt, $Position, $status_banner, $id_lang)
 	{
 		$user_file = $this->change_to_friendly_name($NewFile['name']);
 		$file_temp = $NewFile['tmp_name'];
@@ -379,9 +388,9 @@ class banner_upload extends Module
 				
 				Db::getInstance()->Execute('
 					INSERT INTO '._DB_PREFIX_.'blmod_upl_banner 
-					(position, image, type, url, new_window, alt, width, height, status)
+					(position, image, type, url, new_window, alt, width, height, status, id_lang)
 					VALUES 
-					("'.$Position.'", "'.$user_file.'", "'.$type[1].'", "'.htmlspecialchars($Link, ENT_QUOTES).'", "'.$NewTab.'", "'.htmlspecialchars($ImgAlt, ENT_QUOTES).'", "'.$img_size[0].'", "'.$img_size[1].'", "'.$status_banner.'")');
+					("'.$Position.'", "'.$user_file.'", "'.$type[1].'", "'.htmlspecialchars($Link, ENT_QUOTES).'", "'.$NewTab.'", "'.htmlspecialchars($ImgAlt, ENT_QUOTES).'", "'.$img_size[0].'", "'.$img_size[1].'", "'.$status_banner.'", '.$id_lang.')');
 				$this->_html .= '<div class="conf confirm"><img src="../img/admin/ok.gif" alt="'.$this->l('Confirmation').'" />'.$this->l('Save successfully').'</div>'; 
 			} 
 			else
@@ -391,7 +400,7 @@ class banner_upload extends Module
 		}
 	}
 	
-	public function update_old_image($Link, $NewTab, $NewFile, $ImgAlt, $Position, $OldImageName, $OldImageId, $status_banner)
+	public function update_old_image($Link, $NewTab, $NewFile, $ImgAlt, $Position, $OldImageName, $OldImageId, $status_banner, $id_lang)
 	{
 		$check_value = Db::getInstance()->getRow('SELECT image FROM '._DB_PREFIX_.'blmod_upl_banner WHERE image = "'.$NewFile['name'].'"');
 
@@ -434,7 +443,7 @@ class banner_upload extends Module
 				
 				Db::getInstance()->Execute('UPDATE '._DB_PREFIX_.'blmod_upl_banner 
 				SET position = "'.$Position.'", image = "'.$user_file.'", type = "'.$type[1].'", url = "'.htmlspecialchars($Link, ENT_QUOTES).'", 
-				new_window = "'.$NewTab.'", alt = "'.htmlspecialchars($ImgAlt, ENT_QUOTES).'", width = "'.$img_size[0].'", height = "'.$img_size[1].'", status = "'.$status_banner.'"
+				new_window = "'.$NewTab.'", alt = "'.htmlspecialchars($ImgAlt, ENT_QUOTES).'", width = "'.$img_size[0].'", height = "'.$img_size[1].'", status = "'.$status_banner.'", id_lang = '.$id_lang.'
 				WHERE id = "'.$OldImageId.'"');
 				
 				//delete old image
@@ -512,8 +521,9 @@ class banner_upload extends Module
 			$_POST['ImgAlt'] = (isset($_POST['ImgAlt']) ? $_POST['ImgAlt'] : '');
 			$_POST['status'] = (isset($_POST['status']) ? $_POST['status'] : '0');
 			$_POST['Link'] = (isset($_POST['Link']) ? $_POST['Link'] : '0');
-			
-			$this->insert_image_to_db($_POST['Link'], $_POST['NewTab'], $_FILES['NewFile'], $_POST['ImgAlt'], $_POST['Position'], $_POST['status']);
+			$_POST['id_lang'] = (isset($_POST['id_lang']) ? $_POST['id_lang'] : null);
+
+			$this->insert_image_to_db($_POST['Link'], $_POST['NewTab'], $_FILES['NewFile'], $_POST['ImgAlt'], $_POST['Position'], $_POST['status'], $_POST['id_lang']);
 		}
 
 		if(isset($_POST['UpdateOldImage']))
@@ -522,8 +532,9 @@ class banner_upload extends Module
 			$_POST['ImgAlt'] = (isset($_POST['ImgAlt']) ? $_POST['ImgAlt'] : '');
 			$_POST['status'] = (isset($_POST['status']) ? $_POST['status'] : '0');
 			$_POST['Link'] = (isset($_POST['Link']) ? $_POST['Link'] : '0');
+			$_POST['id_lang'] = (isset($_POST['id_lang']) ? $_POST['id_lang'] : null);
 			
-			$this->update_old_image($_POST['Link'], $_POST['NewTab'], $_FILES['NewFile'], $_POST['ImgAlt'], $_POST['Position'], $_POST['OldImageName'], $_POST['OldImageId'], $_POST['status']);
+			$this->update_old_image($_POST['Link'], $_POST['NewTab'], $_FILES['NewFile'], $_POST['ImgAlt'], $_POST['Position'], $_POST['OldImageName'], $_POST['OldImageId'], $_POST['status'], $_POST['id_lang']);
 		}			
 		
 		$banner_info['url'] = isset($banner_info['url']) ? $banner_info['url'] : false;
@@ -552,6 +563,29 @@ class banner_upload extends Module
 											$this->_html .= 'value=""';										
 										
 										$this->_html .= 'size="50"/>
+									</td>
+								</tr>
+								<tr><td>&nbsp;</td></tr>
+								<tr>
+									<td width="20"><img src="../img/admin/home.gif" alt="" title="" /></td>
+									<td width="100"><b>'.$this->l('Language:').'</b></td>
+									<td colspan = "5">
+										<select name="id_lang">';
+										         $current = '';
+												 if ($banner_info['id_lang'] == "")
+												         $current = ' selected="selected" ';
+											 $this->_html .= '<option value="null"' . $current . '>All languages</option>';
+
+                                                                                         $langs = Language::getLanguages();
+											 
+											 foreach ($langs as $lang) {
+											         $current = '';
+												 if ($lang['id_lang'] == $banner_info['id_lang'])
+												         $current = ' selected="selected" ';
+											         $this->_html .= '<option value="' . $lang['id_lang'] . '"' . $current . '>' . $lang['iso_code'] . ': ' . $lang['name'] . '</option>';
+                                                                                         }
+										
+										$this->_html .= '</select>
 									</td>
 								</tr>
 								<tr><td>&nbsp;</td></tr>
@@ -675,10 +709,12 @@ class banner_upload extends Module
 	
 	public function get_banner($block)
 	{
+	        global $cookie;
+
 		$banner = Db::getInstance()->ExecuteS('
 			SELECT image, type, url, new_window, width, height
 			FROM '._DB_PREFIX_.'blmod_upl_banner
-			WHERE status = "1" AND position = "'.$block.'"
+			WHERE status = "1" AND position = "'.$block.'" AND (id_lang IS NULL OR id_lang = "'.$cookie->id_lang.'")
 			ORDER by recordListingID ASC
 		');
 		
