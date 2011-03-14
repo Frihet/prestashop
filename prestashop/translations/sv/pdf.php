@@ -42,6 +42,7 @@ $_LANGPDF['PDF_invoicea3a79b28bc45b7fd393effd056b917e1'] = 'Leveransdatum:';
 $_LANGPDF['PDF_invoice2370a4958c4ebe6d6c8045cd49a6b392'] = 'Total produkter (exkl. moms)';
 $_LANGPDF['PDF_invoiceb602e0d0c6a72053d0a5be60cb2f8126'] = 'Total moms';
 $_LANGPDF['PDF_invoiceebaee01719541f61281c16ba22ebbfde'] = 'Total produkter (inkl. moms)';
+$_LANGPDF['PDF_invoiceb76c1a1463e45cece931ef4467c0bdf8'] = 'Total rabatt';
 $_LANGPDF['PDF_invoice7a5b34426b4672759796f035bbc2674e'] = 'Inslagning';
 $_LANGPDF['PDF_invoicef4e8b53a114e5a17d051ab84d326cae5'] = 'Frakt';
 $_LANGPDF['PDF_invoiceae5c2883df7651730799e1036984a6a3'] = 'Totalt inkl moms';
