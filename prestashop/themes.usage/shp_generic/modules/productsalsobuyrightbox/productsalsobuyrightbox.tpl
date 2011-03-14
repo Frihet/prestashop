@@ -18,8 +18,8 @@
 				<td><a class="button_mini ajax_add_to_cart_button" href="{$base_dir}cart.php?qty=1&amp;id_product={$product.id_product|intval}&amp;token={$static_token}&amp;add" rel="ajax_id_product_{$product.id_product|intval}" title="{l s='Add to cart'}">{l s='Buy'}</a></td>
 			</tr>
 			<tr>
-
-			</tr
+ 				<td colspan="3"></td>
+			</tr>
 		{/foreach}
 		</table>
 	</div>

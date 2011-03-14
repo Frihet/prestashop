@@ -39,7 +39,6 @@ var doesntExistNoMoreBut = '{l s='with those attributes but is available with ot
 var uploading_in_progress = '{l s='Uploading in progress, please wait...' js=1}';
 var fieldRequired = '{l s='Please fill all required fields' js=1}';
 
-
 //]]>
 </script>
 
@@ -125,8 +124,8 @@ var fieldRequired = '{l s='Please fill all required fields' js=1}';
 								-->
 							</tr>
 							<tr>
-
-							</tr
+								<td colspan="3"></td>
+							</tr>
 						{/foreach}
 						</table>
 					</div>
