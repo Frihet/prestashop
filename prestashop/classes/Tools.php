@@ -140,14 +140,24 @@ class Tools
 	static public function setCurrency()
 	{
 		global $cookie;
+                // Espen Lyngaas added code to also handle setting currency through GET, if not set in cookie
+                $_curr = "";
+                $post_curr = $_POST['id_currency'];
+                $get_curr = $_GET['id_currency'];
 
-		if (self::isSubmit('SubmitCurrency'))
-			if (isset($_POST['id_currency']) AND is_numeric($_POST['id_currency']))
-			{
-				$currency = new Currency(intval($_POST['id_currency']));
-				if (is_object($currency) AND $currency->id AND !$currency->deleted)
-					$cookie->id_currency = intval($currency->id);
-			}
+		if (self::isSubmit('SubmitCurrency') && is_numeric($post_curr)) {    // Get the POST id_currency
+                  $_curr = $post_curr;
+                }  
+                if(is_numeric($get_curr) && !$cookie->id_currency) {    // Use the GET id_currency only if it's numeric and
+                  $_curr = $get_curr;                                   // the cookie currency isn't already set
+                }
+                
+		if (is_numeric($_curr))
+		{
+			$currency = new Currency(intval($_curr));
+			if (is_object($currency) AND $currency->id AND !$currency->deleted)
+				$cookie->id_currency = intval($currency->id);
+		}
 
 		if ($cookie->id_currency)
 		{
