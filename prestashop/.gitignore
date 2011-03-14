@@ -5,3 +5,4 @@ download/**
 translations/export/**
 tools/smarty/cache/**
 .project
+config/settings.inc.php
