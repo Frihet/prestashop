@@ -52,7 +52,6 @@
 				</div>
 			{/if}
 		{/if}
-		-->
 
 		{if $products}
 			{if $path|regex_replace:"/.*a href.*/":"" == ""}
