@@ -2759,21 +2759,15 @@ class		Product extends ObjectModel
 
 		return "
 		 LEFT JOIN
-		  (SELECT pp.id_product, min(abs(pp.id_currency - {$currency_id})) as currency_diff
-		   FROM PREFIX_product_price pp
-		   WHERE (pp.id_currency in ({$currency_id}, {$default_currency}) AND pp.id_group IS NULL {$product_groups_where})
-		   GROUP BY pp.id_product) AS {$alias}_currency_selector ON
-		  {$alias}_currency_selector.id_product = {$id_product}
-		 LEFT JOIN
 		  (SELECT pp.id_product, pp.id_currency, min(pp.price) as min_price
 		   FROM PREFIX_product_price pp
 		   WHERE (pp.id_group IS NULL {$product_groups_where})
 		   GROUP BY pp.id_product, pp.id_currency) AS {$alias}_min_price ON
 		  {$alias}_min_price.id_product = {$id_product}
-		  AND abs({$alias}_min_price.id_currency - {$currency_id}) = {$alias}_currency_selector.currency_diff
+		  AND {$alias}_min_price.id_currency = {$currency_id}
 		 LEFT JOIN `PREFIX_product_price` {$alias} ON
 		  {$alias}.id_product = {$id_product}
-		  AND abs({$alias}.id_currency - {$currency_id}) = {$alias}_currency_selector.currency_diff
+		  AND {$alias}.id_currency = {$currency_id}
 		  AND {$alias}.price = {$alias}_min_price.min_price";
 
 	}
@@ -2789,21 +2783,15 @@ class		Product extends ObjectModel
 
 		return "
 		 LEFT JOIN
-		  (SELECT pap.id_product_attribute, min(abs(pap.id_currency - {$currency_id})) as currency_diff
-		   FROM PREFIX_product_attribute_price pap
-		   WHERE (pap.id_currency in ({$currency_id}, {$default_currency}) AND pap.id_group IS NULL {$product_groups_where})
-		   GROUP BY pap.id_product_attribute) AS {$alias}_currency_selector ON
-		  {$alias}_currency_selector.id_product_attribute = {$id_product_attribute}
-		 LEFT JOIN
 		  (SELECT pap.id_product_attribute, pap.id_currency, min(pap.price) as min_price
 		   FROM PREFIX_product_attribute_price pap
 		   WHERE (pap.id_group IS NULL {$product_groups_where})
 		   GROUP BY pap.id_product_attribute, pap.id_currency) AS {$alias}_min_price ON
 		  {$alias}_min_price.id_product_attribute = {$id_product_attribute}
-		  AND abs({$alias}_min_price.id_currency - {$currency_id}) = {$alias}_currency_selector.currency_diff
+		  AND {$alias}_min_price.id_currency = {$currency_id}
 		 LEFT JOIN `PREFIX_product_attribute_price` {$alias} ON
 		  {$alias}.id_product_attribute = {$id_product_attribute}
-		  AND abs({$alias}.id_currency - {$currency_id}) = {$alias}_currency_selector.currency_diff
+		  AND {$alias}.id_currency = {$currency_id}
 		  AND {$alias}.price = {$alias}_min_price.min_price";
 
 	} 
