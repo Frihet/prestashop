@@ -138,6 +138,15 @@ else
 		$errors[] = Tools::displayError('you do not have access to this product');
 	else
 	{
+		
+		if ($product->type == 'dealer') {
+			$vendor = ProductDealer::findVendordata($product->id);
+			if (count($vendor) >= 1) {
+				$vendor = array_shift($vendor);
+			}
+			$product->vendor =& $vendor;
+		}
+		
 		$smarty->assign('virtual', ProductDownload::getIdFromIdProduct(intval($product->id)));
 		
 		/* rewrited url set */
