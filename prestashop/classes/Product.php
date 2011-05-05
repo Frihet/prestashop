@@ -20,7 +20,14 @@ class		Product extends ObjectModel
 {
 	/** @var string type */
 	public		$type = 'product';
-
+	
+	public      $location_latlng;
+	
+	public      $id_vendor;
+	
+	public      $vendor_name;
+	
+	
 	/** @var integer Manufacturer id */
 	public		$id_manufacturer;
 
@@ -147,6 +154,8 @@ class		Product extends ObjectModel
 
 	private static $_incat = array();
 	
+	private static $_catids = array();
+	
 	/** @var array tables */
 	protected $tables = array ('product', 'product_lang');
 
@@ -198,7 +207,11 @@ class		Product extends ObjectModel
 		{
 			$this->manufacturer_name = Manufacturer::getNameById(intval($this->id_manufacturer));
 			$this->supplier_name = Supplier::getNameById(intval($this->id_supplier));
-
+			if (!class_exists("Vendor", false)) {
+				include_once( dirname(__FILE__) . '/../modules/ordervendor/Vendor.php' );
+			}
+			$this->vendor_name = Vendor::getNameById(intval($this->id_vendor));
+			
 		}
 		$this->category = Category::getLinkRewrite(intval($this->id_category_default), intval($id_lang));
 		$this->tags = Tag::getProductTags($this->id);
@@ -210,6 +223,8 @@ class		Product extends ObjectModel
 		if (isset($this->id))
 			$fields['id_product'] = intval($this->id);
 		$fields['type'] = pSQL($this->type);
+		$fields['location_latlng'] = pSQL($this->location_latlng);
+		$fields['id_vendor'] = intval($this->id_vendor);
 		$fields['id_manufacturer'] = intval($this->id_manufacturer);
 		$fields['id_supplier'] = intval($this->id_supplier);
 		$fields['id_category_default'] = intval($this->id_category_default);
@@ -2705,6 +2720,51 @@ class		Product extends ObjectModel
 			return false;
 		self::$_incat[md5($sql)] =  (Db::getInstance()->NumRows() > 0 ? true : false);
 		return self::$_incat[md5($sql)];
+	}
+	
+	public static function getCategoryIds($id_product)
+	{
+		/*
+		$sql = 'SELECT id_category FROM `'._DB_PREFIX_.'category_product` WHERE `id_product`='.intval($id_product) . '';
+		if (isset(self::$_catids[md5($sql)]))
+			return self::$_catids[md5($sql)];
+		
+		$res = Db::getInstance()->ExecuteS($sql);
+		$ret = array();
+		*/
+		$sql = '
+		SELECT
+          CONCAT(
+            c.`id_category`, ",",
+            c2.`id_category`, ",",
+            c3.`id_category`, ",",
+            c4.`id_category`
+          ) AS `id_category`
+        FROM
+          `'._DB_PREFIX_.'category_product` AS cp
+          LEFT JOIN `'._DB_PREFIX_.'category` c ON c.`id_category` = cp.`id_category`
+          LEFT JOIN `'._DB_PREFIX_.'category` c2 ON c.`id_parent` = c2.`id_category`
+          LEFT JOIN `'._DB_PREFIX_.'category` c3 ON c2.`id_parent` = c3.`id_category`
+          LEFT JOIN `'._DB_PREFIX_.'category` c4 ON c3.`id_parent` = c4.`id_category`
+        WHERE
+          cp.`id_product` = '.intval($id_product) . ' AND
+          CONCAT(c.`id_category`,c2.`id_category`,c3.`id_category`,c4.`id_category`) IS NOT NULL
+		';
+		$res = Db::getInstance()->ExecuteS($sql);
+		$ret = array();
+		foreach ($res as $row) {
+			$ids = explode(",", $row['id_category']);
+			foreach($ids as $id)
+				$ret[$id] = 1;
+		}
+		self::$_catids[md5($sql)] = array_keys($ret);
+		return self::$_catids[md5($sql)];
+/*
+		if (!Db::getInstance()->Execute($sql))
+			return false;
+		self::$_catids[md5($sql)] =  (Db::getInstance()->NumRows() > 0 ? true : false);
+		return self::$_incat[md5($sql)];
+		*/
 	}
 	
 	public function getNoPackPrice()

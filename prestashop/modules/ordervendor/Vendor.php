@@ -32,4 +32,13 @@ class Vendor
 		   	 return null;
 		return $row['id_vendor'];
 	}
+	
+	static public function getNameById($id_vendor) {
+		$sql = "select title from PREFIX_vendor where id_vendor = {$id_vendor}";
+		$sql = str_replace('PREFIX_', _DB_PREFIX_, $sql);
+		$row = Db::getInstance()->getRow($sql);
+		if ($row == null)
+		   	 return null;
+		return $row['title'];
+	}
 }

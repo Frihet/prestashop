@@ -33,6 +33,14 @@ class		Customer extends ObjectModel
 
 	/** @var string e-mail */
 	public 		$email;
+	
+	
+	/* Vendor */
+	public		$classifications;
+	public      $fax;
+	public      $hours;
+	public      $blog_url;
+	
 
 	/** @var boolean Newsletter subscription */
 	public 		$newsletter;
@@ -99,6 +107,12 @@ class		Customer extends ObjectModel
 		$fields['date_add'] = pSQL($this->date_add);
 		$fields['date_upd'] = pSQL($this->date_upd);
 		$fields['deleted'] = intval($this->deleted);
+		/* Vendor */
+		$fields['classifications'] = pSQL($this->classifications);
+		$fields['fax']   = pSQL($this->fax);
+		$fields['hours'] = pSQL($this->hours);
+		$fields['blog_url'] = pSQL($this->blog_url);
+		
 		return $fields;
 	}
 
@@ -120,6 +134,8 @@ class		Customer extends ObjectModel
 		$this->birthday = (empty($this->years) ? $this->birthday : intval($this->years).'-'.intval($this->months).'-'.intval($this->days));
 		if ($this->newsletter AND !$this->newsletter_date_add)
 			$this->newsletter_date_add = date('Y-m-d H:i:s');
+			
+		$this->classifications = is_array($this->classifications) ? implode(',', array_keys($this->classifications)) : '';
 	 	return parent::update(true);
 	}
 	
@@ -488,6 +504,16 @@ public function getLastConnections()
 		FROM '._DB_PREFIX_.'customer_group cg
 		WHERE cg.`id_customer` = '.intval($this->id).'
 		AND cg.`id_group` = '.intval($id_group));
+		return $result['nb'];
+	}
+	
+	
+	public function isVendor() {
+		$result = Db::getInstance()->getRow('
+		SELECT count(v.`id_vendor`) as nb
+		FROM '._DB_PREFIX_.'vendor v
+		WHERE v.`id_customer` = '.intval($this->id).'
+		');
 		return $result['nb'];
 	}
 }
