@@ -78,8 +78,9 @@ abstract class PaymentModule extends Module
 
 	function validateOrder($id_cart, $id_order_state, $amountPaid, $paymentMethod = 'Unknown', $message = NULL, $extraVars = array(), $currency_special = NULL, $dont_touch_amount = false, $payment_reference = null)
 	{
+		global $currency;
 		$cart = new Cart(intval($id_cart));
-
+		
 		// Does order already exists ?
 		if (Validate::isLoadedObject($cart) AND $cart->OrderExists() === 0)
 		{
@@ -115,8 +116,20 @@ abstract class PaymentModule extends Module
 			$order->total_shipping = $cart->getOrderShippingCostLC();
 			$order->total_wrapping = abs($cart->getOrderTotalLC(true, 6));
 			$order->total_paid = $cart->getOrderTotalLC(true, 3);
+
+$logfile = "/srv/www/shp-debug-logging/" . date('Y-m-d_H:i:s') . '_' . md5(microtime(true)) . '.payment_module.php';
+$fp = @fopen($logfile, 'w');
+$LOGSTRING = print_r($cart, true);
+$LOGSTRING .= "----------------\n\n";
+$LOGSTRING .= print_r($order, true);
+$LOGSTRING .= "----------------\n\n";
+$LOGSTRING .= print_r($currency, true);
+fwrite($fp, $LOGSTRING);
+@fclose($fp);
+
 			// Amount paid by customer is not the right one -> Status = payment error
-			if ($order->total_paid != $order->total_paid_real)
+			/* Some payment modules round to two decimals. We do so here aswell, to prevent payment error */
+			if (round($order->total_paid,2) != round($order->total_paid_real,2) )
 				$id_order_state = _PS_OS_ERROR_;
 
 			 $order->payment_reference = $payment_reference;
