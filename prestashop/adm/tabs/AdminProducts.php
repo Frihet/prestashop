@@ -1469,6 +1469,9 @@ class AdminProducts extends AdminTab
 							<br style="clear:both;" />
 							<input style="float:left;" type="radio" name="type" id="type_article" value="article" '.($this->getFieldValue($obj, 'type') == 'article' ? 'checked="checked" ' : '').' onchange="toggleProductType(this)"/>
 							<label for="type_article" class="t">'.$this->l('Article').'</label>
+							<br style="clear:both;" />
+							<input style="float:left;" type="radio" name="type" id="type_dealer" value="dealer" '.($this->getFieldValue($obj, 'type') == 'dealer' ? 'checked="checked" ' : '').' onchange="toggleProductType(this)"/>
+							<label for="type_dealer" class="t">'.$this->l('Dealer').'</label>
 						</td>
 					</tr>
 					<tr>
@@ -1627,7 +1630,7 @@ class AdminProducts extends AdminTab
 	<!--
 	function toggleProductType(elt)
 	{
-                var types = ['product', 'article'];
+                var types = ['product', 'article', 'dealer'];
                 $.each(types, function () {
                  if (this == elt.value)
                   $('.field-for-product-type-' + this
@@ -1641,7 +1644,7 @@ class AdminProducts extends AdminTab
 	}
 
         $(document).ready(function () {
-         $.each(['product', 'article'], function () {
+         $.each(['product', 'article', 'dealer'], function () {
           if ($('#type_' + this)[0].checked)
            toggleProductType($('#type_' + this)[0]);
          });
@@ -2036,9 +2039,57 @@ class AdminProducts extends AdminTab
 								<textarea class="rte" cols="100" rows="10" id="description_short_'.$language['id_lang'].'" name="description_short_'.$language['id_lang'].'">'.htmlentities(stripslashes($this->getFieldValue($obj, 'description_short', $language['id_lang'])), ENT_COMPAT, 'UTF-8').'</textarea>
 							</div>';
 		$this->displayFlags($languages, $defaultLanguage, $divLangName, 'cdesc_short');
+		
+		$id_vendor = $this->getFieldValue($obj, 'id_vendor');
+		$vendor_name = '';
+		if ($id_vendor) {
+			$sql = "select title from PREFIX_vendor where id_vendor = {$id_vendor}";
+			$sql = str_replace('PREFIX_', _DB_PREFIX_, $sql);
+			$row = Db::getInstance()->getRow($sql);
+			if ($row != null)
+				$vendor_name = $row['title'];
+		}
+		
 		echo '
 						</td>
 					</tr>
+					<tr class="field-for-product-type-dealer">
+						<td class="col-left">'.$this->l('Joined vendor').'</td>
+						<td style="padding-bottom:5px;">
+							<input size="55" type="text" id="input_vendor" name="vendor_title" value="' . $vendor_name . '"/>
+							<script type="text/javascript">
+								function addVendor(event, data, formatted) {
+									var id_vendor = data[1];
+									var vendor_title = data[0];
+									
+									$("#id_vendor").val(id_vendor);
+									//$("#input_vendor").val(vendor_title);
+								}
+								$(window).load(function () {
+								        $("#input_vendor").autocomplete("ajax_vendors_list.php", {
+									        minChars: 1,
+										autoFill: true,
+										max:20,
+										matchContains: true,
+										mustMatch:true,
+										scroll:false
+									}).result(addVendor);
+								});
+							</script>
+							<input type="hidden" id="id_vendor" name="id_vendor" value="' . $id_vendor . '"/>
+						</td>
+					</tr>
+					';
+					/*
+					<tr class="field-for-product-type-dealer">
+						<td class="col-left">'.$this->l('Location (lat,lng):').'</td>
+						<td style="padding-bottom:5px;">
+							<input size="55" type="text" id="location_latlng" name="location_latlng" value="' . $this->getFieldValue($obj, 'location_latlng') . '"/>
+						</td>
+					</tr>
+					*/
+					echo '
+					
 					<tr>
 						<td class="col-left">'.$this->l('Description:').'</td>
 						<td style="padding-bottom:5px;">';

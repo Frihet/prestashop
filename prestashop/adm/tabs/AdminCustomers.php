@@ -359,7 +359,7 @@ class AdminCustomers extends AdminTab
 		$birthday = explode('-', $this->getFieldValue($obj, 'birthday'));
 		$customer_groups = $obj->getGroups();
 		echo '
-		<form action="'.$currentIndex.'&submitAdd'.$this->table.'=1&token='.$this->token.'" method="post" class="width3">
+		<form action="'.$currentIndex.'&submitAdd'.$this->table.'=1&token='.$this->token.'" method="post" class="width3" autocomplete="off">
 		'.($obj->id ? '<input type="hidden" name="id_'.$this->table.'" value="'.$obj->id.'" />' : '').'
 			<fieldset><legend><img src="../img/admin/tab-customers.gif" />'.$this->l('Customer').'</legend>
 				<label>'.$this->l('Gender:').' </label>
@@ -378,7 +378,7 @@ class AdminCustomers extends AdminTab
 				</div>
 				<label>'.$this->l('First name:').' </label>
 				<div class="margin-form">
-					<input type="text" size="33" name="firstname" value="'.htmlentities($this->getFieldValue($obj, 'firstname'), ENT_COMPAT, 'UTF-8').'" /> <sup>*</sup>
+					<input type="text" size="33" name="firstname" value="'.htmlentities($this->getFieldValue($obj, 'firstname'), ENT_COMPAT, 'UTF-8').'"/> <sup>*</sup>
 					<span class="hint" name="help_box">'.$this->l('Forbidden characters:').' 0-9!<>,;?=+()@#"�{}_$%:<span class="hint-pointer">&nbsp;</span></span>
 				</div>
 				<label>'.$this->l('Password:').' </label>
@@ -390,6 +390,38 @@ class AdminCustomers extends AdminTab
 				<div class="margin-form">
 					<input type="text" size="33" name="email" value="'.htmlentities($this->getFieldValue($obj, 'email'), ENT_COMPAT, 'UTF-8').'" /> <sup>*</sup>
 				</div>
+				';
+		
+				if ($obj->isVendor()) {
+					$classifications = $this->getFieldValue($obj, 'classifications');
+					$classifications = array_flip( explode(",", $classifications) );
+					
+					echo '
+					<label>Faks</label>
+					<div class="margin-form">
+						<input type="text" size="10" name="fax" value="'.htmlentities($this->getFieldValue($obj, 'fax'), ENT_COMPAT, 'UTF-8').'" />
+					</div>
+					
+					<label>Åpningstider</label>
+					<div class="margin-form">
+						<textarea name="hours" cols="31" rows="3">'.htmlentities($this->getFieldValue($obj, 'hours'), ENT_COMPAT, 'UTF-8').'</textarea>
+					</div>
+					
+					<label>Klassifikasjoner</label>
+					<div class="margin-form">
+						<input type="checkbox" name="classifications[broderi]" value="1"' . (isset($classifications['broderi']) ? ' checked':'') . '/> Ekspert på broderisymaskiner og programvare<br/>
+						<input type="checkbox" name="classifications[service]" value="1"' . (isset($classifications['service']) ? ' checked':'') . '/> Eget serviceverksted<br/>
+						<input type="checkbox" name="classifications[kurs]"    value="1"' . (isset($classifications['kurs'])    ? ' checked':'') . '/> Driver kursvirksomhet
+					</div>
+					
+					<label>Blogg</label>
+					<div class="margin-form">
+						<input type="text" size="33" name="blog_url" value="'.htmlentities($this->getFieldValue($obj, 'blog_url'), ENT_COMPAT, 'UTF-8').'" />
+					</div>
+					';
+				}
+				
+				echo '
 				<label>'.$this->l('Birthday:').' </label>';
 				$sl_year = ($this->getFieldValue($obj, 'birthday')) ? $birthday[0] : 0;
 				$years = Tools::dateYears();
