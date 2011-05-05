@@ -1,0 +1,1 @@
+.././shp_generic/./product_type_dealer.tpl
