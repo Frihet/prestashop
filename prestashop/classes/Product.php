@@ -21,8 +21,6 @@ class		Product extends ObjectModel
 	/** @var string type */
 	public		$type = 'product';
 	
-	public      $location_latlng;
-	
 	public      $id_vendor;
 	
 	public      $vendor_name;
@@ -223,7 +221,6 @@ class		Product extends ObjectModel
 		if (isset($this->id))
 			$fields['id_product'] = intval($this->id);
 		$fields['type'] = pSQL($this->type);
-		$fields['location_latlng'] = pSQL($this->location_latlng);
 		$fields['id_vendor'] = intval($this->id_vendor);
 		$fields['id_manufacturer'] = intval($this->id_manufacturer);
 		$fields['id_supplier'] = intval($this->id_supplier);
