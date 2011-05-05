@@ -123,9 +123,11 @@ var showDealer = function(dealer) {
 		html += '		<td>' + dealer.data.hours + '</td>';
 		html += '	</tr>';
 	}
+	/*
 	if (dealer.description_short) {
 		html += '<tr><td>&nbsp;</td><td>' + dealer.description_short + '</td></tr>';
 	}
+	*/
 	
 	html += '<tr>';
 	html += '<td colspan="2">';
