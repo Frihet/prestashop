@@ -1583,6 +1583,7 @@ ul#order_step {
     font-weight: normal;
     width: 37%;
     text-align: right;
+    color: #1B6900;
 }
 #cart_block table#vouchers td.delete {
     width: 9%;
