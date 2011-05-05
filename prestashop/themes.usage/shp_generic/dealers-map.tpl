@@ -92,7 +92,7 @@ var initMap = function() {
 var showDealer = function(dealer) {
 
 	var html = '';
-	html += '<h3><a href="/product.php?id_product=' + dealer.id + '&amp;id_category=' + dealer.id_top_category + '" title="" style="font-size:14px;">' + dealer.name + '</a></h3>';
+	html += '<h3><a href="product.php?id_product=' + dealer.id + '&amp;id_category=' + dealer.id_top_category + '" title="" style="font-size:14px;">' + dealer.name + '</a></h3>';
 	html += '<table style="width:100%;font-size:13px;">';
 	html += '	<tr>';
 	html += '		<th valign="top">{/literal}{l s='Address'}{literal}</th>';
@@ -126,6 +126,17 @@ var showDealer = function(dealer) {
 	if (dealer.description_short) {
 		html += '<tr><td>&nbsp;</td><td>' + dealer.description_short + '</td></tr>';
 	}
+	
+	html += '<tr>';
+	html += '<td colspan="2">';
+	html += '<ul class="dealer-classifications">';
+	html += '<li' + (dealer.data.classifications.indexOf('broderi') !== -1 ? ' class="checked"' : '') + '>Ekspert på broderisymaskiner og programvare</li>';
+	html += '<li' + (dealer.data.classifications.indexOf('service') !== -1 ? ' class="checked"' : '') + '>Eget serviceverksted</li>';
+	html += '<li' + (dealer.data.classifications.indexOf('kurs')    !== -1 ? ' class="checked"' : '') + '>Driver kursvirksomhet</li>';
+	html += '</ul>';
+	html += '</td>';
+	html += '</tr>';
+	
 	html += '</table>';
 	$('#dealer_info').html(html);
 }
