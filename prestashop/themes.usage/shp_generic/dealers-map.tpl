@@ -131,11 +131,11 @@ var showDealer = function(dealer) {
 	
 	html += '<tr>';
 	html += '<td colspan="2">';
-	html += '<ul class="dealer-classifications">';
-	html += '<li' + (dealer.data.classifications.indexOf('broderi') !== -1 ? ' class="checked"' : '') + '>Ekspert på broderisymaskiner og programvare</li>';
-	html += '<li' + (dealer.data.classifications.indexOf('service') !== -1 ? ' class="checked"' : '') + '>Eget serviceverksted</li>';
-	html += '<li' + (dealer.data.classifications.indexOf('kurs')    !== -1 ? ' class="checked"' : '') + '>Driver kursvirksomhet</li>';
-	html += '</ul>';
+	html += '<div class="dealer-classifications">';
+	html += '<div class="' + (dealer.data.classifications.indexOf('brod') !== -1 ? 'checked' : '') + ' item"><div class="icon"></div><div class="text">Ekspert på broderisymaskiner og programvare</div><div class="clear"></div></div>';
+	html += '<div class="' + (dealer.data.classifications.indexOf('serv') !== -1 ? 'checked' : '') + ' item"><div class="icon"></div><div class="text">Eget serviceverksted</div><div class="clear"></div></div>';
+	html += '<div class="' + (dealer.data.classifications.indexOf('kurs') !== -1 ? 'checked' : '') + ' item"><div class="icon"></div><div class="text">Driver kursvirksomhet</div><div class="clear"></div></div>';
+	html += '</div>';
 	html += '</td>';
 	html += '</tr>';
 	

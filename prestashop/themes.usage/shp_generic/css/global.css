@@ -2796,15 +2796,24 @@ table.product_list td.product_desc {
 	padding: 20px;
 }
 
-ul.dealer-classifications {
+.dealer-classifications {
 	list-style:none;
 }
-ul.dealer-classifications li {
-	background: transparent url("../../../img/checkbox-sprite.png") no-repeat 0 bottom;
-	height: 16px;
-	padding: 14px 0 0 40px;
+.dealer-classifications .item {
+	padding-top: 14px;
+	display: inline;
 }
-ul.dealer-classifications li.checked {
+.dealer-classifications .text {
+	padding-left: 40px;
+	padding-top: 12px;
+}
+.dealer-classifications .icon {
+	background: transparent url("../../../img/checkbox-sprite.png") no-repeat 0 bottom;
+	height: 30px;
+	width: 34px;
+	float: left;
+}
+.dealer-classifications .checked .icon {
 	background-position: 0 0;
 }
 
