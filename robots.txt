@@ -1,5 +1,6 @@
 User-agent: *
 Disallow: /prestashop/classes/
+Disallow: /prestashop/category.php
 Disallow: /prestashop/config/
 Disallow: /prestashop/download/
 Disallow: /prestashop/mails/
@@ -30,6 +31,7 @@ Disallow: /prestashop/pagination.php
 Disallow: /prestashop/password.php
 Disallow: /prestashop/pdf-invoice.php
 Disallow: /prestashop/pdf-order-return.php
+Disallow: /prestashop/product.php
 Disallow: /prestashop/pdf-order-slip.php
 Disallow: /prestashop/product-sort.php
 Disallow: /prestashop/search.php
