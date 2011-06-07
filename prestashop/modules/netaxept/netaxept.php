@@ -206,8 +206,10 @@ class Netaxept extends PaymentModule
 	{
 		if (!$this->active)
 			return;
-
 		global $smarty, $cart, $currency;
+
+		if($currency->iso_code == "SEK")
+			return;
 
 		$wsdl_url 				= $this->getNetaxeptWsdlUrl();
 		
@@ -259,7 +261,7 @@ class Netaxept extends PaymentModule
 		$session_id				= '';
 		
 		include(dirname(__FILE__).'/setup_request.class.php');
-
+		//die($currency_iso_code);
 		$setup_request = new SetupRequest (
 				$amount, $currency_iso_code, $customer_email, $customer_phone_number,
 				$description, $language, $order_description, $order_number,
@@ -272,11 +274,11 @@ class Netaxept extends PaymentModule
 				"request"		=> $setup_request );
 		$client = new SoapClient($wsdl_url, array('trace' => true,'exceptions' => true ));
 		try {
-		$result = $client->__call('Setup' , array("parameters" => $params_transaction));
-} catch (Exception $fault) {
- print_r($fault);
-die(1);
-}
+			$result = $client->__call('Setup' , array("parameters" => $params_transaction));
+		} catch (Exception $fault) {
+			 print_r($fault);
+			die(1);
+		}
 		$setup_result = $result->SetupResult;
 
 		$smarty->assign(array(

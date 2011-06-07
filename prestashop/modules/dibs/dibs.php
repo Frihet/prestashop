@@ -1,5 +1,4 @@
 <?php
-
 class Dibs extends PaymentModule
 {
 	private	$_html = '';
@@ -15,8 +14,8 @@ class Dibs extends PaymentModule
 
         /* The parent construct is required for translations */
 		$this->page = basename(__FILE__, '.php');
-        $this->displayName = $this->l('Dibs');
-        $this->description = $this->l('Accepts payments by Dibs');
+	        $this->displayName = $this->l('Dibs');
+	        $this->description = $this->l('Accepts payments by Dibs');
 		$this->confirmUninstall = $this->l('Are you sure you want to delete your details ?');
 	}
 	
@@ -168,31 +167,27 @@ class Dibs extends PaymentModule
 	{
 		global $smarty;
 		global $cookie;
-
+		global $cart;
 		$address = new Address(intval($params['cart']->id_address_invoice));
 		$customer = new Customer(intval($params['cart']->id_customer));
 		$merchant = Configuration::get('DIBS_MERCHANT');
-		
 		$dibstest = Configuration::get('DIBS_TEST');
-		
-		
-		if (Configuration::get('DIBS_CURRENCY') == 'customer')
-			$id_currency = intval($params['cart']->id_currency);
-		else
-			$id_currency = intval(Configuration::get('PS_CURRENCY_DEFAULT'));
+		$id_currency = intval($params['cart']->id_currency);
 
 		$currency = new Currency(intval($id_currency));
-		
-		$ordertotal = number_format(Tools::convertPrice($params['cart']->getOrderTotal(true, 3), $currency), 2, '.', '');
-		$ordertotal = str_replace(',','',$ordertotal);
-		$ordertotal = str_replace('.','',$ordertotal);		
-		
-		$currencyString = $this->currency_iso4217code[$currency->iso_code];
+		if ($currency->iso_code != "SEK")
+			return;
+
+		$amount		= intval(round($cart->getOrderTotalLC(), 2) * 100);
+		$ordertotal = $amount;
+		//number_format(Tools::convertPrice($params['cart']->getOrderTotal(true, 3), $currency), 2, '.', '');
+		//$ordertotal = str_replace(',','',$ordertotal);
+		//$ordertotal = str_replace('.','',$ordertotal);		
+
+		$currencyString = '752'; //$this->currency_iso4217code[$currency->iso_code];
 		if (!Validate::isLoadedObject($address) OR !Validate::isLoadedObject($customer) OR !Validate::isLoadedObject($currency))
 			return $this->l('Dibs error: (invalid address or customer)');
-			
 		$products = $params['cart']->getProducts();
-		
 		foreach ($products as $key => $product)
 		{
 			$products[$key]['name'] = str_replace('"', '\'', $product['name']);
@@ -244,7 +239,7 @@ class Dibs extends PaymentModule
 			'accepturl' => 'http://'.htmlspecialchars($_SERVER['HTTP_HOST'], ENT_COMPAT, 'UTF-8').__PS_BASE_URI__.'modules/dibs/confirm.php?key='.$customer->secure_key.'&id_cart='.$params['cart']->id.'&id_module='.$this->id,
 			'callbackurl' => 'http://'.htmlspecialchars($_SERVER['HTTP_HOST'], ENT_COMPAT, 'UTF-8').__PS_BASE_URI__.'modules/dibs/validation.php',
 			'ordertotal' => $ordertotal,
-			'shipping' =>  number_format(Tools::convertPrice($params['cart']->getOrderShippingCost(), $currency), 2, '.', ''),
+			'shipping' =>  0,//number_format(Tools::convertPrice($params['cart']->getOrderShippingCost(), $currency), 2, '.', ''),
 			'shippingMethod' => $carriername,
 			'windowlanguage' => $windowlang,
 			'dibsUrl' => $this->getDibsUrl(),
