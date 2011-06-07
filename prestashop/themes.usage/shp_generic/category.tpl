@@ -30,7 +30,6 @@
 		<!--
 		{if $path|regex_replace:"/.*a href.*/":"" == ""}
 			{if isset($subcategories)}
-				<!-- Subcategories -->
 				<div id="subcategories">
 					<h3>{l s='Subcategories'}</h3>
 					<ul class="inline_list">
@@ -52,6 +51,7 @@
 				</div>
 			{/if}
 		{/if}
+		-->
 
 		{if $products}
 			{if $path|regex_replace:"/.*a href.*/":"" == ""}
