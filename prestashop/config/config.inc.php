@@ -1,4 +1,11 @@
 <?php
+/*
+if ($_SERVER['REMOTE_ADDR'] != '88.87.57.60') {
+	echo '<h2>Under vedlikehold</h2>';
+	echo 'Vennligst kom tilbake senere.';
+	exit;
+}
+*/
 
 /* Improve PHP configuration to prevent issues */
 @ini_set('display_errors', 'off');
