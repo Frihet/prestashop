@@ -1233,6 +1233,7 @@ div.universal, div.universal a, div.universal h4 a, div.universal h4 {
 #center_column div.products_block p.product_desc, #center_column div.products_block h5 {
     margin-left: 0.5em;
     margin-right: 0.5em;
+    height: 3em;
 }
 #center_column div.products_block ul li p.product_desc a {
     font-weight: normal;
