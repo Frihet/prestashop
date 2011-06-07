@@ -23,8 +23,10 @@
 {/if}
 
 {if $followup}
-<p class="bold">{l s='Click the following link to track delivery of your order'}</p>
-<a href="{$followup|escape:'htmlall':'UTF-8'}">{$followup|escape:'htmlall':'UTF-8'}</a>
+<p class="bold">{l s='Click the following link(s) to track delivery of your order'}</p>
+{foreach from=$followup item=followupitem}
+   <a href="{$followupitem|escape:'htmlall':'UTF-8'}">{$followupitem|escape:'htmlall':'UTF-8'}</a><br/>
+{/foreach}
 {/if}
 
 <p class="bold">{l s='Order:'} <span class="color-myaccount">{l s='#'}{$order->id|string_format:"%06d"}</span></p>

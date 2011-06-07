@@ -99,8 +99,13 @@ else
 			'CUSTOMIZE_TEXTFIELD' => _CUSTOMIZE_TEXTFIELD_,
 			'customizedDatas' => $customizedDatas,
 			'HOOK_ORDER_DETAIL' => Module::hookExec('orderDetail'),));
-		if ($carrier->url AND $order->shipping_number)
-			$smarty->assign('followup', str_replace('@', $order->shipping_number, $carrier->url));
+		if ($carrier->url AND $order->shipping_number) {
+		        $links = explode(",", $order->shipping_number);
+			foreach ($links as $id => $link) {
+				$links[$id] = str_replace('@', $link, $carrier->url);
+			}
+			$smarty->assign('followup', $links);
+		}
 	}
 	else
 		$errors[] = Tools::displayError('cannot find this order');
