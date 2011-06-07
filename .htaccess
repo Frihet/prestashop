@@ -1,0 +1,12 @@
+
+    RewriteEngine on
+    Options +FollowSymlinks
+    RewriteBase /
+
+    RewriteCond %{HTTP_USER_AGENT} ^Baiduspider [NC,OR]
+    RewriteCond %{HTTP_USER_AGENT} ^Ezooms [NC,OR]
+    RewriteCond %{HTTP_USER_AGENT} ^YandexBot [NC,OR]
+    RewriteCond %{HTTP_USER_AGENT} ^YandexImages [NC,OR]
+    RewriteCond %{HTTP_USER_AGENT} ^Sogou
+    RewriteRule ^.*$ - [F] 
+
