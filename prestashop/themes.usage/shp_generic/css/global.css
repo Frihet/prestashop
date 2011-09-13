@@ -232,6 +232,7 @@ h4 {
 #page {
     margin: 0 auto 2px auto;
     text-align: left;
+    width: 1280px;
 }
 h1#logo a {
     display: block;
@@ -252,7 +253,6 @@ h1#logo a {
 }
 #left_column {
     clear: left;
-    padding-left: 30px;
     padding-right: 15px;
 }
 #center_column {
@@ -261,7 +261,6 @@ h1#logo a {
 }
 #right_column {
     padding-left: 15px;
-    padding-right: 30px;
 }
 .centre_column_content {
 }
@@ -929,7 +928,7 @@ ul#header_links {
     margin-top: 0;
     margin-bottom: 10px;
     margon-left: 2px;
-    margin-right: 32px;
+    margin-right: 2px;
     padding: 0 !important;
     width: 192px;
     height: 16px;
