@@ -286,7 +286,22 @@ var fieldRequired = '{l s='Please fill all required fields' js=1}';
 	{if $product->description_short OR $packItems|@count > 0}
 	{variablebox_content}
 		{if $product->description_short}
-			<div id="short_description_content" class="rte align_justify">{$product->description_short}</div>
+			<div id="short_description_content" class="rte align_justify">
+				<div class="fb_links">
+					<div id="fb-root"></div>
+					{literal}
+					<script>(function(d, s, id) {
+					  var js, fjs = d.getElementsByTagName(s)[0];
+					  if (d.getElementById(id)) {return;}
+					  js = d.createElement(s); js.id = id;
+					  js.src = "//connect.facebook.net/en_US/all.js#appId=134032733361259&xfbml=1";
+					  fjs.parentNode.insertBefore(js, fjs);
+					}(document, 'script', 'facebook-jssdk'));</script>{/literal}
+										
+					<div class="fb-like" data-href="http://shp-dev.freecode.no/prestashop/product.php?id_product=2840" data-send="true" data-layout="button_count" data-width="450" data-show-faces="false" data-font="segoe ui"></div>
+				</div>
+				{$product->description_short}
+			</div>
 		{/if}
 <!--
 		{if $product->description}

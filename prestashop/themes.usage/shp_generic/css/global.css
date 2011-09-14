@@ -1090,6 +1090,11 @@ div.universal, div.universal a, div.universal h4 a, div.universal h4 {
 }
 
 
+.fb_links {
+	float: right;
+	width: 115px;
+}
+
 /* Styles for products blocks */
 
 
