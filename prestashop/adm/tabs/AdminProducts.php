@@ -2195,7 +2195,8 @@ class AdminProducts extends AdminTab
 						media_external_list_url : "lists/media_list.js",
 						elements : "nourlconvert",
 						convert_urls : false,
-						language : "'.(file_exists(_PS_ROOT_DIR_.'/js/tinymce/jscripts/tiny_mce/langs/'.$iso.'.js') ? $iso : 'en').'"
+						language : "'.(file_exists(_PS_ROOT_DIR_.'/js/tinymce/jscripts/tiny_mce/langs/'.$iso.'.js') ? $iso : 'en').'",
+						extended_valid_elements: "iframe[src|style|width|height|scrolling|marginwidth|marginheight|frameborder]"
 					});
 				});
 			}
