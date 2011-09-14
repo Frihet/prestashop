@@ -8,7 +8,7 @@
     margin: 0;
 }
 body {
-    font-size: 11px;
+    font-size: 13px;
     font-family: Arial, Helvetica, Sans-Serif;
     text-align: center;
 }
@@ -2775,7 +2775,7 @@ tbody.datepickerDays td.datepickerNotInMonth a {
 }
 
 .block.products_block {
-    font-size: 0.75em;
+    font-size: 0.85em;
 }
 
 .block.products_block .button_mini {
