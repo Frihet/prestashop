@@ -1,15 +1,10 @@
-Hej {firstname} {lastname}
+{shop_name}
+ 
+Besked fra {shop_name}
+ 
+E-mailadresse: {email}
 
-Du har modtaget en besked fra en kunde via din webshop: {shop_name}
+Besked: {message}
+ 
+{shop_name}
 
-Beskedoplysninger:
-
-E-mail-adresse: {email}
-
-Besked:
-
-{message}
-
-
-
-{shop_url} powered by PrestaShop™

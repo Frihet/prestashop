@@ -1,0 +1,10 @@
+{shop_name}
+ 
+Beskjed fra {shop_name}
+ 
+E-post adresse: {email}
+
+Beskjed: {message}
+ 
+{shop_name}
+
