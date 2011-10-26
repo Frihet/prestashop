@@ -1,1 +1,4 @@
-../../../../modules/blockcart/no.php
+<?php
+
+global $_MODULE;
+$_MODULE = array();

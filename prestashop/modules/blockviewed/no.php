@@ -15,3 +15,5 @@ $_MODULE['<{blockviewed}prestashop>blockviewed_c9cc8cce247e49bae79f15173ce97354'
 $_MODULE['<{blockviewed}prestashop>blockviewed_43560641f91e63dc83682bc598892fa1'] = 'Viste produkter';
 $_MODULE['<{blockviewed}prestashop>blockviewed_49fa2426b7903b3d4c89e2c1874d9346'] = 'Mer om';
 $_MODULE['<{blockviewed}prestashop>blockviewed_72e1372ec1ced7355cc8f8fe029bce2b'] = 'Viste artikler';
+$_MODULE['<{blockviewed}prestashop>blockviewed_831a28f1e8df07c553fcd59546465d13'] = 'Kjøp';
+$_MODULE['<{blockviewed}prestashop>blockviewed_2d0f6b8300be19cf35e89e66f0677f95'] = 'Legg i handlekurv';
