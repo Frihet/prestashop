@@ -19,4 +19,10 @@
 	{/if}
 	</div>
 </div>
+<!--
+{l s='Add to cart' mod='blockbestsellers'}
+{l s='Buy' mod='blockbestsellers'}
+{l s='More...' mod='blockbestsellers'}
+-->
+
 <!-- /MODULE Block best sellers -->

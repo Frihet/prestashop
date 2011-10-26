@@ -32,3 +32,10 @@
 		</div>
 	</div>
 {/if}
+
+<!--
+{l s='Buy' mod='blockviewed'}
+{l s='Add to cart' mod='blockviewed'}
+-->
+
+
