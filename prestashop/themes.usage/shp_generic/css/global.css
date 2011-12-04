@@ -729,7 +729,7 @@ form.pagination input {
 /* product-sort.tpl */
 form#productsSortForm p {
     height: 1em;
-    margin: 0.5em 0 0 0;
+    margin: 0.5em 0.5em 0 0;
 }
 form#productsSortForm p label, form#productsSortForm p select {
     float: right;
@@ -1238,6 +1238,10 @@ div.universal, div.universal a, div.universal h4 a, div.universal h4 {
     margin-left: 0.5em;
     margin-right: 0.5em;
     height: 3em;
+    padding-left: 0.3em;
+}
+#center_column div.products_block p.product_desc {
+	height: auto;
 }
 #center_column div.products_block ul li p.product_desc a {
     font-weight: normal;
@@ -1716,8 +1720,9 @@ body#category  div#subcategories ul.inline_list  li a img {
     list-style: none;
 }
 .product_list_category_item {
-    width: 150px;
-    height: 385px;
+/*    width: 150px;*/
+    width: 25%;
+    height: 305px;
     float: left;
 }
 .product_list_category_item .variablebox_center_center {
@@ -1763,6 +1768,7 @@ body#category  div#subcategories ul.inline_list  li a img {
     text-align: right;
     margin-left: 1em;
     margin-top: 0;
+    padding-right: 0.5em;
 }
 .product_list_item .discount, .product_list_category_item .discount {
     text-transform: uppercase;
@@ -2645,9 +2651,15 @@ div.star_hover a, div.star a:hover {
 .comparecart {
     border-collapse: collapse;
 }
+.comparecart th.first {
+	width: 145px;
+}
 .comparecart th, .comparecart td {
     vertical-align: top;
     padding: 1pt;
+}
+.comparecart tr.feature_header td, .comparecart tr.feature_header th {
+    padding-top: 0.5em;
 }
 
 
