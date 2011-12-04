@@ -9,13 +9,15 @@
 				<tr class="ajax_block_product">
 					<td class="product_desc" colspan="2">
 						<a href="{$productLink|escape:'htmlall':'UTF-8'}" title="{$product->name|escape:'htmlall':'UTF-8'}: {$product->description_short|strip_tags|truncate:100:'...'}">
-					    	{$product->name|truncate:23:'..'|escape:'htmlall':'UTF-8'}
+					    	{$product->name|truncate:30:'..'|escape:'htmlall':'UTF-8'}
 					 	</a>
 					</td>
+<!--
 					<td rowspan="2"><a class="button_mini ajax_add_to_cart_button" href="{$base_dir}cart.php?qty=1&amp;id_product={$product->id|intval}&amp;token={$static_token}&amp;add" rel="ajax_id_product_{$product->id|intval}" title="{l s='Add to cart' mod='blockviewed'}">{l s='Buy' mod='blockviewed'}</a></td>
 				</tr>
 				<tr>
 					<td>{$product->price}</td>
+-->
 				</tr>
 			{/foreach}
 			</table>
