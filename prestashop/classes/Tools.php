@@ -203,6 +203,7 @@ class Tools
 			/* 0 000,00 X*/
 			case 2:
 				$ret = number_format($price, $c_decimals, ',', ' ').$blank.$c_char;
+				$ret = str_replace(',00',',-',$ret);
 				break;
 			/* X 0.000,00 */
 			case 3:
