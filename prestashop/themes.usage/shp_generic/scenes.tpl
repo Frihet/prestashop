@@ -34,7 +34,7 @@ $(function () {ldelim}
 								<img src="{$link->getImageLink($product.id_product, $imageIds, 'medium')}" alt="" />
 							</a>
 						{/if}
-						<p class="description">{$product.details->description_short|strip_tags|truncate:170:'...'}</p>
+						<p class="description">{$product.details->description_short|strip_tags|truncate:100:'...'}</p>
 					</div>
 					<div class="clear"></div>
 				</div>
