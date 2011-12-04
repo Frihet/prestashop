@@ -11,7 +11,7 @@
 
 <table class="comparecart">
  <tr>
-  <th></th>
+  <th class="first"></th>
   {foreach from=$products item='product' name='products'}
    {assign var='productId' value=$product.id}
    <th>
@@ -20,9 +20,18 @@
   {/foreach}
  </tr>
 
+{assign var='feature_header' value=''}
+
  {foreach from=$features key=feature_name item=feature}
+    {assign var='feature_name' value="/"|explode:$feature_name|escape:'htmlall':'UTF-8'}
+    {if $feature_name[0] != $feature_header}
+  <tr class="feature_header">
+    <th colspan="2">{$feature_name[0]}</th>
+  </tr>
+       {assign var='feature_header' value=$feature_name[0]}
+    {/if}
   <tr>
-   <th>{$feature_name|escape:'htmlall':'UTF-8'}</th>
+   <td>{$feature_name[1]}</td>
    {foreach from=$products item='product' name='products'}
     <td>{if isset($feature[$product.id])}{$feature[$product.id]|escape:'htmlall':'UTF-8'}{else}-{/if}</td>
    {/foreach}
