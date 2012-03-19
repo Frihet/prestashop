@@ -78,6 +78,7 @@ $_FIELDS['Customer_cf673f7ee88828c9fb8f6acf2cb08403'] = 'bursdag';
 $_FIELDS['Customer_9e438d8a7b036ea9b8d4375377d47e1a'] = 'nyhetsbrev';
 $_FIELDS['DateRange_7551fc411eb85f94cf0c169b13caf0e0'] = 'tid_start';
 $_FIELDS['DateRange_f1f6dc1a412a39696690dca7b862f852'] = 'tid_slutt';
+$_FIELDS['Delivery_78a5eb43deef9a7b5b9ce157b9d52ac4'] = 'pris';
 $_FIELDS['Discount_71ebd61b0a747a2d5a2948957b164e8e'] = 'antall_pr_bruker';
 $_FIELDS['Discount_3027783fd3d10afad84a9a15552b3445'] = 'dato_fra';
 $_FIELDS['Discount_0dc00dd4dfdbf2864a0cdf57034916c2'] = 'dato_til';
