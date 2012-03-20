@@ -11,6 +11,5 @@ $_MODULE['<{ordervendor}prestashop>ordervendor_deb10517653c255364175796ace3553f'
 $_MODULE['<{ordervendor}prestashop>ordervendor_b5a7adde1af5c87d7fd797b6245c2a39'] = 'Förklaring';
 $_MODULE['<{ordervendor}prestashop>ordervendor_12d3c7a4296542c62474856ec452c045'] = 'Ref. ';
 $_MODULE['<{ordervendor}prestashop>ordervendor_ec9ceefe0c19f4c029008c23e3c947b7'] = 'Försäljare';
-$_MODULE['<{ordervendor}prestashop>ordervendor_e90ebd9556fa4031171f043013794b61'] = '#';
 $_MODULE['<{ordervendor}prestashop>ordervendor_dd1f775e443ff3b9a89270713580a51b'] = 'Föregående';
 $_MODULE['<{ordervendor}prestashop>ordervendor_10ac3d04253ef7e1ddc73e6091c0cd55'] = 'Nästa';
