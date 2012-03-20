@@ -14,7 +14,7 @@ function show_countries($id_lang, $nb_by_line = 7)
 	foreach ($result as $index => $row)
 	{
 		if ($separator)
-			$output .= ($separator % $nb_by_line) ? ' | ' : '<br />';
+			$output .= ($separator % $nb_by_line) ? ' | ' : '<br>';
 		$output .= '<a class="country" id="'.$row['id_country'].'">'.$row['name'] . ' (' . $row['iso_code'] . ')</a>';
 		$separator++;
 	}
@@ -43,10 +43,10 @@ function show_buttons($id_lang, $id_country)
 			$coord_y = $result[0]['y'];
 		}
 	}
-	$output .= '<input type="hidden" id="hiddenx" value="'.$coord_x.'" />
-			<input type="hidden" id="hiddeny" value="'.$coord_y.'" />
-			<center><input type="button" id="cancel_id" class="button" value="Cancel" />	
-			<input type="button" id="validate_id" class="button" value="Validate" /></center>';
+	$output .= '<input type="hidden" id="hiddenx" value="'.$coord_x.'">
+			<input type="hidden" id="hiddeny" value="'.$coord_y.'">
+			<center><input type="button" id="cancel_id" class="button" value="Cancel">	
+			<input type="button" id="validate_id" class="button" value="Validate"></center>';
 	return ($output);
 }
 
@@ -56,7 +56,7 @@ function insert_coords($id_lang, $id_country, $x, $y)
 		return ("error");
 	Db::getInstance()->Execute('DELETE FROM `'._DB_PREFIX_.'location_coords` WHERE `id_country` = \''.$id_country.'\';');
 	if (!Db::getInstance()->Execute('INSERT INTO `'._DB_PREFIX_.'location_coords` (`x`, `y`, `id_country`) VALUES (\''.$x.'\', \''.$y.'\', \''.$id_country.'\');'))
-		echo("error while inserting data<br />");
+		echo("error while inserting data<br>");
 	return (show_countries($id_lang));
 }
 

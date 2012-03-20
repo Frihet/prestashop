@@ -99,29 +99,29 @@ function FCToolkitErrorHandler ($errno, $errstr, $errfile, $errline)
     switch ($errno)
             {
             case E_USER_ERROR:
-                echo "<b>Application error:</b> [$errno] $errstr<br />\n";
+                echo "<b>Application error:</b> [$errno] $errstr<br>\n";
                 echo "  Fatal error on line $errline in file $errfile";
-                echo ", PHP " . PHP_VERSION . " (" . PHP_OS . ")<br />\n";
+                echo ", PHP " . PHP_VERSION . " (" . PHP_OS . ")<br>\n";
                 echo "Stack trace:";
                 echo GetStackTrace (0);
-                echo "Aborting...<br />\n";
+                echo "Aborting...<br>\n";
                 exit(1);
                 break;
                 
             case E_USER_WARNING:
-                echo "<b>Application warning:</b> [$errno] $errstr<br />\n";
+                echo "<b>Application warning:</b> [$errno] $errstr<br>\n";
                 echo "Stack trace:";
                 echo GetStackTrace (0);
                 break;
                 
             case E_USER_NOTICE:
-                echo "<b>Application notice:</b> [$errno] $errstr<br />\n";
+                echo "<b>Application notice:</b> [$errno] $errstr<br>\n";
                 echo "Stack trace:";
                 echo GetStackTrace (0);
                 break;
                 
             default:
-                echo "Unknown error type: [$errno] $errstr<br />\n";
+                echo "Unknown error type: [$errno] $errstr<br>\n";
                 echo "Stack trace:";
                 echo GetStackTrace (0);
                 break;

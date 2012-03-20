@@ -15,6 +15,6 @@ $smtpPort = $_GET['smtpPort'];
 $smtpEncryption = $_GET['smtpEnc'];
 
 $result = ToolsInstall::sendMail($smtpChecked, $smtpServer, $content, $subject, $type, $to, $from, $smtpLogin, $smtpPassword, $smtpPort, $smtpEncryption);
-die($result ? '<action result="ok"/>' : '<action result="fail"/>');
+die($result ? '<action result="ok">' : '<action result="fail">');
 
 ?>

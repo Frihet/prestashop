@@ -98,7 +98,7 @@ class AdminTracking extends AdminTab
 			$irow = 0;
 			foreach ($this->_list['obj'] AS $k => $category)
 				echo '<tr class="'.($irow++ % 2 ? 'alt_row' : '').'"><td>'.rtrim(getPath('index.php?tab=AdminCatalog', $category['id_category']), ' >').'</td></tr>';
-			echo '</table><br /><br />';
+			echo '</table><br><br>';
 		}
 	}
 	
@@ -147,16 +147,16 @@ class AdminTracking extends AdminTab
 					<td>'.stripslashes($tax->name[intval($cookie->id_lang)]).'</td>
 					<td align="center">'.$product->quantity.'</td>
 					<td align="center">'.$product->weight.' '.Configuration::get('PS_WEIGHT_UNIT').'</td>
-					<td align="center"><a href="index.php?tab=AdminCatalog&id_product='.$product->id.'&status&token='.Tools::getAdminToken('AdminCatalog'.intval(Tab::getIdFromClassName('AdminCatalog')).intval($cookie->id_employee)).'"><img src="../img/admin/'.($product->active ? 'enabled.gif' : 'disabled.gif').'" alt="" /></a></td>
+					<td align="center"><a href="index.php?tab=AdminCatalog&id_product='.$product->id.'&status&token='.Tools::getAdminToken('AdminCatalog'.intval(Tab::getIdFromClassName('AdminCatalog')).intval($cookie->id_employee)).'"><img src="../img/admin/'.($product->active ? 'enabled.gif' : 'disabled.gif').'" alt=""></a></td>
 					<td>
 						<a href="index.php?tab=AdminCatalog&id_product='.$product->id.'&addproduct&token='.Tools::getAdminToken('AdminCatalog'.intval(Tab::getIdFromClassName('AdminCatalog')).intval($cookie->id_employee)).'">
-						<img src="../img/admin/edit.gif" alt="'.$this->l('Modify this product').'" /></a>&nbsp;
+						<img src="../img/admin/edit.gif" alt="'.$this->l('Modify this product').'"></a>&nbsp;
 						<a href="index.php?tab=AdminCatalog&id_product='.$product->id.'&deleteproduct&token='.Tools::getAdminToken('AdminCatalog'.intval(Tab::getIdFromClassName('AdminCatalog')).intval($cookie->id_employee)).'" onclick="return confirm(\''.addslashes($this->l('Do you want to delete').' '.$product->name).' ?\');">
-						<img src="../img/admin/delete.gif" alt="'.$this->l('Delete this product').'" /></a>
+						<img src="../img/admin/delete.gif" alt="'.$this->l('Delete this product').'"></a>
 					</td>
 				</tr>';
 			}
-			echo '</table><br /><br />';
+			echo '</table><br><br>';
 		}
 	}
 }

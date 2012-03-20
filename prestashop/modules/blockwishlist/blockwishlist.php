@@ -67,7 +67,7 @@ class BlockWishList extends Module
 				$this->_html .= '<div class="alert error">'.$this->l('Activate module : Invalid choice.').'</div>';
 			else
 				Configuration::updateValue('PS_BLOCK_WISHLIST_ACTIVATED', intval($activated));
-			$this->_html .= '<div class="conf confirm"><img src="../img/admin/ok.gif" alt="'.$this->l('Confirmation').'" />'.$this->l('Settings updated').'</div>';
+			$this->_html .= '<div class="conf confirm"><img src="../img/admin/ok.gif" alt="'.$this->l('Confirmation').'">'.$this->l('Settings updated').'</div>';
 		}
 		$this->_displayForm();
 		return ($this->_html);
@@ -84,18 +84,18 @@ class BlockWishList extends Module
 		$this->_html .= '
 		<form action="'.$_SERVER['REQUEST_URI'].'" method="post">
 			<fieldset>
-				<legend><img src="'.$this->_path.'logo.gif" alt="" title="" />'.$this->l('Settings').'</legend>
+				<legend><img src="'.$this->_path.'logo.gif" alt="" title="">'.$this->l('Settings').'</legend>
 
 				<label>'.$this->l('Activate module').'</label>
 				<div class="margin-form">
-					<input type="radio" name="activated" id="activated_on" value="1" '.(Tools::getValue('activated', Configuration::get('PS_BLOCK_WISHLIST_ACTIVATED')) ? 'checked="checked" ' : '').'/>
-					<label class="t" for="activated_on"> <img src="../img/admin/enabled.gif" alt="'.$this->l('Enabled').'" title="'.$this->l('Enabled').'" /></label>
-					<input type="radio" name="activated" id="activated_off" value="0" '.(!Tools::getValue('activated', Configuration::get('PS_BLOCK_WISHLIST_ACTIVATED')) ? 'checked="checked" ' : '').'/>
-					<label class="t" for="activated_off"> <img src="../img/admin/disabled.gif" alt="'.$this->l('Disabled').'" title="'.$this->l('Disabled').'" /></label>
+					<input type="radio" name="activated" id="activated_on" value="1" '.(Tools::getValue('activated', Configuration::get('PS_BLOCK_WISHLIST_ACTIVATED')) ? 'checked="checked" ' : '').'>
+					<label class="t" for="activated_on"> <img src="../img/admin/enabled.gif" alt="'.$this->l('Enabled').'" title="'.$this->l('Enabled').'"></label>
+					<input type="radio" name="activated" id="activated_off" value="0" '.(!Tools::getValue('activated', Configuration::get('PS_BLOCK_WISHLIST_ACTIVATED')) ? 'checked="checked" ' : '').'>
+					<label class="t" for="activated_off"> <img src="../img/admin/disabled.gif" alt="'.$this->l('Disabled').'" title="'.$this->l('Disabled').'"></label>
 					<p class="clear">'.$this->l('Activate module (Add blockwishlist and "Add to my wishlist" button)').'</p>
 				</div>
 
-				<center><input type="submit" name="submitSettings" value="'.$this->l('Save').'" class="button" /></center>
+				<center><input type="submit" name="submitSettings" value="'.$this->l('Save').'" class="button"></center>
 			</fieldset>
 		</form>';
 	}
@@ -110,10 +110,10 @@ class BlockWishList extends Module
 		$id_customer = intval(Tools::getValue('id_customer'));
 		if (!$id_customer)
 			$id_customer = $customers[0]['id_customer'];
-		$this->_html .= '<br />
+		$this->_html .= '<br>
 		<form action="'.$_SERVER['REQUEST_URI'].'" method="post" id="listing">
 			<fieldset>
-				<legend><img src="'.$this->_path.'img/icon/package_go.png" alt="" title="" />'.$this->l('Listing').'</legend>
+				<legend><img src="'.$this->_path.'img/icon/package_go.png" alt="" title="">'.$this->l('Listing').'</legend>
 
 				<label>'.$this->l('Customers').'</label>
 				<div class="margin-form">
@@ -261,10 +261,10 @@ class BlockWishList extends Module
 				$this->_html .= '
 				<tr>
 					<td class="first_item">
-						<img src="'._THEME_PROD_DIR_.$product['cover'].'-small.jpg" alt="'.htmlentities($product['name'], ENT_COMPAT, 'UTF-8').'" style="float:left;" />
+						<img src="'._THEME_PROD_DIR_.$product['cover'].'-small.jpg" alt="'.htmlentities($product['name'], ENT_COMPAT, 'UTF-8').'" style="float:left;">
 						'.$product['name'];
 				if (isset($product['attributes_small']))
-					$this->_html .= '<br /><i>'.htmlentities($product['attributes_small'], ENT_COMPAT, 'UTF-8').'</i>';
+					$this->_html .= '<br><i>'.htmlentities($product['attributes_small'], ENT_COMPAT, 'UTF-8').'</i>';
 				$this->_html .= '
 					</td>
 					<td class="item" style="text-align:center;">'.intval($product['quantity']).'</td>
@@ -310,7 +310,7 @@ class BlockWishList extends Module
 			
 			$this->_displayProducts(intval($id_wishlist));
 						
-			$this->_html .= '</form><br />';
+			$this->_html .= '</form><br>';
 			
 			return $this->_html;
 		}

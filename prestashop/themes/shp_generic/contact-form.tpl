@@ -6,7 +6,7 @@
 {if isset($confirmation)}
 	<p>{l s='Your message has been successfully sent to our team.'}</p>
 	<ul class="footer_links">
-		<li><a href="{$base_dir}"><img class="icon" alt="" src="{$img_dir}icon/home.gif"/></a><a href="{$base_dir}">{l s='Home'}</a></li>
+		<li><a href="{$base_dir}"><img class="icon" alt="" src="{$img_dir}icon/home.gif"></a><a href="{$base_dir}">{l s='Home'}</a></li>
 	</ul>
 {else}
 	<p class="bold">{l s='For questions about an order or for information about our products'}.</p>
@@ -30,14 +30,14 @@
 		{/foreach}
 		<p class="text">
 			<label for="email">{l s='E-mail address'}</label>
-			<input type="text" id="email" name="from" value="{$email}" />
+			<input type="text" id="email" name="from" value="{$email}">
 		</p>
 		<p class="textarea">
 			<label for="message">{l s='Message'}</label>
 			 <textarea id="message" name="message" rows="7" cols="35">{if isset($smarty.post.message)}{$smarty.post.message|escape:'htmlall':'UTF-8'|stripslashes}{/if}</textarea>
 		</p>
 		<p class="submit">
-			<input type="submit" name="submitMessage" id="submitMessage" value="{l s='Send'}" class="button_large" />
+			<input type="submit" name="submitMessage" id="submitMessage" value="{l s='Send'}" class="button_large">
 		</p>
 	</fieldset>
 </form>

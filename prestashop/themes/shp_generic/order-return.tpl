@@ -34,7 +34,7 @@
 								{if $type == $smarty.const._CUSTOMIZE_FILE_}
 								<ul class="customizationUploaded">
 									{foreach from=$datas item='data'}
-										<li>WAHOU<img src="{$pic_dir}{$data.value}_small" alt="" class="customizationUploaded" /></li>
+										<li>WAHOU<img src="{$pic_dir}{$data.value}_small" alt="" class="customizationUploaded"></li>
 									{/foreach}
 								</ul>
 								{elseif $type == $smarty.const._CUSTOMIZE_TEXTFIELD_}
@@ -66,12 +66,12 @@
 <p class="bold">{l s='REMINDER:'}</p>
 <div>
 	- {l s='All products must be returned in their original packaging without damage or wear.'}
-	<br />- {l s='Please print out the'} <a href="{$base_dir}pdf-order-return.php?id_order_return={$orderRet->id|intval}">{l s='PDF document'}</a> {l s='and slip it into your package.'}
-	<br />- {l s='The package should be to the correct address'} (<a href="{$base_dir}pdf-order-return.php?id_order_return={$orderRet->id|intval}">{l s='see PDF document'}</a>)
-	<br /><br />
+	<br>- {l s='Please print out the'} <a href="{$base_dir}pdf-order-return.php?id_order_return={$orderRet->id|intval}">{l s='PDF document'}</a> {l s='and slip it into your package.'}
+	<br>- {l s='The package should be to the correct address'} (<a href="{$base_dir}pdf-order-return.php?id_order_return={$orderRet->id|intval}">{l s='see PDF document'}</a>)
+	<br><br>
 	{l s='Upon receiving your package, we will inform you by e-mail and will then begin processing the reimbursement of your order total.'}
-	<br /><br /><a href="{$base_dir_ssl}contact-form.php">{l s='Let us know if you have any questions.'}</a>
-	<br />
+	<br><br><a href="{$base_dir_ssl}contact-form.php">{l s='Let us know if you have any questions.'}</a>
+	<br>
 	<p class="bold">{l s='If the conditions of return listed above are not respected, we reserve the right to refuse your package and/or reimbursement.'}</p>
 </div>
 {elseif $orderRet->state == 1}

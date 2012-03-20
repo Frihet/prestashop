@@ -17,7 +17,7 @@
 		{else}
 			<!-- Category image -->
 			{if $category->id_image}
-				<img src="{$link->getCatImageLink($category->link_rewrite, $category->id_image, 'category')}" alt="{$category->name|escape:'htmlall':'UTF-8'}" title="{$category->name|escape:'htmlall':'UTF-8'}" id="categoryImage" />
+				<img src="{$link->getCatImageLink($category->link_rewrite, $category->id_image, 'category')}" alt="{$category->name|escape:'htmlall':'UTF-8'}" title="{$category->name|escape:'htmlall':'UTF-8'}" id="categoryImage">
 			{/if}
 		{/if}
 
@@ -25,7 +25,7 @@
 			<div class="cat_desc">{$category->description}</div>
 		{/if}
 
-		<br class="clear"/>
+		<br class="clear">
 
 		{if $path|regex_replace:"/.*a href.*/":"" == ""}
 			{if isset($subcategories)}
@@ -37,17 +37,17 @@
 						<li>
 							<a href="{$link->getCategoryLink($subcategory.id_category, $subcategory.link_rewrite)|escape:'htmlall':'UTF-8'}" title="{$subcategory.name|escape:'htmlall':'UTF-8'}">
 								{if $subcategory.id_image}
-									<img src="{$link->getCatImageLink($subcategory.link_rewrite, $subcategory.id_image, 'medium')}" alt="" />
+									<img src="{$link->getCatImageLink($subcategory.link_rewrite, $subcategory.id_image, 'medium')}" alt="">
 								{else}
-									<img src="{$img_cat_dir}default-medium.jpg" alt="" />
+									<img src="{$img_cat_dir}default-medium.jpg" alt="">
 								{/if}
 							</a>
-							<br />
+							<br>
 							<a href="{$link->getCategoryLink($subcategory.id_category, $subcategory.link_rewrite)|escape:'htmlall':'UTF-8'}">{$subcategory.name|escape:'htmlall':'UTF-8'}</a>
 						</li>
 					{/foreach}
 					</ul>
-					<br class="clear"/>
+					<br class="clear">
 				</div>
 			{/if}
 		{/if}

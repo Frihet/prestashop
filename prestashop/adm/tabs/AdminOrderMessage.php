@@ -44,18 +44,18 @@ class AdminOrderMessage extends AdminTab
 			id_language = Number('.$defaultLanguage.');
 		</script>
 		<form action="'.$currentIndex.'&token='.$this->token.'&submitAdd'.$this->table.'=1" method="post">
-		'.($obj->id ? '<input type="hidden" name="id_'.$this->table.'" value="'.$obj->id.'" />' : '').'
-			<fieldset class="width3"><legend><img src="../img/admin/email.gif" />'.$this->l('Order messages').'</legend>
+		'.($obj->id ? '<input type="hidden" name="id_'.$this->table.'" value="'.$obj->id.'">' : '').'
+			<fieldset class="width3"><legend><img src="../img/admin/email.gif">'.$this->l('Order messages').'</legend>
 				<label>'.$this->l('Name:').' </label>
 				<div class="margin-form">';
 				foreach ($languages as $language)
 					echo '
 					<div id="name_'.$language['id_lang'].'" style="display: '.($language['id_lang'] == $defaultLanguage ? 'block' : 'none').'; float: left;">
-						<input type="text" size="53" name="name_'.$language['id_lang'].'" value="'.$this->getFieldValue($obj, 'name', intval($language['id_lang'])).'" /><sup> *</sup>
+						<input type="text" size="53" name="name_'.$language['id_lang'].'" value="'.$this->getFieldValue($obj, 'name', intval($language['id_lang'])).'"><sup> *</sup>
 					</div>';
 				$this->displayFlags($languages, $defaultLanguage, 'name¤message', 'name');
 				echo '</div>
-				<div class="clear"></div><br />
+				<div class="clear"></div><br>
 				<label>'.$this->l('Message:').' </label>
 				<div class="margin-form">';
 				foreach ($languages as $language)
@@ -65,9 +65,9 @@ class AdminOrderMessage extends AdminTab
 					</div>';
 				$this->displayFlags($languages, $defaultLanguage, 'name¤message', 'message');
 				echo '</div>
-				<div class="clear"></div><br />
+				<div class="clear"></div><br>
 				<div class="margin-form">
-					<input type="submit" value="'.$this->l('   Save   ').'" name="submitAdd'.$this->table.'" class="button" />
+					<input type="submit" value="'.$this->l('   Save   ').'" name="submitAdd'.$this->table.'" class="button">
 				</div>
 				<div class="small"><sup>*</sup> '.$this->l('Required fields').'</div>
 			</fieldset>

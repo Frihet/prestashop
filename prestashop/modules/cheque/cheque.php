@@ -67,14 +67,14 @@ class Cheque extends PaymentModule
 			Configuration::updateValue('CHEQUE_NAME', $_POST['name']);
 			Configuration::updateValue('CHEQUE_ADDRESS', $_POST['address']);
 		}
-		$this->_html .= '<div class="conf confirm"><img src="../img/admin/ok.gif" alt="'.$this->l('OK').'" /> '.$this->l('Settings updated').'</div>';
+		$this->_html .= '<div class="conf confirm"><img src="../img/admin/ok.gif" alt="'.$this->l('OK').'"> '.$this->l('Settings updated').'</div>';
 	}
 
 	private function _displayCheque()
 	{
-		$this->_html .= '<img src="../modules/cheque/cheque.jpg" style="float:left; margin-right:15px;"><b>'.$this->l('This module allows you to accept payments by cheque.').'</b><br /><br />
-		'.$this->l('If the client chooses this payment mode, the order will change its status into a \'Waiting for payment\' status.').'<br />
-		'.$this->l('Therefore, you will need to manually confirm the order as soon as you receive a cheque.').'<br /><br /><br />';
+		$this->_html .= '<img src="../modules/cheque/cheque.jpg" style="float:left; margin-right:15px;"><b>'.$this->l('This module allows you to accept payments by cheque.').'</b><br><br>
+		'.$this->l('If the client chooses this payment mode, the order will change its status into a \'Waiting for payment\' status.').'<br>
+		'.$this->l('Therefore, you will need to manually confirm the order as soon as you receive a cheque.').'<br><br><br>';
 	}
 
 	private function _displayForm()
@@ -82,15 +82,15 @@ class Cheque extends PaymentModule
 		$this->_html .=
 		'<form action="'.$_SERVER['REQUEST_URI'].'" method="post">
 			<fieldset>
-			<legend><img src="../img/admin/contact.gif" />'.$this->l('Contact details').'</legend>
+			<legend><img src="../img/admin/contact.gif">'.$this->l('Contact details').'</legend>
 				<table border="0" width="500" cellpadding="0" cellspacing="0" id="form">
-					<tr><td colspan="2">'.$this->l('Please specify the name and address to which customers must send their cheque').'.<br /><br /></td></tr>
-					<tr><td width="130" style="height: 35px;">'.$this->l('To the order of').'</td><td><input type="text" name="name" value="'.htmlentities(Tools::getValue('name', $this->chequeName), ENT_COMPAT, 'UTF-8').'" style="width: 300px;" /></td></tr>
+					<tr><td colspan="2">'.$this->l('Please specify the name and address to which customers must send their cheque').'.<br><br></td></tr>
+					<tr><td width="130" style="height: 35px;">'.$this->l('To the order of').'</td><td><input type="text" name="name" value="'.htmlentities(Tools::getValue('name', $this->chequeName), ENT_COMPAT, 'UTF-8').'" style="width: 300px;"></td></tr>
 					<tr>
 						<td width="130" style="vertical-align: top;">'.$this->l('Address').'</td>
 						<td><textarea name="address" rows="3" cols="53">'.htmlentities(Tools::getValue('address', $this->address), ENT_COMPAT, 'UTF-8').'</textarea></td>
 					</tr>
-					<tr><td colspan="2" align="center"><br /><input class="button" name="btnSubmit" value="'.$this->l('Update settings').'" type="submit" /></td></tr>
+					<tr><td colspan="2" align="center"><br><input class="button" name="btnSubmit" value="'.$this->l('Update settings').'" type="submit"></td></tr>
 				</table>
 			</fieldset>
 		</form>';
@@ -110,7 +110,7 @@ class Cheque extends PaymentModule
 					$this->_html .= '<div class="alert error">'. $err .'</div>';
 		}
 		else
-			$this->_html .= '<br />';
+			$this->_html .= '<br>';
 
 		$this->_displayCheque();
 		$this->_displayForm();

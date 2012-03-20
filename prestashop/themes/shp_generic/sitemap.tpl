@@ -32,7 +32,7 @@
 			<li><a href="{$base_dir_ssl}history.php">{l s='Orders history'}</a></li>
 		</ul>
 	</div>
-	<br class="clear" />
+	<br class="clear">
 </div>
 <div class="categTree">
 	<h3>{l s='Categories'}</h3>

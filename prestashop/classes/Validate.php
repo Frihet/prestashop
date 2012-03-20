@@ -311,7 +311,7 @@ class Validate
 	*/
 	static public function isMessage($message)
 	{
-		return preg_match('/^([^<>#{}]|<br \/>)*$/ui', $message);
+		return preg_match('/^([^<>#{}]|<br \>)*$/ui', $message);
 	}
 
 	/**
@@ -700,7 +700,7 @@ class Validate
 
 	static public function isVoucherDescription($text)
 	{
-		return preg_match('/^([^<>{}]|<br \/>)*$/ui', $text);
+		return preg_match('/^([^<>{}]|<br \>)*$/ui', $text);
 	}
 	
 	/**

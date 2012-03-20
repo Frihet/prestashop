@@ -65,21 +65,21 @@ class AdminAliases extends AdminTab
 
 		echo '
 		<form action="'.$currentIndex.'&submitAdd'.$this->table.'=1&token='.$this->token.'" method="post" class="width2">
-		'.($obj->id ? '<input type="hidden" name="id_'.$this->table.'" value="'.$obj->id.'" />' : '').'
-			<fieldset class="width3"><legend><img src="../img/admin/search.gif" />'.$this->l('Aliases').'</legend>
+		'.($obj->id ? '<input type="hidden" name="id_'.$this->table.'" value="'.$obj->id.'">' : '').'
+			<fieldset class="width3"><legend><img src="../img/admin/search.gif">'.$this->l('Aliases').'</legend>
 				<label>'.$this->l('Alias:').' </label>
 				<div class="margin-form">
-					<input type="text" size="40" name="alias" value="'.Tools::getValue('alias', htmlentities($obj->getAliases(), ENT_COMPAT, 'UTF-8')).'" /> <sup>*</sup>
-					<p style="clear: both;">'.$this->l('Enter each alias separated by a comma (\',\')').' '.$this->l('(e.g., \'prestshop,preztashop,prestasohp\')').'<br />
+					<input type="text" size="40" name="alias" value="'.Tools::getValue('alias', htmlentities($obj->getAliases(), ENT_COMPAT, 'UTF-8')).'"> <sup>*</sup>
+					<p style="clear: both;">'.$this->l('Enter each alias separated by a comma (\',\')').' '.$this->l('(e.g., \'prestshop,preztashop,prestasohp\')').'<br>
 					'.$this->l('Forbidden characters:').' <>;=#{}</p>
 				</div>
 				<label>'.$this->l('Result:').' </label>
 				<div class="margin-form">
-					<input type="text" size="15" name="search" value="'.htmlentities($this->getFieldValue($obj, 'search'), ENT_COMPAT, 'UTF-8').'" /> <sup>*</sup>
+					<input type="text" size="15" name="search" value="'.htmlentities($this->getFieldValue($obj, 'search'), ENT_COMPAT, 'UTF-8').'"> <sup>*</sup>
 					<p style="clear: both;">'.$this->l('Search this word instead.').'</p>
 				</div>
 				<div class="margin-form">
-					<input type="submit" value="'.$this->l('   Save   ').'" name="submitAdd'.$this->table.'" class="button" />
+					<input type="submit" value="'.$this->l('   Save   ').'" name="submitAdd'.$this->table.'" class="button">
 				</div>
 				<div class="small"><sup>*</sup> '.$this->l('Required field').'</div>
 			</fieldset>

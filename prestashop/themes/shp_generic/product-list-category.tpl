@@ -4,7 +4,7 @@
 		{if !isset($hide_description)}
 			<p class="product_desc"><a href="{$product.link}" title="{l s='More' mod='homefeatured'}">{$product.description_short|strip_tags|truncate:130:'...'}</a></p>
 		{/if}
-		<a href="{$product.link}" title="{$product.legend|escape:htmlall:'UTF-8'}" class="product_image"><img src="{$link->getImageLink($product.link_rewrite, $product.id_image, 'home')}" height="{$homeSize.height}" width="{$homeSize.width}" alt="{$product.legend|escape:htmlall:'UTF-8'}" /></a>
+		<a href="{$product.link}" title="{$product.legend|escape:htmlall:'UTF-8'}" class="product_image"><img src="{$link->getImageLink($product.link_rewrite, $product.id_image, 'home')}" height="{$homeSize.height}" width="{$homeSize.width}" alt="{$product.legend|escape:htmlall:'UTF-8'}"></a>
 		<div>
 			{if ($product.type != 'article')}
 			        {if !$priceDisplay || $priceDisplay == 2}<p class="price_container"><span class="price">{convertPrice price=$product.price}</span>{if $priceDisplay == 2} {l s='+Tx' mod='homefeatured'}{/if}</p>{/if}

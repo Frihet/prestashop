@@ -67,7 +67,7 @@ class GCheckout extends PaymentModule
 		$html = '<h2>'.$this->displayName.'</h2>
 		<form action="'.$_SERVER['REQUEST_URI'].'" method="post">
 			<fieldset>
-			<legend><img src="'.__PS_BASE_URI__.'modules/gcheckout/logo.gif" />'.$this->l('Settings').'</legend>
+			<legend><img src="'.__PS_BASE_URI__.'modules/gcheckout/logo.gif">'.$this->l('Settings').'</legend>
 				<p>'.$this->l('First use the sandbox to test out the module then you can use the real mode if everything\'s fine. Don\'t forget to change your merchant key and id according to the mode!').'</p>
 				<label>
 					'.$this->l('Mode').'
@@ -83,28 +83,28 @@ class GCheckout extends PaymentModule
 					'.$this->l('Merchant ID').'
 				</label>
 				<div class="margin-form">
-					<input type="text" name="gcheckout_merchant_id" value="'.Tools::getValue('gcheckout_merchant_id', Configuration::get('GCHECKOUT_MERCHANT_ID')).'" />
+					<input type="text" name="gcheckout_merchant_id" value="'.Tools::getValue('gcheckout_merchant_id', Configuration::get('GCHECKOUT_MERCHANT_ID')).'">
 				</div>
 				<label>
 					'.$this->l('Merchant Key').'
 				</label>
 				<div class="margin-form">
-					<input type="text" name="gcheckout_merchant_key" value="'.Tools::getValue('gcheckout_merchant_key', Configuration::get('GCHECKOUT_MERCHANT_KEY')).'" />
+					<input type="text" name="gcheckout_merchant_key" value="'.Tools::getValue('gcheckout_merchant_key', Configuration::get('GCHECKOUT_MERCHANT_KEY')).'">
 				</div>
 				<p>'.$this->l('You can log the server-to-server communication. The log files are').' '.__PS_BASE_URI__.'modules/gcheckout/googleerror.log '.$this->l('and').' '.__PS_BASE_URI__.'modules/gcheckout/googlemessage.log. '.$this->l('If you do activate it, be sure to protect them by putting a .htaccess file in the same directory. If you forget to do so, they will be readable by everyone').'</p>
 				<label>
 					'.$this->l('Logs').'
 				</label>
 				<div class="margin-form" style="margin-top:5px">
-					<input type="checkbox" name="gcheckout_logs"'.(Tools::getValue('gcheckout_logs', Configuration::get('GCHECKOUT_LOGS')) ? ' checked="checked"' : '').' />
+					<input type="checkbox" name="gcheckout_logs"'.(Tools::getValue('gcheckout_logs', Configuration::get('GCHECKOUT_LOGS')) ? ' checked="checked"' : '').'>
 				</div>
-				<div class="clear center"><input type="submit" name="submitGoogleCheckout" class="button" value="'.$this->l('   Save   ').'" /></div>
+				<div class="clear center"><input type="submit" name="submitGoogleCheckout" class="button" value="'.$this->l('   Save   ').'"></div>
 			</fieldset>
 		</form>
-		<br /><br />
+		<br><br>
 		<fieldset>
-			<legend><img src="../img/admin/warning.gif" />'.$this->l('Information').'</legend>
-			<p>- '.$this->l('In order to use your Google Checkout module, you have to configure your Google Checkout account (sandbox account as well as live account). Log in to Google Checkout then go to Settings > Integration. The API callback URL is:').'<br />
+			<legend><img src="../img/admin/warning.gif">'.$this->l('Information').'</legend>
+			<p>- '.$this->l('In order to use your Google Checkout module, you have to configure your Google Checkout account (sandbox account as well as live account). Log in to Google Checkout then go to Settings > Integration. The API callback URL is:').'<br>
 				<b>http://'.$_SERVER['HTTP_HOST'].__PS_BASE_URI__.'modules/gcheckout/validation.php</b>
 			</p>
 			<p>- '.$this->l('The callback method must be set to').' <b>XML</b>.</p>

@@ -328,43 +328,43 @@ class AdminTranslations extends AdminTab
 		else
 		{
 			$languages = Language::getLanguages();
-			echo '<fieldset class="width2"><legend><img src="../img/admin/translation.gif" />'.$this->l('Modify translations').'</legend>'.
-			$this->l('Here you can modify translations for every text input on PrestaShop.').'<br />'.
-			$this->l('First, select a section (such as Back Office or Modules), then click the flag representing the language you want to edit.').'<br /><br />
+			echo '<fieldset class="width2"><legend><img src="../img/admin/translation.gif">'.$this->l('Modify translations').'</legend>'.
+			$this->l('Here you can modify translations for every text input on PrestaShop.').'<br>'.
+			$this->l('First, select a section (such as Back Office or Modules), then click the flag representing the language you want to edit.').'<br><br>
 			<form method="get" action="index.php" id="typeTranslationForm">
-				<input type="hidden" name="tab" value="AdminTranslations" />
-				<input type="hidden" name="lang" id="translation_lang" value="0" />
+				<input type="hidden" name="tab" value="AdminTranslations">
+				<input type="hidden" name="lang" id="translation_lang" value="0">
 				<select name="type" style="float:left; margin-right:10px;">';
 			foreach ($translations as $key => $translation)
 				echo '<option value="'.$key.'">'.$translation.'&nbsp;</option>';
 			echo '</select>';
 			foreach ($languages as $language)
 				echo '<a href="javascript:chooseTypeTranslation(\''.$language['iso_code'].'\')">
-						<img src="'._THEME_LANG_DIR_.$language['id_lang'].'.jpg" alt="'.$language['iso_code'].'" title="'.$language['iso_code'].'" />
+						<img src="'._THEME_LANG_DIR_.$language['id_lang'].'.jpg" alt="'.$language['iso_code'].'" title="'.$language['iso_code'].'">
 					</a>';
-			echo '<input type="hidden" name="token" value="'.$this->token.'" /></form></fieldset>
-			<br /><br /><h2>'.$this->l('Translation exchange').'</h2>
+			echo '<input type="hidden" name="token" value="'.$this->token.'"></form></fieldset>
+			<br><br><h2>'.$this->l('Translation exchange').'</h2>
 			<form action="'.$currentIndex.'&token='.$this->token.'" method="post" enctype="multipart/form-data">
-				<fieldset class="width2"><legend><img src="../img/admin/import.gif" />'.$this->l('Import a language pack').'</legend>
-					<p>'.$this->l('Import data from file (language pack).').'<br />'.
-					$this->l('Be careful, as it will replace all existing data for the destination language!').'<br />'.
+				<fieldset class="width2"><legend><img src="../img/admin/import.gif">'.$this->l('Import a language pack').'</legend>
+					<p>'.$this->l('Import data from file (language pack).').'<br>'.
+					$this->l('Be careful, as it will replace all existing data for the destination language!').'<br>'.
 					$this->l('Browse your computer for the language file to be imported:').'</p>
 					<div style="float:left;">
 						<p>
 							<div style="width:75px; font-weight:bold; float:left;">'.$this->l('From:').'</div>
-							<input type="file" name="file" />
+							<input type="file" name="file">
 						</p>
 					</div>
 					<div style="float:left;">
-						<input type="submit" value="'.$this->l('Import').'" name="submitImport" class="button" style="margin:10px 0px 0px 25px;" />
+						<input type="submit" value="'.$this->l('Import').'" name="submitImport" class="button" style="margin:10px 0px 0px 25px;">
 					</div>
 				</fieldset>
 			</form>
-			<br /><br />
+			<br><br>
 			<form action="'.$currentIndex.'&token='.$this->token.'" method="post" enctype="multipart/form-data">
-				<fieldset class="width2"><legend><img src="../img/admin/export.gif" />'.$this->l('Export a language').'</legend>
-					<p>'.$this->l('Export data from one language to a file (language pack).').'<br />'.
-					$this->l('Choose the theme from which you want to export translations.').'<br />
+				<fieldset class="width2"><legend><img src="../img/admin/export.gif">'.$this->l('Export a language').'</legend>
+					<p>'.$this->l('Export data from one language to a file (language pack).').'<br>'.
+					$this->l('Choose the theme from which you want to export translations.').'<br>
 					<select name="iso_code" style="margin-top:10px;">';
 				foreach ($languages as $language)
 					echo '<option value="'.$language['iso_code'].'">'.$language['name'].'</option>';
@@ -377,16 +377,16 @@ class AdminTranslations extends AdminTab
 					echo '<option value="'.$theme['name'].'">'.$theme['name'].'</option>';
 				echo '
 					</select>&nbsp;&nbsp;
-					<input type="submit" class="button" name="submitExport" value="'.$this->l('Export').'" />
+					<input type="submit" class="button" name="submitExport" value="'.$this->l('Export').'">
 				</fieldset>
 			</form>
-			<br /><br />';
+			<br><br>';
 			$allLanguages = Language::getLanguages(false);
 			echo '
 			<form action="'.$currentIndex.'&token='.$this->token.'" method="post">
-				<fieldset class="width2"><legend><img src="../img/admin/copy_files.gif" />'.$this->l('Copy').'</legend>
-					<p>'.$this->l('Copies data from one language to another.').'<br />'.
-					$this->l('Be careful, as it will replace all existing data for the destination language!').'<br />'.
+				<fieldset class="width2"><legend><img src="../img/admin/copy_files.gif">'.$this->l('Copy').'</legend>
+					<p>'.$this->l('Copies data from one language to another.').'<br>'.
+					$this->l('Be careful, as it will replace all existing data for the destination language!').'<br>'.
 					$this->l('If necessary').', <b><a href="index.php?tab=AdminLanguages&addlang&token='.Tools::getAdminToken('AdminLanguages'.intval(Tab::getIdFromClassName('AdminLanguages')).intval($cookie->id_employee)).'">'.$this->l('first create a new language').'</a></b>.</p>
 					<div style="float:left;">
 						<p>
@@ -421,7 +421,7 @@ class AdminTranslations extends AdminTab
 						</p>
 					</div>
 					<div style="float:left;">
-						<input type="submit" value="'.$this->l('   Copy   ').'" name="submitCopyLang" class="button" style="margin:25px 0px 0px 25px;" />
+						<input type="submit" value="'.$this->l('   Copy   ').'" name="submitCopyLang" class="button" style="margin:25px 0px 0px 25px;">
 					</div>
 					<p style="clear: left; padding: 16px 0px 0px 0px;"><span style="font-style: bold; color: red;">*</span> '.$this->l('Language files (as indicated at Tools >> Languages >> Edition) must be complete to allow copying of translations').'</p>
 				</fieldset>
@@ -451,7 +451,7 @@ class AdminTranslations extends AdminTab
 			var openAll = \''.html_entity_decode($this->l('Expand all fieldsets'), ENT_NOQUOTES, 'UTF-8').'\';
 			var closeAll = \''.html_entity_decode($this->l('Close all fieldsets'), ENT_NOQUOTES, 'UTF-8').'\';
 		</script>
-		<input type="button" class="button" id="buttonall" onclick="openCloseAllDiv(\''.$_GET['type'].'_div\', this.value == openAll); toggleElemValue(this.id, openAll, closeAll);" />
+		<input type="button" class="button" id="buttonall" onclick="openCloseAllDiv(\''.$_GET['type'].'_div\', this.value == openAll); toggleElemValue(this.id, openAll, closeAll);">
 		<script type="text/javascript">toggleElemValue(\'buttonall\', openAll, closeAll);</script>';
 	}
 
@@ -488,10 +488,10 @@ class AdminTranslations extends AdminTab
 
 		echo '
 		<h2>'.$this->l('Language').' : '.Tools::strtoupper($lang).'</h2>
-		'.$this->l('Total expressions').' : <b>'.$count.'</b>. '.$this->l('Click the fieldset title to expand or close the fieldset.').'.<br /><br />
+		'.$this->l('Total expressions').' : <b>'.$count.'</b>. '.$this->l('Click the fieldset title to expand or close the fieldset.').'.<br><br>
 		<form method="post" action="'.$currentIndex.'&submitTranslationsFront=1&token='.$this->token.'" class="form">';
 		$this->displayToggleButton();
-		echo '<input type="hidden" name="lang" value="'.$lang.'" /><input type="submit" name="submitTranslationsFront" value="'.$this->l('Update translations').'" class="button" /><br /><br />';
+		echo '<input type="hidden" name="lang" value="'.$lang.'"><input type="submit" name="submitTranslationsFront" value="'.$this->l('Update translations').'" class="button"><br><br>';
 		foreach ($files as $k => $newLang)
 			if (sizeof($newLang))
 			{
@@ -505,16 +505,16 @@ class AdminTranslations extends AdminTab
 				{
 					echo '<tr><td style="width: 40%">'.stripslashes($key).'</td><td>= ';
 					if (strlen($key) < TEXTAREA_SIZED)
-						echo '<input type="text" style="width: 450px" name="'.$k.'_'.md5($key).'" value="'.stripslashes(preg_replace('/"/', '\&quot;', stripslashes($value))).'" /></td></tr>';
+						echo '<input type="text" style="width: 450px" name="'.$k.'_'.md5($key).'" value="'.stripslashes(preg_replace('/"/', '\&quot;', stripslashes($value))).'"></td></tr>';
 					else
 						echo '<textarea rows="'.intval(strlen($key) / TEXTAREA_SIZED).'" style="width: 450px" name="'.$k.'_'.md5($key).'">'.stripslashes(preg_replace('/"/', '\&quot;', stripslashes($value))).'</textarea></td></tr>';
 				}
 				echo '
 						</table>
 					</div>
-				</fieldset><br />';
+				</fieldset><br>';
 			}
-		echo '<br /><input type="submit" name="submitTranslationsFront" value="'.$this->l('Update translations').'" class="button" /></form>';
+		echo '<br><input type="submit" name="submitTranslationsFront" value="'.$this->l('Update translations').'" class="button"></form>';
 	}
 
 	function displayFormback($lang)
@@ -555,10 +555,10 @@ class AdminTranslations extends AdminTab
 
 		echo '
 		<h2>'.$this->l('Language').' : '.Tools::strtoupper($lang).'</h2>
-		'.$this->l('Expressions to translate').' : <b>'.$count.'</b>. '.$this->l('Click on the titles to open fieldsets').'.<br /><br />
+		'.$this->l('Expressions to translate').' : <b>'.$count.'</b>. '.$this->l('Click on the titles to open fieldsets').'.<br><br>
 		<form method="post" action="'.$currentIndex.'&submitTranslationsBack=1&token='.$this->token.'" class="form">';
 		$this->displayToggleButton();
-		echo '<input type="hidden" name="lang" value="'.$lang.'" /><input type="submit" name="submitTranslationsBack" value="'.$this->l('Update translations').'" class="button" /><br /><br />';
+		echo '<input type="hidden" name="lang" value="'.$lang.'"><input type="submit" name="submitTranslationsBack" value="'.$this->l('Update translations').'" class="button"><br><br>';
 		foreach ($tabsArray as $k => $newLang)
 			if (sizeof($newLang))
 			{
@@ -572,16 +572,16 @@ class AdminTranslations extends AdminTab
 				{
 					echo '<tr><td style="width: 40%">'.stripslashes($key).'</td><td>= ';
 					if (strlen($key) < TEXTAREA_SIZED)
-						echo '<input type="text" style="width: 450px" name="'.$k.md5($key).'" value="'.stripslashes(preg_replace('/"/', '\&quot;', $value)).'" /></td></tr>';
+						echo '<input type="text" style="width: 450px" name="'.$k.md5($key).'" value="'.stripslashes(preg_replace('/"/', '\&quot;', $value)).'"></td></tr>';
 					else
 						echo '<textarea rows="'.intval(strlen($key) / TEXTAREA_SIZED).'" style="width: 450px" name="'.$k.md5($key).'">'.stripslashes(preg_replace('/"/', '\&quot;', $value)).'</textarea></td></tr>';
 				}
 				echo '
 						</table>
 					</div>
-				</fieldset><br />';
+				</fieldset><br>';
 			}
-		echo '<br /><input type="submit" name="submitTranslationsBack" value="'.$this->l('Update translations').'" class="button" /></form>';
+		echo '<br><input type="submit" name="submitTranslationsBack" value="'.$this->l('Update translations').'" class="button"></form>';
 	}
 
 	function displayFormerrors($lang)
@@ -618,14 +618,14 @@ class AdminTranslations extends AdminTab
 						$stringToTranslate[$key] = (key_exists(md5($key), $_ERRORS)) ? html_entity_decode($_ERRORS[md5($key)], ENT_COMPAT, 'UTF-8') : '';
 				}
 		$irow = 0;
-		echo '<h2>'.$this->l('Language').' : '.Tools::strtoupper($lang).'</h2>'.$this->l('Errors to translate').' : <b>'.sizeof($stringToTranslate).'</b><br /><br />
+		echo '<h2>'.$this->l('Language').' : '.Tools::strtoupper($lang).'</h2>'.$this->l('Errors to translate').' : <b>'.sizeof($stringToTranslate).'</b><br><br>
 		<form method="post" action="'.$currentIndex.'&submitTranslationsErrors=1&lang='.$lang.'&token='.$this->token.'" class="form">
-		<input type="submit" name="submitTranslationsErrors" value="'.$this->l('Update translations').'" class="button" /><br /><br />
+		<input type="submit" name="submitTranslationsErrors" value="'.$this->l('Update translations').'" class="button"><br><br>
 		<table cellpadding="0" cellspacing="0" class="table">';
 		ksort($stringToTranslate);
 		foreach ($stringToTranslate as $key => $value)
 			echo '<tr '.(empty($value) ? 'style="background-color:#FBB"' : (++$irow % 2 ? 'class="alt_row"' : '')).'><td>'.stripslashes($key).'</td><td style="width: 430px">= <input type="text" name="'.md5($key).'" value="'.preg_replace('/"/', '&quot;', stripslashes($value)).'" style="width: 400px"></td></tr>';
-		echo '</table><br /><input type="submit" name="submitTranslationsErrors" value="'.$this->l('Update translations').'" class="button" /></form>';
+		echo '</table><br><input type="submit" name="submitTranslationsErrors" value="'.$this->l('Update translations').'" class="button"></form>';
 	}
 
 	function displayFormfields($lang)
@@ -655,10 +655,10 @@ class AdminTranslations extends AdminTab
 
 		echo '
 		<h2>'.$this->l('Language').' : '.Tools::strtoupper($lang).'</h2>
-		'.$this->l('Fields to translate').' : <b>'.$count.'</b>. '.$this->l('Click on the titles to open fieldsets').'.<br /><br />
+		'.$this->l('Fields to translate').' : <b>'.$count.'</b>. '.$this->l('Click on the titles to open fieldsets').'.<br><br>
 		<form method="post" action="'.$currentIndex.'&submitTranslationsFields=1&token='.$this->token.'" class="form">';
 		$this->displayToggleButton();
-		echo '<input type="hidden" name="lang" value="'.$lang.'" /><input type="submit" name="submitTranslationsFields" value="'.$this->l('Update translations').'" class="button" /><br /><br />';
+		echo '<input type="hidden" name="lang" value="'.$lang.'"><input type="submit" name="submitTranslationsFields" value="'.$this->l('Update translations').'" class="button"><br><br>';
 		foreach ($classArray AS $className => $rules)
 		{
 			$translated = 0;
@@ -682,9 +682,9 @@ class AdminTranslations extends AdminTab
 			echo '
 				</table>
 			</div>
-			</fieldset><br />';
+			</fieldset><br>';
 		}
-		echo '<br /><input type="submit" name="submitTranslationsFields" value="'.$this->l('Update translations').'" class="button" /></form>';
+		echo '<br><input type="submit" name="submitTranslationsFields" value="'.$this->l('Update translations').'" class="button"></form>';
 	}
 
 	function displayFormModules($lang)
@@ -738,10 +738,10 @@ class AdminTranslations extends AdminTab
 
 			echo '
 			<h2>'.$this->l('Language').' : '.Tools::strtoupper($lang).'</h2>
-			'.$this->l('Total expressions').' : <b>'.$count.'</b>. '.$this->l('Click the fieldset title to expand or close the fieldset.').'.<br /><br />
+			'.$this->l('Total expressions').' : <b>'.$count.'</b>. '.$this->l('Click the fieldset title to expand or close the fieldset.').'.<br><br>
 			<form method="post" action="'.$currentIndex.'&submitTranslationsModules=1&token='.$this->token.'" class="form">';
 			$this->displayToggleButton();
-			echo '<input type="hidden" name="lang" value="'.$lang.'" /><input type="submit" name="submitTranslationsModules" value="'.$this->l('Update translations').'" class="button" /><br /><br />';
+			echo '<input type="hidden" name="lang" value="'.$lang.'"><input type="submit" name="submitTranslationsModules" value="'.$this->l('Update translations').'" class="button"><br><br>';
 			foreach ($allfiles AS $theme_name => $theme)
 				foreach ($theme AS $module_name => $module)
 					foreach ($module AS $template_name => $newLang)
@@ -757,16 +757,16 @@ class AdminTranslations extends AdminTab
 							{
 								echo '<tr><td style="width: 40%">'.stripslashes($key).'</td><td>= ';
 								if (strlen($key) < TEXTAREA_SIZED)
-									echo '<input type="text" style="width: 450px" name="'.md5($module_name.'_'.$theme_name.'_'.$template_name.'_'.md5($key)).'" value="'.stripslashes(preg_replace('/"/', '\&quot;', stripslashes($value))).'" /></td></tr>';
+									echo '<input type="text" style="width: 450px" name="'.md5($module_name.'_'.$theme_name.'_'.$template_name.'_'.md5($key)).'" value="'.stripslashes(preg_replace('/"/', '\&quot;', stripslashes($value))).'"></td></tr>';
 								else
 									echo '<textarea rows="'.intval(strlen($key) / TEXTAREA_SIZED).'" style="width: 450px" name="'.md5($module_name.'_'.$theme_name.'_'.$template_name.'_'.md5($key)).'">'.stripslashes(preg_replace('/"/', '\&quot;', stripslashes($value))).'</textarea></td></tr>';
 							}
 							echo '
 									</table>
 								</div>
-							</fieldset><br />';
+							</fieldset><br>';
 						}
-			echo '<br /><input type="submit" name="submitTranslationsModules" value="'.$this->l('Update translations').'" class="button" /></form>';
+			echo '<br><input type="submit" name="submitTranslationsModules" value="'.$this->l('Update translations').'" class="button"></form>';
 
 		}
 	}
@@ -801,18 +801,18 @@ class AdminTranslations extends AdminTab
 
 		echo '
 		<h2>'.$this->l('Language').' : '.Tools::strtoupper($lang).'</h2>
-		'.$this->l('Expressions to translate').' : <b>'.$count.'</b>. '.$this->l('Click on the titles to open fieldsets').'.<br /><br />
+		'.$this->l('Expressions to translate').' : <b>'.$count.'</b>. '.$this->l('Click on the titles to open fieldsets').'.<br><br>
 		<form method="post" action="'.$currentIndex.'&submitTranslationsPDF=1&token='.$this->token.'" class="form">
 				<script type="text/javascript">
 					var openAll = \''.html_entity_decode($this->l('Expand all fieldsets'), ENT_NOQUOTES, 'UTF-8').'\';
 					var closeAll = \''.html_entity_decode($this->l('Close all fieldsets'), ENT_NOQUOTES, 'UTF-8').'\';
 				</script>
-				<input type="hidden" name="lang" value="'.$lang.'" />
-				<input type="button" class="button" id="buttonall" onclick="openCloseAllDiv(\'pdf_div\', this.value == openAll); toggleElemValue(this.id, openAll, closeAll);" />
+				<input type="hidden" name="lang" value="'.$lang.'">
+				<input type="button" class="button" id="buttonall" onclick="openCloseAllDiv(\'pdf_div\', this.value == openAll); toggleElemValue(this.id, openAll, closeAll);">
 				<script type="text/javascript">
 					toggleElemValue(\'buttonall\', openAll, closeAll);
 				</script>';
-		echo '<input type="submit" name="submitTranslationsPDF" value="'.$this->l('Update translations').'" class="button" /><br /><br />';
+		echo '<input type="submit" name="submitTranslationsPDF" value="'.$this->l('Update translations').'" class="button"><br><br>';
 		foreach ($tabsArray as $k => $newLang)
 			if (sizeof($newLang))
 			{
@@ -835,9 +835,9 @@ class AdminTranslations extends AdminTab
 				echo '
 						</table>
 					</div>
-				</fieldset><br />';
+				</fieldset><br>';
 			}
-		echo '<br /><input type="submit" name="submitTranslationsPDF" value="'.$this->l('Update translations').'" class="button" /></form>';
+		echo '<br><input type="submit" name="submitTranslationsPDF" value="'.$this->l('Update translations').'" class="button"></form>';
 	}
 
 	/**

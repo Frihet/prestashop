@@ -40,13 +40,13 @@ class BirthdayPresent extends Module
 		}
 		
 		$this->_html = '
-		<fieldset class="width3"><legend><img src="../modules/'.$this->name.'/logo.gif" /> '.$this->displayName.'</legend>
+		<fieldset class="width3"><legend><img src="../modules/'.$this->name.'/logo.gif"> '.$this->displayName.'</legend>
 			<p>'.$this->l('Create a voucher for your clients celebrating their birthday').'</p>
 			<form action="'.$_SERVER['REQUEST_URI'].'" method="post">
 				<label>'.$this->l('Active').'</label>
 				<div class="margin-form">
-					<img src="../img/admin/enabled.gif" /> <input type="radio" name="bp_active" value="1"'.(Configuration::get('BIRTHDAY_ACTIVE') ? ' checked="checked"' : '').' />
-					<img src="../img/admin/disabled.gif" /> <input type="radio" name="bp_active" value="0"'.(!Configuration::get('BIRTHDAY_ACTIVE') ? ' checked="checked"' : '').' />
+					<img src="../img/admin/enabled.gif"> <input type="radio" name="bp_active" value="1"'.(Configuration::get('BIRTHDAY_ACTIVE') ? ' checked="checked"' : '').'>
+					<img src="../img/admin/disabled.gif"> <input type="radio" name="bp_active" value="0"'.(!Configuration::get('BIRTHDAY_ACTIVE') ? ' checked="checked"' : '').'>
 					<p style="clear: both;">'.$this->l('Additionnaly, you have to set a CRON rule which calls the file').' '.dirname(__FILE__).'/cron.php '.$this->l('everyday').'</p>
 				</div>
 				<label>'.$this->l('Type').'</label>
@@ -60,33 +60,33 @@ class BirthdayPresent extends Module
 				</div>
 				<label>'.$this->l('Value').'</label>
 				<div class="margin-form">
-					<input type="text" size="15" name="discount_value" value="'.Configuration::get('BIRTHDAY_DISCOUNT_VALUE').'" onKeyUp="javascript:this.value = this.value.replace(/,/g, \'.\'); " />
+					<input type="text" size="15" name="discount_value" value="'.Configuration::get('BIRTHDAY_DISCOUNT_VALUE').'" onKeyUp="javascript:this.value = this.value.replace(/,/g, \'.\'); ">
 					<p style="clear: both;">'.$this->l('Either the monetary amount or the %, depending on Type selected above').'</p>
 				</div>
 				<label>'.$this->l('Minimal order').'</label>
 				<div class="margin-form">
-					<input type="text" size="15" name="minimal_order" value="'.Configuration::get('BIRTHDAY_MINIMAL_ORDER').'" onKeyUp="javascript:this.value = this.value.replace(/,/g, \'.\'); " />
+					<input type="text" size="15" name="minimal_order" value="'.Configuration::get('BIRTHDAY_MINIMAL_ORDER').'" onKeyUp="javascript:this.value = this.value.replace(/,/g, \'.\'); ">
 					<p style="clear: both;">'.$this->l('The minimal order amount needed to use the voucher').'</p>
 				</div>
 				<div class="clear center">
-					<input type="submit" value="'.$this->l('   Save   ').'" name="submitBirthday" class="button" />
+					<input type="submit" value="'.$this->l('   Save   ').'" name="submitBirthday" class="button">
 				</div>
 				<div class="small"><sup>*</sup> '.$this->l('Required field').'</div>
 			</form>
-		</fieldset><br />
-		<fieldset class="width3"><legend><img src="../modules/'.$this->name.'/comment.gif" /> '.$this->l('Guide').'</legend>
+		</fieldset><br>
+		<fieldset class="width3"><legend><img src="../modules/'.$this->name.'/comment.gif"> '.$this->l('Guide').'</legend>
 			<h2>'.$this->l('Develop clients\' loyalty').'</h2>
 			<p>'.$this->l('Offering a present to a client is a means of securing its loyalty.').'</p>
 			<h3>'.$this->l('What should you do?').'</h3>
 			<p>
-				'.$this->l('Keeping a client is more profitable than capturing a new one. Thus, it is necessary to develop its loyalty, in other words to make him come back in your webshop.').' <br />
-				'.$this->l('Word of mouth is also a means to get new satisfied clients; a dissatisfied one won\'t attract new clients.').'<br />
+				'.$this->l('Keeping a client is more profitable than capturing a new one. Thus, it is necessary to develop its loyalty, in other words to make him come back in your webshop.').' <br>
+				'.$this->l('Word of mouth is also a means to get new satisfied clients; a dissatisfied one won\'t attract new clients.').'<br>
 				'.$this->l('In order to achieve this goal you can organize: ').'
 				<ul>
 					<li>'.$this->l('Punctual operations: commercial rewards (personalized special offers, product or service offered), non commercial rewards (priority handling of an order or a product), pecuniary rewards (bonds, discount coupons, payback...).').'</li>
 					<li>'.$this->l('Sustainable operations: loyalty or points cards, which not only justify communication between merchant and client, but also offer advantages to clients (private offers, discounts).').'</li>
 				</ul>
-				'.$this->l('These operations encourage clients to buy and also to come back in your webshop regularly.').' <br />
+				'.$this->l('These operations encourage clients to buy and also to come back in your webshop regularly.').' <br>
 			</p>
 		</fieldset>';
 		return $this->_html;

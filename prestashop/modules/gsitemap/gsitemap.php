@@ -195,12 +195,12 @@ class Gsitemap extends Module
             $xml = simplexml_load_file(GSITEMAP_FILE);
             $nbPages = sizeof($xml->url);
 
-            $this->_html .= '<p>'.$this->l('Your Google sitemap file is online at the following address:').'<br />
-            <a href="http://'.htmlspecialchars($_SERVER['HTTP_HOST'], ENT_COMPAT, 'UTF-8').__PS_BASE_URI__.'sitemap.xml"><b>http://'.htmlspecialchars($_SERVER['HTTP_HOST'], ENT_COMPAT, 'UTF-8').__PS_BASE_URI__.'sitemap.xml</b></a></p><br />';
+            $this->_html .= '<p>'.$this->l('Your Google sitemap file is online at the following address:').'<br>
+            <a href="http://'.htmlspecialchars($_SERVER['HTTP_HOST'], ENT_COMPAT, 'UTF-8').__PS_BASE_URI__.'sitemap.xml"><b>http://'.htmlspecialchars($_SERVER['HTTP_HOST'], ENT_COMPAT, 'UTF-8').__PS_BASE_URI__.'sitemap.xml</b></a></p><br>';
 
-            $this->_html .= $this->l('Update:').' <b>'.strftime('%A %d %B %Y %H:%M:%S',$fstat['mtime']).'</b><br />';
-            $this->_html .= $this->l('Filesize:').' <b>'.number_format(($fstat['size']*.000001), 3).'mo</b><br />';
-            $this->_html .= $this->l('Indexed pages:').' <b>'.$nbPages.'</b><br /><br />';
+            $this->_html .= $this->l('Update:').' <b>'.strftime('%A %d %B %Y %H:%M:%S',$fstat['mtime']).'</b><br>';
+            $this->_html .= $this->l('Filesize:').' <b>'.number_format(($fstat['size']*.000001), 3).'mo</b><br>';
+            $this->_html .= $this->l('Indexed pages:').' <b>'.$nbPages.'</b><br><br>';
         }
     }
 
@@ -209,7 +209,7 @@ class Gsitemap extends Module
         $this->_html .=
         '<form action="'.$_SERVER['REQUEST_URI'].'" method="post">
 			<input name="btnSubmit" class="button" type="submit"
-			value="'.((!file_exists(GSITEMAP_FILE)) ? $this->l('Generate sitemap file') : $this->l('Update sitemap file')).'" />
+			value="'.((!file_exists(GSITEMAP_FILE)) ? $this->l('Generate sitemap file') : $this->l('Update sitemap file')).'">
         </form>';
     }
     
@@ -217,7 +217,7 @@ class Gsitemap extends Module
     {
         $this->_html .= '<h2>'.$this->l('Search Engine Optimization').'</h2>
 		'.$this->l('See').' <a href="https://www.google.com/webmasters/tools/docs/en/about.html">
-		'.$this->l('this page').'</a> '.$this->l('for more information').'<br /><br />';
+		'.$this->l('this page').'</a> '.$this->l('for more information').'<br><br>';
         if (!empty($_POST))
         {
             $this->_postValidation();
@@ -228,7 +228,7 @@ class Gsitemap extends Module
                     $this->_html .= '<div class="alert error">'.$err.'</div>';
         }
         else
-            $this->_html .= '<br />';
+            $this->_html .= '<br>';
 
         $this->_displaySitemap();
         $this->_displayForm();

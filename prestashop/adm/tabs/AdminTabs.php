@@ -70,11 +70,11 @@ class AdminTabs extends AdminTab
 			for ($i = 0; $i < sizeof($arrayTabs); $i++)
 			{
 				$tab = $arrayTabs[$i];
-				echo '<th style="text-align:center;">'.stripslashes($tab['name']).'<br />';
+				echo '<th style="text-align:center;">'.stripslashes($tab['name']).'<br>';
 				if ($i)
-					echo '<a href="'.$currentIndex.'&id_tab='.$tab['id_tab'].'&move=l&token='.$this->token.'"><img src="../img/admin/previous.gif" /></a>&nbsp;';
+					echo '<a href="'.$currentIndex.'&id_tab='.$tab['id_tab'].'&move=l&token='.$this->token.'"><img src="../img/admin/previous.gif"></a>&nbsp;';
 				if ($i < sizeof($arrayTabs) - 1)
-					echo '<a href="'.$currentIndex.'&id_tab='.$tab['id_tab'].'&move=r&token='.$this->token.'"><img src="../img/admin/next.gif" /></a></th>';
+					echo '<a href="'.$currentIndex.'&id_tab='.$tab['id_tab'].'&move=r&token='.$this->token.'"><img src="../img/admin/next.gif"></a></th>';
 			}
 			echo '
 				</tr>
@@ -89,7 +89,7 @@ class AdminTabs extends AdminTab
 		parent::displayList();
 		
 		$tabs = Tab::getTabs(intval($cookie->id_lang), 0);
-		echo '<br /><h2>'.$this->l('Positions').'</h2>
+		echo '<br><h2>'.$this->l('Positions').'</h2>
 		<h3>'.$this->l('Level').' 1</h3>';
 		$this->_posTabs($this->l('Main'), $tabs);
 		echo '<h3>'.$this->l('Level').' 2</h3>';
@@ -110,15 +110,15 @@ class AdminTabs extends AdminTab
 			id_language = Number('.$defaultLanguage.');
 		</script>
 		<form action="'.$currentIndex.'&submitAdd'.$this->table.'=1&token='.$this->token.'" method="post" enctype="multipart/form-data" class="width2">
-		'.($obj->id ? '<input type="hidden" name="id_'.$this->table.'" value="'.$obj->id.'" />' : '').'
-		'.($obj->position ? '<input type="hidden" name="position" value="'.$obj->position.'" />' : '').'
-			<fieldset><legend><img src="../img/admin/tab.gif" />'.$this->l('Tabs').'</legend>
+		'.($obj->id ? '<input type="hidden" name="id_'.$this->table.'" value="'.$obj->id.'">' : '').'
+		'.($obj->position ? '<input type="hidden" name="position" value="'.$obj->position.'">' : '').'
+			<fieldset><legend><img src="../img/admin/tab.gif">'.$this->l('Tabs').'</legend>
 				<label>'.$this->l('Name:').' </label>
 				<div class="margin-form">';
 				foreach ($languages as $language)
 					echo '
 					<div id="name_'.$language['id_lang'].'" style="display: '.($language['id_lang'] == $defaultLanguage ? 'block' : 'none').'; float: left;">
-						<input size="33" type="text" name="name_'.$language['id_lang'].'" value="'.htmlentities($this->getFieldValue($obj, 'name', intval($language['id_lang'])), ENT_COMPAT, 'UTF-8').'" /><sup> *</sup>
+						<input size="33" type="text" name="name_'.$language['id_lang'].'" value="'.htmlentities($this->getFieldValue($obj, 'name', intval($language['id_lang'])), ENT_COMPAT, 'UTF-8').'"><sup> *</sup>
 						<span class="hint" name="help_box">'.$this->l('Invalid characters:').' <>;=#{}<span class="hint-pointer">&nbsp;</span></span>
 					</div>';
 				$this->displayFlags($languages, $defaultLanguage, 'name', 'name');
@@ -127,18 +127,18 @@ class AdminTabs extends AdminTab
 				<div class="clear">&nbsp;</div>
 				<label>'.$this->l('Class:').' </label>
 				<div class="margin-form">
-					<input type="text" name="class_name" value="'.htmlentities($this->getFieldValue($obj, 'class_name'), ENT_COMPAT, 'UTF-8').'" /> <sup>*</sup>
+					<input type="text" name="class_name" value="'.htmlentities($this->getFieldValue($obj, 'class_name'), ENT_COMPAT, 'UTF-8').'"> <sup>*</sup>
 				</div>
 				<div class="clear">&nbsp;</div>
 				<label>'.$this->l('Module:').' </label>
 				<div class="margin-form">
-					<input type="text" name="module" value="'.htmlentities($this->getFieldValue($obj, 'module'), ENT_COMPAT, 'UTF-8').'" />
+					<input type="text" name="module" value="'.htmlentities($this->getFieldValue($obj, 'module'), ENT_COMPAT, 'UTF-8').'">
 				</div>
 				<div class="clear">&nbsp;</div>
 				<label>'.$this->l('Icon:').'</label>
 				<div class="margin-form">
-					'.($obj->id ? '<img src="../img/t/'.$obj->class_name.'.gif" />&nbsp;/img/t/'.$obj->class_name.'.gif' : '').'
-					<p><input type="file" name="icon" /></p>
+					'.($obj->id ? '<img src="../img/t/'.$obj->class_name.'.gif">&nbsp;/img/t/'.$obj->class_name.'.gif' : '').'
+					<p><input type="file" name="icon"></p>
 					<p>'.$this->l('Upload logo from your computer').' (.gif, .jpg, .jpeg '.$this->l('or').' .png)</p>
 				</div>
 				<div class="clear">&nbsp;</div>
@@ -153,7 +153,7 @@ class AdminTabs extends AdminTab
 				</div>
 				<div class="clear">&nbsp;</div>
 				<div class="margin-form">
-					<input type="submit" value="'.$this->l('   Save   ').'" name="submitAdd'.$this->table.'" class="button" />
+					<input type="submit" value="'.$this->l('   Save   ').'" name="submitAdd'.$this->table.'" class="button">
 				</div>
 				<div class="small"><sup>*</sup> '.$this->l('Required field').'</div>
 			</fieldset>

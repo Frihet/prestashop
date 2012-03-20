@@ -249,7 +249,7 @@ abstract class XML_Feed_Parser_Type
      * and  Atom. Instead the usual approach is to use the dublin core namespace to 
      * declare  categories. For example delicious use both: 
      * <dc:subject>PEAR</dc:subject> and: <taxo:topics><rdf:Bag>
-     * <rdf:li resource="http://del.icio.us/tag/PEAR" /></rdf:Bag></taxo:topics>
+     * <rdf:li resource="http://del.icio.us/tag/PEAR"></rdf:Bag></taxo:topics>
      * to declare a categorisation of 'PEAR'.
      *
      * We need to be sensitive to this where possible.

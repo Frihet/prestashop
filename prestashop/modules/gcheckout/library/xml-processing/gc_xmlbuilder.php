@@ -71,7 +71,7 @@
       foreach ($attributes as $key => $value) {
         $this->xml .= ' '.$key.'="'.htmlentities($value).'"';
       }
-      $this->xml .= " />\n";
+      $this->xml .= ">\n";
     }
 
     //Used to close an open tag

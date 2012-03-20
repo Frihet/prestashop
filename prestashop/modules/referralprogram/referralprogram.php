@@ -216,26 +216,26 @@ class ReferralProgram extends Module
 		$this->_html .= '
 		<form action="'.$_SERVER['REQUEST_URI'].'" method="post">
 		<fieldset>
-			<legend><img src="'._PS_ADMIN_IMG_.'prefs.gif" alt="'.$this->l('Settings').'" />'.$this->l('Settings').'</legend>
+			<legend><img src="'._PS_ADMIN_IMG_.'prefs.gif" alt="'.$this->l('Settings').'">'.$this->l('Settings').'</legend>
 			<p>
 				<label class="t" for="order_quantity">'.$this->l('Number of orders required to earn a discount:').'</label>
-				<input type="text" name="order_quantity" id="order_quantity" value="'.Tools::getValue('order_quantity', Configuration::get('REFERRAL_ORDER_QUANTITY')).'" />
+				<input type="text" name="order_quantity" id="order_quantity" value="'.Tools::getValue('order_quantity', Configuration::get('REFERRAL_ORDER_QUANTITY')).'">
 			</p>
 			<p>
 				<label class="t" for="nb_friends">'.$this->l('Number of friends displayed in customer account:').'</label>
-				<input type="text" name="nb_friends" id="nb_friends" value="'.Tools::getValue('nb_friends', Configuration::get('REFERRAL_NB_FRIENDS')).'" />
+				<input type="text" name="nb_friends" id="nb_friends" value="'.Tools::getValue('nb_friends', Configuration::get('REFERRAL_NB_FRIENDS')).'">
 			</p>
 			<p>
 				<label class="t">'.$this->l('Voucher type:').'</label>
-				<input type="radio" name="discount_type" id="discount_type1" value="1" '.(Tools::getValue('discount_type', Configuration::get('REFERRAL_DISCOUNT_TYPE')) == 1 ? 'checked="checked"' : '').' />
+				<input type="radio" name="discount_type" id="discount_type1" value="1" '.(Tools::getValue('discount_type', Configuration::get('REFERRAL_DISCOUNT_TYPE')) == 1 ? 'checked="checked"' : '').'>
 				<label class="t" for="discount_type1">'.$this->l('Percentage').'</label>
 				&nbsp;
-				<input type="radio" name="discount_type" id="discount_type2" value="2" '.(Tools::getValue('discount_type', Configuration::get('REFERRAL_DISCOUNT_TYPE')) == 2 ? 'checked="checked"' : '').' />
+				<input type="radio" name="discount_type" id="discount_type2" value="2" '.(Tools::getValue('discount_type', Configuration::get('REFERRAL_DISCOUNT_TYPE')) == 2 ? 'checked="checked"' : '').'>
 				<label class="t" for="discount_type2">'.$this->l('Amount').'</label>
 			</p>
 			<p>
 				<label class="t" for="discount_value">'.$this->l('Voucher value:').'</label>
-				<input type="text" name="discount_value" id="discount_value" value="'.Tools::getValue('discount_value', Configuration::get('REFERRAL_DISCOUNT_VALUE')).'" />
+				<input type="text" name="discount_value" id="discount_value" value="'.Tools::getValue('discount_value', Configuration::get('REFERRAL_DISCOUNT_VALUE')).'">
 			</p>
 			<p>
 				 <div style="float: left"><label class="t" for="discount_description">'.$this->l('Voucher description:').'</label></div>';
@@ -244,14 +244,14 @@ class ReferralProgram extends Module
 			foreach ($languages as $language)
 				$this->_html .= '
 				<div id="discount_description_'.$language['id_lang'].'" style="display: '.($language['id_lang'] == $defaultLanguage ? 'block' : 'none').'; float: left; margin-left: 4px;">
-					<input type="text" name="discount_description['.$language['id_lang'].']" id="discount_description['.$language['id_lang'].']" value="'.(isset($_POST['discount_description'][intval($language['id_lang'])]) ? $_POST['discount_description'][intval($language['id_lang'])] : $this->_configuration['REFERRAL_DISCOUNT_DESCRIPTION'][intval($language['id_lang'])]).'" />
+					<input type="text" name="discount_description['.$language['id_lang'].']" id="discount_description['.$language['id_lang'].']" value="'.(isset($_POST['discount_description'][intval($language['id_lang'])]) ? $_POST['discount_description'][intval($language['id_lang'])] : $this->_configuration['REFERRAL_DISCOUNT_DESCRIPTION'][intval($language['id_lang'])]).'">
 				</div>';
 			$this->_html .= $this->displayFlags($languages, $defaultLanguage, 'discount_description', 'discount_description', true);
 			$this->_html .= '
 			</p>
-			<div class="clear center"><input class="button" style="margin-top: 10px" name="submitReferralProgram" id="submitReferralProgram" value="'.$this->l('Update settings').'" type="submit" /></div>
+			<div class="clear center"><input class="button" style="margin-top: 10px" name="submitReferralProgram" id="submitReferralProgram" value="'.$this->l('Update settings').'" type="submit"></div>
 		</fieldset>
-		</form><br/>';
+		</form><br>';
 	}
 
 	private function _displayFormRules()
@@ -310,7 +310,7 @@ class ReferralProgram extends Module
 		<script language="javascript">id_language = Number('.$defaultLanguage.');</script>
 		<form method="post" action="'.$_SERVER['REQUEST_URI'].'" enctype="multipart/form-data">
 			<fieldset>
-				<legend><img src="'.$this->_path.'logo.gif" alt="" title="" /> '.$this->l('Referral program rules').'</legend>';
+				<legend><img src="'.$this->_path.'logo.gif" alt="" title=""> '.$this->l('Referral program rules').'</legend>';
 		foreach ($languages as $language)
 		{
 			$this->_html .= '
@@ -321,7 +321,7 @@ class ReferralProgram extends Module
 		$this->_html .= $this->displayFlags($languages, $defaultLanguage, $divLangName, 'cpara', true);
 
 		$this->_html .= '
-				<div class="clear center"><input type="submit" name="submitText" value="'.$this->l('Update the text').'" class="button" style="margin-top: 10px" /></div>
+				<div class="clear center"><input type="submit" name="submitText" value="'.$this->l('Update the text').'" class="button" style="margin-top: 10px"></div>
 			</fieldset>
 		</form>';
 	}
@@ -494,7 +494,7 @@ class ReferralProgram extends Module
 					<td>'.Tools::displayDate($friend['date_add'], intval($cookie->id_lang), true).'</td>
 					<td align="right">'.sizeof(ReferralProgramModule::getSponsorFriend($friend['id_customer'])).'</td>
 					<td align="right">'.($orders ? sizeof($orders) : 0).'</td>
-					<td align="center">'.(intval($friend['id_customer']) ? '<img src="'._PS_ADMIN_IMG_.'enabled.gif" />' : '<img src="'._PS_ADMIN_IMG_.'disabled.gif" />').'</td>
+					<td align="center">'.(intval($friend['id_customer']) ? '<img src="'._PS_ADMIN_IMG_.'enabled.gif">' : '<img src="'._PS_ADMIN_IMG_.'disabled.gif">').'</td>
 				</tr>';
 			}
 			$html.= '
@@ -502,7 +502,7 @@ class ReferralProgram extends Module
 		}
 		else
 			$html.= $customer->firstname.' '.$customer->lastname.' '.$this->l('has not sponsored any friends yet.');
-		return $html.'<br/><br/>';
+		return $html.'<br><br>';
 	}
 
 	/**

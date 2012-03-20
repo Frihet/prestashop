@@ -55,11 +55,11 @@ class AdminTags extends AdminTab
 		
 		echo '
 		<form id="formTag" action="'.$currentIndex.'&submitAdd'.$this->table.'=1&token='.$this->token.'" method="post" class="width3">
-		'.($obj->id ? '<input type="hidden" name="id_'.$this->table.'" value="'.$obj->id.'" />' : '').'
-			<fieldset><legend><img src="../img/t/AdminTags.gif" />'.$this->l('Tag').'</legend>
+		'.($obj->id ? '<input type="hidden" name="id_'.$this->table.'" value="'.$obj->id.'">' : '').'
+			<fieldset><legend><img src="../img/t/AdminTags.gif">'.$this->l('Tag').'</legend>
 				<label>'.$this->l('Name').' </label>
 				<div class="margin-form">
-					<input type="text" size="33" name="name" value="'.htmlentities($this->getFieldValue($obj, 'name'), ENT_COMPAT, 'UTF-8').'" /> <sup>*</sup>
+					<input type="text" size="33" name="name" value="'.htmlentities($this->getFieldValue($obj, 'name'), ENT_COMPAT, 'UTF-8').'"> <sup>*</sup>
 				</div>
 				<label>'.$this->l('Language').' </label>
 				<div class="margin-form">
@@ -76,7 +76,7 @@ class AdminTags extends AdminTab
 							<select multiple id="select1" name="products[]" style="width:300px;height:160px;">';
 		foreach ($products1 as $product)
 			echo '				<option value="'.$product['id_product'].'">'.$product['name'].'</option>';
-		echo '				</select><br /><br />
+		echo '				</select><br><br>
 							<a href="#" id="add"
 							style="text-align:center;display:block;border:1px solid #aaa;text-decoration:none;background-color:#fafafa;color:#123456;margin:2px;padding:2px">
 								'.$this->l('Remove').' &gt;&gt;
@@ -86,7 +86,7 @@ class AdminTags extends AdminTab
 							<select multiple id="select2" style="width:300px;height:160px;">';
 		foreach ($products2 as $product)
 			echo '				<option value="'.$product['id_product'].'">'.$product['name'].'</option>';
-		echo '				</select><br /><br />
+		echo '				</select><br><br>
 							<a href="#" id="remove"
 							style="text-align:center;display:block;border:1px solid #aaa;text-decoration:none;background-color:#fafafa;color:#123456;margin:2px;padding:2px">
 								&lt;&lt; '.$this->l('Add').'
@@ -97,7 +97,7 @@ class AdminTags extends AdminTab
 				</table>
 				<div class="clear">&nbsp;</div>
 				<div class="margin-form">
-					<input type="submit" value="'.$this->l('   Save   ').'" name="submitAdd'.$this->table.'" class="button" />
+					<input type="submit" value="'.$this->l('   Save   ').'" name="submitAdd'.$this->table.'" class="button">
 				</div>
 				<div class="small"><sup>*</sup> '.$this->l('Required field').'</div>
 			</fieldset>

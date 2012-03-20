@@ -12,12 +12,12 @@ function changeAddress(flag)
 	}
 	span.innerHTML = '';
 	if (addresses[id][0])
-		span.innerHTML += addresses[id][0] + '<br />';
-	span.innerHTML += addresses[id][1] + ' ' + addresses[id][2] + '<br />' + addresses[id][3] + '<br />';
+		span.innerHTML += addresses[id][0] + '<br>';
+	span.innerHTML += addresses[id][1] + ' ' + addresses[id][2] + '<br>' + addresses[id][3] + '<br>';
 	if (addresses[id][4])
-		span.innerHTML += addresses[id][4] + '<br />';
-	span.innerHTML += addresses[id][5] + ' ' + addresses[id][6] + '<br />';
-	span.innerHTML += addresses[id][7] + '<br />';
+		span.innerHTML += addresses[id][4] + '<br>';
+	span.innerHTML += addresses[id][5] + ' ' + addresses[id][6] + '<br>';
+	span.innerHTML += addresses[id][7] + '<br>';
 	if (getE('same').value = 1)
 		getE('displayInvoice').innerHTML = span.innerHTML;
 }

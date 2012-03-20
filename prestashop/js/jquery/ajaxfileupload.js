@@ -5,7 +5,7 @@
  */
 
 jQuery.extend({createUploadIframe:function(id,uri)
-{var frameId='jUploadFrame'+id;if(window.ActiveXObject){var io=document.createElement('<iframe id="'+frameId+'" name="'+frameId+'" />');if(typeof uri=='boolean'){io.src='javascript:false';}
+{var frameId='jUploadFrame'+id;if(window.ActiveXObject){var io=document.createElement('<iframe id="'+frameId+'" name="'+frameId+'">');if(typeof uri=='boolean'){io.src='javascript:false';}
 else if(typeof uri=='string'){io.src=uri;}}
 else{var io=document.createElement('iframe');io.id=frameId;io.name=frameId;}
 io.style.position='absolute';io.style.top='-1000px';io.style.left='-1000px';document.body.appendChild(io);return io},createUploadForm:function(id,fileElementId)

@@ -228,51 +228,51 @@ class BlockLink extends Module
 			id_language = Number('.$defaultLanguage.');
 		</script>
 	 	<fieldset>
-			<legend><img src="'.$this->_path.'add.png" alt="" title="" /> '.$this->l('Add a new link').'</legend>
+			<legend><img src="'.$this->_path.'add.png" alt="" title=""> '.$this->l('Add a new link').'</legend>
 			<form method="post" action="'.$_SERVER['REQUEST_URI'].'">
 				<label>'.$this->l('Text:').'</label>
 				<div class="margin-form">';
 			foreach ($languages as $language)
 				$this->_html .= '
 					<div id="text_'.$language['id_lang'].'" style="display: '.($language['id_lang'] == $defaultLanguage ? 'block' : 'none').'; float: left;">
-						<input type="text" name="text_'.$language['id_lang'].'" id="textInput_'.$language['id_lang'].'" value="'.(($this->error AND isset($_POST['text_'.$language['id_lang']])) ? $_POST['text_'.$language['id_lang']] : '').'" /><sup> *</sup>
+						<input type="text" name="text_'.$language['id_lang'].'" id="textInput_'.$language['id_lang'].'" value="'.(($this->error AND isset($_POST['text_'.$language['id_lang']])) ? $_POST['text_'.$language['id_lang']] : '').'"><sup> *</sup>
 					</div>';
 			$this->_html .= $this->displayFlags($languages, $defaultLanguage, $divLangName, 'text', true);
 			$this->_html .= '
 					<div class="clear"></div>
 				</div>
 				<label>'.$this->l('URL:').'</label>
-				<div class="margin-form"><input type="text" name="url" id="url" value="'.(($this->error AND isset($_POST['url'])) ? $_POST['url'] : '').'" /></div>
+				<div class="margin-form"><input type="text" name="url" id="url" value="'.(($this->error AND isset($_POST['url'])) ? $_POST['url'] : '').'"></div>
 				<label>'.$this->l('Open in a new window:').'</label>
-				<div class="margin-form"><input type="checkbox" name="newWindow" id="newWindow" '.(($this->error AND isset($_POST['newWindow'])) ? 'checked="checked"' : '').' /></div>
+				<div class="margin-form"><input type="checkbox" name="newWindow" id="newWindow" '.(($this->error AND isset($_POST['newWindow'])) ? 'checked="checked"' : '').'></div>
 				<div class="margin-form">
-					<input type="hidden" name="id" id="id" value="'.($this->error AND isset($_POST['id']) ? $_POST['id'] : '').'" />
-					<input type="submit" class="button" name="submitLinkAdd" value="'.$this->l('Add this link').'" />
-					<input type="submit" class="button disable" name="submitLinkUpdate" value="'.$this->l('Edit this link').'" disabled="disbaled" id="submitLinkUpdate" />
+					<input type="hidden" name="id" id="id" value="'.($this->error AND isset($_POST['id']) ? $_POST['id'] : '').'">
+					<input type="submit" class="button" name="submitLinkAdd" value="'.$this->l('Add this link').'">
+					<input type="submit" class="button disable" name="submitLinkUpdate" value="'.$this->l('Edit this link').'" disabled="disbaled" id="submitLinkUpdate">
 				</div>
 			</form>
 		</fieldset>
 		<fieldset class="space">
-			<legend><img src="'.$this->_path.'logo.gif" alt="" title="" /> '.$this->l('Block title').'</legend>
+			<legend><img src="'.$this->_path.'logo.gif" alt="" title=""> '.$this->l('Block title').'</legend>
 			<form method="post" action="'.$_SERVER['REQUEST_URI'].'">
 				<label>'.$this->l('Block title:').'</label>
 				<div class="margin-form">';
 		foreach ($languages as $language)
 			$this->_html .= '
 					<div id="title_'.$language['id_lang'].'" style="display: '.($language['id_lang'] == $defaultLanguage ? 'block' : 'none').'; float: left;">
-						<input type="text" name="title_'.$language['id_lang'].'" value="'.(($this->error AND isset($_POST['title'])) ? $_POST['title'] : Configuration::get('PS_BLOCKLINK_TITLE', $language['id_lang'])).'" /><sup> *</sup>
+						<input type="text" name="title_'.$language['id_lang'].'" value="'.(($this->error AND isset($_POST['title'])) ? $_POST['title'] : Configuration::get('PS_BLOCKLINK_TITLE', $language['id_lang'])).'"><sup> *</sup>
 					</div>';
 		$this->_html .= $this->displayFlags($languages, $defaultLanguage, $divLangName, 'title', true);
 		$this->_html .= '
 				<div class="clear"></div>
 				</div>
 				<label>'.$this->l('Block URL:').'</label>
-				<div class="margin-form"><input type="text" name="title_url" value="'.(($this->error AND isset($_POST['title_url'])) ? $_POST['title_url'] : $title_url).'" /></div>
-				<div class="margin-form"><input type="submit" class="button" name="submitTitle" value="'.$this->l('Update').'" /></div>
+				<div class="margin-form"><input type="text" name="title_url" value="'.(($this->error AND isset($_POST['title_url'])) ? $_POST['title_url'] : $title_url).'"></div>
+				<div class="margin-form"><input type="submit" class="button" name="submitTitle" value="'.$this->l('Update').'"></div>
 			</form>
 		</fieldset>
 		<fieldset class="space">
-			<legend><img src="'.$this->_path.'prefs.gif" alt="" title="" /> '.$this->l('Settings').'</legend>
+			<legend><img src="'.$this->_path.'prefs.gif" alt="" title=""> '.$this->l('Settings').'</legend>
 			<form method="post" action="'.$_SERVER['REQUEST_URI'].'">
 				<label>'.$this->l('Order list:').'</label>
 				<div class="margin-form">
@@ -281,7 +281,7 @@ class BlockLink extends Module
 						<option value="1"'.(Configuration::get('PS_BLOCKLINK_ORDERWAY') ? 'selected="selected"' : '').'>'.$this->l('by oldest links').'</option>
 					</select>
 				</div>
-				<div class="margin-form"><input type="submit" class="button" name="submitOrderWay" value="'.$this->l('Update').'" /></div>
+				<div class="margin-form"><input type="submit" class="button" name="submitOrderWay" value="'.$this->l('Update').'"></div>
 			</form>
 		</fieldset>';
 	}
@@ -331,14 +331,14 @@ class BlockLink extends Module
 					<td>'.$link['text_'.$cookie->id_lang].'</td>
 					<td>'.$link['url'].'</td>
 					<td>
-						<img src="../img/admin/edit.gif" alt="" title="" onclick="linkEdition('.$link['id'].')" style="cursor: pointer" />
-						<img src="../img/admin/delete.gif" alt="" title="" onclick="linkDeletion('.$link['id'].')" style="cursor: pointer" />
+						<img src="../img/admin/edit.gif" alt="" title="" onclick="linkEdition('.$link['id'].')" style="cursor: pointer">
+						<img src="../img/admin/delete.gif" alt="" title="" onclick="linkDeletion('.$link['id'].')" style="cursor: pointer">
 					</td>
 				</tr>';
 		$this->_html .= '
 		</table>
-		<input type="hidden" id="languageFirst" value="'.$languages[0]['id_lang'].'" />
-		<input type="hidden" id="languageNb" value="'.sizeof($languages).'" />';
+		<input type="hidden" id="languageFirst" value="'.$languages[0]['id_lang'].'">
+		<input type="hidden" id="languageNb" value="'.sizeof($languages).'">';
 	}
 }
 ?>

@@ -10,7 +10,7 @@
 					<input type="submit" name="submitDateYear" class="button" value="{l s='Year' mod='trackingfront'}">
 					<p>{l s='From:' mod='trackingfront'} <input type="text" name="datepickerFrom" id="datepickerFrom" value="{$datepickerFrom}"></p>
 					<p>{l s='To:' mod='trackingfront'} <input type="text" name="datepickerTo" id="datepickerTo" value="{$datepickerTo}"></p>
-					<input type="submit" name="submitDatePicker" class="button" />
+					<input type="submit" name="submitDatePicker" class="button">
 				</form>
 			</div>
 			<div style="float:right; margin: 25px 50px 0 0;">
@@ -38,5 +38,5 @@
 				<th>{l s='¤' mod='trackingfront'}</th>
 				<th>{l s='%' mod='trackingfront'}</th>
 			</tr>
-			<tr id="trid_dummy"><td colspan="14" style="background: #567500;" /></tr>
+			<tr id="trid_dummy"><td colspan="14" style="background: #567500;"></tr>
 		</table>

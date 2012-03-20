@@ -101,11 +101,11 @@
 				$confirmed = true;
 			} else {
 				echo $netaxept->l($err_msg);
-				echo '<br />'. $retry_url;
+				echo '<br>'. $retry_url;
 			}
 		} else {
 			echo $netaxept->l('Payment error.');
-			echo '<br />'. $retry_url;
+			echo '<br>'. $retry_url;
 		}
 		
 		

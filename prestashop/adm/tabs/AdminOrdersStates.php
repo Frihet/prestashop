@@ -105,15 +105,15 @@ class AdminOrdersStates extends AdminTab
 			id_language = Number('.$defaultLanguage.');
 		</script>
 		<form action="'.$currentIndex.'&submitAdd'.$this->table.'=1&token='.$this->token.'" method="post" enctype="multipart/form-data">
-		'.($obj->id ? '<input type="hidden" name="id_'.$this->table.'" value="'.$obj->id.'" />' : '').'
-			<fieldset class="width3"><legend><img src="../img/admin/time.gif" />'.$this->l('Order statues').'</legend>
+		'.($obj->id ? '<input type="hidden" name="id_'.$this->table.'" value="'.$obj->id.'">' : '').'
+			<fieldset class="width3"><legend><img src="../img/admin/time.gif">'.$this->l('Order statues').'</legend>
 				<label>'.$this->l('Status name:').' </label>
 				<div class="margin-form">';
 
 				foreach ($languages as $language)
 					echo '
 					<div id="name_'.$language['id_lang'].'" style="display: '.($language['id_lang'] == $defaultLanguage ? 'block' : 'none').'; float: left;">
-						<input size="40" type="text" name="name_'.$language['id_lang'].'" value="'.htmlentities($this->getFieldValue($obj, 'name', intval($language['id_lang'])), ENT_COMPAT, 'UTF-8').'" style="width: 150px;" /><sup> *</sup>
+						<input size="40" type="text" name="name_'.$language['id_lang'].'" value="'.htmlentities($this->getFieldValue($obj, 'name', intval($language['id_lang'])), ENT_COMPAT, 'UTF-8').'" style="width: 150px;"><sup> *</sup>
 						<span class="hint" name="help_box">'.$this->l('Invalid characters: numbers and').' !<>,;?=+()@#"�{}_$%:<span class="hint-pointer">&nbsp;</span></span>
 						</div>';							
 				$this->displayFlags($languages, $defaultLanguage, 'name¤template', 'name');
@@ -122,36 +122,36 @@ class AdminOrdersStates extends AdminTab
 				</div>
 				<label>'.$this->l('Icon:').' </label>
 				<div class="margin-form">
-					<input type="file" name="icon" />
+					<input type="file" name="icon">
 					<p>'.$this->l('Upload an icon from your computer').' (.gif)</p>
 				</div>
 				<label>'.$this->l('Color:').' </label>
 				<div class="margin-form">
-					<input type="text" name="color" value="'.htmlentities($this->getFieldValue($obj, 'color'), ENT_COMPAT, 'UTF-8').'" />
+					<input type="text" name="color" value="'.htmlentities($this->getFieldValue($obj, 'color'), ENT_COMPAT, 'UTF-8').'">
 					<p>'.$this->l('Status will be highlighted in this color. HTML colors only (e.g.,').' "lightblue", "#CC6600")</p>
 				</div>
 				<div class="margin-form">
 					<p>
-						<input type="checkbox" name="logable"'.(($this->getFieldValue($obj, 'logable') == 1) ? ' checked="checked"' : '').' id="logable_on" value="1" />
+						<input type="checkbox" name="logable"'.(($this->getFieldValue($obj, 'logable') == 1) ? ' checked="checked"' : '').' id="logable_on" value="1">
 						<label class="t" for="logable_on"> '.$this->l('Consider the associated order as validated').'</label>
 					</p>
 				</div>
 				<div class="margin-form">
 					<p>
-						<input type="checkbox" name="invoice"'.(($this->getFieldValue($obj, 'invoice') == 1) ? ' checked="checked"' : '').' id="invoice_on" value="1" />
+						<input type="checkbox" name="invoice"'.(($this->getFieldValue($obj, 'invoice') == 1) ? ' checked="checked"' : '').' id="invoice_on" value="1">
 						<label class="t" for="invoice_on"> '.$this->l('Allow customer to download and view PDF version of invoice').'</label>
 					</p>
 				</div>
 				<div class="margin-form">
 					<p>
-						<input type="checkbox" name="hidden"'.(($this->getFieldValue($obj, 'hidden') == 1) ? ' checked="checked"' : '').' id="hidden_on" value="1" />
+						<input type="checkbox" name="hidden"'.(($this->getFieldValue($obj, 'hidden') == 1) ? ' checked="checked"' : '').' id="hidden_on" value="1">
 						<label class="t" for="hidden_on"> '.$this->l('Hide this state in order for customer').'</label>
 					</p>
 				</div>
 				<div class="margin-form">
 					<p>
 						<input type="checkbox" id="send_email" name="send_email" onclick="javascript:openCloseLayer(\'tpl\');"'.
-					(($this->getFieldValue($obj, 'send_email')) ? 'checked="checked"' : '').' value="1" />
+					(($this->getFieldValue($obj, 'send_email')) ? 'checked="checked"' : '').' value="1">
 						<label class="t" for="send_email"> '.$this->l('Send e-mail to customer when order is changed to this status').'</label>
 					</p>
 				</div>				
@@ -172,7 +172,7 @@ class AdminOrdersStates extends AdminTab
 					echo '		</select>';
 				}
 				echo '			<span class="hint" name="help_box">'.$this->l('Only letters, number and -_ are allowed').'<span class="hint-pointer">&nbsp;</span></span>
-								<img onclick="viewTemplates(\'template_select_'.$language['id_lang'].'\', '.$language['id_lang'].', \'../mails/'.$language['iso_code'].'/\', \'.html\');" src="../img/t/AdminFeatures.gif" class="pointer" alt="'.$this->l('Preview').'" title="'.$this->l('Preview').'" />
+								<img onclick="viewTemplates(\'template_select_'.$language['id_lang'].'\', '.$language['id_lang'].', \'../mails/'.$language['iso_code'].'/\', \'.html\');" src="../img/t/AdminFeatures.gif" class="pointer" alt="'.$this->l('Preview').'" title="'.$this->l('Preview').'">
 						</div>';
 			}
 			$this->displayFlags($languages, $defaultLanguage, 'name¤template', 'template');
@@ -181,7 +181,7 @@ class AdminOrdersStates extends AdminTab
 				</div>
 				<script type="text/javascript">if (getE(\'send_email\').checked) getE(\'tpl\').style.display = \'block\'; else getE(\'tpl\').style.display = \'none\';</script>
 				<div class="margin-form">
-					<input type="submit" value="'.$this->l('   Save   ').'" name="submitAdd'.$this->table.'" class="button" />
+					<input type="submit" value="'.$this->l('   Save   ').'" name="submitAdd'.$this->table.'" class="button">
 				</div>
 				<div class="small"><sup>*</sup> '.$this->l('Required field').'</div>
 			</fieldset>

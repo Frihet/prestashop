@@ -213,7 +213,7 @@ class Swift_Connection_Sendmail extends Swift_ConnectionBase
       $tmp = @fgets($this->pipes[1]);
       if ($tmp === false)
       {
-        throw new Swift_ConnectionException("There was a problem reading line " . $line . " of a sendmail SMTP response. The response so far was:<br />[" . $ret . "].  It appears the process has died.");
+        throw new Swift_ConnectionException("There was a problem reading line " . $line . " of a sendmail SMTP response. The response so far was:<br>[" . $ret . "].  It appears the process has died.");
       }
       $ret .= trim($tmp) . "\r\n";
       if ($tmp{3} == " ") break;

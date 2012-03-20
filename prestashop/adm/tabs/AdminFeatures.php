@@ -40,7 +40,7 @@ class AdminFeatures extends AdminTab
 			OR isset($_GET['updatefeature_value']) OR isset($_GET['addfeature_value']))
 		{
 			$this->adminFeaturesValues->displayForm($this->token);
-			echo '<br /><br /><a href="'.$currentIndex.'&token='.$this->token.'"><img src="../img/admin/arrow.gif" /> '.$this->l('Back to list').'</a><br />';
+			echo '<br><br><a href="'.$currentIndex.'&token='.$this->token.'"><img src="../img/admin/arrow.gif"> '.$this->l('Back to list').'</a><br>';
 		}
 		else
 			parent::display();
@@ -51,10 +51,10 @@ class AdminFeatures extends AdminTab
 	{
 		global $currentIndex;
 
-		echo '<br />
-			<a href="'.$currentIndex.'&add'.$this->table.'&token='.$this->token.'"><img src="../img/admin/add.gif" border="0" /> <b>'.$this->l('Add feature').'</b></a><br />
-			<a href="'.$currentIndex.'&addfeature_value&token='.$this->token.'"><img src="../img/admin/add.gif" border="0" /> '.$this->l('Add feature value').'</a><br /><br />
-		'.$this->l('Click on the feature name to view its values. Click again to hide them.').'<br /><br />';
+		echo '<br>
+			<a href="'.$currentIndex.'&add'.$this->table.'&token='.$this->token.'"><img src="../img/admin/add.gif" border="0"> <b>'.$this->l('Add feature').'</b></a><br>
+			<a href="'.$currentIndex.'&addfeature_value&token='.$this->token.'"><img src="../img/admin/add.gif" border="0"> '.$this->l('Add feature value').'</a><br><br>
+		'.$this->l('Click on the feature name to view its values. Click again to hide them.').'<br><br>';
 
 		$this->displayListHeader();
 		echo '<input type="hidden" name="groupid" value="0">';
@@ -68,13 +68,13 @@ class AdminFeatures extends AdminTab
 			$id = intval($tr['id_'.$this->table]);
 		 	echo '
 			<tr'.($irow++ % 2 ? ' class="alt_row"' : '').'>
-				<td style="vertical-align: top; padding: 4px 0 4px 0" class="center"><input type="checkbox" name="'.$this->table.'Box[]" value="'.$id.'" class="noborder" /></td>
+				<td style="vertical-align: top; padding: 4px 0 4px 0" class="center"><input type="checkbox" name="'.$this->table.'Box[]" value="'.$id.'" class="noborder"></td>
 				<td style="width: 140px; vertical-align: top; padding: 4px 0 4px 0; cursor: pointer" onclick="openCloseLayer(\'features_values_'.$id.'\');">'.$tr['name'].'</td>
 				<td style="vertical-align: top; padding: 4px 0 4px 0; width: 340px">
 					<div id="features_values_'.$id.'" style="display: none">
 					<table class="table" cellpadding="0" cellspacing="0">
 						<tr>
-							<th><input type="checkbox" name="checkme" class="noborder" onclick="checkDelBoxes(this.form, \'feature_value'.$id.'Box[]\', this.checked)" /></th>
+							<th><input type="checkbox" name="checkme" class="noborder" onclick="checkDelBoxes(this.form, \'feature_value'.$id.'Box[]\', this.checked)"></th>
 							<th width="100%">'.$this->l('Value').'</th>
 							<th>'.$this->l('Actions').'</th>
 						</tr>';
@@ -83,14 +83,14 @@ class AdminFeatures extends AdminTab
 			{
 				echo '
 						<tr>
-							<td class="center"><input type="checkbox" name="feature_value'.$id.'Box[]" value="'.$feature['id_feature_value'].'" class="noborder" /></td>
+							<td class="center"><input type="checkbox" name="feature_value'.$id.'Box[]" value="'.$feature['id_feature_value'].'" class="noborder"></td>
 							<td>'.$feature['value'].'</td>
 							<td class="center">
 								<a href="'.$currentIndex.'&id_feature_value='.$feature['id_feature_value'].'&updatefeature_value&token='.$this->token.'">
-								<img src="../img/admin/edit.gif" border="0" alt="'.$this->l('Edit').'" title="'.$this->l('Edit').'" /></a>&nbsp;
+								<img src="../img/admin/edit.gif" border="0" alt="'.$this->l('Edit').'" title="'.$this->l('Edit').'"></a>&nbsp;
 								<a href="'.$currentIndex.'&id_feature_value='.$feature['id_feature_value'].'&deletefeature_value&token='.$this->token.'"
 								onclick="return confirm(\''.$this->l('Delete value', __CLASS__, true, false).' #'.$feature['id_feature_value'].'?\');">
-								<img src="../img/admin/delete.gif" border="0" alt="'.$this->l('Delete').'" title="'.$this->l('Delete').'" /></a>
+								<img src="../img/admin/delete.gif" border="0" alt="'.$this->l('Delete').'" title="'.$this->l('Delete').'"></a>
 							</td>
 						</tr>';
 			}
@@ -100,16 +100,16 @@ class AdminFeatures extends AdminTab
 			echo '
 					</table>
 					<p><input type="Submit" class="button" name="submitDelfeature_value" value="'.$this->l('Delete selection').'"
-					onclick="changeFormParam(this.form, \'?tab=AdminFeatures\', '.$id.'); return confirm(\''.$this->l('Delete selected items?', __CLASS__, true, false).'\');" /></p>
+					onclick="changeFormParam(this.form, \'?tab=AdminFeatures\', '.$id.'); return confirm(\''.$this->l('Delete selected items?', __CLASS__, true, false).'\');"></p>
 					</div>
 					</td>';
 
 			echo '
 				<td style="vertical-align: top; padding: 4px 0 4px 0" class="center">
 					<a href="'.$currentIndex.'&id_'.$this->table.'='.$id.'&update'.$this->table.'&token='.$this->token.'">
-					<img src="../img/admin/edit.gif" border="0" alt="'.$this->l('Edit').'" title="'.$this->l('Edit').'" /></a>&nbsp;
+					<img src="../img/admin/edit.gif" border="0" alt="'.$this->l('Edit').'" title="'.$this->l('Edit').'"></a>&nbsp;
 					<a href="'.$currentIndex.'&id_'.$this->table.'='.$id.'&delete'.$this->table.'&token='.$this->token.'" onclick="return confirm(\''.$this->l('Delete item', __CLASS__, true, false).' #'.$id.'?\');">
-					<img src="../img/admin/delete.gif" border="0" alt="'.$this->l('Delete').'" title="'.$this->l('Delete').'" /></a>
+					<img src="../img/admin/delete.gif" border="0" alt="'.$this->l('Delete').'" title="'.$this->l('Delete').'"></a>
 				</td>
 			</tr>';
 		}
@@ -133,14 +133,14 @@ class AdminFeatures extends AdminTab
 
 		echo '
 		<form action="'.$currentIndex.'&token='.$this->token.'"" method="post">
-		'.($obj->id ? '<input type="hidden" name="id_'.$this->table.'" value="'.$obj->id.'" />' : '').'
-			<fieldset class="width3"><legend><img src="../img/t/AdminFeatures.gif" />'.$this->l('Feature').'</legend>
+		'.($obj->id ? '<input type="hidden" name="id_'.$this->table.'" value="'.$obj->id.'">' : '').'
+			<fieldset class="width3"><legend><img src="../img/t/AdminFeatures.gif">'.$this->l('Feature').'</legend>
 				<label>'.$this->l('Name:').' </label>
 				<div class="margin-form">';
 		foreach ($languages as $language)
 			echo '
 					<div id="name_'.$language['id_lang'].'" style="display: '.($language['id_lang'] == $defaultLanguage ? 'block' : 'none').'; float: left;">
-						<input size="33" type="text" name="name_'.$language['id_lang'].'" value="'.htmlentities($this->getFieldValue($obj, 'name', intval($language['id_lang'])), ENT_COMPAT, 'UTF-8').'" /><sup> *</sup>
+						<input size="33" type="text" name="name_'.$language['id_lang'].'" value="'.htmlentities($this->getFieldValue($obj, 'name', intval($language['id_lang'])), ENT_COMPAT, 'UTF-8').'"><sup> *</sup>
 						<span class="hint" name="help_box">'.$this->l('Invalid characters:').' <>;=#{}<span class="hint-pointer">&nbsp;</span></span>
 					</div>';
 		$this->displayFlags($languages, $defaultLanguage, 'name', 'name');
@@ -148,7 +148,7 @@ class AdminFeatures extends AdminTab
 					<div style="clear: both;"></div>
 				</div>
 				<div class="margin-form">
-					<input type="submit" value="'.$this->l('   Save   ').'" name="submitAdd'.$this->table.'" class="button" />
+					<input type="submit" value="'.$this->l('   Save   ').'" name="submitAdd'.$this->table.'" class="button">
 				</div>
 				<div class="small"><sup>*</sup> '.$this->l('Required field').'</div>
 			</fieldset>

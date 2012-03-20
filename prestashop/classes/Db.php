@@ -265,14 +265,14 @@ function pSQL($string, $htmlOK = false)
 }
 
 /**
- * Convert \n to <br />
+ * Convert \n to <br>
  *
  * @param string $string String to transform
  * @return string New string
  */
 function nl2br2($string)
 {
-	return str_replace(array("\r\n", "\r", "\n"), '<br />', $string);
+	return str_replace(array("\r\n", "\r", "\n"), '<br>', $string);
 }
 
 ?>

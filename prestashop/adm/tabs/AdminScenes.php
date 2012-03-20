@@ -98,13 +98,13 @@ class AdminScenes extends AdminTab
 		echo '
 		<tr class="'.($irow++ % 2 ? 'alt_row' : '').'">
 			<td>
-				<input type="checkbox" name="categoryBox[]" class="categoryBox'.($id_category_default != NULL ? ' id_category_default' : '').'" id="categoryBox_'.$id_category.'" value="'.$id_category.'"'.((in_array($id_category, $indexedCategories) OR (intval(Tools::getValue('id_category')) == $id_category AND !intval($id_obj))) ? ' checked="checked"' : '').' />
+				<input type="checkbox" name="categoryBox[]" class="categoryBox'.($id_category_default != NULL ? ' id_category_default' : '').'" id="categoryBox_'.$id_category.'" value="'.$id_category.'"'.((in_array($id_category, $indexedCategories) OR (intval(Tools::getValue('id_category')) == $id_category AND !intval($id_obj))) ? ' checked="checked"' : '').'>
 			</td>
 			<td>
 				'.$id_category.'
 			</td>
 			<td>
-				<img src="../img/admin/'.$img.'" alt="" /> &nbsp;<label for="categoryBox_'.$id_category.'" class="t">'.stripslashes(Category::hideCategoryPosition($current['infos']['name'])).'</label>
+				<img src="../img/admin/'.$img.'" alt=""> &nbsp;<label for="categoryBox_'.$id_category.'" class="t">'.stripslashes(Category::hideCategoryPosition($current['infos']['name'])).'</label>
 			</td>
 		</tr>';
 
@@ -141,8 +141,8 @@ class AdminScenes extends AdminTab
 		echo
 		'</script>
 		<form id="scenesForm" action="'.$currentIndex.'&submitAdd'.$this->table.'=1&token='.$this->token.'" method="post" enctype="multipart/form-data">
-		'.($obj->id ? '<input type="hidden" name="id_'.$this->table.'" value="'.$obj->id.'" />' : '').'
-			<fieldset><legend><img src="../img/admin/photo.gif" />'.$this->l('Image Maps').'</legend>';
+		'.($obj->id ? '<input type="hidden" name="id_'.$this->table.'" value="'.$obj->id.'">' : '').'
+			<fieldset><legend><img src="../img/admin/photo.gif">'.$this->l('Image Maps').'</legend>';
 			
 		
 				echo '
@@ -158,7 +158,7 @@ class AdminScenes extends AdminTab
 		foreach ($languages as $language)
 			echo '
 					<div id="name_'.$language['id_lang'].'" style="display: '.($language['id_lang'] == $defaultLanguage ? 'block' : 'none').'; float: left;">
-						<input type="text" style="width: 260px" name="name_'.$language['id_lang'].'" id="name_'.$language['id_lang'].'" value="'.htmlentities($this->getFieldValue($obj, 'name', intval($language['id_lang'])), ENT_COMPAT, 'UTF-8').'" /><sup> *</sup>
+						<input type="text" style="width: 260px" name="name_'.$language['id_lang'].'" id="name_'.$language['id_lang'].'" value="'.htmlentities($this->getFieldValue($obj, 'name', intval($language['id_lang'])), ENT_COMPAT, 'UTF-8').'"><sup> *</sup>
 					</div>';
 		$this->displayFlags($languages, $defaultLanguage, $langtags, 'name');
 		echo '		<div class="clear"></div>
@@ -167,10 +167,10 @@ class AdminScenes extends AdminTab
 			
 			 	echo '<label>'.$this->l('Status:').' </label>
 				<div class="margin-form">
-					<input type="radio" name="active" id="active_on" value="1" '.((!$obj->id OR Tools::getValue('active', $obj->active)) ? 'checked="checked" ' : '').'/>
-					<label class="t" for="active_on"> <img src="../img/admin/enabled.gif" alt="'.$this->l('Activated').'" title="'.$this->l('Activated').'" /></label>
-					<input type="radio" name="active" id="active_off" value="0" '.((!Tools::getValue('active', $obj->active) AND $obj->id) ? 'checked="checked" ' : '').'/>
-					<label class="t" for="active_off"> <img src="../img/admin/disabled.gif" alt="'.$this->l('Deactivated').'" title="'.$this->l('Deactivated').'" /></label>
+					<input type="radio" name="active" id="active_on" value="1" '.((!$obj->id OR Tools::getValue('active', $obj->active)) ? 'checked="checked" ' : '').'>
+					<label class="t" for="active_on"> <img src="../img/admin/enabled.gif" alt="'.$this->l('Activated').'" title="'.$this->l('Activated').'"></label>
+					<input type="radio" name="active" id="active_off" value="0" '.((!Tools::getValue('active', $obj->active) AND $obj->id) ? 'checked="checked" ' : '').'>
+					<label class="t" for="active_off"> <img src="../img/admin/disabled.gif" alt="'.$this->l('Deactivated').'" title="'.$this->l('Deactivated').'"></label>
 					<p>'.$this->l('Activate or deactivate the image map').'</p>
 				</div>';
 				
@@ -189,24 +189,24 @@ class AdminScenes extends AdminTab
 	
  	echo '<label>'.$this->l('Image to be mapped:').' </label>
 				<div class="margin-form">
-					<input type="hidden" id="stay_here" name="stay_here" value="" />
-					<input type="file" name="image" id="image_input" /> <input type="button" value="'.$this->l('Upload image').'" onclick="{$(\'#stay_here\').val(\'true\');$(\'#scenesForm\').submit();}" class="button" /><br/>
-					<p>'.$this->l('Format:').' JPG, GIF, PNG. '.$this->l('File size:').' '.($this->maxImageSize / 1000).''.$this->l('KB max.').' '.$this->l('If larger than the image size setting, the image will be reduced to ').' '.$largeSceneImageType['width'].'x'.$largeSceneImageType['height'].'px '.$this->l('(width x height). If smaller than the image-size setting, a white background will be added in order to achieve the correct image size.').'.<br />'.$this->l('Note: To change image dimensions, please change the \'large_scene\' image type settings to the desired size (in Back Office > Preferences > Images).').'</p>';
+					<input type="hidden" id="stay_here" name="stay_here" value="">
+					<input type="file" name="image" id="image_input"> <input type="button" value="'.$this->l('Upload image').'" onclick="{$(\'#stay_here\').val(\'true\');$(\'#scenesForm\').submit();}" class="button"><br>
+					<p>'.$this->l('Format:').' JPG, GIF, PNG. '.$this->l('File size:').' '.($this->maxImageSize / 1000).''.$this->l('KB max.').' '.$this->l('If larger than the image size setting, the image will be reduced to ').' '.$largeSceneImageType['width'].'x'.$largeSceneImageType['height'].'px '.$this->l('(width x height). If smaller than the image-size setting, a white background will be added in order to achieve the correct image size.').'.<br>'.$this->l('Note: To change image dimensions, please change the \'large_scene\' image type settings to the desired size (in Back Office > Preferences > Images).').'</p>';
 					
 	if ($obj->id && file_exists(_PS_SCENE_IMG_DIR_.$obj->id.'-large_scene.jpg'))
 	{
 
-		echo '<img id="large_scene_image" style="clear:both;border:1px solid black;" alt="" src="'._THEME_SCENE_DIR_.$obj->id.'-large_scene.jpg" /><br />';
+		echo '<img id="large_scene_image" style="clear:both;border:1px solid black;" alt="" src="'._THEME_SCENE_DIR_.$obj->id.'-large_scene.jpg"><br>';
 		
 		echo '
 					<div id="ajax_choose_product" style="display:none; padding:6px; padding-top:2px; width:600px;">
-						'.$this->l('Begin typing the first letters of the product name, then select the product from the drop-down list:').'<br /><input type="text" value="" id="product_autocomplete_input" /> <input type="button" class="button" value="'.$this->l('OK').'" onclick="$(this).prev().search();" /><input type="button" class="button" value="'.$this->l('Delete').'" onclick="undoEdit();" />
+						'.$this->l('Begin typing the first letters of the product name, then select the product from the drop-down list:').'<br><input type="text" value="" id="product_autocomplete_input"> <input type="button" class="button" value="'.$this->l('OK').'" onclick="$(this).prev().search();"><input type="button" class="button" value="'.$this->l('Delete').'" onclick="undoEdit();">
 					</div>
 			';
 		
 		echo '
-					<link rel="stylesheet" type="text/css" href="'.__PS_BASE_URI__.'css/jquery.autocomplete.css" />
-					<link rel="stylesheet" type="text/css" href="'.__PS_BASE_URI__.'js/jquery/imgareaselect/imgareaselect-default.css" />
+					<link rel="stylesheet" type="text/css" href="'.__PS_BASE_URI__.'css/jquery.autocomplete.css">
+					<link rel="stylesheet" type="text/css" href="'.__PS_BASE_URI__.'js/jquery/imgareaselect/imgareaselect-default.css">
 					<script type="text/javascript" src="'.__PS_BASE_URI__.'js/jquery/jquery.autocomplete.js"></script>
 					<script type="text/javascript" src="'.__PS_BASE_URI__.'js/jquery/jquery.hotkeys-0.7.8-packed.js"></script>
 					<script type="text/javascript" src="'.__PS_BASE_URI__.'js/jquery/imgareaselect/jquery.imgareaselect.pack.js"></script>
@@ -218,11 +218,11 @@ class AdminScenes extends AdminTab
 
  	echo '<label>'.$this->l('Alternative thumbnail:').' </label>
 				<div class="margin-form">
-					<input type="file" name="thumb" id="thumb_input" />&nbsp;&nbsp;'.$this->l('(optional)').'
-					<p>'.$this->l('If you want to use a thumbnail other than one generated from simply reducing the mapped image, please upload it here.').'<br />'.$this->l('Format:').' JPG, GIF, PNG. '.$this->l('Filesize:').' '.($this->maxImageSize / 1000).''.$this->l('Kb max.').' '.$this->l('Automatically resized to').' '.$thumbSceneImageType['width'].'x'.$thumbSceneImageType['height'].'px '.$this->l('(width x height)').'.<br />'.$this->l('Note: To change image dimensions, please change the \'thumb_scene\' image type settings to the desired size (in Back Office > Preferences > Images).').'</p>
+					<input type="file" name="thumb" id="thumb_input">&nbsp;&nbsp;'.$this->l('(optional)').'
+					<p>'.$this->l('If you want to use a thumbnail other than one generated from simply reducing the mapped image, please upload it here.').'<br>'.$this->l('Format:').' JPG, GIF, PNG. '.$this->l('Filesize:').' '.($this->maxImageSize / 1000).''.$this->l('Kb max.').' '.$this->l('Automatically resized to').' '.$thumbSceneImageType['width'].'x'.$thumbSceneImageType['height'].'px '.$this->l('(width x height)').'.<br>'.$this->l('Note: To change image dimensions, please change the \'thumb_scene\' image type settings to the desired size (in Back Office > Preferences > Images).').'</p>
 					';
 	if ($obj->id && file_exists(_PS_SCENE_IMG_DIR_.'thumbs/'.$obj->id.'-thumb_scene.jpg'))
-		echo '<img id="large_scene_image" style="clear:both;border:1px solid black;" alt="" src="'._THEME_SCENE_DIR_.'thumbs/'.$obj->id.'-thumb_scene.jpg" /><br />';
+		echo '<img id="large_scene_image" style="clear:both;border:1px solid black;" alt="" src="'._THEME_SCENE_DIR_.'thumbs/'.$obj->id.'-thumb_scene.jpg"><br>';
 	echo '</div>
 			 ';
 					
@@ -231,7 +231,7 @@ class AdminScenes extends AdminTab
 					<div style="overflow: auto; min-height: 300px; padding-top: 0.6em;" id="categoryList">
 						<table cellspacing="0" cellpadding="0" class="table" style="width: 29.5em;">
 								<tr>
-									<th><input type="checkbox" name="checkme" class="noborder" onclick="checkDelBoxes(this.form, \'categoryBox[]\', this.checked)" /></th>
+									<th><input type="checkbox" name="checkme" class="noborder" onclick="checkDelBoxes(this.form, \'categoryBox[]\', this.checked)"></th>
 									<th>'.$this->l('ID').'</th>
 									<th>'.$this->l('Image map name:').'</th>
 								</tr>';
@@ -253,11 +253,11 @@ class AdminScenes extends AdminTab
 
 		echo '
 					<div id="save_scene" class="margin-form" '.(($obj->id && file_exists(_PS_SCENE_IMG_DIR_.$obj->id.'-large_scene.jpg')) ? '' : 'style="display:none;"') .'>
-						<input type="submit" value="'.$this->l('Save Image Map(s)').'" class="button" />
+						<input type="submit" value="'.$this->l('Save Image Map(s)').'" class="button">
 					</div>';
 	} else {
 	echo '
-					<br/><span class="bold">'.$this->l('Please add a picture to continue mapping the image...').'</span><br/><br/>';
+					<br><span class="bold">'.$this->l('Please add a picture to continue mapping the image...').'</span><br><br>';
 	}
 	echo '<div class="small"><sup>*</sup> '.$this->l('Required field').'</div>
 			</fieldset>

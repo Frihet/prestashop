@@ -38,7 +38,7 @@ class BlockViewed extends Module
 			else
 			{
 				Configuration::updateValue('PRODUCTS_VIEWED_NBR', intval($productNbr));
-				$output .= '<div class="conf confirm"><img src="../img/admin/ok.gif" alt="'.$this->l('Confirmation').'" />'.$this->l('Settings updated').'</div>';
+				$output .= '<div class="conf confirm"><img src="../img/admin/ok.gif" alt="'.$this->l('Confirmation').'">'.$this->l('Settings updated').'</div>';
 			}
 		}
 		return $output.$this->displayForm();
@@ -48,13 +48,13 @@ class BlockViewed extends Module
 	{
 		$output = '
 		<form action="'.$_SERVER['REQUEST_URI'].'" method="post">
-			<fieldset><legend><img src="'.$this->_path.'logo.gif" alt="" title="" />'.$this->l('Settings').'</legend>
+			<fieldset><legend><img src="'.$this->_path.'logo.gif" alt="" title="">'.$this->l('Settings').'</legend>
 				<label>'.$this->l('Products displayed').'</label>
 				<div class="margin-form">
-					<input type="text" name="productNbr" value="'.Configuration::get('PRODUCTS_VIEWED_NBR').'" />
+					<input type="text" name="productNbr" value="'.Configuration::get('PRODUCTS_VIEWED_NBR').'">
 					<p class="clear">'.$this->l('Define the number of products displayed in this block').'</p>
 				</div>
-				<center><input type="submit" name="submitBlockViewed" value="'.$this->l('Save').'" class="button" /></center>			
+				<center><input type="submit" name="submitBlockViewed" value="'.$this->l('Save').'" class="button"></center>			
 			</fieldset>
 		</form>';
 		return $output;

@@ -110,7 +110,7 @@ class Swift_Connection_Multi extends Swift_ConnectionBase
         $fail_messages[] = $id . ": " . $e->getMessage();
       }
     }
-    $failure = implode("<br />", $fail_messages);
+    $failure = implode("<br>", $fail_messages);
     throw new Swift_ConnectionException($failure);
   }
   /**

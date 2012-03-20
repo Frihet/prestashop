@@ -14,21 +14,21 @@
 			<h3>{l s='Send a message' mod='sendtoafriend'}</h3>
 		
 			<p class="align_center">
-				<a href="{$productLink}"><img src="{$link->getImageLink($product->link_rewrite, $cover.id_image, 'small')}" alt="" title="{$cover.legend}" /></a><br/>
+				<a href="{$productLink}"><img src="{$link->getImageLink($product->link_rewrite, $cover.id_image, 'small')}" alt="" title="{$cover.legend}"></a><br>
 				<a href="{$productLink}">{$product->name}</a>
 			</p>
 			
 			<p>
 				<label for="friend-name">{l s='Friend\'s name:' mod='sendtoafriend'}</label>
-				<input type="text" id="friend-name" name="name" value="{if isset($smarty.post.name)}{$smarty.post.name|escape:'htmlall'|stripslashes}{/if}" />
+				<input type="text" id="friend-name" name="name" value="{if isset($smarty.post.name)}{$smarty.post.name|escape:'htmlall'|stripslashes}{/if}">
 			</p>
 			<p>
 				<label for="friend-address">{l s='Friend\'s email:' mod='sendtoafriend'}</label>
-				<input type="text" id="friend-address" name="email" value="{if isset($smarty.post.name)}{$smarty.post.email|escape:'htmlall'|stripslashes}{/if}" />
+				<input type="text" id="friend-address" name="email" value="{if isset($smarty.post.name)}{$smarty.post.email|escape:'htmlall'|stripslashes}{/if}">
 			</p>
 			
 			<p class="submit">
-				<input type="submit" name="submitAddtoafriend" value="{l s='send' mod='sendtoafriend'}" class="button" />
+				<input type="submit" name="submitAddtoafriend" value="{l s='send' mod='sendtoafriend'}" class="button">
 			</p>
 		</fieldset>
 	</form>

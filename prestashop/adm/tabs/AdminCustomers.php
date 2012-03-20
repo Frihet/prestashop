@@ -122,22 +122,22 @@ class AdminCustomers extends AdminTab
 
 		echo '
 		<div style="float: left">
-		<fieldset style="width: 400px"><div style="float: right"><a href="'.$currentIndex.'&addcustomer&id_customer='.$customer->id.'&token='.$this->token.'"><img src="../img/admin/edit.gif" /></a></div>
+		<fieldset style="width: 400px"><div style="float: right"><a href="'.$currentIndex.'&addcustomer&id_customer='.$customer->id.'&token='.$this->token.'"><img src="../img/admin/edit.gif"></a></div>
 			<span style="font-weight: bold; font-size: 14px;">'.$customer->firstname.' '.$customer->lastname.'</span>
-			<img src="../img/admin/'.($customer->id_gender == 2 ? 'female' : ($customer->id_gender == 1 ? 'male' : 'unknown')).'.gif" style="margin-bottom: 5px" /><br />
-			<a href="mailto:'.$customer->email.'" style="text-decoration: underline; color: blue">'.$customer->email.'</a><br /><br />
-			'.$this->l('ID:').' '.sprintf('%06d', $customer->id).'<br />
-			'.$this->l('Registration date:').' '.Tools::displayDate($customer->date_add, intval($cookie->id_lang), true).'<br />
+			<img src="../img/admin/'.($customer->id_gender == 2 ? 'female' : ($customer->id_gender == 1 ? 'male' : 'unknown')).'.gif" style="margin-bottom: 5px"><br>
+			<a href="mailto:'.$customer->email.'" style="text-decoration: underline; color: blue">'.$customer->email.'</a><br><br>
+			'.$this->l('ID:').' '.sprintf('%06d', $customer->id).'<br>
+			'.$this->l('Registration date:').' '.Tools::displayDate($customer->date_add, intval($cookie->id_lang), true).'<br>
 			'.$this->l('Last visit:').' '.($customerStats['last_visit'] ? Tools::displayDate($customerStats['last_visit'], intval($cookie->id_lang), true) : $this->l('never')).'
 		</fieldset>
 		</div>
 		<div style="float: left; margin-left: 50px">
-		<fieldset style="width: 300px"><div style="float: right"><a href="'.$currentIndex.'&addcustomer&id_customer='.$customer->id.'&token='.$this->token.'"><img src="../img/admin/edit.gif" /></a></div>
-			'.$this->l('Newsletter:').' '.($customer->newsletter ? '<img src="../img/admin/enabled.gif" />' : '<img src="../img/admin/disabled.gif" />').'<br />
-			'.$this->l('Opt-in:').' '.($customer->optin ? '<img src="../img/admin/enabled.gif" />' : '<img src="../img/admin/disabled.gif" />').'<br />
-			'.$this->l('Age:').' '.$customerStats['age'].' '.((!empty($customer->birthday['age'])) ? '('.Tools::displayDate($customer->birthday, intval($cookie->id_lang)).')' : $this->l('unknown')).'<br /><br />
-			'.$this->l('Last update:').' '.Tools::displayDate($customer->date_upd, intval($cookie->id_lang), true).'<br />
-			'.$this->l('Status:').' '.($customer->active ? '<img src="../img/admin/enabled.gif" />' : '<img src="../img/admin/disabled.gif" />').'
+		<fieldset style="width: 300px"><div style="float: right"><a href="'.$currentIndex.'&addcustomer&id_customer='.$customer->id.'&token='.$this->token.'"><img src="../img/admin/edit.gif"></a></div>
+			'.$this->l('Newsletter:').' '.($customer->newsletter ? '<img src="../img/admin/enabled.gif">' : '<img src="../img/admin/disabled.gif">').'<br>
+			'.$this->l('Opt-in:').' '.($customer->optin ? '<img src="../img/admin/enabled.gif">' : '<img src="../img/admin/disabled.gif">').'<br>
+			'.$this->l('Age:').' '.$customerStats['age'].' '.((!empty($customer->birthday['age'])) ? '('.Tools::displayDate($customer->birthday, intval($cookie->id_lang)).')' : $this->l('unknown')).'<br><br>
+			'.$this->l('Last update:').' '.Tools::displayDate($customer->date_upd, intval($cookie->id_lang), true).'<br>
+			'.$this->l('Status:').' '.($customer->active ? '<img src="../img/admin/enabled.gif">' : '<img src="../img/admin/disabled.gif">').'
 		</fieldset>
 		</div>
 		<div class="clear">&nbsp;</div>';
@@ -164,7 +164,7 @@ class AdminCustomers extends AdminTab
 				<tr '.($irow++ % 2 ? 'class="alt_row"' : '').' style="cursor: pointer" onclick="document.location = \'?tab=AdminGroups&id_group='.$objGroup->id.'&viewgroup&token='.$tokenGroups.'\'">
 					<td class="center">'.$objGroup->id.'</td>
 					<td>'.$objGroup->name[$defaultLanguage].'</td>
-					<td align="center"><a href="?tab=AdminGroups&id_group='.$objGroup->id.'&viewgroup&token='.$tokenGroups.'"><img src="../img/admin/details.gif" /></a></td>
+					<td align="center"><a href="?tab=AdminGroups&id_group='.$objGroup->id.'&viewgroup&token='.$tokenGroups.'"><img src="../img/admin/details.gif"></a></td>
 				</tr>';
 			}
 			echo '
@@ -195,7 +195,7 @@ class AdminCustomers extends AdminTab
 					<td align="right">'.Tools::displayPrice($order['total_paid'], new Currency(intval($order['id_currency']))).'</td>
 					<td>'.$order['payment'].'</td>
 					<td>'.$order['order_state'].'</td>
-					<td align="center"><a href="?tab=AdminOrders&id_order='.$order['id_order'].'&vieworder&token='.$tokenOrders.'"><img src="../img/admin/details.gif" /></a></td>
+					<td align="center"><a href="?tab=AdminOrders&id_order='.$order['id_order'].'&vieworder&token='.$tokenOrders.'"><img src="../img/admin/details.gif"></a></td>
 				</tr>';
 			echo '
 			</table>';
@@ -224,10 +224,10 @@ class AdminCustomers extends AdminTab
 					<td>'.$address['firstname'].' '.$address['lastname'].'</td>
 					<td>'.$address['address1'].($address['address2'] ? ' '.$address['address2'] : '').' '.$address['postcode'].' '.$address['city'].'</td>
 					<td>'.$address['country'].'</td>
-					<td>'.($address['phone'] ? ($address['phone'].($address['phone_mobile'] ? '<br />'.$address['phone_mobile'] : '')) : ($address['phone_mobile'] ? '<br />'.$address['phone_mobile'] : '--')).'</td>
+					<td>'.($address['phone'] ? ($address['phone'].($address['phone_mobile'] ? '<br>'.$address['phone_mobile'] : '')) : ($address['phone_mobile'] ? '<br>'.$address['phone_mobile'] : '--')).'</td>
 					<td align="center">
-						<a href="?tab=AdminAddresses&id_address='.$address['id_address'].'&addaddress&token='.$tokenAddresses.'"><img src="../img/admin/edit.gif" /></a>
-						<a href="?tab=AdminAddresses&id_address='.$address['id_address'].'&deleteaddress&token='.$tokenAddresses.'"><img src="../img/admin/delete.gif" /></a>
+						<a href="?tab=AdminAddresses&id_address='.$address['id_address'].'&addaddress&token='.$tokenAddresses.'"><img src="../img/admin/edit.gif"></a>
+						<a href="?tab=AdminAddresses&id_address='.$address['id_address'].'&deleteaddress&token='.$tokenAddresses.'"><img src="../img/admin/delete.gif"></a>
 					</td>
 				</tr>';
 			echo '
@@ -260,10 +260,10 @@ class AdminCustomers extends AdminTab
 					<td>'.$discount['type'].'</td>
 					<td align="right">'.$discount['value'].'</td>
 					<td align="center">'.$discount['quantity_for_user'].'</td>
-					<td align="center"><img src="../img/admin/'.($discount['active'] ? 'enabled.gif' : 'disabled.gif').'" alt="'.$this->l('Status').'" title="'.$this->l('Status').'" /></td>
+					<td align="center"><img src="../img/admin/'.($discount['active'] ? 'enabled.gif' : 'disabled.gif').'" alt="'.$this->l('Status').'" title="'.$this->l('Status').'"></td>
 					<td align="center">
-						<a href="?tab=AdminDiscounts&id_discount='.$discount['id_discount'].'&adddiscount&token='.$tokenDiscounts.'"><img src="../img/admin/edit.gif" /></a>
-						<a href="?tab=AdminDiscounts&id_discount='.$discount['id_discount'].'&deletediscount&token='.$tokenDiscounts.'"><img src="../img/admin/delete.gif" /></a>
+						<a href="?tab=AdminDiscounts&id_discount='.$discount['id_discount'].'&adddiscount&token='.$tokenDiscounts.'"><img src="../img/admin/edit.gif"></a>
+						<a href="?tab=AdminDiscounts&id_discount='.$discount['id_discount'].'&deletediscount&token='.$tokenDiscounts.'"><img src="../img/admin/delete.gif"></a>
 					</td>
 				</tr>';
 			}
@@ -300,7 +300,7 @@ class AdminCustomers extends AdminTab
 					<td>'.Tools::displayDate($cart['date_add'], intval($cookie->id_lang), true).'</td>
 					<td align="right">'.Tools::displayPrice($summary['total_price'], $currency).'</td>
 					<td>'.$carrier->name.'</td>
-					<td align="center"><a href="?tab=AdminCarts&id_cart='.$cart['id_cart'].'&viewcart&token='.$tokenCarts.'"><img src="../img/admin/details.gif" /></a></td>
+					<td align="center"><a href="?tab=AdminCarts&id_cart='.$cart['id_cart'].'&viewcart&token='.$tokenCarts.'"><img src="../img/admin/details.gif"></a></td>
 				</tr>';
 			}
 			echo '
@@ -348,7 +348,7 @@ class AdminCustomers extends AdminTab
                     </tr>';
             echo '</table><div class="clear">&nbsp;</div>';
         }
-        echo '<a href="'.$currentIndex.'&token='.$this->token.'"><img src="../img/admin/arrow2.gif" /> '.$this->l('Back to customer list').'</a><br />';
+        echo '<a href="'.$currentIndex.'&token='.$this->token.'"><img src="../img/admin/arrow2.gif"> '.$this->l('Back to customer list').'</a><br>';
     }
 
 	public function displayForm()
@@ -360,35 +360,35 @@ class AdminCustomers extends AdminTab
 		$customer_groups = $obj->getGroups();
 		echo '
 		<form action="'.$currentIndex.'&submitAdd'.$this->table.'=1&token='.$this->token.'" method="post" class="width3">
-		'.($obj->id ? '<input type="hidden" name="id_'.$this->table.'" value="'.$obj->id.'" />' : '').'
-			<fieldset><legend><img src="../img/admin/tab-customers.gif" />'.$this->l('Customer').'</legend>
+		'.($obj->id ? '<input type="hidden" name="id_'.$this->table.'" value="'.$obj->id.'">' : '').'
+			<fieldset><legend><img src="../img/admin/tab-customers.gif">'.$this->l('Customer').'</legend>
 				<label>'.$this->l('Gender:').' </label>
 				<div class="margin-form">
-					<input type="radio" size="33" name="id_gender" id="gender_1" value="1" '.($this->getFieldValue($obj, 'id_gender') == 1 ? 'checked="checked" ' : '').'/>
+					<input type="radio" size="33" name="id_gender" id="gender_1" value="1" '.($this->getFieldValue($obj, 'id_gender') == 1 ? 'checked="checked" ' : '').'>
 					<label class="t" for="gender_1"> '.$this->l('Male').'</label>
-					<input type="radio" size="33" name="id_gender" id="gender_2" value="2" '.($this->getFieldValue($obj, 'id_gender') == 2 ? 'checked="checked" ' : '').'/>
+					<input type="radio" size="33" name="id_gender" id="gender_2" value="2" '.($this->getFieldValue($obj, 'id_gender') == 2 ? 'checked="checked" ' : '').'>
 					<label class="t" for="gender_2"> '.$this->l('Female').'</label>
-					<input type="radio" size="33" name="id_gender" id="gender_3" value="9" '.(($this->getFieldValue($obj, 'id_gender') == 9 OR !$this->getFieldValue($obj, 'id_gender')) ? 'checked="checked" ' : '').'/>
+					<input type="radio" size="33" name="id_gender" id="gender_3" value="9" '.(($this->getFieldValue($obj, 'id_gender') == 9 OR !$this->getFieldValue($obj, 'id_gender')) ? 'checked="checked" ' : '').'>
 					<label class="t" for="gender_3"> '.$this->l('Unknown').'</label>
 				</div>
 				<label>'.$this->l('Last name:').' </label>
 				<div class="margin-form">
-					<input type="text" size="33" name="lastname" value="'.htmlentities($this->getFieldValue($obj, 'lastname'), ENT_COMPAT, 'UTF-8').'" style="text-transform: uppercase;" /> <sup>*</sup>
+					<input type="text" size="33" name="lastname" value="'.htmlentities($this->getFieldValue($obj, 'lastname'), ENT_COMPAT, 'UTF-8').'" style="text-transform: uppercase;"> <sup>*</sup>
 					<span class="hint" name="help_box">'.$this->l('Invalid characters:').' 0-9!<>,;?=+()@#"�{}_$%:<span class="hint-pointer">&nbsp;</span></span>
 				</div>
 				<label>'.$this->l('First name:').' </label>
 				<div class="margin-form">
-					<input type="text" size="33" name="firstname" value="'.htmlentities($this->getFieldValue($obj, 'firstname'), ENT_COMPAT, 'UTF-8').'" /> <sup>*</sup>
+					<input type="text" size="33" name="firstname" value="'.htmlentities($this->getFieldValue($obj, 'firstname'), ENT_COMPAT, 'UTF-8').'"> <sup>*</sup>
 					<span class="hint" name="help_box">'.$this->l('Forbidden characters:').' 0-9!<>,;?=+()@#"�{}_$%:<span class="hint-pointer">&nbsp;</span></span>
 				</div>
 				<label>'.$this->l('Password:').' </label>
 				<div class="margin-form">
-					<input type="password" size="33" name="passwd" value="" /> '.(!$obj->id ? '<sup>*</sup>' : '').'
+					<input type="password" size="33" name="passwd" value=""> '.(!$obj->id ? '<sup>*</sup>' : '').'
 					<p>'.($obj->id ? $this->l('Leave blank if no change') : $this->l('5 characters min., only letters, numbers, or').' -_').'</p>
 				</div>
 				<label>'.$this->l('E-mail address:').' </label>
 				<div class="margin-form">
-					<input type="text" size="33" name="email" value="'.htmlentities($this->getFieldValue($obj, 'email'), ENT_COMPAT, 'UTF-8').'" /> <sup>*</sup>
+					<input type="text" size="33" name="email" value="'.htmlentities($this->getFieldValue($obj, 'email'), ENT_COMPAT, 'UTF-8').'"> <sup>*</sup>
 				</div>
 				<label>'.$this->l('Birthday:').' </label>';
 				$sl_year = ($this->getFieldValue($obj, 'birthday')) ? $birthday[0] : 0;
@@ -431,26 +431,26 @@ class AdminCustomers extends AdminTab
 				</div>
 				<label>'.$this->l('Status:').' </label>
 				<div class="margin-form">
-					<input type="radio" name="active" id="active_on" value="1" '.($this->getFieldValue($obj, 'active') ? 'checked="checked" ' : '').'/>
-					<label class="t" for="active_on"><img src="../img/admin/enabled.gif" alt="'.$this->l('Enabled').'" title="'.$this->l('Enabled').'" /></label>
-					<input type="radio" name="active" id="active_off" value="0" '.(!$this->getFieldValue($obj, 'active') ? 'checked="checked" ' : '').'/>
-					<label class="t" for="active_off"><img src="../img/admin/disabled.gif" alt="'.$this->l('Disabled').'" title="'.$this->l('Disabled').'" /></label>
+					<input type="radio" name="active" id="active_on" value="1" '.($this->getFieldValue($obj, 'active') ? 'checked="checked" ' : '').'>
+					<label class="t" for="active_on"><img src="../img/admin/enabled.gif" alt="'.$this->l('Enabled').'" title="'.$this->l('Enabled').'"></label>
+					<input type="radio" name="active" id="active_off" value="0" '.(!$this->getFieldValue($obj, 'active') ? 'checked="checked" ' : '').'>
+					<label class="t" for="active_off"><img src="../img/admin/disabled.gif" alt="'.$this->l('Disabled').'" title="'.$this->l('Disabled').'"></label>
 					<p>'.$this->l('Allow or disallow this customer to log in').'</p>
 				</div>
 				<label>'.$this->l('Newsletter:').' </label>
 				<div class="margin-form">
-					<input type="radio" name="newsletter" id="newsletter_on" value="1" '.($this->getFieldValue($obj, 'newsletter') ? 'checked="checked" ' : '').'/>
-					<label class="t" for="newsletter_on"><img src="../img/admin/enabled.gif" alt="'.$this->l('Enabled').'" title="'.$this->l('Enabled').'" /></label>
-					<input type="radio" name="newsletter" id="newsletter_off" value="0" '.(!$this->getFieldValue($obj, 'newsletter') ? 'checked="checked" ' : '').'/>
-					<label class="t" for="newsletter_off"><img src="../img/admin/disabled.gif" alt="'.$this->l('Disabled').'" title="'.$this->l('Disabled').'" /></label>
+					<input type="radio" name="newsletter" id="newsletter_on" value="1" '.($this->getFieldValue($obj, 'newsletter') ? 'checked="checked" ' : '').'>
+					<label class="t" for="newsletter_on"><img src="../img/admin/enabled.gif" alt="'.$this->l('Enabled').'" title="'.$this->l('Enabled').'"></label>
+					<input type="radio" name="newsletter" id="newsletter_off" value="0" '.(!$this->getFieldValue($obj, 'newsletter') ? 'checked="checked" ' : '').'>
+					<label class="t" for="newsletter_off"><img src="../img/admin/disabled.gif" alt="'.$this->l('Disabled').'" title="'.$this->l('Disabled').'"></label>
 					<p>'.$this->l('Customer will receive your newsletter via e-mail').'</p>
 				</div>
 				<label>'.$this->l('Opt-in:').' </label>
 				<div class="margin-form">
-					<input type="radio" name="optin" id="optin_on" value="1" '.($this->getFieldValue($obj, 'optin') ? 'checked="checked" ' : '').'/>
-					<label class="t" for="optin_on"><img src="../img/admin/enabled.gif" alt="'.$this->l('Enabled').'" title="'.$this->l('Enabled').'" /></label>
-					<input type="radio" name="optin" id="optin_off" value="0" '.(!$this->getFieldValue($obj, 'optin') ? 'checked="checked" ' : '').'/>
-					<label class="t" for="optin_off"><img src="../img/admin/disabled.gif" alt="'.$this->l('Disabled').'" title="'.$this->l('Disabled').'" /></label>
+					<input type="radio" name="optin" id="optin_on" value="1" '.($this->getFieldValue($obj, 'optin') ? 'checked="checked" ' : '').'>
+					<label class="t" for="optin_on"><img src="../img/admin/enabled.gif" alt="'.$this->l('Enabled').'" title="'.$this->l('Enabled').'"></label>
+					<input type="radio" name="optin" id="optin_off" value="0" '.(!$this->getFieldValue($obj, 'optin') ? 'checked="checked" ' : '').'>
+					<label class="t" for="optin_off"><img src="../img/admin/disabled.gif" alt="'.$this->l('Disabled').'" title="'.$this->l('Disabled').'"></label>
 					<p>'.$this->l('Customer will receive your ads via e-mail').'</p>
 				</div>
 				<label>'.$this->l('Groups:').' </label>
@@ -461,7 +461,7 @@ class AdminCustomers extends AdminTab
 						echo '
 					<table cellspacing="0" cellpadding="0" class="table" style="width: 29.5em;">
 						<tr>
-							<th><input type="checkbox" name="checkme" class="noborder" onclick="checkDelBoxes(this.form, \'groupBox[]\', this.checked)" /></th>
+							<th><input type="checkbox" name="checkme" class="noborder" onclick="checkDelBoxes(this.form, \'groupBox[]\', this.checked)"></th>
 							<th>'.$this->l('ID').'</th>
 							<th>'.$this->l('Group name').'</th>
 						</tr>';
@@ -470,7 +470,7 @@ class AdminCustomers extends AdminTab
 						{
 							echo '
 							<tr class="'.($irow++ % 2 ? 'alt_row' : '').'">
-								<td>'.($group['id_group'] != 1 ? '<input type="checkbox" name="groupBox[]" class="groupBox" id="groupBox_'.$group['id_group'].'" value="'.$group['id_group'].'" '.(in_array($group['id_group'], $customer_groups) ? 'checked="checked" ' : '').'/>' : '').'</td>
+								<td>'.($group['id_group'] != 1 ? '<input type="checkbox" name="groupBox[]" class="groupBox" id="groupBox_'.$group['id_group'].'" value="'.$group['id_group'].'" '.(in_array($group['id_group'], $customer_groups) ? 'checked="checked" ' : '').'>' : '').'</td>
 								<td>'.$group['id_group'].'</td>
 								<td><label for="groupBox_'.$group['id_group'].'" class="t">'.$group['name'].'</label></td>
 							</tr>';
@@ -484,7 +484,7 @@ class AdminCustomers extends AdminTab
 				echo '
 				</div>
 				<div class="margin-form">
-					<input type="submit" value="'.$this->l('   Save   ').'" name="submitAdd'.$this->table.'" class="button" />
+					<input type="submit" value="'.$this->l('   Save   ').'" name="submitAdd'.$this->table.'" class="button">
 				</div>
 				<div class="small"><sup>*</sup> '.$this->l('Required field').'</div>
 			</fieldset>

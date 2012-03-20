@@ -96,8 +96,8 @@ class Swift_Connection_Rotator extends Swift_ConnectionBase
       }
     }
     
-    $failure = implode("<br />", $fail_messages);
-    throw new Swift_ConnectionException("No connections were started.<br />" . $failure);
+    $failure = implode("<br>", $fail_messages);
+    throw new Swift_ConnectionException("No connections were started.<br>" . $failure);
   }
   /**
    * Read a full response from the buffer

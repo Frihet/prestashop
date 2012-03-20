@@ -32,18 +32,18 @@
 <p class="bold">{l s='Payment method:'} <span class="color-myaccount">{$order->payment|escape:'htmlall':'UTF-8'}</span></p>
 {if $invoice AND $invoiceAllowed}
 <p>
-	<img src="{$img_dir}icon/pdf.gif" alt="" class="icon" />
+	<img src="{$img_dir}icon/pdf.gif" alt="" class="icon">
 	<a href="{$base_dir}pdf-invoice.php?id_order={$order->id|intval}">{l s='Download your invoice as a .PDF file'}</a>
 </p>
 {/if}
 {if $order->recyclable}
-<p><img src="{$img_dir}icon/recyclable.gif" alt="" class="icon" />&nbsp;{l s='You have given permission to receive your order in recycled packaging.'}</p>
+<p><img src="{$img_dir}icon/recyclable.gif" alt="" class="icon">&nbsp;{l s='You have given permission to receive your order in recycled packaging.'}</p>
 {/if}
 {if $order->gift}
-	<p><img src="{$img_dir}icon/gift.gif" alt="" class="icon" />&nbsp;{l s='You requested gift-wrapping for your order.'}</p>
+	<p><img src="{$img_dir}icon/gift.gif" alt="" class="icon">&nbsp;{l s='You requested gift-wrapping for your order.'}</p>
 	<p>{l s='Message:'} {$order->gift_message|nl2br}</p>
 {/if}
-<br />
+<br>
 <table class="std">
 	<thead>
 		<tr>
@@ -85,7 +85,7 @@
 	<table class="std">
 		<thead>
 			<tr>
-				{if $return_allowed}<th class="first_item"><input type="checkbox" /></th>{/if}
+				{if $return_allowed}<th class="first_item"><input type="checkbox"></th>{/if}
 				<th class="{if $return_allowed}item{else}first_item{/if}">{l s='Reference'}</th>
 				<th class="item">{l s='Product'}</th>
 				<th class="item">{l s='Quantity'}</th>
@@ -145,19 +145,19 @@
 						<td class="bold">
 							<label for="cb_{$product.id_order_detail|intval}">{$product.product_name|escape:'htmlall':'UTF-8'}</label>
 						</td>
-						<td><input class="order_qte_input" name="order_qte_input[{$smarty.foreach.products.index}]" type="text" size="2" value="{$customizationQuantityTotal|intval}" /><label for="cb_{$product.id_order_detail|intval}"><span class="order_qte_span editable">{$product.customizationQuantityTotal|intval}</span></label></td>
+						<td><input class="order_qte_input" name="order_qte_input[{$smarty.foreach.products.index}]" type="text" size="2" value="{$customizationQuantityTotal|intval}"><label for="cb_{$product.id_order_detail|intval}"><span class="order_qte_span editable">{$product.customizationQuantityTotal|intval}</span></label></td>
 						<td><label for="cb_{$product.id_order_detail|intval}">{convertPriceWithCurrency price=$product.product_price_wt currency=$currency convert=0}</label></td>
 						<td><label for="cb_{$product.id_order_detail|intval}">{if isset($customizedDatas.$productId.$productAttributeId)}{convertPriceWithCurrency price=$product.total_customization_wt currency=$currency convert=0}{else}{convertPriceWithCurrency price=$product.total_wt currency=$currency convert=0}{/if}</label></td>
 					</tr>
 					{foreach from=$customizedDatas.$productId.$productAttributeId item='customization' key='customizationId'}
 					<tr class="alternate_item">
-						{if $return_allowed}<td class="order_cb"><input type="checkbox" id="cb_{$product.id_order_detail|intval}" name="customization_ids[{$product.id_order_detail|intval}][]" value="{$customizationId|intval}" /></td>{/if}
+						{if $return_allowed}<td class="order_cb"><input type="checkbox" id="cb_{$product.id_order_detail|intval}" name="customization_ids[{$product.id_order_detail|intval}][]" value="{$customizationId|intval}"></td>{/if}
 						<td colspan="2">
 						{foreach from=$customization.datas key='type' item='datas'}
 							{if $type == $CUSTOMIZE_FILE}
 							<ul class="customizationUploaded">
 								{foreach from=$datas item='data'}
-									<li><img src="{$pic_dir}{$data.value}_small" alt="" class="customizationUploaded" /></li>
+									<li><img src="{$pic_dir}{$data.value}_small" alt="" class="customizationUploaded"></li>
 								{/foreach}
 							</ul>
 							{elseif $type == $CUSTOMIZE_TEXTFIELD}
@@ -170,7 +170,7 @@
 						{/foreach}
 						</td>
 						<td>
-							<input class="order_qte_input" name="customization_qty_input[{$customizationId|intval}]" type="text" size="2" value="{$customization.quantity|intval}" /><label for="cb_{$product.id_order_detail|intval}"><span class="order_qte_span editable">{$customization.quantity|intval}</span></label>
+							<input class="order_qte_input" name="customization_qty_input[{$customizationId|intval}]" type="text" size="2" value="{$customization.quantity|intval}"><label for="cb_{$product.id_order_detail|intval}"><span class="order_qte_span editable">{$customization.quantity|intval}</span></label>
 						</td>
 						<td colspan="2"></td>
 					</tr>
@@ -179,13 +179,13 @@
 				<!-- Classic products -->
 				{if $product.product_quantity > $product.customizationQuantityTotal}
 					<tr class="item">
-						{if $return_allowed}<td class="order_cb"><input type="checkbox" id="cb_{$product.id_order_detail|intval}" name="ids_order_detail[{$product.id_order_detail|intval}]" value="{$product.id_order_detail|intval}" /></td>{/if}
+						{if $return_allowed}<td class="order_cb"><input type="checkbox" id="cb_{$product.id_order_detail|intval}" name="ids_order_detail[{$product.id_order_detail|intval}]" value="{$product.id_order_detail|intval}"></td>{/if}
 						<td><label for="cb_{$product.id_order_detail|intval}">{if $product.product_reference}{$product.product_reference|escape:'htmlall':'UTF-8'}{else}--{/if}</label></td>
 						<td class="bold">
 							<label for="cb_{$product.id_order_detail|intval}">
 								{if $product.download_hash && $invoice}
 									<a href="{$base_dir}get-file.php?key={$product.filename|escape:'htmlall':'UTF-8'}-{$product.download_hash|escape:'htmlall':'UTF-8'}" title="{l s='download this product'}">
-										<img src="{$img_dir}icon/download_product.gif" class="icon" alt="{l s='Download product'}" />
+										<img src="{$img_dir}icon/download_product.gif" class="icon" alt="{l s='Download product'}">
 									</a>
 									<a href="{$base_dir}get-file.php?key={$product.filename|escape:'htmlall':'UTF-8'}-{$product.download_hash|escape:'htmlall':'UTF-8'}" title="{l s='download this product'}">
 										{$product.product_name|escape:'htmlall':'UTF-8'}
@@ -195,7 +195,7 @@
 								{/if}
 							</label>
 						</td>
-						<td><input class="order_qte_input" name="order_qte_input[{$product.id_order_detail|intval}]" type="text" size="2" value="{$productQuantity|intval}" /><label for="cb_{$product.id_order_detail|intval}"><span class="order_qte_span editable">{$productQuantity|intval}</span></label></td>
+						<td><input class="order_qte_input" name="order_qte_input[{$product.id_order_detail|intval}]" type="text" size="2" value="{$productQuantity|intval}"><label for="cb_{$product.id_order_detail|intval}"><span class="order_qte_span editable">{$productQuantity|intval}</span></label></td>
 						<td><label for="cb_{$product.id_order_detail|intval}">{convertPriceWithCurrency price=$product.product_price_wt currency=$currency convert=0}</label></td>
 						<td><label for="cb_{$product.id_order_detail|intval}">{convertPriceWithCurrency price=$product.total_wt currency=$currency convert=0}</label></td>
 					</tr>
@@ -218,17 +218,17 @@
 	</table>
 </div>
 {if $return_allowed}
-<br />
+<br>
 <p class="bold">{l s='Merchandise return'}</p>
 <p>{l s='If you want to return one or several products, please mark the corresponding checkbox(es) and provide an explanation for the return. Then click the button below.'}</p>
 <p class="textarea">
 	<textarea cols="67" rows="3" name="returnText"></textarea>
 </p>
 <p class="submit">
-	<input type="submit" value="{l s='Make a RMA slip'}" name="submitReturnMerchandise" class="button_large" />
-	<input type="hidden" class="hidden" value="{$order->id|intval}" name="id_order" />
+	<input type="submit" value="{l s='Make a RMA slip'}" name="submitReturnMerchandise" class="button_large">
+	<input type="hidden" class="hidden" value="{$order->id|intval}" name="id_order">
 </p>
-<br />
+<br>
 {/if}
 </form>
 {$HOOK_ORDER_DETAIL}
@@ -253,7 +253,7 @@
 					{else}
 						<b>{$shop_name|escape:'htmlall':'UTF-8'}</b>
 					{/if}
-					<br />
+					<br>
 					{dateFormat date=$message.date_add full=1}
 				</td>
 				<td>{$message.message|nl2br}</td>
@@ -280,7 +280,7 @@
 		<textarea cols="67" rows="3" name="msgText"></textarea>
 	</p>
 	<p class="submit">
-		<input type="hidden" name="id_order" value="{$order->id|intval}" />
-		<input type="submit" class="button" name="submitMessage" value="{l s='Send'}"/>
+		<input type="hidden" name="id_order" value="{$order->id|intval}">
+		<input type="submit" class="button" name="submitMessage" value="{l s='Send'}">
 	</p>
 </form>

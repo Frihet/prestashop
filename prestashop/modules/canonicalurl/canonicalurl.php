@@ -34,7 +34,7 @@ class canonicalUrl extends Module
 			else
 			{
 				Configuration::updateValue('CANONICAL_URL', $canonicalUrl);
-				$output .= '<div class="conf confirm"><img src="../img/admin/ok.gif" alt="'.$this->l('Confirmation').'" />'.$this->l('Settings updated').'</div>';
+				$output .= '<div class="conf confirm"><img src="../img/admin/ok.gif" alt="'.$this->l('Confirmation').'">'.$this->l('Settings updated').'</div>';
 			}
 		}
 		return $output.$this->displayForm();
@@ -45,13 +45,13 @@ class canonicalUrl extends Module
 		return '
 		<form action="'.$_SERVER['REQUEST_URI'].'" method="post">
 			<fieldset>
-				<legend><img src="'.$this->_path.'logo.gif" alt="" title="" />'.$this->l('Settings').'</legend>
+				<legend><img src="'.$this->_path.'logo.gif" alt="" title="">'.$this->l('Settings').'</legend>
 				<label>'.$this->l('Canonical URL').'</label>
 				<div class="margin-form">
-					http(s)://<input type="text" name="canonicalUrl" value="'.Configuration::get('CANONICAL_URL').'" />/some/directories/a_prestashop_webpage.php
+					http(s)://<input type="text" name="canonicalUrl" value="'.Configuration::get('CANONICAL_URL').'">/some/directories/a_prestashop_webpage.php
 					<p class="clear">'.$this->l('Choose the primary domain name for your referencing (e.g., www.myshop.com or myshop.com or mywebsite.com). Note: Do not include the last slash ("/"), the "/index.php" suffix, or the "http(s)://" prefix.').'</p>
 				</div>
-				<center><input type="submit" name="submitCanonicalUrl" value="'.$this->l('Save').'" class="button" /></center>
+				<center><input type="submit" name="submitCanonicalUrl" value="'.$this->l('Save').'" class="button"></center>
 			</fieldset>
 		</form>';
 	}

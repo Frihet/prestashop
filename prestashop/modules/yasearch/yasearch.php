@@ -61,7 +61,7 @@ class Yasearch extends Module
 <input type="hidden" name="hosted_button_id" value="7953161">
 <input type="image" src="https://www.paypal.com/en_US/i/btn/btn_donate_SM.gif" border="0" name="submit" alt="PayPal - The safer, easier way to pay online!">
 <img alt="" border="0" src="https://www.paypal.com/pl_PL/i/scr/pixel.gif" width="1" height="1">
-</form><br/>'.
+</form><br>'.
 
 	'<fieldset><legend>'.$this->l('configuration').'</legend>
 	<form method="post" action="" onsubmit="return validation();">
@@ -118,7 +118,7 @@ class Yasearch extends Module
 				Configuration::updateValue('ADVSEARCH_MANUFACTURERS', $advs_manuf);
 								
 				
-				$output .= '<div class="conf confirm"><img src="../img/admin/ok.gif" alt="'.$this->l('Confirmation').'" />'.$this->l('Settings updated').'</div>';			
+				$output .= '<div class="conf confirm"><img src="../img/admin/ok.gif" alt="'.$this->l('Confirmation').'">'.$this->l('Settings updated').'</div>';			
 			
 			
 			

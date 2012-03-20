@@ -979,7 +979,7 @@ class AdminProducts extends AdminTab
 			$id_category = 1;
 		echo '<h3>'.(!$this->_listTotal ? ($this->l('No products found')) : ($this->_listTotal.' '.($this->_listTotal > 1 ? $this->l('products') : $this->l('product')))).' '.
 		$this->l('in category').' "'.stripslashes(Category::hideCategoryPosition($this->_category->getName())).'"</h3>';
-		echo '<a href="'.$currentIndex.'&id_category='.$id_category.'&add'.$this->table.'&token='.($token!=NULL ? $token : $this->token).'"><img src="../img/admin/add.gif" border="0" /> '.$this->l('Add a new product').'</a>
+		echo '<a href="'.$currentIndex.'&id_category='.$id_category.'&add'.$this->table.'&token='.($token!=NULL ? $token : $this->token).'"><img src="../img/admin/add.gif" border="0"> '.$this->l('Add a new product').'</a>
 		<div style="margin:10px;">';
 		$this->displayList($token);
 		echo '</div>';
@@ -1026,13 +1026,13 @@ class AdminProducts extends AdminTab
 		echo '
 		<tr class="'.($irow++ % 2 ? 'alt_row' : '').'">
 			<td>
-				<input type="checkbox" name="categoryBox[]" class="categoryBox'.($id_category_default != NULL ? ' id_category_default' : '').'" id="categoryBox_'.$id_category.'" value="'.$id_category.'"'.((in_array($id_category, $indexedCategories) OR (intval(Tools::getValue('id_category')) == $id_category AND !intval($id_obj))) ? ' checked="checked"' : '').' />
+				<input type="checkbox" name="categoryBox[]" class="categoryBox'.($id_category_default != NULL ? ' id_category_default' : '').'" id="categoryBox_'.$id_category.'" value="'.$id_category.'"'.((in_array($id_category, $indexedCategories) OR (intval(Tools::getValue('id_category')) == $id_category AND !intval($id_obj))) ? ' checked="checked"' : '').'>
 			</td>
 			<td>
 				'.$id_category.'
 			</td>
 			<td>
-				<img src="../img/admin/'.$img.'" alt="" /> &nbsp;<label for="categoryBox_'.$id_category.'" class="t">'.stripslashes(Category::hideCategoryPosition($current['infos']['name'])).'</label>
+				<img src="../img/admin/'.$img.'" alt=""> &nbsp;<label for="categoryBox_'.$id_category.'" class="t">'.stripslashes(Category::hideCategoryPosition($current['infos']['name'])).'</label>
 			</td>
 		</tr>';
 
@@ -1080,9 +1080,9 @@ class AdminProducts extends AdminTab
 			'.$this->initCombinationImagesJS().'
 		</script>
 		<script src="../js/tabpane.js" type="text/javascript"></script>
-		<link type="text/css" rel="stylesheet" href="../css/tabpane.css" />
+		<link type="text/css" rel="stylesheet" href="../css/tabpane.css">
 		<form action="'.$currentIndex.'&token='.($token != NULL ? $token : $this->token).'" method="post" enctype="multipart/form-data" name="product" id="product">
-			<input type="hidden" name="tabs" id="tabs" value="0" />
+			<input type="hidden" name="tabs" id="tabs" value="0">
 			<input type="hidden" name="id_category" value="'.(($id_category = Tools::getValue('id_category')) ? intval($id_category) : '0').'">
 			<div class="tab-pane" id="tabPane1">';
 				/* Tabs */
@@ -1131,10 +1131,10 @@ class AdminProducts extends AdminTab
 				</script>
 			</div>
 			<div class="clear"></div>
-			<input type="hidden" name="id_product_attribute" id="id_product_attribute" value="0" />
+			<input type="hidden" name="id_product_attribute" id="id_product_attribute" value="0">
 		</form>';
 		if (Tools::getValue('id_category') > 1)
-			echo '<br /><br /><a href="'.$currentIndex.($token ? '&token='.Tools::getAdminToken('AdminCatalog'.intval(Tab::getIdFromClassName('AdminCatalog')).intval($cookie->id_employee)) : '').'"><img src="../img/admin/arrow2.gif" /> '.$this->l('Back to the category').'</a><br />';
+			echo '<br><br><a href="'.$currentIndex.($token ? '&token='.Tools::getAdminToken('AdminCatalog'.intval(Tab::getIdFromClassName('AdminCatalog')).intval($cookie->id_employee)) : '').'"><img src="../img/admin/arrow2.gif"> '.$this->l('Back to the category').'</a><br>';
 	}
 
 	function displayFormQuantityDiscount($obj, $languages, $defaultLanguage)
@@ -1151,19 +1151,19 @@ class AdminProducts extends AdminTab
 					<td colspan="2"><b>'.$this->l('Add quantity discount to this product').'</b></td>
 				</tr>
 			</table>
-			<hr style="width:730px;"><br />
+			<hr style="width:730px;"><br>
 			<table cellpadding="5" style="width:100%">
 				<tr>
 					<td style="width:150" valign="top">'.$this->l('Product quantity:').'</td>
 					<td>
-						<input type="text" name="quantity_discount" size="10" />
+						<input type="text" name="quantity_discount" size="10">
 						<p style="padding:0px; margin:0px 0px 10px 0px;">'.$this->l('Minimum product quantity for discount').'</p>
 					</td>
 				</tr>
 				<tr>
 					<td style="width:150" valign="top">'.$this->l('Discount value:').'</td>
 					<td>
-						<input type="text" name="value_discount" size="10" />
+						<input type="text" name="value_discount" size="10">
 						<p style="padding:0px; margin:0px 0px 10px 0px;">'.$this->l('The discount value (% or amount)').'</p>
 					</td>
 				</tr>
@@ -1179,7 +1179,7 @@ class AdminProducts extends AdminTab
 				</tr>
 				<tr>
 					<td colspan="2" style="text-align:center;">
-						<input type="submit" name="submitQuantityDiscount" id="submitQuantityDiscount" value="'.$this->l('Add quantity discount').'" class="button" onclick="this.form.action += \'&addproduct&tabs=5\';" />
+						<input type="submit" name="submitQuantityDiscount" id="submitQuantityDiscount" value="'.$this->l('Add quantity discount').'" class="button" onclick="this.form.action += \'&addproduct&tabs=5\';">
 					</td>
 				</tr>
 				<tr><td colspan="2"><hr style="width:730px;"></td></tr>
@@ -1204,7 +1204,7 @@ class AdminProducts extends AdminTab
 								<td style="width:100px">'.($qD['id_discount_type'] == 1 ? $qD['value'].'%' : Tools::displayPrice($qD['value'], $defaultCurrency)).'</td>
 								<td style="width:50px" style="text-align:center;">
 									<a href="index.php?tab=AdminCatalog&id_category='.Tools::getValue('id_category').'&id_product='.Tools::getValue('id_product').'&token='.Tools::getValue('token').'&deleteQuantityDiscount&id_quantity_discount='.$qD['id_discount_quantity'].'&token='.Tools::getAdminToken('AdminCatalog'.intval(Tab::getIdFromClassName('AdminCatalog')).intval($cookie->id_employee)).'" onclick="return confirm(\''.$this->l('Are you sure?', __CLASS__, true, false).'\');">
-										<img src="../img/admin/delete.gif" alt="'.$this->l('Delete this discount').'" />
+										<img src="../img/admin/delete.gif" alt="'.$this->l('Delete this discount').'">
 									</a>
 								</td>
 							</tr>';
@@ -1253,12 +1253,12 @@ class AdminProducts extends AdminTab
 			$fieldName = 'label_'.$type.'_'.intval($id_customization_field).'_'.intval($language['id_lang']);
 			echo '<div id="'.$fieldName.'" style="display: '.(intval($language['id_lang']) == intval($defaultLanguage) ? 'block' : 'none').'; clear: left; float: left; padding-bottom: 4px;">
 					<div style="width:40px; float:left; text-align:right;">#'.intval($id_customization_field).'</div>
-					&nbsp;&nbsp;<input type="text" name="'.$fieldName.'" value="'.htmlentities($label[intval($language['id_lang'])]['name'], ENT_COMPAT, 'UTF-8').'" />
+					&nbsp;&nbsp;<input type="text" name="'.$fieldName.'" value="'.htmlentities($label[intval($language['id_lang'])]['name'], ENT_COMPAT, 'UTF-8').'">
 				</div>';
 		}
 		echo '</div>';
 		$this->displayFlags($languages, $defaultLanguage, $fieldIds, $fieldsName);
-		echo '<div style="float: left; margin-left: 16px;"><input type="checkbox" name="require_'.$type.'_'.intval($id_customization_field).'" value="1" '.($label[intval($language['id_lang'])]['required'] ? 'checked="checked"' : '').'/> '.$this->l('required').'</div>';
+		echo '<div style="float: left; margin-left: 16px;"><input type="checkbox" name="require_'.$type.'_'.intval($id_customization_field).'" value="1" '.($label[intval($language['id_lang'])]['required'] ? 'checked="checked"' : '').'> '.$this->l('required').'</div>';
 	}
 
 	private function _displayLabelFields(&$obj, &$labels, $languages, $defaultLanguage, $type)
@@ -1289,32 +1289,32 @@ class AdminProducts extends AdminTab
 					<td colspan="2"><b>'.$this->l('Add or modify customizable properties').'</b></td>
 				</tr>
 			</table>
-			<hr style="width:730px;"><br />
+			<hr style="width:730px;"><br>
 			<table cellpadding="5" style="width:100%">
 				<tr>
 					<td style="width:150px" valign="top">'.$this->l('File fields:').'</td>
 					<td style="padding-bottom:5px;">
-						<input type="text" name="uploadable_files" id="uploadable_files" size="4" value="'.(intval($this->getFieldValue($obj, 'uploadable_files')) ? intval($this->getFieldValue($obj, 'uploadable_files')) : '0').'" />
+						<input type="text" name="uploadable_files" id="uploadable_files" size="4" value="'.(intval($this->getFieldValue($obj, 'uploadable_files')) ? intval($this->getFieldValue($obj, 'uploadable_files')) : '0').'">
 						<p>'.$this->l('Number of upload file fields displayed').'</p>
 					</td>
 				</tr>
 				<tr>
 					<td style="width:150px" valign="top">'.$this->l('Text fields:').'</td>
 					<td style="padding-bottom:5px;">
-						<input type="text" name="text_fields" id="text_fields" size="4" value="'.(intval($this->getFieldValue($obj, 'text_fields')) ? intval($this->getFieldValue($obj, 'text_fields')) : '0').'" />
+						<input type="text" name="text_fields" id="text_fields" size="4" value="'.(intval($this->getFieldValue($obj, 'text_fields')) ? intval($this->getFieldValue($obj, 'text_fields')) : '0').'">
 						<p>'.$this->l('Number of text fields displayed').'</p>
 					</td>
 				</tr>
 				<tr>
 					<td style="width:150px" valign="top">'.$this->l('Schedules:').'</td>
 					<td style="padding-bottom:5px;">
-						<input type="text" name="schedules" id="schedules" size="4" value="'.(intval($this->getFieldValue($obj, 'schedules')) ? intval($this->getFieldValue($obj, 'schedules')) : '0').'" />
+						<input type="text" name="schedules" id="schedules" size="4" value="'.(intval($this->getFieldValue($obj, 'schedules')) ? intval($this->getFieldValue($obj, 'schedules')) : '0').'">
 						<p>'.$this->l('Number of schedules displayed').'</p>
 					</td>
 				</tr>
 				<tr>
 					<td colspan="2" style="text-align:center;">
-						<input type="submit" name="submitCustomizationConfiguration" value="'.$this->l('Update settings').'" class="button" onclick="this.form.action += \'&addproduct&tabs=4\';" />
+						<input type="submit" name="submitCustomizationConfiguration" value="'.$this->l('Update settings').'" class="button" onclick="this.form.action += \'&addproduct&tabs=4\';">
 					</td>
 				</tr>';
 				
@@ -1362,7 +1362,7 @@ class AdminProducts extends AdminTab
 					<td colspan="2" style="text-align:center;">';
 				
 				if ($hasFileLabels OR $hasTextLabels)
-					echo '<input type="submit" name="submitProductCustomization" id="submitProductCustomization" value="'.$this->l('Save labels').'" class="button" onclick="this.form.action += \'&addproduct&tabs=4\';" />';
+					echo '<input type="submit" name="submitProductCustomization" id="submitProductCustomization" value="'.$this->l('Save labels').'" class="button" onclick="this.form.action += \'&addproduct&tabs=4\';">';
 				echo '
 					</td>
 				</tr>
@@ -1375,7 +1375,7 @@ class AdminProducts extends AdminTab
 		global $cookie, $smarty, $currentIndex;
 
 		$css_dir = _THEME_CSS_DIR_;
-		echo "<link href='{$css_dir}schedule.css' rel='stylesheet' type='text/css' />";
+		echo "<link href='{$css_dir}schedule.css' rel='stylesheet' type='text/css'>";
 
 		if (isset($cookie->id_customization_field_schedule))
 			$smarty->assign('id_customization_field_schedule', $cookie->id_customization_field_schedule);
@@ -1398,7 +1398,7 @@ class AdminProducts extends AdminTab
 		
 		echo '
 		<a href="index.php?tab=AdminAttachments&addattachment&token='.Tools::getAdminToken('AdminAttachments'.intval(Tab::getIdFromClassName('AdminAttachments')).intval($cookie->id_employee)).'">
-			<img src="../img/admin/add.gif" alt="new" title="'.$this->l('Upload new attachment').'" />&nbsp;'.$this->l('Upload new attachment').'
+			<img src="../img/admin/add.gif" alt="new" title="'.$this->l('Upload new attachment').'">&nbsp;'.$this->l('Upload new attachment').'
 		</a>
 		<div class="clear">&nbsp;</div>
 		<table><tr>
@@ -1406,7 +1406,7 @@ class AdminProducts extends AdminTab
 				<select multiple id="selectAttachment1" name="attachments[]" style="width:300px;height:160px;">';
 		foreach ($attach1 as $attach)
 			echo '	<option value="'.$attach['id_attachment'].'">'.$attach['name'].'</option>';
-		echo '	</select><br /><br />
+		echo '	</select><br><br>
 				<a href="#" id="addAttachment" style="text-align:center;display:block;border:1px solid #aaa;text-decoration:none;background-color:#fafafa;color:#123456;margin:2px;padding:2px">
 					'.$this->l('Remove').' &gt;&gt;
 				</a>
@@ -1415,7 +1415,7 @@ class AdminProducts extends AdminTab
 				<select multiple id="selectAttachment2" style="width:300px;height:160px;">';
 		foreach ($attach2 as $attach)
 			echo '	<option value="'.$attach['id_attachment'].'">'.$attach['name'].'</option>';
-		echo '	</select><br /><br />
+		echo '	</select><br><br>
 				<a href="#" id="removeAttachment" style="text-align:center;display:block;border:1px solid #aaa;text-decoration:none;background-color:#fafafa;color:#123456;margin:2px;padding:2px">
 					&lt;&lt; '.$this->l('Add').'
 				</a>
@@ -1423,7 +1423,7 @@ class AdminProducts extends AdminTab
 			</td>
 		</tr></table>
 		<div class="clear">&nbsp;</div>
-		<input type="submit" name="submitAttachments" id="submitAttachments" value="'.$this->l('Update attachments').'" class="button" />';
+		<input type="submit" name="submitAttachments" id="submitAttachments" value="'.$this->l('Update attachments').'" class="button">';
 	}
 
 	function displayFormInformations($obj, $currency, $languages, $defaultLanguage)
@@ -1452,22 +1452,22 @@ class AdminProducts extends AdminTab
 			if (isset($obj->id))
 			{
 				echo '
-			<a href="'.($link->getProductLink($this->getFieldValue($obj, 'id'), $this->getFieldValue($obj, 'link_rewrite', $defaultLanguage), Category::getLinkRewrite($this->getFieldValue($obj, 'id_category_default'), intval($cookie->id_lang)))).'"><img src="../img/admin/details.gif" alt="'.$this->l('View product in shop').'" title="'.$this->l('View product in shop').'" /> '.$this->l('View product in shop').'</a>';
+			<a href="'.($link->getProductLink($this->getFieldValue($obj, 'id'), $this->getFieldValue($obj, 'link_rewrite', $defaultLanguage), Category::getLinkRewrite($this->getFieldValue($obj, 'id_category_default'), intval($cookie->id_lang)))).'"><img src="../img/admin/details.gif" alt="'.$this->l('View product in shop').'" title="'.$this->l('View product in shop').'"> '.$this->l('View product in shop').'</a>';
 				if (file_exists(_PS_MODULE_DIR_.'statsproduct/statsproduct.php'))
 					echo '&nbsp;-&nbsp;
-					<a href="index.php?tab=AdminStatsModules&module=statsproduct&id_product='.$obj->id.'&token='.Tools::getAdminToken('AdminStatsModules'.intval(Tab::getIdFromClassName('AdminStatsModules')).intval($cookie->id_employee)).'"><img src="../modules/statsproduct/logo.gif" alt="'.$this->l('View product sales').'" title="'.$this->l('View product sales').'" /> '.$this->l('View product sales').'</a>';
+					<a href="index.php?tab=AdminStatsModules&module=statsproduct&id_product='.$obj->id.'&token='.Tools::getAdminToken('AdminStatsModules'.intval(Tab::getIdFromClassName('AdminStatsModules')).intval($cookie->id_employee)).'"><img src="../modules/statsproduct/logo.gif" alt="'.$this->l('View product sales').'" title="'.$this->l('View product sales').'"> '.$this->l('View product sales').'</a>';
 			}
 			echo '	
-			<hr class="clear"/>
-			<br />
+			<hr class="clear">
+			<br>
 				<table cellpadding="5" style="width:100%">
 					<tr>
 						<td style="vertical-align:top">'.$this->l('Type:').'</td>
 						<td style="padding-bottom:5px;">
-							<input style="float:left;" type="radio" name="type" id="type_product" value="product" '.($this->getFieldValue($obj, 'type') == 'product' ? 'checked="checked" ' : '').' onchange="toggleProductType(this)"/>
+							<input style="float:left;" type="radio" name="type" id="type_product" value="product" '.($this->getFieldValue($obj, 'type') == 'product' ? 'checked="checked" ' : '').' onchange="toggleProductType(this)">
 							<label for="type_product" class="t">'.$this->l('Product').'</label>
-							<br style="clear:both;" />
-							<input style="float:left;" type="radio" name="type" id="type_article" value="article" '.($this->getFieldValue($obj, 'type') == 'article' ? 'checked="checked" ' : '').' onchange="toggleProductType(this)"/>
+							<br style="clear:both;">
+							<input style="float:left;" type="radio" name="type" id="type_article" value="article" '.($this->getFieldValue($obj, 'type') == 'article' ? 'checked="checked" ' : '').' onchange="toggleProductType(this)">
 							<label for="type_article" class="t">'.$this->l('Article').'</label>
 						</td>
 					</tr>
@@ -1477,7 +1477,7 @@ class AdminProducts extends AdminTab
 		foreach ($languages as $language)
 			echo '			<div id="cname_'.$language['id_lang'].'" style="display: '.($language['id_lang'] == $defaultLanguage ? 'block' : 'none').'; float: left;">
 								<input size="55" type="text" id="name_'.$language['id_lang'].'" name="name_'.$language['id_lang'].'"
-								value="'.stripslashes(htmlspecialchars($this->getFieldValue($obj, 'name', $language['id_lang']))).'"'.((!$obj->id) ? ' onkeyup="copy2friendlyURL();"' : '').' onchange="updateCurrentText();" /><sup> *</sup>
+								value="'.stripslashes(htmlspecialchars($this->getFieldValue($obj, 'name', $language['id_lang']))).'"'.((!$obj->id) ? ' onkeyup="copy2friendlyURL();"' : '').' onchange="updateCurrentText();"><sup> *</sup>
 								<span class="hint" name="help_box">'.$this->l('Invalid characters:').' <>;=#{}<span class="hint-pointer">&nbsp;</span></span>
 							</div>';
 		$this->displayFlags($languages, $defaultLanguage, $divLangName, 'cname');
@@ -1487,11 +1487,11 @@ class AdminProducts extends AdminTab
 					<tr>
 						<td style="vertical-align:top">'.$this->l('Status:').'</td>
 						<td style="padding-bottom:5px;">
-							<input style="float:left;" type="radio" name="active" id="active_on" value="1" '.($this->getFieldValue($obj, 'active') ? 'checked="checked" ' : '').'/>
-							<label for="active_on" class="t"><img src="../img/admin/enabled.gif" alt="'.$this->l('Enabled').'" title="'.$this->l('Enabled').'" style="float:left; padding:0px 5px 0px 5px;" />'.$this->l('Enabled').'</label>
-							<br style="clear:both;" />
-							<input style="float:left;" type="radio" name="active" id="active_off" value="0" '.(!$this->getFieldValue($obj, 'active') ? 'checked="checked" ' : '').'/>
-							<label for="active_off" class="t"><img src="../img/admin/disabled.gif" alt="'.$this->l('Disabled').'" title="'.$this->l('Disabled').'" style="float:left; padding:0px 5px 0px 5px" />'.$this->l('Disabled').'</label>
+							<input style="float:left;" type="radio" name="active" id="active_on" value="1" '.($this->getFieldValue($obj, 'active') ? 'checked="checked" ' : '').'>
+							<label for="active_on" class="t"><img src="../img/admin/enabled.gif" alt="'.$this->l('Enabled').'" title="'.$this->l('Enabled').'" style="float:left; padding:0px 5px 0px 5px;">'.$this->l('Enabled').'</label>
+							<br style="clear:both;">
+							<input style="float:left;" type="radio" name="active" id="active_off" value="0" '.(!$this->getFieldValue($obj, 'active') ? 'checked="checked" ' : '').'>
+							<label for="active_off" class="t"><img src="../img/admin/disabled.gif" alt="'.$this->l('Disabled').'" title="'.$this->l('Disabled').'" style="float:left; padding:0px 5px 0px 5px">'.$this->l('Disabled').'</label>
 						</td>
 					</tr>
 					<tr class="field-for-product-type-product">
@@ -1503,7 +1503,7 @@ class AdminProducts extends AdminTab
 			echo '				<option value="'.$id_manufacturer.'" selected="selected">'.Manufacturer::getNameById($id_manufacturer).'</option>
 								<option disabled="disabled">----------</option>';
 		echo '
-							</select>&nbsp;&nbsp;&nbsp;<a href="?tab=AdminManufacturers&addmanufacturer&token='.Tools::getAdminToken('AdminManufacturers'.intval(Tab::getIdFromClassName('AdminManufacturers')).intval($cookie->id_employee)).'" onclick="return confirm(\''.$this->l('Are you sure you want to delete entered product information?', __CLASS__, true, false).'\');"><img src="../img/admin/add.gif" alt="'.$this->l('Create').'" title="'.$this->l('Create').'" /> <b>'.$this->l('Create').'</b></a>
+							</select>&nbsp;&nbsp;&nbsp;<a href="?tab=AdminManufacturers&addmanufacturer&token='.Tools::getAdminToken('AdminManufacturers'.intval(Tab::getIdFromClassName('AdminManufacturers')).intval($cookie->id_employee)).'" onclick="return confirm(\''.$this->l('Are you sure you want to delete entered product information?', __CLASS__, true, false).'\');"><img src="../img/admin/add.gif" alt="'.$this->l('Create').'" title="'.$this->l('Create').'"> <b>'.$this->l('Create').'</b></a>
 							<script type="text/javascript">
 								var ajaxManufacturersClicked = false;
 								$("select#id_manufacturer").focus(
@@ -1538,7 +1538,7 @@ class AdminProducts extends AdminTab
 			echo '				<option value="'.$id_supplier.'" selected="selected">'.Supplier::getNameById($id_supplier).'</option>
 								<option disabled="disabled">----------</option>';
 		echo '
-							</select>&nbsp;&nbsp;&nbsp;<a href="?tab=AdminSuppliers&addsupplier&token='.Tools::getAdminToken('AdminSuppliers'.intval(Tab::getIdFromClassName('AdminSuppliers')).intval($cookie->id_employee)).'" onclick="return confirm(\''.$this->l('Are you sure you want to delete entered product information?', __CLASS__, true, false).'\');"><img src="../img/admin/add.gif" alt="'.$this->l('Create').'" title="'.$this->l('Create').'" /> <b>'.$this->l('Create').'</b></a>
+							</select>&nbsp;&nbsp;&nbsp;<a href="?tab=AdminSuppliers&addsupplier&token='.Tools::getAdminToken('AdminSuppliers'.intval(Tab::getIdFromClassName('AdminSuppliers')).intval($cookie->id_employee)).'" onclick="return confirm(\''.$this->l('Are you sure you want to delete entered product information?', __CLASS__, true, false).'\');"><img src="../img/admin/add.gif" alt="'.$this->l('Create').'" title="'.$this->l('Create').'"> <b>'.$this->l('Create').'</b></a>
 							<script type="text/javascript">
 								var ajaxSuppliersClicked = false;
 								$("select#id_supplier").focus(
@@ -1567,23 +1567,23 @@ class AdminProducts extends AdminTab
 					<tr class="field-for-product-type-product">
 						<td class="col-left">'.$this->l('Reference:').'</td>
 						<td style="padding-bottom:5px;">
-							<input size="55" type="text" name="reference" value="'.htmlentities($this->getFieldValue($obj, 'reference'), ENT_COMPAT, 'UTF-8').'" style="width: 130px; margin-right: 44px;" />
-							'.$this->l('EAN13:').'<input size="55" maxlength="13" type="text" name="ean13" value="'.$this->getFieldValue($obj, 'ean13').'" style="width: 110px; margin-left: 10px;" />
+							<input size="55" type="text" name="reference" value="'.htmlentities($this->getFieldValue($obj, 'reference'), ENT_COMPAT, 'UTF-8').'" style="width: 130px; margin-right: 44px;">
+							'.$this->l('EAN13:').'<input size="55" maxlength="13" type="text" name="ean13" value="'.$this->getFieldValue($obj, 'ean13').'" style="width: 110px; margin-left: 10px;">
 							<span class="hint" name="help_box">'.$this->l('Special characters allowed:').' .-_#\<span class="hint-pointer">&nbsp;</span></span>
 						</td>
 					</tr>
                 	                <tr class="field-for-product-type-product">
 						<td class="col-left">'.$this->l('Supplier Reference:').'</td>
 						<td style="padding-bottom:5px;">
-							<input size="55" type="text" name="supplier_reference" value="'.htmlentities($this->getFieldValue($obj, 'supplier_reference'), ENT_COMPAT, 'UTF-8').'" style="width: 130px; margin-right: 44px;" />
-							'.$this->l('Location:').'<input size="55" type="text" name="location" value="'.$this->getFieldValue($obj, 'location').'" style="width: 101px; margin-left: 10px;" />
+							<input size="55" type="text" name="supplier_reference" value="'.htmlentities($this->getFieldValue($obj, 'supplier_reference'), ENT_COMPAT, 'UTF-8').'" style="width: 130px; margin-right: 44px;">
+							'.$this->l('Location:').'<input size="55" type="text" name="location" value="'.$this->getFieldValue($obj, 'location').'" style="width: 101px; margin-left: 10px;">
 							<span class="hint" name="help_box">'.$this->l('Special characters allowed:').' .-_#\<span class="hint-pointer">&nbsp;</span></span>
 						</td>
 					</tr>					
 					<tr class="field-for-product-type-product">
 						<td class="col-left">'.$this->l('Weight:').'</td>
 						<td style="padding-bottom:5px;">
-							<input size="6" maxlength="6" name="weight" type="text" value="'.htmlentities($this->getFieldValue($obj, 'weight'), ENT_COMPAT, 'UTF-8').'" onKeyUp="javascript:this.value = this.value.replace(/,/g, \'.\');" /> '.Configuration::get('PS_WEIGHT_UNIT').'
+							<input size="6" maxlength="6" name="weight" type="text" value="'.htmlentities($this->getFieldValue($obj, 'weight'), ENT_COMPAT, 'UTF-8').'" onKeyUp="javascript:this.value = this.value.replace(/,/g, \'.\');"> '.Configuration::get('PS_WEIGHT_UNIT').'
 						</td>
 					</tr>
 					<tr class="field-for-product-type-product"><td colspan="2"><hr style="width:730px;"></td></tr>';
@@ -1691,7 +1691,7 @@ class AdminProducts extends AdminTab
 						$('#virtual_product_name').attr('value', fileName);
 						$('#upload-confirmation').html(
 							'<a class="link" href="get-file-admin.php?file=' + msg + '"><?php echo $this->l('The file') ?>&nbsp;"' + fileName + '"&nbsp;<?php echo $this->l('has successfully been uploaded') ?></a>' +
-							'<input type="hidden" id="virtual_product_filename" name="virtual_product_filename" value="' + msg + '" />');
+							'<input type="hidden" id="virtual_product_filename" name="virtual_product_filename" value="' + msg + '">');
 					}
 				}
 			}
@@ -1722,59 +1722,59 @@ class AdminProducts extends AdminTab
 	?>
 	<tr class="field-for-product-type-product">
 		<td colspan="2">
-			<input type="checkbox" id="is_virtual_good" name="is_virtual_good" value="true" onchange="toggleVirtualProduct(this)" onclick="toggleVirtualProduct(this);" <?php if(($productDownload->id OR Tools::getValue('is_virtual_good')=='true') AND $productDownload->active) echo 'checked="checked"' ?> />
+			<input type="checkbox" id="is_virtual_good" name="is_virtual_good" value="true" onchange="toggleVirtualProduct(this)" onclick="toggleVirtualProduct(this);" <?php if(($productDownload->id OR Tools::getValue('is_virtual_good')=='true') AND $productDownload->active) echo 'checked="checked"' ?>>
 			<label for="is_virtual_good" class="t bold"><?php echo $this->l('Is this a downloadable product?') ?></label>
 			<div id="virtual_good" <?php if(!$productDownload->id OR !$productDownload->active) echo 'style="display:none;"' ?> >
 	<?php if(!ProductDownload::checkWritableDir()): ?>
 		<p class="alert">
-			<?php echo $this->l('Your download repository is not writable.'); ?><br/>
+			<?php echo $this->l('Your download repository is not writable.'); ?><br>
 			<?php echo realpath(_PS_DOWNLOAD_DIR_); ?>
 		</p>
 	<?php else: ?>
-			<?php if($productDownload->id) echo '<input type="hidden" id="virtual_product_id" name="virtual_product_id" value="'.$productDownload->id.'" />' ?>
+			<?php if($productDownload->id) echo '<input type="hidden" id="virtual_product_id" name="virtual_product_id" value="'.$productDownload->id.'">' ?>
 				<p class="block">
 	<?php if(!$productDownload->checkFile()): ?>
 		<?php if($productDownload->id): ?>
 					<p class="alert">
-						<?php echo $this->l('This product is missing') ?>:<br/>
+						<?php echo $this->l('This product is missing') ?>:<br>
 						<?php echo realpath(_PS_DOWNLOAD_DIR_) .'/'. $productDownload->physically_filename ?>
 					</p>
 		<?php endif; ?>
 					<p><?php echo $this->l('Your server\'s maximum upload file size is') . ':&nbsp;' . ini_get('upload_max_filesize') ?></p>
 					<?php if (!strval(Tools::getValue('virtual_product_filename'))): ?>
 					<label id="virtual_product_file_label" for="virtual_product_file" class="t"><?php echo $this->l('Upload a file') ?></label>
-					<input type="file" id="virtual_product_file" name="virtual_product_file" value="" class="" onchange="uploadFile()" maxlength="<?php echo $this->maxFileSize ?>" />
+					<input type="file" id="virtual_product_file" name="virtual_product_file" value="" class="" onchange="uploadFile()" maxlength="<?php echo $this->maxFileSize ?>">
 					<?php endif; ?>
 					<div id="upload-confirmation">
 					<?php if ($up_filename = strval(Tools::getValue('virtual_product_filename'))): ?>
-						<input type="hidden" id="virtual_product_filename" name="virtual_product_filename" value="<?php echo $up_filename ?>" />
+						<input type="hidden" id="virtual_product_filename" name="virtual_product_filename" value="<?php echo $up_filename ?>">
 					<?php endif; ?>
 					</div>
 	<?php else: ?>
-					<input type="hidden" id="virtual_product_filename" name="virtual_product_filename" value="<?php echo $productDownload->physically_filename ?>" />
+					<input type="hidden" id="virtual_product_filename" name="virtual_product_filename" value="<?php echo $productDownload->physically_filename ?>">
 					<?php echo $this->l('This is the link').':&nbsp;'.$productDownload->getHtmlLink(false, true) ?>
 					<a href="confirm.php?height=200&amp;width=300&amp;modal=true&amp;referer=<?php echo rawurlencode($_SERVER['REQUEST_URI'].'&deleteVirtualProduct=true') ?>" class="thickbox red" title="<?php echo $this->l('Delete this file') ?>"><?php echo $this->l('Delete this file') ?></a>
 	<?php endif; // check if file exists ?>
 				</p>
 				<p class="block">
 					<label for="virtual_product_name" class="t"><?php echo $this->l('Filename') ?></label>
-					<input type="text" id="virtual_product_name" name="virtual_product_name" class="" value="<?php echo $productDownload->id > 0 ? $productDownload->display_filename : htmlentities(Tools::getValue('virtual_product_name'), ENT_COMPAT, 'UTF-8') ?>" />
+					<input type="text" id="virtual_product_name" name="virtual_product_name" class="" value="<?php echo $productDownload->id > 0 ? $productDownload->display_filename : htmlentities(Tools::getValue('virtual_product_name'), ENT_COMPAT, 'UTF-8') ?>">
 					<span class="hint" name="help_box" style="display:none;"><?php echo $this->l('The complete filename with its extension (e.g., Our best song.mp3)') ?></span>
 				</p>
 				<p class="block">
 					<label for="virtual_product_nb_downloable" class="t"><?php echo $this->l('Number of downloads') ?></label>
-					<input type="text" id="virtual_product_nb_downloable" name="virtual_product_nb_downloable" value="<?php echo $productDownload->id > 0 ? $productDownload->nb_downloadable : htmlentities(Tools::getValue('virtual_product_nb_downloable'), ENT_COMPAT, 'UTF-8') ?>" class="" size="6" />
+					<input type="text" id="virtual_product_nb_downloable" name="virtual_product_nb_downloable" value="<?php echo $productDownload->id > 0 ? $productDownload->nb_downloadable : htmlentities(Tools::getValue('virtual_product_nb_downloable'), ENT_COMPAT, 'UTF-8') ?>" class="" size="6">
 					<span class="hint" name="help_box" style="display:none"><?php echo $this->l('Number of authorized downloads per customer') ?></span>
 				</p>
 				<p class="block">
 					<label for="virtual_product_expiration_date" class="t"><?php echo $this->l('Expiration date') ?></label>
 					<input type="text" id="virtual_product_expiration_date" name="virtual_product_expiration_date" value="<?php echo ($productDownload->id > 0) ? ((!empty($productDownload->date_expiration) AND $productDownload->date_expiration != '0000-00-00 00:00:00') ? date('Y-m-d', strtotime($productDownload->date_expiration))
-: '' ) : htmlentities(Tools::getValue('virtual_product_expiration_date'), ENT_COMPAT, 'UTF-8') ?>" size="11" maxlength="10" autocomplete="off" /> <?php echo $this->l('Format: YYYY-MM-DD'); ?>
+: '' ) : htmlentities(Tools::getValue('virtual_product_expiration_date'), ENT_COMPAT, 'UTF-8') ?>" size="11" maxlength="10" autocomplete="off"> <?php echo $this->l('Format: YYYY-MM-DD'); ?>
 					<span class="hint" name="help_box" style="display:none"><?php echo $this->l('No expiration date if you leave this blank'); ?></span>
 				</p>
 				<p class="block">
 					<label for="virtual_product_nb_days" class="t"><?php echo $this->l('Number of days') ?></label>
-					<input type="text" id="virtual_product_nb_days" name="virtual_product_nb_days" value="<?php echo $productDownload->id > 0 ? $productDownload->nb_days_accessible : htmlentities(Tools::getValue('virtual_product_nb_days'), ENT_COMPAT, 'UTF-8') ?>" class="" size="4" /><sup> *</sup>
+					<input type="text" id="virtual_product_nb_days" name="virtual_product_nb_days" value="<?php echo $productDownload->id > 0 ? $productDownload->nb_days_accessible : htmlentities(Tools::getValue('virtual_product_nb_days'), ENT_COMPAT, 'UTF-8') ?>" class="" size="4"><sup> *</sup>
 					<span class="hint" name="help_box" style="display:none"><?php echo $this->l('How many days this file can be accessed by customers') ?></span>
 				</p>
 	<?php endif; // check if download directory is writable ?>
@@ -1792,7 +1792,7 @@ class AdminProducts extends AdminTab
 					<tr class="field-for-product-type-product">
 						<td class="col-left">'.$this->l('Pre-tax wholesale price:').'</td>
 						<td style="padding-bottom:5px;">
-							'.($currency->format == 1 ? $currency->sign.' ' : '').'<input size="11" maxlength="14" name="wholesale_price" type="text" value="'.htmlentities($this->getFieldValue($obj, 'wholesale_price'), ENT_COMPAT, 'UTF-8').'" onKeyUp="javascript:this.value = this.value.replace(/,/g, \'.\');" />'.($currency->format == 2 ? ' '.$currency->sign : '').'
+							'.($currency->format == 1 ? $currency->sign.' ' : '').'<input size="11" maxlength="14" name="wholesale_price" type="text" value="'.htmlentities($this->getFieldValue($obj, 'wholesale_price'), ENT_COMPAT, 'UTF-8').'" onKeyUp="javascript:this.value = this.value.replace(/,/g, \'.\');">'.($currency->format == 2 ? ' '.$currency->sign : '').'
 							<span style="margin-left:10px">'.$this->l('The wholesale price at which you bought this product').'</span>
 						</td>
 					</tr>';
@@ -1800,7 +1800,7 @@ class AdminProducts extends AdminTab
 					<tr class="field-for-product-type-product">
 						<td class="col-left">'.$this->l('Pre-tax retail price:').'</td>
 						<td style="padding-bottom:5px;">
-							'.($currency->format == 1 ? $currency->sign.' ' : '').'<input size="11" maxlength="14" id="priceTE" name="price" type="text" value="'.$this->getFieldValue($obj, 'price').'" onKeyUp="javascript:this.value = this.value.replace(/,/g, \'.\'); calcPriceTI();" />'.($currency->format == 2 ? ' '.$currency->sign : '').'<sup> *</sup>
+							'.($currency->format == 1 ? $currency->sign.' ' : '').'<input size="11" maxlength="14" id="priceTE" name="price" type="text" value="'.$this->getFieldValue($obj, 'price').'" onKeyUp="javascript:this.value = this.value.replace(/,/g, \'.\'); calcPriceTI();">'.($currency->format == 2 ? ' '.$currency->sign : '').'<sup> *</sup>
 							<span style="margin-left:2px">'.$this->l('The pre-tax retail price to sell this product').'</span>
 						</td>
 					</tr>';
@@ -1827,43 +1827,43 @@ class AdminProducts extends AdminTab
 							if (Tax::excludeTaxeOption())
 							{
 								echo '<span style="margin-left:10px; color:red;">'.$this->l('Taxes are currently disabled').'</span> (<b><a href="index.php?tab=AdminTaxes&token='.Tools::getAdminToken('AdminTaxes'.intval(Tab::getIdFromClassName('AdminTaxes')).intval($cookie->id_employee)).'">'.$this->l('Tax options').'</a></b>)';
-								echo '<input type="hidden" value="'.intval($this->getFieldValue($obj, 'id_tax')).'" name="id_tax" />';
+								echo '<input type="hidden" value="'.intval($this->getFieldValue($obj, 'id_tax')).'" name="id_tax">';
 							}
 				echo '</td>
 					</tr>
 					<tr class="field-for-product-type-product">
 						<td class="col-left">'.$this->l('Retail price with tax:').'</td>
 						<td style="padding-bottom:5px;">
-							'.($currency->format == 1 ? ' '.$currency->sign : '').' <input size="11" maxlength="14" id="priceTI" type="text" value="" onKeyUp="noComma(\'priceTI\'); calcPriceTE();" />'.($currency->format == 2 ? ' '.$currency->sign : '').'
+							'.($currency->format == 1 ? ' '.$currency->sign : '').' <input size="11" maxlength="14" id="priceTI" type="text" value="" onKeyUp="noComma(\'priceTI\'); calcPriceTE();">'.($currency->format == 2 ? ' '.$currency->sign : '').'
 							<span style="margin-left:10px">
 						</td>
 					</tr>
 					<tr class="field-for-product-type-product">
 						<td class="col-left">'.$this->l('Eco-tax:').'</td>
 						<td style="padding-bottom:5px;">
-							'.($currency->format == 1 ? $currency->sign.' ' : '').'<input size="11" maxlength="14" id="ecotax" name="ecotax" type="text" value="'.$this->getFieldValue($obj, 'ecotax').'" onKeyUp="javascript:this.value = this.value.replace(/,/g, \'.\'); if (parseInt(this.value) > getE(\'priceTE\').value) this.value = getE(\'priceTE\').value; if (isNaN(this.value)) this.value = 0;" />'.($currency->format == 2 ? ' '.$currency->sign : '').'
+							'.($currency->format == 1 ? $currency->sign.' ' : '').'<input size="11" maxlength="14" id="ecotax" name="ecotax" type="text" value="'.$this->getFieldValue($obj, 'ecotax').'" onKeyUp="javascript:this.value = this.value.replace(/,/g, \'.\'); if (parseInt(this.value) > getE(\'priceTE\').value) this.value = getE(\'priceTE\').value; if (isNaN(this.value)) this.value = 0;">'.($currency->format == 2 ? ' '.$currency->sign : '').'
 							<span style="margin-left:10px">('.$this->l('already included in price').')</span>
 						</td>
 					</tr>
 					<tr class="field-for-product-type-product">
 						<td class="col-left">'.$this->l('Reduction amount:').'</td>
 						<td style="padding-bottom:5px;">
-							'.($currency->format == 1 ? ' '.$currency->sign.' ' : '').'<input size="11" maxlength="14" type="text" name="reduction_price" id="reduction_price" value="'.$this->getFieldValue($obj, 'reduction_price').'" onkeyup="javascript:this.value = this.value.replace(/,/g, \'.\'); var key = window.event ? window.event.keyCode : event.which; if (key != 9) reductionPrice();" /> '.($currency->format == 2 ? ' '.$currency->sign : '').'
+							'.($currency->format == 1 ? ' '.$currency->sign.' ' : '').'<input size="11" maxlength="14" type="text" name="reduction_price" id="reduction_price" value="'.$this->getFieldValue($obj, 'reduction_price').'" onkeyup="javascript:this.value = this.value.replace(/,/g, \'.\'); var key = window.event ? window.event.keyCode : event.which; if (key != 9) reductionPrice();"> '.($currency->format == 2 ? ' '.$currency->sign : '').'
 							<span style="padding-right: 15px; padding-left: 15px; font-weight: bold">'.$this->l('OR').'</span>
-							<input size="10" maxlength="14" type="text" name="reduction_percent" id="reduction_percent" value="'.$this->getFieldValue($obj, 'reduction_percent').'" onkeyup="javascript:this.value = this.value.replace(/,/g, \'.\'); var key = window.event ? window.event.keyCode : event.which; if (key != 9) reductionPercent();" /> %
+							<input size="10" maxlength="14" type="text" name="reduction_percent" id="reduction_percent" value="'.$this->getFieldValue($obj, 'reduction_percent').'" onkeyup="javascript:this.value = this.value.replace(/,/g, \'.\'); var key = window.event ? window.event.keyCode : event.which; if (key != 9) reductionPercent();"> %
 						</td>
 					</tr>
 					<tr class="field-for-product-type-product">
 						<td class="col-left">&nbsp;</td>
-						<td>'.$this->l('available from').' <input type="text" id="reduction_from" name="reduction_from" value="'.(($from = $this->getFieldValue($obj, 'reduction_from') AND $from != '0000-00-00' AND $from != '1942-01-01') ? $from : date('Y-m-d')).'" />
-							'.$this->l('to').' <input type="text" id="reduction_to" name="reduction_to" value="'.(($to = $this->getFieldValue($obj, 'reduction_to') AND $to != '0000-00-00' AND $to != '1942-01-01') ? $to : date('Y-m-d')).'" />
+						<td>'.$this->l('available from').' <input type="text" id="reduction_from" name="reduction_from" value="'.(($from = $this->getFieldValue($obj, 'reduction_from') AND $from != '0000-00-00' AND $from != '1942-01-01') ? $from : date('Y-m-d')).'">
+							'.$this->l('to').' <input type="text" id="reduction_to" name="reduction_to" value="'.(($to = $this->getFieldValue($obj, 'reduction_to') AND $to != '0000-00-00' AND $to != '1942-01-01') ? $to : date('Y-m-d')).'">
 							<p>'.$this->l('Leave same dates for undefined duration').'</p>
 						</td>
 					</tr>
 					<tr class="field-for-product-type-product">
 						<td class="col-left">&nbsp;</td>
 						<td style="padding-bottom:5px;">
-							<input type="checkbox" name="on_sale" id="on_sale" style="padding-top: 5px;" '.($this->getFieldValue($obj, 'on_sale') ? 'checked="checked"' : '').'value="1" />&nbsp;<label for="on_sale" class="t">'.$this->l('Display "on sale" icon on product page and text on product listing').'</label>
+							<input type="checkbox" name="on_sale" id="on_sale" style="padding-top: 5px;" '.($this->getFieldValue($obj, 'on_sale') ? 'checked="checked"' : '').'value="1">&nbsp;<label for="on_sale" class="t">'.$this->l('Display "on sale" icon on product page and text on product listing').'</label>
 						</td>
 					</tr>
 					<tr class="field-for-product-type-product">
@@ -1876,7 +1876,7 @@ class AdminProducts extends AdminTab
 					<tr class="field-for-product-type-product">
 						<td class="col-left">'.$this->l('Quantity:').'</td>
 						<td style="padding-bottom:5px;"><input size="3" maxlength="6" '.$qty_state.' name="quantity" type="text" value="'.$qty.'" '.
-						((isset($_POST['attQty']) AND $_POST['attQty']) ? 'onclick="alert(\''.$this->l('Quantity is already defined by Attributes').'.<br />'.$this->l('Delete attributes first').'.\');" readonly="readonly" ' : '').'/><sup> *</sup>
+						((isset($_POST['attQty']) AND $_POST['attQty']) ? 'onclick="alert(\''.$this->l('Quantity is already defined by Attributes').'.<br>'.$this->l('Delete attributes first').'.\');" readonly="readonly" ' : '').'><sup> *</sup>
 					</tr>
 					<tr class="field-for-product-type-product">
 						<td class="col-left">'.$this->l('Displayed text when in-stock:').'</td>
@@ -1885,7 +1885,7 @@ class AdminProducts extends AdminTab
 			echo '
 							<div id="cavailable_now_'.$language['id_lang'].'" style="display: '.($language['id_lang'] == $defaultLanguage ? 'block' : 'none').'; float: left;">
 								<input size="30" type="text" id="available_now_'.$language['id_lang'].'" name="available_now_'.$language['id_lang'].'"
-								value="'.stripslashes(htmlentities($this->getFieldValue($obj, 'available_now', $language['id_lang']), ENT_COMPAT, 'UTF-8')).'" />
+								value="'.stripslashes(htmlentities($this->getFieldValue($obj, 'available_now', $language['id_lang']), ENT_COMPAT, 'UTF-8')).'">
 								<span class="hint" name="help_box">'.$this->l('Forbidden characters:').' <>;=#{}<span class="hint-pointer">&nbsp;</span></span>
 							</div>';
 		$this->displayFlags($languages, $defaultLanguage, $divLangName, 'cavailable_now');
@@ -1898,7 +1898,7 @@ class AdminProducts extends AdminTab
 			echo '
 							<div id="cavailable_later_'.$language['id_lang'].'" style="display: '.($language['id_lang'] == $defaultLanguage ? 'block' : 'none').'; float: left;">
 								<input size="30" type="text" id="available_later_'.$language['id_lang'].'" name="available_later_'.$language['id_lang'].'"
-								value="'.stripslashes(htmlentities($this->getFieldValue($obj, 'available_later', $language['id_lang']), ENT_COMPAT, 'UTF-8')).'" />
+								value="'.stripslashes(htmlentities($this->getFieldValue($obj, 'available_later', $language['id_lang']), ENT_COMPAT, 'UTF-8')).'">
 								<span class="hint" name="help_box">'.$this->l('Forbidden characters:').' <>;=#{}<span class="hint-pointer">&nbsp;</span></span>
 							</div>';
 		$this->displayFlags($languages, $defaultLanguage, $divLangName, 'cavailable_later');
@@ -1913,9 +1913,9 @@ class AdminProducts extends AdminTab
 					<tr class="field-for-product-type-product">
 						<td class="col-left">'.$this->l('When out of stock:').'</td>
 						<td style="padding-bottom:5px;">
-							<input type="radio" name="out_of_stock" id="out_of_stock_1" value="0" '.(intval($this->getFieldValue($obj, 'out_of_stock')) == 0 ? 'checked="checked"' : '').'/> <label for="out_of_stock_1" class="t" id="label_out_of_stock_1">'.$this->l('Deny orders').'</label>
-							<br /><input type="radio" name="out_of_stock" id="out_of_stock_2" value="1" '.($this->getFieldValue($obj, 'out_of_stock') == 1 ? 'checked="checked"' : '').'/> <label for="out_of_stock_2" class="t" id="label_out_of_stock_2">'.$this->l('Allow orders').'</label>
-							<br /><input type="radio" name="out_of_stock" id="out_of_stock_3" value="2" '.($this->getFieldValue($obj, 'out_of_stock') == 2 ? 'checked="checked"' : '').'/> <label for="out_of_stock_3" class="t" id="label_out_of_stock_3">'.$this->l('Default:').' <i>'.$this->l((intval(Configuration::get('PS_ORDER_OUT_OF_STOCK')) ? 'Allow orders' : 'Deny orders')).'</i> ('.$this->l('as set in').' <a href="index.php?tab=AdminPPreferences&token='.Tools::getAdminToken('AdminPPreferences'.intval(Tab::getIdFromClassName('AdminPPreferences')).intval($cookie->id_employee)).'"  onclick="return confirm(\''.$this->l('Are you sure you want to delete entered product information?', __CLASS__, true, false).'\');">'.$this->l('Preferences').'</a>)</label>
+							<input type="radio" name="out_of_stock" id="out_of_stock_1" value="0" '.(intval($this->getFieldValue($obj, 'out_of_stock')) == 0 ? 'checked="checked"' : '').'> <label for="out_of_stock_1" class="t" id="label_out_of_stock_1">'.$this->l('Deny orders').'</label>
+							<br><input type="radio" name="out_of_stock" id="out_of_stock_2" value="1" '.($this->getFieldValue($obj, 'out_of_stock') == 1 ? 'checked="checked"' : '').'> <label for="out_of_stock_2" class="t" id="label_out_of_stock_2">'.$this->l('Allow orders').'</label>
+							<br><input type="radio" name="out_of_stock" id="out_of_stock_3" value="2" '.($this->getFieldValue($obj, 'out_of_stock') == 2 ? 'checked="checked"' : '').'> <label for="out_of_stock_3" class="t" id="label_out_of_stock_3">'.$this->l('Default:').' <i>'.$this->l((intval(Configuration::get('PS_ORDER_OUT_OF_STOCK')) ? 'Allow orders' : 'Deny orders')).'</i> ('.$this->l('as set in').' <a href="index.php?tab=AdminPPreferences&token='.Tools::getAdminToken('AdminPPreferences'.intval(Tab::getIdFromClassName('AdminPPreferences')).intval($cookie->id_employee)).'"  onclick="return confirm(\''.$this->l('Are you sure you want to delete entered product information?', __CLASS__, true, false).'\');">'.$this->l('Preferences').'</a>)</label>
 						</td>
 					</tr>
 
@@ -1936,7 +1936,7 @@ class AdminProducts extends AdminTab
 							<div style="overflow: auto; min-height: 300px; padding-top: 0.6em;" id="categoryList">
 							<table cellspacing="0" cellpadding="0" class="table">
 									<tr>
-										<th><input type="checkbox" name="checkme" class="noborder" onclick="checkDelBoxes(this.form, \'categoryBox[]\', this.checked)" /></th>
+										<th><input type="checkbox" name="checkme" class="noborder" onclick="checkDelBoxes(this.form, \'categoryBox[]\', this.checked)"></th>
 										<th>'.$this->l('ID').'</th>
 										<th style="width: 400px">'.$this->l('Name').'</th>
 									</tr>';
@@ -1954,7 +1954,7 @@ class AdminProducts extends AdminTab
 					</tr>
 					<tr><td colspan="2" style="padding-bottom:5px;"><hr style="width:730px;"></td></tr>
 					<tr><td colspan="2">
-						<span onclick="javascript:openCloseLayer(\'seo\');" style="cursor: pointer"><img src="../img/admin/arrow.gif" alt="'.$this->l('SEO').'" title="'.$this->l('SEO').'" style="float:left; margin-right:5px;"/>'.$this->l('Click here to improve product\'s rank in search engines (SEO)').'</span><br />
+						<span onclick="javascript:openCloseLayer(\'seo\');" style="cursor: pointer"><img src="../img/admin/arrow.gif" alt="'.$this->l('SEO').'" title="'.$this->l('SEO').'" style="float:left; margin-right:5px;">'.$this->l('Click here to improve product\'s rank in search engines (SEO)').'</span><br>
 						<div id="seo" style="display: none; padding-top: 15px;">
 							<table>
 								<tr>
@@ -1964,7 +1964,7 @@ class AdminProducts extends AdminTab
 			echo '
 										<div id="cmeta_title_'.$language['id_lang'].'" style="display: '.($language['id_lang'] == $defaultLanguage ? 'block' : 'none').'; float: left;">
 											<input size="55" type="text" id="meta_title_'.$language['id_lang'].'" name="meta_title_'.$language['id_lang'].'"
-											value="'.htmlentities($this->getFieldValue($obj, 'meta_title', $language['id_lang']), ENT_COMPAT, 'UTF-8').'" />
+											value="'.htmlentities($this->getFieldValue($obj, 'meta_title', $language['id_lang']), ENT_COMPAT, 'UTF-8').'">
 											<span class="hint" name="help_box">'.$this->l('Forbidden characters:').' <>;=#{}<span class="hint-pointer">&nbsp;</span></span>
 										</div>';
 		$this->displayFlags($languages, $defaultLanguage, $divLangName, 'cmeta_title');
@@ -1979,7 +1979,7 @@ class AdminProducts extends AdminTab
 			echo '
 										<div id="cmeta_description_'.$language['id_lang'].'" style="display: '.($language['id_lang'] == $defaultLanguage ? 'block' : 'none').'; float: left;">
 											<input size="55" type="text" id="meta_description_'.$language['id_lang'].'" name="meta_description_'.$language['id_lang'].'"
-											value="'.htmlentities($this->getFieldValue($obj, 'meta_description', $language['id_lang']), ENT_COMPAT, 'UTF-8').'" />
+											value="'.htmlentities($this->getFieldValue($obj, 'meta_description', $language['id_lang']), ENT_COMPAT, 'UTF-8').'">
 											<span class="hint" name="help_box">'.$this->l('Forbidden characters:').' <>;=#{}<span class="hint-pointer">&nbsp;</span></span>
 										</div>';
 		$this->displayFlags($languages, $defaultLanguage, $divLangName, 'cmeta_description');
@@ -1994,7 +1994,7 @@ class AdminProducts extends AdminTab
 			echo '
 										<div id="cmeta_keywords_'.$language['id_lang'].'" style="display: '.($language['id_lang'] == $defaultLanguage ? 'block' : 'none').'; float: left;">
 											<input size="55" type="text" id="meta_keywords_'.$language['id_lang'].'" name="meta_keywords_'.$language['id_lang'].'"
-											value="'.htmlentities($this->getFieldValue($obj, 'meta_keywords', $language['id_lang']), ENT_COMPAT, 'UTF-8').'" />
+											value="'.htmlentities($this->getFieldValue($obj, 'meta_keywords', $language['id_lang']), ENT_COMPAT, 'UTF-8').'">
 											<span class="hint" name="help_box">'.$this->l('Forbidden characters:').' <>;=#{}<span class="hint-pointer">&nbsp;</span></span>
 										</div>';
 		$this->displayFlags($languages, $defaultLanguage, $divLangName, 'cmeta_keywords');
@@ -2009,7 +2009,7 @@ class AdminProducts extends AdminTab
 			echo '
 										<div id="clink_rewrite_'.$language['id_lang'].'" style="display: '.($language['id_lang'] == $defaultLanguage ? 'block' : 'none').'; float: left;">
 											<input size="55" type="text" id="link_rewrite_'.$language['id_lang'].'" name="link_rewrite_'.$language['id_lang'].'"
-											value="'.htmlentities($this->getFieldValue($obj, 'link_rewrite', $language['id_lang']), ENT_COMPAT, 'UTF-8').'" onkeyup="this.value = str2url(this.value); updateFriendlyURL();" /><sup> *</sup>
+											value="'.htmlentities($this->getFieldValue($obj, 'link_rewrite', $language['id_lang']), ENT_COMPAT, 'UTF-8').'" onkeyup="this.value = str2url(this.value); updateFriendlyURL();"><sup> *</sup>
 											<span class="hint" name="help_box">'.$this->l('Only letters and the "less" character are allowed').'<span class="hint-pointer">&nbsp;</span></span>
 										</div>';
 		$this->displayFlags($languages, $defaultLanguage, $divLangName, 'clink_rewrite');
@@ -2025,7 +2025,7 @@ class AdminProducts extends AdminTab
 					</td></tr>
 					<tr><td colspan="2" style="padding-bottom:5px;"><hr style="width:730px;"></td></tr>
 					<tr>
-						<td class="col-left">'.$this->l('Short description:').'<br /><br /><i>('.$this->l('appears in search results').')</i></td>
+						<td class="col-left">'.$this->l('Short description:').'<br><br><i>('.$this->l('appears in search results').')</i></td>
 						<td style="padding-bottom:5px;">';
 		foreach ($languages as $language)
 			echo '
@@ -2053,7 +2053,7 @@ class AdminProducts extends AdminTab
 				{
 					echo '<div id="ctags_'.$language['id_lang'].'" style="display: '.($language['id_lang'] == $defaultLanguage ? 'block' : 'none').'; float: left;">
 							<input size="55" type="text" id="tags_'.$language['id_lang'].'" name="tags_'.$language['id_lang'].'"
-							value="'.htmlentities(Tools::getValue('tags_'.$language['id_lang'], $obj->getTags($language['id_lang'], true)), ENT_COMPAT, 'UTF-8').'" />
+							value="'.htmlentities(Tools::getValue('tags_'.$language['id_lang'], $obj->getTags($language['id_lang'], true)), ENT_COMPAT, 'UTF-8').'">
 							<span class="hint" name="help_box">'.$this->l('Forbidden characters:').' !<>;?=+#"&deg;{}_$%<span class="hint-pointer">&nbsp;</span></span>
 						  </div>';
 				}
@@ -2071,21 +2071,21 @@ class AdminProducts extends AdminTab
 				}
 					echo '
 					<tr>
-						<td class="col-left">'.$this->l('Accessories:').'<br /><br /><i>'.$this->l('(Do not forget to Save the product afterward)').'</i></td>
+						<td class="col-left">'.$this->l('Accessories:').'<br><br><i>'.$this->l('(Do not forget to Save the product afterward)').'</i></td>
 						<td style="padding-bottom:5px;">
 							<div id="divAccessories">';
 					foreach ($accessories as $accessory)
-						echo $accessory['name'].'<span onclick="delAccessory('.$accessory['id_product'].');" style="cursor: pointer;"><img src="../img/admin/delete.gif" /></span><br />';
+						echo $accessory['name'].'<span onclick="delAccessory('.$accessory['id_product'].');" style="cursor: pointer;"><img src="../img/admin/delete.gif"></span><br>';
 					echo '</div>
 							<input type="hidden" name="inputAccessories" id="inputAccessories" value="';
 					foreach ($accessories as $accessory)
 						echo $accessory['id_product'].'-';
-					echo '" />
+					echo '">
 							<input type="hidden" name="nameAccessories" id="nameAccessories" value="';
 					foreach ($accessories as $accessory)
 						echo $accessory['name'].'¤';
 
-					echo '" />
+					echo '">
 							<script type="text/javascript">
 								var formProduct;
 								var accessories = new Array();
@@ -2131,15 +2131,15 @@ class AdminProducts extends AdminTab
 							<script type="text/javascript">
 								fillAccessories();
 							</script>
-							<span onclick="addAccessory();" style="cursor: pointer;"><img src="../img/admin/add.gif" alt="'.$this->l('Add an accessory').'" title="'.$this->l('Add an accessory').'" /></span>
-							<br />'.$this->l('Filter:').' <input type="text" size="25" name="filter" onkeyup="fillAccessories();" class="space" />
+							<span onclick="addAccessory();" style="cursor: pointer;"><img src="../img/admin/add.gif" alt="'.$this->l('Add an accessory').'" title="'.$this->l('Add an accessory').'"></span>
+							<br>'.$this->l('Filter:').' <input type="text" size="25" name="filter" onkeyup="fillAccessories();" class="space">
 						</td>
 					</tr>
 					<tr><td colspan="2" style="padding-bottom:10px;"><hr style="width:730px;"></td></tr>
 					<tr>
 						<td colspan="2" style="text-align:center;">
-							'.(Tools::isSubmit('id_category') ? '<input type="submit" value="'.$this->l('Save').'" name="submitAdd'.$this->table.'" class="button" />' : '').'
-							&nbsp;<input type="submit" value="'.$this->l('Save and stay').'" name="submitAdd'.$this->table.'AndStay" class="button" /></td>
+							'.(Tools::isSubmit('id_category') ? '<input type="submit" value="'.$this->l('Save').'" name="submitAdd'.$this->table.'" class="button">' : '').'
+							&nbsp;<input type="submit" value="'.$this->l('Save and stay').'" name="submitAdd'.$this->table.'AndStay" class="button"></td>
 					</tr>
 				</table>
 			</div>
@@ -2197,13 +2197,13 @@ class AdminProducts extends AdminTab
 					<td><b>'.$this->l('Add a new image to this product').'</b></td>
 				</tr>
 				</table>
-				<hr style="width:730px;"><br />
+				<hr style="width:730px;"><br>
 				<table cellpadding="5" style="width:100%">
 					<tr>
 						<td class="col-left">'.$this->l('File:').'</td>
 						<td style="padding-bottom:5px;">
-							<input type="file" id="image_product" name="image_product" /> OR <input type="text" name="imageurl" id="imageurl" />'.$gallerAnchor.'
-							<p>'.$this->l('Format:').' JPG, GIF, PNG<br />'.$this->l('Filesize:').' '.($this->maxImageSize / 1000).''.$this->l('Kb max.').'</p>
+							<input type="file" id="image_product" name="image_product"> OR <input type="text" name="imageurl" id="imageurl">'.$gallerAnchor.'
+							<p>'.$this->l('Format:').' JPG, GIF, PNG<br>'.$this->l('Filesize:').' '.($this->maxImageSize / 1000).''.$this->l('Kb max.').'</p>
 						</td>
 					</tr>
 
@@ -2219,9 +2219,9 @@ class AdminProducts extends AdminTab
 								$legend = Tools::getValue('legend_'.$language['id_lang']);
 							echo '
 								<div id="clegend_'.$language['id_lang'].'" style="display: '.($language['id_lang'] == $defaultLanguage ? 'block' : 'none').'; float:left; width:370px;">
-									<input size="55" type="text" id="legend_'.$language['id_lang'].'" name="legend_'.$language['id_lang'].'" value="'.stripslashes(htmlentities($legend, ENT_COMPAT, 'UTF-8')).'" maxlength="128" />
+									<input size="55" type="text" id="legend_'.$language['id_lang'].'" name="legend_'.$language['id_lang'].'" value="'.stripslashes(htmlentities($legend, ENT_COMPAT, 'UTF-8')).'" maxlength="128">
 									<sup>*</sup>
-									<span class="hint" name="help_box">'.$this->l('Forbidden characters:').' <>;=#{}<br />'.$this->l('Forbidden characters will be automatically erased.').'<span class="hint-pointer">&nbsp;</span></span>
+									<span class="hint" name="help_box">'.$this->l('Forbidden characters:').' <>;=#{}<br>'.$this->l('Forbidden characters will be automatically erased.').'<span class="hint-pointer">&nbsp;</span></span>
 									<p style="clear: both">'.$this->l('Short description of the image').'</p>
 								</div>';
 						}
@@ -2232,7 +2232,7 @@ class AdminProducts extends AdminTab
 					<tr>
 						<td class="col-left">'.$this->l('Cover:').'</td>
 						<td style="padding-bottom:5px;">
-							<input type="checkbox" size="40" name="cover" id="cover_on" class="checkbox"'.((isset($_POST['cover']) AND intval($_POST['cover'])) ? ' checked="checked"' : '').' value="1" /><label class="t" for="cover_on"> '.$this->l('Use as product cover?').'</label>
+							<input type="checkbox" size="40" name="cover" id="cover_on" class="checkbox"'.((isset($_POST['cover']) AND intval($_POST['cover'])) ? ' checked="checked"' : '').' value="1"><label class="t" for="cover_on"> '.$this->l('Use as product cover?').'</label>
 							<p>'.$this->l('If you want to select this image as a product cover').'</p>
 						</td>
 					</tr>
@@ -2253,19 +2253,19 @@ class AdminProducts extends AdminTab
 					
 							if (isset($obj->id) AND sizeof($images))
 							{
-								echo '<input type="submit" value="'.$this->l('   Save image   ').'" name="submitAdd'.$this->table.'" class="button" />';
-								echo '<input type="hidden" value="on" name="productCreated" /><br /><br />';
+								echo '<input type="submit" value="'.$this->l('   Save image   ').'" name="submitAdd'.$this->table.'" class="button">';
+								echo '<input type="hidden" value="on" name="productCreated"><br><br>';
 							}
-							echo (Tools::getValue('id_image') ? '<input type="hidden" name="id_image" value="'.intval(Tools::getValue('id_image')).'" />' : '').'
+							echo (Tools::getValue('id_image') ? '<input type="hidden" name="id_image" value="'.intval(Tools::getValue('id_image')).'">' : '').'
 						</td>
 					</tr>
 					<tr><td colspan="2" style="padding-bottom:10px;"><hr style="width:730px;"></td></tr>';
 					if (!sizeof($images) OR !isset($obj->id))
 						echo '<tr>
 						<td colspan="2" style="text-align:center;">
-							<input type="hidden" value="off" name="productCreated" />
-							'.(Tools::isSubmit('id_category') ? '<input type="submit" value="'.$this->l('Save').'" name="submitAdd'.$this->table.'" class="button" />' : '').'
-							&nbsp;<input type="submit" value="'.$this->l('Save and stay').'" name="submitAdd'.$this->table.'AndStay" class="button" /></td>
+							<input type="hidden" value="off" name="productCreated">
+							'.(Tools::isSubmit('id_category') ? '<input type="submit" value="'.$this->l('Save').'" name="submitAdd'.$this->table.'" class="button">' : '').'
+							&nbsp;<input type="submit" value="'.$this->l('Save and stay').'" name="submitAdd'.$this->table.'AndStay" class="button"></td>
 					</tr>';
 					else
 					{
@@ -2286,7 +2286,7 @@ class AdminProducts extends AdminTab
 				<tr>
 					<td style="padding: 4px;"><a href="../img/p/'.$obj->id.'-'.$image['id_image'].'.jpg" target="_blank">
 					<img src="../img/p/'.$obj->id.'-'.$image['id_image'].'-small.jpg"
-					alt="'.htmlentities(stripslashes($image['legend']), ENT_COMPAT, 'UTF-8').'" title="'.htmlentities(stripslashes($image['legend']), ENT_COMPAT, 'UTF-8').'" /></a></td>
+					alt="'.htmlentities(stripslashes($image['legend']), ENT_COMPAT, 'UTF-8').'" title="'.htmlentities(stripslashes($image['legend']), ENT_COMPAT, 'UTF-8').'"></a></td>
 					<td class="center">'.intval($image['position']).'</td>
 					<td class="center">';
 
@@ -2308,10 +2308,10 @@ class AdminProducts extends AdminTab
 						[ <a href="'.$currentIndex.'&id_image='.$image['id_image'].'&imgPosition='.$image['position'].'&imgDirection=0&token='.($token ? $token : $this->token).'"><img src="../img/admin/down.gif" alt="" border="0"></a> ]';
 				echo '
 					</td>
-					<td class="center"><a href="'.$currentIndex.'&id_image='.$image['id_image'].'&coverImage&token='.($token ? $token : $this->token).'"><img src="../img/admin/'.($image['cover'] ? 'enabled.gif' : 'forbbiden.gif').'" alt="" /></a></td>
+					<td class="center"><a href="'.$currentIndex.'&id_image='.$image['id_image'].'&coverImage&token='.($token ? $token : $this->token).'"><img src="../img/admin/'.($image['cover'] ? 'enabled.gif' : 'forbbiden.gif').'" alt=""></a></td>
 					<td class="center">
-						<a href="'.$currentIndex.'&id_image='.$image['id_image'].'&editImage&tabs=1&token='.($token ? $token : $this->token).'"><img src="../img/admin/edit.gif" alt="'.$this->l('Modify this image').'" title="'.$this->l('Modify this image').'" /></a>
-						<a href="'.$currentIndex.'&id_image='.$image['id_image'].'&deleteImage&tabs=1&token='.($token ? $token : $this->token).'" onclick="return confirm(\''.$this->l('Are you sure?', __CLASS__, true, false).'\');"><img src="../img/admin/delete.gif" alt="'.$this->l('Delete this image').'" title="'.$this->l('Delete this image').'" /></a>
+						<a href="'.$currentIndex.'&id_image='.$image['id_image'].'&editImage&tabs=1&token='.($token ? $token : $this->token).'"><img src="../img/admin/edit.gif" alt="'.$this->l('Modify this image').'" title="'.$this->l('Modify this image').'"></a>
+						<a href="'.$currentIndex.'&id_image='.$image['id_image'].'&deleteImage&tabs=1&token='.($token ? $token : $this->token).'" onclick="return confirm(\''.$this->l('Are you sure?', __CLASS__, true, false).'\');"><img src="../img/admin/delete.gif" alt="'.$this->l('Delete this image').'" title="'.$this->l('Delete this image').'"></a>
 					</td>
 				</tr>';
 			}
@@ -2382,11 +2382,11 @@ class AdminProducts extends AdminTab
 			<table cellpadding="5">
 				<tr>
 					<td colspan="2"><b>'.$this->l('Add or modify combinations for this product').'</b> - 
-					&nbsp;<a href="index.php?tab=AdminCatalog&id_product='.$obj->id.'&id_category='.intval(Tools::getValue('id_category')).'&attributegenerator&token='.Tools::getAdminToken('AdminCatalog'.intval(Tab::getIdFromClassName('AdminCatalog')).intval($cookie->id_employee)).'" onclick="return confirm(\''.$this->l('Are you sure you want to delete entered product information?', __CLASS__, true, false).'\');"><img src="../img/admin/appearance.gif" alt="combinations_generator" class="middle" title="'.$this->l('Product combinations generator').'" />&nbsp;'.$this->l('Product combinations generator').'</a>
+					&nbsp;<a href="index.php?tab=AdminCatalog&id_product='.$obj->id.'&id_category='.intval(Tools::getValue('id_category')).'&attributegenerator&token='.Tools::getAdminToken('AdminCatalog'.intval(Tab::getIdFromClassName('AdminCatalog')).intval($cookie->id_employee)).'" onclick="return confirm(\''.$this->l('Are you sure you want to delete entered product information?', __CLASS__, true, false).'\');"><img src="../img/admin/appearance.gif" alt="combinations_generator" class="middle" title="'.$this->l('Product combinations generator').'">&nbsp;'.$this->l('Product combinations generator').'</a>
 					</td>
 				</tr>
 			</table>
-			<hr style="width:730px;"><br />
+			<hr style="width:730px;"><br>
 			<table cellpadding="5" style="width:100%">
 			<tr>
 			  <td style="width:150px" valign="top">'.$this->l('Group:').'</td>
@@ -2410,8 +2410,8 @@ class AdminProducts extends AdminTab
 		  </tr>
 		  <tr>
 			  <td style="width:150px" valign="top">
-			  <input style="width: 140px; margin-bottom: 10px;" type="button" value="'.$this->l('Add').'" class="button" onclick="add_attr();"/><br />
-			  <input style="width: 140px;" type="button" value="'.$this->l('Delete').'" class="button" onclick="del_attr()"/></td>
+			  <input style="width: 140px; margin-bottom: 10px;" type="button" value="'.$this->l('Add').'" class="button" onclick="add_attr();"><br>
+			  <input style="width: 140px;" type="button" value="'.$this->l('Delete').'" class="button" onclick="del_attr()"></td>
 			  <td align="left">
 				  <select id="product_att_list" name="attribute_combinaison_list[]" multiple="multiple" size="4" style="width: 320px;"></select>
 				</td>
@@ -2420,23 +2420,23 @@ class AdminProducts extends AdminTab
 		  <tr>
 			  <td style="width:150px">'.$this->l('Reference:').'</td>
 			  <td style="padding-bottom:5px;">
-				<input size="55" type="text" id="attribute_reference" name="attribute_reference" value="" style="width: 130px; margin-right: 44px;" />
-				'.$this->l('EAN13:').'<input size="55" maxlength="13" type="text" id="attribute_ean13" name="attribute_ean13" value="" style="width: 110px; margin-left: 10px;" />
+				<input size="55" type="text" id="attribute_reference" name="attribute_reference" value="" style="width: 130px; margin-right: 44px;">
+				'.$this->l('EAN13:').'<input size="55" maxlength="13" type="text" id="attribute_ean13" name="attribute_ean13" value="" style="width: 110px; margin-left: 10px;">
 				<span class="hint" name="help_box">'.$this->l('Special characters allowed:').' .-_#<span class="hint-pointer">&nbsp;</span></span>
 			  </td>
 		  </tr>
 		  <tr>
 			  <td style="width:150px">'.$this->l('Supplier Reference:').'</td>
 			  <td style="padding-bottom:5px;">
-				<input size="55" type="text" id="attribute_supplier_reference" name="attribute_supplier_reference" value="" style="width: 130px; margin-right: 44px;" />
-				'.$this->l('Location:').'<input size="55" type="text" id="attribute_location" name="attribute_location" value="" style="width: 101px; margin-left: 10px;" />
+				<input size="55" type="text" id="attribute_supplier_reference" name="attribute_supplier_reference" value="" style="width: 130px; margin-right: 44px;">
+				'.$this->l('Location:').'<input size="55" type="text" id="attribute_location" name="attribute_location" value="" style="width: 101px; margin-left: 10px;">
 				<span class="hint" name="help_box">'.$this->l('Special characters allowed:').' .-_#<span class="hint-pointer">&nbsp;</span></span>
 			  </td>
 		  </tr>
 		  <tr><td colspan="2"><hr style="width:730px;"></td></tr>
 		  <tr>
 			  <td style="width:150px">'.$this->l('Wholesale price:').'</td>
-			  <td style="padding-bottom:5px;">'.($currency->format == 1 ? $currency->sign.' ' : '').'<input type="text" size="6"  name="attribute_wholesale_price" id="attribute_wholesale_price" value="0.00" onKeyUp="javascript:this.value = this.value.replace(/,/g, \'.\');" />'.($currency->format == 2 ? ' '.$currency->sign : '').' ('.$this->l('overrides Wholesale price on Information tab').')</td>
+			  <td style="padding-bottom:5px;">'.($currency->format == 1 ? $currency->sign.' ' : '').'<input type="text" size="6"  name="attribute_wholesale_price" id="attribute_wholesale_price" value="0.00" onKeyUp="javascript:this.value = this.value.replace(/,/g, \'.\');">'.($currency->format == 2 ? ' '.$currency->sign : '').' ('.$this->l('overrides Wholesale price on Information tab').')</td>
 		  </tr>
 		  <tr>
 			  <td style="width:150px">'.$this->l('Impact on price:').'</td>
@@ -2447,7 +2447,7 @@ class AdminProducts extends AdminTab
 				  <option value="-1">'.$this->l('Reduction').'</option>
 				</select> <sup>*</sup>
 				<span id="span_impact">&nbsp;&nbsp;'.$this->l('of').'&nbsp;&nbsp;'.($currency->format == 1 ? $currency->sign.' ' : '').'
-					<input type="text" size="6" name="attribute_price" id="attribute_price" value="0.00" onKeyUp="javascript:this.value = this.value.replace(/,/g, \'.\');"/>'.($currency->format == 2 ? ' '.$currency->sign : '').'
+					<input type="text" size="6" name="attribute_price" id="attribute_price" value="0.00" onKeyUp="javascript:this.value = this.value.replace(/,/g, \'.\');">'.($currency->format == 2 ? ' '.$currency->sign : '').'
 				</span>
 			</td>
 		  </tr>
@@ -2459,15 +2459,15 @@ class AdminProducts extends AdminTab
 			  <option value="-1">'.$this->l('Reduction').'</option>
 			  </select>
 			  <span id="span_weight_impact">&nbsp;&nbsp;'.$this->l('of').'&nbsp;&nbsp;
-				<input type="text" size="6" name="attribute_weight" id="attribute_weight" value="0.00" onKeyUp="javascript:this.value = this.value.replace(/,/g, \'.\');" /> '.Configuration::get('PS_WEIGHT_UNIT').'</span></td>
+				<input type="text" size="6" name="attribute_weight" id="attribute_weight" value="0.00" onKeyUp="javascript:this.value = this.value.replace(/,/g, \'.\');"> '.Configuration::get('PS_WEIGHT_UNIT').'</span></td>
 		  </tr>
 		  <tr>
 			  <td style="width:150px">'.$this->l('Eco-tax:').'</td>
-			  <td style="padding-bottom:5px;">'.($currency->format == 1 ? $currency->sign.' ' : '').'<input type="text" size="3" name="attribute_ecotax" id="attribute_ecotax" value="0.00" onKeyUp="javascript:this.value = this.value.replace(/,/g, \'.\');" />'.($currency->format == 2 ? ' '.$currency->sign : '').' ('.$this->l('overrides Eco-tax on Information tab').')</td>
+			  <td style="padding-bottom:5px;">'.($currency->format == 1 ? $currency->sign.' ' : '').'<input type="text" size="3" name="attribute_ecotax" id="attribute_ecotax" value="0.00" onKeyUp="javascript:this.value = this.value.replace(/,/g, \'.\');">'.($currency->format == 2 ? ' '.$currency->sign : '').' ('.$this->l('overrides Eco-tax on Information tab').')</td>
 		  </tr>
 		  <tr>
 			  <td style="width:150px">'.$this->l('Quantity:').'</td>
-			  <td style="padding-bottom:5px;"><input type="text" size="3" name="attribute_quantity" id="attribute_quantity" value="1" /> ('.$this->l('overrides Quantity on Information tab').')</td>
+			  <td style="padding-bottom:5px;"><input type="text" size="3" name="attribute_quantity" id="attribute_quantity" value="1"> ('.$this->l('overrides Quantity on Information tab').')</td>
 		  </tr>
 			<tr>
 				<td colspan="2"><sup>*</sup> '.$this->l('included tax').'</td>
@@ -2482,34 +2482,34 @@ class AdminProducts extends AdminTab
 			$imageWidth = (isset($imageType['width']) ? intval($imageType['width']) : 64) + 25;
 			foreach ($images AS $image)
 			{
-				echo '<li style="float: left; width: '.$imageWidth.'px;"><input type="checkbox" name="id_image_attr[]" value="'.intval($image['id_image']).'" id="id_image_attr_'.intval($image['id_image']).'" />
-				<label for="id_image_attr_'.intval($image['id_image']).'" style="float: none;"><img src="../img/p/'.$obj->id.'-'.$image['id_image'].'-small.jpg" alt="'.htmlentities(stripslashes($image['legend']), ENT_COMPAT, 'UTF-8').'" title="'.htmlentities(stripslashes($image['legend']), ENT_COMPAT, 'UTF-8').'" /></label></li>';
+				echo '<li style="float: left; width: '.$imageWidth.'px;"><input type="checkbox" name="id_image_attr[]" value="'.intval($image['id_image']).'" id="id_image_attr_'.intval($image['id_image']).'">
+				<label for="id_image_attr_'.intval($image['id_image']).'" style="float: none;"><img src="../img/p/'.$obj->id.'-'.$image['id_image'].'-small.jpg" alt="'.htmlentities(stripslashes($image['legend']), ENT_COMPAT, 'UTF-8').'" title="'.htmlentities(stripslashes($image['legend']), ENT_COMPAT, 'UTF-8').'"></label></li>';
 				++$i;
 			}
 			echo '</ul>
-				<img id="pic" alt="" title="" style="display: none; width: 100px; height: 100px; float: left; border: 1px dashed #BBB; margin-left: 20px;" />
+				<img id="pic" alt="" title="" style="display: none; width: 100px; height: 100px; float: left; border: 1px dashed #BBB; margin-left: 20px;">
 			  </td>
 		  </tr>
 			<tr>
-			  <td style="width:150px">'.$this->l('Default:').'<br /><br /></td>
+			  <td style="width:150px">'.$this->l('Default:').'<br><br></td>
 			  <td style="padding-bottom:5px;">
-				<input type="checkbox" name="attribute_default" id="attribute_default" value="1" />&nbsp;'.$this->l('Make the default combination for this product').'<br /><br />
+				<input type="checkbox" name="attribute_default" id="attribute_default" value="1">&nbsp;'.$this->l('Make the default combination for this product').'<br><br>
 			  </td>
 		  </tr>
 		  <tr>
 			  <td style="width:150px">&nbsp;</td>
 			  <td style="padding-bottom:5px;">
-				<span style="float: left;"><input type="submit" name="submitProductAttribute" id="submitProductAttribute" value="'.$this->l('Add this combination').'" class="button" onclick="attr_selectall();" /> </span>
+				<span style="float: left;"><input type="submit" name="submitProductAttribute" id="submitProductAttribute" value="'.$this->l('Add this combination').'" class="button" onclick="attr_selectall();"> </span>
 				<span id="ResetSpan" style="float: left; margin-left: 8px; display: none;">
 				  <input type="reset" name="ResetBtn" id="ResetBtn" onclick="if (!confirm(\''.$this->l('Are you sure you want to cancel?', __CLASS__, true, false).'\')) return;
 				  init_elems(); getE(\'submitProductAttribute\').value = \''.$this->l('Add this attributes group', __CLASS__, true).'\';
-				  getE(\'id_product_attribute\').value = -1; openCloseLayer(\'ResetSpan\');" class="button" value="'.$this->l('Cancel modification').'" /></span><span style="clear: both;"></span>
+				  getE(\'id_product_attribute\').value = -1; openCloseLayer(\'ResetSpan\');" class="button" value="'.$this->l('Cancel modification').'"></span><span style="clear: both;"></span>
 			  </td>
 		  </tr>
 		  <tr><td colspan="2"><hr style="width:730px;"></td></tr>
 		  <tr>
 			  <td colspan="2">
-					<br />
+					<br>
 					<table border="0" cellpadding="0" cellspacing="0" class="table" style="width: 600px;">
 						<tr>
 							<th>'.$this->l('Attributes').'</th>
@@ -2572,9 +2572,9 @@ class AdminProducts extends AdminTab
 							<a style="cursor: pointer;">
 							<img src="../img/admin/edit.gif" alt="'.$this->l('Modify this combination').'"
 							onclick="javascript:fillCombinaison(\''.$product_attribute['wholesale_price'].'\', \''.$product_attribute['price'].'\', \''.$product_attribute['weight'].'\', \''.$product_attribute['reference'].'\', \''.$product_attribute['supplier_reference'].'\', \''.$product_attribute['ean13'].'\',
-							\''.$product_attribute['quantity'].'\', \''.($attrImage ? $attrImage->id : 0).'\', Array('.$jsList.'), \''.$id_product_attribute.'\', \''.$product_attribute['default_on'].'\', \''.$product_attribute['ecotax'].'\', \''.$product_attribute['location'].'\');" /></a>&nbsp;
+							\''.$product_attribute['quantity'].'\', \''.($attrImage ? $attrImage->id : 0).'\', Array('.$jsList.'), \''.$id_product_attribute.'\', \''.$product_attribute['default_on'].'\', \''.$product_attribute['ecotax'].'\', \''.$product_attribute['location'].'\');"></a>&nbsp;
 							<a href="'.$currentIndex.'&deleteProductAttribute&id_product_attribute='.$id_product_attribute.'&id_product='.$obj->id.'&token='.Tools::getAdminToken('AdminCatalog'.intval(Tab::getIdFromClassName('AdminCatalog')).intval($cookie->id_employee)).'" onclick="return confirm(\''.$this->l('Are you sure?', __CLASS__, true, false).'\');">
-							<img src="../img/admin/delete.gif" alt="'.$this->l('Delete this combination').'" /></a></td>
+							<img src="../img/admin/delete.gif" alt="'.$this->l('Delete this combination').'"></a></td>
 						</tr>';
 					}
 						else
@@ -2582,8 +2582,8 @@ class AdminProducts extends AdminTab
 			}
 			echo '
 						</table>
-						<br />'.$this->l('The row in blue is the default combination.').'
-						<br />
+						<br>'.$this->l('The row in blue is the default combination.').'
+						<br>
 						'.$this->l('A default combination must be designated for each product.').'
 						</td>
 						</tr>
@@ -2614,8 +2614,8 @@ class AdminProducts extends AdminTab
 											'</option>';
 								echo '
 								</select>
-								&nbsp;&nbsp;<input type="submit" value="'.$this->l('OK').'" name="submitAdd'.$this->table.'" class="button" />
-								&nbsp;&nbsp;&nbsp;&nbsp;<a href="index.php?tab=AdminAttributesGroups&token='.Tools::getAdminToken('AdminAttributesGroups'.intval(Tab::getIdFromClassName('AdminAttributesGroups')).intval($cookie->id_employee)).'" onclick="return confirm(\''.$this->l('Are you sure you want to delete entered product information?', __CLASS__, true, false).'\');"><img src="../img/admin/asterisk.gif" alt="" /> '.$this->l('Color attribute management').'</a>
+								&nbsp;&nbsp;<input type="submit" value="'.$this->l('OK').'" name="submitAdd'.$this->table.'" class="button">
+								&nbsp;&nbsp;&nbsp;&nbsp;<a href="index.php?tab=AdminAttributesGroups&token='.Tools::getAdminToken('AdminAttributesGroups'.intval(Tab::getIdFromClassName('AdminAttributesGroups')).intval($cookie->id_employee)).'" onclick="return confirm(\''.$this->l('Are you sure you want to delete entered product information?', __CLASS__, true, false).'\');"><img src="../img/admin/asterisk.gif" alt=""> '.$this->l('Color attribute management').'</a>
 								<p >'.$this->l('Active the color choice by selecting a color attribute group.').'</p>
 							</td>
 						</tr>
@@ -2643,7 +2643,7 @@ class AdminProducts extends AdminTab
 					<td colspan="2"><b>'.$this->l('Assign features to this product').'</b></td>
 				</tr>
 			</table>
-			<hr style="width:730px;"><br />';
+			<hr style="width:730px;"><br>';
 			// Header
 			$nb_feature = Feature::nbFeatures(intval($cookie->id_lang));
 			echo '
@@ -2694,7 +2694,7 @@ class AdminProducts extends AdminTab
 								$custom_lang = FeatureValue::selectLang($tab_customs, $language['id_lang']);
 								echo '
 								<div id="ccustom_'.$tab_features['id_feature'].'_'.$language['id_lang'].'" style="display: '.($language['id_lang'] == $defaultLanguage ? 'block' : 'none').'; float: left;">
-									<input type="text" name="custom_'.$tab_features['id_feature'].'_'.$language['id_lang'].'" size="20" value="'.htmlentities(Tools::getValue('custom_'.$tab_features['id_feature'].'_'.$language['id_lang'], $custom_lang), ENT_COMPAT, 'UTF-8').'" />
+									<input type="text" name="custom_'.$tab_features['id_feature'].'_'.$language['id_lang'].'" size="20" value="'.htmlentities(Tools::getValue('custom_'.$tab_features['id_feature'].'_'.$language['id_lang'], $custom_lang), ENT_COMPAT, 'UTF-8').'">
 								</div>';
 							}
 							$this->displayFlags($languages, $defaultLanguage, $ctab, 'ccustom_'.$tab_features['id_feature']);
@@ -2705,13 +2705,13 @@ class AdminProducts extends AdminTab
 				echo '
 				<tr>
 					<td>&nbsp;</td>
-					<td style="height:50px; " valign="bottom"><input type="submit" name="submitProductFeature" id="submitProductFeature" value="'.$this->l('Update features').'" class="button" /></td>
+					<td style="height:50px; " valign="bottom"><input type="submit" name="submitProductFeature" id="submitProductFeature" value="'.$this->l('Update features').'" class="button"></td>
 				</tr>';
 			}
 			echo '</table>
 			<hr style="width:730px;">
 			<div style="text-align:center;">
-				<a href="index.php?tab=AdminFeatures&addfeature&token='.Tools::getAdminToken('AdminFeatures'.intval(Tab::getIdFromClassName('AdminFeatures')).intval($cookie->id_employee)).'" onclick="return confirm(\''.$this->l('Are you sure you want to delete entered product information?', __CLASS__, true, false).'\');"><img src="../img/admin/add.gif" alt="new_features" title="'.$this->l('Create new features').'" />&nbsp;'.$this->l('Create new features').'</a>
+				<a href="index.php?tab=AdminFeatures&addfeature&token='.Tools::getAdminToken('AdminFeatures'.intval(Tab::getIdFromClassName('AdminFeatures')).intval($cookie->id_employee)).'" onclick="return confirm(\''.$this->l('Are you sure you want to delete entered product information?', __CLASS__, true, false).'\');"><img src="../img/admin/add.gif" alt="new_features" title="'.$this->l('Create new features').'">&nbsp;'.$this->l('Create new features').'</a>
 			</div>';
 		}
 		else
@@ -2736,14 +2736,14 @@ class AdminProducts extends AdminTab
 		echo '
 		<tr class="field-for-product-type-product">
 			<td>
-				<input type="checkbox" name="ppack" id="ppack" value="1"'.($boolPack ? ' checked="checked"' : '').' onchange="openCloseLayer(\'ppackdiv\');" />
+				<input type="checkbox" name="ppack" id="ppack" value="1"'.($boolPack ? ' checked="checked"' : '').' onchange="openCloseLayer(\'ppackdiv\');">
 				<label class="t" for="ppack">'.$this->l('Pack').'</label>
 			</td>
 			<td>
 				<div id="ppackdiv" '.($boolPack ? '' : ' style="display: none;"').'>
 					<div id="divPackItems">';
 		foreach ($packItems as $packItem)
-			echo $packItem->pack_quantity.' x '.$packItem->name.'<span onclick="delPackItem('.$packItem->id.');" style="cursor: pointer;"><img src="../img/admin/delete.gif" /></span><br />';
+			echo $packItem->pack_quantity.' x '.$packItem->name.'<span onclick="delPackItem('.$packItem->id.');" style="cursor: pointer;"><img src="../img/admin/delete.gif"></span><br>';
 		echo '		</div>
 					<input type="hidden" name="inputPackItems" id="inputPackItems" value="';
 					if (Tools::getValue('inputPackItems'))
@@ -2751,14 +2751,14 @@ class AdminProducts extends AdminTab
 					else
 						foreach ($packItems as $packItem)
 							echo $packItem->pack_quantity.'x'.$packItem->id.'-';
-					echo '" />
+					echo '">
 					<input type="hidden" name="namePackItems" id="namePackItems" value="';
 					if (Tools::getValue('namePackItems'))
 						echo Tools::getValue('namePackItems');
 					else
 					foreach ($packItems as $packItem)
 						echo $packItem->pack_quantity.'x '.$packItem->name.'¤';
-					echo '" />
+					echo '">
 					<script type="text/javascript">
 						var formProduct;
 						var packItems = new Array();
@@ -2770,9 +2770,9 @@ class AdminProducts extends AdminTab
 					<select id="selectPackItems" name="selectPackItems" style="width: 380px;" onfocus="fillPackItems();">
 						<option value="0" selected="selected">-- '.$this->l('Choose').' --</option>
 					</select>
-					<input type="text" name="quantityPackItems" id="quantityPackItems" value="1" size="1" />
-					<span onclick="addPackItem();" style="cursor: pointer;"><img src="../img/admin/add.gif" alt="'.$this->l('Add an item to the pack').'" title="'.$this->l('Add an item to the pack').'" /></span>
-					<br />'.$this->l('Filter:').' <input type="text" size="25" name="filterPack" onkeyup="fillPackItems();" class="space" />
+					<input type="text" name="quantityPackItems" id="quantityPackItems" value="1" size="1">
+					<span onclick="addPackItem();" style="cursor: pointer;"><img src="../img/admin/add.gif" alt="'.$this->l('Add an item to the pack').'" title="'.$this->l('Add an item to the pack').'"></span>
+					<br>'.$this->l('Filter:').' <input type="text" size="25" name="filterPack" onkeyup="fillPackItems();" class="space">
 				</td>
 			</div>
 		</tr>';
@@ -2861,7 +2861,7 @@ class AdminProducts extends AdminTab
 				nameStr += select_quantity.value + \' x \' + cut[i];
 			input.value += select_quantity.value + \'x\' + cut[0] + \'-\';
 			name.value += nameStr + \'¤\';
-			div.innerHTML += nameStr + \' <span onclick="delPackItem(\' + cut[0] + \');" style="cursor: pointer;"><img src="../img/admin/delete.gif" /></span><br />\';
+			div.innerHTML += nameStr + \' <span onclick="delPackItem(\' + cut[0] + \');" style="cursor: pointer;"><img src="../img/admin/delete.gif"></span><br>\';
 		}';
 	}
 	
@@ -2887,7 +2887,7 @@ class AdminProducts extends AdminTab
 					{
 						input.value += inputCut[i] + \'-\';
 						name.value += nameCut[i] + \'¤\';
-						div.innerHTML += nameCut[i] + \' <span onclick="delPackItem(\' + inputQty[1] + \');" style="cursor: pointer;"><img src="../img/admin/delete.gif" /></span><br />\';
+						div.innerHTML += nameCut[i] + \' <span onclick="delPackItem(\' + inputQty[1] + \');" style="cursor: pointer;"><img src="../img/admin/delete.gif"></span><br>\';
 					}
 				}
 		}';

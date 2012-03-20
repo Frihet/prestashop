@@ -10,8 +10,8 @@
 			{/foreach}
 		</ul>
 		<p>
-				<input type="hidden" name="id_currency" id="id_currency" value=""/>
-				<input type="hidden" name="SubmitCurrency" value="" />
+				<input type="hidden" name="id_currency" id="id_currency" value="">
+				<input type="hidden" name="SubmitCurrency" value="">
 			{l s='Currency' mod='blockcurrencies'}
 		</p>
 	</form>

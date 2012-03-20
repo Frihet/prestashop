@@ -104,13 +104,13 @@ class GraphVisifire extends ModuleGraphEngine
 	{
 		$this->_titles = $titles;
 		if (isset($titles['main']) && !is_array($titles['main']))
-			$this->_xml .= '<vc:Title Text="'.$titles['main'].'"/>';
+			$this->_xml .= '<vc:Title Text="'.$titles['main'].'">';
 		if (is_array($titles['main']) && isset($titles['main'][0]))
-			$this->_xml .= '<vc:Title Text="'.$titles['main'][0].'"/>';
+			$this->_xml .= '<vc:Title Text="'.$titles['main'][0].'">';
 		if (isset($titles['x']))
-			$this->_xml .= '<vc:AxisX Title="'.$titles['x'].'" />';
+			$this->_xml .= '<vc:AxisX Title="'.$titles['x'].'">';
 		if (isset($titles['y']))
-			$this->_xml .= '<vc:AxisY Title="'.$titles['y'].'" />';
+			$this->_xml .= '<vc:AxisY Title="'.$titles['y'].'">';
 	}
 
 	public function draw()
@@ -134,7 +134,7 @@ class GraphVisifire extends ModuleGraphEngine
 						$this->_xml .= 'YValue="'.$this->_values[$i].'"';
 						if ($this->_type == 'pie')
 							$this->_xml .= ' ExplodeOffset="0.2"';
-						$this->_xml .= '/>';
+						$this->_xml .= '>';
 					}
 					$this->_xml .= '</vc:DataSeries>';
 				}
@@ -151,7 +151,7 @@ class GraphVisifire extends ModuleGraphEngine
 							$this->_xml .= 'YValue="'.$value.'"';
 							if ($this->_type == 'pie')
 								$this->_xml .= ' ExplodeOffset="0.2"';
-							$this->_xml .= '/>';
+							$this->_xml .= '>';
 						}
 						$this->_xml .= '</vc:DataSeries>';
 					}

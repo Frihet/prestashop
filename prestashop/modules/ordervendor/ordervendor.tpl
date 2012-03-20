@@ -29,7 +29,7 @@
 			{foreach from=$product_lines item=product name=productLoop}
 				<tr class="{if $smarty.foreach.productLoop.last}last_item{elseif $smarty.foreach.productLoop.first}first_item{/if} cart_item">
 					<td class="cart_product">
-						<a href="{$link->getProductLink($product.id_product, $product.link_rewrite, $product.category)|escape:'htmlall':'UTF-8'}"><img src="{$link->getImageLink($product.link_rewrite, $product.id_image, 'small')}" alt="{$product.name|escape:'htmlall':'UTF-8'}" /></a>
+						<a href="{$link->getProductLink($product.id_product, $product.link_rewrite, $product.category)|escape:'htmlall':'UTF-8'}"><img src="{$link->getImageLink($product.link_rewrite, $product.id_image, 'small')}" alt="{$product.name|escape:'htmlall':'UTF-8'}"></a>
 					</td>
 					<td class="cart_description">
 						<h5><a href="{$link->getProductLink($product.id_product, $product.link_rewrite, $product.category)|escape:'htmlall':'UTF-8'}">{$product.name|escape:'htmlall':'UTF-8'}</a></h5>
@@ -50,9 +50,9 @@
 	</div>
 
 	<p class="cart_navigation submit">
-		<input type="hidden" class="hidden" name="step" value="{$order_step}" />
-		<input type="hidden" name="back" value="{$back}" />
+		<input type="hidden" class="hidden" name="step" value="{$order_step}">
+		<input type="hidden" name="back" value="{$back}">
 		<a href="{$base_dir_ssl}order.php?step={$order_step-1}{if $back}&back={$back}{/if}" title="{l s='Previous'}" class="button">&laquo; {l s='Previous'}</a>
-		<input type="submit" name="process{$order_step}" value="{l s='Next'} &raquo;" class="exclusive" />
+		<input type="submit" name="process{$order_step}" value="{l s='Next'} &raquo;" class="exclusive">
 	</p>
 </form>

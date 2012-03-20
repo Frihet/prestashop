@@ -242,7 +242,7 @@ class AdminPreferences extends AdminTab
 			id_language = Number('.$defaultLanguage.');
 		</script>
 		<form action="'.$currentIndex.'&submit'.$name.$this->table.'=1&token='.$this->token.'" method="post" class="'.$size.'" enctype="multipart/form-data">
-			<fieldset><legend><img src="../img/admin/'.strval($icon).'.gif" />'.$tabname.'</legend>';
+			<fieldset><legend><img src="../img/admin/'.strval($icon).'.gif">'.$tabname.'</legend>';
 		foreach ($fields AS $key => $field)
 		{
 			/* Specific line for e-mails settings */
@@ -267,18 +267,18 @@ class AdminPreferences extends AdminTab
 					break;
 
 				case 'bool':
-					echo '<label class="t" for="'.$key.'_on"><img src="../img/admin/enabled.gif" alt="'.$this->l('Yes').'" title="'.$this->l('Yes').'" /></label>
-					<input type="radio" name="'.$key.'" id="'.$key.'_on" value="1"'.($val ? ' checked="checked"' : '').(isset($field['js']['on']) ? $field['js']['on'] : '').' />
+					echo '<label class="t" for="'.$key.'_on"><img src="../img/admin/enabled.gif" alt="'.$this->l('Yes').'" title="'.$this->l('Yes').'"></label>
+					<input type="radio" name="'.$key.'" id="'.$key.'_on" value="1"'.($val ? ' checked="checked"' : '').(isset($field['js']['on']) ? $field['js']['on'] : '').'>
 					<label class="t" for="'.$key.'_on"> '.$this->l('Yes').'</label>
-					<label class="t" for="'.$key.'_off"><img src="../img/admin/disabled.gif" alt="'.$this->l('No').'" title="'.$this->l('No').'" style="margin-left: 10px;" /></label>
-					<input type="radio" name="'.$key.'" id="'.$key.'_off" value="0" '.(!$val ? 'checked="checked"' : '').(isset($field['js']['off']) ? $field['js']['off'] : '').'/>
+					<label class="t" for="'.$key.'_off"><img src="../img/admin/disabled.gif" alt="'.$this->l('No').'" title="'.$this->l('No').'" style="margin-left: 10px;"></label>
+					<input type="radio" name="'.$key.'" id="'.$key.'_off" value="0" '.(!$val ? 'checked="checked"' : '').(isset($field['js']['off']) ? $field['js']['off'] : '').'>
 					<label class="t" for="'.$key.'_off"> '.$this->l('No').'</label>';
 					break;
 
 				case 'radio':
 					foreach ($field['choices'] AS $cValue => $cKey)
-						echo '<input type="radio" name="'.$key.'" id="'.$key.$cValue.'_on" value="'.intval($cValue).'"'.(($cValue == $val) ? ' checked="checked"' : '').(isset($field['js'][$cValue]) ? ' '.$field['js'][$cValue] : '').' /><label class="t" for="'.$key.$cValue.'_on"> '.$cKey.'</label><br />';
-					echo '<br />';
+						echo '<input type="radio" name="'.$key.'" id="'.$key.$cValue.'_on" value="'.intval($cValue).'"'.(($cValue == $val) ? ' checked="checked"' : '').(isset($field['js'][$cValue]) ? ' '.$field['js'][$cValue] : '').'><label class="t" for="'.$key.$cValue.'_on"> '.$cKey.'</label><br>';
+					echo '<br>';
 					break;
 
 				case 'image':
@@ -290,9 +290,9 @@ class AdminPreferences extends AdminTab
 					{
 						echo '<td class="center" style="width: 180px; padding:0px 20px 20px 0px;">
 						<input type="radio" name="'.$key.'" id="'.$key.'_'.$theme['name'].'_on" style="vertical-align: text-bottom;" value="'.$theme['name'].'"'.
-						(_THEME_NAME_ == $theme['name'] ? 'checked="checked"' : '').' />
+						(_THEME_NAME_ == $theme['name'] ? 'checked="checked"' : '').'>
 						<label class="t" for="'.$key.'_'.$theme['name'].'_on"> '.Tools::strtolower($theme['name']).'</label>
-						<br />
+						<br>
 						<label class="t" for="'.$key.'_'.$theme['name'].'_on">
 							<img src="../themes/'.$theme['name'].'/preview.jpg" alt="'.Tools::strtolower($theme['name']).'">
 						</label>
@@ -307,22 +307,22 @@ class AdminPreferences extends AdminTab
 
 				case 'price':
 					$default_currency = new Currency(intval(Configuration::get("PS_CURRENCY_DEFAULT")));
-					echo $default_currency->getSign('left').'<input type="'.$field['type'].'" size="'.(isset($field['size']) ? intval($field['size']) : 5).'" name="'.$key.'" value="'.($field['type'] == 'password' ? '' : htmlentities($val, ENT_COMPAT, 'UTF-8')).'" />'.$default_currency->getSign('right');
+					echo $default_currency->getSign('left').'<input type="'.$field['type'].'" size="'.(isset($field['size']) ? intval($field['size']) : 5).'" name="'.$key.'" value="'.($field['type'] == 'password' ? '' : htmlentities($val, ENT_COMPAT, 'UTF-8')).'">'.$default_currency->getSign('right');
 					break;
 
 				case 'textLang':
 					foreach ($languages as $language)
 						echo '
 						<div id="'.$key.'_'.$language['id_lang'].'" style="margin-bottom:8px; display: '.($language['id_lang'] == $defaultLanguage ? 'block' : 'none').'; float: left; vertical-align: top;">
-							<input type="text" name="'.$key.'_'.$language['id_lang'].'" value="'.htmlentities($this->getVal($confValues, $key.'_'.$language['id_lang']), ENT_COMPAT, 'UTF-8').'" />
+							<input type="text" name="'.$key.'_'.$language['id_lang'].'" value="'.htmlentities($this->getVal($confValues, $key.'_'.$language['id_lang']), ENT_COMPAT, 'UTF-8').'">
 						</div>';
 					$this->displayFlags($languages, $defaultLanguage, $divLangName, $key);
 					break;
 
 				case 'file':
 					if (isset($field['thumb']) AND $field['thumb'] AND $field['thumb']['pos'] == 'before')
-						echo '<img src="'.$field['thumb']['file'].'" alt="'.$field['title'].'" title="'.$field['title'].'" /><br />';
-					echo '<input type="file" name="'.$key.'" />';
+						echo '<img src="'.$field['thumb']['file'].'" alt="'.$field['title'].'" title="'.$field['title'].'"><br>';
+					echo '<input type="file" name="'.$key.'">';
 					break;
 
 				case 'textarea':
@@ -339,10 +339,10 @@ class AdminPreferences extends AdminTab
 
 				case 'text':
 				default:
-					echo '<input type="'.$field['type'].'"'.(isset($field['id']) === true ? ' id="'.$field['id'].'"' : '').' size="'.(isset($field['size']) ? intval($field['size']) : 5).'" name="'.$key.'" value="'.($field['type'] == 'password' ? '' : htmlentities($val, ENT_COMPAT, 'UTF-8')).'" />'.(isset($field['next']) ? '&nbsp;'.strval($field['next']) : '');
+					echo '<input type="'.$field['type'].'"'.(isset($field['id']) === true ? ' id="'.$field['id'].'"' : '').' size="'.(isset($field['size']) ? intval($field['size']) : 5).'" name="'.$key.'" value="'.($field['type'] == 'password' ? '' : htmlentities($val, ENT_COMPAT, 'UTF-8')).'">'.(isset($field['next']) ? '&nbsp;'.strval($field['next']) : '');
 			}
 			echo ((isset($field['required']) AND $field['required'] AND !in_array($field['type'], array('image', 'radio')))  ? ' <sup>*</sup>' : '');
-			echo (isset($field['desc']) ? '<p style="clear:both">'.((isset($field['thumb']) AND $field['thumb'] AND $field['thumb']['pos'] == 'after') ? '<img src="'.$field['thumb']['file'].'" alt="'.$field['title'].'" title="'.$field['title'].'" style="float:left;" />' : '' ).$field['desc'].'</p>' : '');
+			echo (isset($field['desc']) ? '<p style="clear:both">'.((isset($field['thumb']) AND $field['thumb'] AND $field['thumb']['pos'] == 'after') ? '<img src="'.$field['thumb']['file'].'" alt="'.$field['title'].'" title="'.$field['title'].'" style="float:left;">' : '' ).$field['desc'].'</p>' : '');
 			if (!in_array($field['type'], array('image', 'radio', 'container', 'container_end')) OR isset($field['show']))
 				echo '</div></div>';
 		}
@@ -352,7 +352,7 @@ class AdminPreferences extends AdminTab
 			echo '<script type="text/javascript">if (getE(\'PS_MAIL_METHOD2_on\').checked) getE(\'smtp\').style.display = \'block\'; else getE(\'smtp\').style.display = \'none\';</script></div>';
 
 		echo '	<div align="center" style="margin-top: 20px;">
-					<input type="submit" value="'.$this->l('   Save   ', 'AdminPreferences').'" name="submit'.ucfirst($name).$this->table.'" class="button" />
+					<input type="submit" value="'.$this->l('   Save   ', 'AdminPreferences').'" name="submit'.ucfirst($name).$this->table.'" class="button">
 				</div>
 				'.($required ? '<div class="small"><sup>*</sup> '.$this->l('Required field', 'AdminPreferences').'</div>' : '').'
 			</fieldset>

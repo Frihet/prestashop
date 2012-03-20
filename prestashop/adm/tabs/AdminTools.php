@@ -21,9 +21,9 @@ class AdminTools extends AdminTab
 	
 	public function display()
 	{
-		echo '<fieldset><legend><img src="../img/admin/tab-tools.gif" />'.$this->l('Shop Tools').'</legend>';
+		echo '<fieldset><legend><img src="../img/admin/tab-tools.gif">'.$this->l('Shop Tools').'</legend>';
 		echo '<p>'.$this->l('Several tools are available to manage your shop.').'</p>';
-		echo '<br />';
+		echo '<br>';
 		echo '<p>'.$this->l('Please choose a tool by selecting a Tools sub-tab above.').'</p>';
 		echo '</fieldset>';
 	}

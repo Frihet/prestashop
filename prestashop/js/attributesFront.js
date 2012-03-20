@@ -40,7 +40,7 @@ function writeAvailability()
 		if (typeof(nbpiece) != 'undefined' && (nbpiece > 0 || oosp == 1))
 		{
 			if (displayQties)
-				getE('qtyav').innerHTML += (getE('qtyav').innerHTML != '' ? '<br />' : '') + nbpiece + ' ' + (nbpiece > 1 ? pieces : piece);
+				getE('qtyav').innerHTML += (getE('qtyav').innerHTML != '' ? '<br>' : '') + nbpiece + ' ' + (nbpiece > 1 ? pieces : piece);
 		}
 		else if (typeof(nbpiece) != 'undefined' && (nbpiece == 0 && oosp == 0))
 		{

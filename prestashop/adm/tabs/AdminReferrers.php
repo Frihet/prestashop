@@ -146,32 +146,32 @@ class AdminReferrers extends AdminTab
 			if (!Tools::isSubmit('viewreferrer'))
 				echo '
 				<div style="float: left; margin-right: 20px;">
-					<fieldset class="width3"><legend><img src="../img/admin/tab-preferences.gif" /> '.$this->l('Settings').'</legend>
+					<fieldset class="width3"><legend><img src="../img/admin/tab-preferences.gif"> '.$this->l('Settings').'</legend>
 						<form action="'.$currentIndex.'&token='.Tools::getValue('token').'" method="post">
 							<label>'.$this->l('Save direct traffic').'</label>
 							<div class="float" style="margin-left: 200px;">
-								<label class="t" for="tracking_dt_on"><img src="../img/admin/enabled.gif" alt="'.$this->l('Yes').'" title="'.$this->l('Yes').'" /></label>
-								<input type="radio" name="tracking_dt" id="tracking_dt_on" value="1" '.(intval(Tools::getValue('tracking_dt', Configuration::get('TRACKING_DIRECT_TRAFFIC'))) ? 'checked="checked"' : '').' />
+								<label class="t" for="tracking_dt_on"><img src="../img/admin/enabled.gif" alt="'.$this->l('Yes').'" title="'.$this->l('Yes').'"></label>
+								<input type="radio" name="tracking_dt" id="tracking_dt_on" value="1" '.(intval(Tools::getValue('tracking_dt', Configuration::get('TRACKING_DIRECT_TRAFFIC'))) ? 'checked="checked"' : '').'>
 								<label class="t" for="tracking_dt_on"> '.$this->l('Yes').'</label>
-								<label class="t" for="tracking_dt_off"><img src="../img/admin/disabled.gif" alt="'.$this->l('No').'" title="'.$this->l('No').'" style="margin-left: 10px;" /></label>
-								<input type="radio" name="tracking_dt" id="tracking_dt_off" value="0" '.(!intval(Tools::getValue('tracking_dt', Configuration::get('TRACKING_DIRECT_TRAFFIC'))) ? 'checked="checked"' : '').'/>
+								<label class="t" for="tracking_dt_off"><img src="../img/admin/disabled.gif" alt="'.$this->l('No').'" title="'.$this->l('No').'" style="margin-left: 10px;"></label>
+								<input type="radio" name="tracking_dt" id="tracking_dt_off" value="0" '.(!intval(Tools::getValue('tracking_dt', Configuration::get('TRACKING_DIRECT_TRAFFIC'))) ? 'checked="checked"' : '').'>
 								<label class="t" for="tracking_dt_off"> '.$this->l('No').'</label>
 							</div>
-							<br class="clear" />
+							<br class="clear">
 							<p>'.$this->l('Direct traffic can be quite consuming, you should consider to enable it only if you have a strong database server and the need for it.').'</p>
-							<input type="submit" class="button" value="'.$this->l('   Save   ').'" name="submitSettings" />
+							<input type="submit" class="button" value="'.$this->l('   Save   ').'" name="submitSettings">
 						</form>
-						<hr />
+						<hr>
 						<form action="'.$currentIndex.'&token='.Tools::getValue('token').'" method="post">
 						<p class="bold">'.$this->l('Indexation').'</p>
 						<p>'.$this->l('There is a huge quantity of data, so each connection corresponding to a referrer is indexed. You can refresh this index by clicking on the button below. Be aware that it may take a long time and it is only needed if you modified or added a referrer and if you want your changes to be retroactive.').'</p>
-						<input type="submit" class="button" value="'.$this->l('Refresh index').'" name="submitRefreshIndex" />
+						<input type="submit" class="button" value="'.$this->l('Refresh index').'" name="submitRefreshIndex">
 						</form>
-						<hr />
+						<hr>
 						<form action="'.$currentIndex.'&token='.Tools::getValue('token').'" method="post">
 						<p class="bold">'.$this->l('Cache').'</p>
 						<p>'.$this->l('For you to sort and filter your data, it is cached. You can refresh the cache by clicking on the button below.').'</p>
-						<input type="submit" class="button" value="'.$this->l('Refresh cache').'" name="submitRefreshCache" />
+						<input type="submit" class="button" value="'.$this->l('Refresh cache').'" name="submitRefreshCache">
 						</form>
 					</fieldset>
 				</div>';
@@ -215,67 +215,67 @@ class AdminReferrers extends AdminTab
 
 		echo '
 		<form action="'.$currentIndex.'&submitAdd'.$this->table.'=1&token='.$this->token.'" method="post" class="width2">
-		'.($obj->id ? '<input type="hidden" name="id_'.$this->table.'" value="'.$obj->id.'" />' : '').'
-			<fieldset class="width4"><legend><img src="../img/admin/affiliation.png" /> '.$this->l('Affiliate').'</legend>
+		'.($obj->id ? '<input type="hidden" name="id_'.$this->table.'" value="'.$obj->id.'">' : '').'
+			<fieldset class="width4"><legend><img src="../img/admin/affiliation.png"> '.$this->l('Affiliate').'</legend>
 				<label>'.$this->l('Name').'</label>
 				<div class="margin-form">
-					<input type="text" size="20" name="name" value="'.htmlentities($this->getFieldValue($obj, 'name'), ENT_COMPAT, 'UTF-8').'" /> <sup>*</sup>
+					<input type="text" size="20" name="name" value="'.htmlentities($this->getFieldValue($obj, 'name'), ENT_COMPAT, 'UTF-8').'"> <sup>*</sup>
 				</div>
 				<label>'.$this->l('Password').'</label>
 				<div class="margin-form">
-					<input type="password" name="passwd" value="" />
+					<input type="password" name="passwd" value="">
 					<p>'.$this->l('Leave blank if no change').'</p>
 				</div>
 				<p>
-					'.$this->l('Affiliates can access to their own data with these name and password.').'<br />
+					'.$this->l('Affiliates can access to their own data with these name and password.').'<br>
 					'.$this->l('Front access:').' <a href="'.$uri.'modules/trackingfront/stats.php" style="font-style: italic;">'.$uri.'modules/trackingfront/stats.php</a>
 				</p>
 			</fieldset>
-			<br class="clear" />
-			<fieldset class="width4"><legend><img src="../img/admin/money.png" /> '.$this->l('Commission plan').'</legend>
+			<br class="clear">
+			<fieldset class="width4"><legend><img src="../img/admin/money.png"> '.$this->l('Commission plan').'</legend>
 				<label>'.$this->l('Click fee').'</label>
 				<div class="margin-form">
-					<input type="text" size="8" name="click_fee" value="'.number_format($this->getFieldValue($obj, 'click_fee'), 2).'" />
+					<input type="text" size="8" name="click_fee" value="'.number_format($this->getFieldValue($obj, 'click_fee'), 2).'">
 					<p>'.$this->l('Fee given for each visit.').'</p>
 				</div>
 				<label>'.$this->l('Base fee').'</label>
 				<div class="margin-form">
-					<input type="text" size="8" name="base_fee" value="'.number_format($this->getFieldValue($obj, 'base_fee'), 2).'" />
+					<input type="text" size="8" name="base_fee" value="'.number_format($this->getFieldValue($obj, 'base_fee'), 2).'">
 					<p>'.$this->l('Fee given for each order placed.').'</p>
 				</div>
 				<label>'.$this->l('Percent fee').'</label>
 				<div class="margin-form">
-					<input type="text" size="8" name="percent_fee" value="'.number_format($this->getFieldValue($obj, 'percent_fee'), 2).'" />
+					<input type="text" size="8" name="percent_fee" value="'.number_format($this->getFieldValue($obj, 'percent_fee'), 2).'">
 					<p>'.$this->l('Percent of the sales.').'</p>
 				</div>
 			</fieldset>
-			<br class="clear" />
-			<fieldset class="width4"><legend onclick="openCloseLayer(\'tracking_help\')" style="cursor: pointer;"><img src="../img/admin/help.png" /> '.$this->l('Help').'</legend>
+			<br class="clear">
+			<fieldset class="width4"><legend onclick="openCloseLayer(\'tracking_help\')" style="cursor: pointer;"><img src="../img/admin/help.png"> '.$this->l('Help').'</legend>
 			<div id="tracking_help" style="display: none;">
 				<p>'.$this->l('Definitions:').'</p>
 				<ul style="list-style: disc; margin-left: 20px;">
 					<li>
-						'.$this->l('The field `http_referer` is the website from which your customers come.').'<br />
-						'.$this->l('For example, visitors coming from Google will have a `http_referer` like this one: "http://www.google.com/search?q=prestashop".').'<br />
-						'.$this->l('If the visitor come directly (by typing the URL of your shop or by using its bookmarks for example), `http_referer` will be empty.').'<br />
-						'.$this->l('So if you want all the visitors coming from google, you can type "%google%" in this field, or "%google.fr%" if you want the visitors coming from Google France only.').'<br />
+						'.$this->l('The field `http_referer` is the website from which your customers come.').'<br>
+						'.$this->l('For example, visitors coming from Google will have a `http_referer` like this one: "http://www.google.com/search?q=prestashop".').'<br>
+						'.$this->l('If the visitor come directly (by typing the URL of your shop or by using its bookmarks for example), `http_referer` will be empty.').'<br>
+						'.$this->l('So if you want all the visitors coming from google, you can type "%google%" in this field, or "%google.fr%" if you want the visitors coming from Google France only.').'<br>
 					</li>
-					<br />
+					<br>
 					<li>
-						'.$this->l('The field `request_uri` is the URL by which the customer come to your website.').'<br />
-						'.$this->l('For example, if the visitor access to a product page, this URL will be').' "'.$uri.'music-ipods/1-ipod-nano.html".<br />
+						'.$this->l('The field `request_uri` is the URL by which the customer come to your website.').'<br>
+						'.$this->l('For example, if the visitor access to a product page, this URL will be').' "'.$uri.'music-ipods/1-ipod-nano.html".<br>
 						'.$this->l('This is interesting because you can add some tags or token in the links pointing to your website. For exemple, you can post a link').' "'.$uri.'index.php?prestashop" '.$this->l('in the forum and get statistics by entering "%prestashop" in the field `request_uri`. You will get all the visitors coming from the forum.').'
 						'.$this->l('This method is more reliable than the `http_referer` one, but there is a danger: if a search engine read a page with your link, then it will be displayed in its results and you will have not only the forum visitors, but also the ones from the search engine.').'
 					</li>
-					<br />
+					<br>
 					<li>
 						'.$this->l('The fields `include` indicate what has to be included in the URL.').'
 					</li>
-					<br />
+					<br>
 					<li>
 						'.$this->l('The fields `exclude` indicate what has to be excluded from the URL.').'
 					</li>
-					<br />
+					<br>
 					<li>
 						'.$this->l('When using the simple mode, you can use some generic characters which can replace any characters:').'
 						<ul>
@@ -283,7 +283,7 @@ class AdminReferrers extends AdminTab
 							<li>'.$this->l('"%" will replace any number of characters. If you want to use the real "%", you should type "\\\\%".').'</li>
 						</ul>
 					</li>
-					<br />
+					<br>
 					<li>
 						'.$this->l('The simple mode uses the MySQL "LIKE", but for a higher potency you can use MySQL regular expressions.').'
 						<a href="http://dev.mysql.com/doc/refman/5.0/en/regexp.html" target="_blank" style="font-style: italic;">'.$this->l('Take a look to the documentation for more details...').'</a>
@@ -291,10 +291,10 @@ class AdminReferrers extends AdminTab
 				</ul>
 			</div>
 			</fieldset>
-			<br class="clear" />
-			<fieldset class="width4"><legend><img src="../img/admin/affiliation.png" /> '.$this->l('Technical information - Simple mode').'</legend>
-				<a style="cursor: pointer; font-style: italic;" onclick="openCloseLayer(\'tracking_help\');"><img src="../img/admin/help.png" /> '.$this->l('Get help!').'</a><br />
-				<br class="clear" />
+			<br class="clear">
+			<fieldset class="width4"><legend><img src="../img/admin/affiliation.png"> '.$this->l('Technical information - Simple mode').'</legend>
+				<a style="cursor: pointer; font-style: italic;" onclick="openCloseLayer(\'tracking_help\');"><img src="../img/admin/help.png"> '.$this->l('Get help!').'</a><br>
+				<br class="clear">
 				<h3>'.$this->l('HTTP referrer').'</h3>
 				<label>'.$this->l('Include').'</label>
 				<div class="margin-form">
@@ -313,15 +313,15 @@ class AdminReferrers extends AdminTab
 				<div class="margin-form">
 					<textarea cols="40" rows="1" name="request_uri_like_not">'.str_replace('\\', '\\\\', htmlentities($this->getFieldValue($obj, 'request_uri_like_not'), ENT_COMPAT, 'UTF-8')).'</textarea>
 				</div>
-				<br class="clear" />
+				<br class="clear">
 				<div class="margin-form">
-					<input type="submit" value="'.$this->l('   Save   ').'" name="submitAdd'.$this->table.'" class="button" />
+					<input type="submit" value="'.$this->l('   Save   ').'" name="submitAdd'.$this->table.'" class="button">
 				</div>
-				<br class="clear" />
+				<br class="clear">
 				'.$this->l('If you know how to use MySQL regular expressions, you can use the').' <a style="cursor: pointer; font-weight: bold;" onclick="openCloseLayer(\'tracking_expert\');">'.$this->l('expert mode').'.</a>
 			</fieldset>
-			<br class="clear" />
-			<fieldset class="width4"><legend onclick="openCloseLayer(\'tracking_expert\')" style="cursor: pointer;"><img src="../img/admin/affiliation.png" /> '.$this->l('Technical information - Expert mode').'</legend>
+			<br class="clear">
+			<fieldset class="width4"><legend onclick="openCloseLayer(\'tracking_expert\')" style="cursor: pointer;"><img src="../img/admin/affiliation.png"> '.$this->l('Technical information - Expert mode').'</legend>
 			<div id="tracking_expert" style="display: none;">
 				<h3>'.$this->l('HTTP referrer').'</h3>
 				<label>'.$this->l('Include').'</label>
@@ -341,9 +341,9 @@ class AdminReferrers extends AdminTab
 				<div class="margin-form">
 					<textarea cols="40" rows="1" name="request_uri_regexp_not">'.str_replace('\\', '\\\\', htmlentities($this->getFieldValue($obj, 'request_uri_regexp_not'), ENT_COMPAT, 'UTF-8')).'</textarea>
 				</div>
-				<br class="clear" />
+				<br class="clear">
 				<div class="margin-form">
-					<input type="submit" value="'.$this->l('   Save   ').'" name="submitAdd'.$this->table.'" class="button" />
+					<input type="submit" value="'.$this->l('   Save   ').'" name="submitAdd'.$this->table.'" class="button">
 				</div>
 			</div>
 			</fieldset>
@@ -398,18 +398,18 @@ class AdminReferrers extends AdminTab
 				);
 			}
 		</script>
-		<fieldset class="width3" style="float: left"><legend><img src="../img/admin/tab-stats.gif" /> Statistics</legend>
+		<fieldset class="width3" style="float: left"><legend><img src="../img/admin/tab-stats.gif"> Statistics</legend>
 			<h2>'.$referrer->name.'</h2>
 			<table>';
 		foreach ($displayTab as $data => $label)
 			echo '<tr><td>'.$label.'</td><td style="color:green;font-weight:bold;padding-left:20px;" id="'.$data.'"></td></tr>';
 		echo '</table>
-		<br class="clear" />
+		<br class="clear">
 		<form id="product" name="product">
 			'.$this->l('Filter by product:').'
 			<select id="selectProduct" name="selectProduct" style="width: 200px;" onfocus="fillProducts();" onchange="updateConversionRate(this.value);">
 				<option value="0" selected="selected">-- '.$this->l('All').' --</option>
-			</select> <input type="text" size="25" id="filterProduct" name="filterProduct" onkeyup="fillProducts();" class="space" />
+			</select> <input type="text" size="25" id="filterProduct" name="filterProduct" onkeyup="fillProducts();" class="space">
 		</form>
 		</fieldset>
 		<script type="text/javascript">
@@ -428,7 +428,7 @@ class AdminReferrers extends AdminTab
 			{
 				$id = $tr[$this->identifier];
 				echo '<tr id="trid_'.$id.'"'.($irow++ % 2 ? ' class="alt_row"' : '').'>
-				<td class="center"><input type="checkbox" name="'.$this->table.'Box[]" value="'.$id.'" class="noborder" /></td>';
+				<td class="center"><input type="checkbox" name="'.$this->table.'Box[]" value="'.$id.'" class="noborder"></td>';
 				foreach ($this->fieldsDisplay AS $key => $params)
 				{
 					echo '<td onclick="showProductLines('.$id.');" class="pointer '.(isset($params['align']) ? $params['align'] : '').'">'.(isset($params['prefix']) ? $params['prefix'] : '');
@@ -443,11 +443,11 @@ class AdminReferrers extends AdminTab
 				echo '
 				<td class="center" style="width: 60px">
 					<a href="'.$currentIndex.'&'.$this->identifier.'='.$id.'&view'.$this->table.'&token='.($token!=NULL ? $token : $this->token).'">
-					<img src="../img/admin/details.gif" border="0" alt="'.$this->l('View').'" title="'.$this->l('View').'" /></a>
+					<img src="../img/admin/details.gif" border="0" alt="'.$this->l('View').'" title="'.$this->l('View').'"></a>
 					<a href="'.$currentIndex.'&'.$this->identifier.'='.$id.'&update'.$this->table.'&token='.($token!=NULL ? $token : $this->token).'">
-					<img src="../img/admin/edit.gif" border="0" alt="'.$this->l('Edit').'" title="'.$this->l('Edit').'" /></a>
+					<img src="../img/admin/edit.gif" border="0" alt="'.$this->l('Edit').'" title="'.$this->l('Edit').'"></a>
 					<a href="'.$currentIndex.'&'.$this->identifier.'='.$id.'&delete'.$this->table.'&token='.($token!=NULL ? $token : $this->token).'" onclick="return confirm(\''.addslashes($this->l('Delete item ?')).'\');">
-					<img src="../img/admin/delete.gif" border="0" alt="'.$this->l('Delete').'" title="'.$this->l('Delete').'" /></a>
+					<img src="../img/admin/delete.gif" border="0" alt="'.$this->l('Delete').'" title="'.$this->l('Delete').'"></a>
 				</tr>';
 			}
 	}

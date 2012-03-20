@@ -23,7 +23,7 @@
 
   Upgrades (05/23/2007) ropu:
      Remove UpdateRecursive()
-     Support for empty tags (like <world-area/>)
+     Support for empty tags (like <world-area>)
      Accept multiple options in a second parameter
 *
 **/

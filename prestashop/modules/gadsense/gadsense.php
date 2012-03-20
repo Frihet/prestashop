@@ -41,7 +41,7 @@ class GAdsense extends Module
 			Configuration::updateValue('GADSENSE_ID', $gai);
 			$output .= '
 			<div class="conf confirm">
-				<img src="../img/admin/ok.gif" alt="" title="" />
+				<img src="../img/admin/ok.gif" alt="" title="">
 				'.$this->l('Settings updated').'
 			</div>';
 		}
@@ -55,10 +55,10 @@ class GAdsense extends Module
 			<fieldset><legend>'.$this->l('Settings').'</legend>
 				<label>'.$this->l('Your code').'</label>
 				<div class="margin-form">
-					<textarea name="gadsense_id" cols="90" rows="10" />'.Tools::getValue('gadsense_id', Configuration::get('GADSENSE_ID')).'</textarea>
-					<p class="clear">'.$this->l('Example:').' <br /><br /><img src="../modules/gadsense/adsense_script.gif"></p>
+					<textarea name="gadsense_id" cols="90" rows="10">'.Tools::getValue('gadsense_id', Configuration::get('GADSENSE_ID')).'</textarea>
+					<p class="clear">'.$this->l('Example:').' <br><br><img src="../modules/gadsense/adsense_script.gif"></p>
 				</div>
-				<center><input type="submit" name="submitGAdsense" value="'.$this->l('Update settings').'" class="button" /></center>			
+				<center><input type="submit" name="submitGAdsense" value="'.$this->l('Update settings').'" class="button"></center>			
 			</fieldset>
 		</form>';
 		return $output;

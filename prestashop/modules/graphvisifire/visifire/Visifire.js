@@ -9,7 +9,7 @@
     (at your option) any later version.
       
     You should have received a copy of the GNU General Public License
-    along with Visifire Charts.  If not, see <http://www.gnu.org/licenses/>.
+    along with Visifire Charts.  If not, see <http://www.gnu.org/licenses>.
   
     If GPL is not suitable for your products or company, Webyog provides Visifire 
     under a flexible commercial license designed to meet your specific usage and 
@@ -266,9 +266,9 @@ if(!window.Visifire)
         
 		var html = '<object id="' + _uThisObject.id + '" data="data:application/x-silverlight-2," type="application/x-silverlight-2" width="' + width + '" height="' + height + '">';
         
-        html    +=  '<param name="source" value="' + _uThisObject.xapPath +'"/>'
-		        +	'<param name="onLoad" value="slLoaded' + _uThisObject.index +'"/>'
-	            +   '<param name="onResize" value="slResized' + _uThisObject.index +'"/>';
+        html    +=  '<param name="source" value="' + _uThisObject.xapPath +'">'
+		        +	'<param name="onLoad" value="slLoaded' + _uThisObject.index +'">'
+	            +   '<param name="onResize" value="slResized' + _uThisObject.index +'">';
 		html += '<param name="initParams" value="';
 		
 		html += "logLevel=" + _uThisObject.logLevel + ",";
@@ -317,15 +317,15 @@ if(!window.Visifire)
             _uThisObject.background = "White";
         
         html    += 'width=' + width + ',' + 'height=' + height + '';
-        html    += "\"/>";
-        html    += '<param name="enableHtmlAccess" value="true" />'
-		        +  '<param name="background" value="' + _uThisObject.background + '" />'
-		        +  '<param name="windowless" value="' + this.windowless + '" />'
+        html    += "\">";
+        html    += '<param name="enableHtmlAccess" value="true">'
+		        +  '<param name="background" value="' + _uThisObject.background + '">'
+		        +  '<param name="windowless" value="' + this.windowless + '">'
 		        + '<a href="http://go.microsoft.com/fwlink/?LinkID=124807" style="text-decoration: none;">'
-		        + '<img src="http://go.microsoft.com/fwlink/?LinkId=108181" alt="Get Microsoft Silverlight" style="border-style: none"/>'
-		        +  '<br/>You need Microsoft Silverlight to view Visifire Charts.'
-		        +  '<br/> You can install it by clicking on this link.'
-		        +  '<br/>Please restart the browser after installation.'
+		        + '<img src="http://go.microsoft.com/fwlink/?LinkId=108181" alt="Get Microsoft Silverlight" style="border-style: none">'
+		        +  '<br>You need Microsoft Silverlight to view Visifire Charts.'
+		        +  '<br> You can install it by clicking on this link.'
+		        +  '<br>Please restart the browser after installation.'
 		        +  '</a>'
 		        +  '</object>';
 		

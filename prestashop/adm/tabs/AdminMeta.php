@@ -46,8 +46,8 @@ class AdminMeta extends AdminTab
 			id_language = Number('.$defaultLanguage.');
 		</script>
 		<form action="'.$currentIndex.'&token='.$this->token.'&submitAdd'.$this->table.'=1" method="post" class="width3" style="width:650px;">
-		'.($meta->id ? '<input type="hidden" name="id_'.$this->table.'" value="'.$meta->id.'" />' : '').'
-			<fieldset><legend><img src="../img/admin/metatags.gif" />'.$this->l('Meta-Tags').'</legend>
+		'.($meta->id ? '<input type="hidden" name="id_'.$this->table.'" value="'.$meta->id.'">' : '').'
+			<fieldset><legend><img src="../img/admin/metatags.gif">'.$this->l('Meta-Tags').'</legend>
 				<label>'.$this->l('Page:').' </label>
 				<div class="margin-form">';
 				if (!sizeof($files))
@@ -73,7 +73,7 @@ class AdminMeta extends AdminTab
 				foreach ($languages as $language)
 					echo '
 					<div id="title_'.$language['id_lang'].'" style="display: '.($language['id_lang'] == $defaultLanguage ? 'block' : 'none').'; float: left;">
-						<input size="33" type="text" name="title_'.$language['id_lang'].'" value="'.htmlentities($this->getFieldValue($meta, 'title', intval($language['id_lang'])), ENT_COMPAT, 'UTF-8').'" />
+						<input size="33" type="text" name="title_'.$language['id_lang'].'" value="'.htmlentities($this->getFieldValue($meta, 'title', intval($language['id_lang'])), ENT_COMPAT, 'UTF-8').'">
 						<span class="hint" name="help_box">'.$this->l('Invalid characters:').' <>;=#{}<span class="hint-pointer">&nbsp;</span></span>
 						<p style="clear: both;">'.$this->l('Title of this page').'</p>
 					</div>';
@@ -85,7 +85,7 @@ class AdminMeta extends AdminTab
 				foreach ($languages as $language)
 					echo '
 					<div id="description_'.$language['id_lang'].'" style="display: '.($language['id_lang'] == $defaultLanguage ? 'block' : 'none').'; float: left;">
-						<input size="50" type="text" name="description_'.$language['id_lang'].'" value="'.htmlentities($this->getFieldValue($meta, 'description', intval($language['id_lang'])), ENT_COMPAT, 'UTF-8').'" />
+						<input size="50" type="text" name="description_'.$language['id_lang'].'" value="'.htmlentities($this->getFieldValue($meta, 'description', intval($language['id_lang'])), ENT_COMPAT, 'UTF-8').'">
 						<span class="hint" name="help_box">'.$this->l('Invalid characters:').' <>;=#{}<span class="hint-pointer">&nbsp;</span></span>
 						<p style="clear: both;">'.$this->l('A short description').'</p>
 					</div>';
@@ -97,7 +97,7 @@ class AdminMeta extends AdminTab
 				foreach ($languages as $language)
 					echo '
 					<div id="keywords_'.$language['id_lang'].'" style="display: '.($language['id_lang'] == $defaultLanguage ? 'block' : 'none').'; float: left;">
-						<input size="50" type="text" name="keywords_'.$language['id_lang'].'" value="'.htmlentities($this->getFieldValue($meta, 'keywords', intval($language['id_lang'])), ENT_COMPAT, 'UTF-8').'" />
+						<input size="50" type="text" name="keywords_'.$language['id_lang'].'" value="'.htmlentities($this->getFieldValue($meta, 'keywords', intval($language['id_lang'])), ENT_COMPAT, 'UTF-8').'">
 						<span class="hint" name="help_box">'.$this->l('Invalid characters:').' <>;=#{}<span class="hint-pointer">&nbsp;</span></span>
 						<p style="clear: both;">'.$this->l('List of keywords').'</p>
 					</div>';
@@ -105,7 +105,7 @@ class AdminMeta extends AdminTab
 		echo '	</div>
 				<div style="clear:both;">&nbsp;</div>
 				<div class="margin-form">
-					<input type="submit" value="'.$this->l('   Save   ').'" name="submitAdd'.$this->table.'" class="button" />
+					<input type="submit" value="'.$this->l('   Save   ').'" name="submitAdd'.$this->table.'" class="button">
 				</div>
 				<div class="small"><sup>*</sup> '.$this->l('Required field').'</div>
 			</fieldset>

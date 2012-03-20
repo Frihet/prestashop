@@ -21,13 +21,13 @@
 			<fieldset>
 				<legend>{#advanced_dlg.colorpicker_picker_title}</legend>
 				<div id="picker">
-					<img id="colors" src="img/colorpicker.jpg" onclick="computeColor(event)" onmousedown="isMouseDown = true;return false;" onmouseup="isMouseDown = false;" onmousemove="if (isMouseDown && isMouseOver) computeColor(event); return false;" onmouseover="isMouseOver=true;" onmouseout="isMouseOver=false;" alt=" " />
+					<img id="colors" src="img/colorpicker.jpg" onclick="computeColor(event)" onmousedown="isMouseDown = true;return false;" onmouseup="isMouseDown = false;" onmousemove="if (isMouseDown && isMouseOver) computeColor(event); return false;" onmouseover="isMouseOver=true;" onmouseout="isMouseOver=false;" alt=" ">
 
 					<div id="light">
 						<!-- Will be filled with divs -->
 					</div>
 
-					<br style="clear: both" />
+					<br style="clear: both">
 				</div>
 			</fieldset>
 		</div>
@@ -39,7 +39,7 @@
 					<!-- Gets filled with web safe colors-->
 				</div>
 
-				<br style="clear: both" />
+				<br style="clear: both">
 			</fieldset>
 		</div>
 
@@ -50,7 +50,7 @@
 					<!-- Gets filled with named colors-->
 				</div>
 
-				<br style="clear: both" />
+				<br style="clear: both">
 
 				<div id="colornamecontainer">
 					{#advanced_dlg.colorpicker_name} <span id="colorname"></span>
@@ -61,13 +61,13 @@
 
 	<div class="mceActionPanel">
 		<div style="float: left">
-			<input type="submit" id="insert" name="insert" value="{#apply}" />
+			<input type="submit" id="insert" name="insert" value="{#apply}">
 		</div>
 
 		<div id="preview"></div>
 
 		<div id="previewblock">
-			<label for="color">{#advanced_dlg.colorpicker_color}</label> <input id="color" type="text" size="8" maxlength="8" class="text mceFocus" />
+			<label for="color">{#advanced_dlg.colorpicker_color}</label> <input id="color" type="text" size="8" maxlength="8" class="text mceFocus">
 		</div>
 	</div>
 </form>

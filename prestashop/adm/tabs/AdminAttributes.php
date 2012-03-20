@@ -53,14 +53,14 @@ class AdminAttributes extends AdminTab
 		echo '
 		</script>
 		<form action="'.$currentIndex.'&submitAdd'.$this->table.'=1&token='.($token ? $token : $this->token).'" method="post" enctype="multipart/form-data">
-		'.($obj->id ? '<input type="hidden" name="id_attribute" value="'.$obj->id.'" />' : '').'
-			<fieldset class="width3"><legend><img src="../img/admin/asterisk.gif" />'.$this->l('Attribute').'</legend>
+		'.($obj->id ? '<input type="hidden" name="id_attribute" value="'.$obj->id.'">' : '').'
+			<fieldset class="width3"><legend><img src="../img/admin/asterisk.gif">'.$this->l('Attribute').'</legend>
 				<label>'.$this->l('Name:').' </label>
 				<div class="margin-form">';
 		foreach ($languages as $language)
 			echo '
 					<div id="name_'.$language['id_lang'].'" style="display: '.($language['id_lang'] == $defaultLanguage ? 'block' : 'none').'; float: left;">
-						<input size="33" type="text" name="name_'.$language['id_lang'].'" value="'.htmlspecialchars($this->getFieldValue($obj, 'name', intval($language['id_lang']))).'" /><sup> *</sup>
+						<input size="33" type="text" name="name_'.$language['id_lang'].'" value="'.htmlspecialchars($this->getFieldValue($obj, 'name', intval($language['id_lang']))).'"><sup> *</sup>
 						<span class="hint" name="help_box">'.$this->l('Invalid characters:').' <>;=#{}<span class="hint-pointer">&nbsp;</span></span>
 					</div>';
 		$this->displayFlags($languages, $defaultLanguage, 'name', 'name');
@@ -79,24 +79,24 @@ class AdminAttributes extends AdminTab
 				<div id="colorAttributeProperties" style="'.((Validate::isLoadedObject($obj) AND $obj->isColorAttribute()) ? 'display: block;' : 'display: none;').'">
 					<label>'.$this->l('Color:').'</label>
 					<div class="margin-form">
-						<input type="text" size="33" name="color" value="'.(Tools::getValue('color', $color) ? htmlentities(Tools::getValue('color', $color)) : '#000000').'" /> <sup>*</sup>
+						<input type="text" size="33" name="color" value="'.(Tools::getValue('color', $color) ? htmlentities(Tools::getValue('color', $color)) : '#000000').'"> <sup>*</sup>
 						<p class="clear">'.$this->l('HTML colors only (e.g.,').' "lightblue", "#CC6600")</p>
 					</div>
 					<label>'.$this->l('Texture:').' </label>
 					<div class="margin-form">
-						<input type="file" name="texture" />
-						<p>'.$this->l('Upload color texture from your computer').'<br />'.$this->l('This will override the HTML color!').'</p>
+						<input type="file" name="texture">
+						<p>'.$this->l('Upload color texture from your computer').'<br>'.$this->l('This will override the HTML color!').'</p>
 					</div>
 					<label>'.$this->l('Current texture:').' </label>
 					<div class="margin-form">
 						<p>'.(file_exists(_PS_IMG_DIR_.$this->fieldImageSettings['dir'].'/'.$obj->id.'.jpg')
-							? '<img src="../img/'.$this->fieldImageSettings['dir'].'/'.$obj->id.'.jpg" alt="" title="" /> <a href="'.$_SERVER['REQUEST_URI'].'&deleteImage=1"><img src="../img/admin/delete.gif" alt="'.$this->l('delete').'" title="" /></a>'
+							? '<img src="../img/'.$this->fieldImageSettings['dir'].'/'.$obj->id.'.jpg" alt="" title=""> <a href="'.$_SERVER['REQUEST_URI'].'&deleteImage=1"><img src="../img/admin/delete.gif" alt="'.$this->l('delete').'" title=""></a>'
 							: $this->l('None')
 						).'</p>
 					</div>
 				</div>
 				<div class="margin-form">
-					<input type="submit" value="'.$this->l('   Save   ').'" name="submitAddattribute" class="button" />
+					<input type="submit" value="'.$this->l('   Save   ').'" name="submitAddattribute" class="button">
 				</div>
 				<div class="small"><sup>*</sup> '.$this->l('Required field').'</div>
 			</fieldset>

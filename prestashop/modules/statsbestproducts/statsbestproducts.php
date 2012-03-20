@@ -104,7 +104,7 @@ class StatsBestProducts extends ModuleGrid
 		);
 	
 		$this->_html = '
-		<fieldset class="width3"><legend><img src="../modules/'.$this->name.'/logo.gif" /> '.$this->displayName.'</legend>
+		<fieldset class="width3"><legend><img src="../modules/'.$this->name.'/logo.gif"> '.$this->displayName.'</legend>
 			'.ModuleGrid::engine($engineParams).'
 		</fieldset>';
 		return $this->_html;

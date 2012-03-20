@@ -46,14 +46,14 @@ class AdminQuickAccesses extends AdminTab
 			id_language = Number('.$defaultLanguage.');
 		</script>
 		<form action="'.$currentIndex.'&submitAdd'.$this->table.'=1&token='.$this->token.'" method="post" class="width4">
-		'.($obj->id ? '<input type="hidden" name="id_'.$this->table.'" value="'.$obj->id.'" />' : '').'
-			<fieldset><legend><img src="../img/admin/quick.gif" />'.$this->l('Quick Access menu').'</legend>
+		'.($obj->id ? '<input type="hidden" name="id_'.$this->table.'" value="'.$obj->id.'">' : '').'
+			<fieldset><legend><img src="../img/admin/quick.gif">'.$this->l('Quick Access menu').'</legend>
 				<label>'.$this->l('Name:').' </label>
 				<div class="margin-form">';
 				foreach ($languages as $language)
 					echo '
 					<div id="name_'.$language['id_lang'].'" style="display: '.($language['id_lang'] == $defaultLanguage ? 'block' : 'none').'; float: left;">
-						<input size="33" type="text" name="name_'.$language['id_lang'].'" value="'.htmlentities($this->getFieldValue($obj, 'name', intval($language['id_lang'])), ENT_COMPAT, 'UTF-8').'" /><sup> *</sup>
+						<input size="33" type="text" name="name_'.$language['id_lang'].'" value="'.htmlentities($this->getFieldValue($obj, 'name', intval($language['id_lang'])), ENT_COMPAT, 'UTF-8').'"><sup> *</sup>
 						<span class="hint" name="help_box">'.$this->l('Forbidden characters:').' <>;=#{}<span class="hint-pointer">&nbsp;</span></span>
 					</div>';							
 				$this->displayFlags($languages, $defaultLanguage, 'name', 'name');
@@ -62,17 +62,17 @@ class AdminQuickAccesses extends AdminTab
 				</div>
 				<label>'.$this->l('URL:').' </label>
 				<div class="margin-form">
-					<input type="text" size="60" maxlength="128" name="link" value="'.htmlentities($this->getFieldValue($obj, 'link'), ENT_COMPAT, 'UTF-8').'" /> <sup>*</sup>
+					<input type="text" size="60" maxlength="128" name="link" value="'.htmlentities($this->getFieldValue($obj, 'link'), ENT_COMPAT, 'UTF-8').'"> <sup>*</sup>
 				</div>
 				<label>'.$this->l('Open in new window:').' </label>
 				<div class="margin-form">
-					<input type="radio" name="new_window" id="new_window_on" value="1" '.($new_window ? 'checked="checked" ' : '').'/> 
-					<label class="t" for="new_window_on"><img src="../img/admin/enabled.gif" alt="'.$this->l('Enabled').'" title="'.$this->l('Yes').'" /></label>
-					<input type="radio" name="new_window" id="new_window_off" value="0" '.(!$new_window ? 'checked="checked" ' : '').'/> 
-					<label class="t" for="new_window_off"><img src="../img/admin/disabled.gif" alt="'.$this->l('Disabled').'" title="'.$this->l('No').'" /></label>
+					<input type="radio" name="new_window" id="new_window_on" value="1" '.($new_window ? 'checked="checked" ' : '').'> 
+					<label class="t" for="new_window_on"><img src="../img/admin/enabled.gif" alt="'.$this->l('Enabled').'" title="'.$this->l('Yes').'"></label>
+					<input type="radio" name="new_window" id="new_window_off" value="0" '.(!$new_window ? 'checked="checked" ' : '').'> 
+					<label class="t" for="new_window_off"><img src="../img/admin/disabled.gif" alt="'.$this->l('Disabled').'" title="'.$this->l('No').'"></label>
 				</div>
 				<div class="margin-form">
-					<input type="submit" value="'.$this->l('   Save   ').'" name="submitAdd'.$this->table.'" class="button" />
+					<input type="submit" value="'.$this->l('   Save   ').'" name="submitAdd'.$this->table.'" class="button">
 				</div>
 				<div class="small"><sup>*</sup> '.$this->l('required field').'</div>
 			</fieldset>

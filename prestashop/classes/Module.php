@@ -197,12 +197,12 @@ abstract class Module
 			$defaultIso = Language::getIsoById($defaultLanguage);
 			$output = '
 			<div class="display_flags">
-				<img src="../img/l/'.$defaultLanguage.'.jpg" class="pointer" id="language_current_'.$id.'" onclick="showLanguages(\''.$id.'\');" alt="" />
+				<img src="../img/l/'.$defaultLanguage.'.jpg" class="pointer" id="language_current_'.$id.'" onclick="showLanguages(\''.$id.'\');" alt="">
 			</div>
 			<div id="languages_'.$id.'" class="language_flags">
-				'.$this->l('Choose language:').'<br /><br />';
+				'.$this->l('Choose language:').'<br><br>';
 			foreach ($languages as $language)
-				$output .= '<img src="../img/l/'.intval($language['id_lang']).'.jpg" class="pointer" alt="'.$language['name'].'" title="'.$language['name'].'" onclick="changeLanguage(\''.$id.'\', \''.$ids.'\', '.$language['id_lang'].', \''.$language['iso_code'].'\');" /> ';
+				$output .= '<img src="../img/l/'.intval($language['id_lang']).'.jpg" class="pointer" alt="'.$language['name'].'" title="'.$language['name'].'" onclick="changeLanguage(\''.$id.'\', \''.$ids.'\', '.$language['id_lang'].', \''.$language['iso_code'].'\');"> ';
 			$output .= '</div>';
 
 			if ($return)
@@ -569,7 +569,7 @@ abstract class Module
 	{
 	 	$output = '
 		<div class="module_error alert error">
-			<img src="'._PS_IMG_.'admin/warning.gif" alt="" title="" /> '.$error.'
+			<img src="'._PS_IMG_.'admin/warning.gif" alt="" title=""> '.$error.'
 		</div>';
 		$this->error = true;
 		return $output;
@@ -579,7 +579,7 @@ abstract class Module
 	{
 	 	$output = '
 		<div class="module_confirmation conf confirm">
-			<img src="'._PS_IMG_.'admin/ok.gif" alt="" title="" /> '.$string.'
+			<img src="'._PS_IMG_.'admin/ok.gif" alt="" title=""> '.$string.'
 		</div>';
 		return $output;
 	}

@@ -89,7 +89,7 @@
 					// If there is no text content or images or hr elements then remove everything
 					if (b.childNodes.length == 1 && !/<(img|hr)/.test(h) && tinymce.trim(h.replace(/<[^>]+>/g, '')).length == 0) {
 						// Inject paragrah and bogus br
-						ed.setContent('<p><br mce_bogus="1" /></p>', {format : 'raw'});
+						ed.setContent('<p><br mce_bogus="1"></p>', {format : 'raw'});
 
 						// Move caret before bogus br
 						n = b.firstChild;
@@ -322,7 +322,7 @@
 
 			ed.onPostProcess.add(function(ed, o) {
 				// Safari adds BR at end of all block elements
-				o.content = o.content.replace(/<br \/><\/(h[1-6]|div|p|address|pre)>/g, '</$1>');
+				o.content = o.content.replace(/<br \><\/(h[1-6]|div|p|address|pre)>/g, '</$1>');
 
 				// Safari adds id="undefined" to HR elements
 				o.content = o.content.replace(/ id=\"undefined\"/g, '');

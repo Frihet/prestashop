@@ -72,7 +72,7 @@ class StatsLive extends Module
 		$irow = 0;
 		
 		echo '<script type="text/javascript" language="javascript">openCloseLayer(\'calendar\');</script>
-		<fieldset class="width3"><legend><img src="../modules/'.$this->name.'/logo.gif" /> '.$this->l('Customers online').'</legend>';
+		<fieldset class="width3"><legend><img src="../modules/'.$this->name.'/logo.gif"> '.$this->l('Customers online').'</legend>';
 		if ($totalCustomers)
 		{
 			echo $this->l('Total:').' '.intval($totalCustomers).'
@@ -86,7 +86,7 @@ class StatsLive extends Module
 					<td style="width: 200px;">'.$customer['page'].'</td>
 					<td style="text-align: right; width: 25px;">
 						<a href="index.php?tab=AdminCustomers&id_customer='.$customer['id_customer'].'&viewcustomer&token='.Tools::getAdminToken('AdminCustomers'.intval(Tab::getIdFromClassName('AdminCustomers')).intval($cookie->id_employee)).'" target="_blank">
-							<img src="../modules/'.$this->name.'/logo.gif" />
+							<img src="../modules/'.$this->name.'/logo.gif">
 						</a>
 					</td>
 				</tr>';
@@ -95,7 +95,7 @@ class StatsLive extends Module
 		else
 			echo $this->l('There is no customer online now.');
 		echo '</fieldset>
-		<fieldset class="width3 space"><legend><img src="../modules/'.$this->name.'/logo.gif" /> '.$this->l('Visitors online').'</legend>';
+		<fieldset class="width3 space"><legend><img src="../modules/'.$this->name.'/logo.gif"> '.$this->l('Visitors online').'</legend>';
 		if ($totalVisitors)
 		{
 			echo $this->l('Total:').' '.intval($totalVisitors).'

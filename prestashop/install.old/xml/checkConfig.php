@@ -36,11 +36,11 @@ $res_op = ConfigurationTest::check($tests_op);
 echo '<config>'."\n";
 	echo '<testList id="required">'."\n";
 	foreach ($res AS $key => $line)
-		echo '<test id="'.$key.'" result="'.$line.'"/>'."\n";
+		echo '<test id="'.$key.'" result="'.$line.'">'."\n";
 	echo '</testList>'."\n";
 	echo '<testList id="optional">'."\n";
 	foreach ($res_op AS $key => $line)
-		echo '<test id="'.$key.'" result="'.$line.'"/>'."\n";
+		echo '<test id="'.$key.'" result="'.$line.'">'."\n";
 	echo '</testList>'."\n";
 echo '</config>';
 ?>

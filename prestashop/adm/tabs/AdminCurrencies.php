@@ -90,16 +90,16 @@ class AdminCurrencies extends AdminTab
 		global	$currentIndex;
 
 		parent::displayOptionsList();
-		echo '<br /><br />
+		echo '<br><br>
 		<form action="'.$currentIndex.'&token='.$this->token.'" method="post" class="width3">
 			<fieldset>
-			<legend><img src="../img/admin/exchangesrate.gif" />'.$this->l('Currency rates').'</legend>
+			<legend><img src="../img/admin/exchangesrate.gif">'.$this->l('Currency rates').'</legend>
 			<label>'.$this->l('Update currencies rates:').'</label>
 				<div class="margin-form">
 					<p>'.$this->l('Update your currencies exchanges rates with a real-time tool').'</p>
 				</div>
 				<div class="margin-form">
-					<input type="submit" value="'.$this->l('Update  currencies rates').'" name="submitExchangesRates" class="button" />
+					<input type="submit" value="'.$this->l('Update  currencies rates').'" name="submitExchangesRates" class="button">
 				</div>
 			</fieldset>
 		</form>';
@@ -113,28 +113,28 @@ class AdminCurrencies extends AdminTab
 
 		echo '
 		<form action="'.$currentIndex.'&submitAdd'.$this->table.'=1&token='.$this->token.'" method="post" class="width3">
-		'.($obj->id ? '<input type="hidden" name="id_'.$this->table.'" value="'.$obj->id.'" />' : '').'
-			<fieldset><legend><img src="../img/admin/money.gif" />'.$this->l('Currencies').'</legend>
+		'.($obj->id ? '<input type="hidden" name="id_'.$this->table.'" value="'.$obj->id.'">' : '').'
+			<fieldset><legend><img src="../img/admin/money.gif">'.$this->l('Currencies').'</legend>
 				<label>'.$this->l('Currency:').' </label>
 				<div class="margin-form">
-					<input type="text" size="30" maxlength="32" name="name" value="'.htmlentities($this->getFieldValue($obj, 'name'), ENT_COMPAT, 'UTF-8').'" /> <sup>*</sup>
+					<input type="text" size="30" maxlength="32" name="name" value="'.htmlentities($this->getFieldValue($obj, 'name'), ENT_COMPAT, 'UTF-8').'"> <sup>*</sup>
 					<span class="hint" name="help_box">'.$this->l('Only letters and the minus character are allowed').'<span class="hint-pointer">&nbsp;</span></span>
 					<p class="clear">'.$this->l('Will appear on Front Office, e.g., euro, dollar').'...</p>
 				</div>
 				<label>'.$this->l('ISO code:').' </label>
 				<div class="margin-form">
-					<input type="text" size="30" maxlength="32" name="iso_code" value="'.htmlentities($this->getFieldValue($obj, 'iso_code'), ENT_COMPAT, 'UTF-8').'" /> <sup>*</sup>
+					<input type="text" size="30" maxlength="32" name="iso_code" value="'.htmlentities($this->getFieldValue($obj, 'iso_code'), ENT_COMPAT, 'UTF-8').'"> <sup>*</sup>
 					<span class="hint-pointer">&nbsp;</span>
 					<p class="clear">'.$this->l('ISO code, e.g., USD for dollar, EUR for euro').'...</p>
 				</div>
 				<label>'.$this->l('Symbol:').' </label>
 				<div class="margin-form">
-					<input type="text" size="3" maxlength="8" name="sign" value="'.htmlentities($this->getFieldValue($obj, 'sign'), ENT_COMPAT, 'UTF-8').'" /> <sup>*</sup>
+					<input type="text" size="3" maxlength="8" name="sign" value="'.htmlentities($this->getFieldValue($obj, 'sign'), ENT_COMPAT, 'UTF-8').'"> <sup>*</sup>
 					<p style="clear: both;">'.$this->l('Will appear on Front Office, e.g., &euro;, $').'...</p>
 				</div>
 				<label>'.$this->l('Conversion rate:').' </label>
 				<div class="margin-form">
-					<input type="text" size="3" maxlength="11" name="conversion_rate" value="'.htmlentities($this->getFieldValue($obj, 'conversion_rate')).'" /> <sup>*</sup>
+					<input type="text" size="3" maxlength="11" name="conversion_rate" value="'.htmlentities($this->getFieldValue($obj, 'conversion_rate')).'"> <sup>*</sup>
 					<p style="clear: both;">'.$this->l('Conversion rate from one unit of your shop\'s default currency (for example, 1€) to this currency. For example, if the default currency is euros and this currency is dollars, type \'1.52\'').' 1&euro; = $1.38</p>
 				</div>
 				<label>'.$this->l('Formatting:').' </label>
@@ -154,22 +154,22 @@ class AdminCurrencies extends AdminTab
 				</div>
 				<label>'.$this->l('Decimals:').' </label>
 				<div class="margin-form">
-					<input type="radio" name="decimals" id="decimals_on" value="1" '.($this->getFieldValue($obj, 'decimals') ? 'checked="checked" ' : '').'/>
-					<label class="t" for="decimals_on"> <img src="../img/admin/enabled.gif" alt="'.$this->l('Yes').'" title="'.$this->l('Yes').'" /></label>
-					<input type="radio" name="decimals" id="decimals_off" value="0" '.(!$this->getFieldValue($obj, 'decimals') ? 'checked="checked" ' : '').'/>
-					<label class="t" for="decimals_off"> <img src="../img/admin/disabled.gif" alt="'.$this->l('No').'" title="'.$this->l('No').'" /></label>
+					<input type="radio" name="decimals" id="decimals_on" value="1" '.($this->getFieldValue($obj, 'decimals') ? 'checked="checked" ' : '').'>
+					<label class="t" for="decimals_on"> <img src="../img/admin/enabled.gif" alt="'.$this->l('Yes').'" title="'.$this->l('Yes').'"></label>
+					<input type="radio" name="decimals" id="decimals_off" value="0" '.(!$this->getFieldValue($obj, 'decimals') ? 'checked="checked" ' : '').'>
+					<label class="t" for="decimals_off"> <img src="../img/admin/disabled.gif" alt="'.$this->l('No').'" title="'.$this->l('No').'"></label>
 					<p>'.$this->l('Display decimals on prices').'</p>
 				</div>
 				<label>'.$this->l('Blank:').' </label>
 				<div class="margin-form">
-					<input type="radio" name="blank" id="blank_on" value="1" '.($this->getFieldValue($obj, 'blank') ? 'checked="checked" ' : '').'/>
-					<label class="t" for="blank_on"> <img src="../img/admin/enabled.gif" alt="'.$this->l('Enabled').'" title="'.$this->l('Enabled').'" /></label>
-					<input type="radio" name="blank" id="blank_off" value="0" '.(!$this->getFieldValue($obj, 'blank') ? 'checked="checked" ' : '').'/>
-					<label class="t" for="blank_off"> <img src="../img/admin/disabled.gif" alt="'.$this->l('Disabled').'" title="'.$this->l('Disabled').'" /></label>
-					<p>'.$this->l('Include a blank between sign and price, e.g.,').'<br />$1,240.15 -> $ 1,240.15</p>
+					<input type="radio" name="blank" id="blank_on" value="1" '.($this->getFieldValue($obj, 'blank') ? 'checked="checked" ' : '').'>
+					<label class="t" for="blank_on"> <img src="../img/admin/enabled.gif" alt="'.$this->l('Enabled').'" title="'.$this->l('Enabled').'"></label>
+					<input type="radio" name="blank" id="blank_off" value="0" '.(!$this->getFieldValue($obj, 'blank') ? 'checked="checked" ' : '').'>
+					<label class="t" for="blank_off"> <img src="../img/admin/disabled.gif" alt="'.$this->l('Disabled').'" title="'.$this->l('Disabled').'"></label>
+					<p>'.$this->l('Include a blank between sign and price, e.g.,').'<br>$1,240.15 -> $ 1,240.15</p>
 				</div>
 				<div class="margin-form">
-					<input type="submit" value="'.$this->l('   Save   ').'" name="submitAdd'.$this->table.'" class="button" />
+					<input type="submit" value="'.$this->l('   Save   ').'" name="submitAdd'.$this->table.'" class="button">
 				</div>
 				<div class="small"><sup>*</sup> '.$this->l('Required field').'</div>
 			</fieldset>

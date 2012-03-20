@@ -156,7 +156,7 @@
 			if (!tinymce.isIE) {
 				ed.onBeforeSetContent.add(function(ed, o) {
 					if (o.initial)
-						o.content = o.content.replace(/<(td|th)([^>]+|)>\s*<\/(td|th)>/g, tinymce.isOpera ? '<$1$2>&nbsp;</$1>' : '<$1$2><br mce_bogus="1" /></$1>');
+						o.content = o.content.replace(/<(td|th)([^>]+|)>\s*<\/(td|th)>/g, tinymce.isOpera ? '<$1$2>&nbsp;</$1>' : '<$1$2><br mce_bogus="1"></$1>');
 				});
 			}
 		},
@@ -259,7 +259,7 @@
 				var newTD = doc.createElement("td");
 
 				if (!tinymce.isIE)
-					newTD.innerHTML = '<br mce_bogus="1"/>';
+					newTD.innerHTML = '<br mce_bogus="1">';
 			}
 
 			function getColRowSpan(td) {
@@ -418,7 +418,7 @@
 					var newTD = doc.createElement("td");
 
 					if (!tinymce.isIE)
-						newTD.innerHTML = '<br mce_bogus="1"/>';
+						newTD.innerHTML = '<br mce_bogus="1">';
 
 					if (tinymce.isIE)
 						trNext.insertBefore(newTD, trNext.cells(td_elm.cellIndex));
@@ -453,7 +453,7 @@
 						newTD = doc.createElement("td");
 
 						if (!tinymce.isIE)
-							newTD.innerHTML = '<br mce_bogus="1"/>';
+							newTD.innerHTML = '<br mce_bogus="1">';
 					}
 
 					// Reset col/row span
@@ -632,7 +632,7 @@
 											var newTD = doc.createElement("td");
 
 											if (!tinymce.isIE)
-												newTD.innerHTML = '<br mce_bogus="1"/>';
+												newTD.innerHTML = '<br mce_bogus="1">';
 
 											newTD.colSpan = tdElm.colSpan;
 
@@ -666,7 +666,7 @@
 											var newTD = doc.createElement("td");
 
 											if (!tinymce.isIE)
-												newTD.innerHTML = '<br mce_bogus="1"/>';
+												newTD.innerHTML = '<br mce_bogus="1">';
 
 											newTD.colSpan = tdElm.colSpan;
 
@@ -761,7 +761,7 @@
 											var newTD = doc.createElement(tdElm.nodeName);
 
 											if (!tinymce.isIE)
-												newTD.innerHTML = '<br mce_bogus="1"/>';
+												newTD.innerHTML = '<br mce_bogus="1">';
 
 											newTD.rowSpan = tdElm.rowSpan;
 
@@ -792,7 +792,7 @@
 											var newTD = doc.createElement(tdElm.nodeName);
 
 											if (!tinymce.isIE)
-												newTD.innerHTML = '<br mce_bogus="1"/>';
+												newTD.innerHTML = '<br mce_bogus="1">';
 
 											newTD.rowSpan = tdElm.rowSpan;
 
@@ -861,7 +861,7 @@
 									var newTD = doc.createElement("td");
 
 									if (!tinymce.isIE)
-										newTD.innerHTML = '<br mce_bogus="1"/>';
+										newTD.innerHTML = '<br mce_bogus="1">';
 
 									trElm.insertBefore(newTD, nextElm(tdElm, "TD,TH"));
 
@@ -1079,7 +1079,7 @@
 									var html = rows[y][x].innerHTML;
 									var chk = html.replace(/[ \t\r\n]/g, "");
 
-									if (chk != "<br/>" && chk != "<br>" && chk != '<br mce_bogus="1"/>' && (x+y > 0))
+									if (chk != "<br>" && chk != "<br>" && chk != '<br mce_bogus="1">' && (x+y > 0))
 										tdElm.innerHTML += html;
 
 									// Not current cell

@@ -76,7 +76,7 @@ class Newsletter extends Module
 				foreach ($result AS $tab)
 					$this->_my_fputcsv($fd, $tab);
 				fclose($fd);
-				$this->_html .= $this->displayConfirmation($this->l('The .CSV file has been successfully exported').' ('.$nb.' '.$this->l('customers found').')<br />> <a href="../modules/newsletter/'.strval($_POST['action']).'_'.$this->_file.'"><b>'.$this->l('Download the file').'</b></a>');
+				$this->_html .= $this->displayConfirmation($this->l('The .CSV file has been successfully exported').' ('.$nb.' '.$this->l('customers found').')<br>> <a href="../modules/newsletter/'.strval($_POST['action']).'_'.$this->_file.'"><b>'.$this->l('Download the file').'</b></a>');
 			}
 			else
 				$this->_html .= $this->displayError($this->l('Error: cannot write to').' '.dirname(__FILE__).'/'.strval($_POST['action']).'_'.$this->_file.' !');
@@ -123,32 +123,32 @@ class Newsletter extends Module
 		'.$this->l('There are two sorts for this module:').'
 		<p><ol>
 			<li>
-				1. '.$this->l('Persons who have subscribed using the BlockNewsletter block in the front office.').'<br />
-                '.$this->l('This will be a list of email addresses for persons coming to your store and not becoming a customer but wanting to get your newsletter. Using the "Export Newsletter Subscribers" below will generate a .CSV file based on the BlockNewsletter subscribers data.').'<br /><br />'.'
+				1. '.$this->l('Persons who have subscribed using the BlockNewsletter block in the front office.').'<br>
+                '.$this->l('This will be a list of email addresses for persons coming to your store and not becoming a customer but wanting to get your newsletter. Using the "Export Newsletter Subscribers" below will generate a .CSV file based on the BlockNewsletter subscribers data.').'<br><br>'.'
             </li>
             <li>
-                2. '.$this->l('Customers that have checked "yes" to receive a newsletter in their customer profile.').'<br />
+                2. '.$this->l('Customers that have checked "yes" to receive a newsletter in their customer profile.').'<br>
                 '.$this->l('The "Export Customers" section below filters which customers you want to send a newsletter.').'
             </li>
         </ol></p>
-        </fieldset><br />
+        </fieldset><br>
         <fieldset class="width3"><legend>'.$this->l('Export Newsletter Subscribers').'</legend>
         <form action="'.$_SERVER['REQUEST_URI'].'" method="post">
 			<input type="hidden" name="action" value="blockNewsletter">
-			'.$this->l('Generate a .CSV file based on BlockNewsletter subscribers data.').'.<br /><br />';
-		$this->_html .= '<br />
-		<center><input type="submit" class="button" name="submitExport" value="'.$this->l('Export .CSV file').'" /></center>
-        </form></fieldset><br />
+			'.$this->l('Generate a .CSV file based on BlockNewsletter subscribers data.').'.<br><br>';
+		$this->_html .= '<br>
+		<center><input type="submit" class="button" name="submitExport" value="'.$this->l('Export .CSV file').'"></center>
+        </form></fieldset><br>
 		<fieldset class="width3"><legend>'.$this->l('Export customers').'</legend>
         <form action="'.$_SERVER['REQUEST_URI'].'" method="post">
 			<input type="hidden" name="action" value="customers">
-			'.$this->l('Generate an .CSV file from customers account data').'.<br /><br />';
+			'.$this->l('Generate an .CSV file from customers account data').'.<br><br>';
 		foreach ($this->_fieldsExport as $key => $field)
 		{
 			$this->_html .= '
 			<label style="margin-top:15px;">'.$field['title'].' </label>
 			<div class="margin-form" style="margin-top:15px;">
-				'.$field['desc'].'<br /><br />';
+				'.$field['desc'].'<br><br>';
 			switch ($field['type'])
 			{
 				case 'select':
@@ -165,8 +165,8 @@ class Newsletter extends Module
 			$this->_html .= '
 			</div>';
 		}
-		$this->_html .= '<br />
-		<center><input type="submit" class="button" name="submitExport" value="'.$this->l('Export .CSV file').'" /></center>
+		$this->_html .= '<br>
+		<center><input type="submit" class="button" name="submitExport" value="'.$this->l('Export .CSV file').'"></center>
         </form></fieldset>';
 	}
 

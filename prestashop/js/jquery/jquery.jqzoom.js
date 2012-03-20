@@ -42,7 +42,7 @@
 
 		    if($("div.zoomdiv").get().length == 0){
 
-		    $(this).after("<div class='zoomdiv'><img class='bigimg' src='"+bigimage+"'/></div>");
+		    $(this).after("<div class='zoomdiv'><img class='bigimg' src='"+bigimage+"'></div>");
 
 		    }
 

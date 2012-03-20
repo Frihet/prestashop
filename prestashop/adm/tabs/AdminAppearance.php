@@ -38,7 +38,7 @@ class AdminAppearance extends AdminPreferences
 		header('Cache-Control: no-cache, must-revalidate');
 		header('Expires: Mon, 26 Jul 1997 05:00:00 GMT');
 		$this->_displayForm('appearance', $this->_fieldsAppearance, $this->l('Appearance'), 'width3', 'appearance');
-		echo '<br /><br />';
+		echo '<br><br>';
 		$this->_displayForm('themes', $this->_fieldsTheme, $this->l('Themes'), 'width3', 'themes');
 	}
 	

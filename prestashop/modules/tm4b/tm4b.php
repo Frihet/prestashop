@@ -211,12 +211,12 @@ class Tm4b extends Module
 		$testsms_txt = 'Send';
 		
 		$this->_html .= '
-		<fieldset><legend><img src="'.$this->_path.'informations.gif" alt="" title="" /> '.$this->l('Information').'</legend>
+		<fieldset><legend><img src="'.$this->_path.'informations.gif" alt="" title=""> '.$this->l('Information').'</legend>
 			<form action="'.$_SERVER['REQUEST_URI'].'" method="post">
 				<label>'.$this->l('Send test SMS:').'</label>
 				<div class="margin-form"><input onclick="this.value=\'\'" type="text" style="margin-bottom:10px;" name="test_number" size="30" value="'.
 				((isset($_POST) AND isset($_POST['test_number'])) ? $_POST['test_number'] : $this->l('Enter your phone number')).'">
-				<input class="button" name="btnTestSms" value="'.$testsms_txt.'" type="submit" style="margin-bottom:10px;" /><br />'.$this->l('ex: 33642424242').'</div>';
+				<input class="button" name="btnTestSms" value="'.$testsms_txt.'" type="submit" style="margin-bottom:10px;"><br>'.$this->l('ex: 33642424242').'</div>';
 				if (!empty($this->_user) AND !empty($this->_password))
 				{
 					$sms = new Tm4bSms($this->_user, $this->_password, $this->_route, $this->_originator);
@@ -227,7 +227,7 @@ class Tm4b extends Module
 				}
 		$this->_html .= '
 			</form>
-		</fieldset><br />';
+		</fieldset><br>';
 	}
 	
 	private function _displayForm()
@@ -248,12 +248,12 @@ class Tm4b extends Module
 			}
 		}
 		
-		$this->_html .= '<fieldset><legend><img src="'.$this->_path.'prefs.gif" alt="" title="" /> '.$this->l('Settings').'</legend>
+		$this->_html .= '<fieldset><legend><img src="'.$this->_path.'prefs.gif" alt="" title=""> '.$this->l('Settings').'</legend>
 		<form action="'.$_SERVER['REQUEST_URI'].'" method="post">
 			<label>'.$this->l('Username:').'</label>
-			<div class="margin-form"><input type="text" name="user" value="'.(isset($_POST['user']) ? $_POST['user'] : '').'" /></div>
+			<div class="margin-form"><input type="text" name="user" value="'.(isset($_POST['user']) ? $_POST['user'] : '').'"></div>
 			<label>'.$this->l('Password:').'</label>
-			<div class="margin-form"><input type="text" name="password" value="'.(isset($_POST['password']) ? $_POST['password'] : '').'" /></div>
+			<div class="margin-form"><input type="text" name="password" value="'.(isset($_POST['password']) ? $_POST['password'] : '').'"></div>
 			<label>'.$this->l('Relay:').'</label>
 			<div class="margin-form"><select name="route">
 				<option value="GD01" '.(isset($_POST['route']) ? ($_POST['route'] == 'GD01' ? 'selected="selected"' : '') : '').'>Global I</option>
@@ -261,22 +261,22 @@ class Tm4b extends Module
 				<option value="USS1" '.(isset($_POST['route']) ? ($_POST['route'] == 'USS1' ? 'selected="selected"' : '') : '').'>USA Direct</option>
 				</select></div>
 			<label>'.$this->l('SMS sender\'s phone #').'</label>
-			<div class="margin-form"><input type="text" name="originator" value="'.(isset($_POST['originator']) ? $_POST['originator'] : '').'" style="margin-bottom:10px;" /><br />'.$this->l('ex: 33642424242').'</div>
+			<div class="margin-form"><input type="text" name="originator" value="'.(isset($_POST['originator']) ? $_POST['originator'] : '').'" style="margin-bottom:10px;"><br>'.$this->l('ex: 33642424242').'</div>
 			<label>'.$this->l('Mode:').'</label>
-			<div class="margin-form"><input type="radio" name="simulation" value="1" style="vertical-align: middle;" '.( (isset($_POST['simulation']) AND $_POST['simulation'] == '1' ) ? 'checked' : '').' /> <span style="color: #900;">'.$this->l('Simulation').'</span>
-			&nbsp;<input type="radio" name="simulation" value="0" style="vertical-align: middle;" '.( (!isset($_POST['simulation']) OR $_POST['simulation'] == '0') ? 'checked' : '').' /> <span style="color: #080;">'.$this->l('Production').'</div>
-			<br />
+			<div class="margin-form"><input type="radio" name="simulation" value="1" style="vertical-align: middle;" '.( (isset($_POST['simulation']) AND $_POST['simulation'] == '1' ) ? 'checked' : '').'> <span style="color: #900;">'.$this->l('Simulation').'</span>
+			&nbsp;<input type="radio" name="simulation" value="0" style="vertical-align: middle;" '.( (!isset($_POST['simulation']) OR $_POST['simulation'] == '0') ? 'checked' : '').'> <span style="color: #080;">'.$this->l('Production').'</div>
+			<br>
 			<label>'.$this->l('Alerts on new order:').'</label>
-			<div class="margin-form"><div style="color:#000000; font-size:12px; margin-bottom:6px"><input type="checkbox" value="1" name="alert_new_order" '.( (isset($_POST['alert_new_order']) AND $_POST['alert_new_order'] == '1') ? 'checked' : '').' />&nbsp;'.$this->l('Yes').'</div>'.$this->l('Send SMS if a new order is made').'</div>
+			<div class="margin-form"><div style="color:#000000; font-size:12px; margin-bottom:6px"><input type="checkbox" value="1" name="alert_new_order" '.( (isset($_POST['alert_new_order']) AND $_POST['alert_new_order'] == '1') ? 'checked' : '').'>&nbsp;'.$this->l('Yes').'</div>'.$this->l('Send SMS if a new order is made').'</div>
 			<label class="clear">'.$this->l('Alerts on product quantity:').'</label>
-			<div class="margin-form"><div style="color:#000000; font-size:12px; margin-bottom:6px"><input type="checkbox" value="1" name="alert_update_quantity" '.( (isset($_POST['alert_update_quantity']) AND $_POST['alert_update_quantity'] == '1') ? 'checked' : '').' />&nbsp;'.$this->l('Yes').'</div>'.$this->l('Send SMS if the stock of product is updated').'</div>
+			<div class="margin-form"><div style="color:#000000; font-size:12px; margin-bottom:6px"><input type="checkbox" value="1" name="alert_update_quantity" '.( (isset($_POST['alert_update_quantity']) AND $_POST['alert_update_quantity'] == '1') ? 'checked' : '').'>&nbsp;'.$this->l('Yes').'</div>'.$this->l('Send SMS if the stock of product is updated').'</div>
 			<label class="clear">'.$this->l('Daily report:').'</label>
-			<div class="margin-form"><div style="color:#000000; font-size:12px; margin-bottom:6px"><input type="checkbox" value="1" name="daily_report" '.( (isset($_POST['daily_report']) AND $_POST['daily_report'] == '1') ? 'checked' : '').' />&nbsp;'.$this->l('Yes').'</div>'.$this->l('Send a daily stats report - You must set a CRON to').' /modules/tm4b/cron.php</div>
-			<br />
+			<div class="margin-form"><div style="color:#000000; font-size:12px; margin-bottom:6px"><input type="checkbox" value="1" name="daily_report" '.( (isset($_POST['daily_report']) AND $_POST['daily_report'] == '1') ? 'checked' : '').'>&nbsp;'.$this->l('Yes').'</div>'.$this->l('Send a daily stats report - You must set a CRON to').' /modules/tm4b/cron.php</div>
+			<br>
 			<label>'.$this->l('SMS receiver\'s phone #').'</label>
-			<div class="margin-form"><input type="text" name="new_order_numbers" size="30" value="'.(isset($_POST['new_order_numbers']) ? $_POST['new_order_numbers'] : '').'" style="margin-bottom:10px;" /><br />'.$this->l('ex: 33642424242').'</div>
-			<br />
-			<div class="margin-form"><input class="button" name="btnSubmit" value="'.$this->l('Update settings').'" type="submit" /></div>
+			<div class="margin-form"><input type="text" name="new_order_numbers" size="30" value="'.(isset($_POST['new_order_numbers']) ? $_POST['new_order_numbers'] : '').'" style="margin-bottom:10px;"><br>'.$this->l('ex: 33642424242').'</div>
+			<br>
+			<div class="margin-form"><input class="button" name="btnSubmit" value="'.$this->l('Update settings').'" type="submit"></div>
 		</form></fieldset>';
 	}
 

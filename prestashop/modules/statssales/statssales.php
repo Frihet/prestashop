@@ -43,16 +43,16 @@ class StatsSales extends ModuleGraph
 		$currency = new Currency(Configuration::get('PS_CURRENCY_DEFAULT'));
 		
 		$this->_html = '
-		<fieldset class="width3"><legend><img src="../modules/'.$this->name.'/logo.gif" /> '.$this->displayName.'</legend>
+		<fieldset class="width3"><legend><img src="../modules/'.$this->name.'/logo.gif"> '.$this->displayName.'</legend>
 			<form action="'.$_SERVER['REQUEST_URI'].'" method="post" style="float: right; margin-left: 10px;">
 				<select name="id_country">
 					<option value="0"'.((!Tools::getValue('id_order_state')) ? ' selected="selected"' : '').'>'.$this->l('All').'</option>';
 		foreach (Country::getCountries($cookie->id_lang) AS $country)
 			$this->_html .= '<option value="'.$country['id_country'].'"'.(($country['id_country'] == Tools::getValue('id_country')) ? ' selected="selected"' : '').'>'.$country['name'].'</option>';
 		$this->_html .= '</select>
-				<input type="submit" name="submitCountry" value="'.$this->l('Filter').'" class="button" />
+				<input type="submit" name="submitCountry" value="'.$this->l('Filter').'" class="button">
 			</form>
-			<p><center><img src="../img/admin/down.gif" />
+			<p><center><img src="../img/admin/down.gif">
 				'.$this->l('These graphs represent the evolution of your orders and sales turnover for a given period. It is not an advanced analysis tools, but at least you can overview the rentability of your shop in a flash. You can also keep a watch on the difference with some periods like Christmas. Only valid orders are included in theses two graphs.').'
 			</center></p>
 			<p>'.$this->l('Total orders placed:').' '.intval($totals['allOrderCount']).'</p>
@@ -60,14 +60,14 @@ class StatsSales extends ModuleGraph
 			<p>'.$this->l('Total products ordered (valid):').' '.intval($totals['products']).'</p>
 			<center>'.ModuleGraph::engine(array('type' => 'line', 'option' => '1-'.intval(Tools::getValue('id_country')), 'layers' => 3)).'</center>
 			<p>'.$this->l('Sales:').' '.Tools::displayPrice($totals['orderSum'], $currency).'</p>
-			<center>'.ModuleGraph::engine(array('type' => 'line', 'option' => '2-'.intval(Tools::getValue('id_country')))).'<br /><br />
-			<p class="space"><img src="../img/admin/down.gif" />
+			<center>'.ModuleGraph::engine(array('type' => 'line', 'option' => '2-'.intval(Tools::getValue('id_country')))).'<br><br>
+			<p class="space"><img src="../img/admin/down.gif">
 				'.$this->l('You can see the order state distribution below.').'
-			</p><br />
+			</p><br>
 			'.($totals['orderCount'] ? ModuleGraph::engine(array('type' => 'pie', 'option' => '3-'.intval(Tools::getValue('id_country')))) : $this->l('No order for this period')).'</center>
 		</fieldset>
-		<br class="clear" />
-		<fieldset class="width3"><legend><img src="../img/admin/comment.gif" /> '.$this->l('Guide').'</legend>
+		<br class="clear">
+		<fieldset class="width3"><legend><img src="../img/admin/comment.gif"> '.$this->l('Guide').'</legend>
 			<h2>'.$this->l('Various order status').'</h2>
 			<p>
 				'.$this->l('In your back-office, you can find many order status : Awaiting cheque payment, Payment accepted, Preparation in progress, Shipping, Delivered, Canceled, Refund, Payment error, Out of stock, and Awaiting bank wire payment.

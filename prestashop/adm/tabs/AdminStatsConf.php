@@ -50,7 +50,7 @@ class AdminStatsConf extends AdminPreferences
 			'year' => $this->l('Year'));
 		
 		echo '<form action="'.$currentIndex.'&token='.$this->token.'&submitSettings=1" method="post">
-			<fieldset><legend><img src="../img/admin/tab-preferences.gif" />'.$this->l('Settings').'</legend>';
+			<fieldset><legend><img src="../img/admin/tab-preferences.gif">'.$this->l('Settings').'</legend>';
 				
 		#Graph Engines
 		echo '<label class="clear">'.$this->l('Graph engine').': </label><div class="margin-form">';
@@ -95,7 +95,7 @@ class AdminStatsConf extends AdminPreferences
 				</div>';
 				
 		#End Of Form
-		echo '<input type="submit" value="'.$this->l('   Save   ').'" name="submitSettings" class="button" />
+		echo '<input type="submit" value="'.$this->l('   Save   ').'" name="submitSettings" class="button">
 			</fieldset>
 		</form>';
 	}

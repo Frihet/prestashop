@@ -61,7 +61,7 @@ class AdminDb extends AdminPreferences
 
 	public function display()
 	{
-		echo $this->displayWarning($this->l('Be VERY CAREFUL with these settings, as changes may cause your PrestaShop online store to malfunction. For all issues, check the config/settings.inc.php file.')).'<br />';
+		echo $this->displayWarning($this->l('Be VERY CAREFUL with these settings, as changes may cause your PrestaShop online store to malfunction. For all issues, check the config/settings.inc.php file.')).'<br>';
 		$this->_displayForm('database', $this->_fieldsDatabase, $this->l('Database'), 'width2', 'database_gear');
 	}
 }

@@ -1014,7 +1014,7 @@ ul#header_links {
 .variablebox_top_left, .variablebox_top_center, .variablebox_top_middle, .variablebox_top_right, .variablebox_middle_left, .variablebox_middle_center, .variablebox_middle_middle, .variablebox_middle_right, .variablebox_bottom_left, .variablebox_bottom_center, .variablebox_bottom_middle, .variablebox_bottom_right {
     height: 5px;
 }
-.variablebox_top_left, .variablebox_center_left, .variablebox_middle_left, .variablebox_bottom_left, .variablebox_top_middle, .variablebox_center_middle, .variablebox_middle_middle, .variablebox_bottom_middle, .variablebox_top_bottom, .variablebox_center_right, .variablebox_middle_right, .variablebox_bottom_right {
+.variablebox_top_left, .variablebox_center_left, .variablebox_middle_left, .variablebox_bottom_left, .variablebox_top_middle, .variablebox_center_middle, .variablebox_middle_middle, .variablebox_bottom_middle, .variablebox_top_right, .variablebox_center_right, .variablebox_middle_right, .variablebox_bottom_right {
     width: 5px;
 }
 #pb-left-column .variablebox {

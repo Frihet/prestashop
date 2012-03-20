@@ -231,7 +231,7 @@ class AdminLanguages extends AdminTab
 					$active['img'] = "disabled";
 				}
 				echo '<tr'.($irow++ % 2 ? ' class="alt_row"' : '').' '.((isset($tr['color']) AND $this->colorOnBackground) ? 'style="background-color: '.$tr['color'].'"' : '').'>';
-				echo '<td class="center"><input type="checkbox" name="'.$this->table.'Box[]" value="'.$id.'" class="noborder" /></td>';
+				echo '<td class="center"><input type="checkbox" name="'.$this->table.'Box[]" value="'.$id.'" class="noborder"></td>';
 
 				foreach ($this->fieldsDisplay AS $key => $params)
 				{
@@ -239,7 +239,7 @@ class AdminLanguages extends AdminTab
 					$key = isset($tmp[1]) ? $tmp[1] : $tmp[0];
 					echo '<td class="pointer '.(isset($params['align']) ? $params['align'] : '').'" onclick="document.location = \''.$currentIndex.'&'.$this->identifier.'='.$id.'&update'.$this->table.'&token='.($token!=NULL ? $token : $this->token).'\'">';
 					if (isset($params['active']) AND isset($tr[$key]))
-						echo '<a href="'.$currentIndex.'&'.$this->identifier.'='.$id.'&'.$params['active'].'&token='.($token != NULL ? $token : $this->token).'"><img src="../img/admin/'.$active['img'].'.gif" alt="active" title="'.$active['title'].'" /></a>';
+						echo '<a href="'.$currentIndex.'&'.$this->identifier.'='.$id.'&'.$params['active'].'&token='.($token != NULL ? $token : $this->token).'"><img src="../img/admin/'.$active['img'].'.gif" alt="active" title="'.$active['title'].'"></a>';
 					elseif (isset($params['image']))
 						echo cacheImage(_PS_IMG_DIR_.$params['image'].'/'.$id.(isset($tr['id_image']) ? '-'.intval($tr['id_image']) : '').'.'.$this->imageType, $this->table.'_mini_'.$id.'.'.$this->imageType, 45, $this->imageType);
 					elseif (isset($tr[$key]))
@@ -254,11 +254,11 @@ class AdminLanguages extends AdminTab
 					if ($this->edit)
 						echo '
 						<a href="'.$currentIndex.'&'.$this->identifier.'='.$id.'&update'.$this->table.'&token='.($token != NULL ? $token : $this->token).'">
-						<img src="../img/admin/edit.gif" border="0" alt="'.$this->l('Edit').'" title="'.$this->l('Edit').'" /></a>';
+						<img src="../img/admin/edit.gif" border="0" alt="'.$this->l('Edit').'" title="'.$this->l('Edit').'"></a>';
 					if ($this->delete)
 						echo '
 						<a href="'.$currentIndex.'&'.$this->identifier.'='.$id.'&delete'.$this->table.'&token='.($token != NULL ? $token : $this->token).'" onclick="return confirm(\''.$this->l('When you delete a language, ALL RELATED TRANSLATIONS IN THE DATABASE WILL BE DELETED, are you sure to delete this langauge ?', __CLASS__, true, false).'\');">
-						<img src="../img/admin/delete.gif" border="0" alt="'.$this->l('Delete').'" title="'.$this->l('Delete').'" /></a>';
+						<img src="../img/admin/delete.gif" border="0" alt="'.$this->l('Delete').'" title="'.$this->l('Delete').'"></a>';
 					echo '</td>';
 				}
 				echo '</tr>';
@@ -272,37 +272,37 @@ class AdminLanguages extends AdminTab
 
 		echo '
 		<form action="'.$currentIndex.'&submitAdd'.$this->table.'=1&token='.$this->token.'" method="post" enctype="multipart/form-data" class="width3">
-		'.($obj->id ? '<input type="hidden" name="id_'.$this->table.'" value="'.$obj->id.'" />' : '').'
-			<fieldset><legend><img src="../img/admin/world.gif" />'.$this->l('Languages').'</legend>
+		'.($obj->id ? '<input type="hidden" name="id_'.$this->table.'" value="'.$obj->id.'">' : '').'
+			<fieldset><legend><img src="../img/admin/world.gif">'.$this->l('Languages').'</legend>
 				<label>'.$this->l('Name:').' </label>
 				<div class="margin-form">
-					<input type="text" size="8" maxlength="32" name="name" value="'.htmlentities($this->getFieldValue($obj, 'name'), ENT_COMPAT, 'UTF-8').'" /> <sup>*</sup>
+					<input type="text" size="8" maxlength="32" name="name" value="'.htmlentities($this->getFieldValue($obj, 'name'), ENT_COMPAT, 'UTF-8').'"> <sup>*</sup>
 				</div>
 				<label>'.$this->l('ISO code:').' </label>
 				<div class="margin-form">
-					<input type="text" size="4" maxlength="2" name="iso_code" value="'.htmlentities($this->getFieldValue($obj, 'iso_code'), ENT_COMPAT, 'UTF-8').'" /> <sup>*</sup>
+					<input type="text" size="4" maxlength="2" name="iso_code" value="'.htmlentities($this->getFieldValue($obj, 'iso_code'), ENT_COMPAT, 'UTF-8').'"> <sup>*</sup>
 					<p>'.$this->l('2-letter ISO code (e.g., fr, en, de)').'</p>
 				</div>
 				<label>'.$this->l('Flag:').' </label>
 				<div class="margin-form">
-					<input type="file" name="flag" /> <sup>*</sup>
+					<input type="file" name="flag"> <sup>*</sup>
 					<p>'.$this->l('Upload country flag from your computer').'</p>
 				</div>
 				<label>'.$this->l('"No-picture" image:').' </label>
 				<div class="margin-form">
-					<input type="file" name="no-picture" /> <sup>*</sup>
+					<input type="file" name="no-picture"> <sup>*</sup>
 					<p>'.$this->l('Image displayed when "no picture found"').'</p>
 				</div>
 				<label>'.$this->l('Status:').' </label>
 				<div class="margin-form">
-					<input type="radio" name="active" id="active_on" value="1" '.((!$obj->id OR $this->getFieldValue($obj, 'active')) ? 'checked="checked" ' : '').'/>
-					<label class="t" for="active_on"> <img src="../img/admin/enabled.gif" alt="'.$this->l('Enabled').'" title="'.$this->l('Enabled').'" /></label>
-					<input type="radio" name="active" id="active_off" value="0" '.((!$this->getFieldValue($obj, 'active') AND $obj->id) ? 'checked="checked" ' : '').'/>
-					<label class="t" for="active_off"> <img src="../img/admin/disabled.gif" alt="'.$this->l('Disabled').'" title="'.$this->l('Disabled').'" /></label>
+					<input type="radio" name="active" id="active_on" value="1" '.((!$obj->id OR $this->getFieldValue($obj, 'active')) ? 'checked="checked" ' : '').'>
+					<label class="t" for="active_on"> <img src="../img/admin/enabled.gif" alt="'.$this->l('Enabled').'" title="'.$this->l('Enabled').'"></label>
+					<input type="radio" name="active" id="active_off" value="0" '.((!$this->getFieldValue($obj, 'active') AND $obj->id) ? 'checked="checked" ' : '').'>
+					<label class="t" for="active_off"> <img src="../img/admin/disabled.gif" alt="'.$this->l('Disabled').'" title="'.$this->l('Disabled').'"></label>
 					<p>'.$this->l('Allow or disallow this language to be selected by the customer').'</p>
 				</div>
 				<div class="margin-form">
-					<input type="submit" value="'.$this->l('   Save   ').'" name="submitAdd'.$this->table.'" class="button" />
+					<input type="submit" value="'.$this->l('   Save   ').'" name="submitAdd'.$this->table.'" class="button">
 				</div>
 				<div class="small"><sup>*</sup> '.$this->l('Required field').'</div>
 			</fieldset>
@@ -311,29 +311,29 @@ class AdminLanguages extends AdminTab
 		if ($obj->id AND !$obj->checkFiles())
 		{
 			echo '
-			<br /><br />
-			<fieldset style="width:572px;"><legend><img src="../img/admin/warning.gif" />'.$this->l('Warning').'</legend>
+			<br><br>
+			<fieldset style="width:572px;"><legend><img src="../img/admin/warning.gif">'.$this->l('Warning').'</legend>
 					<p>'.$this->l('This language is NOT complete and cannot be used in the Front or Back Office because some files are missing.').'</p>
-					<br />
+					<br>
 					<label>'.$this->l('Translations files:').' </label>
 					<div class="margin-form" style="margin-top:4px;">';
 					$files = Language::getFilesList($obj->iso_code, _THEME_NAME_, false, false, 'tr', true);
 					$this->displayFilesList($files);
 			echo '
-					</div><br style="clear:both;" />
+					</div><br style="clear:both;">
 					<label>'.$this->l('Theme files:').' </label>
 					<div class="margin-form" style="margin-top:4px;">';
 					$files = Language::getFilesList($obj->iso_code, _THEME_NAME_, false, false, 'theme', true);
 					$this->displayFilesList($files);
 			echo '
-					</div><br style="clear:both;" />
+					</div><br style="clear:both;">
 					<label>'.$this->l('Mail files:').' </label>
 					<div class="margin-form" style="margin-top:4px;">';
 					$files = Language::getFilesList($obj->iso_code, _THEME_NAME_, false, false, 'mail', true);
 					$this->displayFilesList($files);
 			echo '
 					</div>
-					<br />
+					<br>
 					<div class="small">'.$this->l('Missing files are marked in red').'</div>
 			</fieldset>';
 		}
@@ -348,7 +348,7 @@ class AdminLanguages extends AdminTab
 			echo $key;
 			if (!file_exists($key))
 				echo '</font>';
-			echo '<br />';
+			echo '<br>';
 		}
 	}
 }

@@ -49,7 +49,7 @@ class Blockrss extends Module
 				Configuration::updateValue('RSS_FEED_NBR', $nbr);
 			}
 			if (isset($errors) AND sizeof($errors))
-				$output .= $this->displayError(implode('<br />', $errors));
+				$output .= $this->displayError(implode('<br>', $errors));
 			else
 				$output .= $this->displayConfirmation($this->l('Settings updated'));
 		}
@@ -61,26 +61,26 @@ class Blockrss extends Module
 	{
 		$output = '
 		<form action="'.$_SERVER['REQUEST_URI'].'" method="post">
-			<fieldset><legend><img src="'.$this->_path.'logo.gif" alt="" title="" />'.$this->l('Settings').'</legend>
+			<fieldset><legend><img src="'.$this->_path.'logo.gif" alt="" title="">'.$this->l('Settings').'</legend>
 				<label>'.$this->l('Block title').'</label>
 				<div class="margin-form">
-					<input type="text" name="title" value="'.Tools::getValue('title', Configuration::get('RSS_FEED_TITLE')).'" />
+					<input type="text" name="title" value="'.Tools::getValue('title', Configuration::get('RSS_FEED_TITLE')).'">
 					<p class="clear">'.$this->l('Create a title for the block (default: \'RSS feed\')').'</p>
 					
 				</div>
 				<label>'.$this->l('Add a feed URL').'</label>
 				<div class="margin-form">
-					<input type="text" size="85" name="urlfeed" value="'.Tools::getValue('urlfeed', Configuration::get('RSS_FEED_URL')).'" />
+					<input type="text" size="85" name="urlfeed" value="'.Tools::getValue('urlfeed', Configuration::get('RSS_FEED_URL')).'">
 					<p class="clear">'.$this->l('Add the url of the feed you wan\'t to use').'</p>
 					
 				</div>
 				<label>'.$this->l('Number of threads displayed').'</label>
 				<div class="margin-form">
-					<input type="text" size="5" name="nbr" value="'.Tools::getValue('nbr', Configuration::get('RSS_FEED_NBR')).'" />
+					<input type="text" size="5" name="nbr" value="'.Tools::getValue('nbr', Configuration::get('RSS_FEED_NBR')).'">
 					<p class="clear">'.$this->l('The number of threads displayed by the block (default value: 5)').'</p>
 					
 				</div>
-				<center><input type="submit" name="submitBlockRss" value="'.$this->l('Save').'" class="button" /></center>
+				<center><input type="submit" name="submitBlockRss" value="'.$this->l('Save').'" class="button"></center>
 			</fieldset>
 		</form>';
 		return $output;

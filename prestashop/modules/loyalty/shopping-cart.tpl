@@ -1,6 +1,6 @@
 <!-- MODULE Loyalty -->
 <p id="loyalty">
-	<img src="{$module_template_dir}loyalty.gif" alt="{l s='loyalty' mod='loyalty'}" class="icon" />
+	<img src="{$module_template_dir}loyalty.gif" alt="{l s='loyalty' mod='loyalty'}" class="icon">
 	{if $points > 0}
 		{l s='By check out this shopping cart you can collect' mod='loyalty'} {$points} {l s='loyalty points as a voucher of' mod='loyalty'} {convertPrice price=$voucher}.
 	{else}

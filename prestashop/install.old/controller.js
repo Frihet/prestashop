@@ -383,8 +383,8 @@ function createDB()
 						.removeClass("ok")
 						.removeClass('userInfos')
 						.html(
-							txtError[11]+ "<br />\'"+
-							ret.getAttribute("sqlQuery") + "\'<br/>"+
+							txtError[11]+ "<br>\'"+
+							ret.getAttribute("sqlQuery") + "\'<br>"+
 							ret.getAttribute("sqlMsgError") + "(" + txtError[18] + " : " + ret.getAttribute("sqlNumberError") +")"
 						)
 						.show();
@@ -729,11 +729,11 @@ function doUpgrade()
 				
 				$(requests).each(function()
 				{
-					$("#updateLog").append("<div class='request'>" + $(this).children("sqlQuery").text() + "</div><br/>");
+					$("#updateLog").append("<div class='request'>" + $(this).children("sqlQuery").text() + "</div><br>");
 					if($(this).attr("result") == "fail")
 					{
 						countSqlError++;
-						$("#updateLog").append("<span class='fail'>(" + $(this).children("sqlNumberError").text() + ") " + $(this).children("sqlMsgError").text() + "</span><br/>");
+						$("#updateLog").append("<span class='fail'>(" + $(this).children("sqlNumberError").text() + ") " + $(this).children("sqlMsgError").text() + "</span><br>");
 					}
 				});
 				if (ret.getAttribute("error") == "34") $("#txtErrorUpdateSQL").html(txtError[35]+" "+countSqlError+" "+txtError[36]);

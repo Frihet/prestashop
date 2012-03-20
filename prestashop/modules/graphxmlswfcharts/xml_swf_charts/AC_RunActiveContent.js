@@ -173,7 +173,7 @@ function AC_Generateobj(objAttrs, params, embedAttrs)
     str += '>';
     for (var i in params)
     {
-      str += '<param name="' + i + '" value="' + params[i] + '" /> ';
+      str += '<param name="' + i + '" value="' + params[i] + '"> ';
     }
     str += '</object>';
   }

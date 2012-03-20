@@ -22,17 +22,17 @@ if (isset($_FILES['virtual_product_file']) AND is_uploaded_file($_FILES['virtual
 	if (!copy($file, _PS_DOWNLOAD_DIR_.$newfilename))
 	{
 		header('HTTP/1.1 500 Error');
-		echo '<return result="error" msg="no rights" filename="'.$filename.'" />';
+		echo '<return result="error" msg="no rights" filename="'.$filename.'">';
 	}
 	@unlink($file);
 
 	header('HTTP/1.1 200 OK');
-	echo '<return result="success" msg="'.$newfilename.'" filename="'.$filename.'" />';
+	echo '<return result="success" msg="'.$newfilename.'" filename="'.$filename.'">';
 }
 else
 {
 	header('HTTP/1.1 500 Error');
-	echo '<return result="error" msg="big error" filename="'.ProductDownload::getNewFilename().'" />';
+	echo '<return result="error" msg="big error" filename="'.ProductDownload::getNewFilename().'">';
 }
 
 ?>

@@ -193,7 +193,7 @@
       $this->SendOKStatus();      
       $acknowledgment = "<?xml version=\"1.0\" encoding=\"UTF-8\"?>" .
                         "<notification-acknowledgment xmlns=\"" . 
-                        $this->schema_url . "\"/>";
+                        $this->schema_url . "\">";
       $this->log->LogResponse($acknowledgment);
       if($die) {
         die($acknowledgment);    

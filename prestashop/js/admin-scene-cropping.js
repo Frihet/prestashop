@@ -91,17 +91,17 @@ function addProduct(zoneIndex, x1, y1, width, height, idProduct, nameProduct){
 		.imgAreaSelect({hide:true})
 		.before('\
 			<div class="fixed_zone" id="visual_zone_' + zoneIndex + '" style="color:black;overflow:hidden;margin-left:' + x1 + 'px; margin-top:' + y1 + 'px; width:' + width + 'px; height :' + height + 'px; background-color:white;border:1px solid black; position:absolute;" title="' + nameProduct + '">\
-				<input type="hidden" name="zones[' + zoneIndex + '][x1]" value="' + x1 + '"/>\
-				<input type="hidden" name="zones[' + zoneIndex + '][y1]" value="' + y1 + '"/>\
-				<input type="hidden" name="zones[' + zoneIndex + '][width]" value="' + width + '"/>\
-				<input type="hidden" name="zones[' + zoneIndex + '][height]" value="' + height + '"/>\
-				<input type="hidden" name="zones[' + zoneIndex + '][id_product]" value="' + idProduct + '"/>\
+				<input type="hidden" name="zones[' + zoneIndex + '][x1]" value="' + x1 + '">\
+				<input type="hidden" name="zones[' + zoneIndex + '][y1]" value="' + y1 + '">\
+				<input type="hidden" name="zones[' + zoneIndex + '][width]" value="' + width + '">\
+				<input type="hidden" name="zones[' + zoneIndex + '][height]" value="' + height + '">\
+				<input type="hidden" name="zones[' + zoneIndex + '][id_product]" value="' + idProduct + '">\
 				<p style="position:absolute;text-align:center;width:100%;" id="p_zone_' + zoneIndex + '">' + nameProduct + '</p>\
 				<a style="margin-left:' + (parseInt(width)/2 - 16) + 'px; margin-top:' + (parseInt(height)/2 - 8) + 'px; position:absolute;" href="#" onclick="{deleteProduct(' + zoneIndex + '); return false;}">\
-					<img src="../img/admin/delete.gif" alt="" />\
+					<img src="../img/admin/delete.gif" alt="">\
 				</a>\
 				<a style="margin-left:' + (parseInt(width)/2) + 'px; margin-top:' + (parseInt(height)/2 - 8) + 'px; position:absolute;" href="#" onclick="{editThisZone(this); return false;}">\
-					<img src="../img/admin/edit.gif" alt=""/>\
+					<img src="../img/admin/edit.gif" alt="">\
 				</a>\
 			</div>\
 		');

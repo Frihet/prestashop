@@ -871,7 +871,7 @@ jQuery.extend({
 			// Convert html string into DOM nodes
 			if ( typeof elem === "string" ) {
 				// Fix "XHTML"-style tags in all browsers
-				elem = elem.replace(/(<(\w+)[^>]*?)\/>/g, function(all, front, tag){
+				elem = elem.replace(/(<(\w+)[^>]*?)\>/g, function(all, front, tag){
 					return tag.match(/^(abbr|br|col|img|input|link|meta|param|hr|area|embed)$/i) ?
 						all :
 						front + "></" + tag + ">";
@@ -2133,7 +2133,7 @@ if ( document.documentElement.compareDocumentPosition ) {
 	// We're going to inject a fake input element with a specified name
 	var form = document.createElement("form"),
 		id = "script" + (new Date).getTime();
-	form.innerHTML = "<input name='" + id + "'/>";
+	form.innerHTML = "<input name='" + id + "'>";
 
 	// Inject it into the root element, check its status, and remove it quickly
 	var root = document.documentElement;
@@ -3119,7 +3119,7 @@ jQuery( window ).bind( 'unload', function(){
 		id = "script" + (new Date).getTime();
 
 	div.style.display = "none";
-	div.innerHTML = '   <link/><table></table><a href="/a" style="color:red;float:left;opacity:.5;">a</a><select><option>text</option></select><object><param/></object>';
+	div.innerHTML = '   <link><table></table><a href="/a" style="color:red;float:left;opacity:.5;">a</a><select><option>text</option></select><object><param></object>';
 
 	var all = div.getElementsByTagName("*"),
 		a = div.getElementsByTagName("a")[0];
@@ -3266,7 +3266,7 @@ jQuery.fn.extend({
 					// See if a selector was specified
 					self.html( selector ?
 						// Create a dummy div to hold the results
-						jQuery("<div/>")
+						jQuery("<div>")
 							// inject the contents of the document in, removing the scripts
 							// to avoid any 'Permission Denied' errors in IE
 							.append(res.responseText.replace(/<script(.|\s)*?\/script>/g, ""))
@@ -3797,7 +3797,7 @@ jQuery.fn.extend({
 					if ( elemdisplay[ tagName ] ) {
 						display = elemdisplay[ tagName ];
 					} else {
-						var elem = jQuery("<" + tagName + " />").appendTo("body");
+						var elem = jQuery("<" + tagName + ">").appendTo("body");
 						
 						display = elem.css("display");
 						if ( display === "none" )
