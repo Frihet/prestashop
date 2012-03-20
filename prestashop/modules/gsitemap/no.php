@@ -3,7 +3,12 @@
 global $_MODULE;
 $_MODULE = array();
 $_MODULE['<{gsitemap}prestashop>gsitemap_3aaaafde6f9b2701f9e6eb9292e95521'] = 'Google nettstedskart';
+$_MODULE['<{gsitemap}prestashop>gsitemap_935a6bc13704a117d22333c3155b5dae'] = 'Generere Google sitemap fil';
+$_MODULE['<{gsitemap}prestashop>gsitemap_5bbdad908e423585a7ecc6b61b66b313'] = 'Kan ikke opprette';
+$_MODULE['<{gsitemap}prestashop>gsitemap_09fa1e865bdcf4d3215d5b0005b93154'] = 'sitemap.xml file.';
 $_MODULE['<{gsitemap}prestashop>gsitemap_8f7488df86f2634148964cf2abe27883'] = 'Nettstedskart opprettet';
+$_MODULE['<{gsitemap}prestashop>gsitemap_0a6ee1a4f10278211d74152e633d0ed0'] = 'Feil ved oppretting sitemap fil';
+$_MODULE['<{gsitemap}prestashop>gsitemap_eb175747116b689caadea1b84202f513'] = 'Google Sitemap-filen er online på følgende adresse:';
 $_MODULE['<{gsitemap}prestashop>gsitemap_39d616ecc73e174052f1877ac2b3c853'] = 'Oppdater:';
 $_MODULE['<{gsitemap}prestashop>gsitemap_b908c2f34052b5276e0bf50f0e042211'] = 'Filstørrelse:';
 $_MODULE['<{gsitemap}prestashop>gsitemap_3f69f5c6c3c90eee482f28ae77390cb9'] = 'Indekserte sider:';

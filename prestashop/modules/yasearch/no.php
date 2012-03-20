@@ -9,6 +9,7 @@ $_MODULE['<{yasearch}prestashop>yasearch-header_c969ce30aea9e625d26ef747fd884dc3
 $_MODULE['<{yasearch}prestashop>yasearch-header_0dea0c9684e3467f912fee105d305756'] = 'Pris til';
 $_MODULE['<{yasearch}prestashop>yasearch-header_c79bdf421714f5087fc34b7c538b6807'] = 'Søk';
 $_MODULE['<{yasearch}prestashop>yasearch-header_716f6b30598ba30945d84485e61c1027'] = 'X Lukk';
+$_MODULE['<{yasearch}prestashop>yasearch_a920fea6f7665d9aee27b17d115b79a5'] = 'Yet another Advanced Search block';
 $_MODULE['<{yasearch}prestashop>yasearch_343e0091f5ffa1855f4e29fecd9de7d4'] = 'Legger til en boks med et avansert søkefelt';
 $_MODULE['<{yasearch}prestashop>yasearch_ccd1066343c95877b75b79d47c36bebe'] = 'Konfigurasjon';
 $_MODULE['<{yasearch}prestashop>yasearch_45d70b6d10dc9fb116c706595fe6ce42'] = 'Search by attributes';

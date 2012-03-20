@@ -2,3 +2,9 @@
 
 global $_MODULE;
 $_MODULE = array();
+$_MODULE['<{blockbestsellers}shp_symagasinet>blockbestsellers_3cb29f0ccc5fd220a97df89dafe46290'] = 'Bestselgere';
+$_MODULE['<{blockbestsellers}shp_symagasinet>blockbestsellers_2d0f6b8300be19cf35e89e66f0677f95'] = 'Legg i handlekurv';
+$_MODULE['<{blockbestsellers}shp_symagasinet>blockbestsellers_831a28f1e8df07c553fcd59546465d13'] = 'Kjøp';
+$_MODULE['<{blockbestsellers}shp_symagasinet>blockbestsellers_f7be84d6809317a6eb0ff3823a936800'] = 'Ingen bestselgere for tilfellet';
+$_MODULE['<{blockbestsellers}shp_symagasinet>blockbestsellers_eae99cd6a931f3553123420b16383812'] = 'Alle besteselgere';
+$_MODULE['<{blockbestsellers}shp_symagasinet>blockbestsellers_0658f6ed5ef5d64d4675bf9d0ab22c29'] = 'Mer...';

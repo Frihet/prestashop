@@ -40,4 +40,15 @@ $_MODULE['<{bankwire}prestashop>payment_execution_569fd05bdafa1712c4f6be5b153b84
 $_MODULE['<{bankwire}prestashop>payment_execution_46b9e3665f187c739c55983f757ccda0'] = 'Jeg bekrefter min ordre';
 $_MODULE['<{bankwire}prestashop>payment_return_2e2117b7c81aa9ea6931641ea2c6499f'] = 'Din ordre den';
 $_MODULE['<{bankwire}prestashop>payment_return_75fbf512d744977d62599cc3f0ae2bb4'] = 'er ferdig.';
+$_MODULE['<{bankwire}prestashop>payment_return_1552c5916ccfe019f35d91fd8955755e'] = 'Please send us a bank wire with:';
+$_MODULE['<{bankwire}prestashop>payment_return_c7c0ae2912f0fbc0edf688ae887aa50f'] = 'antallet av';
+$_MODULE['<{bankwire}prestashop>payment_return_c51326a2ac458845d579a82a92f111f0'] = 'til kontoinnehaver av';
+$_MODULE['<{bankwire}prestashop>payment_return_54255f6a23aa478acc093c9f9e6fd464'] = 'med disse detaljene';
 $_MODULE['<{bankwire}prestashop>payment_return_619b26a60df1af3649d2e8920a7949cd'] = 'til denne banken';
+$_MODULE['<{bankwire}prestashop>payment_return_4fac1f51a5f4b3dd634800fe3d408a45'] = 'Ikke glem å skrive inn ditt ordre #';
+$_MODULE['<{bankwire}prestashop>payment_return_160cc5007c97764468df2ae6cb18b388'] = 'in the subjet of your bank wire';
+$_MODULE['<{bankwire}prestashop>payment_return_13f4ac6dc75b5829499cb9cf8b733071'] = 'En e-post har blitt send til deg med denne informasjonen';
+$_MODULE['<{bankwire}prestashop>payment_return_c4457a9f2f20e39386008bbb2cd3a78f'] = 'Din bestilling vil bli sendt så snart vi mottar betalingen';
+$_MODULE['<{bankwire}prestashop>payment_return_0db71da7150c27142eef9d22b843b4a9'] = 'For spørsmål eller andre henvendelser, kontakt vår';
+$_MODULE['<{bankwire}prestashop>payment_return_64430ad2835be8ad60c59e7d44e4b0b1'] = 'kundesupport';
+$_MODULE['<{bankwire}prestashop>payment_return_8de637e24570c1edb0357826a2ad5aea'] = 'Det har oppstått et problem med din ordre. Hvis du tror det er en feil, kontakt vår';

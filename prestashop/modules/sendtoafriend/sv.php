@@ -2,6 +2,7 @@
 
 global $_MODULE;
 $_MODULE = array();
+$_MODULE['<{sendtoafriend}prestashop>product_page_2107f6398c37b4b9ee1e1b5afb5d3b2a'] = 'Skicka till en vän ';
 $_MODULE['<{sendtoafriend}prestashop>sendtoafriend_2074615eb70699e55b1f9289c6c77c25'] = 'Tipsa en vän modul';
 $_MODULE['<{sendtoafriend}prestashop>sendtoafriend_b6835a400c888d666e6e5aee9f2a7bc6'] = 'Låter kunderna skicka produktlänkar till en vän';
 $_MODULE['<{sendtoafriend}prestashop>sendtoafriend_c38f24359344dada5d54e7eef08de8bb'] = 'Du måste fylla i alla fält.';
@@ -9,6 +10,7 @@ $_MODULE['<{sendtoafriend}prestashop>sendtoafriend_47f11ea69ec3161cab7c3434290ef
 $_MODULE['<{sendtoafriend}prestashop>sendtoafriend_97d4e28297c641ed0dbe3f0172f17fa6'] = 'Din väns namn är felaktigt.';
 $_MODULE['<{sendtoafriend}prestashop>sendtoafriend_98db77c121d8acdba66ec89626ae896c'] = 'Ett fel inträffade under anropet.';
 $_MODULE['<{sendtoafriend}prestashop>sendtoafriend_22c4733a9ceb239bf825a0cecd1cfaec'] = 'En vän';
+$_MODULE['<{sendtoafriend}prestashop>sendtoafriend_70b133fd251d38f98e7d94d54ea06314'] = 'skicka en länk till ';
 $_MODULE['<{sendtoafriend}prestashop>sendtoafriend_bc8f7bbaaf366a6e4e174fd80dfece40'] = 'Ett e-postmeddelande har skickats till';
 $_MODULE['<{sendtoafriend}prestashop>sendtoafriend_2107f6398c37b4b9ee1e1b5afb5d3b2a'] = 'Tipsa en vän';
 $_MODULE['<{sendtoafriend}prestashop>sendtoafriend_20589174124c25654cac3736e737d2a3'] = 'Tipsa en vän om den här produkten.';
