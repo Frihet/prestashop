@@ -386,6 +386,27 @@ CREATE TABLE `PREFIX_customization_field_lang` (
   PRIMARY KEY  (`id_customization_field`,`id_lang`)
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8;
 
+CREATE TABLE `PREFIX_customization_field_schedule` (
+  `id_customization_field_schedule` int(10) unsigned NOT NULL auto_increment,
+  `id_customization_field` int(10) unsigned NOT NULL,
+  `start_time` datetime NOT NULL,
+  `end_time` datetime NOT NULL,
+  `venue` varchar(255),
+  `seats` int(10),
+  `teacher` varchar(255),
+  PRIMARY KEY (`id_customization_field_schedule`),
+  FOREIGN KEY (`id_customization_field`) REFERENCES `PREFIX_customization_field` (`id_customization_field`)
+) ENGINE=MyISAM DEFAULT CHARSET=utf8;
+
+CREATE TABLE `PREFIX_customization_field_schedule_lang` (
+  `id_customization_field_schedule` int(10) unsigned NOT NULL,
+  `id_lang` int(10) unsigned NOT NULL,
+  `name` varchar(255) NOT NULL,
+  `description` TEXT,
+  FOREIGN KEY (`id_customization_field_schedule`) REFERENCES `PREFIX_customization_field_schedule` (`id_customization_field_schedule`),
+  FOREIGN KEY (`id_lang`) REFERENCES `PREFIX_lang` (`id_lang`)
+) ENGINE=MyISAM DEFAULT CHARSET=utf8;
+
 CREATE TABLE `PREFIX_customized_data` (
   `id_customization` int(10) NOT NULL,
   `type` tinyint(1) NOT NULL,
