@@ -42,6 +42,9 @@ $currentDir = dirname(__FILE__);
 
 /* Base and themes */
 define('_THEMES_DIR_',     __PS_BASE_URI__.'themes/');
+define('_THEME_IMG_DIR_',  _THEMES_DIR_._THEME_NAME_.'/img/');
+define('_THEME_CSS_DIR_',  _THEMES_DIR_._THEME_NAME_.'/css/');
+define('_THEME_JS_DIR_',   _THEMES_DIR_._THEME_NAME_.'/js/');
 define('_THEME_CAT_DIR_',  __PS_BASE_URI__.'img/c/');
 define('_THEME_PROD_DIR_', __PS_BASE_URI__.'img/p/');
 define('_THEME_PROD_PIC_DIR_', __PS_BASE_URI__.'upload/');
@@ -53,6 +56,7 @@ define('_THEME_SHIP_DIR_', __PS_BASE_URI__.'img/s/');
 define('_THEME_LANG_DIR_', __PS_BASE_URI__.'img/l/');
 define('_THEME_COL_DIR_',  __PS_BASE_URI__.'img/co/');
 define('_SUPP_DIR_',       __PS_BASE_URI__.'img/su/');
+define('_THEME_DIR_',      _THEMES_DIR_._THEME_NAME_.'/');
 define('_MAIL_DIR_',        __PS_BASE_URI__.'mails/');
 define('_MODULE_DIR_',        __PS_BASE_URI__.'modules/');
 define('_PS_IMG_',         __PS_BASE_URI__.'img/');
@@ -66,6 +70,7 @@ define('_PS_DOWNLOAD_DIR_',         _PS_ROOT_DIR_.'/download/');
 define('_PS_MAIL_DIR_',             _PS_ROOT_DIR_.'/mails/');
 define('_PS_MODULE_DIR_',           _PS_ROOT_DIR_.'/modules/');
 define('_PS_ALL_THEMES_DIR_',       _PS_ROOT_DIR_.'/themes/');
+define('_PS_THEME_DIR_',            _PS_ROOT_DIR_.'/themes/'._THEME_NAME_.'/');
 define('_PS_IMG_DIR_',              _PS_ROOT_DIR_.'/img/');
 define('_PS_CAT_IMG_DIR_',          _PS_IMG_DIR_.'c/');
 define('_PS_PROD_IMG_DIR_',         _PS_IMG_DIR_.'p/');
@@ -144,49 +149,6 @@ $timezone = Tools::getTimezones(Configuration::get('PS_TIMEZONE'));
 
 if (function_exists('date_default_timezone_set'))
 	date_default_timezone_set($timezone);
-
-/* Category */
-$theme = _THEME_NAME_;
-$category = false;
-$cookie = new Cookie('ps');
-
-if (preg_match('!^(.*)\/([0-9]+)\-(.*[^\.])|(.*)id_category=([0-9]+)(.*)$!', $_SERVER['REQUEST_URI'], $regs) AND !strstr($_SERVER['REQUEST_URI'], '.html')) {
-	if (isset($regs[2]) AND is_numeric($regs[2]))
-		$category = new Category(intval($regs[2]), intval($cookie->id_lang));
-	elseif (isset($regs[5]) AND is_numeric($regs[5]))
-		$category = new Category(intval($regs[5]), intval($cookie->id_lang));
-}
-
-if (    !$category
-    AND isset($_SERVER['HTTP_REFERER'])
-    AND preg_match('!^(.*)\/([0-9]+)\-(.*[^\.])|(.*)id_category=([0-9]+)(.*)$!', $_SERVER['HTTP_REFERER'], $regs)
-    AND !strstr($_SERVER['HTTP_REFERER'], '.html')) {
-	if (isset($regs[2]) AND is_numeric($regs[2]))
-		$category = new Category(intval($regs[2]), intval($cookie->id_lang));
-	elseif (isset($regs[5]) AND is_numeric($regs[5]))
-		$category = new Category(intval($regs[5]), intval($cookie->id_lang));
-}
-
-if (!$category AND isset($_GET['id_product']) AND Validate::isUnsignedId($_GET['id_product'])) {
-	$product = new Product(intval($_GET['id_product']), true, intval($cookie->id_lang));
-	$category = new Category($product->id_category_default, intval($cookie->id_lang));
-}
-
-if ($category) {
-	$category_path = $category->getParentsCategories(intval($cookie->id_lang), true);
-	foreach($category_path as $cat)
-		if ($cat['theme']) {
-			$theme = $cat['theme'];
-			break;
-		}
-}
-
-define('_THEME_IMG_DIR_',  _THEMES_DIR_.$theme.'/img/');
-define('_THEME_CSS_DIR_',  _THEMES_DIR_.$theme.'/css/');
-define('_THEME_JS_DIR_',   _THEMES_DIR_.$theme.'/js/');
-define('_THEME_DIR_',      _THEMES_DIR_.$theme.'/');
-define('_PS_THEME_DIR_',   _PS_ROOT_DIR_.'/themes/'.$theme.'/');
-
 
 /* Smarty */
 include(dirname(__FILE__).'/smarty.config.inc.php');
