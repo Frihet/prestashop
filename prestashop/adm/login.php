@@ -22,9 +22,9 @@ $errors = array();
 $pathServer = preg_replace('!^/!', '', $_SERVER['PHP_SELF']);
 $pathUser = preg_replace('!^/!', '', str_replace($_SERVER['DOCUMENT_ROOT'], '', $_SERVER['SCRIPT_FILENAME']));
 if (strcmp($pathServer, $pathUser))
-	$errors[] = Tools::displayError('Path is not the same between your browser and you server :').'<br><br><b>'.
-				Tools::displayError('- Server:').'</b><br>'.htmlentities($pathServer).'<br><br><b>'.
-				Tools::displayError('- Browser:').'</b><br>'.htmlentities($pathUser);
+	$errors[] = Tools::displayError('Path is not the same between your browser and you server :').'<br /><br /><b>'.
+				Tools::displayError('- Server:').'</b><br />'.htmlentities($pathServer).'<br /><br /><b>'.
+				Tools::displayError('- Browser:').'</b><br />'.htmlentities($pathUser);
 
 $cookie = new Cookie('psAdmin', substr($_SERVER['PHP_SELF'], strlen(__PS_BASE_URI__), -10));
 if (!isset($cookie->id_lang))
@@ -89,8 +89,8 @@ if (Tools::isSubmit('Submit'))
 echo '<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml" xml:lang="fr" lang="fr">
 	<head>
-		<meta http-equiv="content-type" content="text/html; charset=utf-8">
-		<link type="text/css" rel="stylesheet" href="../css/login.css">
+		<meta http-equiv="content-type" content="text/html; charset=utf-8" />
+		<link type="text/css" rel="stylesheet" href="../css/login.css" />
 		<title>PrestaShop&trade; - '.translate('Administration panel').'</title>';
 echo '
 	</head>
@@ -108,7 +108,7 @@ if ($nbErrors = sizeof($errors))
 		echo '
 		</ol>
 	</div>
-	<br>';
+	<br />';
 }
 
 echo '
@@ -118,21 +118,21 @@ echo '
 $randomNb = rand(100, 999);
 if(file_exists(PS_ADMIN_DIR.'/../install') OR file_exists(PS_ADMIN_DIR.'/../admin'))
 {
-	echo '				<span>'.translate('For security reasons, you cannot connect to the Back Office until after you have:').'<br><br>
-		- '.translate('deleted the /install folder').'<br>
-		- '.translate('renamed the /admin folder (eg. ').'/admin'.$randomNb.')<br>
-		<br>'.translate('Please then access this page by the new url (eg. http://www.domain.tld/admin').$randomNb.')</span>';
+	echo '				<span>'.translate('For security reasons, you cannot connect to the Back Office until after you have:').'<br /><br />
+		- '.translate('deleted the /install folder').'<br />
+		- '.translate('renamed the /admin folder (eg. ').'/admin'.$randomNb.')<br />
+		<br />'.translate('Please then access this page by the new url (eg. http://www.domain.tld/admin').$randomNb.')</span>';
 }
 else
 {
-	echo '			<label>'.translate('E-mail address:').'</label><br>
-					<input type="text" id="email" name="email" value="'.Tools::safeOutput(Tools::getValue('email')).'" class="input">
+	echo '			<label>'.translate('E-mail address:').'</label><br />
+					<input type="text" id="email" name="email" value="'.Tools::safeOutput(Tools::getValue('email')).'" class="input"/>
 					<div style="margin: 0.5em 0 0 0;">
-						<label>'.translate('Password:').'</label><br>
-						<input type="password" name="passwd" class="input" value="">
+						<label>'.translate('Password:').'</label><br />
+						<input type="password" name="passwd" class="input" value=""/>
 					</div>
 					<div>
-						<div id="submit"><input type="submit" name="Submit" value="'.translate('Connection').'" class="button"></div>
+						<div id="submit"><input type="submit" name="Submit" value="'.translate('Connection').'" class="button" /></div>
 						<div id="lost"><a href="password.php">'.translate('Lost password?').'</a></div>
 					</div>
 	';

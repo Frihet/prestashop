@@ -1591,7 +1591,7 @@ class		Product extends ObjectModel
 	{
 		$ret = '';
 		if (isset($params['p']['reduction']) AND $params['p']['reduction'])
-			$ret .= '<span class="discounted">'.Tools::displayPrice($params['p']['price_without_reduction'], $smarty->ps_currency).'</span><br>';
+			$ret .= '<span class="discounted">'.Tools::displayPrice($params['p']['price_without_reduction'], $smarty->ps_currency).'</span><br />';
 		$ret .= Tools::displayPrice($params['p']['price'], $smarty->ps_currency);
 		return $ret;
 	}

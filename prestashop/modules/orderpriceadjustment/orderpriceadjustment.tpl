@@ -123,7 +123,7 @@ Precis are different in each country/currency. The prices below are shown in you
 									{if $type == $CUSTOMIZE_FILE}
 										<div class="customizationUploaded">
 											<ul class="customizationUploaded">
-												{foreach from=$datas item='picture'}<li><img src="{$pic_dir}{$picture.value}_small" alt="" class="customizationUploaded"></li>{/foreach}
+												{foreach from=$datas item='picture'}<li><img src="{$pic_dir}{$picture.value}_small" alt="" class="customizationUploaded" /></li>{/foreach}
 											</ul>
 										</div>
 									{elseif $type == $CUSTOMIZE_TEXTFIELD}
@@ -151,10 +151,10 @@ Precis are different in each country/currency. The prices below are shown in you
 				<tr class="cart_discount {if $smarty.foreach.discountLoop.last}last_item{elseif $smarty.foreach.discountLoop.first}first_item{else}item{/if}">
 					<td class="cart_discount_name" colspan="2">{$discount.name}</td>
 					<td class="cart_discount_description" colspan="3">{$discount.description}</td>
-					<td class="cart_discount_delete"><a href="{$base_dir_ssl}order.php?step={$order_step}&process{$order_step}=1&deleteDiscount={$discount.id_discount}" title="{l s='Delete'}"><img src="{$img_dir}icon/delete.gif" alt="{l s='Delete'}" class="icon"></a></td>
+					<td class="cart_discount_delete"><a href="{$base_dir_ssl}order.php?step={$order_step}&process{$order_step}=1&deleteDiscount={$discount.id_discount}" title="{l s='Delete'}"><img src="{$img_dir}icon/delete.gif" alt="{l s='Delete'}" class="icon" /></a></td>
 					<td class="cart_discount_price"><span class="price-discount">
 						{if $discount.value_real > 0}
-							{if !$priceDisplay || $priceDisplay == 2}{convertPrice price=$discount.value_real*-1}{if $priceDisplay == 2} {l s='+Tx'}<br>{/if}{/if}
+							{if !$priceDisplay || $priceDisplay == 2}{convertPrice price=$discount.value_real*-1}{if $priceDisplay == 2} {l s='+Tx'}<br />{/if}{/if}
 							{if $priceDisplay}{convertPrice price=$discount.value_tax_exc*-1}{if $priceDisplay == 2} {l s='-Tx'}{/if}{/if}
 						{/if}
 					</span></td>
@@ -166,9 +166,9 @@ Precis are different in each country/currency. The prices below are shown in you
 	</div>
 
 	<p class="cart_navigation submit">
-		<input type="hidden" class="hidden" name="step" value="{$order_step}">
-		<input type="hidden" name="back" value="{$back}">
+		<input type="hidden" class="hidden" name="step" value="{$order_step}" />
+		<input type="hidden" name="back" value="{$back}" />
 		<a href="{$base_dir_ssl}order.php?step={$order_step-1}{if $back}&back={$back}{/if}" title="{l s='Previous'}" class="button">&laquo; {l s='Previous'}</a>
-		<input type="submit" name="process{$order_step}" value="{l s='Next'} &raquo;" class="exclusive">
+		<input type="submit" name="process{$order_step}" value="{l s='Next'} &raquo;" class="exclusive" />
 	</p>
 </form>

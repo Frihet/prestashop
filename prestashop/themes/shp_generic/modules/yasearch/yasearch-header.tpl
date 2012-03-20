@@ -43,13 +43,13 @@ $('#parent_'+parent).toggle("slow");
 					<div class="adsearchOpcje">
 						<h2>{l s='KEY WORD' mod='yasearch'}</h2>
 						<div class="dialogOpcjeTitle">
-						        <input type="text" id="search_queryy" name="search_queryy" value="{if isset($smarty.get.search_queryy)}{$smarty.get.search_queryy|htmlentities:$ENT_QUOTES:'utf-8'}{/if}" style="width:80%;">
+						        <input type="text" id="search_queryy" name="search_queryy" value="{if isset($smarty.get.search_queryy)}{$smarty.get.search_queryy|htmlentities:$ENT_QUOTES:'utf-8'}{/if}" style="width:80%;"/>
 						</div>
 						<br>
 						<h2>{l s='PRICE' mod='yasearch'}</h2>
 						<div class="dialogOpcjeTitle">
-							{l s='PRICE FROM' mod='yasearch'} <input type="text"  name="price_from" value="" style="width:20%;float:none;"><br><br>
-							{l s='PRICE TO' mod='yasearch'}	<input type="text"  name="price_to" value="" style="width:20%;float:none;"><br>
+							{l s='PRICE FROM' mod='yasearch'} <input type="text"  name="price_from" value="" style="width:20%;float:none;"/><br/><br/>
+							{l s='PRICE TO' mod='yasearch'}	<input type="text"  name="price_to" value="" style="width:20%;float:none;"/><br/>
 						</div>
 						<br>
 						{$text}
@@ -57,7 +57,7 @@ $('#parent_'+parent).toggle("slow");
 						{$sup_sel}
 						{$man_sel}
 						{$tagi}
-						<br style="clear:both;">
+						<br style="clear:both;"/>
 					</div>
 				</div>
 				<div class="block_buttons">

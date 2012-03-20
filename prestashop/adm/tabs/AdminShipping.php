@@ -137,7 +137,7 @@ class AdminShipping extends AdminTab
 		echo '
 		<form action="'.$currentIndex.'&submitHandling'.$this->table.'=1&token='.$this->token.'" method="post" class="width2">
 			<fieldset>
-				<legend><img src="../img/admin/delivery.gif">'.$this->l('Handling').'</legend>';
+				<legend><img src="../img/admin/delivery.gif" />'.$this->l('Handling').'</legend>';
 
 		foreach ($confKeys AS $key => $confKey)
 		{
@@ -148,7 +148,7 @@ class AdminShipping extends AdminTab
 			<label class="clear">'.$confKey['title'].':</label>
 			<div class="margin-form">';
 			echo $sign_left;
-			echo '<input size="5" type="text" name="'.$key.'" value="'.(($postValue != false OR (string)$postValue == '0') ? $postValue : $confValues[$key]).'">';
+			echo '<input size="5" type="text" name="'.$key.'" value="'.(($postValue != false OR (string)$postValue == '0') ? $postValue : $confValues[$key]).'" />';
 			echo $sign_right;
 			echo '</div>';
 		}
@@ -157,14 +157,14 @@ class AdminShipping extends AdminTab
 				<label class="clear">'.$this->l('Billing:').' </label>
 				<div class="margin-form">
 					<input type="radio" name="PS_SHIPPING_METHOD" value="0" id="total_price"
-					'.((isset($confValues['PS_SHIPPING_METHOD']) AND $confValues['PS_SHIPPING_METHOD'] == 0) ? 'checked="checked"' : '').'>
-					<label class="t" for="total_price"> '.$this->l('According to total price').'</label><br>
+					'.((isset($confValues['PS_SHIPPING_METHOD']) AND $confValues['PS_SHIPPING_METHOD'] == 0) ? 'checked="checked"' : '').'/>
+					<label class="t" for="total_price"> '.$this->l('According to total price').'</label><br />
 					<input type="radio" name="PS_SHIPPING_METHOD" value="1" id="total_weight"
-					'.((!isset($confValues['PS_SHIPPING_METHOD']) OR $confValues['PS_SHIPPING_METHOD'] == 1) ? 'checked="checked"' : '').'>
+					'.((!isset($confValues['PS_SHIPPING_METHOD']) OR $confValues['PS_SHIPPING_METHOD'] == 1) ? 'checked="checked"' : '').'/>
 					<label class="t" for="total_weight"> '.$this->l('According to total weight').'</label>
 				</div>
 				<div class="margin-form">
-					<input type="submit" value="'.$this->l('   Save   ').'" name="submitHandling'.$this->table.'" class="button">
+					<input type="submit" value="'.$this->l('   Save   ').'" name="submitHandling'.$this->table.'" class="button" />
 				</div>
 			</fieldset>
 		</form>';
@@ -174,11 +174,11 @@ class AdminShipping extends AdminTab
 	{
 		global $currentIndex;
 
-		echo '<br><br>
+		echo '<br /><br />
 		<h2>'.$this->l('Fees by carrier, geographical zone, and ranges').'</h2>
 		<form action="'.$currentIndex.'&token='.$this->token.'" id="fees" name="fees" method="post" class="width2">
 			<fieldset>
-				<legend><img src="../img/admin/delivery.gif">'.$this->l('Fees').'</legend>
+				<legend><img src="../img/admin/delivery.gif" />'.$this->l('Fees').'</legend>
 				<b>'.$this->l('Carrier:').' </b>
 				<select name="id_carrier2" onchange="document.fees.submit();">';
 		$carriers = Carrier::getCarriers(intval(Configuration::get('PS_LANG_DEFAULT')));
@@ -187,7 +187,7 @@ class AdminShipping extends AdminTab
 		foreach ($carriers AS $carrier)
 			echo '<option value="'.intval($carrier['id_carrier']).'"'.(($carrier['id_carrier'] == $id_carrier) ? ' selected="selected"' : '').'>'.$carrier['name'].'</option>';
 		echo '
-				</select><br>
+				</select><br />
 				<table class="table space" cellpadding="0" cellspacing="0">
 					<tr>
 						<th>'.$this->l('Zone / Range').'</th>';
@@ -221,7 +221,7 @@ class AdminShipping extends AdminTab
 								$price = $deliveryArray[$zone['id_zone']][$id_carrier][$range[$rangeIdentifier]];
 							else
 								$price = '0.00';
-							echo '<td class="center">'.$currency->getSign('left').'<input type="text" name="fees_'.$zone['id_zone'].'_'.$range[$rangeIdentifier].'" value="'.$price.'" style="width: 45px;">'.$currency->getSign('right').'</td>';
+							echo '<td class="center">'.$currency->getSign('left').'<input type="text" name="fees_'.$zone['id_zone'].'_'.$range[$rangeIdentifier].'" value="'.$price.'" style="width: 45px;" />'.$currency->getSign('right').'</td>';
 						}
 						echo '
 						</tr>';
@@ -229,10 +229,10 @@ class AdminShipping extends AdminTab
 				echo '
 					<tr>
 						<td colspan="'.(sizeof($ranges) + 1).'" class="center" style="border-bottom: none; height: 40px;">
-							<input type="hidden" name="submitFees'.$this->table.'" value="1">
+							<input type="hidden" name="submitFees'.$this->table.'" value="1" />
 					';
 				if (sizeof($ranges))
-					echo '	<input type="submit" value="'.$this->l('   Save   ').'" class="button">';
+					echo '	<input type="submit" value="'.$this->l('   Save   ').'" class="button" />';
 				else
 					echo $this->l('No ranges set for this carrier');
 				echo '
@@ -241,7 +241,7 @@ class AdminShipping extends AdminTab
 				echo '
 				</table>
 			</fieldset>
-			<input type="hidden" name="id_carrier" value="'.$id_carrier.'">
+			<input type="hidden" name="id_carrier" value="'.$id_carrier.'" />
 		</form>';
 	}
 }

@@ -42,34 +42,34 @@ class productsAlsobuyRightBox extends Module
 		}
 		
 		$this->_html = '
-		<fieldset class="width3"><legend><img src="../modules/'.$this->name.'/logo.gif"> '.$this->displayName.'</legend>
+		<fieldset class="width3"><legend><img src="../modules/'.$this->name.'/logo.gif" /> '.$this->displayName.'</legend>
 			<form action="'.$_SERVER['REQUEST_URI'].'" method="post">
 				<label>'.$this->l('Random Mode').'</label>
 				<div class="margin-form">
-					<img src="../img/admin/enabled.gif"> <input type="radio" name="pab_mode" value="1"'.(Configuration::get('PAB_MODE') ? ' checked="checked"' : '').'>
+					<img src="../img/admin/enabled.gif" /> <input type="radio" name="pab_mode" value="1"'.(Configuration::get('PAB_MODE') ? ' checked="checked"' : '').' />
 				</div>
 					<label>'.$this->l('Order by quantity').'</label>
 				<div class="margin-form">
 			
-					<img src="../img/admin/enabled.gif"> <input type="radio" name="pab_mode" value="0"'.(!Configuration::get('PAB_MODE') ? ' checked="checked"' : '').'>
+					<img src="../img/admin/enabled.gif" /> <input type="radio" name="pab_mode" value="0"'.(!Configuration::get('PAB_MODE') ? ' checked="checked"' : '').' />
 				
 				</div>
 								<label>'.$this->l('Number of products to display').'</label>
 				<div class="margin-form">
-					<input type="text" size="2" name="pab_pic_quant" value="'.Configuration::get('PAB_PIC_QUANT').'" onKeyUp="javascript:this.value = this.value.replace(/,/g, \'.\'); ">
+					<input type="text" size="2" name="pab_pic_quant" value="'.Configuration::get('PAB_PIC_QUANT').'" onKeyUp="javascript:this.value = this.value.replace(/,/g, \'.\'); " />
 					<p style="clear: both;">'.$this->l('Give a valid number of products').'</p>
 				</div>
 				<div class="clear center">
-					<input type="submit" value="'.$this->l('   Save   ').'" name="submitPAB" class="button">
+					<input type="submit" value="'.$this->l('   Save   ').'" name="submitPAB" class="button" />
 				</div>
 				<div class="small"><sup>*</sup> '.$this->l('Required field').'</div>
 			</form>
-		</fieldset><br>
-		<fieldset class="width3"><legend><img src="../modules/'.$this->name.'/comment.gif"> '.$this->l('Guide').'</legend>
+		</fieldset><br />
+		<fieldset class="width3"><legend><img src="../modules/'.$this->name.'/comment.gif" /> '.$this->l('Guide').'</legend>
 			<h2>'.$this->l('Customer who bought this item also bought ... ').'</h2>
 			<h3>'.$this->l('What does it do?').'</h3>
 			<p>
-				'.$this->l('Displays products that other people bought in the product footer').' <br>
+				'.$this->l('Displays products that other people bought in the product footer').' <br />
 			
 			</p>
 		</fieldset>';

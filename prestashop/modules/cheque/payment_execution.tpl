@@ -13,9 +13,9 @@
 <h3>{l s='Cheque payment' mod='cheque'}</h3>
 <form action="{$this_path_ssl}validation.php" method="post">
 	<p>
-		<img src="{$this_path}cheque.jpg" alt="{l s='cheque' mod='cheque'}" style="float:left; margin: 0px 10px 5px 0px;">
+		<img src="{$this_path}cheque.jpg" alt="{l s='cheque' mod='cheque'}" style="float:left; margin: 0px 10px 5px 0px;" />
 		{l s='You have chosen to pay by cheque.' mod='cheque'}
-		<br><br>
+		<br/><br />
 		{l s='Here is a short summary of your order:' mod='cheque'}
 	</p>
 	<p style="margin-top:20px;">
@@ -33,7 +33,7 @@
 		-
 		{if $currencies|@count > 1}
 			{l s='We accept several currencies for cheques.' mod='cheque'}
-			<br><br>
+			<br /><br />
 			{l s='Choose one of the following:' mod='cheque'}
 			<select id="currency_payement" name="currency_payement" onchange="showElemFromSelect('currency_payement', 'amount_')">
 			{foreach from=$currencies item=currency}
@@ -48,12 +48,12 @@
 	</p>
 	<p>
 		{l s='Cheque owner and address information will be displayed on the next page.' mod='cheque'}
-		<br><br>
+		<br /><br />
 		<b>{l s='Please confirm your order by clicking \'I confirm my order\'' mod='cheque'}.</b>
 	</p>
 	<p class="cart_navigation">
 		<a href="{$base_dir_ssl}order.php?step=3" class="button_large">{l s='Other payment methods' mod='cheque'}</a>
-		<input type="submit" name="submit" value="{l s='I confirm my order' mod='cheque'}" class="exclusive_large">
+		<input type="submit" name="submit" value="{l s='I confirm my order' mod='cheque'}" class="exclusive_large" />
 	</p>
 </form>
 {/if}

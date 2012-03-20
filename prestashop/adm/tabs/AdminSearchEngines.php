@@ -36,18 +36,18 @@ class AdminSearchEngines extends AdminTab
 
 		echo '
 		<form action="'.$currentIndex.'&submitAdd'.$this->table.'=1&token='.$this->token.'" method="post" class="width2">
-		'.($obj->id ? '<input type="hidden" name="id_'.$this->table.'" value="'.$obj->id.'">' : '').'
+		'.($obj->id ? '<input type="hidden" name="id_'.$this->table.'" value="'.$obj->id.'" />' : '').'
 			<fieldset class="width3"><legend>'.$this->l('Referrer').'</legend>
 				<label>'.$this->l('Server').' </label>
 				<div class="margin-form">
-					<input type="text" size="20" name="server" value="'.htmlentities($this->getFieldValue($obj, 'server'), ENT_COMPAT, 'UTF-8').'"> <sup>*</sup>
+					<input type="text" size="20" name="server" value="'.htmlentities($this->getFieldValue($obj, 'server'), ENT_COMPAT, 'UTF-8').'" /> <sup>*</sup>
 				</div>
 				<label>'.$this->l('$_GET variable').' </label>
 				<div class="margin-form">
-					<input type="text" size="40" name="getvar" value="'.htmlentities($this->getFieldValue($obj, 'getvar'), ENT_COMPAT, 'UTF-8').'"> <sup>*</sup>
+					<input type="text" size="40" name="getvar" value="'.htmlentities($this->getFieldValue($obj, 'getvar'), ENT_COMPAT, 'UTF-8').'" /> <sup>*</sup>
 				</div>
 				<div class="margin-form">
-					<input type="submit" value="'.$this->l('   Save   ').'" name="submitAdd'.$this->table.'" class="button">
+					<input type="submit" value="'.$this->l('   Save   ').'" name="submitAdd'.$this->table.'" class="button" />
 				</div>
 				<div class="small"><sup>*</sup> '.$this->l('Required field').'</div>
 			</fieldset>

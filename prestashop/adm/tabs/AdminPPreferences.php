@@ -24,7 +24,7 @@ class AdminPPreferences extends AdminPreferences
  		$this->_fieldsProduct = array(
 			'PS_PRICE_DISPLAY' => array(
 				'title' => $this->l('Price display:'),
-				'desc' => $this->l('How prices are displayed').'<br><sup>**</sup>'.$this->l('Only totals show excluded tax').'<br><sup>***</sup>'.$this->l('Only totals show included tax'),
+				'desc' => $this->l('How prices are displayed').'<br /><sup>**</sup>'.$this->l('Only totals show excluded tax').'<br /><sup>***</sup>'.$this->l('Only totals show included tax'),
 				'type' => 'select',
 				'list' =>
 					array(

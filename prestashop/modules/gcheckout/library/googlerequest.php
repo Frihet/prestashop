@@ -314,7 +314,7 @@
     function SendProcessOrder($google_order) {
       $postargs = "<?xml version=\"1.0\" encoding=\"UTF-8\"?>
                   <process-order xmlns=\"".$this->schema_url    .
-                  "\" google-order-number=\"". $google_order. "\"> ";
+                  "\" google-order-number=\"". $google_order. "\"/> ";
       return $this->SendReq($this->request_url, 
                    $this->GetAuthenticationHeaders(), $postargs); 
     }
@@ -366,7 +366,7 @@
     function SendArchiveOrder($google_order) {
       $postargs = "<?xml version=\"1.0\" encoding=\"UTF-8\"?>
                   <archive-order xmlns=\"".$this->schema_url.
-                  "\" google-order-number=\"". $google_order. "\">";
+                  "\" google-order-number=\"". $google_order. "\"/>";
       return $this->SendReq($this->request_url, 
                    $this->GetAuthenticationHeaders(), $postargs); 
     }
@@ -386,7 +386,7 @@
       $postargs = "<?xml version=\"1.0\" encoding=\"UTF-8\"?>
                   <unarchive-order xmlns=\"".
                   $this->schema_url."\" google-order-number=\"". 
-                  $google_order. "\">";
+                  $google_order. "\"/>";
       return $this->SendReq($this->request_url, 
                    $this->GetAuthenticationHeaders(), $postargs); 
     }

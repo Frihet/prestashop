@@ -150,7 +150,7 @@ class MySQL extends Db
 	public function getMsgError($query = false)
 	{
 		if ($query)
-			return mysql_error().'<br><br><pre>'.$query.'</pre>';
+			return mysql_error().'<br /><br /><pre>'.$query.'</pre>';
 		return mysql_error();
 	}
 	

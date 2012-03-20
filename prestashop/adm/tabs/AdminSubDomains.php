@@ -43,15 +43,15 @@ class AdminSubDomains extends AdminTab
 
 		echo '
 		<form action="'.$currentIndex.'&submitAdd'.$this->table.'=1&token='.$this->token.'" method="post" class="width2">
-		'.($obj->id ? '<input type="hidden" name="id_'.$this->table.'" value="'.$obj->id.'">' : '').'
-			<fieldset><legend><img src="../img/admin/subdomain.gif"> '.$this->l('Subdomains').'</legend>
+		'.($obj->id ? '<input type="hidden" name="id_'.$this->table.'" value="'.$obj->id.'" />' : '').'
+			<fieldset><legend><img src="../img/admin/subdomain.gif" /> '.$this->l('Subdomains').'</legend>
 				<label>'.$this->l('Subdomain:').' </label>
 				<div class="margin-form">
-					<input type="text" size="15" name="name" value="'.htmlentities($this->getFieldValue($obj, 'name'), ENT_COMPAT, 'UTF-8').'"> <sup>*</sup>
+					<input type="text" size="15" name="name" value="'.htmlentities($this->getFieldValue($obj, 'name'), ENT_COMPAT, 'UTF-8').'" /> <sup>*</sup>
 					<p style="clear: both;">'.$this->l('Additionnal subdomain').'</p>
 				</div>
 				<div class="margin-form">
-					<input type="submit" value="'.$this->l('   Save   ').'" name="submitAdd'.$this->table.'" class="button">
+					<input type="submit" value="'.$this->l('   Save   ').'" name="submitAdd'.$this->table.'" class="button" />
 				</div>
 				<div class="small"><sup>*</sup> '.$this->l('Required field').'</div>
 			</fieldset>

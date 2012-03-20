@@ -60,8 +60,8 @@ echo '
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml" xml:lang="fr" lang="fr">
 <head>
-	<meta http-equiv="content-type" content="text/html; charset=utf-8">
-	<link type="text/css" rel="stylesheet" href="../css/login.css">
+	<meta http-equiv="content-type" content="text/html; charset=utf-8" />
+	<link type="text/css" rel="stylesheet" href="../css/login.css" />
 	<title>PrestaShop&trade; - '.translate('Administration panel').'</title>
 </head>
 <body><div id="container">';
@@ -78,17 +78,17 @@ if (sizeof($errors))
 echo '
 	<div id="login">
 		<form action="" method="post">
-			<div class="page-title center">'.translate('Forgot your password?').'</div><br>';
+			<div class="page-title center">'.translate('Forgot your password?').'</div><br />';
 if (isset($confirmation))
-	echo '	<br>
+	echo '	<br />
 			<div style="font-weight: bold;">'.translate('Your password has been e-mailed to you').'.</div>
 			<div style="margin: 2em 0 0 0; text-align: right;"><a href="login.php?email='.Tools::safeOutput(Tools::getValue('email')).'">> '.translate('back to login home').'</a></div>';
 else
 	echo '	<span style="font-weight: bold;">'.translate('Please, enter your e-mail address').' </span>
-			'.translate('(the one you wrote during your registration) in order to receive your access codes by e-mail').'.<br>
-			<input type="text" name="email" class="input">
+			'.translate('(the one you wrote during your registration) in order to receive your access codes by e-mail').'.<br />
+			<input type="text" name="email" class="input" />
 			<div>
-				<div id="submit"><input type="submit" name="Submit" value="'.translate('Send').'" class="button"></div>
+				<div id="submit"><input type="submit" name="Submit" value="'.translate('Send').'" class="button" /></div>
 				<div id="lost">&nbsp;</div>
 			</div>
 		</form>

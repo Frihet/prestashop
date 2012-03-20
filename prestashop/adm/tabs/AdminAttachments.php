@@ -78,13 +78,13 @@ class AdminAttachments extends AdminTab
 			id_language = Number('.$defaultLanguage.');
 		</script>
 		<form action="'.$currentIndex.'&submitAdd'.$this->table.'=1&token='.$this->token.'" method="post" enctype="multipart/form-data" class="width2">
-		'.($obj->id ? '<input type="hidden" name="id_'.$this->table.'" value="'.$obj->id.'">' : '').'
-			<fieldset><legend><img src="../img/t/AdminAttachments.gif">'.$this->l('Attachment').'</legend>
+		'.($obj->id ? '<input type="hidden" name="id_'.$this->table.'" value="'.$obj->id.'" />' : '').'
+			<fieldset><legend><img src="../img/t/AdminAttachments.gif" />'.$this->l('Attachment').'</legend>
 				<label>'.$this->l('Name:').' </label>
 				<div class="margin-form">';
 		foreach ($languages as $language)
 			echo '	<div id="cname_'.$language['id_lang'].'" style="display: '.($language['id_lang'] == $defaultLanguage ? 'block' : 'none').'; float: left;">
-						<input size="33" type="text" name="name_'.$language['id_lang'].'" value="'.htmlentities($this->getFieldValue($obj, 'name', intval($language['id_lang'])), ENT_COMPAT, 'UTF-8').'"><sup> *</sup>
+						<input size="33" type="text" name="name_'.$language['id_lang'].'" value="'.htmlentities($this->getFieldValue($obj, 'name', intval($language['id_lang'])), ENT_COMPAT, 'UTF-8').'" /><sup> *</sup>
 					</div>';							
 		$this->displayFlags($languages, $defaultLanguage, 'cname¤cdescription', 'cname');
 		echo '	</div>
@@ -100,12 +100,12 @@ class AdminAttachments extends AdminTab
 				<div class="clear">&nbsp;</div>
 				<label>'.$this->l('File:').'</label>
 				<div class="margin-form">
-					<p><input type="file" name="file"></p>
+					<p><input type="file" name="file" /></p>
 					<p>'.$this->l('Upload file from your computer').'</p>
 				</div>
 				<div class="clear">&nbsp;</div>
 				<div class="margin-form">
-					<input type="submit" value="'.$this->l('   Save   ').'" name="submitAdd'.$this->table.'" class="button">
+					<input type="submit" value="'.$this->l('   Save   ').'" name="submitAdd'.$this->table.'" class="button" />
 				</div>
 				<div class="small"><sup>*</sup> '.$this->l('Required field').'</div>
 			</fieldset>

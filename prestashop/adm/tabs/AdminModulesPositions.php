@@ -156,7 +156,7 @@ class AdminModulesPositions extends AdminTab
 		</script>
 		<script type="text/javascript" src="../js/admin-dnd.js"></script>
 		';
-		echo '<a href="'.$currentIndex.'&addToHook'.($this->displayKey ? '&show_modules='.$this->displayKey : '').'&token='.$this->token.'"><img src="../img/admin/add.gif" border="0"> <b>'.$this->l('Transplant a module').'</b></a><br><br>';
+		echo '<a href="'.$currentIndex.'&addToHook'.($this->displayKey ? '&show_modules='.$this->displayKey : '').'&token='.$this->token.'"><img src="../img/admin/add.gif" border="0" /> <b>'.$this->l('Transplant a module').'</b></a><br /><br />';
 
 		// Print select list
 		echo '
@@ -175,8 +175,8 @@ class AdminModulesPositions extends AdminTab
 					echo '
 					<option value="'.intval($module->id).'" '.($this->displayKey == $module->id ? 'selected="selected" ' : '').'>'.$module->displayName.'</option>';
 			echo '
-			</select><br><br>
-			<input type="checkbox" id="hook_position" onclick="autoUrlNoList(\'hook_position\', \''.$currentIndex.'&token='.$this->token.'&show_modules='.intval(Tools::getValue('show_modules')).'&hook_position=\')" '.(Tools::getValue('hook_position') ? 'checked="checked" ' : '').'>&nbsp;'.$this->l('Display non-positionnable hook').'
+			</select><br /><br />
+			<input type="checkbox" id="hook_position" onclick="autoUrlNoList(\'hook_position\', \''.$currentIndex.'&token='.$this->token.'&show_modules='.intval(Tools::getValue('show_modules')).'&hook_position=\')" '.(Tools::getValue('hook_position') ? 'checked="checked" ' : '').' />&nbsp;'.$this->l('Display non-positionnable hook').'
 		</form>';
 
 		// Print hook list
@@ -191,7 +191,7 @@ class AdminModulesPositions extends AdminTab
 					$modules[0] = $res;
 			$nbModules = sizeof($modules);
 			echo '
-			<a name="'.$hook['name'].'">
+			<a name="'.$hook['name'].'"/>
 			<table cellpadding="0" cellspacing="0" class="table width3 space'.($nbModules >= 2? ' tableDnD' : '' ).'" id="'.$hook['id_hook'].'">
 			<tr class="nodrag nodrop"><th colspan="4">'.$hook['title'].' - <span style="color: red">'.$nbModules.'</span> '.(($nbModules > 1) ? $this->l('modules') : $this->l('module'));
 			if (!empty($hook['description']))
@@ -215,8 +215,8 @@ class AdminModulesPositions extends AdminTab
 						echo '
 						<td class="positions" width="40">'.intval($position).'</td>
 						<td'.($nbModules >= 2? ' class="dragHandle"' : '').' id="td_'.$hook['id_hook'].'_'.$instance->id.'" width="40">
-						<a'.($position == 1 ? ' style="display: none;"' : '' ).' href="'.$currentIndex.'&id_module='.$instance->id.'&id_hook='.$hook['id_hook'].'&direction=0&token='.$this->token.'&changePosition='.rand().'#'.$hook['name'].'"><img src="../img/admin/up.gif" alt="'.$this->l('Up').'" title="'.$this->l('Up').'"></a><br>
-							<a '.($position == sizeof($instances) ? ' style="display: none;"' : '').'href="'.$currentIndex.'&id_module='.$instance->id.'&id_hook='.$hook['id_hook'].'&direction=1&token='.$this->token.'&changePosition='.rand().'#'.$hook['name'].'"><img src="../img/admin/down.gif" alt="'.$this->l('Down').'" title="'.$this->l('Down').'"></a>
+						<a'.($position == 1 ? ' style="display: none;"' : '' ).' href="'.$currentIndex.'&id_module='.$instance->id.'&id_hook='.$hook['id_hook'].'&direction=0&token='.$this->token.'&changePosition='.rand().'#'.$hook['name'].'"><img src="../img/admin/up.gif" alt="'.$this->l('Up').'" title="'.$this->l('Up').'" /></a><br />
+							<a '.($position == sizeof($instances) ? ' style="display: none;"' : '').'href="'.$currentIndex.'&id_module='.$instance->id.'&id_hook='.$hook['id_hook'].'&direction=1&token='.$this->token.'&changePosition='.rand().'#'.$hook['name'].'"><img src="../img/admin/down.gif" alt="'.$this->l('Down').'" title="'.$this->l('Down').'" /></a>
 						</td>
 						<td style="padding-left: 10px;">
 						';
@@ -224,12 +224,12 @@ class AdminModulesPositions extends AdminTab
 					else
 						echo '<td style="padding-left: 10px;" colspan="3">';
 					echo '
-					<img src="../modules/'.$instance->name.'/logo.gif" alt="'.stripslashes($instance->name).'"> <strong>'.stripslashes($instance->displayName).'</strong>
-						'.($instance->version ? ' v'.(intval($instance->version) == $instance->version? sprintf('%.1f', $instance->version) : floatval($instance->version)) : '').'<br>'.$instance->description.'
+					<img src="../modules/'.$instance->name.'/logo.gif" alt="'.stripslashes($instance->name).'" /> <strong>'.stripslashes($instance->displayName).'</strong>
+						'.($instance->version ? ' v'.(intval($instance->version) == $instance->version? sprintf('%.1f', $instance->version) : floatval($instance->version)) : '').'<br />'.$instance->description.'
 					</td>
 						<td width="40">
-							<a href="'.$currentIndex.'&id_module='.$instance->id.'&id_hook='.$hook['id_hook'].'&editGraft'.($this->displayKey ? '&show_modules='.$this->displayKey : '').'&token='.$this->token.'"><img src="../img/admin/edit.gif" border="0" alt="'.$this->l('Edit').'" title="'.$this->l('Edit').'"></a>
-							<a href="'.$currentIndex.'&id_module='.$instance->id.'&id_hook='.$hook['id_hook'].'&deleteGraft'.($this->displayKey ? '&show_modules='.$this->displayKey : '').'&token='.$this->token.'"><img src="../img/admin/delete.gif" border="0" alt="'.$this->l('Delete').'" title="'.$this->l('Delete').'"></a>
+							<a href="'.$currentIndex.'&id_module='.$instance->id.'&id_hook='.$hook['id_hook'].'&editGraft'.($this->displayKey ? '&show_modules='.$this->displayKey : '').'&token='.$this->token.'"><img src="../img/admin/edit.gif" border="0" alt="'.$this->l('Edit').'" title="'.$this->l('Edit').'" /></a>
+							<a href="'.$currentIndex.'&id_module='.$instance->id.'&id_hook='.$hook['id_hook'].'&deleteGraft'.($this->displayKey ? '&show_modules='.$this->displayKey : '').'&token='.$this->token.'"><img src="../img/admin/delete.gif" border="0" alt="'.$this->l('Delete').'" title="'.$this->l('Delete').'" /></a>
 						</td>
 					</tr>';
 				}
@@ -266,8 +266,8 @@ class AdminModulesPositions extends AdminTab
 		echo '
 		<form action="'.$currentIndex.'&token='.$this->token.'" method="post">';
 		if ($this->displayKey)
-			echo '<input type="hidden" name="show_modules" value="'.$this->displayKey.'">';
-		echo '<fieldset class="width3" style="width:700px;"><legend><img src="../img/t/AdminModulesPositions.gif">'.$this->l('Transplant a module').'</legend>
+			echo '<input type="hidden" name="show_modules" value="'.$this->displayKey.'" />';
+		echo '<fieldset class="width3" style="width:700px;"><legend><img src="../img/t/AdminModulesPositions.gif" />'.$this->l('Transplant a module').'</legend>
 				<label>'.$this->l('Module').' :</label>
 				<div class="margin-form">
 					<select name="id_module"'.(Tools::isSubmit('editGraft') ? ' disabled="disabled"' : '').'>';
@@ -288,22 +288,22 @@ class AdminModulesPositions extends AdminTab
 				</div>
 				<label>'.$this->l('Exceptions').' :</label>
 				<div class="margin-form">
-					<input type="text" name="exceptions" size="40" '.(!empty($excepts) ? 'value="'.$excepts.'"' : '').'><br>Ex: identity.php, history.php, order.php, product.php<br><br>
-					'.$this->l('Please specify those files in which you do not want the module to be displayed').'.<br>
-					'.$this->l('These files are located in your base directory').', '.$this->l('e.g., ').' <b>identity.php</b>.<br>
+					<input type="text" name="exceptions" size="40" '.(!empty($excepts) ? 'value="'.$excepts.'"' : '').'><br />Ex: identity.php, history.php, order.php, product.php<br /><br />
+					'.$this->l('Please specify those files in which you do not want the module to be displayed').'.<br />
+					'.$this->l('These files are located in your base directory').', '.$this->l('e.g., ').' <b>identity.php</b>.<br />
 					'.$this->l('Please type each filename separated by a comma').'.
-					<br><br>
+					<br /><br />
 				</div>
 				<div class="margin-form">
 				';
 				if (Tools::isSubmit('editGraft'))
 				{
 					echo '
-					<input type="hidden" name="id_module" value="'.$id_module.'">
-					<input type="hidden" name="id_hook" value="'.$id_hook.'">';
+					<input type="hidden" name="id_module" value="'.$id_module.'" />
+					<input type="hidden" name="id_hook" value="'.$id_hook.'" />';
 				}
 				echo '
-					<input type="submit" value="'.$this->l('Save').'" name="'.(Tools::isSubmit('editGraft') ? 'submitEditGraft' : 'submitAddToHook').'" class="button">
+					<input type="submit" value="'.$this->l('Save').'" name="'.(Tools::isSubmit('editGraft') ? 'submitEditGraft' : 'submitAddToHook').'" class="button" />
 				</div>
 				<div class="small"><sup>*</sup> '.$this->l('Required field').'</div>
 			</fieldset>

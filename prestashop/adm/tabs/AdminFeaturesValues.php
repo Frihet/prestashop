@@ -44,14 +44,14 @@ class AdminFeaturesValues extends AdminTab
 			id_language = Number('.$defaultLanguage.');
 		</script>
 		<form action="'.$currentIndex.'&submitAdd'.$this->table.'=1&token='.($token ? $token : $this->token).'" method="post">
-		'.($obj->id ? '<input type="hidden" name="id_feature_value" value="'.$obj->id.'">' : '').'
-			<fieldset class="width3"><legend><img src="../img/t/AdminFeatures.gif">'.$this->l('Value').'</legend>
+		'.($obj->id ? '<input type="hidden" name="id_feature_value" value="'.$obj->id.'" />' : '').'
+			<fieldset class="width3"><legend><img src="../img/t/AdminFeatures.gif" />'.$this->l('Value').'</legend>
 				<label>'.$this->l('Value:').' </label>
 				<div class="margin-form">';
 		foreach ($languages as $language)
 			echo '
 					<div id="value_'.$language['id_lang'].'" style="display: '.($language['id_lang'] == $defaultLanguage ? 'block' : 'none').'; float: left;">
-						<input size="33" type="text" name="value_'.$language['id_lang'].'" value="'.htmlentities($this->getFieldValue($obj, 'value', intval($language['id_lang'])), ENT_COMPAT, 'UTF-8').'"><sup> *</sup>
+						<input size="33" type="text" name="value_'.$language['id_lang'].'" value="'.htmlentities($this->getFieldValue($obj, 'value', intval($language['id_lang'])), ENT_COMPAT, 'UTF-8').'" /><sup> *</sup>
 						<span class="hint" name="help_box">'.$this->l('Invalid characters:').' <>;=#{}<span class="hint-pointer">&nbsp;</span></span>
 					</div>';
 		$this->displayFlags($languages, $defaultLanguage, 'value', 'value');
@@ -68,7 +68,7 @@ class AdminFeaturesValues extends AdminTab
 					</select><sup> *</sup>
 				</div>
 				<div class="margin-form">
-					<input type="submit" value="'.$this->l('   Save   ').'" name="submitAdd'.$this->table.'" class="button">
+					<input type="submit" value="'.$this->l('   Save   ').'" name="submitAdd'.$this->table.'" class="button" />
 				</div>
 				<div class="small"><sup>*</sup> '.$this->l('Required field').'</div>
 			</fieldset>

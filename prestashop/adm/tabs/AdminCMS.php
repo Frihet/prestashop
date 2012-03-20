@@ -48,15 +48,15 @@ class AdminCMS extends AdminTab
 			id_language = Number('.$defaultLanguage.');
 		</script>
 		<form action="'.$currentIndex.'&submitAdd'.$this->table.'=1&token='.$this->token.'" method="post">
-			'.($obj->id ? '<input type="hidden" name="id_'.$this->table.'" value="'.$obj->id.'">' : '').'
-			<fieldset><legend><img src="../img/admin/cms.gif">'.$this->l('CMS').'</legend>';
+			'.($obj->id ? '<input type="hidden" name="id_'.$this->table.'" value="'.$obj->id.'" />' : '').'
+			<fieldset><legend><img src="../img/admin/cms.gif" />'.$this->l('CMS').'</legend>';
 			
 		// META TITLE
 		echo '	<label>'.$this->l('Meta title').' </label>
 				<div class="margin-form">';
 		foreach ($languages as $language)
 			echo '	<div id="meta_title_'.$language['id_lang'].'" style="display: '.($language['id_lang'] == $defaultLanguage ? 'block' : 'none').'; float: left;">
-						<input size="40" type="text" name="meta_title_'.$language['id_lang'].'" value="'.htmlentities($this->getFieldValue($obj, 'meta_title', intval($language['id_lang'])), ENT_COMPAT, 'UTF-8').'"><sup> *</sup>
+						<input size="40" type="text" name="meta_title_'.$language['id_lang'].'" value="'.htmlentities($this->getFieldValue($obj, 'meta_title', intval($language['id_lang'])), ENT_COMPAT, 'UTF-8').'" /><sup> *</sup>
 					</div>';
 		$this->displayFlags($languages, $defaultLanguage, $divLangName, 'meta_title');
 		echo '	</div><div class="clear space">&nbsp;</div>';
@@ -66,7 +66,7 @@ class AdminCMS extends AdminTab
 				<div class="margin-form">';
 		foreach ($languages as $language)
 			echo '	<div id="meta_description_'.$language['id_lang'].'" style="display: '.($language['id_lang'] == $defaultLanguage ? 'block' : 'none').'; float: left;">
-						<input size="50" type="text" name="meta_description_'.$language['id_lang'].'" value="'.htmlentities($this->getFieldValue($obj, 'meta_description', intval($language['id_lang'])), ENT_COMPAT, 'UTF-8').'">
+						<input size="50" type="text" name="meta_description_'.$language['id_lang'].'" value="'.htmlentities($this->getFieldValue($obj, 'meta_description', intval($language['id_lang'])), ENT_COMPAT, 'UTF-8').'" />
 					</div>';
 		$this->displayFlags($languages, $defaultLanguage, $divLangName, 'meta_description');
 		echo '	</div><div class="clear space">&nbsp;</div>';
@@ -76,7 +76,7 @@ class AdminCMS extends AdminTab
 				<div class="margin-form">';
 		foreach ($languages as $language)
 			echo '	<div id="meta_keywords_'.$language['id_lang'].'" style="display: '.($language['id_lang'] == $defaultLanguage ? 'block' : 'none').'; float: left;">
-						<input size="50" type="text" name="meta_keywords_'.$language['id_lang'].'" value="'.htmlentities($this->getFieldValue($obj, 'meta_keywords', intval($language['id_lang'])), ENT_COMPAT, 'UTF-8').'">
+						<input size="50" type="text" name="meta_keywords_'.$language['id_lang'].'" value="'.htmlentities($this->getFieldValue($obj, 'meta_keywords', intval($language['id_lang'])), ENT_COMPAT, 'UTF-8').'" />
 					</div>';
 		$this->displayFlags($languages, $defaultLanguage, $divLangName, 'meta_keywords');
 		echo '	</div><div class="clear space">&nbsp;</div>';
@@ -86,7 +86,7 @@ class AdminCMS extends AdminTab
 				<div class="margin-form">';
 		foreach ($languages as $language)
 			echo '	<div id="link_rewrite_'.$language['id_lang'].'" style="display: '.($language['id_lang'] == $defaultLanguage ? 'block' : 'none').'; float: left;">
-						<input size="30" type="text" name="link_rewrite_'.$language['id_lang'].'" value="'.htmlentities($this->getFieldValue($obj, 'link_rewrite', intval($language['id_lang'])), ENT_COMPAT, 'UTF-8').'"><sup> *</sup>
+						<input size="30" type="text" name="link_rewrite_'.$language['id_lang'].'" value="'.htmlentities($this->getFieldValue($obj, 'link_rewrite', intval($language['id_lang'])), ENT_COMPAT, 'UTF-8').'" /><sup> *</sup>
 					</div>';
 		$this->displayFlags($languages, $defaultLanguage, $divLangName, 'link_rewrite');
 		echo '	</div><div class="clear space">&nbsp;</div>';
@@ -103,7 +103,7 @@ class AdminCMS extends AdminTab
 		
 		// SUBMIT
 		echo '	<div class="margin-form space">
-					<input type="submit" value="'.$this->l('   Save   ').'" name="submitAdd'.$this->table.'" class="button">
+					<input type="submit" value="'.$this->l('   Save   ').'" name="submitAdd'.$this->table.'" class="button" />
 				</div>
 				<div class="small"><sup>*</sup> '.$this->l('Required field').'</div>
 			</fieldset>

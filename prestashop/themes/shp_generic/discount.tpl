@@ -48,9 +48,9 @@
 			</td>
 			<td class="discount_cumulative">
 				{if $discount.cumulable == 1}
-					<img src="{$img_dir}icon/yes.gif" alt="{l s='Yes'}" class="icon">
+					<img src="{$img_dir}icon/yes.gif" alt="{l s='Yes'}" class="icon" />
 				{else}
-					<img src="{$img_dir}icon/no.gif" alt="{l s='No'}" class="icon">
+					<img src="{$img_dir}icon/no.gif" alt="{l s='No'}" class="icon" />
 				{/if}
 			</td>
 			<td class="discount_expiration_date">{dateFormat date=$discount.date_to}</td>
@@ -66,7 +66,7 @@
 {/if}
 
 <ul class="footer_links">
-	<li><a href="{$base_dir_ssl}my-account.php"><img src="{$img_dir}icon/my-account.gif" alt="" class="icon"></a><a href="{$base_dir_ssl}my-account.php">{l s='Back to Your Account'}</a></li>
-	<li><a href="{$base_dir}"><img src="{$img_dir}icon/home.gif" alt="" class="icon"></a><a href="{$base_dir}">{l s='Home'}</a></li>
+	<li><a href="{$base_dir_ssl}my-account.php"><img src="{$img_dir}icon/my-account.gif" alt="" class="icon" /></a><a href="{$base_dir_ssl}my-account.php">{l s='Back to Your Account'}</a></li>
+	<li><a href="{$base_dir}"><img src="{$img_dir}icon/home.gif" alt="" class="icon" /></a><a href="{$base_dir}">{l s='Home'}</a></li>
 </ul>
 {/variablebox}

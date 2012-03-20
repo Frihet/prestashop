@@ -111,9 +111,9 @@ function	getPath($urlBase, $id_category, $path = '', $highlight = '')
 		return $path;
 	$name = ($highlight != NULL) ? str_ireplace($highlight, '<span class="highlight">'.$highlight.'</span>', 
 	Category::hideCategoryPosition($category->name)) : Category::hideCategoryPosition($category->name);
-	$edit = '<a href="'.$urlBase.'&id_category='.$category->id.'&addcategory&token=' . Tools::getAdminToken('AdminCatalog'.intval(Tab::getIdFromClassName('AdminCatalog')).intval($cookie->id_employee)).'"><img src="../img/admin/edit.gif" alt="Modify"></a> ';
+	$edit = '<a href="'.$urlBase.'&id_category='.$category->id.'&addcategory&token=' . Tools::getAdminToken('AdminCatalog'.intval(Tab::getIdFromClassName('AdminCatalog')).intval($cookie->id_employee)).'"><img src="../img/admin/edit.gif" alt="Modify" /></a> ';
 	if ($category->id == 1)
-		$edit = '<a href="'.$urlBase.'&id_category='.$category->id.'&viewcategory&token=' . Tools::getAdminToken('AdminCatalog'.intval(Tab::getIdFromClassName('AdminCatalog')).intval($cookie->id_employee)).'"><img src="../img/admin/home.gif" alt="Home"></a> ';
+		$edit = '<a href="'.$urlBase.'&id_category='.$category->id.'&viewcategory&token=' . Tools::getAdminToken('AdminCatalog'.intval(Tab::getIdFromClassName('AdminCatalog')).intval($cookie->id_employee)).'"><img src="../img/admin/home.gif" alt="Home" /></a> ';
 	$path = $edit.'<a href="'.$urlBase.'&id_category='.$category->id.'&viewcategory&token=' . Tools::getAdminToken('AdminCatalog'.intval(Tab::getIdFromClassName('AdminCatalog')).intval($cookie->id_employee)).'">'.$name.'</a> > '.$path;
 	if ($category->id == 1)
 		return substr($path, 0, strlen($path) - 3);

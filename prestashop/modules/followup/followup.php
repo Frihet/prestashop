@@ -80,54 +80,54 @@ class Followup extends Module
 		<h2>'.$this->l('Customers follow-up').'</h2>
 		<form action="'.$_SERVER['REQUEST_URI'].'" method="post">			
 			<fieldset style="width: 400px; float: left;">
-				<legend><img src="'.$this->_path.'logo.gif" alt="" title="">'.$this->l('Settings').'</legend>
-				<p>'.$this->l('Four kinds of e-mail alerts in order to stay in touch with your customers!').'<br><br>
-				'.$this->l('Define settings and put this URL in crontab or call it manually daily:').'<br>
+				<legend><img src="'.$this->_path.'logo.gif" alt="" title="" />'.$this->l('Settings').'</legend>
+				<p>'.$this->l('Four kinds of e-mail alerts in order to stay in touch with your customers!').'<br /><br />
+				'.$this->l('Define settings and put this URL in crontab or call it manually daily:').'<br />
 				<b>http://'.$_SERVER['HTTP_HOST'].__PS_BASE_URI__.'modules/followup/cron.php?secure_key='.Configuration::get('PS_FOLLOWUP_SECURE_KEY').'</b></p>
-				<hr size="1">
-				<p><b>1. '.$this->l('Canceled carts').'</b><br><br>'.$this->l('For each cancelled cart (with no order), generate a discount and send it to the customer').'</p>
+				<hr size="1" />
+				<p><b>1. '.$this->l('Canceled carts').'</b><br /><br />'.$this->l('For each cancelled cart (with no order), generate a discount and send it to the customer').'</p>
 				<label>'.$this->l('Enable').'</label>
-				<div class="margin-form" style="padding-top: 5px;"><input type="checkbox" name="PS_FOLLOW_UP_ENABLE_1" value="1" style="vertical-align: middle;" '.($conf['PS_FOLLOW_UP_ENABLE_1'] == 1 ? 'checked="checked"' : '').'></div>
+				<div class="margin-form" style="padding-top: 5px;"><input type="checkbox" name="PS_FOLLOW_UP_ENABLE_1" value="1" style="vertical-align: middle;" '.($conf['PS_FOLLOW_UP_ENABLE_1'] == 1 ? 'checked="checked"' : '').' /></div>
 				<label>'.$this->l('Discount amount').'</label>
-				<div class="margin-form"><input type="text" name="PS_FOLLOW_UP_AMOUNT_1" value="'.$conf['PS_FOLLOW_UP_AMOUNT_1'].'" size="6" onKeyUp="javascript:this.value = this.value.replace(/,/g, \'.\');"> %</div>
+				<div class="margin-form"><input type="text" name="PS_FOLLOW_UP_AMOUNT_1" value="'.$conf['PS_FOLLOW_UP_AMOUNT_1'].'" size="6" onKeyUp="javascript:this.value = this.value.replace(/,/g, \'.\');" /> %</div>
 				<label>'.$this->l('Discount validity').'</label>
-				<div class="margin-form"><input type="text" name="PS_FOLLOW_UP_DAYS_1" value="'.$conf['PS_FOLLOW_UP_DAYS_1'].'" size="6"> '.$this->l('day(s)').'</div>
+				<div class="margin-form"><input type="text" name="PS_FOLLOW_UP_DAYS_1" value="'.$conf['PS_FOLLOW_UP_DAYS_1'].'" size="6" /> '.$this->l('day(s)').'</div>
 				<p>'.$this->l('Next process will send:').' <b>'.intval($n1).' '.($n1 > 1 ? $this->l('emails') : $this->l('email')).'</b></p>
-				<hr size="1">
-				<p><b>2. '.$this->l('Re-order').'</b><br><br>'.$this->l('For each validated order, generate a discount and send it to the customer').'</p>
+				<hr size="1" />
+				<p><b>2. '.$this->l('Re-order').'</b><br /><br />'.$this->l('For each validated order, generate a discount and send it to the customer').'</p>
 				<label>'.$this->l('Enable').'</label>
-				<div class="margin-form" style="padding-top: 5px;"><input type="checkbox" name="PS_FOLLOW_UP_ENABLE_2" value="1" style="vertical-align: middle;" '.($conf['PS_FOLLOW_UP_ENABLE_2'] == 1 ? 'checked="checked"' : '').'></div>
+				<div class="margin-form" style="padding-top: 5px;"><input type="checkbox" name="PS_FOLLOW_UP_ENABLE_2" value="1" style="vertical-align: middle;" '.($conf['PS_FOLLOW_UP_ENABLE_2'] == 1 ? 'checked="checked"' : '').' /></div>
 				<label>'.$this->l('Discount amount').'</label>
-				<div class="margin-form"><input type="text" name="PS_FOLLOW_UP_AMOUNT_2" value="'.$conf['PS_FOLLOW_UP_AMOUNT_2'].'" size="6" onKeyUp="javascript:this.value = this.value.replace(/,/g, \'.\');"> %</div>
+				<div class="margin-form"><input type="text" name="PS_FOLLOW_UP_AMOUNT_2" value="'.$conf['PS_FOLLOW_UP_AMOUNT_2'].'" size="6" onKeyUp="javascript:this.value = this.value.replace(/,/g, \'.\');" /> %</div>
 				<label>'.$this->l('Discount validity').'</label>
-				<div class="margin-form"><input type="text" name="PS_FOLLOW_UP_DAYS_2" value="'.$conf['PS_FOLLOW_UP_DAYS_2'].'" size="6"> '.$this->l('day(s)').'</div>
+				<div class="margin-form"><input type="text" name="PS_FOLLOW_UP_DAYS_2" value="'.$conf['PS_FOLLOW_UP_DAYS_2'].'" size="6" /> '.$this->l('day(s)').'</div>
 				<p>'.$this->l('Next process will send:').' <b>'.intval($n2).' '.($n2 > 1 ? $this->l('emails') : $this->l('email')).'</b></p>
-				<hr size="1">
-				<p><b>3. '.$this->l('Best customers').'</b><br><br>'.$this->l('For each customer raising a threshold, generate a discount and send it to the customer').'</p>
+				<hr size="1" />
+				<p><b>3. '.$this->l('Best customers').'</b><br /><br />'.$this->l('For each customer raising a threshold, generate a discount and send it to the customer').'</p>
 				<label>'.$this->l('Enable').'</label>
-				<div class="margin-form" style="padding-top: 5px;"><input type="checkbox" name="PS_FOLLOW_UP_ENABLE_3" value="1" style="vertical-align: middle;" '.($conf['PS_FOLLOW_UP_ENABLE_3'] == 1 ? 'checked="checked"' : '').'></div>
+				<div class="margin-form" style="padding-top: 5px;"><input type="checkbox" name="PS_FOLLOW_UP_ENABLE_3" value="1" style="vertical-align: middle;" '.($conf['PS_FOLLOW_UP_ENABLE_3'] == 1 ? 'checked="checked"' : '').' /></div>
 				<label>'.$this->l('Discount amount').'</label>
-				<div class="margin-form"><input type="text" name="PS_FOLLOW_UP_AMOUNT_3" value="'.$conf['PS_FOLLOW_UP_AMOUNT_3'].'" size="6" onKeyUp="javascript:this.value = this.value.replace(/,/g, \'.\');"> %</div>
+				<div class="margin-form"><input type="text" name="PS_FOLLOW_UP_AMOUNT_3" value="'.$conf['PS_FOLLOW_UP_AMOUNT_3'].'" size="6" onKeyUp="javascript:this.value = this.value.replace(/,/g, \'.\');" /> %</div>
 				<label>'.$this->l('Threshold').'</label>
-				<div class="margin-form">'.($currency->format == 1 ? ' '.$currency->sign.' ' : '').'<input type="text" name="PS_FOLLOW_UP_THRESHOLD_3" value="'.$conf['PS_FOLLOW_UP_THRESHOLD_3'].'" size="6" onKeyUp="javascript:this.value = this.value.replace(/,/g, \'.\');"> '.($currency->format == 2 ? ' '.$currency->sign : '').'</div>
+				<div class="margin-form">'.($currency->format == 1 ? ' '.$currency->sign.' ' : '').'<input type="text" name="PS_FOLLOW_UP_THRESHOLD_3" value="'.$conf['PS_FOLLOW_UP_THRESHOLD_3'].'" size="6" onKeyUp="javascript:this.value = this.value.replace(/,/g, \'.\');" /> '.($currency->format == 2 ? ' '.$currency->sign : '').'</div>
 				<label>'.$this->l('Discount validity').'</label>
-				<div class="margin-form"><input type="text" name="PS_FOLLOW_UP_DAYS_3" value="'.$conf['PS_FOLLOW_UP_DAYS_3'].'" size="6"> '.$this->l('day(s)').'</div>
+				<div class="margin-form"><input type="text" name="PS_FOLLOW_UP_DAYS_3" value="'.$conf['PS_FOLLOW_UP_DAYS_3'].'" size="6" /> '.$this->l('day(s)').'</div>
 				<p>'.$this->l('Next process will send:').' <b>'.intval($n3).' '.($n3 > 1 ? $this->l('emails') : $this->l('email')).'</b></p>
-				<hr size="1">
-				<p><b>4. '.$this->l('Bad customers').'</b><br><br>'.$this->l('For each customer who has already passed at least one order and with no orders since a given duration, generate a discount and send it to the customer').'</p>
+				<hr size="1" />
+				<p><b>4. '.$this->l('Bad customers').'</b><br /><br />'.$this->l('For each customer who has already passed at least one order and with no orders since a given duration, generate a discount and send it to the customer').'</p>
 				<label>'.$this->l('Enable').'</label>
-				<div class="margin-form" style="padding-top: 5px;"><input type="checkbox" name="PS_FOLLOW_UP_ENABLE_4" value="1" style="vertical-align: middle;" '.($conf['PS_FOLLOW_UP_ENABLE_4'] == 1 ? 'checked="checked"' : '').'></div>
+				<div class="margin-form" style="padding-top: 5px;"><input type="checkbox" name="PS_FOLLOW_UP_ENABLE_4" value="1" style="vertical-align: middle;" '.($conf['PS_FOLLOW_UP_ENABLE_4'] == 1 ? 'checked="checked"' : '').' /></div>
 				<label>'.$this->l('Discount amount').'</label>
-				<div class="margin-form"><input type="text" name="PS_FOLLOW_UP_AMOUNT_4" value="'.$conf['PS_FOLLOW_UP_AMOUNT_4'].'" size="6" onKeyUp="javascript:this.value = this.value.replace(/,/g, \'.\');"> %</div>
+				<div class="margin-form"><input type="text" name="PS_FOLLOW_UP_AMOUNT_4" value="'.$conf['PS_FOLLOW_UP_AMOUNT_4'].'" size="6" onKeyUp="javascript:this.value = this.value.replace(/,/g, \'.\');" /> %</div>
 				<label>'.$this->l('Since x days').'</label>
-				<div class="margin-form"><input type="text" name="PS_FOLLOW_UP_DAYS_THRESHOLD_4" value="'.$conf['PS_FOLLOW_UP_DAYS_THRESHOLD_4'].'" size="6"> '.$this->l('day(s)').'</div>
+				<div class="margin-form"><input type="text" name="PS_FOLLOW_UP_DAYS_THRESHOLD_4" value="'.$conf['PS_FOLLOW_UP_DAYS_THRESHOLD_4'].'" size="6" /> '.$this->l('day(s)').'</div>
 				<label>'.$this->l('Discount validity').'</label>
-				<div class="margin-form"><input type="text" name="PS_FOLLOW_UP_DAYS_4" value="'.$conf['PS_FOLLOW_UP_DAYS_4'].'" size="6"> '.$this->l('day(s)').'</div>
+				<div class="margin-form"><input type="text" name="PS_FOLLOW_UP_DAYS_4" value="'.$conf['PS_FOLLOW_UP_DAYS_4'].'" size="6" /> '.$this->l('day(s)').'</div>
 				<p>'.$this->l('Next process will send:').' <b>'.intval($n4).' '.($n4 > 1 ? $this->l('emails') : $this->l('email')).'</b></p>
-				<hr size="1">
-				<input type="checkbox" style="vertical-align: middle;" name="PS_FOLLOW_UP_CLEAN_DB" value="1" '.($conf['PS_FOLLOW_UP_CLEAN_DB'] == 1 ? 'checked="checked"' : '').'> '.$this->l('Delete outdated discounts during each launch to clean database').'
-				<hr size="1">
-				<center><input type="submit" name="submitFollowUp" value="'.$this->l('Save').'" class="button"></center>
+				<hr size="1" />
+				<input type="checkbox" style="vertical-align: middle;" name="PS_FOLLOW_UP_CLEAN_DB" value="1" '.($conf['PS_FOLLOW_UP_CLEAN_DB'] == 1 ? 'checked="checked"' : '').' /> '.$this->l('Delete outdated discounts during each launch to clean database').'
+				<hr size="1" />
+				<center><input type="submit" name="submitFollowUp" value="'.$this->l('Save').'" class="button" /></center>
 			</fieldset>
 			
 			<style type="text/css">
@@ -147,13 +147,13 @@ class Followup extends Module
 				table { width: 460px; border: 1px solid #666; }
 			</style>
 			<fieldset style="width: 460px; margin-left: 10px; float: left;">
-				<legend><img src="'.$this->_path.'logo-2.gif" alt="" title="">'.$this->l('Statistics').'</legend>
-				'.$this->l('Detailed statistics for last 30 days:').'<br><br>
+				<legend><img src="'.$this->_path.'logo-2.gif" alt="" title="" />'.$this->l('Statistics').'</legend>
+				'.$this->l('Detailed statistics for last 30 days:').'<br /><br />
 				<p style="font-size: 10px; font-weight: bold;">
-				'.$this->l('S = Number of sent e-mails').'<br>
-				'.$this->l('U = Number of discounts used (valid orders only)').'<br>
+				'.$this->l('S = Number of sent e-mails').'<br />
+				'.$this->l('U = Number of discounts used (valid orders only)').'<br />
 				'.$this->l('% = Conversion rate').'
-				</p><br>
+				</p><br />
 				<table border="1" style="font-size: 11px;">
 					<tr>
 						<th rowspan="2" style="width: 75px;">'.$this->l('Date').'</th>

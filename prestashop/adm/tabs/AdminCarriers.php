@@ -58,17 +58,17 @@ class AdminCarriers extends AdminTab
 			id_language = Number('.$defaultLanguage.');
 		</script>
 		<form action="'.$currentIndex.'&submitAdd'.$this->table.'=1&token='.$this->token.'" method="post" enctype="multipart/form-data">
-		'.($obj->id ? '<input type="hidden" name="id_'.$this->table.'" value="'.$obj->id.'">' : '').'
-			<fieldset class="width3"><legend><img src="../img/admin/delivery.gif">'.$this->l('Carriers').'</legend>
+		'.($obj->id ? '<input type="hidden" name="id_'.$this->table.'" value="'.$obj->id.'" />' : '').'
+			<fieldset class="width3"><legend><img src="../img/admin/delivery.gif" />'.$this->l('Carriers').'</legend>
 				<label>'.$this->l('Company:').' </label>
 				<div class="margin-form">
-					<input type="text" size="25" name="name" value="'.htmlentities($this->getFieldValue($obj, 'name'), ENT_COMPAT, 'UTF-8').'"> <sup>*</sup>
+					<input type="text" size="25" name="name" value="'.htmlentities($this->getFieldValue($obj, 'name'), ENT_COMPAT, 'UTF-8').'" /> <sup>*</sup>
 					<span class="hint" name="help_box">'.$this->l('Allowed characters: letters, spaces and').' ().-<span class="hint-pointer">&nbsp;</span></span>
-					<p class="clear">'.$this->l('Carrier name displayed during checkout').'<br>'.$this->l('With a value of 0, the carrier name will be replaced by the shop name').'</p>
+					<p class="clear">'.$this->l('Carrier name displayed during checkout').'<br />'.$this->l('With a value of 0, the carrier name will be replaced by the shop name').'</p>
 				</div>
 				<label>'.$this->l('Logo:').' </label>
 				<div class="margin-form">
-					<input type="file" name="logo">
+					<input type="file" name="logo" />
 					<p>'.$this->l('Upload logo from your computer').' (.gif, .jpg, .jpeg '.$this->l('or').' .png)</p>
 				</div>
 				<label>'.$this->l('Transit time:').' </label>
@@ -76,7 +76,7 @@ class AdminCarriers extends AdminTab
 				foreach ($languages as $language)
 					echo '
 					<div id="delay_'.$language['id_lang'].'" style="display: '.($language['id_lang'] == $defaultLanguage ? 'block' : 'none').'; float: left;">
-						<input type="text" size="41" maxlength="128" name="delay_'.$language['id_lang'].'" value="'.htmlentities($this->getFieldValue($obj, 'delay', intval($language['id_lang'])), ENT_COMPAT, 'UTF-8').'"> <sup>*</sup>
+						<input type="text" size="41" maxlength="128" name="delay_'.$language['id_lang'].'" value="'.htmlentities($this->getFieldValue($obj, 'delay', intval($language['id_lang'])), ENT_COMPAT, 'UTF-8').'" /> <sup>*</sup>
 					</div>';							
 				$this->displayFlags($languages, $defaultLanguage, 'delay', 'delay');
 				echo '
@@ -84,7 +84,7 @@ class AdminCarriers extends AdminTab
 				</div>
 				<label>'.$this->l('URL:').' </label>
 				<div class="margin-form">
-					<input type="text" size="40" name="url" value="'.htmlentities($this->getFieldValue($obj, 'url'), ENT_COMPAT, 'UTF-8').'">
+					<input type="text" size="40" name="url" value="'.htmlentities($this->getFieldValue($obj, 'url'), ENT_COMPAT, 'UTF-8').'" />
 					<p class="clear">'.$this->l('URL for the tracking number; type \'@\' where the tracking number will appear').'</p>
 				</div>
 				<label>'.$this->l('Tax:').'</label>
@@ -102,23 +102,23 @@ class AdminCarriers extends AdminTab
 					$carrier_zones = $obj->getZones();
 					$zones = Zone::getZones(true);
 					foreach ($zones AS $zone)
-						echo '<input type="checkbox" id="zone_'.$zone['id_zone'].'" name="zone_'.$zone['id_zone'].'" value="true" '.(Tools::getValue('zone_'.$zone['id_zone'], (is_array($carrier_zones) AND in_array(array('id_carrier' => $obj->id, 'id_zone' => $zone['id_zone']), $carrier_zones))) ? ' checked="checked"' : '').'><label class="t" for="zone_'.$zone['id_zone'].'">&nbsp;<b>'.$zone['name'].'</b></label><br>';
+						echo '<input type="checkbox" id="zone_'.$zone['id_zone'].'" name="zone_'.$zone['id_zone'].'" value="true" '.(Tools::getValue('zone_'.$zone['id_zone'], (is_array($carrier_zones) AND in_array(array('id_carrier' => $obj->id, 'id_zone' => $zone['id_zone']), $carrier_zones))) ? ' checked="checked"' : '').'><label class="t" for="zone_'.$zone['id_zone'].'">&nbsp;<b>'.$zone['name'].'</b></label><br />';
 				echo '<p>'.$this->l('The zone in which this carrier is to be used').'</p>
 				</div>
 				<label>'.$this->l('Status:').' </label>
 				<div class="margin-form">
-					<input type="radio" name="active" id="active_on" value="1" '.($this->getFieldValue($obj, 'active') ? 'checked="checked" ' : '').'>
-					<label class="t" for="active_on"> <img src="../img/admin/enabled.gif" alt="'.$this->l('Enabled').'" title="'.$this->l('Enabled').'"></label>
-					<input type="radio" name="active" id="active_off" value="0" '.(!$this->getFieldValue($obj, 'active') ? 'checked="checked" ' : '').'>
-					<label class="t" for="active_off"> <img src="../img/admin/disabled.gif" alt="'.$this->l('Disabled').'" title="'.$this->l('Disabled').'"></label>
+					<input type="radio" name="active" id="active_on" value="1" '.($this->getFieldValue($obj, 'active') ? 'checked="checked" ' : '').'/>
+					<label class="t" for="active_on"> <img src="../img/admin/enabled.gif" alt="'.$this->l('Enabled').'" title="'.$this->l('Enabled').'" /></label>
+					<input type="radio" name="active" id="active_off" value="0" '.(!$this->getFieldValue($obj, 'active') ? 'checked="checked" ' : '').'/>
+					<label class="t" for="active_off"> <img src="../img/admin/disabled.gif" alt="'.$this->l('Disabled').'" title="'.$this->l('Disabled').'" /></label>
 					<p>'.$this->l('Include or exclude carrier from list of carriers on Front Office').'</p>
 				</div>
 				<label>'.$this->l('Shipping & handling:').' </label>
 				<div class="margin-form">
-					<input type="radio" name="shipping_handling" id="shipping_handling_on" value="1" '.($this->getFieldValue($obj, 'shipping_handling') ? 'checked="checked" ' : '').'>
-					<label class="t" for="shipping_handling_on"> <img src="../img/admin/enabled.gif" alt="'.$this->l('Enabled').'" title="'.$this->l('Enabled').'"></label>
-					<input type="radio" name="shipping_handling" id="shipping_handling_off" value="0" '.(!$this->getFieldValue($obj, 'shipping_handling') ? 'checked="checked" ' : '').'>
-					<label class="t" for="shipping_handling_off"> <img src="../img/admin/disabled.gif" alt="'.$this->l('Disabled').'" title="'.$this->l('Disabled').'"></label>
+					<input type="radio" name="shipping_handling" id="shipping_handling_on" value="1" '.($this->getFieldValue($obj, 'shipping_handling') ? 'checked="checked" ' : '').'/>
+					<label class="t" for="shipping_handling_on"> <img src="../img/admin/enabled.gif" alt="'.$this->l('Enabled').'" title="'.$this->l('Enabled').'" /></label>
+					<input type="radio" name="shipping_handling" id="shipping_handling_off" value="0" '.(!$this->getFieldValue($obj, 'shipping_handling') ? 'checked="checked" ' : '').'/>
+					<label class="t" for="shipping_handling_off"> <img src="../img/admin/disabled.gif" alt="'.$this->l('Disabled').'" title="'.$this->l('Disabled').'" /></label>
 					<p>'.$this->l('Include the shipping & handling costs in carrier price').'</p>
 				</div>
 				<label>'.$this->l('Out-of-range behavior:').' </label>
@@ -130,7 +130,7 @@ class AdminCarriers extends AdminTab
 					<p>'.$this->l('Out-of-range behavior when none is defined (e.g., when a customer\'s cart weight is superior to the highest range limit)').'</p>
 				</div>
 				<div class="margin-form">
-					<input type="submit" value="'.$this->l('   Save   ').'" name="submitAdd'.$this->table.'" class="button">
+					<input type="submit" value="'.$this->l('   Save   ').'" name="submitAdd'.$this->table.'" class="button" />
 				</div>
 				<div class="small"><sup>*</sup> '.$this->l('Required field').'</div>
 			</fieldset>

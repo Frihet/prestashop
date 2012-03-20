@@ -45,7 +45,7 @@
 <div class="clear address_add"><a href="{$base_dir_ssl}address.php" title="{l s='Add an address'}" class="button_large">{l s='Add an address'}</a></div>
 
 <ul class="footer_links">
-	<li><a href="{$base_dir_ssl}my-account.php"><img src="{$img_dir}icon/my-account.gif" alt="" class="icon"></a><a href="{$base_dir_ssl}my-account.php">{l s='Back to Your Account'}</a></li>
-	<li><a href="{$base_dir}"><img src="{$img_dir}icon/home.gif" alt="" class="icon"></a><a href="{$base_dir}">{l s='Home'}</a></li>
+	<li><a href="{$base_dir_ssl}my-account.php"><img src="{$img_dir}icon/my-account.gif" alt="" class="icon" /></a><a href="{$base_dir_ssl}my-account.php">{l s='Back to Your Account'}</a></li>
+	<li><a href="{$base_dir}"><img src="{$img_dir}icon/home.gif" alt="" class="icon" /></a><a href="{$base_dir}">{l s='Home'}</a></li>
 </ul>
 {/variablebox}

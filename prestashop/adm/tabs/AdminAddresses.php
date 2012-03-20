@@ -195,11 +195,11 @@ class AdminAddresses extends AdminTab
 
 		echo '
 		<form action="'.$currentIndex.'&submitAdd'.$this->table.'=1&token='.$this->token.'" method="post" class="width2">
-		'.(intval($obj->id) ? '<input type="hidden" name="id_'.$this->table.'" value="'.intval($obj->id).'">' : '').'
-		'.(($id_order = intval(Tools::getValue('id_order'))) ? '<input type="hidden" name="id_order" value="'.intval($id_order).'">' : '').'
-		'.(($address_type = intval(Tools::getValue('address_type'))) ? '<input type="hidden" name="address_type" value="'.intval($address_type).'">' : '').'
-		'.(Tools::getValue('realedit') ? '<input type="hidden" name="realedit" value="1">' : '').'
-			<fieldset><legend><img src="../img/admin/contact.gif">'.$this->l('Addresses').'</legend>';
+		'.(intval($obj->id) ? '<input type="hidden" name="id_'.$this->table.'" value="'.intval($obj->id).'" />' : '').'
+		'.(($id_order = intval(Tools::getValue('id_order'))) ? '<input type="hidden" name="id_order" value="'.intval($id_order).'" />' : '').'
+		'.(($address_type = intval(Tools::getValue('address_type'))) ? '<input type="hidden" name="address_type" value="'.intval($address_type).'" />' : '').'
+		'.(Tools::getValue('realedit') ? '<input type="hidden" name="realedit" value="1" />' : '').'
+			<fieldset><legend><img src="../img/admin/contact.gif" />'.$this->l('Addresses').'</legend>';
 		switch ($this->addressType)
 		{
 			case 'manufacturer':
@@ -224,19 +224,19 @@ class AdminAddresses extends AdminTab
 					echo '
 					<label>'.$this->l('Customer:').'</label>
 					<div class="margin-form"><a style="display: block; padding-top: 4px;" href="?tab=AdminCustomers&id_customer='.$customer->id.'&viewcustomer&token='.$tokenCustomer.'">'.$customer->lastname.' '.$customer->firstname.' ('.$customer->email.')</a></div>
-					<input type="hidden" name="id_customer" value="'.$customer->id.'">';
+					<input type="hidden" name="id_customer" value="'.$customer->id.'" />';
 				}
 				else
 				{
 					echo
 					'<label>'.$this->l('Customer e-mail:').'</label>
 					<div class="margin-form">
-						<input type="text" size="33" name="email" value="'.htmlentities(Tools::getValue('email'), ENT_COMPAT, 'UTF-8').'" style="text-transform: lowercase;"> <sup>*</sup>
+						<input type="text" size="33" name="email" value="'.htmlentities(Tools::getValue('email'), ENT_COMPAT, 'UTF-8').'" style="text-transform: lowercase;" /> <sup>*</sup>
 					</div>';
 				}
 				echo '<label>'.$this->l('Alias:').'</label>
 				<div class="margin-form">
-					<input type="text" size="33" name="alias" value="'.htmlentities($this->getFieldValue($obj, 'alias'), ENT_COMPAT, 'UTF-8').'"> <sup>*</sup>
+					<input type="text" size="33" name="alias" value="'.htmlentities($this->getFieldValue($obj, 'alias'), ENT_COMPAT, 'UTF-8').'" /> <sup>*</sup>
 					<span class="hint" name="help_box">'.$this->l('Invalid characters:').' <>;=#{}<span class="hint-pointer">&nbsp;</span></span>
 				</div>';
 				break;
@@ -245,40 +245,40 @@ class AdminAddresses extends AdminTab
 		{
 				echo '<label>'.$this->l('Company:').'</label>
 				<div class="margin-form">
-					<input type="text" size="33" name="company" value="'.htmlentities($this->getFieldValue($obj, 'company'), ENT_COMPAT, 'UTF-8').'">
+					<input type="text" size="33" name="company" value="'.htmlentities($this->getFieldValue($obj, 'company'), ENT_COMPAT, 'UTF-8').'" />
 					<span class="hint" name="help_box">'.$this->l('Invalid characters:').' <>;=#{}<span class="hint-pointer">&nbsp;</span></span>
 				</div>';
 		}
 				echo '
 				<label>'.$this->l('Last name:').'</label>
 				<div class="margin-form">
-					<input type="text" size="33" name="lastname" value="'.htmlentities($this->getFieldValue($obj, 'lastname'), ENT_COMPAT, 'UTF-8').'" style="text-transform: uppercase;"> <sup>*</sup>
+					<input type="text" size="33" name="lastname" value="'.htmlentities($this->getFieldValue($obj, 'lastname'), ENT_COMPAT, 'UTF-8').'" style="text-transform: uppercase;" /> <sup>*</sup>
 					<span class="hint" name="help_box">'.$this->l('Invalid characters:').' 0-9!<>,;?=+()@#"�{}_$%:<span class="hint-pointer">&nbsp;</span></span>
 				</div>
 				<label>'.$this->l('First name:').'</label>
 				<div class="margin-form">
-					<input type="text" size="33" name="firstname" value="'.htmlentities($this->getFieldValue($obj, 'firstname'), ENT_COMPAT, 'UTF-8').'"> <sup>*</sup>
+					<input type="text" size="33" name="firstname" value="'.htmlentities($this->getFieldValue($obj, 'firstname'), ENT_COMPAT, 'UTF-8').'" /> <sup>*</sup>
 					<span class="hint" name="help_box">'.$this->l('Invalid characters:').' 0-9!<>,;?=+()@#"�{}_$%:<span class="hint-pointer">&nbsp;</span></span>
 				</div>
 				<label>'.$this->l('Address:').'</label>
 				<div class="margin-form">
-					<input type="text" size="33" name="address1" value="'.htmlentities($this->getFieldValue($obj, 'address1'), ENT_COMPAT, 'UTF-8').'"> <sup>*</sup>
+					<input type="text" size="33" name="address1" value="'.htmlentities($this->getFieldValue($obj, 'address1'), ENT_COMPAT, 'UTF-8').'" /> <sup>*</sup>
 				</div>
 				<label>'.$this->l('Address').' (2):</label>
 				<div class="margin-form">
-					<input type="text" size="33" name="address2" value="'.htmlentities($this->getFieldValue($obj, 'address2'), ENT_COMPAT, 'UTF-8').'">
+					<input type="text" size="33" name="address2" value="'.htmlentities($this->getFieldValue($obj, 'address2'), ENT_COMPAT, 'UTF-8').'" />
 				</div>
 				<label>'.$this->l('Post/Zip code:').'</label>
 				<div class="margin-form">
-					<input type="text" size="33" name="postcode" value="'.htmlentities($this->getFieldValue($obj, 'postcode'), ENT_COMPAT, 'UTF-8').'"> <sup>*</sup>
+					<input type="text" size="33" name="postcode" value="'.htmlentities($this->getFieldValue($obj, 'postcode'), ENT_COMPAT, 'UTF-8').'" /> <sup>*</sup>
 				</div>
 				<label>'.$this->l('City:').'</label>
 				<div class="margin-form">
-					<input type="text" size="33" name="city" value="'.htmlentities($this->getFieldValue($obj, 'city'), ENT_COMPAT, 'UTF-8').'" style="text-transform: uppercase;"> <sup>*</sup>
+					<input type="text" size="33" name="city" value="'.htmlentities($this->getFieldValue($obj, 'city'), ENT_COMPAT, 'UTF-8').'" style="text-transform: uppercase;" /> <sup>*</sup>
 				</div>
 				<label>'.$this->l('Country:').'</label>
 				<div class="margin-form">
-					<select name="id_country">';
+					<select name="id_country" />';
 		$selectedCountry = $this->getFieldValue($obj, 'id_country');
 		foreach ($this->countriesArray AS $id_country => $name)
 			echo '		<option value="'.$id_country.'"'.((!$selectedCountry AND Configuration::get('PS_COUNTRY_DEFAULT') == $id_country) ? ' selected="selected"' : ($selectedCountry == $id_country ? ' selected="selected"' : '')).'>'.$name.'</option>';
@@ -286,7 +286,7 @@ class AdminAddresses extends AdminTab
 				</div>
 				<label>'.$this->l('State:').'</label>
 				<div class="margin-form">
-					<select name="id_state">
+					<select name="id_state" />
 					<option value="0">-----------</option>';
 		if ($this->stateList)
 			foreach ($this->stateList AS $state)
@@ -295,11 +295,11 @@ class AdminAddresses extends AdminTab
 				</div>
 				<label>'.$this->l('Home phone:').'</label>
 				<div class="margin-form">
-					<input type="text" size="33" name="phone" value="'.htmlentities($this->getFieldValue($obj, 'phone'), ENT_COMPAT, 'UTF-8').'">
+					<input type="text" size="33" name="phone" value="'.htmlentities($this->getFieldValue($obj, 'phone'), ENT_COMPAT, 'UTF-8').'" />
 				</div>
 				<label>'.$this->l('Mobile phone:').'</label>
 				<div class="margin-form">
-					<input type="text" size="33" name="phone_mobile" value="'.htmlentities($this->getFieldValue($obj, 'phone_mobile'), ENT_COMPAT, 'UTF-8').'">
+					<input type="text" size="33" name="phone_mobile" value="'.htmlentities($this->getFieldValue($obj, 'phone_mobile'), ENT_COMPAT, 'UTF-8').'" />
 				</div>
 				<label>'.$this->l('Other:').'</label>
 				<div class="margin-form">
@@ -307,7 +307,7 @@ class AdminAddresses extends AdminTab
 					<span class="hint" name="help_box">'.$this->l('Forbidden characters:').' <>;=#{}<span class="hint-pointer">&nbsp;</span></span>
 				</div>
 				<div class="margin-form">
-					<input type="submit" value="'.$this->l('   Save   ').'" name="submitAdd'.$this->table.'" class="button">
+					<input type="submit" value="'.$this->l('   Save   ').'" name="submitAdd'.$this->table.'" class="button" />
 				</div>
 				<div class="small"><sup>*</sup> '.$this->l('Required field').'</div>
 			</fieldset>

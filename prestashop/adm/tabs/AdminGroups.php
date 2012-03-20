@@ -51,14 +51,14 @@ class AdminGroups extends AdminTab
 			id_language = Number('.$defaultLanguage.');
 		</script>
 		<form action="'.$currentIndex.'&submitAdd'.$this->table.'=1&token='.$this->token.'" method="post" class="width3">
-		'.($obj->id ? '<input type="hidden" name="id_'.$this->table.'" value="'.$obj->id.'">' : '').'
-			<fieldset><legend><img src="../img/admin/tab-groups.gif">'.$this->l('Group').'</legend>
+		'.($obj->id ? '<input type="hidden" name="id_'.$this->table.'" value="'.$obj->id.'" />' : '').'
+			<fieldset><legend><img src="../img/admin/tab-groups.gif" />'.$this->l('Group').'</legend>
 				<label>'.$this->l('Name:').' </label>
 				<div class="margin-form">';
 				foreach ($languages as $language)
 					echo '
 					<div id="name_'.$language['id_lang'].'" style="display: '.($language['id_lang'] == $defaultLanguage ? 'block' : 'none').'; float: left;">
-						<input size="33" type="text" name="name_'.$language['id_lang'].'" value="'.htmlentities($this->getFieldValue($obj, 'name', intval($language['id_lang'])), ENT_COMPAT, 'UTF-8').'"><sup> *</sup>
+						<input size="33" type="text" name="name_'.$language['id_lang'].'" value="'.htmlentities($this->getFieldValue($obj, 'name', intval($language['id_lang'])), ENT_COMPAT, 'UTF-8').'" /><sup> *</sup>
 						<span class="hint" name="help_box">'.$this->l('Invalid characters:').' 0-9!<>,;?=+()@#"�{}_$%:<span class="hint-pointer">&nbsp;</span></span>
 					</div>';
 				$this->displayFlags($languages, $defaultLanguage, 'name', 'name');
@@ -68,12 +68,12 @@ class AdminGroups extends AdminTab
 				<div class="clear">&nbsp;</div>
 				<label>'.$this->l('Reduction:').' </label>
 				<div class="margin-form">
-					<input type="text" size="5" name="reduction" value="'.($reduction ? $reduction : '0').'"> '.$this->l('%').'
+					<input type="text" size="5" name="reduction" value="'.($reduction ? $reduction : '0').'" /> '.$this->l('%').'
 					<p>'.$this->l('Will automatically apply this value as a reduction on ALL shop\'s products for this group\'s members').'</p>
 				</div>
 				<div class="clear">&nbsp;</div>
 				<div class="margin-form">
-					<input type="submit" value="'.$this->l('   Save   ').'" name="submitAdd'.$this->table.'" class="button">
+					<input type="submit" value="'.$this->l('   Save   ').'" name="submitAdd'.$this->table.'" class="button" />
 				</div>
 				<div class="small"><sup>*</sup> '.$this->l('Required field').'</div>
 			</fieldset>
@@ -91,7 +91,7 @@ class AdminGroups extends AdminTab
 		
 		echo '
 		<fieldset style="width: 400px">
-			<div style="float: right"><a href="'.$currentIndex.'&updategroup&id_group='.$obj->id.'&token='.$this->token.'"><img src="../img/admin/edit.gif"></a></div>
+			<div style="float: right"><a href="'.$currentIndex.'&updategroup&id_group='.$obj->id.'&token='.$this->token.'"><img src="../img/admin/edit.gif" /></a></div>
 			<span style="font-weight: bold; font-size: 14px;">'.strval($obj->name[intval($cookie->id_lang)]).'</span>
 			<div class="clear">&nbsp;</div>
 			'.$this->l('Reduction:').' '.floatval($obj->reduction).$this->l('%').'
@@ -123,24 +123,24 @@ class AdminGroups extends AdminTab
 			$irow = 0;
 			foreach ($customers AS $k => $customer)
 			{
-				$imgGender = $customer['id_gender'] == 1 ? '<img src="../img/admin/male.gif" alt="'.$this->l('Male').'">' : ($customer['id_gender'] == 2 ? '<img src="../img/admin/female.gif" alt="'.$this->l('Female').'">' : '');
+				$imgGender = $customer['id_gender'] == 1 ? '<img src="../img/admin/male.gif" alt="'.$this->l('Male').'" />' : ($customer['id_gender'] == 2 ? '<img src="../img/admin/female.gif" alt="'.$this->l('Female').'" />' : '');
 				echo '
 				<tr class="'.($irow++ % 2 ? 'alt_row' : '').'">
 					<td>'.$customer['id_customer'].'</td>
 					<td class="center">'.$imgGender.'</td>
 					<td>'.stripslashes($customer['lastname']).' '.stripslashes($customer['firstname']).'</td>
-					<td>'.stripslashes($customer['email']).'<a href="mailto:'.stripslashes($customer['email']).'"> <img src="../img/admin/email_edit.gif" alt="'.$this->l('Write to this customer').'"></a></td>
+					<td>'.stripslashes($customer['email']).'<a href="mailto:'.stripslashes($customer['email']).'"> <img src="../img/admin/email_edit.gif" alt="'.$this->l('Write to this customer').'" /></a></td>
 					<td>'.Tools::displayDate($customer['birthday'], intval($cookie->id_lang)).'</td>
 					<td>'.Tools::displayDate($customer['date_add'], intval($cookie->id_lang)).'</td>
 					<td>'.Order::getCustomerNbOrders($customer['id_customer']).'</td>
-					<td class="center"><img src="../img/admin/'.($customer['active'] ? 'enabled.gif' : 'forbbiden.gif').'" alt=""></td>
+					<td class="center"><img src="../img/admin/'.($customer['active'] ? 'enabled.gif' : 'forbbiden.gif').'" alt="" /></td>
 					<td class="center" width="60px">
 						<a href="index.php?tab=AdminCustomers&id_customer='.$customer['id_customer'].'&viewcustomer&token='.Tools::getAdminToken('AdminCustomers'.intval(Tab::getIdFromClassName('AdminCustomers')).intval($cookie->id_employee)).'">
-						<img src="../img/admin/details.gif" alt="'.$this->l('View orders').'"></a>
+						<img src="../img/admin/details.gif" alt="'.$this->l('View orders').'" /></a>
 						<a href="index.php?tab=AdminCustomers&id_customer='.$customer['id_customer'].'&addcustomer&token='.Tools::getAdminToken('AdminCustomers'.intval(Tab::getIdFromClassName('AdminCustomers')).intval($cookie->id_employee)).'">
-						<img src="../img/admin/edit.gif" alt="'.$this->l('Modify this customer').'"></a>
+						<img src="../img/admin/edit.gif" alt="'.$this->l('Modify this customer').'" /></a>
 						<a href="index.php?tab=AdminCustomers&id_customer='.$customer['id_customer'].'&deletecustomer&token='.Tools::getAdminToken('AdminCustomers'.intval(Tab::getIdFromClassName('AdminCustomers')).intval($cookie->id_employee)).'" onclick="return confirm(\''.$this->l('Are you sure?', __CLASS__, true, false).'\');">
-						<img src="../img/admin/delete.gif" alt="'.$this->l('Delete this customer').'"></a>
+						<img src="../img/admin/delete.gif" alt="'.$this->l('Delete this customer').'" /></a>
 					</td>
 				</tr>';
 			}

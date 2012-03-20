@@ -118,9 +118,9 @@ class AdminModules extends AdminTab
 						elseif (($echo = $module->{$method}()) AND ($key == 'configure'))
 						{
 							echo '
-							<p><a href="'.$currentIndex.'&token='.$this->token.'"><img src="../img/admin/arrow2.gif"> '.$this->l('Back to modules list').'</a></p>
-							<br>'.$echo.'<br>
-							<p><a href="'.$currentIndex.'&token='.$this->token.'"><img src="../img/admin/arrow2.gif"> '.$this->l('Back to modules list').'</a></p>';
+							<p><a href="'.$currentIndex.'&token='.$this->token.'"><img src="../img/admin/arrow2.gif" /> '.$this->l('Back to modules list').'</a></p>
+							<br />'.$echo.'<br />
+							<p><a href="'.$currentIndex.'&token='.$this->token.'"><img src="../img/admin/arrow2.gif" /> '.$this->l('Back to modules list').'</a></p>';
 						}
 						elseif($echo)
 							$return = ($method == 'install' ? 12 : 13);
@@ -219,45 +219,45 @@ class AdminModules extends AdminTab
 
 		$this->displayJavascript();
 
-		echo '<span onclick="openCloseLayer(\'module_install\', 0);" style="cursor: pointer;font-weight: 700; float: left;"><img src="../img/admin/add.gif" alt="'.$this->l('Add a new module').'" class="middle"> '.$this->l('Add a new module').'</span>';
+		echo '<span onclick="openCloseLayer(\'module_install\', 0);" style="cursor: pointer;font-weight: 700; float: left;"><img src="../img/admin/add.gif" alt="'.$this->l('Add a new module').'" class="middle" /> '.$this->l('Add a new module').'</span>';
 		if (@ini_get('allow_url_fopen'))
 			echo '<script type="text/javascript">
 				function getPrestaStore(){if (getE("prestastore").style.display!=\'block\')return;$.post("'.dirname($currentIndex).'/ajax.php",{page:"prestastore"},function(a){getE("prestastore-content").innerHTML=a;})}
 			</script>
-			<span onclick="openCloseLayer(\'prestastore\', 0); getPrestaStore();" style="cursor: pointer;font-weight: 700; float: left;margin-left:20px;"><img src="../img/admin/prestastore.gif" class="middle"> '.$this->l('PrestaStore').'</span>';
+			<span onclick="openCloseLayer(\'prestastore\', 0); getPrestaStore();" style="cursor: pointer;font-weight: 700; float: left;margin-left:20px;"><img src="../img/admin/prestastore.gif" class="middle" /> '.$this->l('PrestaStore').'</span>';
 		echo '
 		<div class="clear">&nbsp;</div>
 		<div id="module_install" style="float: left;'.((Tools::isSubmit('submitDownload') OR Tools::isSubmit('submitDownload2')) ? '' : 'display: none;').'" class="width1">
 			<fieldset>
-				<legend><img src="../img/admin/add.gif" alt="'.$this->l('Add a new module').'" class="middle"> '.$this->l('Add a new module').'</legend>
+				<legend><img src="../img/admin/add.gif" alt="'.$this->l('Add a new module').'" class="middle" /> '.$this->l('Add a new module').'</legend>
 				<p>'.$this->l('The module must be either a zip file or a tarball.').'</p>
-				<hr>
+				<hr />
 				<form action="'.$currentIndex.'&token='.$this->token.'" method="post">
 					<label style="width: 100px">'.$this->l('Module URL:').'</label>
 					<div class="margin-form" style="padding-left: 140px">
-						<input type="text" name="url" style="width: 200px;" value="'.(Tools::getValue('url') ? Tools::getValue('url') : 'http://').'">
+						<input type="text" name="url" style="width: 200px;" value="'.(Tools::getValue('url') ? Tools::getValue('url') : 'http://').'" />
 						<p>'.$this->l('Download the module directly from a website.').'</p>
 					</div>
 					<div class="margin-form" style="padding-left: 140px">
-						<input type="submit" name="submitDownload" value="'.$this->l('Download this module').'" class="button">
+						<input type="submit" name="submitDownload" value="'.$this->l('Download this module').'" class="button" />
 					</div>
 				</form>
-				<hr>
+				<hr />
 				<form action="'.$currentIndex.'&token='.$this->token.'" method="post" enctype="multipart/form-data">
 					<label style="width: 100px">'.$this->l('Module file:').'</label>
 					<div class="margin-form" style="padding-left: 140px">
-						<input type="file" name="file">
+						<input type="file" name="file" />
 						<p>'.$this->l('Upload the module from your computer.').'</p>
 					</div>
 					<div class="margin-form" style="padding-left: 140px">
-						<input type="submit" name="submitDownload2" value="'.$this->l('Upload this module').'" class="button">
+						<input type="submit" name="submitDownload2" value="'.$this->l('Upload this module').'" class="button" />
 					</div>
 				</form>
 			</fieldset>
 		</div>
 		<div id="prestastore" style="margin-left:40px; display:none; float: left" class="width1">
 			<fieldset>
-				<legend><img src="http://www.prestastore.com/modules.php?'.(isset($_SERVER['SERVER_ADDR']) ? 'server='.ip2long($_SERVER['SERVER_ADDR']).'&' : '').'mods='.$serialModules.'" class="middle">'.$this->l('Live from PrestaStore!').'</legend>
+				<legend><img src="http://www.prestastore.com/modules.php?'.(isset($_SERVER['SERVER_ADDR']) ? 'server='.ip2long($_SERVER['SERVER_ADDR']).'&' : '').'mods='.$serialModules.'" class="middle" />'.$this->l('Live from PrestaStore!').'</legend>
 				<div id="prestastore-content"></div>
 			</fieldset>
 		</div>
@@ -281,7 +281,7 @@ class AdminModules extends AdminTab
 		/* Browse modules by tab type */
 		foreach ($orderModule AS $tab => $tabModule)
 		{
-			echo '<br>
+			echo '<br />
 			<table cellpadding="0" cellspacing="0" class="table width3">
 				<tr>
 					<th colspan="4" class="center" style="cursor: pointer" onclick="openCloseLayer(\''.addslashes($tab).'\');"><b>'.$tab.'</b> - <span style="color: red">'.sizeof($tabModule).'</span> '.((sizeof($tabModule) > 1) ? $this->l('modules') : $this->l('module')).'</th>
@@ -295,16 +295,16 @@ class AdminModules extends AdminTab
 			{
 				if ($module->id)
 				{
-					$img = '<img src="../img/admin/enabled.gif" alt="'.$this->l('Module enabled').'" title="'.$this->l('Module enabled').'">';
+					$img = '<img src="../img/admin/enabled.gif" alt="'.$this->l('Module enabled').'" title="'.$this->l('Module enabled').'" />';
 					if ($module->warning)
-						$img = '<img src="../img/admin/warning.gif" alt="'.$this->l('Module installed but with warnings').'" title="'.$this->l('Module installed but with warnings').'">';
+						$img = '<img src="../img/admin/warning.gif" alt="'.$this->l('Module installed but with warnings').'" title="'.$this->l('Module installed but with warnings').'" />';
 					if (!$module->active)
-						$img = '<img src="../img/admin/disabled.gif" alt="'.$this->l('Module disabled').'" title="'.$this->l('Module disabled').'">';
+						$img = '<img src="../img/admin/disabled.gif" alt="'.$this->l('Module disabled').'" title="'.$this->l('Module disabled').'" />';
 				} else
-					$img = '<img src="../img/admin/cog.gif" alt="'.$this->l('Module not installed').'" title="'.$this->l('Module not installed').'">';
+					$img = '<img src="../img/admin/cog.gif" alt="'.$this->l('Module not installed').'" title="'.$this->l('Module not installed').'" />';
 				echo '
 				<tr'.($irow++ % 2 ? ' class="alt_row"' : '').' style="height: 42px;">
-					<td style="padding-left: 10px;"><img src="../modules/'.$module->name.'/logo.gif" alt=""> <b>'.stripslashes($module->displayName).'</b>'.($module->version ? ' v'.$module->version.(strpos($module->version, '.') !== false ? '' : '.0') : '').'<br>'.$module->description.'</td>
+					<td style="padding-left: 10px;"><img src="../modules/'.$module->name.'/logo.gif" alt="" /> <b>'.stripslashes($module->displayName).'</b>'.($module->version ? ' v'.$module->version.(strpos($module->version, '.') !== false ? '' : '.0') : '').'<br />'.$module->description.'</td>
 					<td width="85">'.(($module->active AND method_exists($module, 'getContent')) ? '<a href="'.$currentIndex.'&configure='.urlencode($module->name).'&token='.$this->token.'">&gt;&gt;&nbsp;'.$this->l('Configure').'</a>' : '').'</td>
 					<td class="center" width="20">';
 				if ($module->id)
@@ -316,11 +316,11 @@ class AdminModules extends AdminTab
 					</td>
 					<td class="center" width="80">'.((!$module->id)
 					? '<input type="button" class="button small" name="Install" value="'.$this->l('Install').'"
-					onclick="javascript:document.location.href=\''.$currentIndex.'&install='.urlencode($module->name).'&token='.$this->token.'\'">'
+					onclick="javascript:document.location.href=\''.$currentIndex.'&install='.urlencode($module->name).'&token='.$this->token.'\'" />'
 					: '<input type="button" class="button small" name="Uninstall" value="'.$this->l('Uninstall').'"
-					onclick="'.(empty($module->confirmUninstall) ? '' : 'if(confirm(\''.addslashes($module->confirmUninstall).'\')) ').'document.location.href=\''.$currentIndex.'&uninstall='.urlencode($module->name).'&token='.$this->token.'\';">').'</td>
+					onclick="'.(empty($module->confirmUninstall) ? '' : 'if(confirm(\''.addslashes($module->confirmUninstall).'\')) ').'document.location.href=\''.$currentIndex.'&uninstall='.urlencode($module->name).'&token='.$this->token.'\';" />').'</td>
 					<td style="padding-right: 10px">
-						<input type="checkbox" name="modules" value="'.urlencode($module->name).'" '.(empty($module->confirmUninstall) ? 'rel="false"' : 'rel="'.addslashes($module->confirmUninstall).'"').'>
+						<input type="checkbox" name="modules" value="'.urlencode($module->name).'" '.(empty($module->confirmUninstall) ? 'rel="false"' : 'rel="'.addslashes($module->confirmUninstall).'"').' />
 					</td>
 				</tr>';
 			}
@@ -329,20 +329,20 @@ class AdminModules extends AdminTab
 		}
 		echo '
 		<div style="margin-top: 12px; width:600px;" class="center">
-			<input type="button" class="button small" value="'.$this->l('Install the selection').'" onclick="modules_management(\'install\')">
-			<input type="button" class="button small" value="'.$this->l('Uninstall the selection').'" onclick="modules_management(\'uninstall\')">
+			<input type="button" class="button small" value="'.$this->l('Install the selection').'" onclick="modules_management(\'install\')"/>
+			<input type="button" class="button small" value="'.$this->l('Uninstall the selection').'" onclick="modules_management(\'uninstall\')" />
 		</div>
 		</div>
 		<div style="float:right; width:300px;">
-		<br>
+		<br />
 		<table cellpadding="0" cellspacing="0" class="table width3" style="width:300px;"><tr><th colspan="4" class="center"><strong>'.$this->l('Icon legend').'</strong></th></tr></table>
 		<table cellpadding="0" cellspacing="0" class="table width3" style="width:300px;"><tr style="height: 42px;">
 			<td>
 				<table cellpadding="10" cellspacing="5">
-					<tr><td><img src="../img/admin/cog.gif">&nbsp;&nbsp;'.$this->l('Module not installed').'</td></tr>
-					<tr><td><img src="../img/admin/enabled.gif">&nbsp;&nbsp;'.$this->l('Module installed and enabled').'</td></tr>
-					<tr><td><img src="../img/admin/disabled.gif">&nbsp;&nbsp;'.$this->l('Module installed but disabled').'</td></tr>
-					<tr><td><img src="../img/admin/warning.gif">&nbsp;&nbsp;'.$this->l('Module installed but some warnings').'</td></tr>
+					<tr><td><img src="../img/admin/cog.gif" />&nbsp;&nbsp;'.$this->l('Module not installed').'</td></tr>
+					<tr><td><img src="../img/admin/enabled.gif" />&nbsp;&nbsp;'.$this->l('Module installed and enabled').'</td></tr>
+					<tr><td><img src="../img/admin/disabled.gif" />&nbsp;&nbsp;'.$this->l('Module installed but disabled').'</td></tr>
+					<tr><td><img src="../img/admin/warning.gif" />&nbsp;&nbsp;'.$this->l('Module installed but some warnings').'</td></tr>
 				</table>
 			</td>
 		</tr></table>

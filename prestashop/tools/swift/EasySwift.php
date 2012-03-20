@@ -111,7 +111,7 @@ class EasySwift
       $this->swift->attachPlugin(new Swift_Plugin_EasySwiftResponseTracker($this), "_ResponseTracker");
     } catch (Swift_ConnectionException $e) {
       $this->failed = true;
-      $this->setError("The connection failed to start.  An exception was thrown:<br>" . $e->getMessage());
+      $this->setError("The connection failed to start.  An exception was thrown:<br />" . $e->getMessage());
     }
     $this->newMessage();
     $this->newRecipientList();
@@ -233,7 +233,7 @@ class EasySwift
         $this->message->detach($id);
       } catch (Swift_Message_MimeException $e) {
         $success = false;
-        $this->setError("A MIME part failed to detach due to the error:<br>" . $e->getMessage());
+        $this->setError("A MIME part failed to detach due to the error:<br />" . $e->getMessage());
       }
     }
     $this->partIds = array();
@@ -252,7 +252,7 @@ class EasySwift
         $this->message->detach($id);
       } catch (Swift_Message_MimeException $e) {
         $success = false;
-        $this->setError("An attachment failed to detach due to the error:<br>" . $e->getMessage());
+        $this->setError("An attachment failed to detach due to the error:<br />" . $e->getMessage());
       }
     }
     $this->attachmentIds = array();
@@ -303,7 +303,7 @@ class EasySwift
         return true;
       } catch (Swift_ConnectionException $e) {
         $this->failed = true;
-        $this->setError("Swift failed to run the connection process:<br>" . $e->getMessage());
+        $this->setError("Swift failed to run the connection process:<br />" . $e->getMessage());
       }
     }
     return false;
@@ -327,7 +327,7 @@ class EasySwift
         $this->swift->disconnect();
         return true;
       } catch (Swift_ConnectionException $e) {
-        $this->setError("Disconnect failed:<br>" . $e->getMessage());
+        $this->setError("Disconnect failed:<br />" . $e->getMessage());
       }
     }
     return false;
@@ -345,7 +345,7 @@ class EasySwift
       $rs = $this->swift->command($command);
       return $rs->getString();
     } catch (Swift_ConnectionException $e) {
-      $this->setError("Command failed:<br>" . $e->getMessage());
+      $this->setError("Command failed:<br />" . $e->getMessage());
       return false;
     }
   }
@@ -419,7 +419,7 @@ class EasySwift
         $this->swift->connection->runAuthenticators($username, $password, $this->swift);
         return true;
       } catch (Swift_ConnectionException $e) {
-        $this->setError("Authentication failed:<br>" . $e->getMessage());
+        $this->setError("Authentication failed:<br />" . $e->getMessage());
         return false;
       }
     }
@@ -688,7 +688,7 @@ class EasySwift
       $this->message->setCharset($charset);
       return true;
     } catch (Swift_Message_MimeException $e) {
-      $this->setError("Unable to set the message charset:<br>" . $e->getMessage());
+      $this->setError("Unable to set the message charset:<br />" . $e->getMessage());
       return false;
     }
   }
@@ -714,7 +714,7 @@ class EasySwift
       try {
         $this->partIds[] = $this->message->attach($body);
       } catch (Swift_Message_MimeException $e) {
-        $this->setError("A MIME part failed to attach:<br>" . $e->getMessage());
+        $this->setError("A MIME part failed to attach:<br />" . $e->getMessage());
         return false;
       }
     }
@@ -723,7 +723,7 @@ class EasySwift
       try {
         $this->partIds[] = $this->message->attach(new Swift_Message_Part($body, $type, $encoding, $charset));
       } catch (Swift_Message_MimeException $e) {
-        $this->setError("A MIME part failed to attach:<br>" . $e->getMessage());
+        $this->setError("A MIME part failed to attach:<br />" . $e->getMessage());
         return false;
       }
     }
@@ -743,7 +743,7 @@ class EasySwift
       try {
         $this->attachmentIds[] = $this->message->attach($data);
       } catch (Swift_Message_MimeException $e) {
-        $this->setError("An attachment failed to attach:<br>" . $e->getMessage());
+        $this->setError("An attachment failed to attach:<br />" . $e->getMessage());
         return false;
       }
     }
@@ -752,10 +752,10 @@ class EasySwift
       try {
         $this->attachmentIds[] = $this->message->attach(new Swift_Message_Attachment($data, $filename, $type, $encoding));
       } catch (Swift_Message_MimeException $e) {
-        $this->setError("An attachment failed to attach<br>" . $e->getMessage());
+        $this->setError("An attachment failed to attach<br />" . $e->getMessage());
         return false;
       } catch (Swift_FileException $e) {
-        $this->setError("An attachment failed to attach:<br>" . $e->getMessage());
+        $this->setError("An attachment failed to attach:<br />" . $e->getMessage());
         return false;
       }
     }
@@ -783,10 +783,10 @@ class EasySwift
         $this->attachmentIds[] = $ret;
         return $ret;
       } catch (Swift_Message_MimeException $e) {
-        $this->setError("An attachment failed to attach:<br>" . $e->getMessage());
+        $this->setError("An attachment failed to attach:<br />" . $e->getMessage());
         return false;
       } catch (Swift_FileException $e) {
-        $this->setError("An attachment failed to attach:<br>" . $e->getMessage());
+        $this->setError("An attachment failed to attach:<br />" . $e->getMessage());
         return false;
       }
     }
@@ -797,10 +797,10 @@ class EasySwift
         $this->attachmentIds[] = $ret;
         return $ret;
       } catch (Swift_Message_MimeException $e) {
-        $this->setError("An attachment failed to attach:<br>" . $e->getMessage());
+        $this->setError("An attachment failed to attach:<br />" . $e->getMessage());
         return false;
       } catch (Swift_FileException $e) {
-        $this->setError("An attachment failed to attach:<br>" . $e->getMessage());
+        $this->setError("An attachment failed to attach:<br />" . $e->getMessage());
         return false;
       }
     }
@@ -829,10 +829,10 @@ class EasySwift
         $this->attachmentIds[] = $ret;
         return $ret;
       } catch (Swift_Message_MimeException $e) {
-        $this->setError("An attachment failed to attach:<br>" . $e->getMessage());
+        $this->setError("An attachment failed to attach:<br />" . $e->getMessage());
         return false;
       } catch (Swift_FileException $e) {
-        $this->setError("An attachment failed to attach:<br>" . $e->getMessage());
+        $this->setError("An attachment failed to attach:<br />" . $e->getMessage());
         return false;
       }
     }
@@ -843,10 +843,10 @@ class EasySwift
         $this->attachmentIds[] = $ret;
         return $ret;
       } catch (Swift_Message_MimeException $e) {
-        $this->setError("An attachment failed to attach:<br>" . $e->getMessage());
+        $this->setError("An attachment failed to attach:<br />" . $e->getMessage());
         return false;
       } catch (Swift_FileException $e) {
-        $this->setError("An attachment failed to attach:<br>" . $e->getMessage());
+        $this->setError("An attachment failed to attach:<br />" . $e->getMessage());
         return false;
       }
     }
@@ -881,7 +881,7 @@ class EasySwift
           try {
             $this->message->headers->setAttribute($header_name, $matches[1], $matches[3]);
           } catch (Swift_Message_MimeException $e) {
-            $this->setError("There was a problem parsing or setting a header attribute:<br>" . $e->getMessage());
+            $this->setError("There was a problem parsing or setting a header attribute:<br />" . $e->getMessage());
             //Ignored... it's EasySwift... C'mon ;)
           }
         }
@@ -942,7 +942,7 @@ class EasySwift
       if ($this->autoFlush) $this->flush();
       return $sent;
     } catch (Swift_ConnectionException $e) {
-      $this->setError("Sending failed:<br>" . $e->getMessage());
+      $this->setError("Sending failed:<br />" . $e->getMessage());
       return false;
     }
   }

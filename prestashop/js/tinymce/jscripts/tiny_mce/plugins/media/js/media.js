@@ -261,7 +261,7 @@ function insertMedia() {
 		h += ' height="' + f.height.value + '"';
 		h += ' align="' + f.align.options[f.align.selectedIndex].value + '"';
 
-		h += '>';
+		h += ' />';
 
 		ed.execCommand('mceInsertContent', false, h);
 	}
@@ -609,7 +609,7 @@ function generatePreview(c) {
 
 			// Add extra url parameter if it's an absolute URL
 			if (n == 'src' && pl[n].indexOf('://') != -1)
-				h += '<param name="url" value="' + pl[n] + '">';
+				h += '<param name="url" value="' + pl[n] + '" />';
 		}
 	}
 

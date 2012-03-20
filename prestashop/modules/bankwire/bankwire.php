@@ -71,14 +71,14 @@ class BankWire extends PaymentModule
 			Configuration::updateValue('BANK_WIRE_OWNER', $_POST['owner']);
 			Configuration::updateValue('BANK_WIRE_ADDRESS', $_POST['address']);
 		}
-		$this->_html .= '<div class="conf confirm"><img src="../img/admin/ok.gif" alt="'.$this->l('ok').'"> '.$this->l('Settings updated').'</div>';
+		$this->_html .= '<div class="conf confirm"><img src="../img/admin/ok.gif" alt="'.$this->l('ok').'" /> '.$this->l('Settings updated').'</div>';
 	}
 
 	private function _displayBankWire()
 	{
-		$this->_html .= '<img src="../modules/bankwire/bankwire.jpg" style="float:left; margin-right:15px;"><b>'.$this->l('This module allows you to accept payments by bank wire.').'</b><br><br>
-		'.$this->l('If the client chooses this payment mode, the order will change its status into a \'Waiting for payment\' status.').'<br>
-		'.$this->l('Therefore, you will need to manually confirm the order as soon as you receive a wire..').'<br><br><br>';
+		$this->_html .= '<img src="../modules/bankwire/bankwire.jpg" style="float:left; margin-right:15px;"><b>'.$this->l('This module allows you to accept payments by bank wire.').'</b><br /><br />
+		'.$this->l('If the client chooses this payment mode, the order will change its status into a \'Waiting for payment\' status.').'<br />
+		'.$this->l('Therefore, you will need to manually confirm the order as soon as you receive a wire..').'<br /><br /><br />';
 	}
 
 	private function _displayForm()
@@ -86,10 +86,10 @@ class BankWire extends PaymentModule
 		$this->_html .=
 		'<form action="'.$_SERVER['REQUEST_URI'].'" method="post">
 			<fieldset>
-			<legend><img src="../img/admin/contact.gif">'.$this->l('Contact details').'</legend>
+			<legend><img src="../img/admin/contact.gif" />'.$this->l('Contact details').'</legend>
 				<table border="0" width="500" cellpadding="0" cellspacing="0" id="form">
-					<tr><td colspan="2">'.$this->l('Please specify the bank wire account details for customers').'.<br><br></td></tr>
-					<tr><td width="130" style="height: 35px;">'.$this->l('Account owner').'</td><td><input type="text" name="owner" value="'.htmlentities(Tools::getValue('owner', $this->owner), ENT_COMPAT, 'UTF-8').'" style="width: 300px;"></td></tr>
+					<tr><td colspan="2">'.$this->l('Please specify the bank wire account details for customers').'.<br /><br /></td></tr>
+					<tr><td width="130" style="height: 35px;">'.$this->l('Account owner').'</td><td><input type="text" name="owner" value="'.htmlentities(Tools::getValue('owner', $this->owner), ENT_COMPAT, 'UTF-8').'" style="width: 300px;" /></td></tr>
 					<tr>
 						<td width="130" style="vertical-align: top;">'.$this->l('Details').'</td>
 						<td style="padding-bottom:15px;">
@@ -103,7 +103,7 @@ class BankWire extends PaymentModule
 							<textarea name="address" rows="4" cols="53">'.htmlentities(Tools::getValue('address', $this->address), ENT_COMPAT, 'UTF-8').'</textarea>
 						</td>
 					</tr>
-					<tr><td colspan="2" align="center"><input class="button" name="btnSubmit" value="'.$this->l('Update settings').'" type="submit"></td></tr>
+					<tr><td colspan="2" align="center"><input class="button" name="btnSubmit" value="'.$this->l('Update settings').'" type="submit" /></td></tr>
 				</table>
 			</fieldset>
 		</form>';
@@ -123,7 +123,7 @@ class BankWire extends PaymentModule
 					$this->_html .= '<div class="alert error">'. $err .'</div>';
 		}
 		else
-			$this->_html .= '<br>';
+			$this->_html .= '<br />';
 
 		$this->_displayBankWire();
 		$this->_displayForm();

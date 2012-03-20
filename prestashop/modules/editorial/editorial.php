@@ -84,7 +84,7 @@ class Editorial extends Module
 					$errors .= $this->displayError($this->l('Can\'t close the editor file.'));
 			}
 			else
-				$errors .= $this->displayError($this->l('Unable to update the editor file.<br>Please check the editor file\'s writing permissions.'));
+				$errors .= $this->displayError($this->l('Unable to update the editor file.<br />Please check the editor file\'s writing permissions.'));
 
 			/* upload the image */
 			if (isset($_FILES['body_homepage_logo']) AND isset($_FILES['body_homepage_logo']['tmp_name']) AND !empty($_FILES['body_homepage_logo']['tmp_name']))
@@ -160,7 +160,7 @@ class Editorial extends Module
 		<script type="text/javascript">id_language = Number('.$defaultLanguage.');</script>
 		<form method="post" action="'.$_SERVER['REQUEST_URI'].'" enctype="multipart/form-data">
 			<fieldset style="width: 900px;">
-				<legend><img src="'.$this->_path.'logo.gif" alt="" title=""> '.$this->displayName.'</legend>
+				<legend><img src="'.$this->_path.'logo.gif" alt="" title="" /> '.$this->displayName.'</legend>
 				<label>'.$this->l('Main title').'</label>
 				<div class="margin-form">';
 				
@@ -168,7 +168,7 @@ class Editorial extends Module
 				{
 					$this->_html .= '
 					<div id="title_'.$language['id_lang'].'" style="display: '.($language['id_lang'] == $defaultLanguage ? 'block' : 'none').';float: left;">
-						<input type="text" name="body_title_'.$language['id_lang'].'" id="body_title_'.$language['id_lang'].'" size="64" value="'.($xml ? stripslashes(htmlspecialchars($xml->body->{'title_'.$language['id_lang']})) : '').'">
+						<input type="text" name="body_title_'.$language['id_lang'].'" id="body_title_'.$language['id_lang'].'" size="64" value="'.($xml ? stripslashes(htmlspecialchars($xml->body->{'title_'.$language['id_lang']})) : '').'" />
 					</div>';
 				 }
 				$this->_html .= $this->displayFlags($languages, $defaultLanguage, $divLangName, 'title', true);
@@ -184,7 +184,7 @@ class Editorial extends Module
 				{
 					$this->_html .= '
 					<div id="subheading_'.$language['id_lang'].'" style="display: '.($language['id_lang'] == $defaultLanguage ? 'block' : 'none').';float: left;">
-						<input type="text" name="body_subheading_'.$language['id_lang'].'" id="body_subheading_'.$language['id_lang'].'" size="64" value="'.($xml ? stripslashes(htmlspecialchars($xml->body->{'subheading_'.$language['id_lang']})) : '').'">
+						<input type="text" name="body_subheading_'.$language['id_lang'].'" id="body_subheading_'.$language['id_lang'].'" size="64" value="'.($xml ? stripslashes(htmlspecialchars($xml->body->{'subheading_'.$language['id_lang']})) : '').'" />
 					</div>';
 				 }
 				$this->_html .= $this->displayFlags($languages, $defaultLanguage, $divLangName, 'subheading', true);
@@ -210,13 +210,13 @@ class Editorial extends Module
 				</div>
 				<label>'.$this->l('Homepage\'s logo').' </label>
 				<div class="margin-form">
-					<img src="'.$this->_path.'homepage_logo.jpg" alt="" title="" style=""><br>
-					<input type="file" name="body_homepage_logo">
+					<img src="'.$this->_path.'homepage_logo.jpg" alt="" title="" style="" /><br />
+					<input type="file" name="body_homepage_logo" />
 					<p style="clear: both">'.$this->l('Will appear next to the Introductory Text above').'</p>
 				</div>
 				<label>'.$this->l('Homepage logo link').'</label>
 				<div class="margin-form">
-					<input type="text" name="body_home_logo_link" size="64" value="'.($xml ? stripslashes(htmlspecialchars($xml->body->home_logo_link)) : '').'">
+					<input type="text" name="body_home_logo_link" size="64" value="'.($xml ? stripslashes(htmlspecialchars($xml->body->home_logo_link)) : '').'" />
 					<p style="clear: both">'.$this->l('Link used on the 2nd logo').'</p>
 				</div>
 				<label>'.$this->l('Homepage logo subheading').'</label>
@@ -226,7 +226,7 @@ class Editorial extends Module
 				{
 					$this->_html .= '
 					<div id="logo_subheading_'.$language['id_lang'].'" style="display: '.($language['id_lang'] == $defaultLanguage ? 'block' : 'none').';float: left;">
-						<input type="text" name="body_logo_subheading_'.$language['id_lang'].'" id="logo_subheading_'.$language['id_lang'].'" size="64" value="'.($xml ? stripslashes(htmlspecialchars($xml->body->{'logo_subheading_'.$language['id_lang']})) : '').'">
+						<input type="text" name="body_logo_subheading_'.$language['id_lang'].'" id="logo_subheading_'.$language['id_lang'].'" size="64" value="'.($xml ? stripslashes(htmlspecialchars($xml->body->{'logo_subheading_'.$language['id_lang']})) : '').'" />
 					</div>';
 				 }
 				
@@ -236,7 +236,7 @@ class Editorial extends Module
 					<div class="clear"></div>
 				</div>
 				<div class="clear pspace"></div>
-				<div class="margin-form clear"><input type="submit" name="submitUpdate" value="'.$this->l('Update the editor').'" class="button"></div>
+				<div class="margin-form clear"><input type="submit" name="submitUpdate" value="'.$this->l('Update the editor').'" class="button" /></div>
 			</fieldset>
 		</form>';
 	}

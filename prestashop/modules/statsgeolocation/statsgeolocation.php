@@ -102,16 +102,16 @@ class StatsGeoLocation extends Module
 	function hookAdminStatsModules()
 	{
 		$this->_html = '
-		<fieldset class="width3"><legend><img src="'.$this->_path.'logo.gif" alt="" title=""> '.$this->displayName.'</legend>
+		<fieldset class="width3"><legend><img src="'.$this->_path.'logo.gif" alt="" title="" /> '.$this->displayName.'</legend>
 			<center>
-				<p><img src="../img/admin/down.gif">'.$this->l('This module shows the country distribution of your customers by displaying different sized points on the worldmap below. See the fame of your website all around the world and which continent you\'ve not conquered yet.').'</p>
+				<p><img src="../img/admin/down.gif" />'.$this->l('This module shows the country distribution of your customers by displaying different sized points on the worldmap below. See the fame of your website all around the world and which continent you\'ve not conquered yet.').'</p>
 			</center>
 			<p class="space">
-				<img src="'.$this->_path.'drawer.php" alt="" title="">
+				<img src="'.$this->_path.'drawer.php" alt="" title="" />
 			</p>
 			
-		</fieldset><br>
-		<fieldset class="width3"><legend><img src="../img/admin/comment.gif"> '.$this->l('Guide').'</legend>
+		</fieldset><br />
+		<fieldset class="width3"><legend><img src="../img/admin/comment.gif" /> '.$this->l('Guide').'</legend>
 		<h2>'.$this->l('Open to the world').'</h2>
 			<p>
 				<ul>
@@ -147,25 +147,25 @@ class StatsGeoLocation extends Module
 		$output = '<script type="text/javascript" src="'.$this->_path.'statsgeolocation.js"></script>
 				<script type="text/javascript">$(document).ready(_firstOfAll);</script>
 
-				<form><fieldset><legend><img src="'.$this->_path.'logo.gif" alt="" title="">'.$this->l('Update coordinates').'</legend>
-				<div style="font-weight:bold;" id="divtitle">'.$this->l('Click on a country\'s name and define its position on the map').'</div><br>
+				<form><fieldset><legend><img src="'.$this->_path.'logo.gif" alt="" title="" />'.$this->l('Update coordinates').'</legend>
+				<div style="font-weight:bold;" id="divtitle">'.$this->l('Click on a country\'s name and define its position on the map').'</div><br />
 				<div id="reference" onclick="clickOnImage(event)" style="background-image:url(\''.$this->_path.$this->_map_path.'\');width:'.$map_size[0].'px; height:'.$map_size[1].'px; z-index:5;">
 				  <div id="marker" style= "display:none;background-image:url(\''.$this->_path.$this->_cross_path.'\');width:0px; height:0px; z-index:20; position:relative;"></div>
 				</div>
 				<div id="belowmap">'.$wait.'</div>
 				<noscript>You should enable javascript to configure this module</noscript> 
 
-				<input type="hidden" id="opt" value="1">
-				<input type="hidden" id="id_lang" value="'.$id_lang.'">
-				<input type="hidden" id="lang_info" value="'.$this->l('Click on the map to set the position of:').'">
-				<input type="hidden" id="lang_error" value="'.$this->l('Error: you should click on the map or on the cancel button').'">
-				<input type="hidden" id="lang_cancel" value="'.$this->l('Cancel').'">
-				<input type="hidden" id="lang_validate" value="'.$this->l('Validate').'">
-				<input type="hidden" id="marker_size" value="'.$cross_size[0].'">
-				<input type="hidden" id="form_x" value="0">
-				<input type="hidden" id="form_y" value="0">
-				<input type="hidden" id="wait" value="'.$wait.'">
-				<input type="hidden" id="country_selected" value="0">
+				<input type="hidden" id="opt" value="1" />
+				<input type="hidden" id="id_lang" value="'.$id_lang.'" />
+				<input type="hidden" id="lang_info" value="'.$this->l('Click on the map to set the position of:').'" />
+				<input type="hidden" id="lang_error" value="'.$this->l('Error: you should click on the map or on the cancel button').'" />
+				<input type="hidden" id="lang_cancel" value="'.$this->l('Cancel').'" />
+				<input type="hidden" id="lang_validate" value="'.$this->l('Validate').'" />
+				<input type="hidden" id="marker_size" value="'.$cross_size[0].'" />
+				<input type="hidden" id="form_x" value="0" />
+				<input type="hidden" id="form_y" value="0" />
+				<input type="hidden" id="wait" value="'.$wait.'" />
+				<input type="hidden" id="country_selected" value="0" />
 				</fieldset></form>';
 		return $output;
 	}

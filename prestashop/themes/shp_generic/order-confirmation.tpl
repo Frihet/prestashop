@@ -17,6 +17,6 @@
 {$HOOK_ORDER_CONFIRMATION}
 {$HOOK_PAYMENT_RETURN}
 
-<br>
-<a href="{$base_dir_ssl}history.php" title="{l s='Back to orders'}"><img src="{$img_dir}icon/order.gif" alt="{l s='Back to orders'}" class="icon"></a>
+<br />
+<a href="{$base_dir_ssl}history.php" title="{l s='Back to orders'}"><img src="{$img_dir}icon/order.gif" alt="{l s='Back to orders'}" class="icon" /></a>
 <a href="{$base_dir_ssl}history.php" title="{l s='Back to orders'}">{l s='Back to orders'}</a>

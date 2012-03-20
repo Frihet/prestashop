@@ -53,11 +53,11 @@ class BlockInfos extends Module
 		'<form action="'.$_SERVER['REQUEST_URI'].'" method="post">
 			<fieldset>
 			<legend>'.$this->l('Selected files displayed').'</legend>
-					<span>'.$this->l('Please check files that will be displayed in this module').'.</span><br><br>
+					<span>'.$this->l('Please check files that will be displayed in this module').'.</span><br /><br />
 					<table cellspacing="0" cellpadding="0" class="table" style="width: 29.5em;">
 							<thead>
 								<tr>
-									<th><input type="checkbox" name="checkme" class="noborder" onclick="checkDelBoxes(this.form, \'categoryBox[]\', this.checked)"></th>
+									<th><input type="checkbox" name="checkme" class="noborder" onclick="checkDelBoxes(this.form, \'categoryBox[]\', this.checked)" /></th>
 									<th>'.$this->l('ID').'</th>
 									<th>'.$this->l('Name').'</th>
 								</tr>
@@ -70,7 +70,7 @@ class BlockInfos extends Module
 		$this->_html .='
 							</tbody>
 						</table>
-						<br>
+						<br />
 						<input type="submit" name="btnSubmit" class="button" value="'.$this->l('Update').'">
 			</fieldset>
 		</form>';

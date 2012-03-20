@@ -72,7 +72,7 @@ class SEKeywords extends ModuleGraph
 	function hookAdminStatsModules()
 	{
 		$result = Db::getInstance()->ExecuteS($this->_query.ModuleGraph::getDateBetween().$this->_query2);
-		$this->_html = '<fieldset class="width3"><legend><img src="../modules/'.$this->name.'/logo.gif"> '.$this->displayName.'</legend>';
+		$this->_html = '<fieldset class="width3"><legend><img src="../modules/'.$this->name.'/logo.gif" /> '.$this->displayName.'</legend>';
 		
 		if ($result AND sizeof($result))
 		{
@@ -89,17 +89,17 @@ class SEKeywords extends ModuleGraph
 				$table .= '<tr><td>'.$keyword.'</td><td style="text-align: right">'.$occurences.'</td></tr>';
 			}
 			$table .= '</tbody></table></div>';
-			$this->_html .= '<center>'.ModuleGraph::engine(array('type' => 'pie')).'</center><br class="clear">'.$table;
+			$this->_html .= '<center>'.ModuleGraph::engine(array('type' => 'pie')).'</center><br class="clear" />'.$table;
 		}
 		else
 			$this->_html .= '<p><strong>'.$this->l('No keyword searched for more than once found').'</strong></p>';
 
-		$this->_html .= '</fieldset><br class="clear">
-		<fieldset class="width3"><legend><img src="../img/admin/comment.gif"> '.$this->l('Guide').'</legend>
+		$this->_html .= '</fieldset><br class="clear" />
+		<fieldset class="width3"><legend><img src="../img/admin/comment.gif" /> '.$this->l('Guide').'</legend>
 			<h2>'.$this->l('Identify external search engines keywords').'</h2>
-			<p>'.$this->l('There are many ways to find a website, but one of the most common is to find it with a search engine. Identifying the most "visitor-making" keywords entered by your new visitors is really important, it allows you to see which product you have to put in front if you want more visitors and customers.').'</p><br>
+			<p>'.$this->l('There are many ways to find a website, but one of the most common is to find it with a search engine. Identifying the most "visitor-making" keywords entered by your new visitors is really important, it allows you to see which product you have to put in front if you want more visitors and customers.').'</p><br />
 			<h3>'.$this->l('How does it work?').'</h2>
-			<p>'.$this->l('When a visitors comes to your website, the server knows its previous location. This module parses this URL and finds the keywords in it. Currently, it manages the following search engines:').'<b> Google, AOL, Yandex, Ask, NHL, Yahoo, Baidu, Lycos, Exalead, Live, Voila</b> '.$this->l('and').' <b>Altavista</b>. '.$this->l('Soon it will be possible to add dynamically new search engine and to contribute to this module!').'</p><br>
+			<p>'.$this->l('When a visitors comes to your website, the server knows its previous location. This module parses this URL and finds the keywords in it. Currently, it manages the following search engines:').'<b> Google, AOL, Yandex, Ask, NHL, Yahoo, Baidu, Lycos, Exalead, Live, Voila</b> '.$this->l('and').' <b>Altavista</b>. '.$this->l('Soon it will be possible to add dynamically new search engine and to contribute to this module!').'</p><br />
 		</fieldset>';
 		return $this->_html;
 	}

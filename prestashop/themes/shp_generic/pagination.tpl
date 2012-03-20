@@ -47,9 +47,9 @@
 	{/if}
 		<form action="{if !is_array($requestNb)}{$requestNb}{else}{$requestNb.requestUrl}{/if}" method="get" class="pagination">
 			<p>
-				{if isset($query) AND $query}<input type="hidden" name="search_query" value="{$query|escape:'htmlall':'UTF-8'}">{/if}
-				{if isset($tag) AND $tag AND !is_array($tag)}<input type="hidden" name="tag" value="{$tag|escape:'htmlall':'UTF-8'}">{/if}
-				<input type="submit" class="button_mini" value="{l s='OK'}">
+				{if isset($query) AND $query}<input type="hidden" name="search_query" value="{$query|escape:'htmlall':'UTF-8'}" />{/if}
+				{if isset($tag) AND $tag AND !is_array($tag)}<input type="hidden" name="tag" value="{$tag|escape:'htmlall':'UTF-8'}" />{/if}
+				<input type="submit" class="button_mini" value="{l s='OK'}" />
 				<label for="nb_item">{l s='items:'}</label>
 				<select name="n" id="nb_item">
 				{foreach from=$nArray item=nValue}
@@ -59,7 +59,7 @@
 				{if is_array($requestNb)}
 					{foreach from=$requestNb item=requestValue key=requestKey}
 						{if $requestKey != 'requestUrl'}
-							<input type="hidden" name="{$requestKey|escape:'htmlall':'UTF-8'}" value="{$requestValue|escape:'htmlall':'UTF-8'}">
+							<input type="hidden" name="{$requestKey|escape:'htmlall':'UTF-8'}" value="{$requestValue|escape:'htmlall':'UTF-8'}" />
 						{/if}
 					{/foreach}
 				{/if}

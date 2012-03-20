@@ -44,7 +44,7 @@ class GraphGoogleChart extends ModuleGraphEngine
     
 	public static function hookGraphEngine($params, $drawer)
 	{
-		return '<img src="'.$drawer.'&width='.$params['width'].'&height='.$params['height'].'">';
+		return '<img src="'.$drawer.'&width='.$params['width'].'&height='.$params['height'].'" />';
 	}
 	
 	

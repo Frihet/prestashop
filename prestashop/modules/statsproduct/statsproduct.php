@@ -81,7 +81,7 @@ class StatsProduct extends ModuleGraph
 		$id_category = intval(Tools::getValue('id_category'));
 		$currency = new Currency(Configuration::get('PS_CURRENCY_DEFAULT'));
 		
-		$this->_html = '<fieldset class="width3"><legend><img src="../modules/'.$this->name.'/logo.gif"> '.$this->displayName.'</legend>';
+		$this->_html = '<fieldset class="width3"><legend><img src="../modules/'.$this->name.'/logo.gif" /> '.$this->displayName.'</legend>';
 		if ($id_product = intval(Tools::getValue('id_product')))
 		{
 			$product = new Product($id_product, false, intval($cookie->id_lang));
@@ -98,7 +98,7 @@ class StatsProduct extends ModuleGraph
 			if ($totalBought)
 			{
 				$sales = $this->getSales($id_product, $cookie->id_lang);
-				$this->_html .= '<br class="clear">
+				$this->_html .= '<br class="clear" />
 				<h3>'.$this->l('Sales').'</h3>
 				<div style="overflow-y: scroll; height: 600px;">
 				<table class="table" border="0" cellspacing="0" cellspacing="0">
@@ -160,8 +160,8 @@ class StatsProduct extends ModuleGraph
 			$this->_html .= '</tbody></table></div>';
 		}
 		
-		$this->_html .= '</fieldset><br>
-		<fieldset class="width3"><legend><img src="../img/admin/comment.gif"> '.$this->l('Guide').'</legend>
+		$this->_html .= '</fieldset><br />
+		<fieldset class="width3"><legend><img src="../img/admin/comment.gif" /> '.$this->l('Guide').'</legend>
 		<h2>'.$this->l('Number of purchases compared to number of viewings').'</h2>
 			<p>
 				'.$this->l('After choosing a category and selecting a product available in this category, some graphs appear. Then, you can analyze them.').'

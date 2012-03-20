@@ -80,8 +80,8 @@ abstract class AdminStatsTab extends AdminPreferences
 		
 		echo '
 		<form action="'.$_SERVER['REQUEST_URI'].'" method="post">
-			<fieldset style="width: 200px;"><legend><img src="../img/admin/tab-preferences.gif">'.$this->l('Settings', 'AdminStatsTab').'</legend>';
-		echo '<p><strong>'.$this->l('Graph engine', 'AdminStatsTab').' </strong><br>';
+			<fieldset style="width: 200px;"><legend><img src="../img/admin/tab-preferences.gif" />'.$this->l('Settings', 'AdminStatsTab').'</legend>';
+		echo '<p><strong>'.$this->l('Graph engine', 'AdminStatsTab').' </strong><br />';
 		if (sizeof($arrayGraphEngines))
 		{
 			echo '<select name="PS_STATS_RENDER">';
@@ -91,7 +91,7 @@ abstract class AdminStatsTab extends AdminPreferences
 		}
 		else
 			echo $this->l('No graph engine module installed', 'AdminStatsTab');
-		echo '<p><strong>'.$this->l('Grid engine', 'AdminStatsTab').' </strong><br>';
+		echo '<p><strong>'.$this->l('Grid engine', 'AdminStatsTab').' </strong><br />';
 		if (sizeof($arrayGridEngines))
 		{
 			echo '<select name="PS_STATS_GRID_RENDER">';
@@ -101,7 +101,7 @@ abstract class AdminStatsTab extends AdminPreferences
 		}
 		else
 			echo $this->l('No grid engine module installed', 'AdminStatsTab');
-		echo '<p><input type="submit" value="'.$this->l('   Save   ', 'AdminStatsTab').'" name="submitSettings" class="button"></p>
+		echo '<p><input type="submit" value="'.$this->l('   Save   ', 'AdminStatsTab').'" name="submitSettings" class="button" /></p>
 			</fieldset>
 		</form><div class="clear space">&nbsp;</div>';
 	}
@@ -130,7 +130,7 @@ abstract class AdminStatsTab extends AdminPreferences
 
 		includeDatepicker(array('datepickerFrom', 'datepickerTo'));
 		return '
-		<fieldset style="width: 200px; font-size:13px;"><legend><img src="../img/admin/date.png"> '.$translations['Calendar'].'</legend>
+		<fieldset style="width: 200px; font-size:13px;"><legend><img src="../img/admin/date.png" /> '.$translations['Calendar'].'</legend>
 			<div>
 				<form action="'.$_SERVER['REQUEST_URI'].'" method="post">
 					<input type="submit" name="submitDateToday" class="button" value="'.$translations['Today'].'">
@@ -138,7 +138,7 @@ abstract class AdminStatsTab extends AdminPreferences
 					<input type="submit" name="submitDateYear" class="button" value="'.$translations['Year'].'">
 					<p>From: <input type="text" name="datepickerFrom" id="datepickerFrom" value="'.Tools::getValue('datepickerFrom', $employee->stats_date_from).'"></p>
 					<p>To: <input type="text" name="datepickerTo" id="datepickerTo" value="'.Tools::getValue('datepickerTo', $employee->stats_date_to).'"></p>
-					<input type="submit" name="submitDatePicker" class="button">
+					<input type="submit" name="submitDatePicker" class="button" />
 				</form>
 			</div>
 		</fieldset>';
@@ -148,8 +148,8 @@ abstract class AdminStatsTab extends AdminPreferences
 	{
 		return;
 		echo '
-		<fieldset style="margin-top:20px; width: 200px;"><legend><img src="../img/admin/binoculars.png"> '.$this->l('Search', 'AdminStatsTab').'</legend>
-			<input type="text"> <input type="button" class="button" value="'.$this->l('Go', 'AdminStatsTab').'">
+		<fieldset style="margin-top:20px; width: 200px;"><legend><img src="../img/admin/binoculars.png" /> '.$this->l('Search', 'AdminStatsTab').'</legend>
+			<input type="text" /> <input type="button" class="button" value="'.$this->l('Go', 'AdminStatsTab').'" />
 		</fieldset>';
 	}
 	
@@ -171,7 +171,7 @@ abstract class AdminStatsTab extends AdminPreferences
 		global $currentIndex, $cookie;
 		$modules = $auto ? $this->getModules() : $this->getModules(false, false);
 
-		echo '<fieldset style="width: 200px"><legend><img src="../img/admin/navigation.png"> '.$this->l('Navigation', 'AdminStatsTab').'</legend>';
+		echo '<fieldset style="width: 200px"><legend><img src="../img/admin/navigation.png" /> '.$this->l('Navigation', 'AdminStatsTab').'</legend>';
 		if (sizeof($modules))
 			foreach ($modules AS $module)
 	    	{
@@ -179,7 +179,7 @@ abstract class AdminStatsTab extends AdminPreferences
 				if (!$moduleInstance)
 					continue;
 				echo '
-				<h4><img src="../modules/'.$module['name'].'/logo.gif"> <a href="index.php?tab='.$module['hook'].'&token='.Tools::getAdminToken($module['hook'].intval(Tab::getIdFromClassName($module['hook'])).intval($cookie->id_employee)).'&module='.$module['name'].'">'.$moduleInstance->displayName.'</a></h4>';
+				<h4><img src="../modules/'.$module['name'].'/logo.gif" /> <a href="index.php?tab='.$module['hook'].'&token='.Tools::getAdminToken($module['hook'].intval(Tab::getIdFromClassName($module['hook'])).intval($cookie->id_employee)).'&module='.$module['name'].'">'.$moduleInstance->displayName.'</a></h4>';
 		}
 		else
 			echo $this->l('No module installed', 'AdminStatsTab');

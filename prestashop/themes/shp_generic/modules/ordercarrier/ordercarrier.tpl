@@ -32,24 +32,24 @@
 {if $conditions}
 	<h3 class="condition_title">{l s='Terms of service'}</h3>
 	<p class="checkbox">
-		<input type="checkbox" name="cgv" id="cgv" value="1" {if $checkedTOS}checked="checked"{/if}>
+		<input type="checkbox" name="cgv" id="cgv" value="1" {if $checkedTOS}checked="checked"{/if} />
 		<label for="cgv">{l s='I agree with the terms of service and I adhere to them unconditionally.'}</label> <a href="{$base_dir}cms.php?id_cms=3&amp;content_only=1&amp;TB_iframe=true&amp;width=450&amp;height=500&amp;thickbox=true" class="thickbox">{l s='(read)'}</a>
 	</p>
 {/if}
 
 {if $virtual_cart}
-	<input id="input_virtual_carrier" class="hidden" type="hidden" name="id_carrier" value="0">
+	<input id="input_virtual_carrier" class="hidden" type="hidden" name="id_carrier" value="0" />
 {else}
 	<h3 class="carrier_title">{l s='Choose your delivery method'}</h3>
 	{if $recyclablePackAllowed}
 	<p class="checkbox">
-		<input type="checkbox" name="recyclable" id="recyclable" value="1" {if $recyclable == 1}checked="checked"{/if}>
+		<input type="checkbox" name="recyclable" id="recyclable" value="1" {if $recyclable == 1}checked="checked"{/if} />
 		<label for="recyclable">{l s='I agree to receive my order in recycled packaging'}.</label>
 	</p>
 	{/if}
 
 	{if $carriers && count($carriers)}
-	<div class="table_block"><br>
+	<div class="table_block"><br />
 		<table class="std">
 			<thead>
 				<tr>
@@ -63,11 +63,11 @@
 			{foreach from=$carriers item=carrier name=myLoop}
 				<tr class="{if $smarty.foreach.myLoop.first}first_item{elseif $smarty.foreach.myLoop.last}last_item{/if} {if $smarty.foreach.myLoop.index % 2}alternate_item{else}item{/if}">
 					<td class="carrier_action radio">
-						<input type="radio" name="id_carrier" value="{$carrier.id_carrier|intval}" id="id_carrier{$carrier.id_carrier|intval}" {if $carrier.id_carrier == $checked || ($checked == 0 && $i == 0) || ($carriers|@sizeof == 1)}checked="checked"{/if}>
+						<input type="radio" name="id_carrier" value="{$carrier.id_carrier|intval}" id="id_carrier{$carrier.id_carrier|intval}" {if $carrier.id_carrier == $checked || ($checked == 0 && $i == 0) || ($carriers|@sizeof == 1)}checked="checked"{/if} />
 					</td>
 					<td class="carrier_name">
 						<label for="id_carrier{$carrier.id_carrier|intval}">
-							{if $carrier.img}<img src="{$carrier.img|escape:'htmlall':'UTF-8'}" alt="{$carrier.name|escape:'htmlall':'UTF-8'}">{else}{$carrier.name|escape:'htmlall':'UTF-8'}{/if}
+							{if $carrier.img}<img src="{$carrier.img|escape:'htmlall':'UTF-8'}" alt="{$carrier.name|escape:'htmlall':'UTF-8'}" />{else}{$carrier.name|escape:'htmlall':'UTF-8'}{/if}
 						</label>
 					</td>
 					<td class="carrier_infos">{$carrier.delay|escape:'htmlall':'UTF-8'}</td>
@@ -95,9 +95,9 @@
 	{if $giftAllowed}
 		<h3 class="gift_title">{l s='Gift'}</h3>
 		<p class="checkbox">
-			<input type="checkbox" name="gift" id="gift" value="1" {if $cart->gift == 1}checked="checked"{/if} onclick="$('#gift_div').toggle('slow');">
+			<input type="checkbox" name="gift" id="gift" value="1" {if $cart->gift == 1}checked="checked"{/if} onclick="$('#gift_div').toggle('slow');" />
 			<label for="gift">{l s='I would like the order to be gift-wrapped.'}</label>
-			<br>
+			<br />
 			&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
 			{if $gift_wrapping_price > 0}
 				({l s='Additional cost of'}
@@ -115,10 +115,10 @@
 {/if}
 
 	<p class="cart_navigation submit">
-		<input type="hidden" name="step" value="{$order_step}">
-		<input type="hidden" name="back" value="{$back}">
+		<input type="hidden" name="step" value="{$order_step}" />
+		<input type="hidden" name="back" value="{$back}" />
 		<a href="{$base_dir_ssl}order.php?step={$order_step-1}{if $back}&back={$back}{/if}" title="{l s='Previous'}" class="button">&laquo; {l s='Previous'}</a>
-		<input type="submit" name="process{$order_step}" value="{l s='Next'} &raquo;" class="exclusive">
+		<input type="submit" name="process{$order_step}" value="{l s='Next'} &raquo;" class="exclusive" />
 	</p>
 </form>
 {/variablebox}

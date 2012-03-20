@@ -40,7 +40,7 @@ function cacheImage($image, $cacheImage, $size, $imageType = 'jpg')
 					imagejpeg($newImage, _PS_TMP_IMG_DIR_.$cacheImage, 86);
 			}
 		}
-		return '<img src="../img/tmp/'.$cacheImage.'" alt="" class="imgm">';
+		return '<img src="../img/tmp/'.$cacheImage.'" alt="" class="imgm" />';
 	}
 	return '';
 }

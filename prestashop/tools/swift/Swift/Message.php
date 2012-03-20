@@ -540,7 +540,7 @@ class Swift_Message extends Swift_Message_Mime
       return $id;
     } catch (Swift_Message_MimeException $e) {
       throw new Swift_Message_MimeException("Something went wrong whilst trying to move some MIME parts during an attach(). " .
-        "The MIME component threw an exception:<br>" . $e->getMessage());
+        "The MIME component threw an exception:<br />" . $e->getMessage());
     }
   }
   /**
@@ -573,7 +573,7 @@ class Swift_Message extends Swift_Message_Mime
       $this->fixContentType();
     } catch (Swift_Message_MimeException $e) {
       throw new Swift_Message_MimeException("Something went wrong whilst trying to move some MIME parts during a detach(). " .
-        "The MIME component threw an exception:<br>" . $e->getMessage());
+        "The MIME component threw an exception:<br />" . $e->getMessage());
     }
   }
   /**

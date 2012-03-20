@@ -57,11 +57,11 @@
  </div>
 
  {if isset($edit_entry)}
-  <input class="button" type="submit" onclick="this.form.action += '&addproduct&tabs=4';" value="Save" name="submitScheduleEditorAddEntry">
-  <input class="button" type="submit" onclick="this.form.action += '&addproduct&tabs=4';" value="Delete" name="submitScheduleEditorDeleteEntry">
-  <input class="button" type="submit" onclick="this.form.action += '&addproduct&tabs=4';" value="Cancel" name="submitScheduleEditorCancel">
+  <input class="button" type="submit" onclick="this.form.action += '&addproduct&tabs=4';" value="Save" name="submitScheduleEditorAddEntry"/>
+  <input class="button" type="submit" onclick="this.form.action += '&addproduct&tabs=4';" value="Delete" name="submitScheduleEditorDeleteEntry"/>
+  <input class="button" type="submit" onclick="this.form.action += '&addproduct&tabs=4';" value="Cancel" name="submitScheduleEditorCancel"/>
  {else}
-  <input class="button" type="submit" onclick="this.form.action += '&addproduct&tabs=4';" value="Add" name="submitScheduleEditorAddEntry">
+  <input class="button" type="submit" onclick="this.form.action += '&addproduct&tabs=4';" value="Add" name="submitScheduleEditorAddEntry"/>
  {/if}
 </fieldset>
 

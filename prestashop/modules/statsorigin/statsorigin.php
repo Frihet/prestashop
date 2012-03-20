@@ -61,12 +61,12 @@ class StatsOrigin extends ModuleGraph
 	{
 		$websites = $this->getOrigins(ModuleGraph::getDateBetween());
 		
-		$this->_html = '<fieldset class="width3 center"><legend><img src="../modules/'.$this->name.'/logo.gif"> Origin</legend>';
+		$this->_html = '<fieldset class="width3 center"><legend><img src="../modules/'.$this->name.'/logo.gif" /> Origin</legend>';
 		if (sizeof($websites))
 		{
 			$this->_html .= '
-			<p><img src="../img/admin/down.gif">'. $this->l('Here is the percentage of the 10 most popular referrer websites by which visitors went through to get on your shop.').'</p>
-			'.ModuleGraph::engine(array('type' => 'pie')).'<br><br>
+			<p><img src="../img/admin/down.gif" />'. $this->l('Here is the percentage of the 10 most popular referrer websites by which visitors went through to get on your shop.').'</p>
+			'.ModuleGraph::engine(array('type' => 'pie')).'<br /><br />
 			<div style="overflow-y: scroll; height: 600px;">
 			<table class="table" border="0" cellspacing="0" cellspacing="0">
 				<tr>
@@ -79,12 +79,12 @@ class StatsOrigin extends ModuleGraph
 		}
 		else
 			$this->_html .= '<p><strong>'.$this->l('Direct links only').'</strong></p>';
-		$this->_html .= '</fieldset><br>
-		<fieldset class="width3"><legend><img src="../img/admin/comment.gif"> '.$this->l('Guide').'</legend>
+		$this->_html .= '</fieldset><br />
+		<fieldset class="width3"><legend><img src="../img/admin/comment.gif" /> '.$this->l('Guide').'</legend>
 		<h2>'.$this->l('What is a referrer website?').'</h2>
 			<p>
-				'.$this->l('When visiting a webpage, the referrer is the URL of the previous webpage from which a link was followed.').'<br>
-				'.$this->l('A referrer enables you to know which keywords are entered by visitors in search engines when they try to get on your shop; and also to optimize your web promotion.').'<br><br>
+				'.$this->l('When visiting a webpage, the referrer is the URL of the previous webpage from which a link was followed.').'<br />
+				'.$this->l('A referrer enables you to know which keywords are entered by visitors in search engines when they try to get on your shop; and also to optimize your web promotion.').'<br /><br />
 				'. $this->l('A referrer can be:').'
 				<ul>
 					<li class="bullet">'. $this->l('Someone who put a link on his website towards your shop').'</li>

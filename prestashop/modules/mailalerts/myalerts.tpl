@@ -26,14 +26,14 @@
 				{foreach from=$alerts item=product name=i}
 				<tr>
 					<td class="first_item">
-					<span style="float:left;"><a href="{$product.link|escape:'htmlall':'UTF-8'}"><img src="{$img_prod_dir}{$product.cover}-small.jpg" alt="{$product.name|escape:'htmlall':'UTF-8'}"></a></span>
+					<span style="float:left;"><a href="{$product.link|escape:'htmlall':'UTF-8'}"><img src="{$img_prod_dir}{$product.cover}-small.jpg" alt="{$product.name|escape:'htmlall':'UTF-8'}" /></a></span>
 					<span style="float:left;"><a href="{$product.link|escape:'htmlall':'UTF-8'}">{$product.name|truncate:40:'...'|escape:'htmlall':'UTF-8'}</a>
 					{if isset($product.attributes_small)}
-						<br><i>{$product.attributes_small|escape:'htmlall':'UTF-8'}</i>
+						<br /><i>{$product.attributes_small|escape:'htmlall':'UTF-8'}</i>
 					{/if}</span>
 					</td>
 					<td class="align_center">
-						<a href="{$base_dir_ssl}modules/mailalerts/myalerts.php?action=delete&id_product={$product.id_product}&id_product_attribute={$product.id_product_attribute}"><img src="{$content_dir}modules/mailalerts/img/delete.gif" alt="{l s='Delete' mod='mailalerts'}"></a>
+						<a href="{$base_dir_ssl}modules/mailalerts/myalerts.php?action=delete&id_product={$product.id_product}&id_product_attribute={$product.id_product_attribute}"><img src="{$content_dir}modules/mailalerts/img/delete.gif" alt="{l s='Delete' mod='mailalerts'}" /></a>
 					</td>
 				</tr>
 				</tbody>
@@ -47,7 +47,7 @@
 	{/if}
 
 	<ul class="footer_links">
-		<li><a href="{$base_dir_ssl}my-account.php"><img src="{$img_dir}icon/my-account.gif" alt="" class="icon"></a><a href="{$base_dir_ssl}my-account.php">{l s='Back to Your Account'}</a></li>
-		<li><a href="{$base_dir}"><img src="{$img_dir}icon/home.gif" alt="" class="icon"></a><a href="{$base_dir}">{l s='Home'}</a></li>
+		<li><a href="{$base_dir_ssl}my-account.php"><img src="{$img_dir}icon/my-account.gif" alt="" class="icon" /></a><a href="{$base_dir_ssl}my-account.php">{l s='Back to Your Account'}</a></li>
+		<li><a href="{$base_dir}"><img src="{$img_dir}icon/home.gif" alt="" class="icon" /></a><a href="{$base_dir}">{l s='Home'}</a></li>
 	</ul>
 </div>

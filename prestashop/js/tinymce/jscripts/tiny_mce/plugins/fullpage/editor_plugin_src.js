@@ -117,7 +117,7 @@
 				t.head += '\n<html>\n<head>\n<title>' + ed.getParam('fullpage_default_title', 'Untitled document') + '</title>\n';
 
 				if (v = ed.getParam('fullpage_default_encoding'))
-					t.head += '<meta http-equiv="Content-Type" content="' + v + '">\n';
+					t.head += '<meta http-equiv="Content-Type" content="' + v + '" />\n';
 
 				if (v = ed.getParam('fullpage_default_font_family'))
 					st += 'font-family: ' + v + ';';

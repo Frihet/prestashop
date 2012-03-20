@@ -78,7 +78,7 @@ class Paypal extends PaymentModule
 	{
 		$this->_html .= '
 		<div class="conf confirm">
-			<img src="../img/admin/ok.gif" alt="'.$this->l('Confirmation').'">
+			<img src="../img/admin/ok.gif" alt="'.$this->l('Confirmation').'" />
 			'.$this->l('Settings updated').'
 		</div>';
 	}
@@ -105,12 +105,12 @@ class Paypal extends PaymentModule
 			<h2>'.$this->l('Opening your PayPal account').'</h2>
 			<div style="clear: both;"></div>
 			<p>'.$this->l('By opening your PayPal account by clicking on the following image you are helping us significantly to improve the PrestaShop software:').'</p>
-			<p style="text-align: center;"><a href="https://www.paypal.com/fr/mrb/pal=TWJHHUL9AEP9C"><img src="../modules/paypal/prestashop_paypal.png" alt="PrestaShop & PayPal" style="margin-top: 12px;"></a></p>
+			<p style="text-align: center;"><a href="https://www.paypal.com/fr/mrb/pal=TWJHHUL9AEP9C"><img src="../modules/paypal/prestashop_paypal.png" alt="PrestaShop & PayPal" style="margin-top: 12px;" /></a></p>
 			<div style="clear: right;"></div>
 		</div>
-		<img src="../modules/paypal/paypal.gif" style="float:left; margin-right:15px;">
-		<b>'.$this->l('This module allows you to accept payments by PayPal.').'</b><br><br>
-		'.$this->l('If the client chooses this payment mode, your PayPal account will be automatically credited.').'<br>
+		<img src="../modules/paypal/paypal.gif" style="float:left; margin-right:15px;" />
+		<b>'.$this->l('This module allows you to accept payments by PayPal.').'</b><br /><br />
+		'.$this->l('If the client chooses this payment mode, your PayPal account will be automatically credited.').'<br />
 		'.$this->l('You need to configure your PayPal account first before using this module.').'
 		<div style="clear:both;">&nbsp;</div>';
 	}
@@ -125,29 +125,29 @@ class Paypal extends PaymentModule
 		$this->_html .= '
 		<form action="'.$_SERVER['REQUEST_URI'].'" method="post" style="clear: both;">
 		<fieldset>
-			<legend><img src="../img/admin/contact.gif">'.$this->l('Settings').'</legend>
+			<legend><img src="../img/admin/contact.gif" />'.$this->l('Settings').'</legend>
 			<label>'.$this->l('PayPal business e-mail').'</label>
-			<div class="margin-form"><input type="text" size="33" name="business" value="'.htmlentities($business, ENT_COMPAT, 'UTF-8').'"></div>
+			<div class="margin-form"><input type="text" size="33" name="business" value="'.htmlentities($business, ENT_COMPAT, 'UTF-8').'" /></div>
 			<label>'.$this->l('Sandbox mode').'</label>
 			<div class="margin-form">
-				<input type="radio" name="sandbox" value="1" '.($sandbox ? 'checked="checked"' : '').'> '.$this->l('Yes').'
-				<input type="radio" name="sandbox" value="0" '.(!$sandbox ? 'checked="checked"' : '').'> '.$this->l('No').'
+				<input type="radio" name="sandbox" value="1" '.($sandbox ? 'checked="checked"' : '').' /> '.$this->l('Yes').'
+				<input type="radio" name="sandbox" value="0" '.(!$sandbox ? 'checked="checked"' : '').' /> '.$this->l('No').'
 			</div>
 			<label>'.$this->l('Banner image URL').'</label>
-			<div class="margin-form"><input type="text" size="82" name="header" value="'.htmlentities($header, ENT_COMPAT, 'UTF-8').'">
-			<p class="hint clear" style="display: block; width: 501px;">'.$this->l('The image should be host on a securised server in order to avoid security warnings. Size should be limited at 750x90px.').'</p></div><br><br><br>
-			<br><center><input type="submit" name="submitPaypal" value="'.$this->l('Update settings').'" class="button"></center>
+			<div class="margin-form"><input type="text" size="82" name="header" value="'.htmlentities($header, ENT_COMPAT, 'UTF-8').'" />
+			<p class="hint clear" style="display: block; width: 501px;">'.$this->l('The image should be host on a securised server in order to avoid security warnings. Size should be limited at 750x90px.').'</p></div><br /><br /><br />
+			<br /><center><input type="submit" name="submitPaypal" value="'.$this->l('Update settings').'" class="button" /></center>
 		</fieldset>
-		</form><br><br>
+		</form><br /><br />
 		<fieldset class="width3">
-			<legend><img src="../img/admin/warning.gif">'.$this->l('Information').'</legend>
-			'.$this->l('In order to use your PayPal payment module, you have to configure your PayPal account (sandbox account as well as live account). Log in to PayPal and follow these instructions.').'<br><br>
-			'.$this->l('In').' <i>'.$this->l('Profile > Selling Preferences > Website Payment Preferences').'</i>, '. $this->l('set:').'<br>
-			- <b>'.$this->l('Auto Return').'</b> : '.$this->l('Off').',<br>
-			- <b>'.$this->l('Payment Data Transfer').'</b> '.$this->l('to').' <b>Off</b>.<br><br>
-			'.$this->l('In').' <i>'.$this->l('Profile > Selling Preferences > Postage Calculations').'</i><br>
-			- check <b>'.$this->l('Click here to allow transaction-based shipping values to override the profile shipping settings listed above').'</b><br><br>
-			<b style="color: red;">'.$this->l('All PrestaShop currencies must be also configured</b> inside Profile > Financial Information > Currency balances').'<br>
+			<legend><img src="../img/admin/warning.gif" />'.$this->l('Information').'</legend>
+			'.$this->l('In order to use your PayPal payment module, you have to configure your PayPal account (sandbox account as well as live account). Log in to PayPal and follow these instructions.').'<br /><br />
+			'.$this->l('In').' <i>'.$this->l('Profile > Selling Preferences > Website Payment Preferences').'</i>, '. $this->l('set:').'<br />
+			- <b>'.$this->l('Auto Return').'</b> : '.$this->l('Off').',<br />
+			- <b>'.$this->l('Payment Data Transfer').'</b> '.$this->l('to').' <b>Off</b>.<br /><br />
+			'.$this->l('In').' <i>'.$this->l('Profile > Selling Preferences > Postage Calculations').'</i><br />
+			- check <b>'.$this->l('Click here to allow transaction-based shipping values to override the profile shipping settings listed above').'</b><br /><br />
+			<b style="color: red;">'.$this->l('All PrestaShop currencies must be also configured</b> inside Profile > Financial Information > Currency balances').'<br />
 		</fieldset>';
 	}
 

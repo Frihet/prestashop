@@ -96,15 +96,15 @@ class AdminManufacturers extends AdminTab
 			id_language = Number('.$defaultLanguage.');
 		</script>
 		<form action="'.$currentIndex.'&submitAdd'.$this->table.'=1&token='.$this->token.'" method="post" enctype="multipart/form-data" class="width3">
-		'.($manufacturer->id ? '<input type="hidden" name="id_'.$this->table.'" value="'.$manufacturer->id.'">' : '').'
-			<fieldset><legend><img src="../img/admin/manufacturers.gif">'.$this->l('Manufacturers').'</legend>
+		'.($manufacturer->id ? '<input type="hidden" name="id_'.$this->table.'" value="'.$manufacturer->id.'" />' : '').'
+			<fieldset><legend><img src="../img/admin/manufacturers.gif" />'.$this->l('Manufacturers').'</legend>
 				<label>'.$this->l('Name:').' </label>
 				<div class="margin-form">
-					<input type="text" size="40" name="name" value="'.htmlentities(Tools::getValue('name', $manufacturer->name), ENT_COMPAT, 'UTF-8').'"> <sup>*</sup>
+					<input type="text" size="40" name="name" value="'.htmlentities(Tools::getValue('name', $manufacturer->name), ENT_COMPAT, 'UTF-8').'" /> <sup>*</sup>
 					<span class="hint" name="help_box">'.$this->l('Invalid characters:').' <>;=#{}<span class="hint-pointer">&nbsp;</span></span>
 				</div>';
 
-		echo '<br class="clear"><label>'.$this->l('Short description:').' </label>
+		echo '<br class="clear" /><label>'.$this->l('Short description:').' </label>
 				<div class="margin-form">';
 		foreach ($languages as $language)
 			echo '
@@ -114,7 +114,7 @@ class AdminManufacturers extends AdminTab
 		$this->displayFlags($languages, $defaultLanguage, $langtags, 'cdesc2');
 		echo '</div>';
 				
-		echo '<br class="clear"><br><br><label>'.$this->l('Description:').' </label>
+		echo '<br class="clear" /><br /><br /><label>'.$this->l('Description:').' </label>
 				<div class="margin-form">';
 		foreach ($languages as $language)
 			echo '
@@ -163,9 +163,9 @@ class AdminManufacturers extends AdminTab
 		tinyMCEInit(\'textarea.rte\');
 		</script>
 		';
-		echo '<br style="clear:both;"><br><br><label>'.$this->l('Logo:').' </label>
+		echo '<br style="clear:both;" /><br/><br/><label>'.$this->l('Logo:').' </label>
 				<div class="margin-form">
-					<input type="file" name="logo">
+					<input type="file" name="logo" />
 					<p>'.$this->l('Upload manufacturer logo from your computer').'</p>
 				</div>
 				<label>'.$this->l('Meta title:').' </label>
@@ -173,7 +173,7 @@ class AdminManufacturers extends AdminTab
 		foreach ($languages as $language)
 			echo '
 					<div id="mmeta_title_'.$language['id_lang'].'" style="display: '.($language['id_lang'] == $defaultLanguage ? 'block' : 'none').'; float: left;">
-						<input type="text" name="meta_title_'.$language['id_lang'].'" id="meta_title_'.$language['id_lang'].'" value="'.htmlentities($this->getFieldValue($manufacturer, 'meta_title', intval($language['id_lang'])), ENT_COMPAT, 'UTF-8').'">
+						<input type="text" name="meta_title_'.$language['id_lang'].'" id="meta_title_'.$language['id_lang'].'" value="'.htmlentities($this->getFieldValue($manufacturer, 'meta_title', intval($language['id_lang'])), ENT_COMPAT, 'UTF-8').'" />
 						<span class="hint" name="help_box">'.$this->l('Forbidden characters:').' <>;=#{}<span class="hint-pointer">&nbsp;</span></span>
 					</div>';
 		$this->displayFlags($languages, $defaultLanguage, $langtags, 'mmeta_title');
@@ -183,7 +183,7 @@ class AdminManufacturers extends AdminTab
 				<div class="margin-form">';
 		foreach ($languages as $language)
 			echo '<div id="mmeta_description_'.$language['id_lang'].'" style="display: '.($language['id_lang'] == $defaultLanguage ? 'block' : 'none').'; float: left;">
-						<input type="text" name="meta_description_'.$language['id_lang'].'" id="meta_description_'.$language['id_lang'].'" value="'.htmlentities($this->getFieldValue($manufacturer, 'meta_description', intval($language['id_lang'])), ENT_COMPAT, 'UTF-8').'">
+						<input type="text" name="meta_description_'.$language['id_lang'].'" id="meta_description_'.$language['id_lang'].'" value="'.htmlentities($this->getFieldValue($manufacturer, 'meta_description', intval($language['id_lang'])), ENT_COMPAT, 'UTF-8').'" />
 						<span class="hint" name="help_box">'.$this->l('Forbidden characters:').' <>;=#{}<span class="hint-pointer">&nbsp;</span></span>
 				</div>';
 		$this->displayFlags($languages, $defaultLanguage, $langtags, 'mmeta_description');
@@ -194,14 +194,14 @@ class AdminManufacturers extends AdminTab
 		foreach ($languages as $language)
 			echo '
 					<div id="mmeta_keywords_'.$language['id_lang'].'" style="display: '.($language['id_lang'] == $defaultLanguage ? 'block' : 'none').'; float: left;">
-						<input type="text" name="meta_keywords_'.$language['id_lang'].'" id="meta_keywords_'.$language['id_lang'].'" value="'.htmlentities($this->getFieldValue($manufacturer, 'meta_keywords', intval($language['id_lang'])), ENT_COMPAT, 'UTF-8').'">
+						<input type="text" name="meta_keywords_'.$language['id_lang'].'" id="meta_keywords_'.$language['id_lang'].'" value="'.htmlentities($this->getFieldValue($manufacturer, 'meta_keywords', intval($language['id_lang'])), ENT_COMPAT, 'UTF-8').'" />
 						<span class="hint" name="help_box">'.$this->l('Forbidden characters:').' <>;=#{}<span class="hint-pointer">&nbsp;</span></span>
 					</div>';
 		$this->displayFlags($languages, $defaultLanguage, $langtags, 'mmeta_keywords');
 		echo '		<div class="clear"></div>
 				</div>
 				<div class="margin-form">
-					<input type="submit" value="'.$this->l('   Save   ').'" name="submitAdd'.$this->table.'" class="button">
+					<input type="submit" value="'.$this->l('   Save   ').'" name="submitAdd'.$this->table.'" class="button" />
 				</div>
 				<div class="small"><sup>*</sup> '.$this->l('Required field').'</div>
 			</fieldset>
@@ -218,7 +218,7 @@ class AdminManufacturers extends AdminTab
 		$addresses = $manufacturer->getAddresses(intval($cookie->id_lang));
 		
 		echo '<h3>'.$this->l('Total addresses:').' '.sizeof($addresses).'</h3>';
-		echo '<hr>';
+		echo '<hr />';
 		foreach ($addresses AS $addresse)
 			echo '
 				<h3></h3>
@@ -229,28 +229,28 @@ class AdminManufacturers extends AdminTab
 					<tr>
 						<td>
 							<div style="padding:5px; float:left; width:350px;">
-								'.$addresse['address1'].'<br>
-								'.($addresse['address2'] ? $addresse['address2'].'<br>' : '').'
-								'.$addresse['postcode'].' '.$addresse['city'].'<br>
-								'.($addresse['state'] ? $addresse['state'].'<br>' : '').'
-								<b>'.$addresse['country'].'</b><br>
+								'.$addresse['address1'].'<br />
+								'.($addresse['address2'] ? $addresse['address2'].'<br />' : '').'
+								'.$addresse['postcode'].' '.$addresse['city'].'<br />
+								'.($addresse['state'] ? $addresse['state'].'<br />' : '').'
+								<b>'.$addresse['country'].'</b><br />
 								</div>
 							<div style="padding:5px; float:left;">
-								'.($addresse['phone'] ? $addresse['phone'].'<br>' : '').'
-								'.($addresse['phone_mobile'] ? $addresse['phone_mobile'].'<br>' : '').'
+								'.($addresse['phone'] ? $addresse['phone'].'<br />' : '').'
+								'.($addresse['phone_mobile'] ? $addresse['phone_mobile'].'<br />' : '').'
 							</div>
-							'.($addresse['other'] ? '<div style="padding:5px; clear:both;"><br><i>'.$addresse['other'].'</i></div>' : '').'
+							'.($addresse['other'] ? '<div style="padding:5px; clear:both;"><br /><i>'.$addresse['other'].'</i></div>' : '').'
 						</td>
 					</tr>
 				</table>';
 		if (!sizeof($addresses))
 			echo 'No address for this manufacturer.';
-		echo '<br><br>';
+		echo '<br /><br />';
 		echo '<h3>'.$this->l('Total products:').' '.sizeof($products).'</h3>';
 		foreach ($products AS $product)
 		{
 			$product = new Product($product['id_product'], false, intval($cookie->id_lang));
-			echo '<hr>';
+			echo '<hr />';
 			if (!$product->hasAttributes())
 			{
 				echo '

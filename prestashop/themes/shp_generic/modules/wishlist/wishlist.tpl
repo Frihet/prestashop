@@ -64,7 +64,7 @@
 									{if $type == $CUSTOMIZE_FILE}
 										<div class="customizationUploaded">
 											<ul class="customizationUploaded">
-												{foreach from=$datas item='picture'}<li><img src="{$pic_dir}{$picture.value}_small" alt="" class="customizationUploaded"></li>{/foreach}
+												{foreach from=$datas item='picture'}<li><img src="{$pic_dir}{$picture.value}_small" alt="" class="customizationUploaded" /></li>{/foreach}
 											</ul>
 										</div>
 									{elseif $type == $CUSTOMIZE_TEXTFIELD}

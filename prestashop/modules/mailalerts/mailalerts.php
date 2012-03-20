@@ -298,20 +298,20 @@ class MailAlerts extends Module
 		
         $this->_html .= '
 		<form action="'.$currentIndex.'&token='.$token.'&configure=mailalerts" method="post">
-			<fieldset class="width3"><legend><img src="'.$this->_path.'logo.gif">'.$this->l('Customer notification').'</legend>
+			<fieldset class="width3"><legend><img src="'.$this->_path.'logo.gif" />'.$this->l('Customer notification').'</legend>
 				<label>'.$this->l('Product availability:').' </label>
 				<div class="margin-form">
 					<input type="checkbox" value="1" id="mA_customer_qty" name="mA_customer_qty" '.(Tools::getValue('mA_customer_qty', $this->_customer_qty) == 1 ? 'checked' : '').'>
 					&nbsp;<label for="mA_customer_qty" class="t">'.$this->l('Gives the customer the possibility to receive a notification for an available product if this one is out of stock ').'</label>
 				</div>
 				<div class="margin-form">
-					<input type="submit" value="'.$this->l('   Save   ').'" name="submitMACustomer" class="button">
+					<input type="submit" value="'.$this->l('   Save   ').'" name="submitMACustomer" class="button" />
 				</div>
 			</fieldset>
 		</form>
-		<br>
+		<br />
 		<form action="'.$currentIndex.'&token='.$token.'&configure=mailalerts" method="post">
-			<fieldset class="width3"><legend><img src="'.$this->_path.'logo.gif">'.$this->l('Merchant notification').'</legend>
+			<fieldset class="width3"><legend><img src="'.$this->_path.'logo.gif" />'.$this->l('Merchant notification').'</legend>
 				<label>'.$this->l('New order:').' </label>
 				<div class="margin-form">
 					<input type="checkbox" value="1" id="mA_merchand_order" name="mA_merchand_order" '.(Tools::getValue('mA_merchand_order', $this->_merchant_order) == 1 ? 'checked' : '').'>
@@ -328,13 +328,13 @@ class MailAlerts extends Module
 						<textarea name="mA_merchant_mails" rows="10" cols="30">'.Tools::getValue('mA_merchant_mails', str_replace(self::__MA_MAIL_DELIMITOR__, "\n", $this->_merchant_mails)).'</textarea>
 					</div>
 					<div style="float:left;">
-						'.$this->l('One email address per line').'<br>
+						'.$this->l('One email address per line').'<br />
 						'.$this->l('e.g.,').' bob@example.com
 					</div>
 				</div>
 				<div style="clear:both;">&nbsp;</div>
 				<div class="margin-form">
-					<input type="submit" value="'.$this->l('   Save   ').'" name="submitMAMerchant" class="button">
+					<input type="submit" value="'.$this->l('   Save   ').'" name="submitMAMerchant" class="button" />
 				</div>
 			</fieldset>
 		</form>';
@@ -347,7 +347,7 @@ class MailAlerts extends Module
 			if (!Configuration::updateValue('MA_CUSTOMER_QTY', intval(Tools::getValue('mA_customer_qty'))))
 				$this->_html .= '<div class="alert error">'.$this->l('Cannot update settings').'</div>';
 			else
-				$this->_html .= '<div class="conf confirm"><img src="../img/admin/ok.gif" alt="'.$this->l('Confirmation').'">'.$this->l('Settings updated').'</div>';
+				$this->_html .= '<div class="conf confirm"><img src="../img/admin/ok.gif" alt="'.$this->l('Confirmation').'" />'.$this->l('Settings updated').'</div>';
 		}
 		elseif (Tools::isSubmit('submitMAMerchant'))
 		{
@@ -375,7 +375,7 @@ class MailAlerts extends Module
 				elseif (!Configuration::updateValue('MA_MERCHANT_OOS', intval(Tools::getValue('mA_merchand_oos'))))
 					$this->_html .= '<div class="alert error">'.$this->l('Cannot update settings').'</div>';
 				else
-					$this->_html .= '<div class="conf confirm"><img src="../img/admin/ok.gif" alt="'.$this->l('Confirmation').'">'.$this->l('Settings updated').'</div>';
+					$this->_html .= '<div class="conf confirm"><img src="../img/admin/ok.gif" alt="'.$this->l('Confirmation').'" />'.$this->l('Settings updated').'</div>';
 			}
 		}
 		$this->_refreshProperties();

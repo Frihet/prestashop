@@ -104,7 +104,7 @@ class Netaxept extends PaymentModule
 	{
 		$this->_html .= '
 		<div class="conf confirm">
-			<img src="../img/admin/ok.gif" alt="'.$this->l('Confirmation').'">
+			<img src="../img/admin/ok.gif" alt="'.$this->l('Confirmation').'" />
 			'.$this->l('Settings updated').'
 		</div>';
 	}
@@ -135,10 +135,10 @@ class Netaxept extends PaymentModule
 			<p>'.$this->l('').'</p>
 			<div style="clear: right;"></div>
 		</div -->
-		<img src="../modules/netaxept/netaxept.gif" style="float:left; margin-right:15px;">
-		<b>'.$this->l('This module allows you to accept payments by Netaxept.').'</b><br><br>
+		<img src="../modules/netaxept/netaxept.gif" style="float:left; margin-right:15px;" />
+		<b>'.$this->l('This module allows you to accept payments by Netaxept.').'</b><br /><br />
 		'.$this->l('You need to have an agreement with your bank before using this module.').'
-		<br><br><br><br>
+		<br /><br /><br /><br />
 		<div style="clear:both;">&nbsp;</div>';
 	}
 
@@ -154,31 +154,31 @@ class Netaxept extends PaymentModule
 		$this->_html .= '
 		<form action="'.$_SERVER['REQUEST_URI'].'" method="post" style="clear: both;">
 		<fieldset>
-			<legend><img src="../img/admin/contact.gif">'.$this->l('Settings').'</legend>
+			<legend><img src="../img/admin/contact.gif" />'.$this->l('Settings').'</legend>
 			<label>'.$this->l('Netaxept MerchantID, Token and Currency').'</label>
 			<div class="margin-form">
-				'.$this->l('Only valid format: MerchantID;Token;Currency.<br>To add several currencies type each MerchantID;Token;Currency in a seperate line.').'
+				'.$this->l('Only valid format: MerchantID;Token;Currency.<br />To add several currencies type each MerchantID;Token;Currency in a seperate line.').'
 				<textarea rows="5" cols="40" name="mid_token_curr">'.htmlentities($mid_token_curr, ENT_COMPAT, 'UTF-8').'</textarea>
 			</div>
 			<label>'.$this->l('Netaxept Terminal URL').'</label>
-			<div class="margin-form"><input type="text" size="60" name="terminal_url" value="'.htmlentities($terminal_url, ENT_COMPAT, 'UTF-8').'"></div>
+			<div class="margin-form"><input type="text" size="60" name="terminal_url" value="'.htmlentities($terminal_url, ENT_COMPAT, 'UTF-8').'" /></div>
 			<label>'.$this->l('Netaxept WSDL URL').'</label>
-			<div class="margin-form"><input type="text" size="60" name="wsdl_url" value="'.htmlentities($wsdl_url, ENT_COMPAT, 'UTF-8').'"></div>
+			<div class="margin-form"><input type="text" size="60" name="wsdl_url" value="'.htmlentities($wsdl_url, ENT_COMPAT, 'UTF-8').'" /></div>
 			<label>'.$this->l('Netaxept TokenQuery WSDL URL').'</label>
-			<div class="margin-form"><input type="text" size="60" name="tq_wsdl_url" value="'.htmlentities($tq_wsdl_url, ENT_COMPAT, 'UTF-8').'"></div>
-			<br><br><br>
-			<center><input type="submit" name="submitNetaxept" value="'.$this->l('Update settings').'" class="button"></center>
+			<div class="margin-form"><input type="text" size="60" name="tq_wsdl_url" value="'.htmlentities($tq_wsdl_url, ENT_COMPAT, 'UTF-8').'" /></div>
+			<br /><br /><br />
+			<center><input type="submit" name="submitNetaxept" value="'.$this->l('Update settings').'" class="button" /></center>
 		</fieldset>
-		</form><br><br>
+		</form><br /><br />
 		<fieldset class="width3">
-			<legend><img src="../img/admin/warning.gif">'.$this->l('Information').'</legend>
+			<legend><img src="../img/admin/warning.gif" />'.$this->l('Information').'</legend>
 			'.$this->l('To test payments go to ').
 				'<a href="https://epayment-test.bbs.no/admin/Help/Reference.aspx" target="_blank">https://epayment-test.bbs.no/admin/Help/Reference.aspx</a>'
-				.$this->l(' to get test card numbers.').'<br><br>
-				<strong>'. $this->l('Netaxept test and production domains') .'</strong><br>
-				- '.$this->l('Test').': https://epayment-test.bbs.no/<br>
+				.$this->l(' to get test card numbers.').'<br /><br />
+				<strong>'. $this->l('Netaxept test and production domains') .'</strong><br />
+				- '.$this->l('Test').': https://epayment-test.bbs.no/<br />
 				- '.$this->l('Production').': https://epayment.bbs.no/
-				<br><br>
+				<br /><br />
 		</fieldset>';
 	}
 	

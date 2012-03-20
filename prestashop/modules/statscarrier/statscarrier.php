@@ -46,16 +46,16 @@ class StatsCarrier extends ModuleGraph
 		$states = OrderState::getOrderStates(intval($cookie->id_lang));
 	
 		$this->_html = '
-		<fieldset class="width3"><legend><img src="../modules/'.$this->name.'/logo.gif"> '.$this->displayName.'</legend>
+		<fieldset class="width3"><legend><img src="../modules/'.$this->name.'/logo.gif" /> '.$this->displayName.'</legend>
 			<form action="'.$_SERVER['REQUEST_URI'].'" method="post" style="float: right;">
 				<select name="id_order_state">
 					<option value="0"'.((!Tools::getValue('id_order_state')) ? ' selected="selected"' : '').'>'.$this->l('All').'</option>';
 		foreach ($states AS $state)
 			$this->_html .= '<option value="'.$state['id_order_state'].'"'.(($state['id_order_state'] == Tools::getValue('id_order_state')) ? ' selected="selected"' : '').'>'.$state['name'].'</option>';
 		$this->_html .= '</select>
-				<input type="submit" name="submitState" value="'.$this->l('Filter').'" class="button">
+				<input type="submit" name="submitState" value="'.$this->l('Filter').'" class="button" />
 			</form>
-			<p><img src="../img/admin/down.gif">'.$this->l('This graph represents the carrier distribution for your orders. You can also limit it to one order state.').'</p>
+			<p><img src="../img/admin/down.gif" />'.$this->l('This graph represents the carrier distribution for your orders. You can also limit it to one order state.').'</p>
 			'.($result['total'] ? ModuleGraph::engine(array('type' => 'pie', 'option' => Tools::getValue('id_order_state'))) : $this->l('No valid orders for this period.')).'
 		</fieldset>';
 		return $this->_html;

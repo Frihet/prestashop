@@ -74,24 +74,24 @@ else
 // Printing errors...
 if ($result == 'VERIFIED') {
 	if (!isset($_POST['mc_gross']))
-		$errors .= $paypal->getL('mc_gross').'<br>';
+		$errors .= $paypal->getL('mc_gross').'<br />';
 	if (!isset($_POST['payment_status']))
-		$errors .= $paypal->getL('payment_status').'<br>';
+		$errors .= $paypal->getL('payment_status').'<br />';
 	elseif ($_POST['payment_status'] != 'Completed')
-		$errors .= $paypal->getL('payment').$_POST['payment_status'].'<br>';
+		$errors .= $paypal->getL('payment').$_POST['payment_status'].'<br />';
 	if (!isset($_POST['custom']))
-		$errors .= $paypal->getL('custom').'<br>';
+		$errors .= $paypal->getL('custom').'<br />';
 	if (!isset($_POST['txn_id']))
-		$errors .= $paypal->getL('txn_id').'<br>';
+		$errors .= $paypal->getL('txn_id').'<br />';
 	if (!isset($_POST['mc_currency']))
-		$errors .= $paypal->getL('mc_currency').'<br>';
+		$errors .= $paypal->getL('mc_currency').'<br />';
 	if (empty($errors))
 	{
 		$cart = new Cart(intval($_POST['custom']));
 		if (!$cart->id)
-			$errors = $paypal->getL('cart').'<br>';
+			$errors = $paypal->getL('cart').'<br />';
 		elseif (Order::getOrderByCartId(intval($_POST['custom'])))
-			$errors = $paypal->getL('order').'<br>';
+			$errors = $paypal->getL('order').'<br />';
 		else
 			$paypal->validateOrder($_POST['custom'], _PS_OS_PAYMENT_, floatval($_POST['mc_gross']), $paypal->displayName, $paypal->getL('transaction').$_POST['txn_id']);
 	}
@@ -100,6 +100,6 @@ if ($result == 'VERIFIED') {
 }
 
 if (!empty($errors) AND isset($_POST['custom']))
-	$paypal->validateOrder(intval($_POST['custom']), _PS_OS_ERROR_, 0, $paypal->displayName, $errors.'<br>');
+	$paypal->validateOrder(intval($_POST['custom']), _PS_OS_ERROR_, 0, $paypal->displayName, $errors.'<br />');
 
 ?>

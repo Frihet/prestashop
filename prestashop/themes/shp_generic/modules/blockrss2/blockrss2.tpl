@@ -22,12 +22,12 @@ href="http://add.my.yahoo.com/rss?url={$base_dir_ssl}modules/feeder/rss.php"><im
 
 <div align="left" style="float: left; margin-right: 10px">
 <a title="{l s='Add to My AOL' mod='blockrss2'}"
-href="http://feeds.my.aol.com/add.jsp?url={$base_dir_ssl}modules/feeder/rss.php"><img src="modules/blockrss2/icons/aol.png" alt="{l s='Add to My AOL' mod='blockrss2'}" border="0"></a>
+href="http://feeds.my.aol.com/add.jsp?url={$base_dir_ssl}modules/feeder/rss.php"><img src="modules/blockrss2/icons/aol.png" alt="{l s='Add to My AOL' mod='blockrss2'}" border="0"/></a>
 </div>
 
 <div align="left" >
 <a title="{l s='Add to My MSN' mod='blockrss2'}"
-href="http://my.msn.com/addtomymsn.armx?id=rss&ut={$base_dir_ssl}modules/feeder/rss.php&ru={$base_dir_ssl}"><img src="modules/blockrss2/icons/msn.png" alt="{l s='Add to My MSN' mod='blockrss2'}" border="0"></a></div>
+href="http://my.msn.com/addtomymsn.armx?id=rss&ut={$base_dir_ssl}modules/feeder/rss.php&ru={$base_dir_ssl}"><img src="modules/blockrss2/icons/msn.png" alt="{l s='Add to My MSN' mod='blockrss2'}" border="0"/></a></div>
 
 <div align="right" style="clear: left; float: left; margin-right: 10px">
 <a title="{l s='Save to Delicious' mod='blockrss2'}"
@@ -58,7 +58,7 @@ href="http://digg.com/submit?url={$base_dir_ssl}">
 <script type="text/javascript">var addthis_pub="";</script>
 <a title="{l s='Bookmark and Share' mod='blockrss2'}"
 href="http://www.addthis.com/bookmark.php?v=20" onmouseover="return addthis_open(this, '', '{$base_dir_ssl}', '{$shop_name}')" onmouseout="addthis_close()" onclick="return addthis_sendto()">
-<img src="modules/blockrss2/icons/bookmark.png" alt="{l s='Bookmark and Share' mod='blockrss2'}" style="border:0"></a>
+<img src="modules/blockrss2/icons/bookmark.png" alt="{l s='Bookmark and Share' mod='blockrss2'}" style="border:0"/></a>
 <script type="text/javascript">
 {literal}
 	var addthis_config = {data_use_flash: false};

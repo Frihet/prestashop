@@ -73,7 +73,7 @@ class Pagesnotfound extends Module
 	
     function hookAdminStatsModules()
     {
-        $this->_html .= '<fieldset class="width3"><legend><img src="../modules/'.$this->name.'/logo.gif"> '.$this->displayName.'</legend>';
+        $this->_html .= '<fieldset class="width3"><legend><img src="../modules/'.$this->name.'/logo.gif" /> '.$this->displayName.'</legend>';
 		if (!file_exists(dirname(__FILE__).'/../../.htaccess'))
 			$this->_html .= '<div class="warning warn">'.$this->l('You <b>must</b> use a .htaccess file to redirect 404 errors to the page "404.php"').'</div>';
 		
@@ -92,23 +92,23 @@ class Pagesnotfound extends Module
 					if ($hr != 'nb')
 						$this->_html .= '
 						<tr>
-							<td><a href="'.$ru.'-admin404">'.wordwrap($ru, 30, '<br>', true).'</a></td>
-							<td><a href="http://'.$hr.'">'.wordwrap($hr, 40, '<br>', true).'</a></td>
+							<td><a href="'.$ru.'-admin404">'.wordwrap($ru, 30, '<br />', true).'</a></td>
+							<td><a href="http://'.$hr.'">'.wordwrap($hr, 40, '<br />', true).'</a></td>
 							<td align="right">'.$counter.'</td>
 						</tr>';
 			$this->_html .= '
 			</table>';
 		}
 		else
-			$this->_html .= '<div class="conf confirm"><img src="../img/admin/ok.gif"> '.$this->l('No pages registered').'</div>';
+			$this->_html .= '<div class="conf confirm"><img src="../img/admin/ok.gif" /> '.$this->l('No pages registered').'</div>';
 			
 		$this->_html .= '
-			</fieldset><br>
-		<fieldset class="width3"><legend><img src="../img/admin/comment.gif"> '.$this->l('Guide').'</legend>
+			</fieldset><br />
+		<fieldset class="width3"><legend><img src="../img/admin/comment.gif" /> '.$this->l('Guide').'</legend>
 			<h2>'.$this->l('404 errors').'</h2>
 			<p>'.$this->l('A <i>404 error</i> is an HTTP error code which means that the file requested by the user can\'t be found. In your case it means that one of your visitors entered a wrong URL in the address bar or that you or another website has a dead link somewhere. When it is available, the referrer is shown so you can find the page which contains the dead link. If not, it means generally that it is a direct access, so maybe someone has bookmarked a link which doesn\'t exist anymore.').'</p>
 			<h3>'.$this->l('How to catch these errors?').'</h3>
-			<p>'.$this->l('If your webhost supports the <i>.htaccess</i> file, you can create it in the root directory of PrestaShop and insert the following line inside:').' <i>ErrorDocument 404 '.__PS_BASE_URI__.'404.php</i>. '.$this->l('A user requesting a page which doesn\'t exist will be redirected to the page').' <i>'.__PS_BASE_URI__.'404.php</i>. '.$this->l('This module logs the accesses to this page: the page requested, the referrer and the number of times that it occurred.').'</p><br>
+			<p>'.$this->l('If your webhost supports the <i>.htaccess</i> file, you can create it in the root directory of PrestaShop and insert the following line inside:').' <i>ErrorDocument 404 '.__PS_BASE_URI__.'404.php</i>. '.$this->l('A user requesting a page which doesn\'t exist will be redirected to the page').' <i>'.__PS_BASE_URI__.'404.php</i>. '.$this->l('This module logs the accesses to this page: the page requested, the referrer and the number of times that it occurred.').'</p><br />
 		</fieldset>';
 
         return $this->_html;

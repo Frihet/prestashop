@@ -248,7 +248,7 @@ class Swift_Connection_SMTP extends Swift_ConnectionBase
       if ($tmp === false && !feof($this->handle))
       {
         throw new Swift_ConnectionException(
-        "There was a problem reading line " . $line . " of an SMTP response. The response so far was:<br>[" . $ret .
+        "There was a problem reading line " . $line . " of an SMTP response. The response so far was:<br />[" . $ret .
         "].  It appears the connection has died without saying goodbye to us! Too many emails in one go perhaps?"  .
         $this->smtpErrors());
       }

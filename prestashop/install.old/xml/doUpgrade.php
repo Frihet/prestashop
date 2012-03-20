@@ -51,20 +51,20 @@ if (file_exists(SETTINGS_FILE))
 	$oldversion = _PS_VERSION_;
 }
 else
-	die('<action result="fail" error="30">'."\n");
+	die('<action result="fail" error="30" />'."\n");
 $versionCompare =  version_compare(INSTALL_VERSION, _PS_VERSION_);
 if ($versionCompare == '-1')
-	die('<action result="fail" error="27">'."\n");
+	die('<action result="fail" error="27" />'."\n");
 elseif ($versionCompare == 0)
-	die('<action result="fail" error="28">'."\n");
+	die('<action result="fail" error="28" />'."\n");
 elseif ($versionCompare === false)
-	die('<action result="fail" error="29">'."\n");
+	die('<action result="fail" error="29" />'."\n");
 
 //check DB access
 include(INSTALL_PATH.'/classes/ToolsInstall.php');
 $resultDB = ToolsInstall::checkDB(_DB_SERVER_, _DB_USER_, _DB_PASSWD_, _DB_NAME_, false);
 if ($resultDB !== true)
-	die("<action result='fail' error='".$resultDB."'>\n");
+	die("<action result='fail' error='".$resultDB."'/>\n");
 
 //custom sql file creation
 $upgradeFiles = array();
@@ -76,23 +76,23 @@ if ($handle = opendir(INSTALL_PATH.'/sql/upgrade'))
     closedir($handle);
 }
 if (empty($upgradeFiles))
-	die('<action result="fail" error="31">'."\n");
+	die('<action result="fail" error="31" />'."\n");
 asort($upgradeFiles);
 $neededUpgradeFiles = array();
 foreach ($upgradeFiles AS $version)
 	if (version_compare($version, _PS_VERSION_) == 1 AND version_compare(INSTALL_VERSION, $version) != -1)
 		$neededUpgradeFiles[] = $version;
 if (empty($neededUpgradeFiles))
-	die('<action result="fail" error="32">'."\n");
+	die('<action result="fail" error="32" />'."\n");
 
 $sqlContent = "";
 foreach($neededUpgradeFiles AS $version)
 {
 	$file = INSTALL_PATH.'/sql/upgrade/'.$version.'.sql';
 	if (!file_exists($file))
-		die('<action result="fail" error="33">'."\n");
+		die('<action result="fail" error="33" />'."\n");
 	if (!$sqlContent .= file_get_contents($file))
-		die('<action result="fail" error="33">'."\n");
+		die('<action result="fail" error="33" />'."\n");
 	$sqlContent .= "\n";
 }
 $sqlContent = str_replace($filePrefix, _DB_PREFIX_, $sqlContent);
@@ -118,7 +118,7 @@ $datas = array(
 error_reporting($oldLevel);
 $confFile = new AddConfToFile(SETTINGS_FILE, 'w');
 if ($confFile->error)
-	die('<action result="fail" error="'.$confFile->error.'">'."\n");
+	die('<action result="fail" error="'.$confFile->error.'" />'."\n");
 	
 foreach ($datas AS $data){
 	$confFile->writeInFile($data[0], $data[1]);
@@ -126,7 +126,7 @@ foreach ($datas AS $data){
 $confFile->writeEndTagPhp();
 
 if ($confFile->error != false)
-	die('<action result="fail" error="'.$confFile->error.'">'."\n");
+	die('<action result="fail" error="'.$confFile->error.'" />'."\n");
 
 //sql file execution
 global $requests, $warningExist;

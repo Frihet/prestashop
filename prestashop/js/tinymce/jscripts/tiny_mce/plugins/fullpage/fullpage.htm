@@ -6,7 +6,7 @@
 	<script type="text/javascript" src="../../utils/mctabs.js"></script>
 	<script type="text/javascript" src="../../utils/form_utils.js"></script>
 	<script type="text/javascript" src="js/fullpage.js"></script>
-	<link href="css/fullpage.css" rel="stylesheet" type="text/css">
+	<link href="css/fullpage.css" rel="stylesheet" type="text/css" />
 </head>
 <body id="advlink" style="display: none">
     <form onsubmit="updateAction();return false;" name="fullpage" action="#">
@@ -26,7 +26,7 @@
 					<table border="0" cellpadding="4" cellspacing="0">
 						<tr>
 							<td class="nowrap"><label for="metatitle">{#fullpage_dlg.meta_title}</label>&nbsp;</td>
-							<td><input type="text" id="metatitle" name="metatitle" value="" class="mceFocus"></td>
+							<td><input type="text" id="metatitle" name="metatitle" value="" class="mceFocus" /></td>
 						</tr>
 						<tr>
 							<td class="nowrap"><label for="metakeywords">{#fullpage_dlg.meta_keywords}</label>&nbsp;</td>
@@ -38,11 +38,11 @@
 						</tr>
 						<tr>
 							<td class="nowrap"><label for="metaauthor">{#fullpage_dlg.author}</label>&nbsp;</td>
-							<td><input type="text" id="metaauthor" name="metaauthor" value=""></td>
+							<td><input type="text" id="metaauthor" name="metaauthor" value="" /></td>
 						</tr>
 						<tr>
 							<td class="nowrap"><label for="metacopyright">{#fullpage_dlg.copyright}</label>&nbsp;</td>
-							<td><input type="text" id="metacopyright" name="metacopyright" value=""></td>
+							<td><input type="text" id="metacopyright" name="metacopyright" value="" /></td>
 						</tr>
 						<tr>
 							<td class="nowrap"><label for="metarobots">{#fullpage_dlg.meta_robots}</label>&nbsp;</td>
@@ -81,7 +81,7 @@
 						</tr>
 						<tr>
 							<td class="nowrap"><label for="langcode">{#fullpage_dlg.langcode}</label>&nbsp;</td>
-							<td><input type="text" id="langcode" name="langcode" value=""></td>
+							<td><input type="text" id="langcode" name="langcode" value="" /></td>
 						</tr>
 						<tr>
 							<td class="column1"><label for="langdir">{#fullpage_dlg.langdir}</label></td> 
@@ -95,7 +95,7 @@
 						</tr>
 						<tr>
 							<td class="nowrap"><label for="xml_pi">{#fullpage_dlg.xml_pi}</label>&nbsp;</td>
-							<td><input type="checkbox" id="xml_pi" name="xml_pi" class="checkbox"></td>
+							<td><input type="checkbox" id="xml_pi" name="xml_pi" class="checkbox" /></td>
 						</tr>
 					</table>
 				</fieldset>
@@ -129,7 +129,7 @@
 							<td>
 								<table border="0" cellpadding="0" cellspacing="0">
 									<tr>
-										<td><input id="textcolor" name="textcolor" type="text" value="" size="9" onchange="updateColor('textcolor_pick','textcolor');changedStyleField(this);"></td>
+										<td><input id="textcolor" name="textcolor" type="text" value="" size="9" onchange="updateColor('textcolor_pick','textcolor');changedStyleField(this);" /></td>
 										<td id="textcolor_pickcontainer">&nbsp;</td>
 									</tr>
 								</table>
@@ -147,7 +147,7 @@
 							<td>
 								<table border="0" cellpadding="0" cellspacing="0">
 									<tr>
-										<td><input id="bgimage" name="bgimage" type="text" value="" onchange="changedStyleField(this);"></td>
+										<td><input id="bgimage" name="bgimage" type="text" value="" onchange="changedStyleField(this);" /></td>
 										<td id="bgimage_pickcontainer">&nbsp;</td>
 									</tr>
 								</table>
@@ -158,7 +158,7 @@
 							<td>
 								<table border="0" cellpadding="0" cellspacing="0">
 									<tr>
-										<td><input id="bgcolor" name="bgcolor" type="text" value="" size="9" onchange="updateColor('bgcolor_pick','bgcolor');changedStyleField(this);"></td>
+										<td><input id="bgcolor" name="bgcolor" type="text" value="" size="9" onchange="updateColor('bgcolor_pick','bgcolor');changedStyleField(this);" /></td>
 										<td id="bgcolor_pickcontainer">&nbsp;</td>
 									</tr>
 								</table>
@@ -173,15 +173,15 @@
 					<table border="0" cellpadding="4" cellspacing="0">
 						<tr>
 							<td class="column1"><label for="leftmargin">{#fullpage_dlg.left_margin}</label></td> 
-							<td><input id="leftmargin" name="leftmargin" type="text" value="" onchange="changedStyleField(this);"></td>
+							<td><input id="leftmargin" name="leftmargin" type="text" value="" onchange="changedStyleField(this);" /></td>
 							<td class="column1"><label for="rightmargin">{#fullpage_dlg.right_margin}</label></td> 
-							<td><input id="rightmargin" name="rightmargin" type="text" value="" onchange="changedStyleField(this);"></td>
+							<td><input id="rightmargin" name="rightmargin" type="text" value="" onchange="changedStyleField(this);" /></td>
 						</tr>
 						<tr>
 							<td class="column1"><label for="topmargin">{#fullpage_dlg.top_margin}</label></td> 
-							<td><input id="topmargin" name="topmargin" type="text" value="" onchange="changedStyleField(this);"></td>
+							<td><input id="topmargin" name="topmargin" type="text" value="" onchange="changedStyleField(this);" /></td>
 							<td class="column1"><label for="bottommargin">{#fullpage_dlg.bottom_margin}</label></td> 
-							<td><input id="bottommargin" name="bottommargin" type="text" value="" onchange="changedStyleField(this);"></td>
+							<td><input id="bottommargin" name="bottommargin" type="text" value="" onchange="changedStyleField(this);" /></td>
 						</tr>
 					</table>
 				</fieldset>
@@ -195,7 +195,7 @@
 							<td>
 								<table border="0" cellpadding="0" cellspacing="0">
 									<tr>
-										<td><input id="link_color" name="link_color" type="text" value="" size="9" onchange="updateColor('link_color_pick','link_color');changedStyleField(this);"></td>
+										<td><input id="link_color" name="link_color" type="text" value="" size="9" onchange="updateColor('link_color_pick','link_color');changedStyleField(this);" /></td>
 										<td id="link_color_pickcontainer">&nbsp;</td>
 									</tr>
 								</table>
@@ -205,7 +205,7 @@
 							<td>
 								<table border="0" cellpadding="0" cellspacing="0">
 									<tr>
-										<td><input id="visited_color" name="visited_color" type="text" value="" size="9" onchange="updateColor('visited_color_pick','visited_color');changedStyleField(this);"></td>
+										<td><input id="visited_color" name="visited_color" type="text" value="" size="9" onchange="updateColor('visited_color_pick','visited_color');changedStyleField(this);" /></td>
 										<td id="visited_color_pickcontainer">&nbsp;</td>
 									</tr>
 								</table>
@@ -217,7 +217,7 @@
 							<td>
 								<table border="0" cellpadding="0" cellspacing="0">
 									<tr>
-										<td><input id="active_color" name="active_color" type="text" value="" size="9" onchange="updateColor('active_color_pick','active_color');changedStyleField(this);"></td>
+										<td><input id="active_color" name="active_color" type="text" value="" size="9" onchange="updateColor('active_color_pick','active_color');changedStyleField(this);" /></td>
 										<td id="active_color_pickcontainer">&nbsp;</td>
 									</tr>
 								</table>
@@ -230,7 +230,7 @@
 							<td>
 								<table border="0" cellpadding="0" cellspacing="0">
 									<tr>
-										<td><input id="hover_color" name="hover_color" type="text" value="" size="9" onchange="changedStyleField(this);"></td>
+										<td><input id="hover_color" name="hover_color" type="text" value="" size="9" onchange="changedStyleField(this);" /></td>
 										<td id="hover_color_pickcontainer">&nbsp;</td>
 									</tr>
 								</table>
@@ -247,14 +247,14 @@
 							<td class="column1"><label for="stylesheet">{#fullpage_dlg.stylesheet}</label></td> 
 							<td><table border="0" cellpadding="0" cellspacing="0">
 									<tr>
-										<td><input id="stylesheet" name="stylesheet" type="text" value=""></td>
+										<td><input id="stylesheet" name="stylesheet" type="text" value="" /></td>
 										<td id="stylesheet_browsercontainer">&nbsp;</td>
 									</tr>
 								</table></td>
 						</tr>
 						<tr>
 							<td class="column1"><label for="style">{#fullpage_dlg.style}</label></td> 
-							<td><input id="style" name="style" type="text" value="" onchange="changedStyleField(this);"></td>
+							<td><input id="style" name="style" type="text" value="" onchange="changedStyleField(this);" /></td>
 						</tr>
 					</table>
 				</fieldset>
@@ -286,7 +286,7 @@
 								<a href="#" onmousedown="return false;" class="moveupbutton" title="{#fullpage_dlg.moveup}"></a>
 								<a href="#" onmousedown="return false;" class="movedownbutton" title="{#fullpage_dlg.movedown}"></a>
 							</div>
-							<br style="clear: both">
+							<br style="clear: both" />
 						</div>
 						<select id="headlist" size="26" onchange="updateHeadElm(this.options[this.selectedIndex].value);">
 							<option value="title_0">&lt;title&gt;Some title bla bla bla&lt;/title&gt;</option>
@@ -314,15 +314,15 @@
 						</tr>
 						<tr>
 							<td class="column1"><label for="element_meta_name">{#fullpage_dlg.name}</label></td> 
-							<td><input id="element_meta_name" name="element_meta_name" type="text" value=""></td>
+							<td><input id="element_meta_name" name="element_meta_name" type="text" value="" /></td>
 						</tr>
 						<tr>
 							<td class="column1"><label for="element_meta_content">{#fullpage_dlg.content}</label></td> 
-							<td><input id="element_meta_content" name="element_meta_content" type="text" value=""></td>
+							<td><input id="element_meta_content" name="element_meta_content" type="text" value="" /></td>
 						</tr>
 					</table>
 
-					<input type="button" id="meta_updateelement" class="updateElementButton" name="update" value="{#update}" onclick="updateElement();">
+					<input type="button" id="meta_updateelement" class="updateElementButton" name="update" value="{#update}" onclick="updateElement();" />
 				</fieldset>
 
 				<fieldset id="title_element">
@@ -331,11 +331,11 @@
 					<table border="0" cellpadding="4" cellspacing="0">
 						<tr>
 							<td class="column1"><label for="element_title">{#fullpage_dlg.meta_title}</label></td> 
-							<td><input id="element_title" name="element_title" type="text" value=""></td>
+							<td><input id="element_title" name="element_title" type="text" value="" /></td>
 						</tr>
 					</table>
 
-					<input type="button" id="title_updateelement" class="updateElementButton" name="update" value="{#update}" onclick="updateElement();">
+					<input type="button" id="title_updateelement" class="updateElementButton" name="update" value="{#update}" onclick="updateElement();" />
 				</fieldset>
 
 				<fieldset id="script_element">
@@ -348,7 +348,7 @@
 						</ul>
 					</div>
 
-					<br style="clear: both">
+					<br style="clear: both" />
 
 					<div class="panel_wrapper">
 						<div id="script_props_panel" class="panel current">
@@ -368,7 +368,7 @@
 									<td class="column1"><label for="element_script_src">{#fullpage_dlg.src}</label></td> 
 									<td><table border="0" cellpadding="0" cellspacing="0">
 									<tr>
-										<td><input id="element_script_src" name="element_script_src" type="text" value=""></td>
+										<td><input id="element_script_src" name="element_script_src" type="text" value="" /></td>
 										<td id="script_src_pickcontainer">&nbsp;</td>
 									</tr>
 								</table></td>
@@ -379,7 +379,7 @@
 								</tr>
 								<tr>
 									<td class="column1"><label for="element_script_defer">{#fullpage_dlg.defer}</label></td> 
-									<td><input type="checkbox" id="element_script_defer" name="element_script_defer" class="checkbox"></td>
+									<td><input type="checkbox" id="element_script_defer" name="element_script_defer" class="checkbox" /></td>
 								</tr>
 							</table>
 						</div>
@@ -389,7 +389,7 @@
 						</div>
 					</div>
 
-					<input type="button" id="script_updateelement" class="updateElementButton" name="update" value="{#update}" onclick="updateElement();">
+					<input type="button" id="script_updateelement" class="updateElementButton" name="update" value="{#update}" onclick="updateElement();" />
 				</fieldset>
 
 				<fieldset id="style_element">
@@ -402,7 +402,7 @@
 						</ul>
 					</div>
 
-					<br style="clear: both">
+					<br style="clear: both" />
 
 					<div class="panel_wrapper">
 						<div id="style_props_panel" class="panel current">
@@ -425,7 +425,7 @@
 						</div>
 					</div>
 
-					<input type="button" id="style_updateelement" class="updateElementButton" name="update" value="{#update}" onclick="updateElement();">
+					<input type="button" id="style_updateelement" class="updateElementButton" name="update" value="{#update}" onclick="updateElement();" />
 				</fieldset>
 
 				<fieldset id="base_element">
@@ -434,15 +434,15 @@
 					<table border="0" cellpadding="4" cellspacing="0">
 						<tr>
 							<td class="column1"><label for="element_base_href">{#fullpage_dlg.href}</label></td> 
-							<td><input id="element_base_href" name="element_base_href" type="text" value=""></td>
+							<td><input id="element_base_href" name="element_base_href" type="text" value="" /></td>
 						</tr>
 						<tr>
 							<td class="column1"><label for="element_base_target">{#fullpage_dlg.target}</label></td> 
-							<td><input id="element_base_target" name="element_base_target" type="text" value=""></td>
+							<td><input id="element_base_target" name="element_base_target" type="text" value="" /></td>
 						</tr>
 					</table>
 
-					<input type="button" id="base_updateelement" class="updateElementButton" name="update" value="{#update}" onclick="updateElement();">
+					<input type="button" id="base_updateelement" class="updateElementButton" name="update" value="{#update}" onclick="updateElement();" />
 				</fieldset>
 
 				<fieldset id="link_element">
@@ -455,7 +455,7 @@
 						</ul>
 					</div>
 
-					<br style="clear: both">
+					<br style="clear: both" />
 
 					<div class="panel_wrapper">
 						<div id="link_general_panel" class="panel current">
@@ -464,14 +464,14 @@
 									<td class="column1"><label for="element_link_href">{#fullpage_dlg.href}</label></td> 
 									<td><table border="0" cellpadding="0" cellspacing="0">
 									<tr>
-										<td><input id="element_link_href" name="element_link_href" type="text" value=""></td>
+										<td><input id="element_link_href" name="element_link_href" type="text" value="" /></td>
 										<td id="link_href_pickcontainer">&nbsp;</td>
 									</tr>
 								</table></td>
 								</tr>
 								<tr>
 									<td class="column1"><label for="element_link_title">{#fullpage_dlg.meta_title}</label></td> 
-									<td><input id="element_link_title" name="element_link_title" type="text" value=""></td>
+									<td><input id="element_link_title" name="element_link_title" type="text" value="" /></td>
 								</tr>
 								<tr>
 									<td class="column1"><label for="element_link_type">{#fullpage_dlg.type}</label></td> 
@@ -517,11 +517,11 @@
 								</tr>
 								<tr>
 									<td class="column1"><label for="element_link_hreflang">{#fullpage_dlg.hreflang}</label></td> 
-									<td><input id="element_link_hreflang" name="element_link_hreflang" type="text" value=""></td>
+									<td><input id="element_link_hreflang" name="element_link_hreflang" type="text" value="" /></td>
 								</tr>
 								<tr>
 									<td class="column1"><label for="element_link_target">{#fullpage_dlg.target}</label></td> 
-									<td><input id="element_link_target" name="element_link_target" type="text" value=""></td>
+									<td><input id="element_link_target" name="element_link_target" type="text" value="" /></td>
 								</tr>
 								<tr>
 									<td><label for="element_style_rev">{#fullpage_dlg.rev}</label></td>
@@ -549,7 +549,7 @@
 						</div>
 					</div>
 
-					<input type="button" id="link_updateelement" class="updateElementButton" name="update" value="{#update}" onclick="updateElement();">
+					<input type="button" id="link_updateelement" class="updateElementButton" name="update" value="{#update}" onclick="updateElement();" />
 				</fieldset>
 
 				<fieldset id="comment_element">
@@ -557,18 +557,18 @@
 
 					<textarea id="element_comment_value"></textarea>
 
-					<input type="button" id="comment_updateelement" class="updateElementButton" name="update" value="{#update}" onclick="updateElement();">
+					<input type="button" id="comment_updateelement" class="updateElementButton" name="update" value="{#update}" onclick="updateElement();" />
 				</fieldset>
 			</div>
 		</div>
 
 		<div class="mceActionPanel">
 			<div style="float: left">
-				<input type="submit" id="insert" name="update" value="{#update}">
+				<input type="submit" id="insert" name="update" value="{#update}" />
 			</div>
 
 			<div style="float: right">
-				<input type="button" id="cancel" name="cancel" value="{#cancel}" onclick="tinyMCEPopup.close();">
+				<input type="button" id="cancel" name="cancel" value="{#cancel}" onclick="tinyMCEPopup.close();" />
 			</div>
 		</div>
     </form>

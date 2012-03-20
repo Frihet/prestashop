@@ -31,7 +31,7 @@
 			</select>
 		</p>
 		<p class="checkbox">
-			<input type="checkbox" name="same" id="addressesAreEquals" value="1" onclick="updateAddressesDisplay();" {if $cart->id_address_invoice == $cart->id_address_delivery || $addresses|@count == 1}checked="checked"{/if}>
+			<input type="checkbox" name="same" id="addressesAreEquals" value="1" onclick="updateAddressesDisplay();" {if $cart->id_address_invoice == $cart->id_address_delivery || $addresses|@count == 1}checked="checked"{/if} />
 			<label for="addressesAreEquals">{l s='Use the same address for billing.'}</label>
 		</p>
 		<p id="address_invoice_form" class="select" {if $cart->id_address_invoice == $cart->id_address_delivery}style="display: none;"{/if}>
@@ -81,7 +81,7 @@
 				</tr>
 			</tbody>
 		</table>
-		<br class="clear">
+		<br class="clear" />
 		<p class="address_add submit">
 			<a href="{$base_dir_ssl}address.php?back=order.php?step={$order_step}" title="{l s='Add'}" class="button_large">{l s='Add a new address'}</a>
 		</p>
@@ -91,10 +91,10 @@
 		</div>
 	</div>
 	<p class="cart_navigation submit">
-		<input type="hidden" class="hidden" name="step" value="{$order_step}">
-		<input type="hidden" name="back" value="{$back}">
+		<input type="hidden" class="hidden" name="step" value="{$order_step}" />
+		<input type="hidden" name="back" value="{$back}" />
 		<a href="{$base_dir_ssl}order.php?step={$order_step-1}{if $back}&back={$back}{/if}" title="{l s='Previous'}" class="button">&laquo; {l s='Previous'}</a>
-		<input type="submit" name="process{$order_step}" value="{l s='Next'} &raquo;" class="exclusive">
+		<input type="submit" name="process{$order_step}" value="{l s='Next'} &raquo;" class="exclusive" />
 	</p>
 </form>
 {/variablebox}

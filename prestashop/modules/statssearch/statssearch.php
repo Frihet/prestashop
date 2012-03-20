@@ -67,7 +67,7 @@ class StatsSearch extends ModuleGraph
 	{
 		$result = Db::getInstance()->ExecuteS($this->_query.ModuleGraph::getDateBetween().$this->_query2);
 		$this->_html = '
-		<fieldset class="width3"><legend><img src="../modules/'.$this->name.'/logo.gif"> '.$this->displayName.'</legend>';
+		<fieldset class="width3"><legend><img src="../modules/'.$this->name.'/logo.gif" /> '.$this->displayName.'</legend>';
 		$table = '<div style="overflow-y: scroll; height: 600px;">
 		<table class="table" border="0" cellspacing="0" cellspacing="0">
 		<thead>
@@ -87,7 +87,7 @@ class StatsSearch extends ModuleGraph
 		$table .= '</tbody></table></div>';
 		
 		if (sizeof($result))
-			$this->_html .= '<center>'.ModuleGraph::engine(array('type' => 'pie')).'</center><br class="clear">'.$table;
+			$this->_html .= '<center>'.ModuleGraph::engine(array('type' => 'pie')).'</center><br class="clear" />'.$table;
 		else
 			$this->_html .= '<p><strong>'.$this->l('No keywords searched more than once found.').'</strong></p>';
 		$this->_html .= '</fieldset>';

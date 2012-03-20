@@ -53,14 +53,14 @@ class AdminTaxes extends AdminTab
 			id_language = Number('.$defaultLanguage.');
 		</script>
 		<form action="'.$currentIndex.'&submitAdd'.$this->table.'=1&token='.$this->token.'" method="post">
-		'.($obj->id ? '<input type="hidden" name="id_'.$this->table.'" value="'.$obj->id.'">' : '').'
-			<fieldset class="width3"><legend><img src="../img/admin/dollar.gif">'.$this->l('Taxes').'</legend>
+		'.($obj->id ? '<input type="hidden" name="id_'.$this->table.'" value="'.$obj->id.'" />' : '').'
+			<fieldset class="width3"><legend><img src="../img/admin/dollar.gif" />'.$this->l('Taxes').'</legend>
 				<label>'.$this->l('Name:').' </label>
 				<div class="margin-form">';
 				foreach ($languages as $language)
 					echo '
 					<div id="name_'.$language['id_lang'].'" style="display: '.($language['id_lang'] == $defaultLanguage ? 'block' : 'none').'; float: left;">
-						<input size="33" type="text" name="name_'.$language['id_lang'].'" value="'.htmlentities($this->getFieldValue($obj, 'name', intval($language['id_lang'])), ENT_COMPAT, 'UTF-8').'"><sup> *</sup>
+						<input size="33" type="text" name="name_'.$language['id_lang'].'" value="'.htmlentities($this->getFieldValue($obj, 'name', intval($language['id_lang'])), ENT_COMPAT, 'UTF-8').'" /><sup> *</sup>
 						<span class="hint" name="help_box">'.$this->l('Invalid characters:').' <>;=#{}<span class="hint-pointer">&nbsp;</span></span>
 					</div>';
 				$this->displayFlags($languages, $defaultLanguage, 'name', 'name');
@@ -68,24 +68,24 @@ class AdminTaxes extends AdminTab
 				</div>
 				<label>'.$this->l('Rate:').' </label>
 				<div class="margin-form">
-					<input type="text" size="4" maxlength="5" name="rate" value="'.htmlentities($this->getFieldValue($obj, 'rate'), ENT_COMPAT, 'UTF-8').'"> <sup>*</sup>
+					<input type="text" size="4" maxlength="5" name="rate" value="'.htmlentities($this->getFieldValue($obj, 'rate'), ENT_COMPAT, 'UTF-8').'" /> <sup>*</sup>
 					<p style="clear: both;">'.$this->l('Format: XX.XX (e.g., 19.60)').'</p>
 				</div>
 				<label>'.$this->l('Zone:').'</label>
 				<div class="margin-form">';
 		foreach ($zones AS $zone)
-			echo '<input type="checkbox" id="zone_'.$zone['id_zone'].'" name="zone_'.$zone['id_zone'].'" value="true" '.(Tools::getValue('zone_'.$zone['id_zone'], (is_array($tax_zones) AND in_array(array('id_tax' => $obj->id, 'id_zone' => $zone['id_zone']), $tax_zones))) ? ' checked="checked"' : '').'><label class="t" for="zone_'.$zone['id_zone'].'">&nbsp;<b>'.$zone['name'].'</b></label><br>';
+			echo '<input type="checkbox" id="zone_'.$zone['id_zone'].'" name="zone_'.$zone['id_zone'].'" value="true" '.(Tools::getValue('zone_'.$zone['id_zone'], (is_array($tax_zones) AND in_array(array('id_tax' => $obj->id, 'id_zone' => $zone['id_zone']), $tax_zones))) ? ' checked="checked"' : '').'><label class="t" for="zone_'.$zone['id_zone'].'">&nbsp;<b>'.$zone['name'].'</b></label><br />';
 		echo '	<p>'.$this->l('Zone in which this tax is activated').'</p>
 				</div>
 				<label>'.$this->l('States:').'</label>
 				<div class="margin-form">';
 		if ($states)
 			foreach ($states AS $state)
-				echo '<input type="checkbox" id="state_'.$state['id_state'].'" name="state_'.$state['id_state'].'" value="true" '.(Tools::getValue('state_'.$state['id_state'], (is_array($tax_states) AND in_array(array('id_tax' => $obj->id, 'id_state' => $state['id_state']), $tax_states))) ? ' checked="checked"' : '').'><label class="t" for="state_'.$state['id_state'].'">&nbsp;<b>'.$state['name'].'</b></label><br>';
+				echo '<input type="checkbox" id="state_'.$state['id_state'].'" name="state_'.$state['id_state'].'" value="true" '.(Tools::getValue('state_'.$state['id_state'], (is_array($tax_states) AND in_array(array('id_tax' => $obj->id, 'id_state' => $state['id_state']), $tax_states))) ? ' checked="checked"' : '').'><label class="t" for="state_'.$state['id_state'].'">&nbsp;<b>'.$state['name'].'</b></label><br />';
 		echo 	'<p>'.$this->l('State in which this tax is activated').'</p>
 				</div>
 				<div class="margin-form">
-					<input type="submit" value="'.$this->l('   Save   ').'" name="submitAdd'.$this->table.'" class="button">
+					<input type="submit" value="'.$this->l('   Save   ').'" name="submitAdd'.$this->table.'" class="button" />
 				</div>
 				<div class="small"><sup>*</sup> '.$this->l('Required field').'</div>
 			</fieldset>

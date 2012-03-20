@@ -91,7 +91,7 @@ function writeBookmarkLink(url, title, text, img)
 {
 	var insert = '';
 	if (img)
-		insert = writeBookmarkLinkObject(url, title, '<img src="' + img + '" alt="' + escape(text) + '" title="' + escape(text) + '">') + '&nbsp';
+		insert = writeBookmarkLinkObject(url, title, '<img src="' + img + '" alt="' + escape(text) + '" title="' + escape(text) + '" />') + '&nbsp';
 	insert += writeBookmarkLinkObject(url, title, text);
 	document.write(insert);
 }

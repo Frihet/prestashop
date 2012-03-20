@@ -31,9 +31,9 @@ if ($tab)
 		$tabs = array();
 		recursiveTab($id_tab);
 		$tabs = array_reverse($tabs);
-		echo '<div class="path_bar"><img src="../img/admin/prefs.gif" style="margin-right:10px"><a href="?token='.Tools::getAdminToken($tab.intval(Tab::getIdFromClassName($tab)).intval($cookie->id_employee)).'">'.translate('Back Office').'</a>';
+		echo '<div class="path_bar"><img src="../img/admin/prefs.gif" style="margin-right:10px" /><a href="?token='.Tools::getAdminToken($tab.intval(Tab::getIdFromClassName($tab)).intval($cookie->id_employee)).'">'.translate('Back Office').'</a>';
 		foreach ($tabs AS $key => $item)
-			echo ' >> <img src="../img/t/'.$item['class_name'].'.gif" style="margin-right:5px">'.((sizeof($tabs) - 1 > $key) ? '<a href="?tab='.$item['class_name'].'&token='.Tools::getAdminToken($item['class_name'].intval($item['id_tab']).intval($cookie->id_employee)).'">' : '').$item['name'].((sizeof($tabs) - 1 > $key) ? '</a>' : '');
+			echo ' >> <img src="../img/t/'.$item['class_name'].'.gif" style="margin-right:5px" />'.((sizeof($tabs) - 1 > $key) ? '<a href="?tab='.$item['class_name'].'&token='.Tools::getAdminToken($item['class_name'].intval($item['id_tab']).intval($cookie->id_employee)).'">' : '').$item['name'].((sizeof($tabs) - 1 > $key) ? '</a>' : '');
 		echo '</div>';
 
 		if (Validate::isLoadedObject($adminObj))
@@ -72,10 +72,10 @@ if ($tab)
 else /* Else display homepage */
 {
 	echo '<div id="adminHeader">
-	<img src="../img/logo.jpg" alt="Logo" title="Logo"><br><br>
+	<img src="../img/logo.jpg" alt="Logo" title="Logo" /><br /><br />
 	<h2>'.translate('Welcome to your Back Office').'</h2>
 	'.translate('Click the tabs to navigate.').'
-	<br><br><br>';
+	<br /><br /><br />';
 	
 	if (@ini_get('allow_url_fopen') AND $update = checkPSVersion())
 		echo '<div class="warning warn" style="margin-bottom:30px;"><h3>'.translate('New PrestaShop version avalaible').' : <a style="text-decoration: underline;" href="'.$update['link'].'">'.translate('Download').'&nbsp;'.$update['name'].'</a> !</h3></div>';

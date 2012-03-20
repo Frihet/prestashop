@@ -348,7 +348,7 @@ class Tools
 	{
 		echo '<pre style="text-align: left;">';
 		print_r($object);
-		echo '</pre><br>';
+		echo '</pre><br />';
 		if ($kill)
 			die('END');
 	}

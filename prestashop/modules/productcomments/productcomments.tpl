@@ -19,17 +19,17 @@
 	{if $criterions|@count > 0}
 		<h2>{l s='Average grade' mod='productcomments'}</h2>
 		<div style="float: left">
-			{l s='Average' mod='productcomments'}:<br>
+			{l s='Average' mod='productcomments'}:<br />
 			{section loop=6 step=1 start=1 name=average}
-				<input class="auto-submit-star" disabled="disabled" type="radio" name="average" {if $averageTotal|round neq 0 and $smarty.section.average.index eq $averageTotal|round}checked="checked"{/if}>
+				<input class="auto-submit-star" disabled="disabled" type="radio" name="average" {if $averageTotal|round neq 0 and $smarty.section.average.index eq $averageTotal|round}checked="checked"{/if} />
 			{/section}
 		</div>
 		<div style="float: left; margin-left: 40px; width: 400px">
 		{foreach from=$criterions item=c}
 			<div style="float: left; margin-left: 20px; margin-bottom: 10px;">
-			{$c.name|escape:'html':'UTF-8'}<br>
+			{$c.name|escape:'html':'UTF-8'}<br />
 			{section loop=6 step=1 start=1 name=average}
-				<input class="auto-submit-star" disabled="disabled" type="radio" name="{$c.name|escape:'html':'UTF-8'}_{$smarty.section.average.index}" value="{$smarty.section.average.index}" {if $averages[$c.id_product_comment_criterion]|round neq 0 and $smarty.section.average.index eq $averages[$c.id_product_comment_criterion]|round}checked="checked"{/if}>
+				<input class="auto-submit-star" disabled="disabled" type="radio" name="{$c.name|escape:'html':'UTF-8'}_{$smarty.section.average.index}" value="{$smarty.section.average.index}" {if $averages[$c.id_product_comment_criterion]|round neq 0 and $smarty.section.average.index eq $averages[$c.id_product_comment_criterion]|round}checked="checked"{/if} />
 			{/section}
 			</div>
 		{/foreach}
@@ -64,7 +64,7 @@
 	<p class="align_center">{l s='No customer comments for the moment.' mod='productcomments'}</p>
 {/if}
 {if $logged == true}
-<p class="align_center"><input style="margin:auto;" class="button_large" type="button" id="addCommentButton" value="{l s='Add a comment' mod='productcomments'}" onclick="$('#sendComment').slideDown('slow');$(this).slideUp('slow');"></p>
+<p class="align_center"><input style="margin:auto;" class="button_large" type="button" id="addCommentButton" value="{l s='Add a comment' mod='productcomments'}" onclick="$('#sendComment').slideDown('slow');$(this).slideUp('slow');" /></p>
 <form action="{$action_url}" method="post" class="std" id="sendComment" style="display:none;">
 	<fieldset>
 		<p class="align_right"><a href="javascript:closeCommentForm()">X</a></p>
@@ -75,16 +75,16 @@
 		<tr>
 			<td>&nbsp;&nbsp;&nbsp;&nbsp;</td>
 			<td>
-				<input type="hidden" name="id_product_comment_criterion_{$smarty.section.i.iteration}" value="{$criterions[i].id_product_comment_criterion|intval}">
+				<input type="hidden" name="id_product_comment_criterion_{$smarty.section.i.iteration}" value="{$criterions[i].id_product_comment_criterion|intval}" />
 				{$criterions[i].name|escape:'html':'UTF-8'}
 			</td>
 			<td>&nbsp;&nbsp;&nbsp;&nbsp;</td>
 			<td>
-			<input class="star" type="radio" name="{$smarty.section.i.iteration}_grade" id="{$smarty.section.i.iteration}_grade" value="1">
-			<input class="star" type="radio" name="{$smarty.section.i.iteration}_grade" value="2">
-			<input class="star" type="radio" name="{$smarty.section.i.iteration}_grade" value="3" checked="checked">
-			<input class="star" type="radio" name="{$smarty.section.i.iteration}_grade" value="4">
-			<input class="star" type="radio" name="{$smarty.section.i.iteration}_grade" value="5">
+			<input class="star" type="radio" name="{$smarty.section.i.iteration}_grade" id="{$smarty.section.i.iteration}_grade" value="1" />
+			<input class="star" type="radio" name="{$smarty.section.i.iteration}_grade" value="2" />
+			<input class="star" type="radio" name="{$smarty.section.i.iteration}_grade" value="3" checked="checked" />
+			<input class="star" type="radio" name="{$smarty.section.i.iteration}_grade" value="4" />
+			<input class="star" type="radio" name="{$smarty.section.i.iteration}_grade" value="5" />
 			</td>
 		</tr>
 		{/section}
@@ -92,7 +92,7 @@
 		{/if}
 		<p><textarea cols="50" rows="5" name="content" id="content"></textarea></p>
 		<p class="submit">
-			<input class="button" name="submitMessage" value="{l s='Send' mod='productcomments'}" type="submit">
+			<input class="button" name="submitMessage" value="{l s='Send' mod='productcomments'}" type="submit" />
 		</p>
 	</fieldset>
 </form>

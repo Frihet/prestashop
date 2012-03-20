@@ -117,13 +117,13 @@ class AdminStats extends AdminStatsTab
 		echo '
 		</div>
 		<div style="float: left; margin-left: 40px;">
-			<fieldset class="width3"><legend><img src="../img/admin/tab-stats.gif"> '.$this->l('Help').'</legend>
+			<fieldset class="width3"><legend><img src="../img/admin/tab-stats.gif" /> '.$this->l('Help').'</legend>
 				<p>'.$this->l('Use the calendar on the left to select the time period.').'</p>
 				<p>'.$this->l('All available statistic modules are displayed in the Navigation list beneath the calendar.').'</p>
 				<p>'.$this->l('In the Settings sub-tab, you can also customize the Stats tab to fit your needs and resources, change the graph rendering engine, and adjust the database settings.').'</p>
 			</fieldset>
-			<br><br>
-			<fieldset class="width3"><legend><img src="../img/admin/___info-ca.gif" style="vertical-align: middle"> '.$this->l('Sales').'</legend>
+			<br /><br />
+			<fieldset class="width3"><legend><img src="../img/admin/___info-ca.gif" style="vertical-align: middle" /> '.$this->l('Sales').'</legend>
 				<table>
 					<tr><td style="font-weight: bold">'.$this->l('Total placed orders').'</td><td style="padding-left: 20px">'.$sales['orders'].'</td></tr>
 					<tr><td style="font-weight: bold">'.$this->l('Total products sold').'</td><td style="padding-left: 20px">'.$sales['products'].'</td></tr>
@@ -151,8 +151,8 @@ class AdminStats extends AdminStatsTab
 					</tr>
 				</table>
 			</fieldset>
-			<br><br>
-			<fieldset class="width3"><legend><img src="../img/admin/products.gif" style="vertical-align: middle"> '.$this->l('Carts').'</legend>
+			<br /><br />
+			<fieldset class="width3"><legend><img src="../img/admin/products.gif" style="vertical-align: middle" /> '.$this->l('Carts').'</legend>
 				<table cellspacing="0" cellpadding="0" class="table">
 					<tr>
 						<th style="width: 150px"></th>
@@ -176,8 +176,8 @@ class AdminStats extends AdminStatsTab
 		if (strtolower($cookie->stats_granularity) != 'd' AND $records AND is_array($records))
 		{
 			echo '
-			<br><br>
-			<fieldset class="width3"><legend><img src="../img/admin/medal.png" style="vertical-align: middle">'.$this->l('Records').'</legend>
+			<br /><br />
+			<fieldset class="width3"><legend><img src="../img/admin/medal.png" style="vertical-align: middle" />'.$this->l('Records').'</legend>
 				<table cellspacing="0" cellpadding="0" class="table">
 					<tr>
 						<th style="width: 150px"></th>

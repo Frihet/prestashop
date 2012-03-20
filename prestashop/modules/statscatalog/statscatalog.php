@@ -148,7 +148,7 @@ class StatsCatalog extends Module
 		
 		$html = '
 		<script type="text/javascript" language="javascript">openCloseLayer(\'calendar\');</script>
-		<fieldset class="width3"><legend><img src="../modules/'.$this->name.'/logo.gif"> '.$this->displayName.'</legend>
+		<fieldset class="width3"><legend><img src="../modules/'.$this->name.'/logo.gif" /> '.$this->displayName.'</legend>
 			<label>
 				'.$this->l('Choose a category').'
 			</label>
@@ -185,7 +185,7 @@ class StatsCatalog extends Module
 		if (sizeof($productsNB) AND sizeof($productsNB) < 50)
 		{
 			$html .= '
-			<fieldset class="width3 space"><legend><img src="../modules/'.$this->name.'/basket_delete.png"> '.$this->l('Products never bought').'</legend>
+			<fieldset class="width3 space"><legend><img src="../modules/'.$this->name.'/basket_delete.png" /> '.$this->l('Products never bought').'</legend>
 				<table cellpadding="0" cellspacing="0" class="table">
 					<tr><th>'.$this->l('ID').'</th><th>'.$this->l('Name').'</th><th>'.$this->l('Edit / View').'</th></tr>';
 			foreach ($productsNB as $product)
@@ -194,8 +194,8 @@ class StatsCatalog extends Module
 						<td>'.$product['id_product'].'</td>
 						<td style="width: 400px;">'.$product['name'].'</td>
 						<td style="text-align: right">
-							<a href="index.php?tab=AdminCatalog&id_product='.$product['id_product'].'&addproduct&token='.$productToken.'" target="_blank"><img src="../modules/'.$this->name.'/page_edit.png"></a>
-							<a href="'.$link->getProductLink($product['id_product'], $product['link_rewrite']).'" target="_blank"><img src="../modules/'.$this->name.'/application_home.png"></a>
+							<a href="index.php?tab=AdminCatalog&id_product='.$product['id_product'].'&addproduct&token='.$productToken.'" target="_blank"><img src="../modules/'.$this->name.'/page_edit.png" /></a>
+							<a href="'.$link->getProductLink($product['id_product'], $product['link_rewrite']).'" target="_blank"><img src="../modules/'.$this->name.'/application_home.png" /></a>
 						</td>
 					</tr>';
 			$html .= '

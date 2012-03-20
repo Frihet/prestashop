@@ -72,65 +72,65 @@ class AdminImages extends AdminTab
 
 		echo '
 		<form action="'.$currentIndex.'&submitAdd'.$this->table.'=1&token='.$this->token.'" method="post" class="width2">
-		'.($obj->id ? '<input type="hidden" name="id_'.$this->table.'" value="'.$obj->id.'">' : '').'
-			<fieldset><legend><img src="../img/admin/picture.gif">'.$this->l('Images').'</legend><br>
+		'.($obj->id ? '<input type="hidden" name="id_'.$this->table.'" value="'.$obj->id.'" />' : '').'
+			<fieldset><legend><img src="../img/admin/picture.gif" />'.$this->l('Images').'</legend><br />
 				<label>'.$this->l('Type name:').' </label>
 				<div class="margin-form">
-					<input type="text" name="name" value="'.htmlentities($this->getFieldValue($obj, 'name'), ENT_COMPAT, 'UTF-8').'"> <sup>*</sup>
+					<input type="text" name="name" value="'.htmlentities($this->getFieldValue($obj, 'name'), ENT_COMPAT, 'UTF-8').'" /> <sup>*</sup>
 					<p style="clear: both;">'.$this->l('Letters only (e.g., small, medium, large, extra-large)').'</p>
 				</div>
 				<label>'.$this->l('Width:').' </label>
 				<div class="margin-form">
-					<input type="text" size="4" maxlength="5" name="width" value="'.intval($this->getFieldValue($obj, 'width')).'"> <sup>*</sup>
+					<input type="text" size="4" maxlength="5" name="width" value="'.intval($this->getFieldValue($obj, 'width')).'" /> <sup>*</sup>
 					<p style="clear: both;">'.$this->l('Maximum image width in pixels').'</p>
 				</div>
 				<label>'.$this->l('Height:').' </label>
 				<div class="margin-form">
-					<input type="text" size="4" maxlength="5" name="height" value="'.intval($this->getFieldValue($obj, 'height')).'"> <sup>*</sup>
+					<input type="text" size="4" maxlength="5" name="height" value="'.intval($this->getFieldValue($obj, 'height')).'" /> <sup>*</sup>
 					<p style="clear: both;">'.$this->l('Maximum image height in pixels').'</p>
 				</div>
 				<label>'.$this->l('Products:').' </label>
 				<div class="margin-form">
-					<input type="radio" name="products" id="products_on" value="1" '.($this->getFieldValue($obj, 'products') ? 'checked="checked" ' : '').'>
-					<label class="t" for="products_on"><img src="../img/admin/enabled.gif" alt="'.$this->l('Enabled').'" title="'.$this->l('Enabled').'"></label>
-					<input type="radio" name="products" id="products_off" value="0" '.(!$this->getFieldValue($obj, 'products') ? 'checked="checked" ' : '').'>
-					<label class="t" for="products_off"><img src="../img/admin/disabled.gif" alt="'.$this->l('Disabled').'" title="'.$this->l('Disabled').'"></label>
+					<input type="radio" name="products" id="products_on" value="1" '.($this->getFieldValue($obj, 'products') ? 'checked="checked" ' : '').'/>
+					<label class="t" for="products_on"><img src="../img/admin/enabled.gif" alt="'.$this->l('Enabled').'" title="'.$this->l('Enabled').'" /></label>
+					<input type="radio" name="products" id="products_off" value="0" '.(!$this->getFieldValue($obj, 'products') ? 'checked="checked" ' : '').'/>
+					<label class="t" for="products_off"><img src="../img/admin/disabled.gif" alt="'.$this->l('Disabled').'" title="'.$this->l('Disabled').'" /></label>
 					<p>'.$this->l('This type will be applied to product images').'</p>
 				</div>
 				<label>'.$this->l('Categories:').' </label>
 				<div class="margin-form">
-					<input type="radio" name="categories" id="categories_on" value="1" '.($this->getFieldValue($obj, 'categories') ? 'checked="checked" ' : '').'>
-					<label class="t" for="categories_on"><img src="../img/admin/enabled.gif" alt="'.$this->l('Enabled').'" title="'.$this->l('Enabled').'"></label>
-					<input type="radio" name="categories" id="categories_off" value="0" '.(!$this->getFieldValue($obj, 'categories') ? 'checked="checked" ' : '').'>
-					<label class="t" for="categories_off"><img src="../img/admin/disabled.gif" alt="'.$this->l('Disabled').'" title="'.$this->l('Disabled').'"></label>
+					<input type="radio" name="categories" id="categories_on" value="1" '.($this->getFieldValue($obj, 'categories') ? 'checked="checked" ' : '').'/>
+					<label class="t" for="categories_on"><img src="../img/admin/enabled.gif" alt="'.$this->l('Enabled').'" title="'.$this->l('Enabled').'" /></label>
+					<input type="radio" name="categories" id="categories_off" value="0" '.(!$this->getFieldValue($obj, 'categories') ? 'checked="checked" ' : '').'/>
+					<label class="t" for="categories_off"><img src="../img/admin/disabled.gif" alt="'.$this->l('Disabled').'" title="'.$this->l('Disabled').'" /></label>
 					<p>'.$this->l('This type will be applied to category images').'</p>
 				</div>
 				<label>'.$this->l('Manufacturers:').' </label>
 				<div class="margin-form">
-					<input type="radio" name="manufacturers" id="manufacturers_on" value="1" '.($this->getFieldValue($obj, 'manufacturers') ? 'checked="checked" ' : '').'>
-					<label class="t" for="manufacturers_on"><img src="../img/admin/enabled.gif" alt="'.$this->l('Enabled').'"></label>
-					<input type="radio" name="manufacturers" id="manufacturers_off" value="0" '.(!$this->getFieldValue($obj, 'manufacturers') ? 'checked="checked" ' : '').'>
-					<label class="t" for="manufacturers_off"><img src="../img/admin/disabled.gif" alt="'.$this->l('Disabled').'"></label>
+					<input type="radio" name="manufacturers" id="manufacturers_on" value="1" '.($this->getFieldValue($obj, 'manufacturers') ? 'checked="checked" ' : '').'/>
+					<label class="t" for="manufacturers_on"><img src="../img/admin/enabled.gif" alt="'.$this->l('Enabled').'" /></label>
+					<input type="radio" name="manufacturers" id="manufacturers_off" value="0" '.(!$this->getFieldValue($obj, 'manufacturers') ? 'checked="checked" ' : '').'/>
+					<label class="t" for="manufacturers_off"><img src="../img/admin/disabled.gif" alt="'.$this->l('Disabled').'" /></label>
 					<p>'.$this->l('This type will be applied to manufacturer images').'</p>
 				</div>
 				<label>'.$this->l('Suppliers:').' </label>
 				<div class="margin-form">
-					<input type="radio" name="suppliers" id="suppliers_on" value="1" '.($this->getFieldValue($obj, 'suppliers') ? 'checked="checked" ' : '').'>
-					<label class="t" for="suppliers_on"><img src="../img/admin/enabled.gif" alt="'.$this->l('Enabled').'"></label>
-					<input type="radio" name="suppliers" id="suppliers_off" value="0" '.(!$this->getFieldValue($obj, 'suppliers') ? 'checked="checked" ' : '').'>
-					<label class="t" for="suppliers_off"><img src="../img/admin/disabled.gif" alt="'.$this->l('Disabled').'"></label>
+					<input type="radio" name="suppliers" id="suppliers_on" value="1" '.($this->getFieldValue($obj, 'suppliers') ? 'checked="checked" ' : '').'/>
+					<label class="t" for="suppliers_on"><img src="../img/admin/enabled.gif" alt="'.$this->l('Enabled').'" /></label>
+					<input type="radio" name="suppliers" id="suppliers_off" value="0" '.(!$this->getFieldValue($obj, 'suppliers') ? 'checked="checked" ' : '').'/>
+					<label class="t" for="suppliers_off"><img src="../img/admin/disabled.gif" alt="'.$this->l('Disabled').'" /></label>
 					<p>'.$this->l('This type will be applied to suppliers images').'</p>
 				</div>
 				<label>'.$this->l('Scenes:').' </label>
 				<div class="margin-form">
-					<input type="radio" name="scenes" id="scenes_on" value="1" '.($this->getFieldValue($obj, 'scenes') ? 'checked="checked" ' : '').'>
-					<label class="t" for="scenes_on"><img src="../img/admin/enabled.gif" alt="'.$this->l('Enabled').'"></label>
-					<input type="radio" name="scenes" id="scenes_off" value="0" '.(!$this->getFieldValue($obj, 'scenes') ? 'checked="checked" ' : '').'>
-					<label class="t" for="scenes_off"><img src="../img/admin/disabled.gif" alt="'.$this->l('Disabled').'"></label>
+					<input type="radio" name="scenes" id="scenes_on" value="1" '.($this->getFieldValue($obj, 'scenes') ? 'checked="checked" ' : '').'/>
+					<label class="t" for="scenes_on"><img src="../img/admin/enabled.gif" alt="'.$this->l('Enabled').'" /></label>
+					<input type="radio" name="scenes" id="scenes_off" value="0" '.(!$this->getFieldValue($obj, 'scenes') ? 'checked="checked" ' : '').'/>
+					<label class="t" for="scenes_off"><img src="../img/admin/disabled.gif" alt="'.$this->l('Disabled').'" /></label>
 					<p>'.$this->l('This type will be applied to scenes images').'</p>
 				</div>
 				<div class="margin-form">
-					<input type="submit" value="'.$this->l('   Save   ').'" name="submitAdd'.$this->table.'" class="button">
+					<input type="submit" value="'.$this->l('   Save   ').'" name="submitAdd'.$this->table.'" class="button" />
 				</div>
 				<div class="small"><sup>*</sup> '.$this->l('Required field').'</div>
 			</fieldset>
@@ -148,11 +148,11 @@ class AdminImages extends AdminTab
 
 		echo '
 		<h2 class="space">'.$this->l('Regenerate thumbnails').'</h2>
-		'.$this->l('Regenerates thumbnails for all existing product images').'.<br><br>';
-		$this->displayWarning($this->l('Please be patient, as this can take several minutes').'<br>'.$this->l('Be careful! Manually generated thumbnails will be erased by automatically generated thumbnails.'));
+		'.$this->l('Regenerates thumbnails for all existing product images').'.<br /><br />';
+		$this->displayWarning($this->l('Please be patient, as this can take several minutes').'<br />'.$this->l('Be careful! Manually generated thumbnails will be erased by automatically generated thumbnails.'));
 		echo '
 		<form action="'.$currentIndex.'&token='.$this->token.'" method="post">
-			<input type="Submit" name="submitRegenerate'.$this->table.'" value="'.$this->l('Regenerate thumbnails').'" class="button space" onclick="return confirm(\''.$this->l('Are you sure?', __CLASS__, true, false).'\');">
+			<input type="Submit" name="submitRegenerate'.$this->table.'" value="'.$this->l('Regenerate thumbnails').'" class="button space" onclick="return confirm(\''.$this->l('Are you sure?', __CLASS__, true, false).'\');" />
 		</form>';
 	}
 
@@ -266,7 +266,7 @@ class AdminImages extends AdminTab
 					$errors = true;
 			}
 		if ($errors)
-			$this->_errors[] = Tools::displayError('Cannot write no-picture image into the suppliers images folder.<br>Please check its writing permissions.');
+			$this->_errors[] = Tools::displayError('Cannot write no-picture image into the suppliers images folder.<br />Please check its writing permissions.');
 
 		/* Delete scenes images */
 		$toDel = scandir(_PS_SCENE_IMG_DIR_);
@@ -300,7 +300,7 @@ class AdminImages extends AdminTab
 					$errors = true;
 			}
 		if ($errors)
-			$this->_errors[] = Tools::displayError('Cannot write no-picture image into the scenes images folder.<br>Please check its writing permissions.');
+			$this->_errors[] = Tools::displayError('Cannot write no-picture image into the scenes images folder.<br />Please check its writing permissions.');
 			
 		/* Delete products images */
 		$toDel = scandir(_PS_PROD_IMG_DIR_);

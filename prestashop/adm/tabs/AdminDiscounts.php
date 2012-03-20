@@ -155,13 +155,13 @@ class AdminDiscounts extends AdminTab
 			id_language = Number('.$defaultLanguage.');
 		</script>
 		<form action="'.$currentIndex.'&submitAdd'.$this->table.'=1&token='.$this->token.'" id="discount" name="discount" method="post" enctype="multipart/form-data">
-		'.($obj->id ? '<input type="hidden" name="id_'.$this->table.'" value="'.$obj->id.'">' : '').'
-			<fieldset class="width3"><legend><img src="../img/admin/coupon.gif">'.$this->l('Vouchers').'</legend>
+		'.($obj->id ? '<input type="hidden" name="id_'.$this->table.'" value="'.$obj->id.'" />' : '').'
+			<fieldset class="width3"><legend><img src="../img/admin/coupon.gif" />'.$this->l('Vouchers').'</legend>
 				<label>'.$this->l('Code:').' </label>
 				<div class="margin-form">
-					<input type="text" size="30" maxlength="32" name="name" value="'.htmlentities($this->getFieldValue($obj, 'name'), ENT_COMPAT, 'UTF-8').'" style="text-transform: uppercase;" id="code">
+					<input type="text" size="30" maxlength="32" name="name" value="'.htmlentities($this->getFieldValue($obj, 'name'), ENT_COMPAT, 'UTF-8').'" style="text-transform: uppercase;" id="code" />
 					<sup>*</sup>
-					<img src="../img/admin/news-new.gif" onclick="gencode(8);" style="cursor: pointer">
+					<img src="../img/admin/news-new.gif" onclick="gencode(8);" style="cursor: pointer" />
 					<span class="hint" name="help_box">'.$this->l('Invalid characters: numbers and').' !<>,;?=+()@#"�{}_$%:<span class="hint-pointer">&nbsp;</span></span>
 					<p style="clear: both;">'.$this->l('The voucher\'s code, at least 3 characters long, which the customer types in during check-out').'</p>
 				</div>
@@ -181,7 +181,7 @@ class AdminDiscounts extends AdminTab
 					<div class="margin-form">
 							<table cellspacing="0" cellpadding="0" class="table" style="width: 29.5em;">
 									<tr>
-										<th><input type="checkbox" name="checkme" class="noborder" onclick="checkDelBoxes(this.form, \'categoryBox[]\', this.checked)"></th>
+										<th><input type="checkbox" name="checkme" class="noborder" onclick="checkDelBoxes(this.form, \'categoryBox[]\', this.checked)" /></th>
 										<th>'.$this->l('ID').'</th>
 										<th>'.$this->l('Name').'</th>
 									</tr>';
@@ -202,43 +202,43 @@ class AdminDiscounts extends AdminTab
 				foreach ($languages as $language)
 					echo '
 					<div id="description_'.$language['id_lang'].'" style="display: '.($language['id_lang'] == $defaultLanguage ? 'block' : 'none').'; float: left;">
-						<input size="33" type="text" name="description_'.$language['id_lang'].'" value="'.htmlentities($this->getFieldValue($obj, 'description', intval($language['id_lang'])), ENT_COMPAT, 'UTF-8').'"><sup> *</sup>
+						<input size="33" type="text" name="description_'.$language['id_lang'].'" value="'.htmlentities($this->getFieldValue($obj, 'description', intval($language['id_lang'])), ENT_COMPAT, 'UTF-8').'" /><sup> *</sup>
 						<span class="hint" name="help_box">'.$this->l('Invalid characters:').' <>;=#{}<span class="hint-pointer">&nbsp;</span></span>
 						<p style="clear: both;">'.$this->l('Will appear in cart next to voucher code').'</p>
 					</div>';							
 				$this->displayFlags($languages, $defaultLanguage, 'description', 'description');
 		echo '
-				</div><br><br><br>
+				</div><br /><br /><br />
 				<div class="clear" / >
 				<label>'.$this->l('Value:').' </label>
 				<div class="margin-form">
-					<input type="text" size="15" name="value" id="discount_value" value="'.floatval($this->getFieldValue($obj, 'value')).'" onKeyUp="javascript:this.value = this.value.replace(/,/g, \'.\'); "> <sup>*</sup>
+					<input type="text" size="15" name="value" id="discount_value" value="'.floatval($this->getFieldValue($obj, 'value')).'" onKeyUp="javascript:this.value = this.value.replace(/,/g, \'.\'); " /> <sup>*</sup>
 					<p style="clear: both;">'.$this->l('Either the monetary amount or the %, depending on Type selected above').'</p>
 				</div>
 				<label>'.$this->l('Total quantity:').' </label>
 				<div class="margin-form">
-					<input type="text" size="15" name="quantity" value="'.intval($this->getFieldValue($obj, 'quantity')).'"> <sup>*</sup>
+					<input type="text" size="15" name="quantity" value="'.intval($this->getFieldValue($obj, 'quantity')).'" /> <sup>*</sup>
 					<p style="clear: both;">'.$this->l('Total quantity available (mainly for vouchers open to everyone)').'</p>
 				</div>
 				<label>'.$this->l('Qty per each user:').' </label>
 				<div class="margin-form">
-					<input type="text" size="15" name="quantity_per_user" value="'.intval($this->getFieldValue($obj, 'quantity_per_user')).'"> <sup>*</sup>
+					<input type="text" size="15" name="quantity_per_user" value="'.intval($this->getFieldValue($obj, 'quantity_per_user')).'" /> <sup>*</sup>
 					<p style="clear: both;">'.$this->l('Number of times a single customer can use this voucher').'</p>
 				</div>
 				<label>'.$this->l('Minimum amount').'</label>
 				<div class="margin-form">
-					<input type="text" size="15" name="minimal" value="'.($this->getFieldValue($obj, 'minimal') ? floatval($this->getFieldValue($obj, 'minimal')) : '0').'" onkeyup="javascript:this.value = this.value.replace(/,/g, \'.\'); "> <sup>*</sup>
+					<input type="text" size="15" name="minimal" value="'.($this->getFieldValue($obj, 'minimal') ? floatval($this->getFieldValue($obj, 'minimal')) : '0').'" onkeyup="javascript:this.value = this.value.replace(/,/g, \'.\'); " /> <sup>*</sup>
 					<p style="clear: both;">'.$this->l('Leave blank or 0 if not applicable').'</p>
 				</div>
 				<div class="margin-form">
 					<p>
-						<input type="checkbox" name="cumulable"'.(($this->getFieldValue($obj, 'cumulable') == 1) ? ' checked="checked"' : '').' id="cumulable_on" value="1">
+						<input type="checkbox" name="cumulable"'.(($this->getFieldValue($obj, 'cumulable') == 1) ? ' checked="checked"' : '').' id="cumulable_on" value="1" />
 						<label class="t" for="cumulable_on"> '.$this->l('Cumulative with other vouchers').'</label>
 					</p>
 				</div>
 				<div class="margin-form">
 					<p>
-						<input type="checkbox" name="cumulable_reduction"'.(($this->getFieldValue($obj, 'cumulable_reduction') == 1) ? ' checked="checked"' : '').' id="cumulable_reduction_on" value="1">
+						<input type="checkbox" name="cumulable_reduction"'.(($this->getFieldValue($obj, 'cumulable_reduction') == 1) ? ' checked="checked"' : '').' id="cumulable_reduction_on" value="1" />
 						<label class="t" for="cumulable_reduction_on"> '.$this->l('Cumulative with price reductions').'</label>
 					</p>
 				</div>
@@ -246,7 +246,7 @@ class AdminDiscounts extends AdminTab
 								<div class="margin-form">				
 					<select name="id_customer" id="id_customer">
 						<option value="0">-- '.$this->l('All customers').' --</option>
-					</select><br>'.$this->l('Filter:').' <input type="text" size="25" name="filter" id="filter" onkeyup="fillCustomersAjax();" class="space" value="">
+					</select><br />'.$this->l('Filter:').' <input type="text" size="25" name="filter" id="filter" onkeyup="fillCustomersAjax();" class="space" value="" />
 					<script type="text/javascript">
 						var formDiscount = document.layers ? document.forms.discount : document.discount;	
 						function fillCustomersAjax()
@@ -290,29 +290,29 @@ class AdminDiscounts extends AdminTab
 						}
 						fillCustomersAjax(); 
 					</script>
-				</div><br>';
+				</div><br />';
 		includeDatepicker(array('date_from', 'date_to'), true);
 		echo '		
 				<label>'.$this->l('From:').' </label>
 				<div class="margin-form">
-					<input type="text" size="20" id="date_from" name="date_from" value="'.($this->getFieldValue($obj, 'date_from') ? htmlentities($this->getFieldValue($obj, 'date_from'), ENT_COMPAT, 'UTF-8') : date('Y-m-d H:i:s')).'"> <sup>*</sup>
-					<p style="clear: both;">'.$this->l('Start date/time from which voucher can be used').'<br>'.$this->l('Format: YYYY-MM-DD HH:MM:SS').'</p>
+					<input type="text" size="20" id="date_from" name="date_from" value="'.($this->getFieldValue($obj, 'date_from') ? htmlentities($this->getFieldValue($obj, 'date_from'), ENT_COMPAT, 'UTF-8') : date('Y-m-d H:i:s')).'" /> <sup>*</sup>
+					<p style="clear: both;">'.$this->l('Start date/time from which voucher can be used').'<br />'.$this->l('Format: YYYY-MM-DD HH:MM:SS').'</p>
 				</div>
 				<label>'.$this->l('To:').' </label>
 				<div class="margin-form">
-					<input type="text" size="20" id="date_to" name="date_to" value="'.($this->getFieldValue($obj, 'date_to') ? htmlentities($this->getFieldValue($obj, 'date_to'), ENT_COMPAT, 'UTF-8') : (date('Y') + 1).date('-m-d H:i:s')).'"> <sup>*</sup>
-					<p style="clear: both;">'.$this->l('End date/time at which voucher is no longer valid').'<br>'.$this->l('Format: YYYY-MM-DD HH:MM:SS').'</p>
+					<input type="text" size="20" id="date_to" name="date_to" value="'.($this->getFieldValue($obj, 'date_to') ? htmlentities($this->getFieldValue($obj, 'date_to'), ENT_COMPAT, 'UTF-8') : (date('Y') + 1).date('-m-d H:i:s')).'" /> <sup>*</sup>
+					<p style="clear: both;">'.$this->l('End date/time at which voucher is no longer valid').'<br />'.$this->l('Format: YYYY-MM-DD HH:MM:SS').'</p>
 				</div>
 				<label>'.$this->l('Status:').' </label>
 				<div class="margin-form">
-					<input type="radio" name="active" id="active_on" value="1" '.($this->getFieldValue($obj, 'active') ? 'checked="checked" ' : '').'>
-					<label class="t" for="active_on"> <img src="../img/admin/enabled.gif" alt="'.$this->l('Enabled').'" title="'.$this->l('Enabled').'"></label>
-					<input type="radio" name="active" id="active_off" value="0" '.(!$this->getFieldValue($obj, 'active') ? 'checked="checked" ' : '').'>
-					<label class="t" for="active_off"> <img src="../img/admin/disabled.gif" alt="'.$this->l('Disabled').'" title="'.$this->l('Disabled').'"></label>
+					<input type="radio" name="active" id="active_on" value="1" '.($this->getFieldValue($obj, 'active') ? 'checked="checked" ' : '').'/>
+					<label class="t" for="active_on"> <img src="../img/admin/enabled.gif" alt="'.$this->l('Enabled').'" title="'.$this->l('Enabled').'" /></label>
+					<input type="radio" name="active" id="active_off" value="0" '.(!$this->getFieldValue($obj, 'active') ? 'checked="checked" ' : '').'/>
+					<label class="t" for="active_off"> <img src="../img/admin/disabled.gif" alt="'.$this->l('Disabled').'" title="'.$this->l('Disabled').'" /></label>
 					<p>'.$this->l('Enable or disable voucher').'</p>
 				</div>
 				<div class="margin-form">
-					<input type="submit" value="'.$this->l('   Save   ').'" name="submitAdd'.$this->table.'" class="button">
+					<input type="submit" value="'.$this->l('   Save   ').'" name="submitAdd'.$this->table.'" class="button" />
 				</div>
 				<div class="small"><sup>*</sup> '.$this->l('Required field').'</div>
 			</fieldset>
@@ -344,13 +344,13 @@ class AdminDiscounts extends AdminTab
 		echo '
 		<tr class="'.($irow++ % 2 ? 'alt_row' : '').'">
 			<td>
-				<input type="checkbox" name="categoryBox[]" class="categoryBox'.($id_category_default != NULL ? ' id_category_default' : '').'" id="categoryBox_'.$id_category.'" value="'.$id_category.'"'.(((in_array($id_category, $indexedCategories) OR (intval(Tools::getValue('id_category')) == $id_category AND !intval($id_obj))) OR Tools::getIsset('adddiscount')) ? ' checked="checked"' : '').'>
+				<input type="checkbox" name="categoryBox[]" class="categoryBox'.($id_category_default != NULL ? ' id_category_default' : '').'" id="categoryBox_'.$id_category.'" value="'.$id_category.'"'.(((in_array($id_category, $indexedCategories) OR (intval(Tools::getValue('id_category')) == $id_category AND !intval($id_obj))) OR Tools::getIsset('adddiscount')) ? ' checked="checked"' : '').' />
 			</td>
 			<td>
 				'.$id_category.'
 			</td>
 			<td>
-				<img src="../img/admin/'.$img.'" alt=""> &nbsp;<label for="categoryBox_'.$id_category.'" class="t">'.stripslashes(Category::hideCategoryPosition($current['infos']['name'])).'</label>
+				<img src="../img/admin/'.$img.'" alt="" /> &nbsp;<label for="categoryBox_'.$id_category.'" class="t">'.stripslashes(Category::hideCategoryPosition($current['infos']['name'])).'</label>
 			</td>
 		</tr>';
 

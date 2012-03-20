@@ -61,18 +61,18 @@ class AdminCarts extends AdminTab
 
 		/* Display customer information */
 		echo '
-		<br>
+		<br />
 		<div style="float: left;">
 		<fieldset style="width: 400px">
-			<legend><img src="../img/admin/tab-customers.gif"> '.$this->l('Customer information').'</legend>
+			<legend><img src="../img/admin/tab-customers.gif" /> '.$this->l('Customer information').'</legend>
 			<span style="font-weight: bold; font-size: 14px;">';
 			if ($customer->id)
 				echo '
-			<a href="?tab=AdminCustomers&id_customer='.$customer->id.'&viewcustomer&token='.Tools::getAdminToken('AdminCustomers'.intval(Tab::getIdFromClassName('AdminCustomers')).intval($cookie->id_employee)).'"> '.$customer->firstname.' '.$customer->lastname.'</a></span> ('.$this->l('#').$customer->id.')<br>
-			(<a href="mailto:'.$customer->email.'">'.$customer->email.'</a>)<br><br>
-			'.$this->l('Account registered:').' '.Tools::displayDate($customer->date_add, intval($cookie->id_lang), true).'<br>
-			'.$this->l('Valid orders placed:').' <b>'.$customerStats['nb_orders'].'</b><br>
-			'.$this->l('Total paid since registration:').' <b>'.Tools::displayPrice($customerStats['total_orders'], $currency, false, false).'</b><br>';
+			<a href="?tab=AdminCustomers&id_customer='.$customer->id.'&viewcustomer&token='.Tools::getAdminToken('AdminCustomers'.intval(Tab::getIdFromClassName('AdminCustomers')).intval($cookie->id_employee)).'"> '.$customer->firstname.' '.$customer->lastname.'</a></span> ('.$this->l('#').$customer->id.')<br />
+			(<a href="mailto:'.$customer->email.'">'.$customer->email.'</a>)<br /><br />
+			'.$this->l('Account registered:').' '.Tools::displayDate($customer->date_add, intval($cookie->id_lang), true).'<br />
+			'.$this->l('Valid orders placed:').' <b>'.$customerStats['nb_orders'].'</b><br />
+			'.$this->l('Total paid since registration:').' <b>'.Tools::displayPrice($customerStats['total_orders'], $currency, false, false).'</b><br />';
 			else
 				echo $this->l('Guest not registered').'</span>';
 		echo '</fieldset>';
@@ -85,13 +85,13 @@ class AdminCarts extends AdminTab
 		$order = new Order($id_order);
 		echo '
 		<fieldset style="width: 400px">
-			<legend><img src="../img/admin/cart.gif"> '.$this->l('Order information').'</legend>
+			<legend><img src="../img/admin/cart.gif" /> '.$this->l('Order information').'</legend>
 			<span style="font-weight: bold; font-size: 14px;">';
 			if ($order->id)
 				echo '
 			<a href="?tab=AdminOrders&id_order='.intval($order->id).'&vieworder&token='.Tools::getAdminToken('AdminOrders'.intval(Tab::getIdFromClassName('AdminOrders')).intval($cookie->id_employee)).'"> '.$this->l('Order #').sprintf('%06d', $order->id).'</a></span>
-			<br><br>
-			'.$this->l('Made on:').' '.$order->date_add.'<br><br><br><br>';
+			<br /><br />
+			'.$this->l('Made on:').' '.$order->date_add.'<br /><br /><br /><br />';
 			else
 				echo $this->l('No order created from this cart').'</span>';
 		echo '</fieldset>';
@@ -100,9 +100,9 @@ class AdminCarts extends AdminTab
 
 		// List of products
 		echo '
-		<br style="clear:both;">
+		<br style="clear:both;" />
 			<fieldset style="margin-top:25px; width: 715px; ">
-				<legend><img src="../img/admin/cart.gif" alt="'.$this->l('Products').'">'.$this->l('Cart summary').'</legend>
+				<legend><img src="../img/admin/cart.gif" alt="'.$this->l('Products').'" />'.$this->l('Cart summary').'</legend>
 				<div style="float:left;">
 					<table style="width: 700px;" cellspacing="0" cellpadding="0" class="table" id="orderProducts">
 						<tr>
@@ -141,7 +141,7 @@ class AdminCarts extends AdminTab
 									<td align="center">'.(isset($image['id_image']) ? cacheImage(_PS_IMG_DIR_.'p/'.intval($product['id_product']).'-'.intval($image['id_image']).'.jpg',
 									'product_mini_'.intval($product['id_product']).(isset($product['id_product_attribute']) ? '_'.intval($product['id_product_attribute']) : '').'.jpg', 45, 'jpg') : '--').'</td>
 									<td><a href="index.php?tab=AdminCatalog&id_product='.$product['id_product'].'&updateproduct&token='.$tokenCatalog.'">
-										<span class="productName">'.$product['name'].'</span><br>
+										<span class="productName">'.$product['name'].'</span><br />
 										'.($product['reference'] ? $this->l('Ref:').' '.$product['reference'] : '')
 										.(($product['reference'] AND $product['supplier_reference']) ? ' / '.$product['supplier_reference'] : '')
 										.'</a></td>
@@ -192,7 +192,7 @@ class AdminCarts extends AdminTab
 				echo '
 			<table cellspacing="0" cellpadding="0" class="table" style="width:280px; margin:15px 0px 0px 420px;">
 				<tr>
-					<th><img src="../img/admin/coupon.gif" alt="'.$this->l('Discounts').'">'.$this->l('Discount name').'</th>
+					<th><img src="../img/admin/coupon.gif" alt="'.$this->l('Discounts').'" />'.$this->l('Discount name').'</th>
 					<th align="center" style="width: 100px">'.$this->l('Value').'</th>
 				</tr>';
 				
@@ -225,7 +225,7 @@ class AdminCarts extends AdminTab
 				<td align="center">'.(isset($image['id_image']) ? cacheImage(_PS_IMG_DIR_.'p/'.intval($product['product_id']).'-'.intval($image['id_image']).'.jpg',
 				'product_mini_'.intval($product['product_id']).(isset($product['product_attribute_id']) ? '_'.intval($product['product_attribute_id']) : '').'.jpg', 45, 'jpg') : '--').'</td>
 				<td><a href="index.php?tab=AdminCatalog&id_product='.$product['product_id'].'&updateproduct&token='.$tokenCatalog.'">
-					<span class="productName">'.$product['product_name'].'</span><br>
+					<span class="productName">'.$product['product_name'].'</span><br />
 					'.($product['product_reference'] ? $this->l('Ref:').' '.$product['product_reference'] : '')
 					.(($product['product_reference'] AND $product['product_supplier_reference']) ? ' / '.$product['product_supplier_reference'] : '')
 					.'</a></td>
@@ -246,7 +246,7 @@ class AdminCarts extends AdminTab
 						echo '<ul style="margin: 4px 0px 4px 0px; padding: 0px; list-style-type: none;">';
 						foreach ($datas AS $data)
 							echo '<li style="display: inline; margin: 2px;">
-									<a href="displayImage.php?img='.$data['value'].'&name='.intval($order->id).'-file'.++$i.'" target="_blank"><img src="'._THEME_PROD_PIC_DIR_.$data['value'].'_small" alt=""></a>
+									<a href="displayImage.php?img='.$data['value'].'&name='.intval($order->id).'-file'.++$i.'" target="_blank"><img src="'._THEME_PROD_PIC_DIR_.$data['value'].'_small" alt="" /></a>
 								</li>';
 						echo '</ul>';
 					}

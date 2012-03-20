@@ -13,14 +13,14 @@
 	<fieldset>
 		<p class="text">
 			<label for="email">{l s='Type your e-mail address:'}</label>
-			<input type="text" id="email" name="email" value="{if isset($smarty.post.email)}{$smarty.post.email|escape:'htmlall'|stripslashes}{/if}">
+			<input type="text" id="email" name="email" value="{if isset($smarty.post.email)}{$smarty.post.email|escape:'htmlall'|stripslashes}{/if}" />
 		</p>
 		<p class="submit">
-			<input type="submit" class="button" value="{l s='Retrieve'}">
+			<input type="submit" class="button" value="{l s='Retrieve'}" />
 		</p>
 	</fieldset>
 </form>
 {/if}
 <p class="clear">
-	<a href="{$base_dir_ssl}authentication.php" title="{l s='Back to Login'}"><img src="{$img_dir}icon/my-account.gif" alt="{l s='Back to Login'}" class="icon"></a><a href="{$base_dir}authentication.php" title="{l s='Back to Login'}">{l s='Back to Login'}</a>
+	<a href="{$base_dir_ssl}authentication.php" title="{l s='Back to Login'}"><img src="{$img_dir}icon/my-account.gif" alt="{l s='Back to Login'}" class="icon" /></a><a href="{$base_dir}authentication.php" title="{l s='Back to Login'}">{l s='Back to Login'}</a>
 </p>

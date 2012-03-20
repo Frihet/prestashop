@@ -57,7 +57,7 @@ class ProductComments extends Module
 			if (intval($moderate) != 0)
 				$moderate = 1;
 			Configuration::updateValue('PRODUCT_COMMENTS_MODERATE', intval($moderate));
-			$this->_html .= '<div class="conf confirm"><img src="../img/admin/ok.gif" alt="'.$this->l('Confirmation').'">'.$this->l('Settings updated').'</div>';
+			$this->_html .= '<div class="conf confirm"><img src="../img/admin/ok.gif" alt="'.$this->l('Confirmation').'" />'.$this->l('Settings updated').'</div>';
 		}
 		else if (empty($action) === false &&
 			intval(Configuration::get('PRODUCT_COMMENTS_MODERATE')))
@@ -91,7 +91,7 @@ class ProductComments extends Module
 
 			require_once(dirname(__FILE__).'/ProductCommentCriterion.php');
 			ProductCommentCriterion::add($cookie->id_lang, $name);
-			$this->_html .= '<div class="conf confirm"><img src="../img/admin/ok.gif" alt="'.$this->l('Confirmation').'">'.$this->l('Settings updated').'</div>';
+			$this->_html .= '<div class="conf confirm"><img src="../img/admin/ok.gif" alt="'.$this->l('Confirmation').'" />'.$this->l('Settings updated').'</div>';
 		}
 		elseif (!empty($action_criterion) AND empty($name))
 		{
@@ -124,7 +124,7 @@ class ProductComments extends Module
 			if (empty($id_product_comment_criterions) === false)
 				foreach ($id_product_comment_criterions as $id_product_comment_criterion)
 					ProductCommentCriterion::addToProduct($id_product_comment_criterion, $id_product);
-			$this->_html .= '<div class="conf confirm"><img src="../img/admin/ok.gif" alt="'.$this->l('Confirmation').'">'.$this->l('Settings updated').'</div>';
+			$this->_html .= '<div class="conf confirm"><img src="../img/admin/ok.gif" alt="'.$this->l('Confirmation').'" />'.$this->l('Settings updated').'</div>';
 		}
 	}
 	
@@ -140,24 +140,24 @@ class ProductComments extends Module
 	{
 		$this->_html = '<script type="text/javascript" src="'.$this->_path.'js/moderate.js"></script>
 		<form action="'.$_SERVER['REQUEST_URI'].'" method="post" name="comment_form">
-			<fieldset><legend><img src="'.$this->_path.'img/comments_delete.png" alt="" title="">'.$this->l('Moderate Comments').'</legend>
+			<fieldset><legend><img src="'.$this->_path.'img/comments_delete.png" alt="" title="" />'.$this->l('Moderate Comments').'</legend>
 				<label>'.$this->l('Validation required').'</label>
 				<div class="margin-form">
-					<input type="radio" name="moderate" id="moderate_on" value="1" '.(Configuration::get('PRODUCT_COMMENTS_MODERATE') ? 'checked="checked" ' : '').'>
-					<label class="t" for="moderate_on"> <img src="../img/admin/enabled.gif" alt="'.$this->l('Enabled').'" title="'.$this->l('Enabled').'"></label>
-					<input type="radio" name="moderate" id="moderate_off" value="0" '.(!Configuration::get('PRODUCT_COMMENTS_MODERATE') ? 'checked="checked" ' : '').'>
-					<label class="t" for="moderate_off"> <img src="../img/admin/disabled.gif" alt="'.$this->l('Disabled').'" title="'.$this->l('Disabled').'"></label>
+					<input type="radio" name="moderate" id="moderate_on" value="1" '.(Configuration::get('PRODUCT_COMMENTS_MODERATE') ? 'checked="checked" ' : '').'/>
+					<label class="t" for="moderate_on"> <img src="../img/admin/enabled.gif" alt="'.$this->l('Enabled').'" title="'.$this->l('Enabled').'" /></label>
+					<input type="radio" name="moderate" id="moderate_off" value="0" '.(!Configuration::get('PRODUCT_COMMENTS_MODERATE') ? 'checked="checked" ' : '').'/>
+					<label class="t" for="moderate_off"> <img src="../img/admin/disabled.gif" alt="'.$this->l('Disabled').'" title="'.$this->l('Disabled').'" /></label>
 				</div>
-				<div class="margin-form clear"><input type="submit" name="submitModerate" value="'.$this->l('Save').'" class="button"></div>';
+				<div class="margin-form clear"><input type="submit" name="submitModerate" value="'.$this->l('Save').'" class="button" /></div>';
 		if (Configuration::get('PRODUCT_COMMENTS_MODERATE'))
 		{
 			require_once(dirname(__FILE__).'/ProductComment.php');
 			$comments = ProductComment::getByValidate();
 			if (sizeof($comments))
 			{
-				$this->_html .= '<input type="hidden" name="id_product_comment" id="id_product_comment">
-				 <input type="hidden" name="action" id="action">
-				 <br><table class="table" border="0" cellspacing="0" cellpadding="0">
+				$this->_html .= '<input type="hidden" name="id_product_comment" id="id_product_comment" />
+				 <input type="hidden" name="action" id="action" />
+				 <br /><table class="table" border="0" cellspacing="0" cellpadding="0">
 				 <thead>
 				  <tr>
 				   <th style="width:30px;">'.$this->l('Actions').'</th>
@@ -169,8 +169,8 @@ class ProductComments extends Module
 				foreach ($comments as $comment)
 				{
 					$this->_html .= '<tr>
-					 <td><a href="javascript:;" onclick="acceptComment(\''.intval($comment['id_product_comment']).'\');"><img src="'.$this->_path.'img/accept.png" alt="'.$this->l('Accept').'" title="'.$this->l('Accept').'"></a>
-					     <a href="javascript:;" onclick="deleteComment(\''.intval($comment['id_product_comment']).'\');"><img src="'.$this->_path.'img/delete.png" alt="'.$this->l('Delete').'" title="'.$this->l('Delete').'"></a></td>
+					 <td><a href="javascript:;" onclick="acceptComment(\''.intval($comment['id_product_comment']).'\');"><img src="'.$this->_path.'img/accept.png" alt="'.$this->l('Accept').'" title="'.$this->l('Accept').'" /></a>
+					     <a href="javascript:;" onclick="deleteComment(\''.intval($comment['id_product_comment']).'\');"><img src="'.$this->_path.'img/delete.png" alt="'.$this->l('Delete').'" title="'.$this->l('Delete').'" /></a></td>
 					 <td>'.htmlspecialchars($comment['firstname'], ENT_COMPAT, 'UTF-8').' '.htmlspecialchars(substr($comment['lastname'], 0, 1), ENT_COMPAT, 'UTF-8').'.</td>
 					 <td>'.htmlspecialchars($comment['content'], ENT_COMPAT, 'UTF-8').'</td>
 					</tr>';
@@ -181,7 +181,7 @@ class ProductComments extends Module
 			else
 				$this->_html .= $this->l('No comments to validate.');
 		}
-		$this->_html .= '</fieldset></form><br>';
+		$this->_html .= '</fieldset></form><br />';
 	}
 	
 	private function _displayFormCriterion()
@@ -189,23 +189,23 @@ class ProductComments extends Module
 		global $cookie;
 
 		$this->_html .= '<form action="'.$_SERVER['REQUEST_URI'].'" method="post" name="criterion_form">
-			<fieldset><legend><img src="'.$this->_path.'img/note.png" alt="" title="">'.$this->l('Comment\'s criterions').'</legend>
+			<fieldset><legend><img src="'.$this->_path.'img/note.png" alt="" title="" />'.$this->l('Comment\'s criterions').'</legend>
 				<label for="criterion">'.$this->l('Comment\'s criterion').'</label>
 				<div class="margin-form">
-					<input type="text" name="criterion" id="criterion"> <input type="submit" name="submitCriterion" value="'.$this->l('Add').'" class="button">
+					<input type="text" name="criterion" id="criterion" /> <input type="submit" name="submitCriterion" value="'.$this->l('Add').'" class="button" />
 					<p>'.$this->l('Create a new grading criterion for your products.').'</p>
 				</div>
-		<p>'.$this->l('Once created, you must activate it for the desired products with the form below.').'<br>'.$this->l('Be aware that the criterions are independent in each language.').'</p>';
+		<p>'.$this->l('Once created, you must activate it for the desired products with the form below.').'<br />'.$this->l('Be aware that the criterions are independent in each language.').'</p>';
 		require_once(dirname(__FILE__).'/ProductCommentCriterion.php');
 		$criterions = ProductCommentCriterion::get($cookie->id_lang);
 		if (sizeof($criterions))
 		{
 			$this->_html .= '
-				 <input type="hidden" name="id_product_comment_criterion" id="id_product_comment_criterion">
-				 <input type="hidden" name="criterion_name" id="criterion_name">
-				 <input type="hidden" name="criterion_id_lang" id="criterion_id_lang" value="'.intval($cookie->id_lang).'">
-				 <input type="hidden" name="criterion_action" id="criterion_action">
-				 <br><table class="table">
+				 <input type="hidden" name="id_product_comment_criterion" id="id_product_comment_criterion" />
+				 <input type="hidden" name="criterion_name" id="criterion_name" />
+				 <input type="hidden" name="criterion_id_lang" id="criterion_id_lang" value="'.intval($cookie->id_lang).'" />
+				 <input type="hidden" name="criterion_action" id="criterion_action" />
+				 <br /><table class="table">
 				 <thead>
 				  <tr>
 				   <th style="width:30px;">'.$this->l('Actions').'</th>
@@ -221,9 +221,9 @@ class ProductComments extends Module
 				for ($i = 0; $i < $len; ++$i)
 				{
 					$this->_html .= '
-					 <td><a href="javascript:;" onclick="editCriterion(\''.intval($criterions[$i]['id_product_comment_criterion']).'\');"><img src="'.$this->_path.'img/accept.png" alt="'.$this->l('Accept').'"></a>
-					     <a href="javascript:;" onclick="deleteCriterion(\''.intval($criterions[$i]['id_product_comment_criterion']).'\');"><img src="'.$this->_path.'img/delete.png" alt="'.$this->l('Delete').'"></a></td>
-					 <td><input type="text" id="criterion_name_'.intval($criterions[$i]['id_product_comment_criterion']).'" value="'.htmlspecialchars($criterions[$i]['name'], ENT_COMPAT, 'UTF-8').'"></td>';
+					 <td><a href="javascript:;" onclick="editCriterion(\''.intval($criterions[$i]['id_product_comment_criterion']).'\');"><img src="'.$this->_path.'img/accept.png" alt="'.$this->l('Accept').'" /></a>
+					     <a href="javascript:;" onclick="deleteCriterion(\''.intval($criterions[$i]['id_product_comment_criterion']).'\');"><img src="'.$this->_path.'img/delete.png" alt="'.$this->l('Delete').'" /></a></td>
+					 <td><input type="text" id="criterion_name_'.intval($criterions[$i]['id_product_comment_criterion']).'" value="'.htmlspecialchars($criterions[$i]['name'], ENT_COMPAT, 'UTF-8').'" /></td>';
 					if (!(($i + 1) % 3) || ($i + 1) >= $len)
 						$this->_html .= '</tr><tr>';
 				}
@@ -232,7 +232,7 @@ class ProductComments extends Module
 				$this->_html .= '</tbody>
 				</table>';
 		}
-		$this->_html .= '</fieldset></form><br>';
+		$this->_html .= '</fieldset></form><br />';
 	}
 	
 	private function _displayFormProductCriterion()
@@ -242,8 +242,8 @@ class ProductComments extends Module
 		$products = Product::getSimpleProducts($cookie->id_lang);
 		$this->_html .= '<script type="text/javascript" src="'.$this->_path.'js/productCriterion.js"></script>
 		   <form action="'.$_SERVER['REQUEST_URI'].'" method="post" name="product_criterion_form">
-			<fieldset><legend><img src="'.$this->_path.'img/note_go.png" alt="" title="">'.$this->l('Product\'s criterions').'</legend>
-				<p>'.$this->l('Select the grading criterions corresponding to each product. You can select multiple criterions by pressing the ctrl key.').'</p><br>
+			<fieldset><legend><img src="'.$this->_path.'img/note_go.png" alt="" title="" />'.$this->l('Product\'s criterions').'</legend>
+				<p>'.$this->l('Select the grading criterions corresponding to each product. You can select multiple criterions by pressing the ctrl key.').'</p><br />
 				<label for="id_product">'.$this->l('Product').'</label>
 				<div class="margin-form">
 					<select name="id_product" id="id_product" onchange="getProductCriterion(\''.$this->_path.'\', this.options[this.selectedIndex].value, \''.intval($cookie->id_lang).'\');">';
@@ -254,7 +254,7 @@ class ProductComments extends Module
 				<label for="id_product_comment_criterion">'.$this->l('Grading criterions').'</label>
 				<div id="product_criterions" class="margin-form">
 				</div>
-				<div class="margin-form clear"><input type="submit" name="submitCriterionProduct" value="'.$this->l('Save').'" class="button"></div>
+				<div class="margin-form clear"><input type="submit" name="submitCriterionProduct" value="'.$this->l('Save').'" class="button" /></div>
 				<script type="text/javascript">
 					getProductCriterion(\''.$this->_path.'\', document.getElementById(\'id_product\').options[0].value, \''.intval($cookie->id_lang).'\');
 				</script>

@@ -39,7 +39,7 @@ class GAnalytics extends Module
 			Configuration::updateValue('GANALYTICS_ID', $gai);
 			$output .= '
 			<div class="conf confirm">
-				<img src="../img/admin/ok.gif" alt="" title="">
+				<img src="../img/admin/ok.gif" alt="" title="" />
 				'.$this->l('Settings updated').'
 			</div>';
 		}
@@ -51,19 +51,19 @@ class GAnalytics extends Module
 		$output = '
 		<form action="'.$_SERVER['REQUEST_URI'].'" method="post">
 			<fieldset class="width2">
-				<legend><img src="../img/admin/cog.gif" alt="" class="middle">'.$this->l('Settings').'</legend>
+				<legend><img src="../img/admin/cog.gif" alt="" class="middle" />'.$this->l('Settings').'</legend>
 				<label>'.$this->l('Your username').'</label>
 				<div class="margin-form">
-					<input type="text" name="ganalytics_id" value="'.Tools::getValue('ganalytics_id', Configuration::get('GANALYTICS_ID')).'">
+					<input type="text" name="ganalytics_id" value="'.Tools::getValue('ganalytics_id', Configuration::get('GANALYTICS_ID')).'" />
 					<p class="clear">'.$this->l('Example:').' UA-1234567-1</p>
 				</div>
-				<center><input type="submit" name="submitGAnalytics" value="'.$this->l('Update ID').'" class="button"></center>
+				<center><input type="submit" name="submitGAnalytics" value="'.$this->l('Update ID').'" class="button" /></center>
 			</fieldset>
 		</form>';
 		
 		$output .= '
 		<fieldset class="space">
-			<legend><img src="../img/admin/unknown.gif" alt="" class="middle">'.$this->l('Help').'</legend>
+			<legend><img src="../img/admin/unknown.gif" alt="" class="middle" />'.$this->l('Help').'</legend>
 			 <h3>'.$this->l('The first step of tracking e-commerce transactions is to enable e-commerce reporting for your website\'s profile.').'</h3>
 			 '.$this->l('To enable e-Commerce reporting, please follow these steps:').'
 			 <ol>

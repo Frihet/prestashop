@@ -35,7 +35,7 @@ class HomeFeatured extends Module
 			else
 				Configuration::updateValue('HOME_FEATURED_NBR', $nbr);
 			if (isset($errors) AND sizeof($errors))
-				$output .= $this->displayError(implode('<br>', $errors));
+				$output .= $this->displayError(implode('<br />', $errors));
 			else
 				$output .= $this->displayConfirmation($this->l('Settings updated'));
 		}
@@ -46,15 +46,15 @@ class HomeFeatured extends Module
 	{
 		$output = '
 		<form action="'.$_SERVER['REQUEST_URI'].'" method="post">
-			<fieldset><legend><img src="'.$this->_path.'logo.gif" alt="" title="">'.$this->l('Settings').'</legend>
-				<p>'.$this->l('In order to add products to your homepage, just add them to the "home" category.').'</p><br>
+			<fieldset><legend><img src="'.$this->_path.'logo.gif" alt="" title="" />'.$this->l('Settings').'</legend>
+				<p>'.$this->l('In order to add products to your homepage, just add them to the "home" category.').'</p><br />
 				<label>'.$this->l('Number of product displayed').'</label>
 				<div class="margin-form">
-					<input type="text" size="5" name="nbr" value="'.Tools::getValue('nbr', Configuration::get('HOME_FEATURED_NBR')).'">
+					<input type="text" size="5" name="nbr" value="'.Tools::getValue('nbr', Configuration::get('HOME_FEATURED_NBR')).'" />
 					<p class="clear">'.$this->l('The number of products displayed on homepage (default: 10)').'</p>
 					
 				</div>
-				<center><input type="submit" name="submitHomeFeatured" value="'.$this->l('Save').'" class="button"></center>
+				<center><input type="submit" name="submitHomeFeatured" value="'.$this->l('Save').'" class="button" /></center>
 			</fieldset>
 		</form>';
 		return $output;

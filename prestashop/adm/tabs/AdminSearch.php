@@ -170,7 +170,7 @@ class AdminSearch extends AdminTab
 			$irow = 0;
 			foreach ($this->_list['categories'] AS $k => $category)
 				echo '<tr class="'.($irow++ % 2 ? 'alt_row' : '').'"><td>'.rtrim(getPath($currentIndex.'?tab=AdminCatalog', $category['id_category'], '', $query), ' >').'</td></tr>';
-			echo '</table><br><br>';
+			echo '</table><br /><br />';
 		}
 		else
 			$nbCategories = 0;
@@ -198,12 +198,12 @@ class AdminSearch extends AdminTab
 					<td align="center">'.$product['quantity'].'</td>
 					<td align="center">'.$product['weight'].' '.Configuration::get('PS_WEIGHT_UNIT').'</td>
 					<td align="center"><a href="'.$currentIndex.'?tab=AdminCatalog&id_product='.$product['id_product'].'&status&token='.Tools::getAdminToken('AdminCatalog'.intval(Tab::getIdFromClassName('AdminCatalog')).intval($cookie->id_employee)).'">
-					<img src="../img/admin/'.($product['active'] ? 'enabled.gif' : 'forbbiden.gif').'" alt=""></a></td>
+					<img src="../img/admin/'.($product['active'] ? 'enabled.gif' : 'forbbiden.gif').'" alt="" /></a></td>
 					<td>
 						<a href="'.$currentIndex.'?tab=AdminCatalog&id_product='.$product['id_product'].'&addproduct&token='.Tools::getAdminToken('AdminCatalog'.intval(Tab::getIdFromClassName('AdminCatalog')).intval($cookie->id_employee)).'">
-						<img src="../img/admin/edit.gif" alt="'.$this->l('Modify this product').'"></a>&nbsp;
+						<img src="../img/admin/edit.gif" alt="'.$this->l('Modify this product').'" /></a>&nbsp;
 						<a href="'.$currentIndex.'?tab=AdminCatalog&id_product='.$product['id_product'].'&deleteproduct&token='.Tools::getAdminToken('AdminCatalog'.intval(Tab::getIdFromClassName('AdminCatalog')).intval($cookie->id_employee)).'" onclick="return confirm(\''.$this->l('Do you want to delete', __CLASS__, true, false).' '.addslashes($product['name']).$this->l('?', __CLASS__, true, false).'\');">
-						<img src="../img/admin/delete.gif" alt="'.$this->l('Delete this product').'"></a>
+						<img src="../img/admin/delete.gif" alt="'.$this->l('Delete this product').'" /></a>
 					</td>
 				</tr>';
 			}
@@ -225,24 +225,24 @@ class AdminSearch extends AdminTab
 			$irow = 0;
 			foreach ($this->_list['customers'] AS $k => $customer)
 			{
-				$imgGender = $customer['id_gender'] == 1 ? '<img src="../img/admin/male.gif" alt="'.$this->l('Male').'">' : ($customer['id_gender'] == 2 ? '<img src="../img/admin/female.gif" alt="'.$this->l('Female').'">' : '');
+				$imgGender = $customer['id_gender'] == 1 ? '<img src="../img/admin/male.gif" alt="'.$this->l('Male').'" />' : ($customer['id_gender'] == 2 ? '<img src="../img/admin/female.gif" alt="'.$this->l('Female').'" />' : '');
 				echo '
 				<tr class="'.($irow++ % 2 ? 'alt_row' : '').'">
 					<td>'.$customer['id_customer'].'</td>
 					<td class="center">'.$imgGender.'</td>
 					<td>'.stripslashes($customer['lastname']).' '.stripslashes($customer['firstname']).'</td>
-					<td>'.stripslashes($customer['email']).'<a href="mailto:'.stripslashes($customer['email']).'"> <img src="../img/admin/email_edit.gif" alt="'.$this->l('Write to this customer').'"></a></td>
+					<td>'.stripslashes($customer['email']).'<a href="mailto:'.stripslashes($customer['email']).'"> <img src="../img/admin/email_edit.gif" alt="'.$this->l('Write to this customer').'" /></a></td>
 					<td>'.Tools::displayDate($customer['birthday'], intval($cookie->id_lang)).'</td>
 					<td>'.Tools::displayDate($customer['date_add'], intval($cookie->id_lang)).'</td>
 					<td>'.Order::getCustomerNbOrders($customer['id_customer']).'</td>
-					<td class="center"><img src="../img/admin/'.($customer['active'] ? 'enabled.gif' : 'forbbiden.gif').'" alt=""></td>
+					<td class="center"><img src="../img/admin/'.($customer['active'] ? 'enabled.gif' : 'forbbiden.gif').'" alt="" /></td>
 					<td class="center" width="60px">
 						<a href="'.$currentIndex.'?tab=AdminCustomers&id_customer='.$customer['id_customer'].'&viewcustomer&token='.Tools::getAdminToken('AdminCustomers'.intval(Tab::getIdFromClassName('AdminCustomers')).intval($cookie->id_employee)).'">
-						<img src="../img/admin/details.gif" alt="'.$this->l('View orders').'"></a>
+						<img src="../img/admin/details.gif" alt="'.$this->l('View orders').'" /></a>
 						<a href="'.$currentIndex.'?tab=AdminCustomers&id_customer='.$customer['id_customer'].'&addcustomer&token='.Tools::getAdminToken('AdminCustomers'.intval(Tab::getIdFromClassName('AdminCustomers')).intval($cookie->id_employee)).'">
-						<img src="../img/admin/edit.gif" alt="'.$this->l('Modify this customer').'"></a>
+						<img src="../img/admin/edit.gif" alt="'.$this->l('Modify this customer').'" /></a>
 						<a href="'.$currentIndex.'?tab=AdminCustomers&id_customer='.$customer['id_customer'].'&deletecustomer&token='.Tools::getAdminToken('AdminCustomers'.intval(Tab::getIdFromClassName('AdminCustomers')).intval($cookie->id_employee)).'" onclick="return confirm(\''.$this->l('Are you sure?', __CLASS__, true, false).'\');">
-						<img src="../img/admin/delete.gif" alt="'.$this->l('Delete this customer').'"></a>
+						<img src="../img/admin/delete.gif" alt="'.$this->l('Delete this customer').'" /></a>
 					</td>
 				</tr>';
 			}

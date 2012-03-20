@@ -1,6 +1,6 @@
 <tr class="{if $smarty.foreach.productLoop.last}last_item{elseif $smarty.foreach.productLoop.first}first_item{/if}{if isset($customizedDatas.$productId.$productAttributeId) AND $quantityDisplayed == 0}alternate_item{/if} cart_item">
 	<td class="cart_product">
-		<a href="{$link->getProductLink($product.id_product, $product.link_rewrite, $product.category)|escape:'htmlall':'UTF-8'}"><img src="{$link->getImageLink($product.link_rewrite, $product.id_image, 'small')}" alt="{$product.name|escape:'htmlall':'UTF-8'}"></a>
+		<a href="{$link->getProductLink($product.id_product, $product.link_rewrite, $product.category)|escape:'htmlall':'UTF-8'}"><img src="{$link->getImageLink($product.link_rewrite, $product.id_image, 'small')}" alt="{$product.name|escape:'htmlall':'UTF-8'}" /></a>
 	</td>
 	<td class="cart_description">
 		<h5><a href="{$link->getProductLink($product.id_product, $product.link_rewrite, $product.category)|escape:'htmlall':'UTF-8'}">{$product.name|escape:'htmlall':'UTF-8'}</a></h5>
@@ -9,9 +9,9 @@
 	<td class="cart_ref">{if $product.reference}{$product.reference|escape:'htmlall':'UTF-8'}{else}--{/if}</td>
 	<td class="cart_availability">
 		{if $product.active AND ($product.allow_oosp OR $product.stock_quantity > 0)}
-			<img src="{$img_dir}icon/available.gif" alt="{l s='Available'}">
+			<img src="{$img_dir}icon/available.gif" alt="{l s='Available'}" />
 		{else}
-			<img src="{$img_dir}icon/unavailable.gif" alt="{l s='Out of stock'}">
+			<img src="{$img_dir}icon/unavailable.gif" alt="{l s='Out of stock'}" />
 		{/if}
 	</td>
 	<td class="cart_unit">
@@ -28,10 +28,10 @@
 	<td class="cart_total">
 		<span class="price">
 			{if $quantityDisplayed == 0 AND isset($customizedDatas.$productId.$productAttributeId)}
-				{if !$priceDisplay || $priceDisplay == 2}{convertPrice price=$product.total_customization_wt}{if $priceDisplay == 2} {l s='+Tx'}{/if}{/if}{if $priceDisplay == 2}<br>{/if}
+				{if !$priceDisplay || $priceDisplay == 2}{convertPrice price=$product.total_customization_wt}{if $priceDisplay == 2} {l s='+Tx'}{/if}{/if}{if $priceDisplay == 2}<br />{/if}
 				{if $priceDisplay}{convertPrice price=$product.total_customization}{if $priceDisplay == 2} {l s='-Tx'}{/if}{/if}
 			{else}
-				{if !$priceDisplay || $priceDisplay == 2}{convertPrice price=$product.total_wt}{if $priceDisplay == 2} {l s='+Tx'}{/if}{/if}{if $priceDisplay == 2}<br>{/if}
+				{if !$priceDisplay || $priceDisplay == 2}{convertPrice price=$product.total_wt}{if $priceDisplay == 2} {l s='+Tx'}{/if}{/if}{if $priceDisplay == 2}<br />{/if}
 				{if $priceDisplay}{convertPrice price=$product.total}{if $priceDisplay == 2} {l s='-Tx'}{/if}{/if}
 			{/if}
 		</span>

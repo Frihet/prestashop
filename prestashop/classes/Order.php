@@ -679,13 +679,13 @@ class		Order extends ObjectModel
 			die(Tools::displayError('Invalid objects!'));
 		echo '<span style="width:20px; margin-right:5px;">';
 		if (($orderState->invoice OR $order->invoice_number) AND intval($tr['product_number']))
-			echo '<a href="pdf.php?id_order='.intval($order->id).'&pdf"><img src="../img/admin/tab-invoice.gif" alt="invoice"></a>';
+			echo '<a href="pdf.php?id_order='.intval($order->id).'&pdf"><img src="../img/admin/tab-invoice.gif" alt="invoice" /></a>';
 		else
 			echo '&nbsp;';
 		echo '</span>';
 		echo '<span style="width:20px;">';
 		if ($orderState->delivery OR $order->delivery_number)
-			echo '<a href="pdf.php?id_delivery='.intval($order->delivery_number).'"><img src="../img/admin/delivery.gif" alt="delivery"></a>';
+			echo '<a href="pdf.php?id_delivery='.intval($order->delivery_number).'"><img src="../img/admin/delivery.gif" alt="delivery" /></a>';
 		else
 			echo '&nbsp;';
 		echo '</span>';

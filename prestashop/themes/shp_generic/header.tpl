@@ -1,20 +1,21 @@
-<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.1//EN" "http://www.w3.org/TR/xhtml11/DTD/xhtml11.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="{$lang_iso}">
 	<head>
 		<title>{$meta_title|escape:'htmlall':'UTF-8'}</title>
 {if isset($meta_description) AND $meta_description}
-		<meta name="description" content="{$meta_description|escape:htmlall:'UTF-8'}">
+		<meta name="description" content="{$meta_description|escape:htmlall:'UTF-8'}" />
 {/if}
 {if isset($meta_keywords) AND $meta_keywords}
-		<meta name="keywords" content="{$meta_keywords|escape:htmlall:'UTF-8'}">
+		<meta name="keywords" content="{$meta_keywords|escape:htmlall:'UTF-8'}" />
 {/if}
-		<meta http-equiv="Content-Type" content="application/xhtml+xml; charset=utf-8">
-		<meta name="generator" content="PrestaShop">
-		<meta name="robots" content="{if isset($nobots)}no{/if}index,follow">
-		<link rel="icon" type="image/vnd.microsoft.icon" href="{$img_ps_dir}favicon.ico">
-		<link rel="shortcut icon" type="image/x-icon" href="{$img_ps_dir}favicon.ico">
+		<meta http-equiv="Content-Type" content="application/xhtml+xml; charset=utf-8" />
+		<meta name="generator" content="PrestaShop" />
+		<meta name="robots" content="{if isset($nobots)}no{/if}index,follow" />
+		<link rel="icon" type="image/vnd.microsoft.icon" href="{$img_ps_dir}favicon.ico" />
+		<link rel="shortcut icon" type="image/x-icon" href="{$img_ps_dir}favicon.ico" />
 {if isset($css_files)}
 	{foreach from=$css_files key=css_uri item=media}
-	<link href="{$css_uri}" rel="stylesheet" type="text/css" media="{$media}">
+	<link href="{$css_uri}" rel="stylesheet" type="text/css" media="{$media}" />
 	{/foreach}
 {/if}
 		<script type="text/javascript" src="{$content_dir}js/tools.js"></script>

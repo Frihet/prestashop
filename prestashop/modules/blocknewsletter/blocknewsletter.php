@@ -73,25 +73,25 @@ class Blocknewsletter extends Module
 		$this->_html .= '
 		<form method="post" action="'.$_SERVER['REQUEST_URI'].'">
 			<fieldset>
-				<legend><img src="'.$this->_path.'logo.gif">'.$this->l('Settings').'</legend>
+				<legend><img src="'.$this->_path.'logo.gif" />'.$this->l('Settings').'</legend>
 				<label>'.$this->l('Displaying configuration in a new page?').'</label>
 				<div class="margin-form">
-					<input type="radio" name="new_page" value="1" '.(Configuration::get('NW_CONFIRMATION_NEW_PAGE') ? 'checked="checked" ' : '').'>'.$this->l('yes').'
-					<input type="radio" name="new_page" value="0" '.(!Configuration::get('NW_CONFIRMATION_NEW_PAGE') ? 'checked="checked" ' : '').'>'.$this->l('no').'
+					<input type="radio" name="new_page" value="1" '.(Configuration::get('NW_CONFIRMATION_NEW_PAGE') ? 'checked="checked" ' : '').'/>'.$this->l('yes').'
+					<input type="radio" name="new_page" value="0" '.(!Configuration::get('NW_CONFIRMATION_NEW_PAGE') ? 'checked="checked" ' : '').'/>'.$this->l('no').'
 				</div>
 				<div class="clear"></div>
 				<label>'.$this->l('Sending confirmation email after subscription?').'</label>
 				<div class="margin-form">
-					<input type="radio" name="conf_email" value="1" '.(Configuration::get('NW_CONFIRMATION_EMAIL') ? 'checked="checked" ' : '').'>'.$this->l('yes').'
-					<input type="radio" name="conf_email" value="0" '.(!Configuration::get('NW_CONFIRMATION_EMAIL') ? 'checked="checked" ' : '').'>'.$this->l('no').'
+					<input type="radio" name="conf_email" value="1" '.(Configuration::get('NW_CONFIRMATION_EMAIL') ? 'checked="checked" ' : '').'/>'.$this->l('yes').'
+					<input type="radio" name="conf_email" value="0" '.(!Configuration::get('NW_CONFIRMATION_EMAIL') ? 'checked="checked" ' : '').'/>'.$this->l('no').'
 				</div>
 				<div class="clear"></div>
 				<label>'.$this->l('Welcome voucher code').'</label>
 				<div class="margin-form">
-					<input type="text" name="voucher" value="'.Configuration::get('NW_VOUCHER_CODE').'">
+					<input type="text" name="voucher" value="'.Configuration::get('NW_VOUCHER_CODE').'" />
 					<p>'.$this->l('Leave blank for disabling').'</p>
 				</div>
-				<div class="margin-form clear pspace"><input type="submit" name="submitUpdate" value="'.$this->l('Update').'" class="button"></div>
+				<div class="margin-form clear pspace"><input type="submit" name="submitUpdate" value="'.$this->l('Update').'" class="button" /></div>
 			</fieldset>
 		</form>';
 

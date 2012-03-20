@@ -58,9 +58,9 @@ var fieldRequired = '{l s='Please fill all required fields' js=1}';
 			<!-- product img-->
 			<div id="image-block">
 			{if $have_image}
-					<img src="{$link->getImageLink($product->link_rewrite, $cover.id_image, 'large')}" {if $jqZoomEnabled}class="jqzoom" alt="{$link->getImageLink($product->link_rewrite, $cover.id_image, 'thickbox')}"{else} title="{$product->name|escape:'htmlall':'UTF-8'}" alt="{$product->name|escape:'htmlall':'UTF-8'}" {/if} id="bigpic">
+					<img src="{$link->getImageLink($product->link_rewrite, $cover.id_image, 'large')}" {if $jqZoomEnabled}class="jqzoom" alt="{$link->getImageLink($product->link_rewrite, $cover.id_image, 'thickbox')}"{else} title="{$product->name|escape:'htmlall':'UTF-8'}" alt="{$product->name|escape:'htmlall':'UTF-8'}" {/if} id="bigpic"/>
 			{else}
-				<img src="{$img_prod_dir}{$lang_iso}-default-large.jpg" alt="" title="{$product->name|escape:'htmlall':'UTF-8'}">
+				<img src="{$img_prod_dir}{$lang_iso}-default-large.jpg" alt="" title="{$product->name|escape:'htmlall':'UTF-8'}" />
 			{/if}
 			</div>
 
@@ -74,7 +74,7 @@ var fieldRequired = '{l s='Please fill all required fields' js=1}';
 					{assign var=imageIds value=`$product->id`-`$image.id_image`}
 					<li id="thumbnail_{$image.id_image}">
 						<a href="{$link->getImageLink($product->link_rewrite, $imageIds, 'thickbox')}" rel="other-views" class="{if !$jqZoomEnabled}thickbox{/if} {if $smarty.foreach.thumbnails.first}shown{/if}" title="{$image.legend|htmlspecialchars}">
-							<img id="thumb_{$image.id_image}" src="{$link->getImageLink($product->link_rewrite, $imageIds, 'medium')}" alt="{$image.legend|htmlspecialchars}" height="{$mediumSize.height}" width="{$mediumSize.width}">
+							<img id="thumb_{$image.id_image}" src="{$link->getImageLink($product->link_rewrite, $imageIds, 'medium')}" alt="{$image.legend|htmlspecialchars}" height="{$mediumSize.height}" width="{$mediumSize.width}" />
 						</a>
 					</li>
 					{/foreach}
@@ -88,7 +88,7 @@ var fieldRequired = '{l s='Please fill all required fields' js=1}';
 			<!-- usefull links-->
 			<ul id="usefull_link_block">
 				{if $HOOK_EXTRA_LEFT}{$HOOK_EXTRA_LEFT}{/if}
-				<li><a href="javascript:print();">{l s='Print'}</a><br class="clear"></li>
+				<li><a href="javascript:print();">{l s='Print'}</a><br class="clear" /></li>
 				{if $have_image && !$jqZoomEnabled}
 				<li><span id="view_full_size" class="span_link">{l s='View full size'}</span></li>
 				{/if}
@@ -120,7 +120,7 @@ var fieldRequired = '{l s='Please fill all required fields' js=1}';
 								<td><a class="button_mini ajax_add_to_cart_button" href="{$base_dir}cart.php?qty=1&amp;id_product={$accessory.id_product|intval}&amp;token={$static_token}&amp;add" rel="ajax_id_product_{$accessory.id_product|intval}" title="{l s='Add to cart'}">{l s='Buy'}</a></td>
 
 								<!--
-									<td><a href="{$accessoryLink|escape:'htmlall':'UTF-8'}" title="{$accessory.legend|escape:'htmlall':'UTF-8'}"><img src="{$link->getImageLink($accessory.link_rewrite, $accessory.id_image, 'medium')}" alt="{$accessory.legend|escape:'htmlall':'UTF-8'}"></a></td>
+									<td><a href="{$accessoryLink|escape:'htmlall':'UTF-8'}" title="{$accessory.legend|escape:'htmlall':'UTF-8'}"><img src="{$link->getImageLink($accessory.link_rewrite, $accessory.id_image, 'medium')}" alt="{$accessory.legend|escape:'htmlall':'UTF-8'}" /></a></td>
 									<td><a href="{$accessoryLink|escape:'htmlall':'UTF-8'}" title="{l s='More'}">{$accessory.description_short|strip_tags|truncate:100:'...'}</a></td>
 								-->
 							</tr>
@@ -148,14 +148,14 @@ var fieldRequired = '{l s='Please fill all required fields' js=1}';
 		{$product->description}
 
 		{if $attachments}
-			<hr>
+			<hr />
 			{foreach from=$attachments item=attachment}
-				<li><a href="{$base_dir}attachment.php?id_attachment={$attachment.id_attachment}">{$attachment.name|escape:'htmlall':'UTF-8'}</a><br>{$attachment.description|escape:'htmlall':'UTF-8'}</li>
+				<li><a href="{$base_dir}attachment.php?id_attachment={$attachment.id_attachment}">{$attachment.name|escape:'htmlall':'UTF-8'}</a><br />{$attachment.description|escape:'htmlall':'UTF-8'}</li>
 			{/foreach}
 		{/if}
 
 		{if $HOOK_PRODUCT_TAB_CONTENT}
-			<hr>
+			<hr />
 			{$HOOK_PRODUCT_TAB_CONTENT}
 		{/if}
 	{/if}

@@ -39,7 +39,7 @@ class StatsNewsletter extends ModuleGraph
 		$totals = $this->getTotals();
 		
 		$this->_html = '
-		<fieldset class="width3"><legend><img src="../modules/'.$this->name.'/logo.gif"> '.$this->displayName.'</legend>
+		<fieldset class="width3"><legend><img src="../modules/'.$this->name.'/logo.gif" /> '.$this->displayName.'</legend>
 			<p>'.$this->l('Registrations from customers:').' '.intval($totals['customers']).'</p>
 			<p>'.$this->l('Registrations from visitors:').' '.intval($totals['visitors']).'</p>
 			<p>'.$this->l('Both:').' '.intval($totals['both']).'</p>

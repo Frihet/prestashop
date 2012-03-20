@@ -87,7 +87,7 @@ class GraphXmlSwfCharts extends ModuleGraphEngine
 					);
 				} else {
 					var alternateContent = \'This content requires the Adobe Flash Player. \'
-					+ \'<u><a href=http://www.macromedia.com/go/getflash>Get Flash</a></u>.\';
+					+ \'<u><a href=http://www.macromedia.com/go/getflash/>Get Flash</a></u>.\';
 					document.write(alternateContent);
 				}
 			}
@@ -100,26 +100,26 @@ class GraphXmlSwfCharts extends ModuleGraphEngine
 
 	private function drawColumn()
 	{
-		$this->_xml .= '<axis_category font="arial" bold="true" size="10" color="000000">
-			<axis_ticks value_ticks="true" position="inside">
-			<axis_value font="arial" bold="true" size="11" color="000000" show_min="true">
-			<chart_border color="000000" top_thickness="0" bottom_thickness="1" left_thickness="1" right_thickness="0">
-			<chart_transition type="scale" delay="0.5" duration="0.5" order="series">
-			<chart_label color="000000" size="12" position="cursor" background_color="E2EBEE" alpha="80">
-			<chart_guide horizontal="true" vertical="true" thickness="1" alpha="25" type="dashed" text_h_alpha="0" text_v_alpha="0">';
+		$this->_xml .= '<axis_category font="arial" bold="true" size="10" color="000000" />
+			<axis_ticks value_ticks="true" position="inside" />
+			<axis_value font="arial" bold="true" size="11" color="000000" show_min="true" />
+			<chart_border color="000000" top_thickness="0" bottom_thickness="1" left_thickness="1" right_thickness="0" />
+			<chart_transition type="scale" delay="0.5" duration="0.5" order="series" />
+			<chart_label color="000000" size="12" position="cursor" background_color="E2EBEE" alpha="80" />
+			<chart_guide horizontal="true" vertical="true" thickness="1" alpha="25" type="dashed" text_h_alpha="0" text_v_alpha="0" />';
 	}
 
 	private function drawLine()
 	{
 		$this->drawColumn();
 		$this->_xml .= '<series_color><color>A3B6DA</color><color>C3413C</color><color>5A6C83</color><color>CA9A51</color><color>5B7751</color><color>55AA26</color><color>FF2398</color><color>427FC3</color></series_color>
-			<chart_pref line_thickness="2" point_shape="none" fill_shape="false">';
+			<chart_pref line_thickness="2" point_shape="none" fill_shape="false" />';
 	}
 
 	private function drawPie($counter)
 	{
-		$this->_xml .= '<chart_rect positive_color="ffffff" positive_alpha="20" negative_color="ff0000" negative_alpha="10">
-			<chart_label color="ffffff" alpha="90" font="arial" bold="true" size="10" position="inside" prefix="" suffix="" decimals="0" separator="" as_percentage="true">
+		$this->_xml .= '<chart_rect positive_color="ffffff" positive_alpha="20" negative_color="ff0000" negative_alpha="10" />
+			<chart_label color="ffffff" alpha="90" font="arial" bold="true" size="10" position="inside" prefix="" suffix="" decimals="0" separator="" as_percentage="true" />
 			<series_color>
 				<color>427FC3</color>
 				<color>C3413C</color>
@@ -139,7 +139,7 @@ class GraphXmlSwfCharts extends ModuleGraphEngine
 	public function createValues($values)
 	{
 		$this->_values = $values;
-		$this->_xml .= '<chart_type>'.$this->_type.'</chart_type><chart_grid_h alpha="20" color="000000" thickness="1" type="dashed">';
+		$this->_xml .= '<chart_type>'.$this->_type.'</chart_type><chart_grid_h alpha="20" color="000000" thickness="1" type="dashed" />';
 		
 		switch ($this->_type)
 		{
@@ -172,7 +172,7 @@ class GraphXmlSwfCharts extends ModuleGraphEngine
 	public function setLegend($legend)
 	{
 		$this->_legend = $legend;
-		$this->_xml .= '<legend'.$this->_legend_more.' layout="horizontal" font="arial" bold="true" size="13" color="000000" alpha="85" shadow="low" transition="dissolve" delay="0.5" duration="0.25" fill_color="D4D4D4" fill_alpha="0" line_color="D4D4D4" line_alpha="0" line_thickness="0">';
+		$this->_xml .= '<legend'.$this->_legend_more.' layout="horizontal" font="arial" bold="true" size="13" color="000000" alpha="85" shadow="low" transition="dissolve" delay="0.5" duration="0.25" fill_color="D4D4D4" fill_alpha="0" line_color="D4D4D4" line_alpha="0" line_thickness="0" />';
 	}
 	
 	public function setTitles($titles)
@@ -196,7 +196,7 @@ class GraphXmlSwfCharts extends ModuleGraphEngine
 	{
 		header('content-type: text/xml'); 
 
-		$this->_xml .= '<chart_data><row><null>';
+		$this->_xml .= '<chart_data><row><null/>';
 		foreach ($this->_legend as $value)
 			$this->_xml .= '<string>'.$value.'</string>';
 		$this->_xml .= '</row>';

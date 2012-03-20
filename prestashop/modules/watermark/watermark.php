@@ -106,7 +106,7 @@ class Watermark extends Module
 				$this->_errors[] = Tools::displayError('an error occurred while uploading watermark: '.$_FILES['PS_WATERMARK']['tmp_name'].' to '.$dest);
 		}
 		
-		$this->_html .= '<div class="conf confirm"><img src="../img/admin/ok.gif" alt="'.$this->l('ok').'"> '.$this->l('Settings updated').'</div>';
+		$this->_html .= '<div class="conf confirm"><img src="../img/admin/ok.gif" alt="'.$this->l('ok').'" /> '.$this->l('Settings updated').'</div>';
 	}
 
 	private function _displayForm()
@@ -114,20 +114,20 @@ class Watermark extends Module
 	    $imageTypes = ImageType::getImagesTypes('products');
 		$this->_html .=
 		'<form action="'.$_SERVER['REQUEST_URI'].'" method="post" enctype="multipart/form-data">
-			<fieldset><legend><img src="../modules/'.$this->name.'/logo.gif">'.$this->l('Watermark details').'</legend>
+			<fieldset><legend><img src="../modules/'.$this->name.'/logo.gif" />'.$this->l('Watermark details').'</legend>
 				<p>'.$this->l('Once you\'ve set up the module, you have to regenerate the images using to tool in Preferences > Images. However, the watermark will be added automatically in the new images.').'</p>
 				<table border="0" width="500" cellpadding="0" cellspacing="0" id="form">
 					<tr>
-						<td>
-						<td>'.(file_exists(dirname(__FILE__).'/watermark.gif') ? '<img src="../modules/'.$this->name.'/watermark.gif">' : $this->l('No watermark uploaded yet')).'</td>
+						<td />
+						<td>'.(file_exists(dirname(__FILE__).'/watermark.gif') ? '<img src="../modules/'.$this->name.'/watermark.gif" />' : $this->l('No watermark uploaded yet')).'</td>
 					</tr>
 					<tr>
 						<td>'.$this->l('Watermark file').'</td>
-						<td><input type="file" name="PS_WATERMARK"></td>
+						<td><input type="file" name="PS_WATERMARK" /></td>
 					</tr>
 					<tr>
 						<td width="270" style="height: 35px;">'.$this->l('Watermark transparency (0-100)').'</td>
-					    <td><input type="text" name="transparency" value="'.Tools::getValue('transparency', Configuration::get('WATERMARK_TRANSPARENCY')).'" style="width: 30px;"></td>
+					    <td><input type="text" name="transparency" value="'.Tools::getValue('transparency', Configuration::get('WATERMARK_TRANSPARENCY')).'" style="width: 30px;" /></td>
 					</tr>
 					<tr><td width="270" style="height: 35px;">'.$this->l('Watermark X align').'</td>
 					    <td>
@@ -151,12 +151,12 @@ class Watermark extends Module
 					{
 					    $this->_html .= '<label style="float:none; ">
 						<input type="checkbox" value="'.$type['id_image_type'].'" name="image_types[]"'.
-						(in_array($type['id_image_type'], $selected_types) ? ' checked="checked"' : '').'>&nbsp;<span style="font-weight:bold;">'.$type['name'].'</span>
-					    ('.$type['width'].' x '.$type['height'].')</label><br>';
+						(in_array($type['id_image_type'], $selected_types) ? ' checked="checked"' : '').' />&nbsp;<span style="font-weight:bold;">'.$type['name'].'</span>
+					    ('.$type['width'].' x '.$type['height'].')</label><br />';
 					}
 					$this->_html .= '</td></tr>
 					<tr><td colspan="2">&nbsp;</td></tr>
-					<tr><td colspan="2" align="center"><input class="button" name="btnSubmit" value="'.$this->l('Update settings').'" type="submit"></td></tr>
+					<tr><td colspan="2" align="center"><input class="button" name="btnSubmit" value="'.$this->l('Update settings').'" type="submit" /></td></tr>
 				</table>
 			</fieldset>
 		</form>';
@@ -176,7 +176,7 @@ class Watermark extends Module
 					$this->_html .= '<div class="alert error">'. $err .'</div>';
 		}
 		else
-			$this->_html .= '<br>';
+			$this->_html .= '<br />';
 
 		$this->_displayForm();
 

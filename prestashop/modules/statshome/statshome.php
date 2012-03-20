@@ -58,25 +58,25 @@ class StatsHome extends Module
 			return '';
 		$this->_html = '
 		<fieldset style="width:520px;">
-			<legend><img src="../modules/'.$this->name.'/logo.gif"> '.$this->l('Statistics').'</legend>
+			<legend><img src="../modules/'.$this->name.'/logo.gif" /> '.$this->l('Statistics').'</legend>
 			<div style="float:left;width:240px;text-align:center">
 				<div style="float:left;width:120px;text-align:center">
 					<center><p style="font-weight:bold;height:80px;width:100px;text-align:center;background-image:url(\''.__PS_BASE_URI__.'modules/statshome/square1.gif\')">
-						<br><br>'.Tools::displayPrice($results['total_sales'], $currency).'
+						<br /><br />'.Tools::displayPrice($results['total_sales'], $currency).'
 					</p></center>
 					<p>'.$this->l('of sales').'</p>
 					<center><p style="font-weight:bold;height:80px;width:100px;text-align:center;background-image:url(\''.__PS_BASE_URI__.'modules/statshome/square3.gif\')">
-						<br><br>'.intval($results['total_registrations']).'
+						<br /><br />'.intval($results['total_registrations']).'
 					</p></center>
 					<p>'.(($results['total_registrations'] != 1) ? $this->l('registrations') : $this->l('registration')).'</p>
 				</div>
 				<div style="float:left;width:120px;text-align:center">
 					<center><p style="font-weight:bold;height:80px;width:100px;text-align:center;background-image:url(\''.__PS_BASE_URI__.'modules/statshome/square2.gif\')">
-						<br><br>'.intval($results['total_orders']).'
+						<br /><br />'.intval($results['total_orders']).'
 					</p></center>
 					<p>'.(($results['total_orders'] != 1) ? $this->l('orders placed') : $this->l('order placed')).'</p>
 					<center><p style="font-weight:bold;height:80px;width:100px;text-align:center;background-image:url(\''.__PS_BASE_URI__.'modules/statshome/square4.gif\')">
-						<br><br>'.intval($results['total_viewed']).'
+						<br /><br />'.intval($results['total_viewed']).'
 					</p></center>
 					<p>'.(($results['total_viewed'] != 1) ? $this->l('product pages viewed') : $this->l('product page viewed')).'</p>
 				</div>
@@ -88,7 +88,7 @@ class StatsHome extends Module
 				<p style=" font-weight: bold ">'.$this->l('Visitors online now:').' '.intval($this->getVisitorsNow()).'</p>
 			</div>
 		</fieldset>
-		<div class="clear space"><br><br></div>';
+		<div class="clear space"><br /><br /></div>';
 		return $this->_html;
 	}
 	

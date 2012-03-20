@@ -1035,7 +1035,7 @@
 			src=\"". $this->server_url."buttons/checkout.gif?merchant_id=" .
 			$this->merchant_id."&w=".$width. "&h=".$height."&style=".
 			$style."&variant=".$this->variant."&loc=".$loc."\" 
-			height=\"".$height."\" width=\"".$width. "\">";
+			height=\"".$height."\" width=\"".$width. "\" />";
                 
 	        if($this->googleAnalytics_id)
 			{
@@ -1063,7 +1063,7 @@
                 "". $this->server_url."buttons/checkout.gif?merchant_id=" .
                 "".$this->merchant_id."&w=".$width. "&h=".$height."&style=".$style.
                 "&variant=".$this->variant."&loc=".$loc."\" height=\"".$height."\"".
-                " width=\"".$width. "\"></div>";
+                " width=\"".$width. "\" /></div>";
         
 		}
       $data .= "</div>";
@@ -1130,7 +1130,7 @@
 		
 		<p class=\"payment_module\">
 			<a href=\"javascript:$('#gcheckout_form').submit();\" title=\"".$paymentText."\">
-				<img src=\"modules/gcheckout/gcheckout.gif\" alt=\"".$paymentText."\">
+				<img src=\"modules/gcheckout/gcheckout.gif\" alt=\"".$paymentText."\" />
 				".$paymentText."
 			</a>
 		</p>
@@ -1170,7 +1170,7 @@
             "". $this->server_url."buttons/checkout.gif?merchant_id=" .
             "".$this->merchant_id."&w=".$width. "&h=".$height."&style=".$style.
             "&variant=".$this->variant."&loc=".$loc."\" height=\"".$height."\"".
-            " width=\"".$width. "\"></div>";
+            " width=\"".$width. "\" /></div>";
       }
       return $data;
     }
@@ -1217,7 +1217,7 @@
                 src=\"". $this->server_url."buttons/buy.gif?merchant_id=" .
                 $this->merchant_id."&w=".$width. "&h=".$height."&style=".
                 $style."&variant=".$this->variant."&loc=".$loc."\" 
-                height=\"".$height."\" width=\"".$width. "\">";
+                height=\"".$height."\" width=\"".$width. "\" />";
                 
         if($this->googleAnalytics_id) {
           $data .= "<input type=\"hidden\" name=\"analyticsdata\" value=\"\">";
@@ -1242,7 +1242,7 @@
             "". $this->server_url."buttons/buy.gif?merchant_id=" .
             "".$this->merchant_id."&w=".$width. "&h=".$height."&style=".$style.
             "&variant=".$this->variant."&loc=".$loc."\" height=\"".$height."\"".
-            " width=\"".$width. "\"></div>";
+            " width=\"".$width. "\" /></div>";
       }
       if($showtext) {
         $data .="<div align=\"center\"><a href=\"javascript:void(window.ope".
@@ -1326,7 +1326,7 @@
                 "src=\"". $this->server_url."buttons/checkout.gif?merchant_id=".
                 $this->merchant_id."&w=".$width. "&h=".$height."&style=".
                 $style."&variant=".$this->variant."&loc=".$loc."\" 
-                height=\"".$height."\" width=\"".$width. "\">";
+                height=\"".$height."\" width=\"".$width. "\" />";
                 
         if($this->googleAnalytics_id) {
           $data .= "<input type=\"hidden\" name=\"analyticsdata\" value=\"\">";
@@ -1350,7 +1350,7 @@
             "". $this->server_url."buttons/checkout.gif?merchant_id=" .
             "".$this->merchant_id."&w=".$width. "&h=".$height."&style=".$style.
             "&variant=".$this->variant."&loc=".$loc."\" height=\"".$height."\"".
-            " width=\"".$width. "\"></div>";
+            " width=\"".$width. "\" /></div>";
       }
       if($showtext){
         $data .= "<div align=\"center\"><a href=\"javascript:void(window.ope" .
@@ -1397,7 +1397,7 @@
             $new_path = $path . "." . $tag_name;  
           }
           $rta .= '<input type="hidden" name="' .
-                    $new_path . '" value="' .$tag . '">'."\n";
+                    $new_path . '" value="' .$tag . '"/>'."\n";
         }
       }
     }
@@ -1431,31 +1431,31 @@
       switch ($type) {
         case 2:
             return '<link rel="stylesheet" href="https://checkout.google.com/' .
-                'seller/accept/s.css" type="text/css" media="screen"><scrip' .
+                'seller/accept/s.css" type="text/css" media="screen" /><scrip' .
                 't type="text/javascript" src="https://checkout.google.com/se' .
                 'ller/accept/j.js"></script><script type="text/javascript">sh' .
                 'owMark(1);</script><noscript><img src="https://checkout.goog' .
                 'le.com/seller/accept/images/st.gif" width="92" height="88" a' .
-                'lt="Google Checkout Acceptance Mark"></noscript>';
+                'lt="Google Checkout Acceptance Mark" /></noscript>';
           break;
         case 3:
             return '<link rel="stylesheet" href="https://checkout.google.com/' .
-                'seller/accept/s.css" type="text/css" media="screen"><scrip' .
+                'seller/accept/s.css" type="text/css" media="screen" /><scrip' .
                 't type="text/javascript" src="https://checkout.google.com/se' .
                 'ller/accept/j.js"></script><script type="text/javascript">sh' .
                 'owMark(2);</script><noscript><img src="https://checkout.goog' .
                 'le.com/seller/accept/images/ht.gif" width="182" height="44" ' .
-                'alt="Google Checkout Acceptance Mark"></noscript>';
+                'alt="Google Checkout Acceptance Mark" /></noscript>';
           break;
         case 1:
       	default:
             return '<link rel="stylesheet" href="https://checkout.google.com/' .
-                'seller/accept/s.css" type="text/css" media="screen"><scrip' .
+                'seller/accept/s.css" type="text/css" media="screen" /><scrip' .
                 't type="text/javascript" src="https://checkout.google.com/se' .
                 'ller/accept/j.js"></script><script type="text/javascript">sh' .
                 'owMark(3);</script><noscript><img src="https://checkout.goog' .
                 'le.com/seller/accept/images/sc.gif" width="72" height="73" a' .
-                'lt="Google Checkout Acceptance Mark"></noscript>';
+                'lt="Google Checkout Acceptance Mark" /></noscript>';
       		break;
       }
     }

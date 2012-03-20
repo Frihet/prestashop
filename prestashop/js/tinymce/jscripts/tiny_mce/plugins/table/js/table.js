@@ -82,7 +82,7 @@ function insertTable() {
 			capEl = elm.ownerDocument.createElement('caption');
 
 			if (!tinymce.isIE)
-				capEl.innerHTML = '<br mce_bogus="1">';
+				capEl.innerHTML = '<br mce_bogus="1"/>';
 
 			elm.insertBefore(capEl, elm.firstChild);
 		}
@@ -186,7 +186,7 @@ function insertTable() {
 
 	if (caption) {
 		if (!tinymce.isIE)
-			html += '<caption><br mce_bogus="1"></caption>';
+			html += '<caption><br mce_bogus="1"/></caption>';
 		else
 			html += '<caption></caption>';
 	}
@@ -196,7 +196,7 @@ function insertTable() {
 
 		for (var x=0; x<cols; x++) {
 			if (!tinymce.isIE)
-				html += '<td><br mce_bogus="1"></td>';
+				html += '<td><br mce_bogus="1"/></td>';
 			else
 				html += '<td></td>';
 		}
@@ -212,7 +212,7 @@ function insertTable() {
 	if (inst.settings.fix_table_elements) {
 		var bm = inst.selection.getBookmark(), patt = '';
 
-		inst.execCommand('mceInsertContent', false, '<br class="_mce_marker">');
+		inst.execCommand('mceInsertContent', false, '<br class="_mce_marker" />');
 
 		tinymce.each('h1,h2,h3,h4,h5,h6,p'.split(','), function(n) {
 			if (patt)
@@ -255,7 +255,7 @@ function makeAttrib(attrib, value) {
 	value = value.replace(/&/g, '&amp;');
 	value = value.replace(/\"/g, '&quot;');
 	value = value.replace(/</g, '&lt;');
-	value = value.replace(>/g, '&gt;');
+	value = value.replace(/>/g, '&gt;');
 
 	return ' ' + attrib + '="' + value + '"';
 }

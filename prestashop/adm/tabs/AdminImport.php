@@ -1031,25 +1031,25 @@ class AdminImport extends AdminTab
 		global $currentIndex;
 
 		if ((Tools::getValue('import')))
-			echo '<div class="module_confirmation conf confirm"><img src="../img/admin/ok.gif" alt="" title="" style="margin-right:5px; float:left;">'.$this->l('The .CSV file has been imported into your shop.').'</div>';
+			echo '<div class="module_confirmation conf confirm"><img src="../img/admin/ok.gif" alt="" title="" style="margin-right:5px; float:left;" />'.$this->l('The .CSV file has been imported into your shop.').'</div>';
 		
 		if(isset($this->_warnings) AND sizeof($this->_warnings))
 		{
 			$warnings = '';
 			foreach ($this->_warnings as $warning)
-				$warnings .= $warning.'<br>'; 
+				$warnings .= $warning.'<br />'; 
 			$this->displayWarning($warnings);
 		}
 		
 		echo '
-		<fieldset><legend><img src="../img/admin/import.gif">'.$this->l('Upload').'</legend>
+		<fieldset><legend><img src="../img/admin/import.gif" />'.$this->l('Upload').'</legend>
 			<form action="'.$currentIndex.'&token='.$this->token.'" method="POST" enctype="multipart/form-data">
 				<label class="clear">'.$this->l('Select a file').' </label>
 				<div class="margin-form">
-					<input name="file" type="file"><br>'.$this->l('You can also upload your file by FTP and put it in').' '.realpath(dirname(__FILE__).'/../import/').'.
+					<input name="file" type="file" /><br />'.$this->l('You can also upload your file by FTP and put it in').' '.realpath(dirname(__FILE__).'/../import/').'.
 				</div>
 				<div class="margin-form">
-					<input type="submit" name="submitFileUpload" value="'.$this->l('Upload').'" class="button">
+					<input type="submit" name="submitFileUpload" value="'.$this->l('Upload').'" class="button" />
 				</div>
 				<div class="margin-form">
 					'.$this->l('Allowed files are only UTF-8 and iso-8859-1 encoded ones').'
@@ -1061,7 +1061,7 @@ class AdminImport extends AdminTab
 		<div class="space" style="height: 420px;">
 				<form id="preview_import" action="'.$currentIndex.'&token='.$this->token.'" method="post" class="width2" style="display: inline;" enctype="multipart/form-data" style="clear: both;" onsubmit="if ($(\'#truncate\').get(0).checked) {if (confirm(\''.$this->l('Are you sure you want to delete', __CLASS__, true, false).'\' + \' \' + $(\'#entity > option:selected\').text().toLowerCase() + \''.$this->l('?', __CLASS__, true, false).'\')){this.submit();} else {return false;}}">
 					<fieldset style="float: left; width: 650px">
-						<legend><img src="../img/admin/import.gif">'.$this->l('Importation').'</legend>
+						<legend><img src="../img/admin/import.gif" />'.$this->l('Importation').'</legend>
 						<label class="clear">'.$this->l('Select which entity to import:').' </label>
 						<div class="margin-form">
 							<select name="entity" id="entity">';
@@ -1084,24 +1084,24 @@ class AdminImport extends AdminTab
 						</div>
 						<label for="convert" class="clear">'.$this->l('iso-8859-1 encoded file').' </label>
 						<div class="margin-form">
-							<input name="convert" id="convert" type="checkbox" style="margin-top: 6px;">
+							<input name="convert" id="convert" type="checkbox" style="margin-top: 6px;"/>
 						</div>
 						<label class="clear">'.$this->l('Field separator:').' </label>
 						<div class="margin-form">
-							<input type="text" size="2" value=";" name="separator">
+							<input type="text" size="2" value=";" name="separator"/>
 							'.$this->l('e.g. ').'"1<span class="bold" style="color: red">;</span>Ipod<span class="bold" style="color: red">;</span>129.90<span class="bold" style="color: red">;</span>5"
 						</div>	
 						<label class="clear">'.$this->l('Multiple value separator:').' </label>
 						<div class="margin-form">
-							<input type="text" size="2" value="," name="multiple_value_separator">
+							<input type="text" size="2" value="," name="multiple_value_separator"/>
 							'.$this->l('e.g. ').'"Ipod;red.jpg<span class="bold" style="color: red">,</span>blue.jpg<span class="bold" style="color: red">,</span>green.jpg;129.90"
 						</div>
 						<label for="truncate" class="clear">'.$this->l('Delete all').' <span id="entitie">'.$this->l('categories').'</span> '.$this->l('before import ?').' </label>
 						<div class="margin-form">
-							<input name="truncate" id="truncate" type="checkbox" style="margin-top: 6px;">
+							<input name="truncate" id="truncate" type="checkbox" style="margin-top: 6px;"/>
 						</div>					
 						<div class="space margin-form">
-							<input type="submit" name="submitImportFile" value="'.$this->l('Next step').'" class="button">
+							<input type="submit" name="submitImportFile" value="'.$this->l('Next step').'" class="button"/>
 						</div>
 						<div>
 							'.$this->l('Note that the category import does not support categories of the same name').'
@@ -1109,7 +1109,7 @@ class AdminImport extends AdminTab
 					</fieldset>
 				</form>
 				<fieldset style="display: inline; float: right; margin-left: 20px;">
-				<legend><img src="../img/admin/import.gif">'.$this->l('Fields available').'</legend>
+				<legend><img src="../img/admin/import.gif" />'.$this->l('Fields available').'</legend>
 				<div id="availableFields" style="min-height: 218px; width: 200px; font-size: 10px;">'.nl2br($this->getAvailableFields()).'</div>
 				</fieldset>
 				<div class="clear" style="float:right; font-size:10px; padding-right: 120px;">
@@ -1128,7 +1128,7 @@ class AdminImport extends AdminTab
 										var fields = "";
 										$("#availableFields").empty();
 										for (var i = 0; i < j.length; i++)
-										fields += j[i].field + "<br>";
+										fields += j[i].field + "<br />";
 										$("#availableFields").html(fields);
 									}
 								)
@@ -1235,12 +1235,12 @@ class AdminImport extends AdminTab
 
 		echo '
 		<form action="'.$currentIndex.'&token='.$this->token.'" method="post" id="import_form" name="import_form">
-			'.$this->l('Skip').' <input type="text" size="2" name="skip" value="0"> '.$this->l('lines').'.
-			<input type="hidden" name="csv" value="'.Tools::getValue('csv').'">
-			<input type="hidden" name="convert" value="'.Tools::getValue('convert').'">
-			<input type="hidden" name="entity" value="'.intval(Tools::getValue('entity')).'">';
+			'.$this->l('Skip').' <input type="text" size="2" name="skip" value="0" /> '.$this->l('lines').'.
+			<input type="hidden" name="csv" value="'.Tools::getValue('csv').'" />
+			<input type="hidden" name="convert" value="'.Tools::getValue('convert').'" />
+			<input type="hidden" name="entity" value="'.intval(Tools::getValue('entity')).'" />';
 		if (Tools::getValue('truncate'))
-			echo '<input type="hidden" name="truncate" value="1">';
+			echo '<input type="hidden" name="truncate" value="1" />';
 		echo '
 			<input type="hidden" name="separator" value="'.strval(trim(Tools::getValue('separator'))).'">
 			<input type="hidden" name="multiple_value_separator" value="'.strval(trim(Tools::getValue('multiple_value_separator'))).'">
@@ -1266,23 +1266,23 @@ class AdminImport extends AdminTab
 				}
 			</script>
 			<div style="text-align:center; margin-bottom :20px;">
-				<input name="import" type="submit" onclick="return (validateImportation(new Array('.implode(',', $res).')));" id="import" value="'.$this->l('Import CSV data').'" class="button">	
+				<input name="import" type="submit" onclick="return (validateImportation(new Array('.implode(',', $res).')));" id="import" value="'.$this->l('Import CSV data').'" class="button" />	
 			</div>';
 		ob_flush();
 		echo '
 			<table>
 				<tr>
-					<td valign="top" align="center"><input id="btn_left" value="'.$this->l('<<').'" type="button" class="button" onclick="showTable(current - 1)"></td>
+					<td valign="top" align="center"><input id="btn_left" value="'.$this->l('<<').'" type="button" class="button" onclick="showTable(current - 1)" /></td>
 					<td align="left">';
 		for ($i = 0; $i < $nb_table; $i++)
 			$this->generateContentTable($i, $nb_table, $nb_column, $handle, $glue);
 		echo '		</td>
-					<td valign="top" align="center"><input id="btn_right" value="'.$this->l('>>').'" type="button" class="button" onclick="showTable(current + 1)"></td>
+					<td valign="top" align="center"><input id="btn_right" value="'.$this->l('>>').'" type="button" class="button" onclick="showTable(current + 1)" /></td>
 				</tr>
 			</table>
 			<script type="text/javascript">showTable(current);</script>
 			<div style="text-align:center; margin-top:10px;">
-				<input name="import" type="submit" onclick="return (validateImportation(new Array('.implode(',', $res).')));" id="import" value="'.$this->l('Import CSV data').'" class="button">
+				<input name="import" type="submit" onclick="return (validateImportation(new Array('.implode(',', $res).')));" id="import" value="'.$this->l('Import CSV data').'" class="button" />
 			</div>
 		</form>';
 	}

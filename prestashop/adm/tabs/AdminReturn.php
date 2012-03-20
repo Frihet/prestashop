@@ -114,7 +114,7 @@ class AdminReturn extends AdminTab
 			if ($this->tabAccess['edit'] === '1')
 			{
 				$this->displayForm();
-				echo '<br><br><a href="'.$currentIndex.'&token='.$this->token.'"><img src="../img/admin/arrow2.gif"> '.$this->l('Back to list').'</a><br>';
+				echo '<br /><br /><a href="'.$currentIndex.'&token='.$this->token.'"><img src="../img/admin/arrow2.gif" /> '.$this->l('Back to list').'</a><br />';
 			}
 			else
 				echo $this->l('You do not have permission to edit here');
@@ -158,10 +158,10 @@ class AdminReturn extends AdminTab
 			id_language = Number('.$defaultLanguage.');
 		</script>
 		<form action="'.$currentIndex.'&submitAdd'.$this->table.'=1&token='.$this->token.'" method="post">
-		'.($obj->id ? '<input type="hidden" name="id_'.$this->table.'" value="'.$obj->id.'">' : '').'
-			<input type="hidden" name="id_order" value="'.$obj->id_order.'">
-			<input type="hidden" name="id_customer" value="'.$obj->id_customer.'">
-			<fieldset class="width3"><legend><img src="../img/admin/return.gif">'.$this->l('Return Merchandise Authorization (RMA)').'</legend>
+		'.($obj->id ? '<input type="hidden" name="id_'.$this->table.'" value="'.$obj->id.'" />' : '').'
+			<input type="hidden" name="id_order" value="'.$obj->id_order.'" />
+			<input type="hidden" name="id_customer" value="'.$obj->id_customer.'" />
+			<fieldset class="width3"><legend><img src="../img/admin/return.gif" />'.$this->l('Return Merchandise Authorization (RMA)').'</legend>
 				<label>'.$this->l('Customer:').' </label>';
 				$customer = new Customer(intval($obj->id_customer));
 		echo '
@@ -175,7 +175,7 @@ class AdminReturn extends AdminTab
 				</div>
 				<label>'.$this->l('Customer explanation:').' </label>
 				<div class="margin-form">'.$obj->question.'</div>
-				<input type="submit" value="'.$this->l('   Save   ').'" name="submitAdd'.$this->table.'" class="button" style="float:right; margin-right:120px;">
+				<input type="submit" value="'.$this->l('   Save   ').'" name="submitAdd'.$this->table.'" class="button" style="float:right; margin-right:120px;"/>
 				<label>'.$this->l('Status:').' </label>
 				<div class="margin-form">
 				<select name=\'state\'>';
@@ -230,7 +230,7 @@ class AdminReturn extends AdminTab
 							echo '<ul style="margin: 4px 0px 4px 0px; padding: 0px; list-style-type: none;">';
 							foreach ($datas AS $data)
 								echo '<li style="display: inline; margin: 2px;">
-										<a href="displayImage.php?img='.$data['value'].'&name='.intval($order->id).'-file'.++$i.'" target="_blank"><img src="'._THEME_PROD_PIC_DIR_.$data['value'].'_small" alt=""></a>
+										<a href="displayImage.php?img='.$data['value'].'&name='.intval($order->id).'-file'.++$i.'" target="_blank"><img src="'._THEME_PROD_PIC_DIR_.$data['value'].'_small" alt="" /></a>
 									</li>';
 							echo '</ul>';
 						}

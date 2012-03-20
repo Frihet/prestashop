@@ -198,11 +198,11 @@ class Loyalty extends Module
 				
 				<label>'.$this->l('Ratio').'</label>
 				<div class="margin-form">
-					<input type="text" size="2" id="point_rate" name="point_rate" value="'.floatval(Configuration::get('PS_LOYALTY_POINT_RATE')).'"> '.$currency->sign.'
+					<input type="text" size="2" id="point_rate" name="point_rate" value="'.floatval(Configuration::get('PS_LOYALTY_POINT_RATE')).'" /> '.$currency->sign.'
 					<label for="point_rate" class="t"> = '.$this->l('1 reward point').'.</label>
-					<br>
+					<br />
 					<label for="point_value" class="t">'.$this->l('1 point = ').'</label>
-					<input type="text" size="2" name="point_value" id="point_value" value="'.floatval(Configuration::get('PS_LOYALTY_POINT_VALUE')).'"> '.$currency->sign.'
+					<input type="text" size="2" name="point_value" id="point_value" value="'.floatval(Configuration::get('PS_LOYALTY_POINT_VALUE')).'" /> '.$currency->sign.'
 					<label for="point_value" class="t">'.$this->l('for the discount').'.</label>
 				</div>
 				<div class="clear"></div>
@@ -211,17 +211,17 @@ class Loyalty extends Module
 		foreach ($languages as $language)
 			$html .= '
 					<div id="voucher_details_'.$language['id_lang'].'" style="display: '.($language['id_lang'] == $defaultLanguage ? 'block' : 'none').'; float: left;">
-						<input size="33" type="text" name="voucher_details_'.$language['id_lang'].'" value="'.Configuration::get('PS_LOYALTY_VOUCHER_DETAILS', intval($language['id_lang'])).'">
+						<input size="33" type="text" name="voucher_details_'.$language['id_lang'].'" value="'.Configuration::get('PS_LOYALTY_VOUCHER_DETAILS', intval($language['id_lang'])).'" />
 					</div>';
 		$html .= $this->displayFlags($languages, $defaultLanguage, $languageIds, 'voucher_details', true);
 		$html .= '	</div>
 				<div class="clear" style="margin-top: 20px"></div>
 				<label>'.$this->l('Allow discounts').' </label>
 				<div class="margin-form">
-					<input type="radio" name="PS_LOYALTY_NONE_AWARD" id="PS_LOYALTY_NONE_AWARD_on" value="1" '.(Configuration::get('PS_LOYALTY_NONE_AWARD') ? 'checked="checked" ' : '').'>
-					<label class="t" for="PS_LOYALTY_NONE_AWARD_on"><img src="../img/admin/enabled.gif" alt="'.$this->l('Enabled').'" title="'.$this->l('Yes').'"></label>
-					<input type="radio" name="PS_LOYALTY_NONE_AWARD" id="PS_LOYALTY_NONE_AWARD_off" value="0" '.(!Configuration::get('PS_LOYALTY_NONE_AWARD') ? 'checked="checked" ' : '').'>
-					<label class="t" for="PS_LOYALTY_NONE_AWARD_off"><img src="../img/admin/disabled.gif" alt="'.$this->l('Disabled').'" title="'.$this->l('No').'"></label>
+					<input type="radio" name="PS_LOYALTY_NONE_AWARD" id="PS_LOYALTY_NONE_AWARD_on" value="1" '.(Configuration::get('PS_LOYALTY_NONE_AWARD') ? 'checked="checked" ' : '').'/>
+					<label class="t" for="PS_LOYALTY_NONE_AWARD_on"><img src="../img/admin/enabled.gif" alt="'.$this->l('Enabled').'" title="'.$this->l('Yes').'" /></label>
+					<input type="radio" name="PS_LOYALTY_NONE_AWARD" id="PS_LOYALTY_NONE_AWARD_off" value="0" '.(!Configuration::get('PS_LOYALTY_NONE_AWARD') ? 'checked="checked" ' : '').'/>
+					<label class="t" for="PS_LOYALTY_NONE_AWARD_off"><img src="../img/admin/disabled.gif" alt="'.$this->l('Disabled').'" title="'.$this->l('No').'" /></label>
 					</div>
 				<div class="clear"></div>
 				<label>'.$this->l('Points are awarded when the order is').'</label>
@@ -256,7 +256,7 @@ class Loyalty extends Module
 		foreach ($languages as $language)
 			$html .= '
 					<div id="default_loyalty_state_'.$language['id_lang'].'" style="display: '.($language['id_lang'] == $defaultLanguage ? 'block' : 'none').'; float: left;">
-						<input size="33" type="text" name="default_loyalty_state_'.$language['id_lang'].'" value="'.$this->loyaltyStateDefault->name[intval($language['id_lang'])].'">
+						<input size="33" type="text" name="default_loyalty_state_'.$language['id_lang'].'" value="'.$this->loyaltyStateDefault->name[intval($language['id_lang'])].'" />
 					</div>';
 		$html .= $this->displayFlags($languages, $defaultLanguage, $languageIds, 'default_loyalty_state', true);
 		$html .= '	</div>
@@ -266,7 +266,7 @@ class Loyalty extends Module
 		foreach ($languages as $language)
 			$html .= '
 					<div id="none_award_loyalty_state_'.$language['id_lang'].'" style="display: '.($language['id_lang'] == $defaultLanguage ? 'block' : 'none').'; float: left;">
-						<input size="33" type="text" name="none_award_loyalty_state_'.$language['id_lang'].'" value="'.$this->loyaltyStateNoneAward->name[intval($language['id_lang'])].'">
+						<input size="33" type="text" name="none_award_loyalty_state_'.$language['id_lang'].'" value="'.$this->loyaltyStateNoneAward->name[intval($language['id_lang'])].'" />
 					</div>';
 		$html .= $this->displayFlags($languages, $defaultLanguage, $languageIds, 'none_award_loyalty_state', true);
 		$html .= '	</div>
@@ -276,7 +276,7 @@ class Loyalty extends Module
 		foreach ($languages as $language)
 			$html .= '
 					<div id="convert_loyalty_state_'.$language['id_lang'].'" style="display: '.($language['id_lang'] == $defaultLanguage ? 'block' : 'none').'; float: left;">
-						<input size="33" type="text" name="convert_loyalty_state_'.$language['id_lang'].'" value="'.$this->loyaltyStateConvert->name[intval($language['id_lang'])].'">
+						<input size="33" type="text" name="convert_loyalty_state_'.$language['id_lang'].'" value="'.$this->loyaltyStateConvert->name[intval($language['id_lang'])].'" />
 					</div>';
 		$html .= $this->displayFlags($languages, $defaultLanguage, $languageIds, 'convert_loyalty_state', true);
 		$html .= '	</div>
@@ -286,7 +286,7 @@ class Loyalty extends Module
 		foreach ($languages as $language)
 			$html .= '
 					<div id="validation_loyalty_state_'.$language['id_lang'].'" style="display: '.($language['id_lang'] == $defaultLanguage ? 'block' : 'none').'; float: left;">
-						<input size="33" type="text" name="validation_loyalty_state_'.$language['id_lang'].'" value="'.$this->loyaltyStateValidation->name[intval($language['id_lang'])].'">
+						<input size="33" type="text" name="validation_loyalty_state_'.$language['id_lang'].'" value="'.$this->loyaltyStateValidation->name[intval($language['id_lang'])].'" />
 					</div>';
 		$html .= $this->displayFlags($languages, $defaultLanguage, $languageIds, 'validation_loyalty_state', true);
 		$html .= '	</div>
@@ -296,12 +296,12 @@ class Loyalty extends Module
 		foreach ($languages as $language)
 			$html .= '
 					<div id="cancel_loyalty_state_'.$language['id_lang'].'" style="display: '.($language['id_lang'] == $defaultLanguage ? 'block' : 'none').'; float: left;">
-						<input size="33" type="text" name="cancel_loyalty_state_'.$language['id_lang'].'" value="'.$this->loyaltyStateCancel->name[intval($language['id_lang'])].'">
+						<input size="33" type="text" name="cancel_loyalty_state_'.$language['id_lang'].'" value="'.$this->loyaltyStateCancel->name[intval($language['id_lang'])].'" />
 					</div>';
 		$html .= $this->displayFlags($languages, $defaultLanguage, $languageIds, 'cancel_loyalty_state', true);
 		$html .= '	</div>
 				<div class="clear center">
-					<input type="submit" style="margin-top:20px" name="submitLoyalty" id="submitLoyalty" value="'.$this->l('   Save   ').'" class="button">
+					<input type="submit" style="margin-top:20px" name="submitLoyalty" id="submitLoyalty" value="'.$this->l('   Save   ').'" class="button" />
 				</div>
 			</fieldset>
 		</form>';
@@ -479,7 +479,7 @@ class Loyalty extends Module
 				<td>'.$points.'</td>
 				<td>'.$this->l('Voucher value:').' '.Tools::displayPrice(LoyaltyModule::getVoucherValue($points), new Currency(Configuration::get('PS_CURRENCY_DEFAULT'))).'</td>
 			</tr>
-		</table><br>';
+		</table><br/>';
 		return $html;
 	}
 	

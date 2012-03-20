@@ -1,5 +1,5 @@
-<link href="./modules/productsalsobuy/productsalsobuy.css" rel="stylesheet" type="text/css" media="all">
-<br><br>
+<link href="./modules/productsalsobuy/productsalsobuy.css" rel="stylesheet" type="text/css" media="all" />
+<br /><br />
 <div id="also_bought" class="block also_block">
 			<div class="block_content">
 <h4>{l s='Customers who bought this product also bought.....' mod='productsalsobuy'}</h4>
@@ -10,8 +10,8 @@
 <li class="ajax_block_product item">
 		<ul class="product_images">
 			<a href="{$link->getProductLink($product.id_product, $product.link_rewrite, $product.category)}" title="{$product.name|htmlspecialchars}">
-				<img src="{$img_prod_dir}{$product.id_product}-{$product.id_image}-home.jpg" alt="{$product.name|htmlspecialchars}">
-			</ul></a><br>
+				<img src="{$img_prod_dir}{$product.id_product}-{$product.id_image}-home.jpg" alt="{$product.name|htmlspecialchars}" />
+			</ul></a><br/>
 	
 			<h5><a href="{$link->getProductLink($product.id_product, $product.link_rewrite, $product.category)}" title="{$product.name|htmlspecialchars}">
 			{$product.name|truncate:40}</h5>
@@ -36,5 +36,5 @@
 </ul>
 </div>
 </div>
-<br><br>
-<br>
+<br /><br />
+<br />

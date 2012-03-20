@@ -170,7 +170,7 @@ abstract class AdminTab
 			if ($this->tabAccess['add'] === '1')
 			{
 				$this->displayForm();
-				echo '<br><br><a href="'.$currentIndex.'&token='.$this->token.'"><img src="../img/admin/arrow2.gif"> '.$this->l('Back to list').'</a><br>';
+				echo '<br /><br /><a href="'.$currentIndex.'&token='.$this->token.'"><img src="../img/admin/arrow2.gif" /> '.$this->l('Back to list').'</a><br />';
 			}
 			else
 				echo $this->l('You do not have permission to add here');
@@ -180,7 +180,7 @@ abstract class AdminTab
 			if ($this->tabAccess['edit'] === '1')
 			{
 				$this->displayForm();
-				echo '<br><br><a href="'.$currentIndex.'&token='.$this->token.'"><img src="../img/admin/arrow2.gif"> '.$this->l('Back to list').'</a><br>';
+				echo '<br /><br /><a href="'.$currentIndex.'&token='.$this->token.'"><img src="../img/admin/arrow2.gif" /> '.$this->l('Back to list').'</a><br />';
 			}
 			else
 				echo $this->l('You do not have permission to edit here');
@@ -856,7 +856,7 @@ abstract class AdminTab
 	public function displayConf()
 	{
 		if ($conf = Tools::getValue('conf'))
-			echo '<div class="conf confirm"><img src="../img/admin/ok.gif"> '.$this->_conf[intval($conf)].'</div>';
+			echo '<div class="conf confirm"><img src="../img/admin/ok.gif" /> '.$this->_conf[intval($conf)].'</div>';
 	}
 
 	/**
@@ -948,7 +948,7 @@ abstract class AdminTab
 				'.cacheImage($image, $this->table.'_'.intval($id).'.'.$this->imageType, $size, $this->imageType).'
 				<p align="center">'.$this->l('Filesize').' '.(filesize($image) / 1000).'ko</p>
 				<a href="'.$currentIndex.'&'.$this->identifier.'='.intval($id).'&token='.$token.($id_image ? '&id_image='.intval($id_image) : '').'&deleteImage=1">
-				<img src="../img/admin/delete.gif" alt="'.$this->l('Delete').'"> '.$this->l('Delete').'</a>
+				<img src="../img/admin/delete.gif" alt="'.$this->l('Delete').'" /> '.$this->l('Delete').'</a>
 			</div>';
 	}
 
@@ -987,13 +987,13 @@ abstract class AdminTab
 		if (!$page) $page = 1;
 		if ($page > 1)
 			echo '
-						<input type="image" src="../img/admin/list-prev2.gif" onclick="getE(\'submitFilter'.$this->table.'\').value=1">
-						&nbsp; <input type="image" src="../img/admin/list-prev.gif" onclick="getE(\'submitFilter'.$this->table.'\').value='.($page - 1).'"> ';
+						<input type="image" src="../img/admin/list-prev2.gif" onclick="getE(\'submitFilter'.$this->table.'\').value=1"/>
+						&nbsp; <input type="image" src="../img/admin/list-prev.gif" onclick="getE(\'submitFilter'.$this->table.'\').value='.($page - 1).'"/> ';
 		echo $this->l('Page').' <b>'.$page.'</b> / '.$totalPages;
 		if ($page < $totalPages)
 			echo '
-						<input type="image" src="../img/admin/list-next.gif" onclick="getE(\'submitFilter'.$this->table.'\').value='.($page + 1).'">
-						 &nbsp;<input type="image" src="../img/admin/list-next2.gif" onclick="getE(\'submitFilter'.$this->table.'\').value='.$totalPages.'">';
+						<input type="image" src="../img/admin/list-next.gif" onclick="getE(\'submitFilter'.$this->table.'\').value='.($page + 1).'"/>
+						 &nbsp;<input type="image" src="../img/admin/list-next2.gif" onclick="getE(\'submitFilter'.$this->table.'\').value='.$totalPages.'"/>';
 		echo '			| '.$this->l('Display').'
 						<select name="pagination">';
 		/* Choose number of results per page */
@@ -1005,8 +1005,8 @@ abstract class AdminTab
 						/ '.intval($this->_listTotal).' '.$this->l('result(s)').'
 					</span>
 					<span style="float: right;">
-						<input type="submit" name="submitReset'.$this->table.'" value="'.$this->l('Reset').'" class="button">
-						<input type="submit" id="submitFilterButton_'.$this->table.'" name="submitFilter" value="'.$this->l('Filter').'" class="button">
+						<input type="submit" name="submitReset'.$this->table.'" value="'.$this->l('Reset').'" class="button" />
+						<input type="submit" id="submitFilterButton_'.$this->table.'" name="submitFilter" value="'.$this->l('Filter').'" class="button" />
 					</span>
 					<span class="clear"></span>
 				</td>
@@ -1029,16 +1029,16 @@ abstract class AdminTab
 		}
 		echo '<table'.($this->identifier == 'id_product' ? ' id="'.(($id_category = intval(Tools::getValue('id_category', '1'))) ? $id_category : '').'"' : '' ).' class="table'.($this->identifier == 'id_product' ? ' tableDnD' : '' ).'" cellpadding="0" cellspacing="0"><tr class="nodrag nodrop">';
 		if ($this->delete)
-			echo '<th><input type="checkbox" name="checkme" class="noborder" onclick="checkDelBoxes(this.form, \''.$this->table.'Box[]\', this.checked)"></th>';
+			echo '<th><input type="checkbox" name="checkme" class="noborder" onclick="checkDelBoxes(this.form, \''.$this->table.'Box[]\', this.checked)" /></th>';
 		foreach ($this->fieldsDisplay AS $key => $params)
 		{
 			echo '
 				<th '.(isset($params['widthColumn']) ? 'style="width: '.$params['widthColumn'].'px"' : '').'>
 					'.$params['title'];
 			if (!isset($params['orderby']) OR $params['orderby'])
-				echo '<br>
-					<a href="'.$currentIndex.'&'.$this->table.'Orderby='.urlencode($key).'&'.$this->table.'Orderway=desc&token='.$token.'"><img border="0" src="../img/admin/down'.((isset($this->_orderBy) AND ($key == $this->_orderBy) AND ($this->_orderWay == 'DESC')) ? '_d' : '').'.gif"></a>
-					<a href="'.$currentIndex.'&'.$this->table.'Orderby='.urlencode($key).'&'.$this->table.'Orderway=asc&token='.$token.'"><img border="0" src="../img/admin/up'.((isset($this->_orderBy) AND ($key == $this->_orderBy) AND ($this->_orderWay == 'ASC')) ? '_d' : '').'.gif"></a>';
+				echo '<br />
+					<a href="'.$currentIndex.'&'.$this->table.'Orderby='.urlencode($key).'&'.$this->table.'Orderway=desc&token='.$token.'"><img border="0" src="../img/admin/down'.((isset($this->_orderBy) AND ($key == $this->_orderBy) AND ($this->_orderWay == 'DESC')) ? '_d' : '').'.gif" /></a>
+					<a href="'.$currentIndex.'&'.$this->table.'Orderby='.urlencode($key).'&'.$this->table.'Orderway=asc&token='.$token.'"><img border="0" src="../img/admin/up'.((isset($this->_orderBy) AND ($key == $this->_orderBy) AND ($this->_orderWay == 'ASC')) ? '_d' : '').'.gif" /></a>';
 			echo '
 				</th>';
 		}
@@ -1086,8 +1086,8 @@ abstract class AdminTab
 					$name = $this->table.'Filter_'.(isset($params['filter_key']) ? $params['filter_key'] : $key);
 					$nameId = str_replace('!', '__', $name);
 					includeDatepicker(array($nameId.'_0', $nameId.'_1'));
-					echo $this->l('From').' <input type="text" id="'.$nameId.'_0" name="'.$name.'[0]" value="'.(isset($value[0]) ? $value[0] : '').'"'.$width.' '.$keyPress.'><br>
-					'.$this->l('To').' <input type="text" id="'.$nameId.'_1" name="'.$name.'[1]" value="'.(isset($value[1]) ? $value[1] : '').'"'.$width.' '.$keyPress.'>';
+					echo $this->l('From').' <input type="text" id="'.$nameId.'_0" name="'.$name.'[0]" value="'.(isset($value[0]) ? $value[0] : '').'"'.$width.' '.$keyPress.' /><br />
+					'.$this->l('To').' <input type="text" id="'.$nameId.'_1" name="'.$name.'[1]" value="'.(isset($value[1]) ? $value[1] : '').'"'.$width.' '.$keyPress.' />';
 					break;
 
 				case 'select':
@@ -1107,7 +1107,7 @@ abstract class AdminTab
 
 				case 'text':
 				default:
-					echo '<input type="text" name="'.$this->table.'Filter_'.(isset($params['filter_key']) ? $params['filter_key'] : $key).'" value="'.htmlentities($value, ENT_COMPAT, 'UTF-8').'"'.$width.' '.$keyPress.'>';
+					echo '<input type="text" name="'.$this->table.'Filter_'.(isset($params['filter_key']) ? $params['filter_key'] : $key).'" value="'.htmlentities($value, ENT_COMPAT, 'UTF-8').'"'.$width.' '.$keyPress.' />';
 			}
 			echo '</td>';
 		}
@@ -1128,7 +1128,7 @@ abstract class AdminTab
 		global $currentIndex;
 
 		if ($this->edit AND (!isset($this->noAdd) OR !$this->noAdd))
-			echo '<br><a href="'.$currentIndex.'&add'.$this->table.'&token='.$this->token.'"><img src="../img/admin/add.gif" border="0"> '.$this->l('Add new').'</a><br><br>';
+			echo '<br /><a href="'.$currentIndex.'&add'.$this->table.'&token='.$this->token.'"><img src="../img/admin/add.gif" border="0" /> '.$this->l('Add new').'</a><br /><br />';
 		/* Append when we get a syntax error in SQL query */
 		if ($this->_list === false)
 		{
@@ -1174,7 +1174,7 @@ abstract class AdminTab
 				$id = $tr[$this->identifier];
 				echo '<tr'.($this->identifier == 'id_product' ? ' id="tr_'.(($id_category = intval(Tools::getValue('id_category', '1'))) ? $id_category : '').'_'.$id.'_'.$tr['position'].'"' : '').($irow++ % 2 ? ' class="alt_row"' : '').' '.((isset($tr['color']) AND $this->colorOnBackground) ? 'style="background-color: '.$tr['color'].'"' : '').'>';
 				if ($this->delete)
-					echo '<td class="center"><input type="checkbox" name="'.$this->table.'Box[]" value="'.$id.'" class="noborder"></td>';
+					echo '<td class="center"><input type="checkbox" name="'.$this->table.'Box[]" value="'.$id.'" class="noborder" /></td>';
 
 				foreach ($this->fieldsDisplay AS $key => $params)
 				{
@@ -1192,10 +1192,10 @@ abstract class AdminTab
 						echo '<a href="'.$currentIndex.'&'.$this->identifier.'='.$id.'&'.$params['active'].
 						((($id_category = intval(Tools::getValue('id_category'))) AND Tools::getValue('id_product')) ? '&id_category='.$id_category : '').'&token='.($token!=NULL ? $token : $this->token).'">
 						<img src="../img/admin/'.($tr[$key] ? 'enabled.gif' : 'disabled.gif').'"
-						alt="'.($tr[$key] ? $this->l('Enabled') : $this->l('Disabled')).'" title="'.($tr[$key] ? $this->l('Enabled') : $this->l('Disabled')).'"></a>';
+						alt="'.($tr[$key] ? $this->l('Enabled') : $this->l('Disabled')).'" title="'.($tr[$key] ? $this->l('Enabled') : $this->l('Disabled')).'" /></a>';
 					elseif (isset($params['activeVisu']) AND isset($tr[$key]))
 						echo '<img src="../img/admin/'.($tr[$key] ? 'enabled.gif' : 'disabled.gif').'"
-						alt="'.($tr[$key] ? $this->l('Enabled') : $this->l('Disabled')).'" title="'.($tr[$key] ? $this->l('Enabled') : $this->l('Disabled')).'">';
+						alt="'.($tr[$key] ? $this->l('Enabled') : $this->l('Disabled')).'" title="'.($tr[$key] ? $this->l('Enabled') : $this->l('Disabled')).'" />';
 					elseif (isset($params['position']))
 					{
                    		if ($this->_orderBy == 'position')
@@ -1203,11 +1203,11 @@ abstract class AdminTab
 							echo '<a'.(!($tr[$key] != $positions[sizeof($positions) - 1]) ? ' style="display: none;"' : '').' href="'.$currentIndex.'&'.$this->identifier.'='.$id.'&position=1'.
 									($id_category = intval(Tools::getValue('id_category')) ? '&id_category='.$id_category : '').'&token='.($token!=NULL ? $token : $this->token).'">
 									<img src="../img/admin/'.($this->_orderWay == 'ASC' ? 'down' : 'up').'.gif"
-									alt="'.$this->l('Down').'" title="'.$this->l('Down').'"></a>';
+									alt="'.$this->l('Down').'" title="'.$this->l('Down').'" /></a>';
 							echo '<a'.(!($tr[$key] != $positions[0]) ? ' style="display: none;"' : '').' href="'.$currentIndex.'&'.$this->identifier.'='.$id.'&position=0'.
 									($id_category = intval(Tools::getValue('id_category')) ? '&id_category='.$id_category : '').'&token='.($token!=NULL ? $token : $this->token).'">
 									<img src="../img/admin/'.($this->_orderWay == 'ASC' ? 'up' : 'down').'.gif"
-									alt="'.$this->l('Up').'" title="'.$this->l('Up').'"></a>';
+									alt="'.$this->l('Up').'" title="'.$this->l('Up').'" /></a>';
 						}
 						else
 							echo intval($tr[$key] + 1);
@@ -1218,7 +1218,7 @@ abstract class AdminTab
 						echo cacheImage(_PS_IMG_DIR_.$params['image'].'/'.$image_id.(isset($tr['id_image']) ? '-'.intval($tr['id_image']) : '').'.'.$this->imageType, $this->table.'_mini_'.$image_id.'.'.$this->imageType, 45, $this->imageType);
 					}
 					elseif (isset($params['icon']) AND (isset($params['icon'][$tr[$key]]) OR isset($params['icon']['default'])))
-						echo '<img src="../img/admin/'.(isset($params['icon'][$tr[$key]]) ? $params['icon'][$tr[$key]] : $params['icon']['default'].'" alt="'.$tr[$key]).'" title="'.$tr[$key].'">';
+						echo '<img src="../img/admin/'.(isset($params['icon'][$tr[$key]]) ? $params['icon'][$tr[$key]] : $params['icon']['default'].'" alt="'.$tr[$key]).'" title="'.$tr[$key].'" />';
                     elseif (isset($params['price']))
 						echo Tools::displayPrice($tr[$key], (isset($params['currency']) ? new Currency(intval($tr['id_currency'])) : $currency), false, false);
 					elseif (isset($params['float']))
@@ -1246,20 +1246,20 @@ abstract class AdminTab
 					if ($this->view)
 						echo '
 						<a href="'.$currentIndex.'&'.$this->identifier.'='.$id.'&view'.$this->table.'&token='.($token!=NULL ? $token : $this->token).'">
-						<img src="../img/admin/details.gif" border="0" alt="'.$this->l('View').'" title="'.$this->l('View').'"></a>';
+						<img src="../img/admin/details.gif" border="0" alt="'.$this->l('View').'" title="'.$this->l('View').'" /></a>';
 					if ($this->edit)
 						echo '
 						<a href="'.$currentIndex.'&'.$this->identifier.'='.$id.'&update'.$this->table.'&token='.($token!=NULL ? $token : $this->token).'">
-						<img src="../img/admin/edit.gif" border="0" alt="'.$this->l('Edit').'" title="'.$this->l('Edit').'"></a>';
+						<img src="../img/admin/edit.gif" border="0" alt="'.$this->l('Edit').'" title="'.$this->l('Edit').'" /></a>';
 					if ($this->delete AND (!isset($this->_listSkipDelete) OR !in_array($id, $this->_listSkipDelete)))
 						echo '
 						<a href="'.$currentIndex.'&'.$this->identifier.'='.$id.'&delete'.$this->table.'&token='.($token!=NULL ? $token : $this->token).'" onclick="return confirm(\''.$this->l('Delete item #', __CLASS__, TRUE, FALSE).$id.' ?\');">
-						<img src="../img/admin/delete.gif" border="0" alt="'.$this->l('Delete', __CLASS__, TRUE, FALSE).'" title="'.$this->l('Delete', __CLASS__, TRUE, FALSE).'"></a>';
+						<img src="../img/admin/delete.gif" border="0" alt="'.$this->l('Delete', __CLASS__, TRUE, FALSE).'" title="'.$this->l('Delete', __CLASS__, TRUE, FALSE).'" /></a>';
 					$duplicate = $currentIndex.'&'.$this->identifier.'='.$id.'&duplicate'.$this->table;
 					if ($this->duplicate)
 						echo '
 						<a class="pointer" onclick="if (confirm(\''.$this->l('Copy images too?', __CLASS__, TRUE, FALSE).'\')) document.location = \''.$duplicate.'&token='.($token!=NULL ? $token : $this->token).'\'; else document.location = \''.$duplicate.'&noimage=1&token='.($token ? $token : $this->token).'\';">
-						<img src="../img/admin/add.gif" border="0" alt="'.$this->l('Duplicate').'" title="'.$this->l('Duplicate').'"></a>';
+						<img src="../img/admin/add.gif" border="0" alt="'.$this->l('Duplicate').'" title="'.$this->l('Duplicate').'" /></a>';
 					echo '</td>';
 				}
 				echo '</tr>';
@@ -1273,15 +1273,15 @@ abstract class AdminTab
 	{
 		echo '</table>';
 		if ($this->delete)
-			echo '<p><input type="submit" class="button" name="submitDel'.$this->table.'" value="'.$this->l('Delete selection').'" onclick="return confirm(\''.$this->l('Delete selected items?', __CLASS__, TRUE, FALSE).'\');"></p>';
+			echo '<p><input type="submit" class="button" name="submitDel'.$this->table.'" value="'.$this->l('Delete selection').'" onclick="return confirm(\''.$this->l('Delete selected items?', __CLASS__, TRUE, FALSE).'\');" /></p>';
 		echo '
 				</td>
 			</tr>
 		</table>
-		<input type="hidden" name="token" value="'.($token ? $token : $this->token).'">
+		<input type="hidden" name="token" value="'.($token ? $token : $this->token).'" />
 		</form>';
 		if (isset($this->_includeTab) AND sizeof($this->_includeTab))
-			echo '<br><br>';
+			echo '<br /><br />';
 	}
 
 	/**
@@ -1297,7 +1297,7 @@ abstract class AdminTab
 		$defaultLanguage = intval(Configuration::get('PS_LANG_DEFAULT'));
 		$languages = Language::getLanguages();
 		$tab = Tab::getTab(intval($cookie->id_lang), Tab::getIdFromClassName($tab));
-		echo '<br><br>';
+		echo '<br /><br />';
 		echo (isset($this->optionTitle) ? '<h2>'.$this->optionTitle.'</h2>' : '');
 		echo '
 		<script type="text/javascript">
@@ -1305,7 +1305,7 @@ abstract class AdminTab
 		</script>
 		<form action="'.$currentIndex.'" id="'.$tab['name'].'" name="'.$tab['name'].'" method="post" class="width3">
 			<fieldset>';
-				echo (isset($this->optionTitle) ? '<legend><img src="../img/t/'.$tab['class_name'].'.gif">'.$this->optionTitle.'</legend>' : '');
+				echo (isset($this->optionTitle) ? '<legend><img src="../img/t/'.$tab['class_name'].'.gif" />'.$this->optionTitle.'</legend>' : '');
 		foreach ($this->_fieldsOptions AS $key => $field)
 		{
 			$val = Tools::getValue($key, Configuration::get($key));
@@ -1324,11 +1324,11 @@ abstract class AdminTab
 				break ;
 
 				case 'bool':
-					echo '<label class="t" for="'.$key.'_on"><img src="../img/admin/enabled.gif" alt="'.$this->l('Yes').'" title="'.$this->l('Yes').'"></label>
-					<input type="radio" name="'.$key.'" id="'.$key.'_on" value="1"'.($val ? ' checked="checked"' : '').'>
+					echo '<label class="t" for="'.$key.'_on"><img src="../img/admin/enabled.gif" alt="'.$this->l('Yes').'" title="'.$this->l('Yes').'" /></label>
+					<input type="radio" name="'.$key.'" id="'.$key.'_on" value="1"'.($val ? ' checked="checked"' : '').' />
 					<label class="t" for="'.$key.'_on"> '.$this->l('Yes').'</label>
-					<label class="t" for="'.$key.'_off"><img src="../img/admin/disabled.gif" alt="'.$this->l('No').'" title="'.$this->l('No').'" style="margin-left: 10px;"></label>
-					<input type="radio" name="'.$key.'" id="'.$key.'_off" value="0" '.(!$val ? 'checked="checked"' : '').'>
+					<label class="t" for="'.$key.'_off"><img src="../img/admin/disabled.gif" alt="'.$this->l('No').'" title="'.$this->l('No').'" style="margin-left: 10px;" /></label>
+					<input type="radio" name="'.$key.'" id="'.$key.'_off" value="0" '.(!$val ? 'checked="checked"' : '').'/>
 					<label class="t" for="'.$key.'_off"> '.$this->l('No').'</label>';
 				break ;
 
@@ -1338,7 +1338,7 @@ abstract class AdminTab
 						$val = Tools::getValue($key.'_'.$language['id_lang'], Configuration::get($key, $language['id_lang']));
 						echo '
 						<div id="'.$key.'_'.$language['id_lang'].'" style="display: '.($language['id_lang'] == $defaultLanguage ? 'block' : 'none').'; float: left;">
-							<input size="'.$field['size'].'" type="text" name="'.$key.'_'.$language['id_lang'].'" value="'.$val.'">
+							<input size="'.$field['size'].'" type="text" name="'.$key.'_'.$language['id_lang'].'" value="'.$val.'" />
 						</div>';
 					}
 					$this->displayFlags($languages, $defaultLanguage, $key, $key);
@@ -1347,16 +1347,16 @@ abstract class AdminTab
 				
 				case 'text':
 				default:
-					echo '<input type="text" name="'.$key.'" value="'.$val.'" size="'.$field['size'].'">'.(isset($field['suffix']) ? $field['suffix'] : '');
+					echo '<input type="text" name="'.$key.'" value="'.$val.'" size="'.$field['size'].'" />'.(isset($field['suffix']) ? $field['suffix'] : '');
 			}
 			echo (isset($field['desc']) ? '<p>'.$field['desc'].'</p>' : '');
 			echo '</div>';
 		}
 			echo '<div class="margin-form">
-					<input type="submit" value="'.$this->l('   Save   ').'" name="submitOptions'.$this->table.'" class="button">
+					<input type="submit" value="'.$this->l('   Save   ').'" name="submitOptions'.$this->table.'" class="button" />
 				</div>
 			</fieldset>
-			<input type="hidden" name="token" value="'.$this->token.'">
+			<input type="hidden" name="token" value="'.$this->token.'" />
 		</form>';
 	}
 
@@ -1475,7 +1475,7 @@ abstract class AdminTab
 		$token = Tools::getValue('token');
 		if (!$token OR empty($token) OR ($token != $this->token))
 		{
-			echo '<p class="warning bold"><img src="../img/admin/warning.gif" alt="" class="middle"> &nbsp;'.Tools::displayError('Invalid security token').'</p>';
+			echo '<p class="warning bold"><img src="../img/admin/warning.gif" alt="" class="middle" /> &nbsp;'.Tools::displayError('Invalid security token').'</p>';
 			return false;
 		}
 		return true;
@@ -1497,12 +1497,12 @@ abstract class AdminTab
 			$defaultIso = Language::getIsoById($defaultLanguage);
 			$output = '
 			<div class="display_flags">
-				<img src="../img/l/'.$defaultLanguage.'.jpg" class="pointer" id="language_current_'.$id.'" onclick="showLanguages(\''.$id.'\');" alt="">
+				<img src="../img/l/'.$defaultLanguage.'.jpg" class="pointer" id="language_current_'.$id.'" onclick="showLanguages(\''.$id.'\');" alt="" />
 			</div>
 			<div id="languages_'.$id.'" class="language_flags">
-				'.$this->l('Choose language:').'<br><br>';
+				'.$this->l('Choose language:').'<br /><br />';
 			foreach ($languages as $language)
-				$output .= '<img src="../img/l/'.intval($language['id_lang']).'.jpg" class="pointer" alt="'.$language['name'].'" title="'.$language['name'].'" onclick="changeLanguage(\''.$id.'\', \''.$ids.'\', '.$language['id_lang'].', \''.$language['iso_code'].'\');"> ';
+				$output .= '<img src="../img/l/'.intval($language['id_lang']).'.jpg" class="pointer" alt="'.$language['name'].'" title="'.$language['name'].'" onclick="changeLanguage(\''.$id.'\', \''.$ids.'\', '.$language['id_lang'].', \''.$language['iso_code'].'\');" /> ';
 			$output .= '</div>';
 			
 			if ($return)

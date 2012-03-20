@@ -41,14 +41,14 @@ if ($lm->getIncludeTradFilename())
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.1//EN" "http://www.w3.org/TR/xhtml11/DTD/xhtml11.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml" >
 <head>
-	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
 	<title><?php echo lang('PrestaShop '.INSTALL_VERSION.' Installer')?></title>
-	<link rel="stylesheet" type="text/css" media="all" href="view.css">
+	<link rel="stylesheet" type="text/css" media="all" href="view.css"/>
 	<script type="text/javascript" src="<?php echo PS_BASE_URI ?>js/jquery/jquery-1.2.6.pack.js"></script>
 	<script type="text/javascript" src="<?php echo PS_BASE_URI ?>js/jquery/ajaxfileupload.js"></script>
 	<script type="text/javascript" src="<?php echo PS_BASE_URI ?>js/jquery/jquery.pngFix.pack.js"></script>
 	<script type="text/javascript" src="<?php echo PS_BASE_URI ?>js/jquery/jqminmax-compressed.js"></script>
-	<link rel="shortcut icon" href="<?php echo PS_BASE_URI ?>img/favicon.ico">
+	<link rel="shortcut icon" href="<?php echo PS_BASE_URI ?>img/favicon.ico" />
 	
 	<script type="text/javascript">
 		//php to js vars
@@ -173,8 +173,8 @@ if ($lm->getIncludeTradFilename())
 
 	<div class="sheet shown" id="sheet_lang">
 		<h2><?php echo lang('Welcome')?></h2>
-		<h3><?php echo lang('Welcome to the PrestaShop '.INSTALL_VERSION.' Installer.')?><br><?php echo lang('Please allow 5-15 minutes to complete the installation process.')?></h3>
-		<p><?php echo lang('The PrestaShop Installer will do most of the work in just a few clicks.')?><br><?php echo lang('However, you will have to know how to do the following manually:')?></p>
+		<h3><?php echo lang('Welcome to the PrestaShop '.INSTALL_VERSION.' Installer.')?><br /><?php echo lang('Please allow 5-15 minutes to complete the installation process.')?></h3>
+		<p><?php echo lang('The PrestaShop Installer will do most of the work in just a few clicks.')?><br /><?php echo lang('However, you will have to know how to do the following manually:')?></p>
 		<ul>
 			<li><?php echo lang('Set permissions on folders & subfolders using Terminal or an FTP client')?></li>
 			<li><?php echo lang('Access and configure PHP 5.0+ on your hosting server')?></li>
@@ -188,9 +188,9 @@ if ($lm->getIncludeTradFilename())
 		<form id="formSetInstallerLanguage" action="<?php $_SERVER['REQUEST_URI']; ?>" method="get">
 			<ul id="langList">
 			<?php foreach ($lm->getAvailableLangs() as $lang):?>
-				<li><input onclick="setInstallerLanguage()" type="radio" value="<?php echo $lang['id'] ?>" <?php echo ( $lang['id'] == $lm->getIdSelectedLang() ) ? "checked=\"checked\"" : '' ?> id="lang_<?php echo $lang['id'] ?>" name="language"><label for="lang_<?php echo $lang['id'] ?>">
+				<li><input onclick="setInstallerLanguage()" type="radio" value="<?php echo $lang['id'] ?>" <?php echo ( $lang['id'] == $lm->getIdSelectedLang() ) ? "checked=\"checked\"" : '' ?> id="lang_<?php echo $lang['id'] ?>" name="language"/><label for="lang_<?php echo $lang['id'] ?>">
 				<?php foreach ($lang->flags->url as $url_flag):?>
-					<img src="<?php echo $url_flag ?>" alt="<?php echo $lang['label'] ?>">
+					<img src="<?php echo $url_flag ?>" alt="<?php echo $lang['label'] ?>"/>
 				<?php endforeach ?>
 				<?php echo $lang['label'] ?></label></li>
 				
@@ -200,8 +200,8 @@ if ($lm->getIncludeTradFilename())
 		
 		<h3><?php echo lang('Installation method')?></h3>
 		<form id="formSetMethod" action="<?php $_SERVER['REQUEST_URI']; ?>" method="post">
-			<p><input <?php echo (!($oldversion AND !$tooOld AND !$sameVersions)) ? 'checked="checked"' : '' ?> type="radio" value="install" name="typeInstall" id="typeInstallInstall"><label for="typeInstallInstall"><?php echo lang('Installation : complete install of the PrestaShop Solution')?></label></p>
-			<p <?php echo ($oldversion AND !$tooOld AND !$sameVersions) ? '' : 'class="disabled"'; ?>><input <?php echo ($oldversion AND !$tooOld AND !$sameVersions) ? 'checked="checked"' : 'disabled="disabled"'; ?> type="radio" value="upgrade" name="typeInstall" id="typeInstallUpgrade"><label <?php echo ($oldversion === false) ? 'class="disabled"' : ''; ?> for="typeInstallUpgrade"><?php echo lang('Upgrade : get the latest stable version!')?> <?php echo ($oldversion === false) ? lang('(no old version detected)') : ("(".(  ($tooOld) ? lang('the already installed version detected is too old, no more update available') : lang('installed version detected').' : '.$oldversion    ).")") ?></label></p>
+			<p><input <?php echo (!($oldversion AND !$tooOld AND !$sameVersions)) ? 'checked="checked"' : '' ?> type="radio" value="install" name="typeInstall" id="typeInstallInstall"/><label for="typeInstallInstall"><?php echo lang('Installation : complete install of the PrestaShop Solution')?></label></p>
+			<p <?php echo ($oldversion AND !$tooOld AND !$sameVersions) ? '' : 'class="disabled"'; ?>><input <?php echo ($oldversion AND !$tooOld AND !$sameVersions) ? 'checked="checked"' : 'disabled="disabled"'; ?> type="radio" value="upgrade" name="typeInstall" id="typeInstallUpgrade"/><label <?php echo ($oldversion === false) ? 'class="disabled"' : ''; ?> for="typeInstallUpgrade"><?php echo lang('Upgrade : get the latest stable version!')?> <?php echo ($oldversion === false) ? lang('(no old version detected)') : ("(".(  ($tooOld) ? lang('the already installed version detected is too old, no more update available') : lang('installed version detected').' : '.$oldversion    ).")") ?></label></p>
 		</form>
 		
 	</div>
@@ -248,7 +248,7 @@ if ($lm->getIncludeTradFilename())
 				<li class="optional"><?php echo lang('GZIP compression is on (recommended)')?></li>
 			</ul>
 			
-			<p><input class="button" value="<?php echo lang('Refresh these settings')?>" type="button" id="req_bt_refresh"></p>
+			<p><input class="button" value="<?php echo lang('Refresh these settings')?>" type="button" id="req_bt_refresh"/></p>
 			
 		</div>
 		
@@ -259,32 +259,32 @@ if ($lm->getIncludeTradFilename())
 			<form id="formCheckSQL" class="aligned" action="<?php $_SERVER['REQUEST_URI']; ?>" onsubmit="verifyDbAccess(); return false;" method="post">
 				<p>
 					<label for="dbServer"><?php echo lang('Server')?> : </label>
-					<input size="25" class="text" type="text" id="dbServer" value="localhost">
+					<input size="25" class="text" type="text" id="dbServer" value="localhost"/>
 				</p>
 				<p>
 					<label for="dbName"><?php echo lang('Database name')?> : </label>
-					<input size="10" class="text" type="text" id="dbName" value="prestashop">
+					<input size="10" class="text" type="text" id="dbName" value="prestashop"/>
 				</p>
 				<p>
 					<label for="dbLogin"><?php echo lang('Login')?> : </label>
-					<input class="text" size="10" type="text" id="dbLogin" value="root">
+					<input class="text" size="10" type="text" id="dbLogin" value="root"/>
 				</p>
 				<p>
 					<label for="dbPassword"><?php echo lang('Password')?> : </label>
-					<input class="text" autocomplete="off" size="10" type="password" id="dbPassword">
+					<input class="text" autocomplete="off" size="10" type="password" id="dbPassword"/>
 				</p>
 				<p class="aligned">
-					<input id="btTestDB" class="button" type="submit" value="<?php echo lang('Verify now!')?>">
+					<input id="btTestDB" class="button" type="submit" value="<?php echo lang('Verify now!')?>"/>
 				</p>
 				<p id="dbResultCheck"></p>
 			</form>
 			
 			<div id="dbTableParam">
 				<form action="#" method="post" onsubmit="createDB(); return false;">
-				<p><label for="db_prefix"><?php echo lang('Tables prefix')?> : </label><input class="text" type="text" id="db_prefix" value="ps_"></p>
+				<p><label for="db_prefix"><?php echo lang('Tables prefix')?> : </label><input class="text" type="text" id="db_prefix" value="ps_"/></p>
 				<p id="dbModeSetter">
-					<input value="full" type="radio" name="db_mode" checked="checked" id="db_mode_complet"><label for="db_mode_complet"><?php echo lang('Full mode : Install the main modules and add sample products')?></label><br>
-					<input value="lite" type="radio" name="db_mode" id="db_mode_simple"><label for="db_mode_simple"><?php echo lang('Simple mode : Don\'t install any module')?></label>
+					<input value="full" type="radio" name="db_mode" checked="checked" id="db_mode_complet"/><label for="db_mode_complet"><?php echo lang('Full mode : Install the main modules and add sample products')?></label><br/>
+					<input value="lite" type="radio" name="db_mode" id="db_mode_simple"/><label for="db_mode_simple"><?php echo lang('Simple mode : Don\'t install any module')?></label>
 				</p>
 				</form>
 				<p id="dbCreateResultCheck"></p>
@@ -293,8 +293,8 @@ if ($lm->getIncludeTradFilename())
 				<h2><?php echo lang('E-mail delivery set-up')?></h2>
 				
 				<p>
-					<input type="checkbox" id="set_stmp">
-					<label for="set_stmp"><?php echo lang('Configure SMTP manually (advanced users only)'); ?></label><br>
+					<input type="checkbox" id="set_stmp"/>
+					<label for="set_stmp"><?php echo lang('Configure SMTP manually (advanced users only)'); ?></label><br/>
 					<span class="userInfos"><?php echo lang('By default, the PHP \'mail()\' function is used'); ?></span>
 				</p>
 				
@@ -302,7 +302,7 @@ if ($lm->getIncludeTradFilename())
 					<form class="aligned" action="#" method="post" onsubmit="verifyMail(); return false;">
 						<p>
 							<label for="smtpSrv"><?php echo lang('SMTP server'); ?> : </label>
-							<input class="text" type="text" id="smtpSrv" value="smtp.">
+							<input class="text" type="text" id="smtpSrv" value="smtp."/>
 						</p>
 						<p>
 							<label for="smtpEnc"><?php echo lang('Encryption'); ?> :</label>
@@ -315,17 +315,17 @@ if ($lm->getIncludeTradFilename())
 						
 						<p>
 							<label for="smtpPort"><?php echo lang('Port'); ?> :</label>
-							<input type="text" size="5" id="smtpPort" value="25">
+							<input type="text" size="5" id="smtpPort" value="25" />
 						</p>
 						
 						<p>
 							<label for="smtpLogin"><?php echo lang('Login'); ?> : </label>
-							<input class="text" type="text" size="10" id="smtpLogin" value="">
+							<input class="text" type="text" size="10" id="smtpLogin" value="" />
 						</p>
 
 						<p>
 							<label for="smtpPassword"><?php echo lang('Password'); ?> : </label>
-							<input autocomplete="off" class="text" type="password" size="10" id="smtpPassword">
+							<input autocomplete="off" class="text" type="password" size="10" id="smtpPassword" />
 						</p>
 
 					</form>
@@ -346,43 +346,43 @@ if ($lm->getIncludeTradFilename())
 				
 				<h3><?php echo lang('Merchant info'); ?></h3>
 				<div class="field">
-					<label for="infosShop" class="aligned"><?php echo lang('Shop name'); ?> : </label><input class="text required" type="text" id="infosShop" value=""><br>
+					<label for="infosShop" class="aligned"><?php echo lang('Shop name'); ?> : </label><input class="text required" type="text" id="infosShop" value=""/><br/>
 					<span id="resultInfosShop" class="result aligned"></span>
 				</div>
 				<div class="field">
 					<label for="infosLogo" class="aligned logo"><?php echo lang('Shop logo'); ?> : </label>
-					<input type="file" onchange="uploadLogo()" name="fileToUpload" id="fileToUpload">
+					<input type="file" onchange="uploadLogo()" name="fileToUpload" id="fileToUpload"/>
 					<span id="resultInfosLogo" class="result"></span>
 					<p class="userInfos aligned"><?php echo lang('recommended dimensions : 230px X 75px'); ?></p>
-					<p id="alignedLogo"><img id="uploadedImage" src="<?php echo PS_BASE_URI ?>img/logo.jpg" alt="Logo"></p>
+					<p id="alignedLogo"><img id="uploadedImage" src="<?php echo PS_BASE_URI ?>img/logo.jpg" alt="Logo" /></p>
 				</div>
 				
 				<div class="field">
-					<label for="infosFirstname" class="aligned"><?php echo lang('First name'); ?> : </label><input class="text required" type="text" id="infosFirstname"><br>
+					<label for="infosFirstname" class="aligned"><?php echo lang('First name'); ?> : </label><input class="text required" type="text" id="infosFirstname"/><br/>
 					<span id="resultInfosFirstname" class="result aligned"></span>
 				</div>
 				
 				<div class="field">
-					<label for="infosName" class="aligned"><?php echo lang('Last name'); ?> : </label><input class="text required" type="text" id="infosName"><br>
+					<label for="infosName" class="aligned"><?php echo lang('Last name'); ?> : </label><input class="text required" type="text" id="infosName"/><br/>
 					<span id="resultInfosName" class="result aligned"></span>
 				</div>
 				
 				<div class="field">
-					<label for="infosEmail" class="aligned"><?php echo lang('E-mail address'); ?> : </label><input type="text" class="text required" id="infosEmail"><br>
+					<label for="infosEmail" class="aligned"><?php echo lang('E-mail address'); ?> : </label><input type="text" class="text required" id="infosEmail"/><br/>
 					<span id="resultInfosEmail" class="result aligned"></span>
 				</div>
 				
 				<div class="field">
-					<label for="infosPassword" class="aligned"><?php echo lang('Shop password'); ?> : </label><input autocomplete="off" type="password" class="text required" id="infosPassword"><br>
+					<label for="infosPassword" class="aligned"><?php echo lang('Shop password'); ?> : </label><input autocomplete="off" type="password" class="text required" id="infosPassword"/><br/>
 					<span id="resultInfosPassword" class="result aligned"></span>
 				</div>
 				<div class="field">
-					<label class="aligned" for="infosPasswordRepeat"><?php echo lang('Re-type to confirm'); ?> : </label><input type="password" autocomplete="off" class="text required" id="infosPasswordRepeat"><br>
+					<label class="aligned" for="infosPasswordRepeat"><?php echo lang('Re-type to confirm'); ?> : </label><input type="password" autocomplete="off" class="text required" id="infosPasswordRepeat"/><br/>
 					<span id="resultInfosPasswordRepeat" class="result aligned"></span>
 				</div>
 				
 				<div class="field">
-					<input type="checkbox" id="infosNotification" class="aligned"><label for="infosNotification"><?php echo lang('Receive notifications by e-mail'); ?></label><br>
+					<input type="checkbox" id="infosNotification" class="aligned"/><label for="infosNotification"><?php echo lang('Receive notifications by e-mail'); ?></label><br/>
 					<span id="resultInfosNotification" class="result aligned"></span>
 				</div>
 				
@@ -390,7 +390,7 @@ if ($lm->getIncludeTradFilename())
 				<p class="userInfos"><?php echo lang('Select the different languages available for your shop'); ?></p>-->
 				<div id="availablesLanguages" style=" float:left; text-align: center; display:none;">
 					
-					<?php echo lang('Optional languages'); ?><br>
+					<?php echo lang('Optional languages'); ?><br/>
 					<select style="width:300px;" id="aLList" multiple="multiple" size="4">
 					<?php foreach ($lm->getAvailableLangs() as $lang){
 						if ( $lang['id'] != $lm->getIdSelectedLang() AND $lang['id']  != "0" ){?>
@@ -400,12 +400,12 @@ if ($lm->getIncludeTradFilename())
 				</div>
 				
 				<div id="RightLeft" style="float: left; width:50px; margin-top: 1.7em; text-align:center; display:none;">
-					<input id="al2wl" value="&gt;" type="button"><br>
-					<input id="wl2al" value="&lt;" type="button">
+					<input id="al2wl" value="&gt;" type="button"/><br/>
+					<input id="wl2al" value="&lt;" type="button" />
 				</div>
 				
 				<div id="websitesLanguages" style="float:left; text-align: center; display:none;">
-					<?php echo lang('Available shop languages'); ?><br>
+					<?php echo lang('Available shop languages'); ?><br/>
 					<select style="width:240px;" id="wLList" size="4">
 						<option value="en">English (English)</option>
 						<?php foreach ($lm->getAvailableLangs() as $lang){
@@ -413,8 +413,8 @@ if ($lm->getIncludeTradFilename())
 								<option value="<?php echo $lang->idLangPS ?>"><?php echo $lang['label'] ?></option>
 						<?php }} ?>
 						
-					</select><br>
-					<label for="dLList"><?php echo lang('Shop\'s default language'); ?></label><br>
+					</select><br/>
+					<label for="dLList"><?php echo lang('Shop\'s default language'); ?></label><br/>
 					<select style="width:180px;" id="dLList">
 						<option selected="selected" value="en">English (English)</option>
 						<?php foreach ($lm->getAvailableLangs() as $lang){
@@ -438,9 +438,9 @@ if ($lm->getIncludeTradFilename())
 			<p><?php echo lang('You\'ve just installed and configured PrestaShop as your online shop solution. We wish you all the best with the success of your online shop.'); ?></p>
 			<p><?php echo lang('Here are your shop information. You can modify them once logged in.'); ?></p>
 			<p id="resultInstall">
-			<?php echo lang('Shop name'); ?>: <span id="endShopName"></span><br>
-			<?php echo lang('First name'); ?> : <span id="endFirstName"></span><br>
-			<?php echo lang('Last name'); ?> : <span id="endName"></span><br>
+			<?php echo lang('Shop name'); ?>: <span id="endShopName"></span><br/>
+			<?php echo lang('First name'); ?> : <span id="endFirstName"></span><br/>
+			<?php echo lang('Last name'); ?> : <span id="endName"></span><br/>
 			<?php echo lang('E-mail'); ?> : <span id="endEmail"></span>
 			</p>
 			<h3><?php echo lang('WARNING : For more security, you must delete the \'install\' folder.'); ?></h3>
@@ -455,9 +455,9 @@ if ($lm->getIncludeTradFilename())
 			<h2><?php echo lang('Disclaimer'); ?></h2>			
 			<h3><?php echo lang('Warning : a manual backup is HIGHLY recommended before continuing!'); ?></h3>
 			<p><?php echo lang('Before continuing, you have to backup your data. Please backup the database and backup the files of the application.'); ?></p>
-			<p><?php echo lang('When your files and database are saving in an other support, please certify that your shop is really backed up.'); ?><br><br></p>
+			<p><?php echo lang('When your files and database are saving in an other support, please certify that your shop is really backed up.'); ?><br /><br /></p>
 			<div id="disclaimerDivCertify">
-				<input id="btDisclaimerOk" class="button" type="button" value="<?php echo lang('I certify'); ?>">
+				<input id="btDisclaimerOk" class="button" type="button" value="<?php echo lang('I certify'); ?>" />
 			</div>
 		</div>
 		
@@ -501,7 +501,7 @@ if ($lm->getIncludeTradFilename())
 				<li class="optional"><?php echo lang('GZIP compression is on (recommended)')?></li>
 			</ul>
 			
-			<p><input class="button" value="<?php echo lang('Refresh these settings'); ?>" type="button" id="req_bt_refresh_update"></p>
+			<p><input class="button" value="<?php echo lang('Refresh these settings'); ?>" type="button" id="req_bt_refresh_update"/></p>
 			
 		</div>
 		
@@ -528,8 +528,8 @@ if ($lm->getIncludeTradFilename())
 </div>
 
 <div id="buttons">
-	<input id="btBack" class="button little disabled" type="button" value="<?php echo lang('Back'); ?>" disabled="disabled">
-	<input id="btNext" class="button little" type="button" value="<?php echo lang('Next'); ?>">
+	<input id="btBack" class="button little disabled" type="button" value="<?php echo lang('Back'); ?>" disabled="disabled"/>
+	<input id="btNext" class="button little" type="button" value="<?php echo lang('Next'); ?>" />
 </div>
 
 </div>

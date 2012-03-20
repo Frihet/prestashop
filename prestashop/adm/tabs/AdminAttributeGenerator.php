@@ -193,7 +193,7 @@ class AdminAttributeGenerator extends AdminTab
 			if (isset($attributeJs[$idGroup]))
 			{
 				echo '
-				<br style="clear: both;">
+				<br style="clear: both;"/>
 				<table class="table" cellpadding="0" cellspacing="0" align="left" style="margin-bottom: 10px; display: none;">
 					<thead>
 						<tr>
@@ -222,33 +222,33 @@ class AdminAttributeGenerator extends AdminTab
 		if (isset($_POST['generate']) AND !sizeof($this->_errors))
 			echo '
 			<div class="module_confirmation conf confirm">
-				<img src="../img/admin/ok.gif" alt="" title="" style="margin-right:5px; float:left;">
+				<img src="../img/admin/ok.gif" alt="" title="" style="margin-right:5px; float:left;" />
 				'.sizeof($this->combinations).' '.$this->l('product(s) successfully created.').'
 			</div>';
 		echo '
 			<script type="text/javascript" src="../js/attributesBack.js"></script>
 			<form enctype="multipart/form-data" method="post" id="generator" action=""'.$currentIndex.'&id_category='.intval(Tools::getValue('id_category')).'token='.Tools::getValue('token').'">
-				<fieldset style="margin-bottom: 35px;"><legend><img src="../img/admin/asterisk.gif">'.$this->l('Attributes generator').'</legend>'.
+				<fieldset style="margin-bottom: 35px;"><legend><img src="../img/admin/asterisk.gif" />'.$this->l('Attributes generator').'</legend>'.
 				$this->l('Add or modify attributes for this product:').'
-					<br><br>
+					<br /><br />
                     ';
         echo '
                 <div style="padding-top:10px; float: left; width: 570px;">
                     <div style="float:left;">
 						<label>'.$this->l('Quantity:').'</label>
 						<div class="margin-form">
-							<input type="text" size="20" name="quantity" value="1">
+							<input type="text" size="20" name="quantity" value="1"/>
 						</div>
 						<label>'.$this->l('Reference:').'</label>
 						<div class="margin-form">
-							<input type="text" size="20" name="reference" value="'.$this->product->reference.'">
+							<input type="text" size="20" name="reference" value="'.$this->product->reference.'"/>
 						</div>
 					</div>
 					<div style="float:left; text-align:center; margin-left:20px;">
-                        <input type="submit" class="button" style="margin-bottom:5px;" name="generate" value="'.$this->l('Generate').'"><br>
-                        <input type="submit" class="button" name="back" value="'.$this->l('Back to product').'">
+                        <input type="submit" class="button" style="margin-bottom:5px;" name="generate" value="'.$this->l('Generate').'" /><br />
+                        <input type="submit" class="button" name="back" value="'.$this->l('Back to product').'" />
 					</div>
-                    <br style="clear:both;">
+                    <br style="clear:both;" />
                     <div style="margin-top: 15px;">';
             self::displayGroupeTable($jsAttributes, $attributesGroups);
             echo '
@@ -259,11 +259,11 @@ class AdminAttributeGenerator extends AdminTab
             self::displayGroupSelect($jsAttributes, $attributesGroups);
         echo '
 				<div>
-                    <input class="button" type="button" style="margin-left: 20px;" value="'.$this->l('Add').'" class="button" onclick="add_attr_multiple();">
-                    <input class="button" type="button" style="margin-left: 20px;" value="'.$this->l('Delete').'" class="button" onclick="del_attr_multiple();">
+                    <input class="button" type="button" style="margin-left: 20px;" value="'.$this->l('Add').'" class="button" onclick="add_attr_multiple();" />
+                    <input class="button" type="button" style="margin-left: 20px;" value="'.$this->l('Delete').'" class="button" onclick="del_attr_multiple();" />
 				</div>
 			</div>
-			<br>
+			<br />
 			</fieldset>
 		</form>';
 	}

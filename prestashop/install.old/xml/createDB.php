@@ -5,7 +5,7 @@ if(file_exists(SETTINGS_FILE))
 {
 	if (!unlink(SETTINGS_FILE))
 	{
-	die('<action result="fail" error="17">'."\n");
+	die('<action result="fail" error="17" />'."\n");
 	}
 }
 
@@ -18,7 +18,7 @@ include(INSTALL_PATH.'/../classes/Tools.php');
 include(INSTALL_PATH.'/classes/ToolsInstall.php');
 $resultDB = ToolsInstall::checkDB($_GET['server'], $_GET['login'], $_GET['password'], $_GET['name']);
 if ($resultDB !== true){
-	die("<action result='fail' error='".$resultDB."'>\n");
+	die("<action result='fail' error='".$resultDB."'/>\n");
 }
 
 
@@ -29,7 +29,7 @@ $data_check = array(
 );
 foreach ($data_check AS $data)
 	if ($data)
-		die('<action result="fail" error="8">'."\n");
+		die('<action result="fail" error="8"/>'."\n");
 
 // Writing data in settings file
 $oldLevel = error_reporting(E_ALL);
@@ -50,7 +50,7 @@ $datas = array(
 error_reporting($oldLevel);
 $confFile = new AddConfToFile(SETTINGS_FILE, 'w');
 if ($confFile->error)
-	die('<action result="fail" error="'.$confFile->error.'">'."\n");
+	die('<action result="fail" error="'.$confFile->error.'" />'."\n");
 	
 foreach ($datas AS $data){
 	$confFile->writeInFile($data[0], $data[1]);
@@ -58,7 +58,7 @@ foreach ($datas AS $data){
 $confFile->writeEndTagPhp();
 
 if ($confFile->error != false)
-	die('<action result="fail" error="'.$confFile->error.'">'."\n");
+	die('<action result="fail" error="'.$confFile->error.'" />'."\n");
 
 //load new settings
 include(INSTALL_PATH.'/../config/settings.inc.php');
@@ -74,10 +74,10 @@ switch (_DB_TYPE_) {
 		//send the SQL structure file requests
 		$structureFile = dirname(__FILE__)."/../sql/db.sql";
 		if(!file_exists($structureFile))
-			die('<action result="fail" error="10">'."\n");
+			die('<action result="fail" error="10" />'."\n");
 		$db_structure_settings ="";
 		if ( !$db_structure_settings .= file_get_contents($structureFile) )
-			die('<action result="fail" error="9">'."\n");
+			die('<action result="fail" error="9" />'."\n");
 		$db_structure_settings = str_replace($filePrefix, $_GET['tablePrefix'], $db_structure_settings);		
 		$db_structure_settings = preg_split("/;\s*[\r\n]+/",$db_structure_settings);
 		foreach($db_structure_settings as $query){
@@ -85,7 +85,7 @@ switch (_DB_TYPE_) {
 			if(!empty($query)){
 				if(!Db::getInstance()->Execute($query)){
 					if(Db::getInstance()->getNumberError() == 1050){
-						die('<action result="fail" error="14">'."\n");
+						die('<action result="fail" error="14" />'."\n");
 					} else {
 						die(
 							'<action
@@ -94,7 +94,7 @@ switch (_DB_TYPE_) {
 							sqlMsgError="'.addslashes(htmlentities(Db::getInstance()->getMsgError())).'"
 							sqlNumberError="'.htmlentities(Db::getInstance()->getNumberError()).'"
 							sqlQuery="'.addslashes(htmlentities($query)).'"
-							>'
+							/>'
 						);
 					}
 				}
@@ -107,16 +107,16 @@ switch (_DB_TYPE_) {
 		
 		$liteFile = dirname(__FILE__)."/../sql/db_settings_lite.sql";
 		if(!file_exists($liteFile))
-			die('<action result="fail" error="10">'."\n");
+			die('<action result="fail" error="10" />'."\n");
 		if ( !$db_data_settings .= file_get_contents( $liteFile ) )
-			die('<action result="fail" error="9">'."\n");
+			die('<action result="fail" error="9" />'."\n");
 		
 		if($_GET['mode'] == "full"){
 			$fullFile = dirname(__FILE__)."/../sql/db_settings_extends.sql";
 			if(!file_exists($fullFile))
-				die('<action result="fail" error="10">'."\n");
+				die('<action result="fail" error="10" />'."\n");
 			if ( !$db_data_settings .= file_get_contents( $fullFile ) )
-				die('<action result="fail" error="9">'."\n");
+				die('<action result="fail" error="9" />'."\n");
 		}
 		
 		$db_data_settings = str_replace($filePrefix, $_GET['tablePrefix'], $db_data_settings);		
@@ -128,7 +128,7 @@ switch (_DB_TYPE_) {
 			if(!empty($query)){
 				if(!Db::getInstance()->Execute($query)){
 					if(Db::getInstance()->getNumberError() == 1050){
-						die('<action result="fail" error="14">'."\n");
+						die('<action result="fail" error="14" />'."\n");
 					} else {
 						die(
 							'<action
@@ -137,7 +137,7 @@ switch (_DB_TYPE_) {
 							sqlMsgError="'.addslashes(htmlentities(Db::getInstance()->getMsgError())).'"
 							sqlNumberError="'.htmlentities(Db::getInstance()->getNumberError()).'"
 							sqlQuery="'.addslashes(htmlentities($query)).'"
-							>'
+							/>'
 						);
 					}
 				}
@@ -145,5 +145,5 @@ switch (_DB_TYPE_) {
 		}
 	break;
 }
-die('<action result="ok" error="">'."\n");
+die('<action result="ok" error="" />'."\n");
 ?>

@@ -110,9 +110,9 @@ var fieldRequired = '{l s='Please fill all required fields' js=1}';
 			<!-- product img-->
 			<div id="image-block">
 			{if $have_image}
-					<img src="{$link->getImageLink($product->link_rewrite, $cover.id_image, 'large')}" {if $jqZoomEnabled}class="jqzoom" alt="{$link->getImageLink($product->link_rewrite, $cover.id_image, 'thickbox')}"{else} title="{$product->name|escape:'htmlall':'UTF-8'}" alt="{$product->name|escape:'htmlall':'UTF-8'}" {/if} id="bigpic">
+					<img src="{$link->getImageLink($product->link_rewrite, $cover.id_image, 'large')}" {if $jqZoomEnabled}class="jqzoom" alt="{$link->getImageLink($product->link_rewrite, $cover.id_image, 'thickbox')}"{else} title="{$product->name|escape:'htmlall':'UTF-8'}" alt="{$product->name|escape:'htmlall':'UTF-8'}" {/if} id="bigpic"/>
 			{else}
-				<img src="{$img_prod_dir}{$lang_iso}-default-large.jpg" alt="" title="{$product->name|escape:'htmlall':'UTF-8'}">
+				<img src="{$img_prod_dir}{$lang_iso}-default-large.jpg" alt="" title="{$product->name|escape:'htmlall':'UTF-8'}" />
 			{/if}
 			</div>
 
@@ -126,7 +126,7 @@ var fieldRequired = '{l s='Please fill all required fields' js=1}';
 					{assign var=imageIds value=`$product->id`-`$image.id_image`}
 					<li id="thumbnail_{$image.id_image}">
 						<a href="{$link->getImageLink($product->link_rewrite, $imageIds, 'thickbox')}" rel="other-views" class="{if !$jqZoomEnabled}thickbox{/if} {if $smarty.foreach.thumbnails.first}shown{/if}" title="{$image.legend|htmlspecialchars}">
-							<img id="thumb_{$image.id_image}" src="{$link->getImageLink($product->link_rewrite, $imageIds, 'medium')}" alt="{$image.legend|htmlspecialchars}" height="{$mediumSize.height}" width="{$mediumSize.width}">
+							<img id="thumb_{$image.id_image}" src="{$link->getImageLink($product->link_rewrite, $imageIds, 'medium')}" alt="{$image.legend|htmlspecialchars}" height="{$mediumSize.height}" width="{$mediumSize.width}" />
 						</a>
 					</li>
 					{/foreach}
@@ -139,7 +139,7 @@ var fieldRequired = '{l s='Please fill all required fields' js=1}';
 			<!-- usefull links-->
 			<ul id="usefull_link_block">
 				{if $HOOK_EXTRA_LEFT}{$HOOK_EXTRA_LEFT}{/if}
-				<li><a href="javascript:print();">{l s='Print'}</a><br class="clear"></li>
+				<li><a href="javascript:print();">{l s='Print'}</a><br class="clear" /></li>
 				{if $have_image && !$jqZoomEnabled}
 				<li><span id="view_full_size" class="span_link">{l s='View full size'}</span></li>
 				{/if}
@@ -155,10 +155,10 @@ var fieldRequired = '{l s='Please fill all required fields' js=1}';
 				<div class="clear"></div>
 				<ul id="color_to_pick_list">
 				{foreach from=$colors key='id_attribute' item='color'}
-					<li><a id="color_{$id_attribute|intval}" class="color_pick" style="background: {$color.value};" onclick="updateColorSelect({$id_attribute|intval});">{if file_exists($col_img_dir|cat:$id_attribute|cat:'.jpg')}<img src="{$img_col_dir}{$id_attribute}.jpg" alt="" title="{$color.name}">{/if}</a></li>
+					<li><a id="color_{$id_attribute|intval}" class="color_pick" style="background: {$color.value};" onclick="updateColorSelect({$id_attribute|intval});">{if file_exists($col_img_dir|cat:$id_attribute|cat:'.jpg')}<img src="{$img_col_dir}{$id_attribute}.jpg" alt="" title="{$color.name}" />{/if}</a></li>
 				{/foreach}
 				</ul>
-					<a id="color_all" onclick="updateColorSelect(0);"><img src="{$img_dir}icon/cancel.gif" alt="" title="{$color.name}"></a>
+					<a id="color_all" onclick="updateColorSelect(0);"><img src="{$img_dir}icon/cancel.gif" alt="" title="{$color.name}" /></a>
 				<div class="clear"></div>
 			{/variablebox}
 			{/if}
@@ -169,20 +169,20 @@ var fieldRequired = '{l s='Please fill all required fields' js=1}';
 
 				<!-- hidden datas -->
 				<p class="hidden">
-					<input type="hidden" name="token" value="{$static_token}">
-					<input type="hidden" name="id_product" value="{$product->id|intval}" id="product_page_product_id">
-					<input type="hidden" name="add" value="1">
-					<input type="hidden" name="id_product_attribute" id="idCombination" value="">
+					<input type="hidden" name="token" value="{$static_token}" />
+					<input type="hidden" name="id_product" value="{$product->id|intval}" id="product_page_product_id" />
+					<input type="hidden" name="add" value="1" />
+					<input type="hidden" name="id_product_attribute" id="idCombination" value="" />
 				</p>
 
 				<!-- prices -->
 				<p class="price">
 					{if $product->on_sale}
-						<img src="{$img_dir}onsale_{$lang_iso}.gif" alt="{l s='On sale'}" class="on_sale_img">
+						<img src="{$img_dir}onsale_{$lang_iso}.gif" alt="{l s='On sale'}" class="on_sale_img"/>
 						<span class="on_sale">{l s='On sale!'}</span>
 					{elseif ($product->reduction_price != 0 || $product->reduction_percent != 0) && ($product->reduction_from == $product->reduction_to OR ($smarty.now|date_format:'%Y-%m-%d' <= $product->reduction_to && $smarty.now|date_format:'%Y-%m-%d' >= $product->reduction_from))}
 						<span class="discount">{l s='Price lowered!'}</span>
-					<br>
+					<br />
 					{/if}
 					<span class="our_price_display">
 					{if !$priceDisplay || $priceDisplay == 2}
@@ -195,10 +195,10 @@ var fieldRequired = '{l s='Please fill all required fields' js=1}';
 					{/if}
 					</span>
 					{if $priceDisplay == 2}
-						<br>
+						<br />
 						<span id="pretaxe_price"><span id="pretaxe_price_display">{convertPrice price=$product->getPriceLC(false, $smarty.const.NULL, 2)}</span>&nbsp;{l s='tax excl.'}</span>
 					{/if}
-					<br>
+					<br />
 				</p>
 				{if ($product->reduction_price != 0 || $product->reduction_percent != 0) && ($product->reduction_from == $product->reduction_to OR ($smarty.now|date_format:'%Y-%m-%d' <= $product->reduction_to && $smarty.now|date_format:'%Y-%m-%d' >= $product->reduction_from))}
 					<p id="old_price"><span class="bold">
@@ -218,7 +218,7 @@ var fieldRequired = '{l s='Please fill all required fields' js=1}';
 				{/if}
 				{if $packItems|@count}
 					<p class="pack_price">{l s='instead of'} <span style="text-decoration: line-through;">{$product->getNoPackPrice()}</span></p>
-					<br class="clear">
+					<br class="clear" />
 				{/if}
 				{if $product->ecotax != 0}
 					<p class="price-ecotax">{l s='include'} <span id="ecotax_price_display">{$product->ecotax}</span> {l s='for green tax'}</p>
@@ -247,7 +247,7 @@ var fieldRequired = '{l s='Please fill all required fields' js=1}';
 				<!-- quantity wanted -->
 				<p id="quantity_wanted_p"{if (!$allow_oosp && $product->quantity == 0) || $virtual} style="display:none;"{/if}>
 					<label>{l s='Quantity :'}</label>
-					<input type="text" name="qty" id="quantity_wanted" class="text" value="{if isset($quantityBackup)}{$quantityBackup|intval}{else}1{/if}" size="2" maxlength="3">
+					<input type="text" name="qty" id="quantity_wanted" class="text" value="{if isset($quantityBackup)}{$quantityBackup|intval}{else}1{/if}" size="2" maxlength="3" />
 
 					<span id="availability_statut"{if ($allow_oosp && $product->quantity == 0 && !$product->available_later) || (!$product->available_now && $display_qties != 1) } style="display:none;"{/if}>
 						<span id="availability_label">{l s='Availability:'}</span>
@@ -275,13 +275,13 @@ var fieldRequired = '{l s='Please fill all required fields' js=1}';
 					{$HOOK_PRODUCT_ACTIONS}
 				{/if}
 
-				<p{if !$allow_oosp && $product->quantity == 0} style="display:none;"{/if} id="add_to_cart" class="buttons_bottom_block"><input type="submit" name="Submit" value="{l s='Add to cart'}" class="exclusive"></p>
+				<p{if !$allow_oosp && $product->quantity == 0} style="display:none;"{/if} id="add_to_cart" class="buttons_bottom_block"><input type="submit" name="Submit" value="{l s='Add to cart'}" class="exclusive" /></p>
 			</form>
 			{/variablebox}
 			{if $HOOK_EXTRA_RIGHT}{$HOOK_EXTRA_RIGHT}{/if}
 		</div>
 	</div>
-	<br class="clear">
+	<br class="clear" />
 
 	{if $product->description_short OR $packItems|@count > 0}
 	{variablebox_content}
@@ -372,39 +372,39 @@ var fieldRequired = '{l s='Please fill all required fields' js=1}';
 					{/foreach}
 				</ul>
 				<div id="features_info_sheets" class="sheets align_justify">
-					<ul id="features_general">
+					<div id="features_general">
 						{foreach from=$features item=feature}
 							{if $feature.name|regex_replace:"+^[^/]*$+":"" == ""}
 								<li><span>{$feature.name|escape:'htmlall':'UTF-8'}</span> {$feature.value|escape:'htmlall':'UTF-8'}</li>
 							{/if}
 						{/foreach}
-					</ul>
+					</div>
 					{foreach from=$feature_categories key=feature_category item=blah}
-						<ul id="features_{$feature_category|escape:urlpathinfo}">
+						<div id="features_{$feature_category|escape:urlpathinfo}">
 							{foreach from=$features item=feature}
 								{if $feature.name|regex_replace:"+/[^/]*$+":"" == $feature_category}
 									<li><span>{$feature.name|regex_replace:"+^[^/]*/+":""|escape:'htmlall':'UTF-8'}</span> {$feature.value|escape:'htmlall':'UTF-8'}</li>
 								{/if}
 							{/foreach}
-						</ul>
+						</div>
 					{/foreach}
 				</div>
 			</div>
 		{/if}
 		{if $attachments}
 			{foreach from=$attachments item=attachment}
-				<li><a href="{$base_dir}attachment.php?id_attachment={$attachment.id_attachment}">{$attachment.name|escape:'htmlall':'UTF-8'}</a><br>{$attachment.description|escape:'htmlall':'UTF-8'}</li>
+				<li><a href="{$base_dir}attachment.php?id_attachment={$attachment.id_attachment}">{$attachment.name|escape:'htmlall':'UTF-8'}</a><br />{$attachment.description|escape:'htmlall':'UTF-8'}</li>
 			{/foreach}
 			</ul>
 		{/if}
 		{if isset($accessories) AND $accessories}
 			<!-- accessories -->
-			<div id="idTab4" class="bullet">
+			<ul id="idTab4" class="bullet">
 				<div class="block products_block accessories_block">
 					{include file=$tpl_dir./product-list-category.tpl products=$accessories}
 				</div>
 				<div class="clear"></div>
-			</div>
+			</ul>
 		{/if}
 		{$HOOK_PRODUCT_TAB_CONTENT}
 		</div>
@@ -419,9 +419,9 @@ var fieldRequired = '{l s='Please fill all required fields' js=1}';
 		<div class="customization_block">
 			<form method="post" action="{$customizationFormTarget}" enctype="multipart/form-data" id="customizationForm">
 				<p>
-					<img src="{$img_dir}icon/infos.gif" alt="Informations">
+					<img src="{$img_dir}icon/infos.gif" alt="Informations" />
 					{l s='After saving your customized product, do not forget to add it to your cart.'}
-					{if $product->uploadable_files}<br>{l s='Allowed file formats are: GIF, JPG, PNG'}{/if}
+					{if $product->uploadable_files}<br />{l s='Allowed file formats are: GIF, JPG, PNG'}{/if}
 				</p>
 				{if $product->uploadable_files|intval}
 				<h2>{l s='Pictures'}</h2>
@@ -430,8 +430,8 @@ var fieldRequired = '{l s='Please fill all required fields' js=1}';
 					{foreach from=$customizationFields item='field' name='customizationFields'}
 						{if $field.type == 0}
 							<li class="customizationUploadLine{if $field.required} required{/if}">{assign var='key' value='pictures_'|cat:$product->id|cat:'_'|cat:$field.id_customization_field}
-								{if isset($pictures.$key)}<div class="customizationUploadBrowse"><img src="{$pic_dir}{$pictures.$key}_small" alt=""><a href="{$link->getUrlWith('deletePicture', $field.id_customization_field)}"><img src="{$img_dir}icon/delete.gif" alt="{l s='delete'}" class="customization_delete_icon"></a></div>{/if}
-								<div class="customizationUploadBrowse"><input type="file" name="file{$field.id_customization_field}" id="img{$customizationField}" class="customization_block_input {if isset($pictures.$key)}filled{/if}">{if $field.required}<sup>*</sup>{/if}
+								{if isset($pictures.$key)}<div class="customizationUploadBrowse"><img src="{$pic_dir}{$pictures.$key}_small" alt="" /><a href="{$link->getUrlWith('deletePicture', $field.id_customization_field)}"><img src="{$img_dir}icon/delete.gif" alt="{l s='delete'}" class="customization_delete_icon" /></a></div>{/if}
+								<div class="customizationUploadBrowse"><input type="file" name="file{$field.id_customization_field}" id="img{$customizationField}" class="customization_block_input {if isset($pictures.$key)}filled{/if}" />{if $field.required}<sup>*</sup>{/if}
 								<div class="customizationUploadBrowseDescription">{if !empty($field.name)}{$field.name}{else}{l s='Please select an image file from your hard drive'}{/if}</div></div>
 							</li>
 							{counter}
@@ -447,7 +447,7 @@ var fieldRequired = '{l s='Please fill all required fields' js=1}';
 					{foreach from=$customizationFields item='field' name='customizationFields'}
 						{if $field.type == 1}
 							<li class="customizationUploadLine{if $field.required} required{/if}">{assign var='key' value='textFields_'|cat:$product->id|cat:'_'|cat:$field.id_customization_field}
-								{if !empty($field.name)}{$field.name}{/if}<input type="text" name="textField{$field.id_customization_field}" id="textField{$customizationField}" value="{if isset($textFields.$key)}{$textFields.$key|stripslashes}{/if}" class="customization_block_input">{if $field.required}<sup>*</sup>{/if}
+								{if !empty($field.name)}{$field.name}{/if}<input type="text" name="textField{$field.id_customization_field}" id="textField{$customizationField}" value="{if isset($textFields.$key)}{$textFields.$key|stripslashes}{/if}" class="customization_block_input" />{if $field.required}<sup>*</sup>{/if}
 							</li>
 							{counter}
 						{/if}
@@ -465,9 +465,9 @@ var fieldRequired = '{l s='Please fill all required fields' js=1}';
 				 {/foreach}
 				{/if}
 				<p style="clear: left;" id="customizedDatas">
-					<input type="hidden" name="quantityBackup" id="quantityBackup" value="">
-					<input type="hidden" name="submitCustomizedDatas" value="1">
-					<input type="button" class="button" value="{l s='Save'}" onclick="javascript:saveCustomization()">
+					<input type="hidden" name="quantityBackup" id="quantityBackup" value="" />
+					<input type="hidden" name="submitCustomizedDatas" value="1" />
+					<input type="button" class="button" value="{l s='Save'}" onclick="javascript:saveCustomization()" />
 				</p>
 			</form>
 			<p class="clear required"><sup>*</sup> {l s='required fields'}</p>

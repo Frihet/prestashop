@@ -81,14 +81,14 @@ class AdminPayment extends AdminTab
 		$groups = Group::getGroups(intval($cookie->id_lang));
 		
 		$this->displayModules();
-		echo '<br><h2 class="space">'.$this->l('Payment module restrictions').'</h2>';
+		echo '<br /><h2 class="space">'.$this->l('Payment module restrictions').'</h2>';
 		$textCurrencies = $this->l('Please mark the checkbox(es) for the currency or currencies in which you want the payment module(s) available.');
 		$textCountries = $this->l('Please mark the checkbox(es) for the country or countries in which you want the payment module(s) available.');
 		$textGroups = $this->l('Please mark the checkbox(es) for the groups in which you want the payment module(s) available.');
 		$this->displayModuleRestrictions($currencies, $this->l('Currencies restrictions'), 'currency', $textCurrencies, 'dollar');
-		echo '<br>';
+		echo '<br />';
 		$this->displayModuleRestrictions($groups, $this->l('Groups restrictions'), 'group', $textGroups, 'group');
-		echo '<br>';
+		echo '<br />';
 		$this->displayModuleRestrictions($countries, $this->l('Countries restrictions'), 'country', $textCountries, 'world');
 	}
 	
@@ -100,7 +100,7 @@ class AdminPayment extends AdminTab
 		echo '
 		<form action="'.$currentIndex.'&token='.$this->token.'" method="post" class="width3" id="form_'.$nameId.'">
 			<fieldset>
-				<legend><img src="../img/admin/'.$icon.'.gif">'.$title.'</legend>
+				<legend><img src="../img/admin/'.$icon.'.gif" />'.$title.'</legend>
 				<p>'.$desc.'<p>
 				<table cellpadding="0" cellspacing="0" class="table">
 					<tr>
@@ -116,7 +116,7 @@ class AdminPayment extends AdminTab
 							<input type="hidden" id="checkedBox_'.$nameId.'_'.$module->name.'" value="checked">
 							<a href="javascript:checkPaymentBoxes(\''.$nameId.'\', \''.$module->name.'\')" style="text-decoration:none;">';
 				echo '
-							&nbsp;<img src="'.__PS_BASE_URI__.'modules/'.$module->name.'/logo.gif" alt="'.$module->name.'" title="'.$module->displayName.'">';
+							&nbsp;<img src="'.__PS_BASE_URI__.'modules/'.$module->name.'/logo.gif" alt="'.$module->name.'" title="'.$module->displayName.'" />';
 				if ($nameId != 'currency' OR ($nameId == 'currency' AND $module->currencies_mode == 'checkbox'))
 					echo '
 							</a>';
@@ -139,10 +139,10 @@ class AdminPayment extends AdminTab
 						<td style="text-align: center">';
 					if ($nameId != 'currency' OR ($nameId == 'currency' AND $module->currencies AND $module->currencies_mode == 'checkbox'))
 						echo '
-							<input type="checkbox" name="'.$module->name.'_'.$nameId.'[]" value="'.$item['id_'.$nameId].'"'.(in_array($item['id_'.$nameId.''], $module->{$nameId}) ? ' checked="checked"' : '').'>';
+							<input type="checkbox" name="'.$module->name.'_'.$nameId.'[]" value="'.$item['id_'.$nameId].'"'.(in_array($item['id_'.$nameId.''], $module->{$nameId}) ? ' checked="checked"' : '').' />';
 					elseif ($nameId == 'currency' AND $module->currencies AND $module->currencies_mode == 'radio')
 						echo '
-							<input type="radio" name="'.$module->name.'_'.$nameId.'[]" value="'.$item['id_'.$nameId].'"'.(in_array($item['id_'.$nameId.''], $module->{$nameId}) ? ' checked="checked"' : '').'>';
+							<input type="radio" name="'.$module->name.'_'.$nameId.'[]" value="'.$item['id_'.$nameId].'"'.(in_array($item['id_'.$nameId.''], $module->{$nameId}) ? ' checked="checked"' : '').' />';
 					elseif ($nameId == 'currency')
 						echo '--';
 					echo '
@@ -160,7 +160,7 @@ class AdminPayment extends AdminTab
 			foreach ($this->paymentModules as $module)
 				if ($module->active)
 					echo '
-					<td style="text-align: center">'.(($module->currencies AND $module->currencies_mode == 'radio') ? '<input type="radio" name="'.$module->name.'_'.$nameId.'[]" value="-1"'.(in_array(-1, $module->{$nameId}) ? ' checked="checked"' : '').'>' : '--').'</td>';
+					<td style="text-align: center">'.(($module->currencies AND $module->currencies_mode == 'radio') ? '<input type="radio" name="'.$module->name.'_'.$nameId.'[]" value="-1"'.(in_array(-1, $module->{$nameId}) ? ' checked="checked"' : '').' />' : '--').'</td>';
 			echo '
 				</tr>';
 			echo '
@@ -169,13 +169,13 @@ class AdminPayment extends AdminTab
 			foreach ($this->paymentModules as $module)
 				if ($module->active)
 					echo '
-					<td style="text-align: center">'.(($module->currencies AND $module->currencies_mode == 'radio') ? '<input type="radio" name="'.$module->name.'_'.$nameId.'[]" value="-2"'.(in_array(-2, $module->{$nameId}) ? ' checked="checked"' : '').'>' : '--').'</td>';
+					<td style="text-align: center">'.(($module->currencies AND $module->currencies_mode == 'radio') ? '<input type="radio" name="'.$module->name.'_'.$nameId.'[]" value="-2"'.(in_array(-2, $module->{$nameId}) ? ' checked="checked"' : '').' />' : '--').'</td>';
 			echo '
 				</tr>';
 		}
 		echo '
 				</table>
-				<div style="text-align:center;"><input type="submit" class="button space" name="submitModule'.$nameId.'" value="'.$this->l('Save restrictions').'"></div>
+				<div style="text-align:center;"><input type="submit" class="button space" name="submitModule'.$nameId.'" value="'.$this->l('Save restrictions').'" /></div>
 			</fieldset>
 		</form>';
 	}
@@ -199,16 +199,16 @@ class AdminPayment extends AdminTab
 			{
 				if ($module->id)
 				{
-					$img = '<img src="../img/admin/enabled.gif" alt="disabled" title="'.$this->l('Module enabled').'">';
+					$img = '<img src="../img/admin/enabled.gif" alt="disabled" title="'.$this->l('Module enabled').'" />';
 					if ($module->warning)
-						$img = '<img src="../img/admin/warning.gif" alt="disabled" title="'.$this->l('Module installed but with warnings').'">';
+						$img = '<img src="../img/admin/warning.gif" alt="disabled" title="'.$this->l('Module installed but with warnings').'" />';
 					if (!$module->active)
-						$img = '<img src="../img/admin/disabled.gif" alt="disabled" title="'.$this->l('Module disabled').'">';
+						$img = '<img src="../img/admin/disabled.gif" alt="disabled" title="'.$this->l('Module disabled').'" />';
 				} else
-					$img = '<img src="../img/admin/cog.gif" alt="install" title="'.$this->l('Module no installed').'">';
+					$img = '<img src="../img/admin/cog.gif" alt="install" title="'.$this->l('Module no installed').'" />';
 				echo '
 				<tr'.($irow++ % 2 ? ' class="alt_row"' : '').' style="height: 42px;">
-					<td style="padding-left: 10px;"><img src="../modules/'.$module->name.'/logo.gif" alt=""> <strong>'.stripslashes($module->displayName).'</strong>'.($module->version ? ' v'.$module->version.(strpos($module->version, '.') !== false ? '' : '.0') : '').'<br>'.$module->description.'</td>
+					<td style="padding-left: 10px;"><img src="../modules/'.$module->name.'/logo.gif" alt="" /> <strong>'.stripslashes($module->displayName).'</strong>'.($module->version ? ' v'.$module->version.(strpos($module->version, '.') !== false ? '' : '.0') : '').'<br />'.$module->description.'</td>
 					<td width="85">'.(($module->active AND method_exists($module, 'getContent')) ? '<a href="index.php?tab=AdminModules&configure='.urlencode($module->name).'&token='.$tokenModules.'">'.$this->l('>> Configure').'</a>' : '').'</td>
 					<td class="center" width="20">';
 				if ($module->id)
@@ -220,9 +220,9 @@ class AdminPayment extends AdminTab
 					</td>
 					<td class="center" width="80">'.((!$module->id)
 					? '<input type="button" class="button small" name="Install" value="'.$this->l('Install').'"
-					onclick="javascript:document.location.href=\'index.php?tab=AdminModules&install='.urlencode($module->name).'&token='.$tokenModules.'\'">'
+					onclick="javascript:document.location.href=\'index.php?tab=AdminModules&install='.urlencode($module->name).'&token='.$tokenModules.'\'" />'
 					: '<input type="button" class="button small" name="Uninstall" value="'.$this->l('Uninstall').'"
-					onclick="'.(empty($module->confirmUninstall) ? '' : 'if(confirm(\''.addslashes($module->confirmUninstall).'\')) ').'document.location.href=\'index.php?tab=AdminModules&uninstall='.urlencode($module->name).'&token='.$tokenModules.'\';">').'</td>
+					onclick="'.(empty($module->confirmUninstall) ? '' : 'if(confirm(\''.addslashes($module->confirmUninstall).'\')) ').'document.location.href=\'index.php?tab=AdminModules&uninstall='.urlencode($module->name).'&token='.$tokenModules.'\';" />').'</td>
 				</tr>';
 			}
 		echo '</table>';
