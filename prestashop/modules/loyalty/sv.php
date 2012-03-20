@@ -7,6 +7,7 @@ $_MODULE['<{loyalty}prestashop>loyalty_44c3144de5c433c8e7c9cbc66c906c01'] = 'Lä
 $_MODULE['<{loyalty}prestashop>loyalty_f38f5974cdc23279ffe6d203641a8bdf'] = 'Inställningarna är uppdaterade';
 $_MODULE['<{loyalty}prestashop>loyalty_5be9427a9169ad6e9b63b0c9c61575d9'] = 'Trogen Kund program';
 $_MODULE['<{loyalty}prestashop>loyalty_f4f70727dc34561dfde1a3c529b6205c'] = 'Inställningar';
+$_MODULE['<{loyalty}prestashop>loyalty_8334a158298fbcf163f4dcb4a387d150'] = 'Ratio';
 $_MODULE['<{loyalty}prestashop>loyalty_315eae70bcaee168f1654c0ceeeef357'] = '1 belöningspoäng';
 $_MODULE['<{loyalty}prestashop>loyalty_e3ff7eaa9deb31e1e91178a7216135c0'] = '1 poäng';
 $_MODULE['<{loyalty}prestashop>loyalty_46108358594124685e77e7d49f762b30'] = 'för rabatt';

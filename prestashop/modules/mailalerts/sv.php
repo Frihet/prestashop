@@ -21,6 +21,7 @@ $_MODULE['<{mailalerts}prestashop>mailalerts_ebc3ccf8441dba3c1615afa6acb3282a'] 
 $_MODULE['<{mailalerts}prestashop>mailalerts_43c1063924fd0d29b5945682013c14a9'] = 'Få meddelande om en produkt är slut på lagret';
 $_MODULE['<{mailalerts}prestashop>mailalerts_95ba1239ebac05e1d10d5dae049e32f5'] = 'Skicka till e-postadresserna:';
 $_MODULE['<{mailalerts}prestashop>mailalerts_16a0cf0a0304df1b8ce3cb363eff0847'] = 'En e-post adress per rad';
+$_MODULE['<{mailalerts}prestashop>mailalerts_f77ed609e48d550f0166dfbafc102710'] = 'e.g';
 $_MODULE['<{mailalerts}prestashop>mailalerts_c1ee76f076a5b97e3b4b0c0e5703246e'] = 'Kan inte uppdatera inställningarna';
 $_MODULE['<{mailalerts}prestashop>mailalerts_f4d1ea475eaa85102e2b4e6d95da84bd'] = 'Bekräftelse';
 $_MODULE['<{mailalerts}prestashop>mailalerts_c888438d14855d7d96a2724ee9c306bd'] = 'Inställningar sparade';
