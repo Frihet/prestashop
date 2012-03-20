@@ -442,12 +442,12 @@ var fieldRequired = '{l s='Please fill all required fields' js=1}';
 
 
 
-			{if true}
-			<h2>{l s='Schedules'}</h2>
-			<ul id="schedule_fields">
+			{if $product->schedules|intval}
 				{counter start=0 assign='customizationField'}
 				{foreach from=$customizationFields item='field' name='customizationFields'}
 					{if $field.type == 2}
+			                        {if !empty($field.name)}<h2>{$field.name}</h2>{/if}
+
                                                 <table class="schedule">
                                                  <tr>
 						  <th></th>
@@ -501,7 +501,6 @@ var fieldRequired = '{l s='Please fill all required fields' js=1}';
                                                 </table>
 					{/if}
 				{/foreach}
-			</ul>
 			{/if}
 
 

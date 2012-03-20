@@ -135,6 +135,9 @@ class		Product extends ObjectModel
 	/** @var interger Number of text fields */
 	public		$text_fields;
 
+	/** @var interger Number of schedules */
+	public		$schedules;
+
 	/** @var boolean Product statuts */
 	public		$active = 1;
 	
@@ -182,6 +185,7 @@ class		Product extends ObjectModel
 		'customizable' => 'isUnsignedInt',
 		'uploadable_files' => 'isUnsignedInt',
 		'text_fields' => 'isUnsignedInt',
+		'schedules' => 'isUnsignedInt',
 		'active' => 'isBool',
 		'ean13' => 'isEan13'
 	);
@@ -242,6 +246,7 @@ class		Product extends ObjectModel
 		$fields['customizable'] = intval($this->customizable);
 		$fields['uploadable_files'] = intval($this->uploadable_files);
 		$fields['text_fields'] = intval($this->text_fields);
+		$fields['schedules'] = intval($this->schedules);
 		$fields['active'] = intval($this->active);
 		$fields['indexed'] = 0; // Reset indexation every times
 		$fields['ean13'] = pSQL($this->ean13);
@@ -2300,7 +2305,7 @@ class		Product extends ObjectModel
 
 	private function _deleteOldLabels()
 	{
-		$max = array(_CUSTOMIZE_FILE_ => intval(Tools::getValue('uploadable_files')), _CUSTOMIZE_TEXTFIELD_ => intval(Tools::getValue('text_fields')));
+		$max = array(_CUSTOMIZE_FILE_ => intval(Tools::getValue('uploadable_files')), _CUSTOMIZE_TEXTFIELD_ => intval(Tools::getValue('text_fields')), _CUSTOMIZE_SCHEDULE_ => intval(Tools::getValue('schedules')));
 		/* Get customization field ids */
 		if (($result = Db::getInstance()->ExecuteS('SELECT `id_customization_field`, `type` FROM `'._DB_PREFIX_.'customization_field` WHERE `id_product` = '.intval($this->id).' ORDER BY `id_customization_field`')) === false)
 			return false;
